@@ -70,6 +70,13 @@
     "text": "Links\n\n👨‍🏫 Lecture slides"
   },
   {
+    "objectID": "weeks/week03.html",
+    "href": "weeks/week03.html",
+    "title": "🗓️ Week 03 - Classifiers (Logistic Regression & Naive Bayes)",
+    "section": "",
+    "text": "👨‍🏫 Lecture slides"
+  },
+  {
     "objectID": "weeks/week06.html",
     "href": "weeks/week06.html",
     "title": "🗓️ Week 06 - Reading Week",
@@ -137,7 +144,7 @@
     "href": "weeks/week02/checklist.html",
     "title": "✅ Week 02 - Checklist",
     "section": "",
-    "text": "Your Checklist:\nReserve some time between Weeks 02 & 03 to revisit the content of this week’s lecture:\n\n📙 Read (James et al. 2021, chap. 3)\n👀 Browse the slides again\n📝 Take note of anything that isn’t clear to you\n📟 Share your questions on /week02 channel on Slack\n💻 Have a look at this week’s lab page and learn/revisit basic R programming skills.\n\nFollowing this will help you ensure you are well prepared for the Linear Regression lab of Week 03.\n\n\n\n\n\nReferences\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/."
+    "text": "Your Checklist:\nReserve some time between Weeks 02 & 03 to revisit the content of this week’s lecture:\n\n📙 Read (James et al. 2021, chap. 3)\n👀 Browse the slides again\n📝 Take note of anything that isn’t clear to you\n📟 Share your questions on /week02 channel on Slack\n💻 Checkout the lab prep page to read about how you could come to the labs well prepared.\n\nFollowing this will help you ensure you are well prepared for the Linear Regression lab of Week 03.\n\n\n\n\n\nReferences\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/."
   },
   {
     "objectID": "weeks/week02/lecture.html",
@@ -147,541 +154,541 @@
     "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides.\n\n\n\n\n\n\nUse this time to chat, stretch, drink some coffee or just relax for a bit by yourself.\n\n\n\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
   },
   {
-    "objectID": "weeks/week02/prep.html",
-    "href": "weeks/week02/prep.html",
-    "title": "📒 Week 02 - Preparing for this week’s lab",
-    "section": "",
-    "text": "References\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/."
+    "objectID": "weeks/week03/lecture.html#part-i---classifiers-logistic-regression-45-50-min",
+    "href": "weeks/week03/lecture.html#part-i---classifiers-logistic-regression-45-50-min",
+    "title": "👨‍🏫 Week 03 - Slides",
+    "section": "Part I - Classifiers (Logistic Regression) (45-50 min)",
+    "text": "Part I - Classifiers (Logistic Regression) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides.\n\n\n☕ Coffee Break (10 min)\nUse this time to chat, stretch, drink some coffee or just relax for a bit by yourself.\n\n\nPart II - Classifiers (Naive Bayes) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-data-science-institute",
     "href": "slides/week01_slides_part1.html#the-data-science-institute",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "The Data Science Institute",
     "text": "The Data Science Institute\n\n\n\n\n\nThis course is offered by the LSE Data Science Institute (DSI).\nDSI is the hub for LSE’s interdisciplinary collaboration in data science\n\n\n\n\nSign up for DSI events at lse.ac.uk/DSI/Events"
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-data-science-institute-1",
     "href": "slides/week01_slides_part1.html#the-data-science-institute-1",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "The Data Science Institute",
     "text": "The Data Science Institute\n\n\n\n\nActivities of interest to you:\n\nCIVICA Seminar Series\nCareers in Data Science\nSocial events\nIndustry “field trips”\nSummer projects\n\n\n\n\nSign up for DSI events at lse.ac.uk/DSI/Events"
   },
   {
     "objectID": "slides/week01_slides_part1.html#our-courses",
     "href": "slides/week01_slides_part1.html#our-courses",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Our courses",
     "text": "Our courses\nDSI offer accessible introductions to Data Science:\n\n\nDS101\nFundamentals of  Data Science\n🎯 Focus:  theoretical concepts of data science\n📂 How:  reflections through reading and writing\n\nDS105\nData for  Data Scientists\n🎯 Focus: collection and handling of real data\n📂 How: hands-on coding exercises and a group project\n\nDS202\nData Science for  Social Scientists\n🎯 Focus: fundamental machine learning algorithms\n📂 How: practical use of ML techniques and metrics"
   },
   {
     "objectID": "slides/week01_slides_part1.html#your-lecturer",
     "href": "slides/week01_slides_part1.html#your-lecturer",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Your lecturer",
     "text": "Your lecturer\n\n \n Also present the teaching assistants"
   },
   {
     "objectID": "slides/week01_slides_part1.html#who-are-you",
     "href": "slides/week01_slides_part1.html#who-are-you",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Who are you",
     "text": "Who are you\nBSc Psychological and Behavioural Science\n\n\n\n\n\n\n\n Add the overlaid graph, showing the actual paths these students took.\n\n\nData extracted from the UBPBS 2020/2021 degree regulation."
   },
   {
     "objectID": "slides/week01_slides_part1.html#learning-objectives-cont.",
     "href": "slides/week01_slides_part1.html#learning-objectives-cont.",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Learning Objectives (cont.)",
     "text": "Learning Objectives (cont.)\n\n\nKnow how to evaluate and compare fitted models, and to improve model performance.\nUse applied computer programming, including the hands-on use of programming through course exercises.\nApply the methods learned to real data through hands-on exercises.\nIntegrate the insights from data analytics into knowledge generation and decision-making;"
   },
   {
     "objectID": "slides/week01_slides_part1.html#learning-objectives-cont.-1",
     "href": "slides/week01_slides_part1.html#learning-objectives-cont.-1",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Learning Objectives (cont.)",
     "text": "Learning Objectives (cont.)\n\nUnderstand an introductory framework for working with natural language (text) data using techniques of machine learning.\n\n\n\nLearn how data science methods have been applied to a particular domain of study (applications)."
   },
   {
     "objectID": "slides/week01_slides_part1.html#philosophy-of-this-course-cont.",
     "href": "slides/week01_slides_part1.html#philosophy-of-this-course-cont.",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Philosophy of this course (cont.)",
     "text": "Philosophy of this course (cont.)\n\nThis is an exciting research area, having important applications in science, industry and policy.\nMachine learning is a fundamental ingredient in the training of a modern data scientist.\n\n\nContent borrowed from ME314 Day 1"
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-basics-of-statistics",
     "href": "slides/week01_slides_part1.html#the-basics-of-statistics",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "The basics of statistics",
     "text": "The basics of statistics\nBasic concepts of Statistics you might want to recap:\n\n\nExpected value, mean, median, variance, standard deviation\nProbabilities and simple probability distributions\nTypes of data\n\ndiscrete vs continuous\ncategorical vs numerical vs ordinal"
   },
   {
     "objectID": "slides/week01_slides_part1.html#resources-stats",
     "href": "slides/week01_slides_part1.html#resources-stats",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Resources (Stats)",
     "text": "Resources (Stats)\nA few references that might be useful to read or skim through:\n\n(Warne 2018, chaps. 1-3,5,6,11-12)\n(Gelman, Hill, and Vehtari 2020, chaps. 1–4)\nIf you are a PBS student, you can revisit the content of PB130 (MT3, MT4, MT8-MT11)"
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-basics-of-r-programming",
     "href": "slides/week01_slides_part1.html#the-basics-of-r-programming",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "The basics of R programming",
     "text": "The basics of R programming\nBasic concepts of programming in R to recap:\n\n\ndata structures (vectors, matrices, data frames)\nhow to manipulate data (filter, subset, select)\nread/write data files (for example: CSV, JSON, TXT)\n(optional but encouraged) some knowledge tidyverse can give you a productive boost\n\nthe official website (tidyverse.org) has some good tutorials."
   },
   {
     "objectID": "slides/week01_slides_part1.html#resources-r",
     "href": "slides/week01_slides_part1.html#resources-r",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Resources (R)",
     "text": "Resources (R)\n\nCheck out “R for Data Science” (Wickham and Grolemund 2016, chaps. 1–21). The online version is free.\n“Statistical inference via data science” (Ismay and Kim 2020, chaps. 4–6) is another great free resource"
   },
   {
     "objectID": "slides/week01_slides_part1.html#what-if-i-struggle-with-r",
     "href": "slides/week01_slides_part1.html#what-if-i-struggle-with-r",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "‘What if I struggle with R’?",
     "text": "‘What if I struggle with R’?\n➡️ Our first lab (Week 02) is a recap of some basic R commands, plus some ggplot2.\n\n\nIf you are not confident with your R skills, I strongly encourage you invest in studying the basics in the next couple of weeks.\nContact LSE Digital Skills Lab to attend in-person workshops or self-paced online R courses."
   },
   {
     "objectID": "slides/week01_slides_part1.html#any-questions",
     "href": "slides/week01_slides_part1.html#any-questions",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Any questions?",
     "text": "Any questions?\n\n\n\n\n\n\nImage created with the DALL·E algorithm using the prompt: ‘35mm macro photography of a robot holding a question mark card, white background’"
   },
   {
     "objectID": "slides/week01_slides_part1.html#syllabus",
     "href": "slides/week01_slides_part1.html#syllabus",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Syllabus",
     "text": "Syllabus\n\n\n\n\n\n\n\nIntro\n\n\n\n\n\n    Introduction, Context & Key Concepts\nWeek 01\n\n\nSupervised Learning\n\n\n\n    Simple and Multiple Linear Regression      Classifiers (Logistic Regression & Naive Bayes)      Resampling methods       Non-linear algorithms (SVM & tree-based models)\nWeek 02  Week 03  Week 04  Week 05\n\n\nUnsupervised Learning\n\n\n\n    Principal Component Analysis (PCA) & Clustering     Dimensionality Reduction (t-SNE & UMAP)         \nWeek 07  Week 08\n\n\nApplications\n\n\n\n    Applications: Text as Data     Applications: Topic Modelling     Applications: Social Media Data\nWeek 09  Week 10  Week 11"
   },
   {
     "objectID": "slides/week01_slides_part1.html#structure-of-lectures",
     "href": "slides/week01_slides_part1.html#structure-of-lectures",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Structure of lectures 👨🏻‍🏫",
     "text": "Structure of lectures 👨🏻‍🏫\nOur lectures will be split in two parts:\n\n\nPart I (~ 50 min): Traditional exposition of theoretical content\nbreak (~ 10 min): Grab coffee ☕ or relax 🧘\nPart II (~ 50 min): Live demo\n\nTypically, an exploratory analysis or application of an algorithm\nFeel free to follow along in your own laptops."
   },
   {
     "objectID": "slides/week01_slides_part1.html#structure-of-classes",
     "href": "slides/week01_slides_part1.html#structure-of-classes",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Structure of classes 👩‍💻",
     "text": "Structure of classes 👩‍💻\n\n\nStudents will work on weekly, structured problem sets in the staff-led class sessions.\nTips to get the most of classes:\n\nBring your own laptops 💻 (most tablets are not suitable for programming)\nRead the recommended reading prior to the class\nSkim through the problem set before class"
   },
   {
     "objectID": "slides/week01_slides_part1.html#class-groups",
     "href": "slides/week01_slides_part1.html#class-groups",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Class groups",
     "text": "Class groups\n Update the groups here once we hear back from LSE Timetables"
   },
   {
     "objectID": "slides/week01_slides_part1.html#assessments",
     "href": "slides/week01_slides_part1.html#assessments",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Assessments 📔",
     "text": "Assessments 📔\nThe breakdown of assessment for this class will be as follows:"
   },
   {
     "objectID": "slides/week01_slides_part1.html#assessments-1",
     "href": "slides/week01_slides_part1.html#assessments-1",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Assessments 📔",
     "text": "Assessments 📔\n\nProblem sets (60%)\n\n\nSummative problem sets released on Weeks 5, 8 & 11.\nThese will have a similar style to the formative problem sets, a mix of R tasks and your written interpretation of the analyses.\nYou will have 4-6 days to submit your solutions.\nEach of the three summative problem sets is worth 20% of the final mark, and will be graded on a 100 point scale."
   },
   {
     "objectID": "slides/week01_slides_part1.html#assessments-2",
     "href": "slides/week01_slides_part1.html#assessments-2",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Assessments 📔",
     "text": "Assessments 📔\n\nTake-home exam (40%)\n\n\nAn open-book take-home exam, taken during the January exams period.\nExam questions will be comparable in style to the problem sets.\nThe exam questions will be released on Moodle on 5 January 2023.\nThe exam is due on 11 January at 4pm."
   },
   {
     "objectID": "slides/week01_slides_part1.html#office-hours",
     "href": "slides/week01_slides_part1.html#office-hours",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Office hours",
     "text": "Office hours\n\n\nIt is probably a good idea to book office hours if:\n\nyou struggled with a technical or theoretical aspect of a problem set in the previous week,\nyou have queries about careers in data science,\nyou want guidance in how to apply data science to other things you are studying outside this course.\n\nCome prepared. You only have 15 minutes.\nAsk for help sooner rather than later.\nBook slots via StudentHub up to 12 hours in advance."
   },
   {
     "objectID": "slides/week01_slides_part1.html#communication",
     "href": "slides/week01_slides_part1.html#communication",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Communication",
     "text": "Communication\n\n\nJoin our Slack group:  add link to slack\nUse the public Slack channels to talk to share links, content (or memes) with your colleagues.\nOur teaching team will dedicate some time during the week to answer questions or other interactions on Slack.\nReserve 📧 e-mail for formal requests: extensions, deferrals, etc.\n\nNo need to e-mail to inform you will skip a class, for example."
   },
   {
     "objectID": "slides/week01_slides_part1.html#any-questions-1",
     "href": "slides/week01_slides_part1.html#any-questions-1",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Any questions?",
     "text": "Any questions?\n\n\n\n\n\n\nImage created with the DALL·E algorithm using the prompt: ‘35mm macro photography of a robot holding a question mark card, white background’"
   },
   {
     "objectID": "slides/week01_slides_part1.html#we-changed-how-we-consume-music",
     "href": "slides/week01_slides_part1.html#we-changed-how-we-consume-music",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "We changed how we consume music 🎧",
     "text": "We changed how we consume music 🎧\n\n\n\n\n\n\nTo interact with this plot, check reference (Fischer-Baum 2017) at the end of this presentation."
   },
   {
     "objectID": "slides/week01_slides_part1.html#we-changed-how-we-consume-video",
     "href": "slides/week01_slides_part1.html#we-changed-how-we-consume-video",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "We changed how we consume video 🎞️",
     "text": "We changed how we consume video 🎞️\n\n\n\n\n\n\nTo interact with this plot, check reference (Fischer-Baum 2017) at the end of this presentation."
   },
   {
     "objectID": "slides/week01_slides_part1.html#smartphones-are-a-very-recent-thing",
     "href": "slides/week01_slides_part1.html#smartphones-are-a-very-recent-thing",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "Smartphones 📱 are a very recent thing",
     "text": "Smartphones 📱 are a very recent thing\n\n\n\n\n\n\nTo interact with this plot, check reference (Fischer-Baum 2017) at the end of this presentation."
   },
   {
     "objectID": "slides/week01_slides_part1.html#we-spend-a-lot-more-time-connected",
     "href": "slides/week01_slides_part1.html#we-spend-a-lot-more-time-connected",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "We spend a lot more time connected",
     "text": "We spend a lot more time connected"
   },
   {
     "objectID": "slides/week01_slides_part1.html#references",
     "href": "slides/week01_slides_part1.html#references",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Structure of this course",
     "section": "References",
     "text": "References\n\n\nFischer-Baum, Reuben. 2017. “What ‘Tech World’ Did You Grow up In?” Washington Post. https://www.washingtonpost.com/graphics/2017/entertainment/tech-generations/.\n\n\nGelman, Andrew, Jennifer Hill, and Aki Vehtari. 2020. Regression and Other Stories. 1st ed. Cambridge University Press. https://doi.org/10.1017/9781139161879.\n\n\nIsmay, Chester, and Albert Young-Sun Kim. 2020. Statistical Inference via Data Science: A ModernDive into R and the Tidyverse. Chapman & Hall/CRC the R Series. Boca Raton: CRC Press / Taylor & Francis Group. https://moderndive.com/.\n\n\nKolawole, Emi. 2013. “About Those 2005 and 2013 Photos of the Crowds in St. Peter’s Square.” Washington Post. http://wapo.st/WKKTMh.\n\n\nWarne, Russell T. 2018. Statistics for the Social Sciences: A General Linear Model Approach. https://www.cambridge.org/highereducation/books/statistics-for-the-social-sciences/716FF25785A6154CC6822D067A959445.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. First edition. Sebastopol, CA: O’Reilly. https://r4ds.had.co.nz/.\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
   },
   {
     "objectID": "slides/week01_slides_part2.html#data-science-is",
     "href": "slides/week01_slides_part2.html#data-science-is",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Data science is…",
     "text": "Data science is…\n\n\n“[…] a field of study and practice that involves the collection, storage, and processing of data in order to derive important 💡 insights into a problem or a phenomenon.\n\n\n\n\nSuch data may be generated by humans (surveys, logs, etc.) or machines (weather data, road vision, etc.),\n\n\n\n\nand could be in different formats (text, audio, video, augmented or virtual reality, etc.).”\n\n\n\n\n(Shah 2020, chap. 1) - Emphasis and emojis are of my own making."
   },
   {
     "objectID": "slides/week01_slides_part2.html#the-mythical-unicorn",
     "href": "slides/week01_slides_part2.html#the-mythical-unicorn",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "The mythical unicorn 🦄",
     "text": "The mythical unicorn 🦄\n\n\nknows everything about statistics\n\n\nable to communicate insights perfectly\n\n\nfully understands businesses like no one\n\n\nis a fluent computer programmer\n\n\n\nOf course, such a person does not exist!\n\n\nSee (Davenport 2020) for a more in-depth discussion about this"
   },
   {
     "objectID": "slides/week01_slides_part2.html#in-reality",
     "href": "slides/week01_slides_part2.html#in-reality",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "In reality…",
     "text": "In reality…\n\n\nWe are all jugglers 🤹\n\n\nEveryone brings a different skill set.\nWe need multi-disciplinary teams.\nGood data scientists know a bit of everything.\n\nNot fluent in all things\nUnderstands their strenghts and weaknessess\nThey know when and where to interface with others\n\n\n\n\n\n\n\n\n\nSee (Schutt and O’Neil 2013, chap. 1) for more on this."
   },
   {
     "objectID": "slides/week01_slides_part2.html#the-data-science-workflow-1",
     "href": "slides/week01_slides_part2.html#the-data-science-workflow-1",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "The Data Science Workflow",
     "text": "The Data Science Workflow\n\n\n\n\n\n   \n\nstart\n\n Start   \n\ngather\n\nGather data     \n\nstart->gather\n\n    \n\nstore\n\nStore it          somewhere   \n\ngather->store\n\n           \n\nclean\n\nClean &         pre-process   \n\nstore->clean\n\n           \n\nbuild\n\nBuild a  dataset   \n\nclean->build\n\n           \n\neda\n\nExploratory     data analysis   \n\nbuild->eda\n\n    \n\nml\n\nMachine learning   \n\neda->ml\n\n           \n\ninsight\n\nObtain    insights   \n\nml->insight\n\n           \n\ncommunicate\n\nCommunicate results            \n\ninsight->communicate\n\n           \n\nend\n\n End   \n\ncommunicate->end\n\n   \n\n\n\n\n\n\n\n⚠️ Note that this is a simplified version of what happens in a data science project.  In practice, the process is not linear and there are many feedback loops."
   },
   {
     "objectID": "slides/week01_slides_part2.html#the-data-science-workflow-2",
     "href": "slides/week01_slides_part2.html#the-data-science-workflow-2",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "The Data Science Workflow",
     "text": "The Data Science Workflow\n\n\n\n\n\n   \n\nstart\n\n Start   \n\ngather\n\n Gather data     \n\nstart->gather\n\n    \n\nend\n\n End   \n\nstore\n\n Store it          somewhere   \n\ngather->store\n\n           \n\nclean\n\n Clean &         pre-process   \n\nstore->clean\n\n           \n\nbuild\n\n Build a  dataset   \n\nclean->build\n\n           \n\neda\n\n Exploratory     data analysis   \n\nbuild->eda\n\n    \n\nml\n\n Machine learning   \n\neda->ml\n\n           \n\ninsight\n\n Obtain    insights   \n\nml->insight\n\n           \n\ncommunicate\n\n Communicate results            \n\ninsight->communicate\n\n           \n\ncommunicate->end\n\n   \n\n\n\n\n\nIt is often said that 80% of the time and effort spent on a data science project goes to the tasks highlighted above."
   },
   {
     "objectID": "slides/week01_slides_part2.html#the-data-science-workflow-3",
     "href": "slides/week01_slides_part2.html#the-data-science-workflow-3",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "The Data Science Workflow",
     "text": "The Data Science Workflow\n\n\n\n\n\n   \n\nstart\n\n Start   \n\ngather\n\n Gather data     \n\nstart->gather\n\n    \n\nend\n\n End   \n\nstore\n\n Store it          somewhere   \n\ngather->store\n\n           \n\nclean\n\n Clean &         pre-process   \n\nstore->clean\n\n           \n\nbuild\n\n Build a  dataset   \n\nclean->build\n\n           \n\neda\n\n Exploratory     data analysis   \n\nbuild->eda\n\n    \n\nml\n\n Machine learning   \n\neda->ml\n\n           \n\ninsight\n\n Obtain    insights   \n\nml->insight\n\n           \n\ncommunicate\n\n Communicate results            \n\ninsight->communicate\n\n           \n\ncommunicate->end\n\n   \n\n\n\n\n\nThis course is about Machine Learning. So, in most examples and tutorials, we will assume that we already have good quality data."
   },
   {
     "objectID": "slides/week01_slides_part2.html#data-science-and-social-science",
     "href": "slides/week01_slides_part2.html#data-science-and-social-science",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Data Science and Social Science",
     "text": "Data Science and Social Science\n\nIn reality, data scientists work as a multidisciplinary group, collaborating towards a common goal.\nContent borrowed from ME314 Day 1\n\n\n\nSocial science: The goal is typically explanation\nData science: The goal is frequently prediction, or data exploration\nMany of the same methods are used for both objectives\n\n\n\n\nCheck (Shmueli 2010) for a discussion about this topic."
   },
   {
     "objectID": "slides/week01_slides_part2.html#what-does-it-mean-to-learn-something",
     "href": "slides/week01_slides_part2.html#what-does-it-mean-to-learn-something",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "What does it mean to learn something?",
     "text": "What does it mean to learn something?\n\n\n\n\n\n\nImage created with the DALL·E algorithm using the prompt: ‘35mm macro photography of a robot holding a question mark card, white background’"
   },
   {
     "objectID": "slides/week01_slides_part2.html#predicting-a-sequence-intuitively",
     "href": "slides/week01_slides_part2.html#predicting-a-sequence-intuitively",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Predicting a sequence intuitively",
     "text": "Predicting a sequence intuitively\n\n\nSay our data is the following simple sequence:  \\(6, 9, 12, 15, 18, 21, 24, ...\\) \nWhat number do you expect to come next? Why?\nIt is very likely that you guessed that \\(\\operatorname{next number}=27\\)\nWe spot that the sequence follows a pattern\nFrom this, we notice — we learn — that the sequence is governed by: \\(\\operatorname{next number} = \\operatorname{previous number} + 3\\)"
   },
   {
     "objectID": "slides/week01_slides_part2.html#predicting-a-sequence-formula",
     "href": "slides/week01_slides_part2.html#predicting-a-sequence-formula",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Predicting a sequence (formula)",
     "text": "Predicting a sequence (formula)\nThe next number is a function of the previous one:\n \\[\n\\operatorname{next number} = f(\\operatorname{previous number})\n\\]"
   },
   {
     "objectID": "slides/week01_slides_part2.html#predicting-a-sequence-generic-formula",
     "href": "slides/week01_slides_part2.html#predicting-a-sequence-generic-formula",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Predicting a sequence (generic formula)",
     "text": "Predicting a sequence (generic formula)\nIn general terms, we can represented it as:\n \\[\n\\operatorname{Y} = f(\\operatorname{X})\n\\] \n\nwhere:\n\n\\(Y\\): a quantitative response.  It goes by many names: dependent variable, response, target, outcome\n\\(X\\): a set of predictors,  also called inputs, regressors, covariates, features, independent variables.\n\\(f\\): the systematic information that \\(X\\) provides about \\(Y\\)"
   },
   {
     "objectID": "slides/week01_slides_part2.html#predicting-a-sequence-generic-formula-1",
     "href": "slides/week01_slides_part2.html#predicting-a-sequence-generic-formula-1",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Predicting a sequence (generic formula)",
     "text": "Predicting a sequence (generic formula)\nIn general terms, we can represented it as:\n\n\\[\n\\operatorname{Y} = f(\\operatorname{X}) + \\epsilon\n\\]\n\nwhere:\n\n\\(Y\\): the output\n\\(X\\): a set of inputs\n\\(f\\): the systematic information that \\(X\\) provides about \\(Y\\)\n\\(\\epsilon~~\\): a random error term\n\n\nIn reality, there is some error \\(\\epsilon\\) that cannot be reduced."
   },
   {
     "objectID": "slides/week01_slides_part2.html#approximating-f",
     "href": "slides/week01_slides_part2.html#approximating-f",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Approximating \\(f\\)",
     "text": "Approximating \\(f\\)\n\n\n\\(f\\) is almost always unknown\nWe aim to find an approximation (a model). Let’s call it \\(\\hat{f}\\)\nthat can then use it to predict values of \\(Y\\) for whatever \\(X\\).\nThat is: \\(\\hat{Y} = \\hat{f}(X)\\)"
   },
   {
     "objectID": "slides/week01_slides_part2.html#what-is-machine-learning",
     "href": "slides/week01_slides_part2.html#what-is-machine-learning",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "What is Machine Learning?",
     "text": "What is Machine Learning?\n\n\nStatistical learning, or Machine learning, refers to a set of approaches for estimating \\(f\\).\nEach algorithm you will learn on this course has its own way to determine \\(\\hat{f}\\) given data"
   },
   {
     "objectID": "slides/week01_slides_part2.html#types-of-learning",
     "href": "slides/week01_slides_part2.html#types-of-learning",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Types of learning",
     "text": "Types of learning\n\nIn general terms, there are two main ways to learn from data:\n\n\nSupervised Learning\n\nEach observation (\\(x_i\\)) has an outcome associated with it (\\(y_i\\)).\nYour goal is to find a \\(\\hat{f}\\) that produces \\(\\hat{Y}\\) value close to the true \\(Y\\) values.\nOur focus on 🗓️ Weeks 2, 3, 4 & 5.\n\n\nUnsupervised Learning\n\nYou have observations (\\(x_i\\)) but there is no response variable.\nYour goal is to find a \\(\\hat{f}\\), focused only on \\(X\\) that best represents the patterns in the data.\nOur focus on 🗓️ Weeks 7 & 8."
   },
   {
     "objectID": "slides/week01_slides_part2.html#data-structure",
     "href": "slides/week01_slides_part2.html#data-structure",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Data Structure",
     "text": "Data Structure\nLet’s go back to our example:\n\n\n\nOur simple sequence:\n \\(6, 9, 12, 15, 18, 21, 24\\) \n\n\n\nBecomes:\n\n\n\n\\(X\\)\n\\(Y\\)\n\n\n\n\n6\n9\n\n\n9\n12\n\n\n12\n15\n\n\n15\n18\n\n\n18\n21\n\n\n21\n24\n\n\n\n\n\n\nAnd for prediction:\n\n\n\n\n\n\n\n\\(X\\)\n\\(\\hat{Y}\\)\n\n\n\n\n24\n?\n\n\n\nwe present the \\(X\\) values and ask the fitted model to give us \\(\\hat{Y}\\).\n\n\n\n\nSame data but now in tabular format\na few other terms: - training data/test data - fitted model"
   },
   {
     "objectID": "slides/week01_slides_part2.html#the-ground-truth",
     "href": "slides/week01_slides_part2.html#the-ground-truth",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "The ground truth",
     "text": "The ground truth\nLet’s create a dataframe to illustrate the process of training an algorithm:\n\nlibrary(tidyverse)\n\ndf = tibble(X=as.integer(seq(6, 21, 3)),\n            Y=as.integer(seq(6+3, 21+3, 3)))\nprint(df)\n\n\n\n# A tibble: 6 × 2\n      X     Y\n  <int> <int>\n1     6     9\n2     9    12\n3    12    15\n4    15    18\n5    18    21\n6    21    24"
   },
   {
     "objectID": "slides/week01_slides_part2.html#adding-noise",
     "href": "slides/week01_slides_part2.html#adding-noise",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  10.6\n2     9    12  13.7\n3    12    15  17.3\n4    15    18  16.9\n5    18    21  20.1\n6    21    24  21.9"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  8.80\n2     9    12 10.8 \n3    12    15 16.7 \n4    15    18 22.8 \n5    18    21 21.4 \n6    21    24 22.8"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
     "href": "slides/week01_slides_part2.html#visualizing-the-data",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Visualizing the data",
     "text": "Visualizing the data"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data-w-noise",
     "href": "slides/week01_slides_part2.html#visualizing-the-data-w-noise",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Visualizing the data (w/ noise)",
     "text": "Visualizing the data (w/ noise)"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data-w-noise-1",
     "href": "slides/week01_slides_part2.html#visualizing-the-data-w-noise-1",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Visualizing the data (w/ noise)",
     "text": "Visualizing the data (w/ noise)\n\n\n\n\n\n\n\nWhich line is closer to the “truth”?"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data-w-noise-2",
     "href": "slides/week01_slides_part2.html#visualizing-the-data-w-noise-2",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Visualizing the data (w/ noise)",
     "text": "Visualizing the data (w/ noise)\n\n\n\n\n\n\n\nHow much error can we accept?"
   },
   {
     "objectID": "slides/week01_slides_part2.html#assessing-error",
     "href": "slides/week01_slides_part2.html#assessing-error",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  10.6 -1.61     1.61 \n2     9    12  13.7 -1.74     1.74 \n3    12    15  17.3 -2.31     2.31 \n4    15    18  16.9  1.05     1.05 \n5    18    21  20.1  0.920    0.920\n6    21    24  21.9  2.09     2.09 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.619615\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  8.80  0.201    0.201\n2     9    12 10.8   1.21     1.21 \n3    12    15 16.7  -1.67     1.67 \n4    15    18 22.8  -4.82     4.82 \n5    18    21 21.4  -0.383    0.383\n6    21    24 22.8   1.15     1.15 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.572983\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
     "href": "slides/week01_slides_part2.html#measures-of-error",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Measures of error",
     "text": "Measures of error\nThis is what we computed:\n\\[\n\\operatorname{MAE} = \\frac{\\sum_{i=1}^n{|(y_i + \\epsilon) - y_i|}}{n}\n\\]\n\n\nWe were able to compute this error because we knew what the ground truth \\(Y\\), we knew what its real value was.\nIt was only possible because it was a simulation, not real data.\nIn practice, we will almost never be able to assess the impact of \\(\\epsilon\\).\nWe will use this same way of thinking to assess how good and accurate our models are. 🔜"
   },
   {
     "objectID": "slides/week01_slides_part2.html#references",
     "href": "slides/week01_slides_part2.html#references",
-    "title": "DS202 Data Science for Social Scientists",
+    "title": "🗓️ Week 01:Overview of core concepts",
     "section": "References",
     "text": "References\n\n\nDavenport, Thomas. 2020. “Beyond Unicorns: Educating, Classifying, and Certifying Business Data Scientists.” Harvard Data Science Review 2 (2). https://doi.org/10.1162/99608f92.55546b4a.\n\n\nSchutt, Rachel, and Cathy O’Neil. 2013. Doing Data Science. First edition. Beijing ; Sebastopol: O’Reilly Media. https://ebookcentral.proquest.com/lib/londonschoolecons/detail.action?docID=1465965.\n\n\nShah, Chirag. 2020. A Hands-on Introduction to Data Science. Cambridge, United Kingdom ; New York, NY, USA: Cambridge University Press. https://librarysearch.lse.ac.uk/permalink/f/1n2k4al/TN_cdi_askewsholts_vlebooks_9781108673907.\n\n\nShmueli, Galit. 2010. “To Explain or to Predict?” Statistical Science 25 (3). https://doi.org/10.1214/10-STS330.\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
   },
   {
     "objectID": "slides/week02_slides_part1.html#the-basic-models",
     "href": "slides/week02_slides_part1.html#the-basic-models",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "The basic models",
     "text": "The basic models\n\nLinear regression is a simple approach to supervised learning.\n\n\n\n\nThe generic supervised model:\n\\[\nY = \\operatorname{f}(X) + \\epsilon\n\\]\nis defined more explicitly as follows ➡️\n\n\n\n\nSimple linear regression\n\n\\[\n\\begin{align}\nY = \\beta_0 +& \\beta_1 X + \\epsilon, \\\\\n\\\\\n\\\\\n\\end{align}\n\\] \nwhen we use a single predictor, \\(X\\).\n\n\n\n\nMultiple linear regression\n\n\\[\n\\begin{align}\nY = \\beta_0 &+ \\beta_1 X_1 + \\beta_2 X_2 \\\\\n   &+ \\dots \\\\\n   &+ \\beta_p X_p + \\epsilon\n\\end{align}\n\\]\n\nwhen there are multiple predictors, \\(X_p\\).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nTrue regression functions are never linear!\nAlthough it may seem overly simplistic, linear regression is extremely useful both conceptually and practically.\n\n\n\n\n\n\n\n\n\nSee 📺 Regression: Crash Course Statistics on YouTube for inspiration on how to present linear regression to students.  \nWe will talk about both types of models, how we can estimate the values of all \\(\\beta\\) and assess how good our models are."
   },
   {
     "objectID": "slides/week02_slides_part1.html#linear-regression-with-a-single-predictor",
     "href": "slides/week02_slides_part1.html#linear-regression-with-a-single-predictor",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Linear Regression with a single predictor",
     "text": "Linear Regression with a single predictor\n\n\nWe assume a model:\n\n\\[\nY = \\beta_0 + \\beta_1 X + \\epsilon ,\n\\]\n\n\n\n\n\n\n\n\n\n\nwhere:\n\n\\(\\beta_0\\): an unknown constant that represents the intercept of the line.\n\\(\\beta_1\\): an unknown constant that represents the slope of the line\n\\(\\epsilon\\): the random error term (irreducible)\n\n\n\n\n\n\\(\\beta_0\\) and \\(\\beta_1\\) are also known as coefficients or parameters of the model."
   },
   {
     "objectID": "slides/week02_slides_part1.html#linear-regression-with-a-single-predictor-1",
     "href": "slides/week02_slides_part1.html#linear-regression-with-a-single-predictor-1",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Linear Regression with a single predictor",
     "text": "Linear Regression with a single predictor\n\n\nWe want to estimate:\n\\[\n\\hat{y} = \\hat{\\beta_0} + \\hat{\\beta_1} x\n\\]\n\n\n\n\n\n\n\n\n\nwhere:\n\n\\(\\hat{y}\\): is a prediction of \\(Y\\) on the basis of \\(X = x\\).\n\\(\\hat{\\beta_0}\\): is an estimate of the “true” \\(\\beta_0\\).\n\\(\\hat{\\beta_1}\\): is an estimate of the “true” \\(\\beta_1\\).\n\n\n\n\n\nThe hat symbol denotes an estimated value."
   },
   {
     "objectID": "slides/week02_slides_part1.html#different-estimators-different-equations",
     "href": "slides/week02_slides_part1.html#different-estimators-different-equations",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Different estimators, different equations",
     "text": "Different estimators, different equations\n\n\n\nThere are multiple ways to estimate the coefficients.\n\nIf you use different techniques, you might get different equations\nThe most common algorithm is called  Ordinary Least Squares (OLS)\nJust to name a few other estimators (Karafiath 2009):\n\nLeast Absolute Deviation (LAD)\nWeighted Least Squares (WLS)\nGeneralized Least Squares (GLS)\nHeteroskedastic-Consistent (HC) variants\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe will only cover OLS in this course."
   },
   {
     "objectID": "slides/week02_slides_part1.html#the-concept-of-residuals",
     "href": "slides/week02_slides_part1.html#the-concept-of-residuals",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "The concept of residuals",
     "text": "The concept of residuals\nSuppose you came across some data:\n\n\n\n\n\n\n\nFirst, let’s think of the concept of residuals…\n\n\nAnd you suspect there is a linear relationship between X and Y."
   },
   {
     "objectID": "slides/week02_slides_part1.html#the-concept-of-residuals-1",
     "href": "slides/week02_slides_part1.html#the-concept-of-residuals-1",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "The concept of residuals",
     "text": "The concept of residuals\nSo, you decide to fit a line to it.\n\n\n\n\n\n\n\nA line that goes right through the middle of the cloud of data."
   },
   {
     "objectID": "slides/week02_slides_part1.html#the-concept-of-residuals-2",
     "href": "slides/week02_slides_part1.html#the-concept-of-residuals-2",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "The concept of residuals",
     "text": "The concept of residuals\n\nResiduals are the distances from each data point to this line. \n\n\n\n\n\n\n\n\\(e_i\\)\\(=y_i-\\hat{y}_i\\) represents the \\(i\\)th residual"
   },
   {
     "objectID": "slides/week02_slides_part1.html#residual-sum-of-squares-rss",
     "href": "slides/week02_slides_part1.html#residual-sum-of-squares-rss",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Residual Sum of Squares (RSS)",
     "text": "Residual Sum of Squares (RSS)\nFrom this, we can define the  Residual Sum of Squares  (RSS) as\n\\[\n\\mathrm{RSS}= e_1^2 + e_2^2 + \\dots + e_n^2,\n\\]\n\nor equivalently as\n\\[\n\\mathrm{RSS}= (y_1 - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_1)^2 + (y_2 - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_2)^2 + \\dots + (y_n - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_n)^2.\n\\]\n\n\n\n\n\n\n\n\n\nNote\n\n\nThe (ordinary) least squares approach chooses \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) to minimize the RSS.\n\n\n\n\n\nThat is how it does its job."
   },
   {
     "objectID": "slides/week02_slides_part1.html#a-question-for-you",
     "href": "slides/week02_slides_part1.html#a-question-for-you",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "A question for you",
     "text": "A question for you\n\n\n\n\nWhy the squares and not, say, just the sum of residuals?\n\nImage created with the DALL·E algorithm using the prompt: ‘35mm macro photography of a robot holding a question mark card, white background’\n\n\n\n\nExplain that the sum penalizes individual large errors a lot more Consider adding a visualisation to illustrate this point."
   },
   {
     "objectID": "slides/week02_slides_part1.html#the-objective-function",
     "href": "slides/week02_slides_part1.html#the-objective-function",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "The objective function",
     "text": "The objective function\nWe treat this as an optimisation problem. We want to minimize RSS: \\[\n\\begin{align}\n\\min \\mathrm{RSS} =& \\sum_i^n{e_i^2} \\\\\n             =& \\sum_i^n{\\left(y_i - \\hat{y}_i\\right)^2} \\\\\n             =& \\sum_i^n{\\left(y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i\\right)^2}\n\\end{align}\n\\]"
   },
   {
     "objectID": "slides/week02_slides_part1.html#estimating-hatbeta_0",
     "href": "slides/week02_slides_part1.html#estimating-hatbeta_0",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Estimating \\(\\hat{\\beta}_0\\)",
     "text": "Estimating \\(\\hat{\\beta}_0\\)\nTo find \\(\\hat{\\beta}_0\\), we have to solve the following partial derivative:\n\\[\n\\frac{\\partial ~\\mathrm{RSS}}{\\partial \\hat{\\beta}_0}{\\sum_i^n{(y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i)^2}} = 0\n\\]\n\n… which will lead you to:\n\n\n\\[\n\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x},\n\\]\n\n\nwhere we made use of the sample means:\n\n\\(\\bar{y} \\equiv \\frac{1}{n} \\sum_{i=1}^n y_i\\)\n\\(\\bar{x} \\equiv \\frac{1}{n} \\sum_{i=1}^n x_i\\)\n\n\n\n\nFull derivation if needed:\n\\[\n\\begin{align}\n0 &= \\frac{\\partial ~\\mathrm{RSS}}{\\partial \\hat{\\beta}_0}{\\sum_i^n{(y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i)^2}} & (\\text{chain rule})\\\\\n0 &= \\sum_i^n{-2 (y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i)} & (\\text{take $-2$ out})\\\\\n0 &= -2 \\sum_i^n{ (y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i)}  & (\\div -2) \\\\\n0 &=\\sum_i^n{ (y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i)}  & (\\text{sep. sums}) \\\\\n0 &=\\sum_i^n{y_i} - \\sum_i^n{\\hat{\\beta}_0} - \\sum_i^n{\\hat{\\beta}_1 x_i}  & (\\text{simplify}) \\\\\n0 &=\\sum_i^n{y_i} - n\\hat{\\beta}_0 - \\hat{\\beta}_1\\sum_i^n{ x_i}  & (+ n\\hat{\\beta}_0) \\\\\nn\\hat{\\beta}_0 &= \\sum_i^n{y_i} - \\hat{\\beta}_1\\sum_i^n{ x_i} & (\\text{isolate }\\hat{\\beta}_0 ) \\\\\n\\hat{\\beta}_0 &= \\frac{\\sum_i^n{y_i} - \\hat{\\beta}_1\\sum_i^n{ x_i}}{n} & (\\text{rearranging}) \\\\\n\\hat{\\beta}_0 &= \\frac{\\sum_i^n{y_i}}{n} - \\hat{\\beta}_1\\frac{\\sum_i^n{x_i}}{n} & (\\text{or simply}) \\\\\n\\hat{\\beta}_0 &= \\bar{y} - \\hat{\\beta}_1 \\bar{x} & \\blacksquare\n\\end{align}\n\\]\n\n\n\n📝 Give it a go! Pretend \\(\\hat{\\beta}_1\\) is constant and use the power rule to solve the equation and reach the same result."
   },
   {
     "objectID": "slides/week02_slides_part1.html#estimating-hatbeta_1",
     "href": "slides/week02_slides_part1.html#estimating-hatbeta_1",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Estimating \\(\\hat{\\beta}_1\\)",
     "text": "Estimating \\(\\hat{\\beta}_1\\)\nSimilarly, to find \\(\\hat{\\beta}_1\\) we solve:\n\\[\n\\frac{\\partial ~\\mathrm{RSS}}{\\partial \\hat{\\beta}_1}{[\\sum_i^n{y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i}]} = 0\n\\]\n\n… which will lead you to:\n\n\n\\[\n\\hat{\\beta}_1 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum_{i=1}^n (x_i-\\bar{x})^2}\n\\]\n\n\n\nFull derivation if needed:\n\\[\n\\begin{align}\n0 &= \\frac{\\partial ~\\mathrm{RSS}}{\\partial \\hat{\\beta}_1}{\\sum_i^n{(y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i)^2}} & (\\text{chain rule})\\\\\n0 &= \\sum_i^n{\\left(-2x_i~ (y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i)\\right)} & (\\text{take $-2$ out})\\\\\n0 &= -2\\sum_i^n{\\left( x_i~ (y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i)\\right)} & (\\div -2) \\\\\n0 &= \\sum_i^n{\\left(x_i~ (y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_i)\\right)} & (\\text{distribute } x_i) \\\\\n0 &= \\sum_i^n{\\left(y_ix_i - \\hat{\\beta}_0x_i - \\hat{\\beta}_1 x_i^2\\right)} & (\\text{replace } \\hat{\\beta}_0) \\\\\n0 &= \\sum_i^n{\\left(y_ix_i - (\\bar{y} - \\hat{\\beta}_1 \\bar{x})x_i - \\hat{\\beta}_1 x_i^2\\right)} & (\\text{rearrange}) \\\\\n0 &= \\sum_i^n{\\left(y_ix_i - \\bar{y}x_i + \\hat{\\beta}_1 \\bar{x}x_i - \\hat{\\beta}_1 x_i^2\\right)} & (\\text{separate sums}) \\\\\n0 &= \\sum_i^n{\\left(y_ix_i - \\bar{y}x_i\\right)} + \\sum_i^n{\\left(\\hat{\\beta}_1 \\bar{x}x_i - \\hat{\\beta}_1 x_i^2\\right)} & (\\text{take $\\hat{\\beta}_1$ out}) \\\\\n0 &= \\sum_i^n{\\left(y_ix_i - \\bar{y}x_i\\right)} + \\hat{\\beta}_1\\sum_i^n{\\left(\\bar{x}x_i - x_i^2\\right)} & (\\text{isolate}) \\\\\n\\hat{\\beta}_1 &= \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum_{i=1}^n (x_i-\\bar{x})^2}\n\\end{align}\n\\]\n\n\n\n📝 Give it a go! Use the same method as before to solve the equation and isolate \\(\\hat{\\beta}_1\\). Tip: Use the previous formula to substitute \\(\\hat{\\beta}_0\\)."
   },
   {
     "objectID": "slides/week02_slides_part1.html#parameter-estimation-ols",
     "href": "slides/week02_slides_part1.html#parameter-estimation-ols",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Parameter Estimation (OLS)",
     "text": "Parameter Estimation (OLS)\nAnd that is how OLS works!\n\\[\n\\begin{align}\n\\hat{\\beta}_1 &= \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum_{i=1}^n (x_i-\\bar{x})^2} \\\\\n\\hat{\\beta}_0 &= \\bar{y} - \\hat{\\beta}_1 \\bar{x}\n\\end{align}\n\\]"
   },
   {
     "objectID": "slides/week02_slides_part1.html#estimates-for-multiple-regression",
     "href": "slides/week02_slides_part1.html#estimates-for-multiple-regression",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Estimates for Multiple Regression",
     "text": "Estimates for Multiple Regression\n\nThe process of estimation is similar when we have more than one predictor. To estimate:\n\\[\n\\hat{y} = \\hat{\\beta}_0 + \\hat{\\beta}_1 x_1 + \\hat{\\beta}_2 x_2 + \\dots + \\hat{\\beta}_p x_p.\n\\]\n\n\nWe aim to minimize Residual Sum of Squares as before:\n\\[\n\\min \\mathrm{RSS} = \\sum_{i=1}^n (y_i - \\hat{y}_i)^2 = \\sum_{i=1}^n (y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 x_{i1} - \\hat{\\beta}_2 x_{i2} - \\dots - \\hat{\\beta}_p x_{ip})^2.\n\\]\nThis is done using standard statistical software — you need a good linear algebra solver.\n\n\nThe values \\(\\hat{\\beta}_0, \\hat{\\beta}_1, \\dots, \\hat{\\beta}_p\\) that minimize RSS are the multiple least squares regression coefficient estimates."
   },
   {
     "objectID": "slides/week02_slides_part1.html#example-advertising-data",
     "href": "slides/week02_slides_part1.html#example-advertising-data",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Example: Advertising data",
     "text": "Example: Advertising data\n\n\nA sample of the data:\n\nlibrary(tidyverse)\n\nfile = \"https://www.statlearning.com/s/Advertising.csv\"\nadvertising <- read_csv(file) %>% select(-1)\nhead(advertising, 11)\n\n# A tibble: 11 × 4\n      TV radio newspaper sales\n   <dbl> <dbl>     <dbl> <dbl>\n 1 230.   37.8      69.2  22.1\n 2  44.5  39.3      45.1  10.4\n 3  17.2  45.9      69.3   9.3\n 4 152.   41.3      58.5  18.5\n 5 181.   10.8      58.4  12.9\n 6   8.7  48.9      75     7.2\n 7  57.5  32.8      23.5  11.8\n 8 120.   19.6      11.6  13.2\n 9   8.6   2.1       1     4.8\n10 200.    2.6      21.2  10.6\n11  66.1   5.8      24.2   8.6\n\n\n\nHow the data is spread:\n\nsummary(advertising$TV)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   0.70   74.38  149.75  147.04  218.82  296.40 \n\n\n\nsummary(advertising$radio)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  0.000   9.975  22.900  23.264  36.525  49.600 \n\n\n\nsummary(advertising$newspaper)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   0.30   12.75   25.75   30.55   45.10  114.00 \n\n\n\nsummary(advertising$sales)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   1.60   10.38   12.90   14.02   17.40   27.00"
   },
   {
     "objectID": "slides/week02_slides_part1.html#simple-linear-regression-models",
     "href": "slides/week02_slides_part1.html#simple-linear-regression-models",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Simple linear regression models",
     "text": "Simple linear regression models\n\n\n\nTV 📺\n\n\ntv_model <- lm(sales ~ TV, data=advertising)\ncat(sprintf(\"Sales (1k units) = %.4f %+.4f TV ($ 1k)\\n\", \n            tv_model$coefficients[\"(Intercept)\"], \n            tv_model$coefficients[\"TV\"]))\n\nSales (1k units) = 7.0326 +0.0475 TV ($ 1k)\n\n\n\nRadio 📻\n\n\nradio_model <- lm(sales ~ radio, data=advertising)\ncat(sprintf(\"Sales (1k units) = %.4f %+.4f Radio ($ 1k)\\n\", \n            radio_model$coefficients[\"(Intercept)\"], \n            radio_model$coefficients[\"radio\"]))\n\nSales (1k units) = 9.3116 +0.2025 Radio ($ 1k)\n\n\n\n\nNewspaper 📰\n\n\nnewspaper_model <- lm(sales ~ newspaper, data=advertising)\ncat(sprintf(\"Sales (1k units) = %.4f %+.4f Newspaper ($ 1k)\\n\", \n            newspaper_model$coefficients[\"(Intercept)\"], \n            newspaper_model$coefficients[\"newspaper\"]))\n\nSales (1k units) = 12.3514 +0.0547 Newspaper ($ 1k)\n\n\n\n🗨️ How should we interpret these models?\n\n\n\n\n\nGather answers from students.\nFor every 1k dollars spent in advertising on a particular media channel, we expect more \\(\\hat{\\beta}_1\\) thousand units of the product to be sold.\nWhy don’t the models agree about the intercept?"
   },
   {
     "objectID": "slides/week02_slides_part1.html#confidence-interval-of-coefficients",
     "href": "slides/week02_slides_part1.html#confidence-interval-of-coefficients",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Confidence Interval of coefficients",
     "text": "Confidence Interval of coefficients\n\n\n\nThe confidence interval of an estimate has the form: \\[\n\\hat{\\beta}_1 \\pm 2 \\times \\mathrm{SE}(\\hat{\\beta}_1).\n\\] where \\(SE\\) is the standard error and reflects how the estimate varies under repeated sampling.\n\n\n\n\nThat is, there is approximately a 95% chance that the interval \\[\n\\biggl[ \\hat{\\beta}_1 - 2 \\times \\mathrm{SE}(\\hat{\\beta}_1), \\hat{\\beta}_1 + 2 \\times \\mathrm{SE}(\\hat{\\beta}_1) \\biggr]\n\\] will contain the true value of \\(\\beta_1\\).\n\n\n\nHow SE differs from STD? See (Altman and Bland 2005)"
   },
   {
     "objectID": "slides/week02_slides_part1.html#standard-errors",
     "href": "slides/week02_slides_part1.html#standard-errors",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Standard Errors",
     "text": "Standard Errors\n\n\nThe standard error of \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) is shown below:\n\\[\n\\begin{align}\n  \\mathrm{SE}(\\hat{\\beta}_1)^2 &= \\frac{\\sigma^2}{\\sum_{i=1}^n (x_i - \\bar{x})^2}, \\\\\n  \\mathrm{SE}(\\hat{\\beta}_0)^2 &= \\sigma^2 \\biggl[ \\frac{1}{n} +  \\frac{\\bar{x}^2}{\\sum_{i=1}^n (x_i - \\bar{x})^2} \\biggr],\n\\end{align}\n\\]\nwhere \\(\\sigma^2 = \\operatorname{Var}(\\epsilon)\\).\n\n\n\nBut, wait, we don’t know \\(\\epsilon\\)! How would we compute \\(\\sigma^2\\)?\nIn practice, we aproximate \\(\\sigma^2 \\approx \\mathrm{RSE} = \\sqrt{\\mathrm{RSS}/(n-2)}\\).\n\n\n\n\n\n\n\n\n\nImportant\n\n\n💡 Standard errors are a type of standard deviation but are not the same! See (Altman and Bland 2005) for more on this.\n\n\n\n\n\n\nThese formulas are only valid if we assume the errors \\(\\epsilon_i\\) have common variance \\(\\sigma^2\\) and are uncorrelated.\nRSE makes a comeback in Section 3.1.3"
   },
   {
     "objectID": "slides/week02_slides_part1.html#back-to-our-advertising-linear-models",
     "href": "slides/week02_slides_part1.html#back-to-our-advertising-linear-models",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Back to our Advertising linear models",
     "text": "Back to our Advertising linear models\nWhat are the confidence intervals of our independent linear models?\n\n\n\nTV 📺\n\n\nconfint(tv_model)\n\n                 2.5 %     97.5 %\n(Intercept) 6.12971927 7.93546783\nTV          0.04223072 0.05284256\n\n\n\nRadio 📻\n\n\nconfint(radio_model)\n\n                2.5 %     97.5 %\n(Intercept) 8.2015885 10.4216877\nradio       0.1622443  0.2427472\n\n\n\n\nNewspaper 📰\n\n\nconfint(newspaper_model)\n\n                  2.5 %      97.5 %\n(Intercept) 11.12595560 13.57685854\nnewspaper    0.02200549  0.08738071\n\n\n\n🗨️ What does it mean?\n\n\n\n\n\n\nFor every additional $1000 invested in Radio, we can expect an increase in sales of between 162 and 242 units.\n\n\n\nUse the function confint to compute confidence intervals in R."
   },
   {
     "objectID": "slides/week02_slides_part1.html#p-values",
     "href": "slides/week02_slides_part1.html#p-values",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "p-values",
     "text": "p-values\n\nTo test the null hypothesis, we compute a t-statistic, given by \\[\nt = \\frac{\\hat{\\beta}_1 - 0}{\\mathrm{SE}(\\hat{\\beta}_1)},\n\\] ::: incremental\nThis will have a t-distribution1 with \\(n - 2\\) degrees of freedom, assuming \\(\\beta_1 = 0\\).\nUsing statistical software, it is easy to compute the probability of observing any value equal to \\(\\mid t \\mid\\) or larger.\nWe call this probability the p-value. :::\n\n🤔 How are the t-distribution and the Normal distribution related? Check this link to find out."
   },
   {
     "objectID": "slides/week02_slides_part1.html#back-to-our-advertising-linear-models-1",
     "href": "slides/week02_slides_part1.html#back-to-our-advertising-linear-models-1",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "Back to our Advertising linear models",
     "text": "Back to our Advertising linear models\nHow significant are the linear models?\n\n\n\nTV 📺\n\n\nout <- capture.output(summary(tv_model))\ncat(paste(out[16:16]), sep=\"\\n\")\n\nResidual standard error: 3.259 on 198 degrees of freedom\n\n\n\nRadio 📻\n\n\nout <- capture.output(summary(radio_model))\ncat(paste(out[9:15]), sep=\"\\n\")\n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)  9.31164    0.56290  16.542   <2e-16 ***\nradio        0.20250    0.02041   9.921   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\nNewspaper 📰\n\n\nout <- capture.output(summary(newspaper_model))\ncat(paste(out[9:15]), sep=\"\\n\")\n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept) 12.35141    0.62142   19.88  < 2e-16 ***\nnewspaper    0.05469    0.01658    3.30  0.00115 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n🗨️ What does it mean?"
   },
   {
     "objectID": "slides/week02_slides_part1.html#references",
     "href": "slides/week02_slides_part1.html#references",
-    "title": "🗓️ Week 02: Linear Regression",
+    "title": "🗓️ Week 02:Linear Regression",
     "section": "References",
     "text": "References\n\n\nAltman, Douglas G, and J Martin Bland. 2005. “Standard Deviations and Standard Errors.” BMJ 331 (7521): 903. https://doi.org/10.1136/bmj.331.7521.903.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/.\n\n\nKarafiath, Imre. 2009. “Is There a Viable Alternative to Ordinary Least Squares Regression When Security Abnormal Returns Are the Dependent Variable?” Review of Quantitative Finance and Accounting 32 (1): 17–31. https://doi.org/10.1007/s11156-007-0079-y.\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
   },
