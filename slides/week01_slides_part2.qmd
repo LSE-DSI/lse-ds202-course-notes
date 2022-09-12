@@ -1,6 +1,6 @@
 ---
-title: "DS202 Data Science for Social Scientists"
-subtitle: "🗓️ Week 01 - Part II: Overview of core concepts"
+subtitle: "DS202 Data Science for Social Scientists"
+title: "🗓️ Week 01:<br/>Overview of core concepts"
 author: Dr. [Jon Cardoso Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva)
 institute: '[LSE Data Science Institute](https://twitter.com/lsedatascience)'
 toc: true

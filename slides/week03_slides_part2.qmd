@@ -1,0 +1,27 @@
+---
+subtitle: "DS202 Data Science for Social Scientists"
+title: "🗓️ Week 03:<br/>Classifiers Part II"
+author: Dr. [Jon Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva)
+institute: '[\@LSEDataScience](https://twitter.com/lsedatascience)'
+date: 14 October 2022
+date-meta: 14 October 2022
+toc: true
+toc-depth: 1
+toc-title: "What we will cover today"
+center-title-slide: false
+from: markdown+emoji
+format:
+  revealjs: 
+    pdf-separate-fragments: true
+    code-fold: false
+    theme: simple
+    slide-number: true
+    mouse-wheel: true
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    logo: /figures/logos/LSE Data Science Institute.png
+    css: /css/styles_slides.css
+    footer: 'DS202 - Data Science for Social Scientists :robot: :juggling_person:'
+---
+

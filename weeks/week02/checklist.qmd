@@ -20,6 +20,6 @@ Reserve some time between Weeks 02 & 03 to revisit the content of this week's le
 
 - :pager: Share your questions on `/week02` channel on Slack
 
-- :computer: Have a look at [this week's lab page](/weeks/week02/prep.qmd) and learn/revisit basic R programming skills.
+- :computer: Checkout the [lab prep page](/weeks/week02/prep.qmd) to read about how you could come to the labs well prepared.
 
 Following this will help you ensure you are well prepared for the Linear Regression lab of Week 03.

@@ -1,6 +1,6 @@
 ---
 subtitle: "DS202 Data Science for Social Scientists"
-title: "🗓️ Week 02: Linear Regression"
+title: "🗓️ Week 02:<br/>Linear Regression"
 author: Dr. [Jon Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva)
 institute: '[\@LSEDataScience](https://twitter.com/lsedatascience)'
 date: 07 October 2022

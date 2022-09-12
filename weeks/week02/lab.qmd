@@ -1,5 +1,5 @@
 ---
-title: "📒 Week 02 - Preparing for this week's lab"
+title: "💻 Week 02 - Lab Roadmap (90 min)"
 date: 10 September 2022
 date-meta: 10 September 2022
 from: markdown+emoji
