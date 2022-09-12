@@ -1,0 +1,21 @@
+---
+title: "🗓️ Week 03 - Classifiers (Logistic Regression & Naive Bayes)"
+date: 12 September 2022
+date-meta: 12 September 2022
+---
+
+<mark class="todo"></mark>
+
+
+<!-- In this first week, we will cover what you can expect to learn from this course and the course logistics: all you need to know about the structure of the lectures, classes, assessments and how we will interact throughout this course. 
+
+We will also cover some of the basics: what do we mean by data science & machine learning, and what do you need to do to get the most of this course?
+
+
+## Links -->
+
+- 👨‍🏫 [Lecture slides](/weeks/week03/lecture.qmd)
+
+<!-- - 📒 [Preparing for next week's lab](/weeks/week02/prep.qmd)
+
+- 🔖 [Appendix](/weeks/week02/appendix.qmd) -->
