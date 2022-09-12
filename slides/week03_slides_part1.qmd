@@ -1,6 +1,6 @@
 ---
 subtitle: "DS202 Data Science for Social Scientists"
-title: "🗓️ Week 03:<br/>Classifiers Part I"
+title: "<font style='font-size:1em;'>🗓️ Week 03<br/> Classifiers - Part I</font>"
 author: Dr. [Jon Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva)
 institute: '[\@LSEDataScience](https://twitter.com/lsedatascience)'
 date: 14 October 2022
@@ -10,6 +10,7 @@ toc-depth: 1
 toc-title: "What we will cover today"
 center-title-slide: false
 from: markdown+emoji
+server: shiny
 format:
   revealjs: 
     pdf-separate-fragments: true
@@ -25,3 +26,434 @@ format:
     footer: 'DS202 - Data Science for Social Scientists :robot: :juggling_person:'
 ---
 
+# Regression vs Classification
+
+## Classification {.smaller}
+
+<!-- ::: {.incremental} -->
+- We have so far only modelled **quantitative** responses. 
+- Today, we focus on predicting <mark>categorical</mark>, or <mark>qualitative</mark>, responses.
+<!-- ::: -->
+
+::: columns
+
+::: {.column style="width: 30%;margin-right:0.5%;padding:1%;"}
+<!-- ::: {.fragment .fade-in-then-semi-out} -->
+The generic supervised model:
+
+$$
+Y = \operatorname{f}(X) + \epsilon
+$$
+
+still applies, only this time $Y$ is categorical. ➡️
+
+<!-- ::: -->
+:::
+
+
+::: {.column style="width: 64%;margin-right:0.5%;padding:1%;"}
+<!-- ::: {.fragment} -->
+Our categorical variables of interest take values in an **unordered set** $\mathcal{C}$, such as: 
+
+- $\text{eye color} \in \mathcal{C} = \{\color{brown}{brown},\color{blue}{blue},\color{green}{green}\}$
+- $\text{email} \in \mathcal{C} = \{spam, ham\}$
+- $\text{football results} \in \mathcal{C} \{away\ win,draw,home\ win\}$
+<!-- ::: -->
+:::
+
+:::
+
+
+
+::: notes
+**Opening slides**
+- Unordered here is an important distinction.
+- We can also call it a class
+:::
+
+## Why can't I use linear regression? {.smaller}
+
+::: columns
+
+::: {.column style="width: 60%;margin-right:0.5%;padding:1%;"}
+What if I just coded each category as a number?
+
+$$
+Y = 
+    \begin{cases} 
+        1 &\text{if}~\color{brown}{brown},\\
+        2 &\text{if}~\color{blue}{blue},\\
+        3 &\text{if}~\color{green}{green}.
+    \end{cases}
+$$
+:::
+
+::: {.column style="width: 34%;margin-right:0.5%;padding:1%;"}
+What could go wrong?
+
+![](/figures/week01/dalle_robot_holding_question_mark.png){.absolute height="25%"}
+:::
+:::
+
+::: columns
+
+::: {.column style="width: 60%;margin-right:0.5%;padding:1%;"}
+<!-- ::: fragment -->
+
+How would you interpret a particular prediction if your model returned:
+
+- $\hat{y} = ~~1.5$ or 
+- $\hat{y} = ~~0.1$ or 
+- $\hat{y} = 20.0$?
+<!-- ::: -->
+:::
+
+::: {.column style="width: 34%;margin-right:0.5%;padding:1%;"}
+
+
+:::
+:::
+
+::: notes
+Key takeaway: Regression is not suitable for all problems.
+- regression cannot accommodate a qualitative response with more than two classes
+- regression will not provide meaningful estaimtes of Pr(Y|X)
+
+:::
+
+## More on Classification {.smaller}
+
+<!-- ::: {.fragment fragment-index=1 style="margin-bottom:-2.5%;"} -->
+- Often we are more interested in estimating the <mark>probabilities</mark> that $X$ belongs to each category in $\mathcal{C}$.
+<!-- :::
+
+::: {.fragment fragment-index=2 style="margin-bottom:-2.5%;"} -->
+- For example, it is sometimes more valuable to have an estimate of the *probability* that an **insurance claim** is fraudulent, than a *classification* fraudulent or not.
+<!-- :::
+
+::: {.fragment fragment-index=2 .fade-in-then-out}
+![](/figures/week03/pexels-monstera-5849597.jpg){.absolute width="50%" top="37.5%" left="25%"}
+:::
+
+::: {.fragment fragment-index=3 style="margin-bottom:-2.5%;"} -->
+- A successful **gambling strategy**, for instance, requires placing bets on outcomes to which you believe the bookmakers have assigned incorrect probabilities. Knowing the most likely outcome is not enough!
+<!-- :::
+
+::: {.fragment fragment-index=3 .fade-in-then-out}
+![](/figures/week03/pexels-sascha-d%C3%BCser-187333.jpg){.absolute width="40%" top="50%" left="60%"}
+:::
+
+::: {.fragment fragment-index=4 style="margin-top:10%;"} -->
+
+::: callout-note
+Statistical models for ordinal response, when sets are discrete but have an order, are outside the scope of this course. Should you need to create models for ordinal variables, consult "ordinal logistic regression". A good reference about this is [@agresti_introduction_2019, chapter 6].
+:::
+<!-- ::: -->
+
+::: notes
+Key takeaway: normally, we estimate
+:::
+
+
+## Speaking of Probabilities... {.smaller}
+
+
+Let's talk about three possible <mark>interpretations of probability</mark>:
+
+::: columns
+
+::: {.column width=25%}
+
+<!-- ::: {.fragment fragment-index=1} -->
+::: {style="min-height:15vh;display:block;"}
+**Classical**
+:::
+<!-- :::
+
+::: {.fragment fragment-index=2} -->
+::: {style="min-height:15vh;display:block;"}
+**Frequentist**
+:::
+<!-- :::
+
+::: {.fragment fragment-index=3} -->
+::: {style="min-height:15vh;display:block;"}
+**Bayesian**
+:::
+<!-- ::: -->
+
+:::
+
+::: {.column width=75%}
+
+<!-- ::: {.fragment fragment-index=1} -->
+::: {style="min-height:15vh;display:block;font-size:0.75em;"}
+Events of the same kind can be reduced to a certain number of equally possible cases.
+
+Example: coin tosses lead to either heads or tails $1/2$ of the time ( $50\%/50\%$)
+:::
+<!-- ::: -->
+
+<!-- ::: {.fragment fragment-index=2} -->
+::: {style="min-height:15vh;display:block;font-size:0.75em;"}
+What would be the outcome if I repeat the process many times? 
+
+Example: if I toss a coin $1,000,000$ times, I expect $\approx 50\%$ heads and $\approx 50\%$ tails outcome.
+:::
+<!-- ::: -->
+
+<!-- ::: {.fragment fragment-index=3} -->
+::: {style="min-height:15vh;display:block;font-size:0.75em;"}
+What is your judgement of the likelihood of the outcome? Based on previous information. 
+
+Example: if I know that this coin has symmetric weight, I expect a $ 50\%/50\%$ outcome.
+:::
+<!-- ::: -->
+
+:::
+
+:::
+
+::: aside
+Source: [@degroot_probability_2003]
+:::
+
+## Speaking of Probabilities... {.smaller}
+
+
+**For our purposes:**
+
+- Probabilities are numbers between 0 and 1
+- The sum of all possible outcomes of an event must sum to 1.
+- It is <mark>useful</mark> to think of things as probabilities
+
+![](/figures/week03/lithium-ion-battery.jpeg){.absolute width="45%" top="45.5%" left="55%"}
+
+::: columns
+
+::: {.column style="width: 45%;"}
+<!-- ::: {.fragment} -->
+
+:::{.callout-note}
+💡 Although there is no such thing as "a probability of $120\%$" or "a probability of $-23\%$", you could still use this language to refer to increase or decrease in an outcome.
+
+::: 
+<!-- ::: -->
+:::
+
+::: {.column style="width: 55%;"}
+<!-- Ghost column -->
+:::
+
+::: 
+
+# Logistic Regression
+
+## The Logistic Regression model {.smaller}
+
+<!-- ::: {.fragment} -->
+Consider a <mark>binary</mark> response:
+
+$$
+Y = \begin{cases}
+0 \\
+1
+\end{cases}
+$$
+<!-- :::
+
+::: {.fragment} -->
+We model the probability that $Y = 1$ as:
+
+$$
+Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
+$$
+<!-- :::
+
+::: {.fragment} -->
+![](/figures/week03/logistic-regression-diagram.svg){.absolute height=35% top=60% left=25%}
+<!-- ::: -->
+
+::: footer
+Source of illustration: [TIBCO](https://www.tibco.com/reference-center/what-is-logistic-regression)
+:::
+
+
+::: notes
+- This is how this function looks like
+:::
+
+<!-- ## The Logistic function
+
+Include something like /figures/week03/Plot4.pdf -->
+
+## Maximum likelihood estimate {.smaller}
+
+<!-- ::: {.fragment} -->
+As with linear regression, the coefficients are unknown and need to be estimated from training data:
+
+$$
+\hat{p}(X) = \frac{e^{\hat{\beta}_0 + \hat{\beta}_1X}}{1 + e^{\hat{\beta}_0 + \hat{\beta}_1 X}}
+$$
+<!-- ::: -->
+
+<!-- ::: {.fragment} --> 
+We estimate these by maximising the <mark>likelihood function</mark>:
+
+$$
+\max \ell(\beta_0, \beta_1) = \prod_{i:y_i=1}{p(x_i)} \prod_{i':y_{i'}=0} (1 - p(x_{i'})), 
+$$
+
+and call this method the <mark>Maximum Likelihood Estimate</mark> (MLE).
+<!-- :::
+
+::: {.fragment} -->
+
+➡️ As usual, there are [multiple ways](https://www.wikiwand.com/en/Maximum_likelihood_estimation#/Iterative_procedures) to solve this equation!
+<!-- ::: -->
+
+
+::: notes
+Key takeaway of this slide: MLE (logistic regression) is analogous to OLS (linear regression).
+
+<mark>Intuition:</mark> What are the values for $\alpha$ and $\beta$ that generate predicted probabilities, $\hat{Y}_i$ for each training observation that are as close as possible to the realised outcomes, $Y_i$?
+
+:::
+
+
+## Solutions to MLE {.smaller}
+
+<!-- ::: incremental -->
+- MLE is much more difficult to solve than the least squares formulations used in Linear Regression.
+- Most solutions rely on a variant of the [Hill Climbing](https://www.wikiwand.com/en/Hill_climbing) algorithm
+<!-- ::: -->
+
+::: {.columns style="margin-top:-1%;"}
+
+::: {.column width=30%}
+
+<!-- ::: {.fragment} -->
+![](/figures/week03/pexels-eberhard-grossgasteiger-1366909.jpg){width="80%"}
+<!-- ::: -->
+:::
+
+::: {.column style="width:70%;font-size:0.95em;padding-top:1.75%;"}
+
+<!-- ::: {.fragment} -->
+How do you find the latitude and longitude of a mountain peak if you can't see very far?
+<!-- :::
+
+::: {.incremental} -->
+
+- Start somewhere.
+- Look around for the best way to go up.
+- Go a small distance in that direction.
+- Look around for the best way to go up.
+- Go a small distance in that direction.
+- $\cdots$
+<!-- ::: -->
+:::
+
+:::
+
+<!-- In R, all GLMs are solved with https://www.wikiwand.com/en/Iteratively_reweighted_least_squares -->
+
+
+
+::: footer
+
+<!-- ::: {style="font-size:0.75em;"} -->
+**Advanced:** If for whatever random reason, you find yourself enamored with the Maximum Likelihood Estimate, check [@agresti_introduction_2019] for a recent take on the statistical properties of this method.
+<!-- ::: -->
+
+:::
+
+
+
+## Example: `Default` data
+
+::: columns
+
+::: {.column width="45%"}
+A sample of the data:
+
+```{r}
+#| output-location: fragment
+#| echo: true
+#| eval: true
+#| code-fold: false
+#| code-overflow: wrap
+
+library(ISLR2)
+
+head(ISLR2::Default, n=15)
+```
+:::
+
+::: {.column style="width:50%;margin-left:5%;"}
+
+How the data is spread:
+
+```{r}
+#| output-location: fragment
+#| echo: true
+#| eval: true
+#| code-fold: false
+#| code-overflow: wrap
+summary(ISLR2::Default$default)
+```
+
+```{r}
+#| output-location: fragment
+#| echo: true
+#| eval: true
+#| code-fold: false
+#| code-overflow: wrap
+summary(ISLR2::Default$balance)
+```
+
+```{r}
+#| output-location: fragment
+#| echo: true
+#| eval: true
+#| code-fold: false
+#| code-overflow: wrap
+summary(ISLR2::Default$income)
+```
+
+
+```{r}
+#| output-location: fragment
+#| echo: true
+#| eval: true
+#| code-fold: false
+#| code-overflow: wrap
+summary(ISLR2::Default$student)
+```
+:::
+
+:::
+
+# Interpreting coefficients
+
+- Odds
+- Log odds
+- threshold
+
+# Assessing model's accuracy
+
+- Confusion Matrix
+- ROC curve
+
+# What's Next
+
+After our 10-min break ☕:
+
+- 
+- What will happen in our 💻 labs this week?
+
+---
+## References {style="word-break:break-all;"}
+
+::: {#refs .r-fit-text}
+:::
