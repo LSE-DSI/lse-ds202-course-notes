@@ -72,7 +72,7 @@
   {
     "objectID": "weeks/week03.html",
     "href": "weeks/week03.html",
-    "title": "🗓️ Week 03 - Classifiers (Logistic Regression & Naive Bayes)",
+    "title": "🗓️ Week 03 - Classifiers",
     "section": "",
     "text": "👨‍🏫 Lecture slides"
   },
@@ -487,7 +487,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  8.80\n2     9    12 10.8 \n3    12    15 16.7 \n4    15    18 22.8 \n5    18    21 21.4 \n6    21    24 22.8"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  11.1\n2     9    12  10.9\n3    12    15  13.4\n4    15    18  16.0\n5    18    21  19.0\n6    21    24  23.5"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -522,7 +522,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  8.80  0.201    0.201\n2     9    12 10.8   1.21     1.21 \n3    12    15 16.7  -1.67     1.67 \n4    15    18 22.8  -4.82     4.82 \n5    18    21 21.4  -0.383    0.383\n6    21    24 22.8   1.15     1.15 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.572983\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  11.1 -2.05     2.05 \n2     9    12  10.9  1.06     1.06 \n3    12    15  13.4  1.63     1.63 \n4    15    18  16.0  2.00     2.00 \n5    18    21  19.0  1.97     1.97 \n6    21    24  23.5  0.504    0.504\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.537306\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
@@ -768,5 +768,131 @@
     "title": "🗓️ Week 02:Multiple Linear Regression",
     "section": "References",
     "text": "References\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/.\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#classification",
+    "href": "slides/week03_slides_part1.html#classification",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Classification",
+    "text": "Classification\n\n\nWe have so far only modelled quantitative responses.\nToday, we focus on predicting categorical, or qualitative, responses. \n\n\n\n\nThe generic supervised model:\n\\[\nY = \\operatorname{f}(X) + \\epsilon\n\\]\nstill applies, only this time \\(Y\\) is categorical. ➡️\n\n\n\nOur categorical variables of interest take values in an unordered set \\(\\mathcal{C}\\), such as:\n\n\\(\\text{eye color} \\in \\mathcal{C} = \\{\\color{brown}{brown},\\color{blue}{blue},\\color{green}{green}\\}\\)\n\\(\\text{email} \\in \\mathcal{C} = \\{spam, ham\\}\\)\n\\(\\text{football results} \\in \\mathcal{C} \\{away\\ win,draw,home\\ win\\}\\) \n\n\n\n\nOpening slides - Unordered here is an important distinction. - We can also call it a class"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#why-cant-i-use-linear-regression",
+    "href": "slides/week03_slides_part1.html#why-cant-i-use-linear-regression",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Why can’t I use linear regression?",
+    "text": "Why can’t I use linear regression?\n\n\nWhat if I just coded each category as a number?\n\\[\nY =\n    \\begin{cases}\n        1 &\\text{if}~\\color{brown}{brown},\\\\\n        2 &\\text{if}~\\color{blue}{blue},\\\\\n        3 &\\text{if}~\\color{green}{green}.\n    \\end{cases}\n\\]\n\nWhat could go wrong?\n\n\n\n\n\n\nHow would you interpret a particular prediction if your model returned:\n\n\\(\\hat{y} = ~~1.5\\) or\n\\(\\hat{y} = ~~0.1\\) or\n\\(\\hat{y} = 20.0\\)? \n\n\n\n\n\n\nKey takeaway: Regression is not suitable for all problems. - regression cannot accommodate a qualitative response with more than two classes - regression will not provide meaningful estaimtes of Pr(Y|X)"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#more-on-classification",
+    "href": "slides/week03_slides_part1.html#more-on-classification",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "More on Classification",
+    "text": "More on Classification\n\n\nOften we are more interested in estimating the probabilities that \\(X\\) belongs to each category in \\(\\mathcal{C}\\). \nFor example, it is sometimes more valuable to have an estimate of the probability that an insurance claim is fraudulent, than a classification fraudulent or not. \nA successful gambling strategy, for instance, requires placing bets on outcomes to which you believe the bookmakers have assigned incorrect probabilities. Knowing the most likely outcome is not enough! \n\n\n\n\n\n\n\nNote\n\n\nStatistical models for ordinal response, when sets are discrete but have an order, are outside the scope of this course. Should you need to create models for ordinal variables, consult “ordinal logistic regression”. A good reference about this is (Agresti 2019, chap. 6).\n\n\n\n\n\nKey takeaway: normally, we estimate"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#speaking-of-probabilities",
+    "href": "slides/week03_slides_part1.html#speaking-of-probabilities",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Speaking of Probabilities…",
+    "text": "Speaking of Probabilities…\nLet’s talk about three possible interpretations of probability:\n\n\n\n\nClassical\n\n\n\nFrequentist\n\n\n\nBayesian\n\n\n\n\n\nEvents of the same kind can be reduced to a certain number of equally possible cases.\nExample: coin tosses lead to either heads or tails \\(1/2\\) of the time ( \\(50\\%/50\\%\\))\n\n\n\n\nWhat would be the outcome if I repeat the process many times?\nExample: if I toss a coin \\(1,000,000\\) times, I expect \\(\\approx 50\\%\\) heads and \\(\\approx 50\\%\\) tails outcome.\n\n\n\n\nWhat is your judgement of the likelihood of the outcome? Based on previous information.\nExample: if I know that this coin has symmetric weight, I expect a $ 50%/50%$ outcome.\n\n\n\n\n\n\nSource: (DeGroot and Schervish 2003)"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#speaking-of-probabilities-1",
+    "href": "slides/week03_slides_part1.html#speaking-of-probabilities-1",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Speaking of Probabilities…",
+    "text": "Speaking of Probabilities…\nFor our purposes:\n\nProbabilities are numbers between 0 and 1\nThe sum of all possible outcomes of an event must sum to 1.\nIt is useful to think of things as probabilities\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n💡 Although there is no such thing as “a probability of \\(120\\%\\)” or “a probability of \\(-23\\%\\)”, you could still use this language to refer to increase or decrease in an outcome."
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#the-logistic-regression-model",
+    "href": "slides/week03_slides_part1.html#the-logistic-regression-model",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "The Logistic Regression model",
+    "text": "The Logistic Regression model\n\nConsider a binary response:\n\\[\nY = \\begin{cases}\n0 \\\\\n1\n\\end{cases}\n\\]  We model the probability that \\(Y = 1\\) as:\n\\[\nPr(Y = 1|X) = p(X) = \\frac{e^{\\beta_0 + \\beta_1X}}{1 + e^{\\beta_0 + \\beta_1 X}}\n\\]   \n\nSource of illustration: TIBCO\n\n\n\nThis is how this function looks like"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#the-logistic-function",
+    "href": "slides/week03_slides_part1.html#the-logistic-function",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "The Logistic function",
+    "text": "The Logistic function\n\nChanging \\(\\beta_0\\) while keeping \\(\\beta_1 = 1\\):"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#the-logistic-function-cont.",
+    "href": "slides/week03_slides_part1.html#the-logistic-function-cont.",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "The Logistic function (cont.)",
+    "text": "The Logistic function (cont.)\n\nKeep \\(\\beta_0 = 0\\) but vary \\(\\beta_1\\):"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#maximum-likelihood-estimate",
+    "href": "slides/week03_slides_part1.html#maximum-likelihood-estimate",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Maximum likelihood estimate",
+    "text": "Maximum likelihood estimate\n\nAs with linear regression, the coefficients are unknown and need to be estimated from training data:\n\\[\n\\hat{p}(X) = \\frac{e^{\\hat{\\beta}_0 + \\hat{\\beta}_1X}}{1 + e^{\\hat{\\beta}_0 + \\hat{\\beta}_1 X}}\n\\] \n\nWe estimate these by maximising the likelihood function:\n\\[\n\\max \\ell(\\beta_0, \\beta_1) = \\prod_{i:y_i=1}{p(x_i)} \\prod_{i':y_{i'}=0} (1 - p(x_{i'})),\n\\]\nand we call this method the Maximum Likelihood Estimate (MLE). \n➡️ As usual, there are multiple ways to solve this equation! \n\nKey takeaway of this slide: MLE (logistic regression) is analogous to OLS (linear regression).\nIntuition: What are the values for \\(\\alpha\\) and \\(\\beta\\) that generate predicted probabilities, \\(\\hat{Y}_i\\) for each training observation that are as close as possible to the realised outcomes, \\(Y_i\\)?"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#solutions-to-mle",
+    "href": "slides/week03_slides_part1.html#solutions-to-mle",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Solutions to MLE",
+    "text": "Solutions to MLE\n\n\nMLE is much more difficult to solve than the least squares formulations.\nMost solutions rely on a variant of the Hill Climbing algorithm \n\n\n\n\n \n\n\nHow do you find the latitude and longitude of a mountain peak if you can’t see very far? \n\nStart somewhere.\nLook around for the best way to go up.\nGo a small distance in that direction.\nLook around for the best way to go up.\nGo a small distance in that direction.\n\\(\\cdots\\) \n\n\n\n\n\n\nAdvanced: If for whatever random reason, you find yourself enamored with the Maximum Likelihood Estimate, check (Agresti 2019) for a recent take on the statistical properties of this method."
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#example-default-data",
+    "href": "slides/week03_slides_part1.html#example-default-data",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Example: Default data",
+    "text": "Example: Default data\n\n\nA sample of the data:\n\nlibrary(ISLR2)\n\nhead(ISLR2::Default, n=15)\n\n   default student   balance    income\n1       No      No  729.5265 44361.625\n2       No     Yes  817.1804 12106.135\n3       No      No 1073.5492 31767.139\n4       No      No  529.2506 35704.494\n5       No      No  785.6559 38463.496\n6       No     Yes  919.5885  7491.559\n7       No      No  825.5133 24905.227\n8       No     Yes  808.6675 17600.451\n9       No      No 1161.0579 37468.529\n10      No      No    0.0000 29275.268\n11      No     Yes    0.0000 21871.073\n12      No     Yes 1220.5838 13268.562\n13      No      No  237.0451 28251.695\n14      No      No  606.7423 44994.556\n15      No      No 1112.9684 23810.174\n\n\n\nHow the data is spread:\n\nsummary(ISLR2::Default$default)\n\n  No  Yes \n9667  333 \n\n\n\nsummary(ISLR2::Default$balance)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n    0.0   481.7   823.6   835.4  1166.3  2654.3 \n\n\n\nsummary(ISLR2::Default$income)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n    772   21340   34553   33517   43808   73554 \n\n\n\nsummary(ISLR2::Default$student)\n\n  No  Yes \n7056 2944"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#simple-logistic-regression-models",
+    "href": "slides/week03_slides_part1.html#simple-logistic-regression-models",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Simple logistic regression models",
+    "text": "Simple logistic regression models\n\n\n\nIncome 💰\n\n\nincome_model <- \n  glm(default ~ income, data=ISLR2::Default, family=binomial)\ncat(sprintf(\"beta_0 = %.5f | beta_1 = %e\",\n            income_model$coefficients[\"(Intercept)\"],\n            income_model$coefficients[\"income\"]))\n\nbeta_0 = -3.09415 | beta_1 = -8.352575e-06\n\n\n\nBalance 💸\n\n\nbalance_model <- \n  glm(default ~ balance, data=ISLR2::Default, family=binomial)\ncat(sprintf(\"beta_0 = %.5f | beta_1 = %.4f\",\n            balance_model$coefficients[\"(Intercept)\"],\n            balance_model$coefficients[\"balance\"]))\n\nbeta_0 = -10.65133 | beta_1 = 0.0055\n\n\n\n\nStudent 🧑‍🎓\n\n\nstudent_model <- \n  glm(default ~ student, data=ISLR2::Default, family=binomial)\ncat(sprintf(\"beta_0 = %.5f | beta_1 = %.4f\",\n            student_model$coefficients[\"(Intercept)\"],\n            student_model$coefficients[\"studentYes\"]))\n\nbeta_0 = -3.50413 | beta_1 = 0.4049\n\n\n\n\n\n\n\n\n\nNote\n\n\nLogistic regression coefficients are a bit trickier to interpret when compared to those of linear regression. Let’s look at how it works ➡️\n\n\n\n\n\n\n\n\nGather answers from students."
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#the-concept-of-odds",
+    "href": "slides/week03_slides_part1.html#the-concept-of-odds",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "The concept of odds",
+    "text": "The concept of odds\nThe quantity below is called the odds:\n\\[\n\\frac{p(X)}{1 - p(X)} = e^{\\beta_0 + \\beta_1 X}\n\\]\n\n\n\n\n\n\n\n\n\n\nExample\n\n\nIf the odds are 9, then \\(\\frac{p(X)}{(1-p(X))} = 9 \\Rightarrow p(X) = 0.9\\).\nThis means that 9 out of 10 people will default.\n\n\n\n\n\n\n\n📝 Give it a go! Using algebra, can you re-arrange the equation for \\(p(X)\\) presented in the Logistic regression model slides to arrive at the odds quantity shown above?"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#log-odds-or-logit",
+    "href": "slides/week03_slides_part1.html#log-odds-or-logit",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Log odds or logit",
+    "text": "Log odds or logit\n\nIt is also useful to think of the odds in log terms.\n\n\\[\nlog\\left(\\frac{p(X)}{1 - p(X)}\\right) = \\beta_0 + \\beta_1 X\n\\]\n\nWe call the quantity above the log odds or logit\n\n\n\n\n\n\n\nTip\n\n\nHow to interpret \\(\\beta_1\\)\nIf X increases one unit then the odds increase by \\(e^{\\beta_1}\\)"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#back-to-our-default-data",
+    "href": "slides/week03_slides_part1.html#back-to-our-default-data",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Back to our Default data…",
+    "text": "Back to our Default data…\n\n\n\nModel: Default vs Balance 💸\n\n\\[\n\\hat{y} = \\frac{e^{-10.65133 + 0.005498917X}}{1 + e^{-10.65133 + 0.005498917X}}\n\\]\n\n  That is:\n\\[\n\\begin{align}\n\\hat{\\beta}_0 &= -10.65133\\\\\n\\hat{\\beta}_1 &= 0.005498917\n\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_0\\):\n\nIn the absence of balance information:\n\nLog odds: \\(-10.65133\\)\nOdds : \\(e^{-10.65133} = 2.366933 \\times 10^{-5}\\) \\[\n\\begin{align}\np(\\text{default}=\\text{Yes}) &= \\frac{\\text{odds}}{(1 + \\text{odds})} \\\\\n                           &= 2.366877 \\times 10^{5}\\end{align}\n\\] \n\n\n\n\nInterpreting \\(\\hat{\\beta}_1\\):\n\nWith balance information:\n\nLog odds: \\(0.005498917\\)\nOdds : \\(e^{0.005498917} = 1.005514\\)\nThat is, for every \\(\\$1\\) increase in balance, the probability of default increases by \\(+0.5514\\%\\)\n\n\n\n\n\n\n\nNote that the increase is cumulative, not linear. It depends on where X is."
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#multiple-logistic-regression-1",
+    "href": "slides/week03_slides_part1.html#multiple-logistic-regression-1",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Multiple Logistic Regression",
+    "text": "Multiple Logistic Regression\n\nIt is straightforward to extend the logistic model to include multiple predictors:\n\n\\[\nlog \\left( \\frac{p(X)}{1-p(X)} \\right)=\\beta_0 + \\beta_1 X_1 + \\ldots + \\beta_p X_p\n\\]\n\\[\np(X) = \\frac{e^{\\beta_0 + \\beta_1 X_1 + \\ldots + \\beta_p X_p}}{1 + e^{\\beta_0 + \\beta_1 X_1 + \\ldots + \\beta_p X_p}}\n\\]\n\nMost things are still available (hypothesis test, confidence intervals, etc.)\nLet’s explore the output and summary of the full model ⏭️"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#fitting-all-predictors-of-default",
+    "href": "slides/week03_slides_part1.html#fitting-all-predictors-of-default",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Fitting all predictors of Default",
+    "text": "Fitting all predictors of Default\n\n\nFull Model\n\nfull_model <- glm(default ~ ., data=ISLR2::Default, family=binomial)\nsummary(full_model)\n\n\nCall:\nglm(formula = default ~ ., family = binomial, data = ISLR2::Default)\n\nDeviance Residuals: \n    Min       1Q   Median       3Q      Max  \n-2.4691  -0.1418  -0.0557  -0.0203   3.7383  \n\nCoefficients:\n              Estimate Std. Error z value Pr(>|z|)    \n(Intercept) -1.087e+01  4.923e-01 -22.080  < 2e-16 ***\nstudentYes  -6.468e-01  2.363e-01  -2.738  0.00619 ** \nbalance      5.737e-03  2.319e-04  24.738  < 2e-16 ***\nincome       3.033e-06  8.203e-06   0.370  0.71152    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 2920.6  on 9999  degrees of freedom\nResidual deviance: 1571.5  on 9996  degrees of freedom\nAIC: 1579.5\n\nNumber of Fisher Scoring iterations: 8\n\n\n\nConfidence Intervals\n\nconfint(full_model)\n\n                    2.5 %        97.5 %\n(Intercept) -1.185902e+01 -9.928174e+00\nstudentYes  -1.109018e+00 -1.822147e-01\nbalance      5.294898e-03  6.204587e-03\nincome      -1.304712e-05  1.912447e-05"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#references",
+    "href": "slides/week03_slides_part1.html#references",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "References",
+    "text": "References\n\n\nAgresti, Alan. 2019. An Introduction to Categorical Data Analysis. Third edition. Wiley Series in Probability and Statistics. Hoboken, NJ: John Wiley & Sons.\n\n\nDeGroot, Morris H., and Mark J. Schervish. 2003. Probability and Statistics. 3. ed., international edition. Boston Munich: Addison-Wesley.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
   }
 ]
