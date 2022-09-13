@@ -1,8 +1,317 @@
 ---
 title: "💻 Week 02 - Lab Roadmap (90 min)"
-date: 10 September 2022
-date-meta: 10 September 2022
-from: markdown+emoji
+date: 12 September 2022
+date-meta: 12 September 2022
 ---
 
-<mark class="todo"></mark>
+This week, we will recap some basic R commands for social data science and then apply these commands to a practical case. We will learn about data structures and some simple data visualisation skills in R .    
+
+It is expected that R has been downloaded locally. We recommend that you run R within an integrated development environment (IDE) such as RStudio, which can be freely downloaded. 
+
+<details><summary>Step 1: Basic commands (15 min)</summary>
+
+## Step 1: Basic commands
+
+We will follow the instructions below step by step together while answering whatever questions you might encounter along the way.
+
+1.  Open R or RStudio. You can either run the folllowing commands in a R script or in the console window.
+2.  Creat a vetor of numbers with the function c() and 
+name it x. When we type x, it gives us back the vector:
+
+    ```bash
+    > x <- c(1, 3, 2, 5)
+    > x
+    [1] 1 3 2 5
+    ```
+
+    Note that the > is not part of the command; rather, it is printed by R to indicate that it is ready for another command to be entered. We can also save things using = rather than <-:
+
+    ```bash
+    > x = c(1, 3, 2, 5)
+    ```
+
+3.  Check the length of vector x using the length() function:
+
+    ```bash
+    > length(x)
+    [1] 3
+    ```
+
+4.  Creat a matrix of numbers with the function matrix() and name it y. When we type y, it gives us back the matrix:
+
+    ```bash
+    > y <- matrix(data = c(1:16), nrow = 4, ncol = 4)
+    > y
+         [,1] [,2] [,3] [,4]
+    [1,]    1    5    9   13
+    [2,]    2    6   10   14
+    [3,]    3    7   11   15
+    [4,]    4    8   12   16
+    ```
+
+    If you want to learn about the meaning of some arguments like nrow or ncol:
+
+    ```bash
+    > ?matrix
+    ```
+
+5. Select one element in the matrix y:
+
+    ```bash
+    > y[2,3]
+    [1] 10
+    ```
+
+     The first number after the open-bracket symbol [ always refers to the row, and the second number always refers to the column
+
+6. Select multiple rows and column at a time in the matrix y:
+
+    ```bash
+    > y[c(1, 3), c(2, 4)]
+         [,1] [,2]
+    [1,]    5   13
+    [2,]    7   15
+    > y[1:3, 2:4]
+         [,1] [,2] [,3]
+    [1,]    5    9   13
+    [2,]    6   10   14
+    [3,]    7   11   15
+    > y[1:2, ]
+         [,1] [,2] [,3] [,4]
+    [1,]    1    5    9   13
+    [2,]    2    6   10   14
+    > y[-c(1, 3), ]
+         [,1] [,2] [,3] [,4]
+    [1,]    2    6   10   14
+    [2,]    4    8   12   16
+    ```
+
+   No index for the columns or the rows indicates that R should include all columns or all rows, respectively. The use of a negative sign - in the index tells R to keep all rows or columns except those indicated in the index.
+
+7. Check the number of rows and columns in a matrix:
+
+    ```bash
+    > dim(y)
+    [1] 4 4
+    ```
+
+8. Generate a vector of random normal variables:
+
+    ```bash
+    > set.seed(1303)
+    > x <- rnorm(50)
+    > y <- x + rnorm(50, mean = 50, sd = .1)
+    > cor(x, y)
+    [1] 0.9942128
+    ```
+
+    By default, rnorm() creates standard normal random variables with a mean of 0 and a standard deviation of 1. However, the mean and standard deviation can be altered as illustrated above.
+    
+    Each time we call the function rnorm(), we will get a different answer. However, sometimes we want our code to reproduce the exact same set of random numbers; we can use the set.seed() function to do this. We use set.seed() throughout the labs whenever we perform calculations involving random quantities. 
+
+9. Let's check some descriptive statistics of vectors:
+
+    ```bash
+    > mean(y)
+    [1] 50.18446
+    > var(y)
+    [1] 0.8002002
+    > sqrt ( var (y))
+    [1] 0.8945391
+    > sd(y)
+    [1] 0.8945391
+    > cor (x, y)
+    [1] 0.9942128
+    ```
+
+    The mean() and var() functions can be used to compute the mean and variance of a vector of numbers. Applying sqrt() to the output of var() will give the standard deviation. Or we can simply use the sd() function. The cor() function is to compute the correlation between vector x and y.
+
+</details>
+
+<details><summary>Step 2: Graphics (10 min)</summary>
+
+## Step 2: Graphics
+
+We will plot and save plots in R.
+
+1. Produce a scatterplot between two vectors of numbers using the function plot():
+    
+    ```bash
+    > set.seed(1303)
+    > x <- rnorm(100)
+    > y <- rnorm(100)
+    > plot(x,y)
+    > plot(x, y, xlab = " this is the x- axis ",
+           ylab = " this is the y- axis ",
+           main = " Plot of X vs Y")
+    ```
+    By default, the output plot will show in Plots window in the lower right cornor.
+
+2. Save the scatterplot in a pdf or a jpeg file:
+
+    ```bash
+    > pdf("Figure.pdf")
+    > plot(x, y, col = "green")
+    > dev.off()
+    null device
+            1    
+    ```
+
+    To creat a jpeg, we use the function jpeg() instaed of pdf(). The function dev.off() indicates to R that we are done creating the plot.
+
+3. Produce a contour plot (like a topographical map) to represent 3-Dimentional data using the function contour():
+
+    ```bash
+    > x <- seq(1, 10)
+    > y <- x
+    > f <- outer(x, y, function (x, y) cos(y) / (1 + x^2))
+    > contour(x, y, f)
+    > contour(x, y, f, nlevels = 45, add = T)
+    > fa <- (f - t(f)) / 2
+    > contour(x, y, fa, nlevels = 15)
+    ```
+  
+    The image() function works the same way as contour(). Explore it if you are interested.
+
+</details>
+
+<details><summary> Step 3: Loading data (15 min)</summary>
+## Step 3: Loading data
+
+Now, we will learn how to importing a data set into R and explore the data set. 
+
+1. Download the Auto.data file and store it in a directory. Use the function setwd() to set the working directory to the directory you stored the data file.
+
+    ```bash
+    > setwd(dir)
+    ```
+    Replace dir with the path of the direcotry where you store the data set.
+
+2. Load the data file Auto.data into R using the function read.table() and store it as an data frame called Auto:
+
+    ```bash
+    > Auto <- read.table("Auto.data", header = T, na.strings = "?", stringsAsFactors = T)
+    ```
+
+   Using the option header = T (or header = TRUE) in the read.table() function tells R that the first line of the file contains the variable names, and using the option na.strings tells R that any time it sees a particular character or set of characters (such as a question mark), it should be treated as a missing element of the data matrix.The explaination of other options could be found by typing ?read.table
+
+3. View the data frame:
+
+    ```bash
+    > View(Auto)
+    > head(Auto)
+    ```
+    
+    Once the data has been loaded, the View() function can be used to view it in a spreadsheet-like window. The head() function can also be used to view the first few rows of the data
+
+4. Deal with the missing data by removing rows with missing observations:
+
+    ```bash
+    > Auto <- na.omit(Auto)
+    > dim(Auto)
+    [1] 392 9
+    ```
+
+    The function dim() is to check the size of the data frame.
+
+5. Produce a numerical summary of each variable in the particular data frame:
+
+    ```bash
+    > summary(Auto)
+    ```    
+
+</details>
+
+<details><summary> Step 4: Practical exercises (25 min)</summary>
+## Step 4: Practical exercises
+
+So far, we have learnt some basic commands in R. In this practical case, we will continues with the data set Auto studied in Step 3. Make sure that the missing values have been removed from the data.
+
+Six questions are listed below. You are required to try to answer these questions using R commands in Step1, 2 and 3 by yourself. We will go over the solutions once everyone has finished these questions.
+
+🎯 **Questions** 
+
+1. Which of the predictors are quantitative, and which are qualitative?
+
+2. What is the range of each quantitative predictor? (hint: You can answer this using the range() function)
+    
+3. What is the mean and standard deviation of each quantitative predictor?
+
+4. Now remove the 10th through 85th observations. What is the range, mean, and standard deviation of each predictor in the subset of the data that remains? 
+
+5. Using the full data set, investigate the predictors graphically, using scatterplots or other tools of your choice. Create some plots highlighting the relationships among the predictors. Comment on your findings.
+
+6. Suppose that we wish to predict gas mileage (mpg) on the basis of the other variables. Do your plots suggest that any of the other variables might be useful in predicting mpg? Justify your answer.
+
+</details>
+
+<details><summary>Step 5: Solutions for exercises (25 min)</summary>
+## Step 5: Solutions for exercises
+
+1. Use the function View() to identify the type of a variable (quantitative or qualitative):
+
+    ```bash
+    > View(Auto)
+    ```
+
+   Variables mpg, cylinders, horsepower, weight, accelation, year, origin are quantitative variable. Variable name is qualitative varibale.
+
+2. Use the function range() to check the range of each quantitative predictor:
+
+    ```bash
+    > range(Auto$mpg)
+    [1]  9.0 46.6
+    ```
+
+    or
+
+     ```bash
+    > attach(Auto)
+    > range(mpg)
+    [1]  9.0 46.6
+    ```
+   
+   To refer to a variable, we must type the data set and the variable name joined with a $ symbol. Alternatively, we can use the attach() function in attach() order to tell R to make the variables in this data frame available by name. 
+
+3. Using summary() to have an overall look at all variables and statistical features (like mean and standard deviation) are included in the outputs:
+
+    ```bash
+    > summary(Auto)
+    ```
+
+   or
+
+    ```bash
+    > mean(Auto$mpg)
+    > sd(Auto$mpg)
+    ```
+
+4. Remove 10th observation from the original data frame and store it as another new data frame:
+
+    ```bash
+    > Auto_tmp = Auto[1:9, ]
+    > summary(Auto_tmp)
+    > mean(Auto_tmp$mpg)
+    > sd(Auto_tmp$mpg)
+    ```
+
+5. Creat a scatterplot matrix using the function pairs():
+
+    ```bash
+    > pairs( ~ mpg + displacement + horsepower + weight + acceleration + year + origin + cylinders, data = Auto)
+    ```
+
+    Notice the linear or non-linear trends in the scatterplots.Then Creat a histogram of the variable mpg:
+   
+    ```bash
+    > hist (Auto$mpg , col = 2, breaks = 15)
+    ```
+    
+    Use the hist() function to produce some histograms with differing numbers of bins for a few of the quantitative variables. You may find the command par(mfrow = c(2, 2)) useful: it will divide the print window into four regions so that four plots can be made simultaneously. Modifying the arguments to this function will divide the screen in other ways.
+
+6. After observing the first row of the scatterplot matrix which indicates the relationship between gas mileage (mpg) and other variables, you will find evident linear or non-linear trends exist in the scatterplots with variables displacement, horsepower, weight, year and origin. Therefore, these varibles might be useful in predicting mpg.
+
+If you want to achieve ststistical robust when exploring the relationship between variables, you need to culculate some statistics (like the correlation using the function cor()) and conduct statistical tests. This will be further illustrated in Week 03 lecture.
+
+</details>
+
