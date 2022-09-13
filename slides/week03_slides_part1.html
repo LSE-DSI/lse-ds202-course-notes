@@ -438,28 +438,30 @@
 </section>
 <section id="classification" class="slide level2 smaller">
 <h2>Classification</h2>
-<!-- ::: {.incremental} -->
+<div>
 <ul>
-<li>We have so far only modelled <strong>quantitative</strong> responses.</li>
-<li>Today, we focus on predicting <mark>categorical</mark>, or <mark>qualitative</mark>, responses. <!-- ::: --></li>
+<li class="fragment">We have so far only modelled <strong>quantitative</strong> responses.</li>
+<li class="fragment">Today, we focus on predicting <mark>categorical</mark>, or <mark>qualitative</mark>, responses.</li>
 </ul>
+</div>
 <div class="columns">
 <div class="column" style="width: 30%;margin-right:0.5%;padding:1%;">
-<!-- ::: {.fragment .fade-in-then-semi-out} -->
+<div class="fragment fade-in-then-semi-out">
 <p>The generic supervised model:</p>
 <p><span class="math display">\[
 Y = \operatorname{f}(X) + \epsilon
 \]</span></p>
 <p>still applies, only this time <span class="math inline">\(Y\)</span> is categorical. ➡️</p>
-<!-- ::: -->
+</div>
 </div><div class="column" style="width: 64%;margin-right:0.5%;padding:1%;">
-<!-- ::: {.fragment} -->
+<div class="fragment">
 <p>Our categorical variables of interest take values in an <strong>unordered set</strong> <span class="math inline">\(\mathcal{C}\)</span>, such as:</p>
 <ul>
 <li><span class="math inline">\(\text{eye color} \in \mathcal{C} = \{\color{brown}{brown},\color{blue}{blue},\color{green}{green}\}\)</span></li>
 <li><span class="math inline">\(\text{email} \in \mathcal{C} = \{spam, ham\}\)</span></li>
-<li><span class="math inline">\(\text{football results} \in \mathcal{C} \{away\ win,draw,home\ win\}\)</span> <!-- ::: --></li>
+<li><span class="math inline">\(\text{football results} \in \mathcal{C} \{away\ win,draw,home\ win\}\)</span></li>
 </ul>
+</div>
 </div>
 </div>
 <aside class="notes">
@@ -496,13 +498,14 @@ Y =
 </div>
 <div class="columns">
 <div class="column" style="width: 60%;margin-right:0.5%;padding:1%;">
-<!-- ::: fragment -->
+<div class="fragment">
 <p>How would you interpret a particular prediction if your model returned:</p>
 <ul>
 <li><span class="math inline">\(\hat{y} = ~~1.5\)</span> or</li>
 <li><span class="math inline">\(\hat{y} = ~~0.1\)</span> or</li>
-<li><span class="math inline">\(\hat{y} = 20.0\)</span>? <!-- ::: --></li>
+<li><span class="math inline">\(\hat{y} = 20.0\)</span>?</li>
 </ul>
+</div>
 </div><div class="column" style="width: 34%;margin-right:0.5%;padding:1%;">
 
 </div>
@@ -523,26 +526,28 @@ Y =
 </section>
 <section id="more-on-classification" class="slide level2 smaller">
 <h2>More on Classification</h2>
-<!-- ::: {.fragment fragment-index=1 style="margin-bottom:-2.5%;"} -->
+<div class="fragment" data-fragment-index="1" style="margin-bottom:-2.5%;">
 <ul>
-<li>Often we are more interested in estimating the <mark>probabilities</mark> that <span class="math inline">\(X\)</span> belongs to each category in <span class="math inline">\(\mathcal{C}\)</span>. <!-- :::
-
-::: {.fragment fragment-index=2 style="margin-bottom:-2.5%;"} --></li>
-<li>For example, it is sometimes more valuable to have an estimate of the <em>probability</em> that an <strong>insurance claim</strong> is fraudulent, than a <em>classification</em> fraudulent or not. <!-- :::
-
-::: {.fragment fragment-index=2 .fade-in-then-out}
-![](/figures/week03/pexels-monstera-5849597.jpg){.absolute width="50%" top="37.5%" left="25%"}
-:::
-
-::: {.fragment fragment-index=3 style="margin-bottom:-2.5%;"} --></li>
-<li>A successful <strong>gambling strategy</strong>, for instance, requires placing bets on outcomes to which you believe the bookmakers have assigned incorrect probabilities. Knowing the most likely outcome is not enough! <!-- :::
-
-::: {.fragment fragment-index=3 .fade-in-then-out}
-![](/figures/week03/pexels-sascha-d%C3%BCser-187333.jpg){.absolute width="40%" top="50%" left="60%"}
-:::
-
-::: {.fragment fragment-index=4 style="margin-top:10%;"} --></li>
+<li>Often we are more interested in estimating the <mark>probabilities</mark> that <span class="math inline">\(X\)</span> belongs to each category in <span class="math inline">\(\mathcal{C}\)</span>.</li>
 </ul>
+</div>
+<div class="fragment" data-fragment-index="2" style="margin-bottom:-2.5%;">
+<ul>
+<li>For example, it is sometimes more valuable to have an estimate of the <em>probability</em> that an <strong>insurance claim</strong> is fraudulent, than a <em>classification</em> fraudulent or not.</li>
+</ul>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+<p><img data-src="../figures/week03/pexels-monstera-5849597.jpg" class="absolute" style="top: 37.5%; left: 25%; width: 50%; "></p>
+</div>
+<div class="fragment" data-fragment-index="3" style="margin-bottom:-2.5%;">
+<ul>
+<li>A successful <strong>gambling strategy</strong>, for instance, requires placing bets on outcomes to which you believe the bookmakers have assigned incorrect probabilities. Knowing the most likely outcome is not enough!</li>
+</ul>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="3">
+<p><img data-src="../figures/week03/pexels-sascha-düser-187333.jpg" class="absolute" style="top: 50%; left: 60%; width: 40%; "></p>
+</div>
+<div class="fragment" data-fragment-index="4" style="margin-top:10%;">
 <div class="callout callout-note callout-captioned callout-style-default">
 <div class="callout-body">
 <div class="callout-caption">
@@ -556,7 +561,7 @@ Y =
 </div>
 </div>
 </div>
-<!-- ::: -->
+</div>
 <aside class="notes">
 <p>Key takeaway: normally, we estimate</p>
 <style type="text/css">
@@ -576,42 +581,40 @@ Y =
 <p>Let’s talk about three possible <mark>interpretations of probability</mark>:</p>
 <div class="columns">
 <div class="column" style="width:25%;">
-<!-- ::: {.fragment fragment-index=1} -->
+<div class="fragment" data-fragment-index="1">
 <div style="min-height:15vh;display:block;">
 <p><strong>Classical</strong></p>
 </div>
-<!-- :::
-
-::: {.fragment fragment-index=2} -->
+</div>
+<div class="fragment" data-fragment-index="2">
 <div style="min-height:15vh;display:block;">
 <p><strong>Frequentist</strong></p>
 </div>
-<!-- :::
-
-::: {.fragment fragment-index=3} -->
+</div>
+<div class="fragment" data-fragment-index="3">
 <div style="min-height:15vh;display:block;">
 <p><strong>Bayesian</strong></p>
 </div>
-<!-- ::: -->
+</div>
 </div><div class="column" style="width:75%;">
-<!-- ::: {.fragment fragment-index=1} -->
+<div class="fragment" data-fragment-index="1">
 <div style="min-height:15vh;display:block;font-size:0.75em;">
 <p>Events of the same kind can be reduced to a certain number of equally possible cases.</p>
 <p>Example: coin tosses lead to either heads or tails <span class="math inline">\(1/2\)</span> of the time ( <span class="math inline">\(50\%/50\%\)</span>)</p>
 </div>
-<!-- ::: -->
-<!-- ::: {.fragment fragment-index=2} -->
+</div>
+<div class="fragment" data-fragment-index="2">
 <div style="min-height:15vh;display:block;font-size:0.75em;">
 <p>What would be the outcome if I repeat the process many times?</p>
 <p>Example: if I toss a coin <span class="math inline">\(1,000,000\)</span> times, I expect <span class="math inline">\(\approx 50\%\)</span> heads and <span class="math inline">\(\approx 50\%\)</span> tails outcome.</p>
 </div>
-<!-- ::: -->
-<!-- ::: {.fragment fragment-index=3} -->
+</div>
+<div class="fragment" data-fragment-index="3">
 <div style="min-height:15vh;display:block;font-size:0.75em;">
 <p>What is your judgement of the likelihood of the outcome? Based on previous information.</p>
 <p>Example: if I know that this coin has symmetric weight, I expect a $ 50%/50%$ outcome.</p>
 </div>
-<!-- ::: -->
+</div>
 </div>
 </div>
 
@@ -629,7 +632,7 @@ Y =
 <p><img data-src="../figures/week03/lithium-ion-battery.jpeg" class="absolute" style="top: 45.5%; left: 55%; width: 45%; "></p>
 <div class="columns">
 <div class="column" style="width: 45%;">
-<!-- ::: {.fragment} -->
+<div class="fragment">
 <div class="callout callout-note callout-captioned callout-style-default">
 <div class="callout-body">
 <div class="callout-caption">
@@ -643,7 +646,7 @@ Y =
 </div>
 </div>
 </div>
-<!-- ::: -->
+</div>
 </div><div class="column" style="width: 55%;">
 <!-- Ghost column -->
 </div>
@@ -656,21 +659,24 @@ Y =
 </section>
 <section id="the-logistic-regression-model" class="slide level2 smaller">
 <h2>The Logistic Regression model</h2>
-<!-- ::: {.fragment} -->
+<div class="fragment">
 <p>Consider a <mark>binary</mark> response:</p>
 <p><span class="math display">\[
 Y = \begin{cases}
 0 \\
 1
 \end{cases}
-\]</span> <!-- :::
-
-::: {.fragment} --> We model the probability that <span class="math inline">\(Y = 1\)</span> as:</p>
+\]</span></p>
+</div>
+<div class="fragment">
+<p>We model the probability that <span class="math inline">\(Y = 1\)</span> as:</p>
 <p><span class="math display">\[
 Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
-\]</span> <!-- :::
-
-::: {.fragment} --> <img data-src="../figures/week03/logistic-regression-diagram.svg" class="absolute" style="top: 60%; left: 25%; height: 35%; "> <!-- ::: --></p>
+\]</span></p>
+</div>
+<div class="fragment">
+<p><img data-src="../figures/week03/logistic-regression-diagram.svg" class="absolute" style="top: 60%; left: 25%; height: 35%; "></p>
+</div>
 <div class="footer">
 <p>Source of illustration: <a href="https://www.tibco.com/reference-center/what-is-logistic-regression">TIBCO</a></p>
 </div>
@@ -710,20 +716,22 @@ Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
 </section>
 <section id="maximum-likelihood-estimate" class="slide level2 smaller">
 <h2>Maximum likelihood estimate</h2>
-<!-- ::: {.fragment} -->
+<div class="fragment">
 <p>As with linear regression, the coefficients are unknown and need to be estimated from training data:</p>
 <p><span class="math display">\[
 \hat{p}(X) = \frac{e^{\hat{\beta}_0 + \hat{\beta}_1X}}{1 + e^{\hat{\beta}_0 + \hat{\beta}_1 X}}
-\]</span> <!-- ::: --></p>
-<!-- ::: {.fragment} -->
+\]</span></p>
+</div>
+<div class="fragment">
 <p>We estimate these by maximising the <mark>likelihood function</mark>:</p>
 <p><span class="math display">\[
 \max \ell(\beta_0, \beta_1) = \prod_{i:y_i=1}{p(x_i)} \prod_{i':y_{i'}=0} (1 - p(x_{i'})),
 \]</span></p>
-<p>and we call this method the <mark>Maximum Likelihood Estimate</mark> (MLE). <!-- :::
-
-::: {.fragment} --></p>
-<p>➡️ As usual, there are <a href="https://www.wikiwand.com/en/Maximum_likelihood_estimation#/Iterative_procedures">multiple ways</a> to solve this equation! <!-- ::: --></p>
+<p>and we call this method the <mark>Maximum Likelihood Estimate</mark> (MLE).</p>
+</div>
+<div class="fragment">
+<p>➡️ As usual, there are <a href="https://www.wikiwand.com/en/Maximum_likelihood_estimation#/Iterative_procedures">multiple ways</a> to solve this equation!</p>
+</div>
 <aside class="notes">
 <p>Key takeaway of this slide: MLE (logistic regression) is analogous to OLS (linear regression).</p>
 <p><mark>Intuition:</mark> What are the values for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> that generate predicted probabilities, <span class="math inline">\(\hat{Y}_i\)</span> for each training observation that are as close as possible to the realised outcomes, <span class="math inline">\(Y_i\)</span>?</p>
@@ -741,28 +749,31 @@ Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
 </section>
 <section id="solutions-to-mle" class="slide level2 smaller">
 <h2>Solutions to MLE</h2>
-<!-- ::: incremental -->
+<div>
 <ul>
-<li>MLE is much more difficult to solve than the least squares formulations.</li>
-<li>Most solutions rely on a variant of the <a href="https://www.wikiwand.com/en/Hill_climbing">Hill Climbing</a> algorithm <!-- ::: --></li>
+<li class="fragment">MLE is much more difficult to solve than the least squares formulations.</li>
+<li class="fragment">Most solutions rely on a variant of the <a href="https://www.wikiwand.com/en/Hill_climbing">Hill Climbing</a> algorithm</li>
 </ul>
+</div>
 <div class="columns" style="margin-top:-1%;">
 <div class="column" style="width:30%;">
-<!-- ::: {.fragment} -->
-<p><img data-src="../figures/week03/pexels-eberhard-grossgasteiger-1366909.jpg" style="width:80.0%"> <!-- ::: --></p>
+<div class="fragment">
+<p><img data-src="../figures/week03/pexels-eberhard-grossgasteiger-1366909.jpg" style="width:80.0%"></p>
+</div>
 </div><div class="column" style="width:70%;font-size:0.95em;padding-top:1.75%;">
-<!-- ::: {.fragment} -->
-<p>How do you find the latitude and longitude of a mountain peak if you can’t see very far? <!-- :::
-
-::: {.incremental} --></p>
+<div class="fragment">
+<p>How do you find the latitude and longitude of a mountain peak if you can’t see very far?</p>
+</div>
+<div>
 <ul>
-<li>Start somewhere.</li>
-<li>Look around for the best way to go up.</li>
-<li>Go a small distance in that direction.</li>
-<li>Look around for the best way to go up.</li>
-<li>Go a small distance in that direction.</li>
-<li><span class="math inline">\(\cdots\)</span> <!-- ::: --></li>
+<li class="fragment">Start somewhere.</li>
+<li class="fragment">Look around for the best way to go up.</li>
+<li class="fragment">Go a small distance in that direction.</li>
+<li class="fragment">Look around for the best way to go up.</li>
+<li class="fragment">Go a small distance in that direction.</li>
+<li class="fragment"><span class="math inline">\(\cdots\)</span></li>
 </ul>
+</div>
 </div>
 </div>
 <!-- In R, all GLMs are solved with https://www.wikiwand.com/en/Iteratively_reweighted_least_squares -->
@@ -867,7 +878,7 @@ Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
 <section>
 <section id="interpreting-coefficients" class="title-slide slide level1">
 <h1>Interpreting coefficients</h1>
-<p><br><br> Since we now mostly care about <mark>probabilities</mark>, how do the <mark>odds</mark> change according to features of the customers?</p>
+<p><br> Since we now mostly care about <mark>probabilities</mark>, how do the <mark>odds</mark> change according to features of the customers?</p>
 </section>
 <section id="simple-logistic-regression-models" class="slide level2">
 <h2>Simple logistic regression models</h2>
@@ -952,10 +963,6 @@ Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
 <p><span class="math display">\[
 \frac{p(X)}{1 - p(X)} = e^{\beta_0 + \beta_1 X}
 \]</span></p>
-<div class="columns">
-<div class="column" style="width:40%;">
-<!-- Ghost -->
-</div><div class="column" style="width:60%;">
 <div class="callout callout-note callout-captioned callout-style-default">
 <div class="callout-body">
 <div class="callout-caption">
@@ -967,8 +974,6 @@ Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
 <div class="callout-content">
 <p>If the odds are 9, then <span class="math inline">\(\frac{p(X)}{(1-p(X))} = 9 \Rightarrow p(X) = 0.9\)</span>.</p>
 <p>This means that 9 out of 10 people will default.</p>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -1002,8 +1007,8 @@ log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X
 </div>
 </div>
 </section>
-<section id="back-to-our-default-data" class="slide level2">
-<h2>Back to our Default data…</h2>
+<section id="example-default-vs-balance" class="slide level2">
+<h2>Example: Default vs Balance</h2>
 <div class="columns">
 <div class="column" style="width:50%;font-size:0.75em;">
 <ul>
@@ -1024,7 +1029,7 @@ log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X
 </div>
 <div class="columns">
 <div class="column" style="width:50%;font-size:0.55em;">
-<!-- ::: {.fragment} -->
+<div class="fragment">
 <p><strong>Interpreting <span class="math inline">\(\hat{\beta}_0\)</span></strong>:</p>
 <ul>
 <li>In the absence of <code>balance</code> information:
@@ -1034,21 +1039,22 @@ log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X
 \begin{align}
 p(\text{default}=\text{Yes}) &amp;= \frac{\text{odds}}{(1 + \text{odds})} \\
                            &amp;= 2.366877 \times 10^{5}\end{align}
-\]</span> <!-- ::: --></li>
+\]</span></li>
 </ul></li>
 </ul>
+</div>
 </div><div class="column" style="width:50%;font-size:0.55em;">
-<!-- ::: {.fragment} -->
+<div class="fragment">
 <p><strong>Interpreting <span class="math inline">\(\hat{\beta}_1\)</span></strong>:</p>
 <ul>
 <li>With <code>balance</code> information:
 <ul>
 <li>Log odds: <span class="math inline">\(0.005498917\)</span></li>
 <li>Odds : <span class="math inline">\(e^{0.005498917} = 1.005514\)</span></li>
-<li>That is, for every <span class="math inline">\(\$1\)</span> increase in balance, the probability of default increases by <span class="math inline">\(+0.5514\%\)</span></li>
+<li>That is, for every <span class="math inline">\(\$1\)</span> increase in balance, the probability of default <mark style="color:#069F72;">increases</mark> by <span class="math inline">\(+0.5514\%\)</span></li>
 </ul></li>
 </ul>
-<!-- ::: -->
+</div>
 </div>
 </div>
 <aside class="notes">
@@ -1066,6 +1072,191 @@ p(\text{default}=\text{Yes}) &amp;= \frac{\text{odds}}{(1 + \text{odds})} \\
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section id="example-default-vs-income" class="slide level2">
+<h2>Example: Default vs Income</h2>
+<div class="columns">
+<div class="column" style="width:50%;font-size:0.75em;">
+<ul>
+<li>Model: <strong>Default vs Income</strong> 💰</li>
+</ul>
+<p><span class="math display">\[
+\hat{y} = \frac{e^{-3.094149 - 8.352575 \times 10^{-6} X}}{1 + e^{-3.094149 - 8.352575 \times 10^{-6} X}}
+\]</span></p>
+</div><div class="column" style="width:50%;font-size:0.55em;">
+<p><br> <br> That is:</p>
+<p><span class="math display">\[
+\begin{align}
+\hat{\beta}_0 &amp;= - 3.094149\\
+\hat{\beta}_1 &amp;= - 8.352575 \times 10^{-6}
+\end{align}
+\]</span></p>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;font-size:0.55em;">
+<div class="fragment">
+<p><strong>Interpreting <span class="math inline">\(\hat{\beta}_0\)</span></strong>:</p>
+<ul>
+<li>In the absence of <code>balance</code> information:
+<ul>
+<li>Log odds: <span class="math inline">\(- 3.094149\)</span></li>
+<li>Odds : <span class="math inline">\(e^{- 3.094149} = 0.04531355\)</span> <span class="math display">\[
+\begin{align}
+p(\text{default}=\text{Yes}) &amp;= \frac{\text{odds}}{(1 + \text{odds})} \\
+                           &amp;= 0.04334924 = 4.33\%\end{align}
+\]</span></li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;font-size:0.55em;">
+<div class="fragment">
+<p><strong>Interpreting <span class="math inline">\(\hat{\beta}_1\)</span></strong>:</p>
+<ul>
+<li>With <code>balance</code> information:
+<ul>
+<li>Log odds: <span class="math inline">\(- 8.352575\)</span></li>
+<li>Odds : <span class="math inline">\(e^{- 8.352575} = 0.9999916\)</span></li>
+<li>That is, for every <span class="math inline">\(\$1\)</span> increase in income, the probability of default <mark style="color:#c9594c;">decreases</mark> by <span class="math inline">\(0.000835254\%\)</span></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>Note that the increase is cumulative, not linear. It depends on where X is.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="example-default-vs-is-student" class="slide level2">
+<h2>Example: Default vs Is Student?</h2>
+<div class="columns">
+<div class="column" style="width:50%;font-size:0.75em;">
+<ul>
+<li>Model: <strong>Default vs Student</strong> 🧑‍🎓</li>
+</ul>
+<p><span class="math display">\[
+\hat{y} = \frac{e^{-3.504128 + 0.4048871 X}}{1 + e^{-3.504128 + 0.4048871 X}}
+\]</span></p>
+</div><div class="column" style="width:50%;font-size:0.55em;">
+<p><br> <br> That is:</p>
+<p><span class="math display">\[
+\begin{align}
+\hat{\beta}_0 &amp;= -3.504128\\
+\hat{\beta}_1 &amp;= +0.4048871
+\end{align}
+\]</span></p>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;font-size:0.55em;">
+<div class="fragment">
+<p><strong>Interpreting <span class="math inline">\(\hat{\beta}_0\)</span></strong>:</p>
+<ul>
+<li>In the absence of <code>balance</code> information:
+<ul>
+<li>Log odds: <span class="math inline">\(-3.504128\)</span></li>
+<li>Odds : <span class="math inline">\(e^{- 3.504128} = 0.03007299\)</span> <span class="math display">\[
+\begin{align}
+p(\text{default}=\text{Yes}) &amp;= \frac{\text{odds}}{(1 + \text{odds})} \\
+                           &amp;= 0.02919501 \approx 2.92\%\end{align}
+\]</span></li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;font-size:0.55em;">
+<div class="fragment">
+<p><strong>Interpreting <span class="math inline">\(\hat{\beta}_1\)</span></strong>:</p>
+<ul>
+<li>With <code>balance</code> information:
+<ul>
+<li>Log odds: <span class="math inline">\(0.4048871\)</span></li>
+<li>Odds : <span class="math inline">\(e^{0.4048871} = 1.499133\)</span></li>
+<li>If person is a student, then the probability of default <mark style="color:#069F72;">increases</mark> by <span class="math inline">\(\approx 49\%\)</span>
+<ul>
+<li><span class="math inline">\(p(\text{default}=\text{Yes}|\text{student}=\text{Yes}) \approx 4.3\%\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="model-info" class="slide level2 smaller">
+<h2>Model info</h2>
+<p>The output of <code>summary</code> is similar to that of linear regression:</p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>Model: <strong>Default vs Balance</strong> 💸</li>
+</ul>
+<div class="cell" data-output-location="column-fragment">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">summary</span>(balance_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = default ~ balance, family = binomial, data = ISLR2::Default)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.2697  -0.1465  -0.0589  -0.0221   3.7589  
+
+Coefficients:
+              Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -1.065e+01  3.612e-01  -29.49   &lt;2e-16 ***
+balance      5.499e-03  2.204e-04   24.95   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 2920.6  on 9999  degrees of freedom
+Residual deviance: 1596.5  on 9998  degrees of freedom
+AIC: 1600.5
+
+Number of Fisher Scoring iterations: 8</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:35%;margin-left:5%;">
+<p><strong>Confidence Intervals</strong></p>
+<div class="cell" data-output-location="column-fragment">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">confint</span>(balance_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    2.5 %       97.5 %
+(Intercept) -11.383288936 -9.966565064
+balance       0.005078926  0.005943365</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="wraping-up-on-coefficients" class="slide level2 smaller">
+<h2>Wraping up on coefficients:</h2>
+<div class="columns">
+<div class="column" style="width:80%;">
+<ul>
+<li>Pay attention to the <strong>sign</strong> of the coefficient. The sign of the coefficients indicate the direction of the association.</li>
+<li>If the value of a predictor increases, we look at the sign of its coefficient:
+<ul>
+<li>If it is a ➕ <strong>positive coefficient</strong>, we predict an <mark style="color:#069F72;">increase</mark> in the probability of the class</li>
+<li>If it is a ➖ <strong>negative coefficient</strong>, we predict a <mark style="color:#c9594c;">decrease</mark> in the probability of the class</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:20%;">
+
+</div>
+</div>
 </section></section>
 <section>
 <section id="multiple-logistic-regression" class="title-slide slide level1 smaller">
@@ -1094,8 +1285,8 @@ p(X) = \frac{e^{\beta_0 + \beta_1 X_1 + \ldots + \beta_p X_p}}{1 + e^{\beta_0 + 
 <div class="column" style="width:60%;">
 <p><strong>Full Model</strong></p>
 <div class="cell" data-output-location="column-fragment">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>full_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> ., <span class="at">data=</span>ISLR2<span class="sc">::</span>Default, <span class="at">family=</span>binomial)</span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">summary</span>(full_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>full_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> ., <span class="at">data=</span>ISLR2<span class="sc">::</span>Default, <span class="at">family=</span>binomial)</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">summary</span>(full_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1126,7 +1317,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 </div><div class="column" style="width:35%;margin-left:5%;">
 <p><strong>Confidence Intervals</strong></p>
 <div class="cell" data-output-location="column-fragment">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">confint</span>(full_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">confint</span>(full_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                    2.5 %        97.5 %
 (Intercept) -1.185902e+01 -9.928174e+00

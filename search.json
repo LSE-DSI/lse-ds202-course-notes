@@ -487,7 +487,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  11.1\n2     9    12  10.9\n3    12    15  13.4\n4    15    18  16.0\n5    18    21  19.0\n6    21    24  23.5"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  6.86\n2     9    12 14.6 \n3    12    15 16.4 \n4    15    18 16.5 \n5    18    21 20.7 \n6    21    24 23.4"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -522,7 +522,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  11.1 -2.05     2.05 \n2     9    12  10.9  1.06     1.06 \n3    12    15  13.4  1.63     1.63 \n4    15    18  16.0  2.00     2.00 \n5    18    21  19.0  1.97     1.97 \n6    21    24  23.5  0.504    0.504\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.537306\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  6.86  2.14     2.14 \n2     9    12 14.6  -2.57     2.57 \n3    12    15 16.4  -1.37     1.37 \n4    15    18 16.5   1.51     1.51 \n5    18    21 20.7   0.322    0.322\n6    21    24 23.4   0.617    0.617\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.422303\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
@@ -774,28 +774,28 @@
     "href": "slides/week03_slides_part1.html#classification",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "Classification",
-    "text": "Classification\n\n\nWe have so far only modelled quantitative responses.\nToday, we focus on predicting categorical, or qualitative, responses. \n\n\n\n\nThe generic supervised model:\n\\[\nY = \\operatorname{f}(X) + \\epsilon\n\\]\nstill applies, only this time \\(Y\\) is categorical. ➡️\n\n\n\nOur categorical variables of interest take values in an unordered set \\(\\mathcal{C}\\), such as:\n\n\\(\\text{eye color} \\in \\mathcal{C} = \\{\\color{brown}{brown},\\color{blue}{blue},\\color{green}{green}\\}\\)\n\\(\\text{email} \\in \\mathcal{C} = \\{spam, ham\\}\\)\n\\(\\text{football results} \\in \\mathcal{C} \\{away\\ win,draw,home\\ win\\}\\) \n\n\n\n\nOpening slides - Unordered here is an important distinction. - We can also call it a class"
+    "text": "Classification\n\n\nWe have so far only modelled quantitative responses.\nToday, we focus on predicting categorical, or qualitative, responses.\n\n\n\n\n\nThe generic supervised model:\n\\[\nY = \\operatorname{f}(X) + \\epsilon\n\\]\nstill applies, only this time \\(Y\\) is categorical. ➡️\n\n\n\nOur categorical variables of interest take values in an unordered set \\(\\mathcal{C}\\), such as:\n\n\\(\\text{eye color} \\in \\mathcal{C} = \\{\\color{brown}{brown},\\color{blue}{blue},\\color{green}{green}\\}\\)\n\\(\\text{email} \\in \\mathcal{C} = \\{spam, ham\\}\\)\n\\(\\text{football results} \\in \\mathcal{C} \\{away\\ win,draw,home\\ win\\}\\)\n\n\n\n\n\nOpening slides - Unordered here is an important distinction. - We can also call it a class"
   },
   {
     "objectID": "slides/week03_slides_part1.html#why-cant-i-use-linear-regression",
     "href": "slides/week03_slides_part1.html#why-cant-i-use-linear-regression",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "Why can’t I use linear regression?",
-    "text": "Why can’t I use linear regression?\n\n\nWhat if I just coded each category as a number?\n\\[\nY =\n    \\begin{cases}\n        1 &\\text{if}~\\color{brown}{brown},\\\\\n        2 &\\text{if}~\\color{blue}{blue},\\\\\n        3 &\\text{if}~\\color{green}{green}.\n    \\end{cases}\n\\]\n\nWhat could go wrong?\n\n\n\n\n\n\nHow would you interpret a particular prediction if your model returned:\n\n\\(\\hat{y} = ~~1.5\\) or\n\\(\\hat{y} = ~~0.1\\) or\n\\(\\hat{y} = 20.0\\)? \n\n\n\n\n\n\nKey takeaway: Regression is not suitable for all problems. - regression cannot accommodate a qualitative response with more than two classes - regression will not provide meaningful estaimtes of Pr(Y|X)"
+    "text": "Why can’t I use linear regression?\n\n\nWhat if I just coded each category as a number?\n\\[\nY =\n    \\begin{cases}\n        1 &\\text{if}~\\color{brown}{brown},\\\\\n        2 &\\text{if}~\\color{blue}{blue},\\\\\n        3 &\\text{if}~\\color{green}{green}.\n    \\end{cases}\n\\]\n\nWhat could go wrong?\n\n\n\n\n\n\nHow would you interpret a particular prediction if your model returned:\n\n\\(\\hat{y} = ~~1.5\\) or\n\\(\\hat{y} = ~~0.1\\) or\n\\(\\hat{y} = 20.0\\)?\n\n\n\n\n\n\n\nKey takeaway: Regression is not suitable for all problems. - regression cannot accommodate a qualitative response with more than two classes - regression will not provide meaningful estaimtes of Pr(Y|X)"
   },
   {
     "objectID": "slides/week03_slides_part1.html#more-on-classification",
     "href": "slides/week03_slides_part1.html#more-on-classification",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "More on Classification",
-    "text": "More on Classification\n\n\nOften we are more interested in estimating the probabilities that \\(X\\) belongs to each category in \\(\\mathcal{C}\\). \nFor example, it is sometimes more valuable to have an estimate of the probability that an insurance claim is fraudulent, than a classification fraudulent or not. \nA successful gambling strategy, for instance, requires placing bets on outcomes to which you believe the bookmakers have assigned incorrect probabilities. Knowing the most likely outcome is not enough! \n\n\n\n\n\n\n\nNote\n\n\nStatistical models for ordinal response, when sets are discrete but have an order, are outside the scope of this course. Should you need to create models for ordinal variables, consult “ordinal logistic regression”. A good reference about this is (Agresti 2019, chap. 6).\n\n\n\n\n\nKey takeaway: normally, we estimate"
+    "text": "More on Classification\n\n\nOften we are more interested in estimating the probabilities that \\(X\\) belongs to each category in \\(\\mathcal{C}\\).\n\n\n\n\nFor example, it is sometimes more valuable to have an estimate of the probability that an insurance claim is fraudulent, than a classification fraudulent or not.\n\n\n\n\n\n\n\nA successful gambling strategy, for instance, requires placing bets on outcomes to which you believe the bookmakers have assigned incorrect probabilities. Knowing the most likely outcome is not enough!\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nStatistical models for ordinal response, when sets are discrete but have an order, are outside the scope of this course. Should you need to create models for ordinal variables, consult “ordinal logistic regression”. A good reference about this is (Agresti 2019, chap. 6).\n\n\n\n\n\nKey takeaway: normally, we estimate"
   },
   {
     "objectID": "slides/week03_slides_part1.html#speaking-of-probabilities",
     "href": "slides/week03_slides_part1.html#speaking-of-probabilities",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "Speaking of Probabilities…",
-    "text": "Speaking of Probabilities…\nLet’s talk about three possible interpretations of probability:\n\n\n\n\nClassical\n\n\n\nFrequentist\n\n\n\nBayesian\n\n\n\n\n\nEvents of the same kind can be reduced to a certain number of equally possible cases.\nExample: coin tosses lead to either heads or tails \\(1/2\\) of the time ( \\(50\\%/50\\%\\))\n\n\n\n\nWhat would be the outcome if I repeat the process many times?\nExample: if I toss a coin \\(1,000,000\\) times, I expect \\(\\approx 50\\%\\) heads and \\(\\approx 50\\%\\) tails outcome.\n\n\n\n\nWhat is your judgement of the likelihood of the outcome? Based on previous information.\nExample: if I know that this coin has symmetric weight, I expect a $ 50%/50%$ outcome.\n\n\n\n\n\n\nSource: (DeGroot and Schervish 2003)"
+    "text": "Speaking of Probabilities…\nLet’s talk about three possible interpretations of probability:\n\n\n\n\nClassical\n\n\n\n\nFrequentist\n\n\n\n\nBayesian\n\n\n\n\n\nEvents of the same kind can be reduced to a certain number of equally possible cases.\nExample: coin tosses lead to either heads or tails \\(1/2\\) of the time ( \\(50\\%/50\\%\\))\n\n\n\n\nWhat would be the outcome if I repeat the process many times?\nExample: if I toss a coin \\(1,000,000\\) times, I expect \\(\\approx 50\\%\\) heads and \\(\\approx 50\\%\\) tails outcome.\n\n\n\n\nWhat is your judgement of the likelihood of the outcome? Based on previous information.\nExample: if I know that this coin has symmetric weight, I expect a $ 50%/50%$ outcome.\n\n\n\n\n\n\nSource: (DeGroot and Schervish 2003)"
   },
   {
     "objectID": "slides/week03_slides_part1.html#speaking-of-probabilities-1",
@@ -809,7 +809,7 @@
     "href": "slides/week03_slides_part1.html#the-logistic-regression-model",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "The Logistic Regression model",
-    "text": "The Logistic Regression model\n\nConsider a binary response:\n\\[\nY = \\begin{cases}\n0 \\\\\n1\n\\end{cases}\n\\]  We model the probability that \\(Y = 1\\) as:\n\\[\nPr(Y = 1|X) = p(X) = \\frac{e^{\\beta_0 + \\beta_1X}}{1 + e^{\\beta_0 + \\beta_1 X}}\n\\]   \n\nSource of illustration: TIBCO\n\n\n\nThis is how this function looks like"
+    "text": "The Logistic Regression model\n\nConsider a binary response:\n\\[\nY = \\begin{cases}\n0 \\\\\n1\n\\end{cases}\n\\]\n\n\nWe model the probability that \\(Y = 1\\) as:\n\\[\nPr(Y = 1|X) = p(X) = \\frac{e^{\\beta_0 + \\beta_1X}}{1 + e^{\\beta_0 + \\beta_1 X}}\n\\]\n\n\n\n\n\nSource of illustration: TIBCO\n\n\n\nThis is how this function looks like"
   },
   {
     "objectID": "slides/week03_slides_part1.html#the-logistic-function",
@@ -830,14 +830,14 @@
     "href": "slides/week03_slides_part1.html#maximum-likelihood-estimate",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "Maximum likelihood estimate",
-    "text": "Maximum likelihood estimate\n\nAs with linear regression, the coefficients are unknown and need to be estimated from training data:\n\\[\n\\hat{p}(X) = \\frac{e^{\\hat{\\beta}_0 + \\hat{\\beta}_1X}}{1 + e^{\\hat{\\beta}_0 + \\hat{\\beta}_1 X}}\n\\] \n\nWe estimate these by maximising the likelihood function:\n\\[\n\\max \\ell(\\beta_0, \\beta_1) = \\prod_{i:y_i=1}{p(x_i)} \\prod_{i':y_{i'}=0} (1 - p(x_{i'})),\n\\]\nand we call this method the Maximum Likelihood Estimate (MLE). \n➡️ As usual, there are multiple ways to solve this equation! \n\nKey takeaway of this slide: MLE (logistic regression) is analogous to OLS (linear regression).\nIntuition: What are the values for \\(\\alpha\\) and \\(\\beta\\) that generate predicted probabilities, \\(\\hat{Y}_i\\) for each training observation that are as close as possible to the realised outcomes, \\(Y_i\\)?"
+    "text": "Maximum likelihood estimate\n\nAs with linear regression, the coefficients are unknown and need to be estimated from training data:\n\\[\n\\hat{p}(X) = \\frac{e^{\\hat{\\beta}_0 + \\hat{\\beta}_1X}}{1 + e^{\\hat{\\beta}_0 + \\hat{\\beta}_1 X}}\n\\]\n\n\nWe estimate these by maximising the likelihood function:\n\\[\n\\max \\ell(\\beta_0, \\beta_1) = \\prod_{i:y_i=1}{p(x_i)} \\prod_{i':y_{i'}=0} (1 - p(x_{i'})),\n\\]\nand we call this method the Maximum Likelihood Estimate (MLE).\n\n\n➡️ As usual, there are multiple ways to solve this equation!\n\n\nKey takeaway of this slide: MLE (logistic regression) is analogous to OLS (linear regression).\nIntuition: What are the values for \\(\\alpha\\) and \\(\\beta\\) that generate predicted probabilities, \\(\\hat{Y}_i\\) for each training observation that are as close as possible to the realised outcomes, \\(Y_i\\)?"
   },
   {
     "objectID": "slides/week03_slides_part1.html#solutions-to-mle",
     "href": "slides/week03_slides_part1.html#solutions-to-mle",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "Solutions to MLE",
-    "text": "Solutions to MLE\n\n\nMLE is much more difficult to solve than the least squares formulations.\nMost solutions rely on a variant of the Hill Climbing algorithm \n\n\n\n\n \n\n\nHow do you find the latitude and longitude of a mountain peak if you can’t see very far? \n\nStart somewhere.\nLook around for the best way to go up.\nGo a small distance in that direction.\nLook around for the best way to go up.\nGo a small distance in that direction.\n\\(\\cdots\\) \n\n\n\n\n\n\nAdvanced: If for whatever random reason, you find yourself enamored with the Maximum Likelihood Estimate, check (Agresti 2019) for a recent take on the statistical properties of this method."
+    "text": "Solutions to MLE\n\n\nMLE is much more difficult to solve than the least squares formulations.\nMost solutions rely on a variant of the Hill Climbing algorithm\n\n\n\n\n\n\n\n\n\nHow do you find the latitude and longitude of a mountain peak if you can’t see very far?\n\n\n\nStart somewhere.\nLook around for the best way to go up.\nGo a small distance in that direction.\nLook around for the best way to go up.\nGo a small distance in that direction.\n\\(\\cdots\\)\n\n\n\n\n\n\n\nAdvanced: If for whatever random reason, you find yourself enamored with the Maximum Likelihood Estimate, check (Agresti 2019) for a recent take on the statistical properties of this method."
   },
   {
     "objectID": "slides/week03_slides_part1.html#example-default-data",
@@ -858,7 +858,7 @@
     "href": "slides/week03_slides_part1.html#the-concept-of-odds",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "The concept of odds",
-    "text": "The concept of odds\nThe quantity below is called the odds:\n\\[\n\\frac{p(X)}{1 - p(X)} = e^{\\beta_0 + \\beta_1 X}\n\\]\n\n\n\n\n\n\n\n\n\n\nExample\n\n\nIf the odds are 9, then \\(\\frac{p(X)}{(1-p(X))} = 9 \\Rightarrow p(X) = 0.9\\).\nThis means that 9 out of 10 people will default.\n\n\n\n\n\n\n\n📝 Give it a go! Using algebra, can you re-arrange the equation for \\(p(X)\\) presented in the Logistic regression model slides to arrive at the odds quantity shown above?"
+    "text": "The concept of odds\nThe quantity below is called the odds:\n\\[\n\\frac{p(X)}{1 - p(X)} = e^{\\beta_0 + \\beta_1 X}\n\\]\n\n\n\n\n\n\nExample\n\n\nIf the odds are 9, then \\(\\frac{p(X)}{(1-p(X))} = 9 \\Rightarrow p(X) = 0.9\\).\nThis means that 9 out of 10 people will default.\n\n\n\n\n\n📝 Give it a go! Using algebra, can you re-arrange the equation for \\(p(X)\\) presented in the Logistic regression model slides to arrive at the odds quantity shown above?"
   },
   {
     "objectID": "slides/week03_slides_part1.html#log-odds-or-logit",
@@ -868,11 +868,39 @@
     "text": "Log odds or logit\n\nIt is also useful to think of the odds in log terms.\n\n\\[\nlog\\left(\\frac{p(X)}{1 - p(X)}\\right) = \\beta_0 + \\beta_1 X\n\\]\n\nWe call the quantity above the log odds or logit\n\n\n\n\n\n\n\nTip\n\n\nHow to interpret \\(\\beta_1\\)\nIf X increases one unit then the odds increase by \\(e^{\\beta_1}\\)"
   },
   {
-    "objectID": "slides/week03_slides_part1.html#back-to-our-default-data",
-    "href": "slides/week03_slides_part1.html#back-to-our-default-data",
+    "objectID": "slides/week03_slides_part1.html#example-default-vs-balance",
+    "href": "slides/week03_slides_part1.html#example-default-vs-balance",
     "title": "🗓️ Week 03 Classifiers - Part I",
-    "section": "Back to our Default data…",
-    "text": "Back to our Default data…\n\n\n\nModel: Default vs Balance 💸\n\n\\[\n\\hat{y} = \\frac{e^{-10.65133 + 0.005498917X}}{1 + e^{-10.65133 + 0.005498917X}}\n\\]\n\n  That is:\n\\[\n\\begin{align}\n\\hat{\\beta}_0 &= -10.65133\\\\\n\\hat{\\beta}_1 &= 0.005498917\n\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_0\\):\n\nIn the absence of balance information:\n\nLog odds: \\(-10.65133\\)\nOdds : \\(e^{-10.65133} = 2.366933 \\times 10^{-5}\\) \\[\n\\begin{align}\np(\\text{default}=\\text{Yes}) &= \\frac{\\text{odds}}{(1 + \\text{odds})} \\\\\n                           &= 2.366877 \\times 10^{5}\\end{align}\n\\] \n\n\n\n\nInterpreting \\(\\hat{\\beta}_1\\):\n\nWith balance information:\n\nLog odds: \\(0.005498917\\)\nOdds : \\(e^{0.005498917} = 1.005514\\)\nThat is, for every \\(\\$1\\) increase in balance, the probability of default increases by \\(+0.5514\\%\\)\n\n\n\n\n\n\n\nNote that the increase is cumulative, not linear. It depends on where X is."
+    "section": "Example: Default vs Balance",
+    "text": "Example: Default vs Balance\n\n\n\nModel: Default vs Balance 💸\n\n\\[\n\\hat{y} = \\frac{e^{-10.65133 + 0.005498917X}}{1 + e^{-10.65133 + 0.005498917X}}\n\\]\n\n  That is:\n\\[\n\\begin{align}\n\\hat{\\beta}_0 &= -10.65133\\\\\n\\hat{\\beta}_1 &= 0.005498917\n\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_0\\):\n\nIn the absence of balance information:\n\nLog odds: \\(-10.65133\\)\nOdds : \\(e^{-10.65133} = 2.366933 \\times 10^{-5}\\) \\[\n\\begin{align}\np(\\text{default}=\\text{Yes}) &= \\frac{\\text{odds}}{(1 + \\text{odds})} \\\\\n                           &= 2.366877 \\times 10^{5}\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_1\\):\n\nWith balance information:\n\nLog odds: \\(0.005498917\\)\nOdds : \\(e^{0.005498917} = 1.005514\\)\nThat is, for every \\(\\$1\\) increase in balance, the probability of default increases by \\(+0.5514\\%\\)\n\n\n\n\n\n\n\nNote that the increase is cumulative, not linear. It depends on where X is."
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#example-default-vs-income",
+    "href": "slides/week03_slides_part1.html#example-default-vs-income",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Example: Default vs Income",
+    "text": "Example: Default vs Income\n\n\n\nModel: Default vs Income 💰\n\n\\[\n\\hat{y} = \\frac{e^{-3.094149 - 8.352575 \\times 10^{-6} X}}{1 + e^{-3.094149 - 8.352575 \\times 10^{-6} X}}\n\\]\n\n  That is:\n\\[\n\\begin{align}\n\\hat{\\beta}_0 &= - 3.094149\\\\\n\\hat{\\beta}_1 &= - 8.352575 \\times 10^{-6}\n\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_0\\):\n\nIn the absence of balance information:\n\nLog odds: \\(- 3.094149\\)\nOdds : \\(e^{- 3.094149} = 0.04531355\\) \\[\n\\begin{align}\np(\\text{default}=\\text{Yes}) &= \\frac{\\text{odds}}{(1 + \\text{odds})} \\\\\n                           &= 0.04334924 = 4.33\\%\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_1\\):\n\nWith balance information:\n\nLog odds: \\(- 8.352575\\)\nOdds : \\(e^{- 8.352575} = 0.9999916\\)\nThat is, for every \\(\\$1\\) increase in income, the probability of default decreases by \\(0.000835254\\%\\)\n\n\n\n\n\n\n\nNote that the increase is cumulative, not linear. It depends on where X is."
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#example-default-vs-is-student",
+    "href": "slides/week03_slides_part1.html#example-default-vs-is-student",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Example: Default vs Is Student?",
+    "text": "Example: Default vs Is Student?\n\n\n\nModel: Default vs Student 🧑‍🎓\n\n\\[\n\\hat{y} = \\frac{e^{-3.504128 + 0.4048871 X}}{1 + e^{-3.504128 + 0.4048871 X}}\n\\]\n\n  That is:\n\\[\n\\begin{align}\n\\hat{\\beta}_0 &= -3.504128\\\\\n\\hat{\\beta}_1 &= +0.4048871\n\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_0\\):\n\nIn the absence of balance information:\n\nLog odds: \\(-3.504128\\)\nOdds : \\(e^{- 3.504128} = 0.03007299\\) \\[\n\\begin{align}\np(\\text{default}=\\text{Yes}) &= \\frac{\\text{odds}}{(1 + \\text{odds})} \\\\\n                           &= 0.02919501 \\approx 2.92\\%\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_1\\):\n\nWith balance information:\n\nLog odds: \\(0.4048871\\)\nOdds : \\(e^{0.4048871} = 1.499133\\)\nIf person is a student, then the probability of default increases by \\(\\approx 49\\%\\)\n\n\\(p(\\text{default}=\\text{Yes}|\\text{student}=\\text{Yes}) \\approx 4.3\\%\\)"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#model-info",
+    "href": "slides/week03_slides_part1.html#model-info",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Model info",
+    "text": "Model info\nThe output of summary is similar to that of linear regression:\n\n\n\nModel: Default vs Balance 💸\n\n\nsummary(balance_model)\n\n\nCall:\nglm(formula = default ~ balance, family = binomial, data = ISLR2::Default)\n\nDeviance Residuals: \n    Min       1Q   Median       3Q      Max  \n-2.2697  -0.1465  -0.0589  -0.0221   3.7589  \n\nCoefficients:\n              Estimate Std. Error z value Pr(>|z|)    \n(Intercept) -1.065e+01  3.612e-01  -29.49   <2e-16 ***\nbalance      5.499e-03  2.204e-04   24.95   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 2920.6  on 9999  degrees of freedom\nResidual deviance: 1596.5  on 9998  degrees of freedom\nAIC: 1600.5\n\nNumber of Fisher Scoring iterations: 8\n\n\n\nConfidence Intervals\n\nconfint(balance_model)\n\n                    2.5 %       97.5 %\n(Intercept) -11.383288936 -9.966565064\nbalance       0.005078926  0.005943365"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#wraping-up-on-coefficients",
+    "href": "slides/week03_slides_part1.html#wraping-up-on-coefficients",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Wraping up on coefficients:",
+    "text": "Wraping up on coefficients:\n\n\n\nPay attention to the sign of the coefficient. The sign of the coefficients indicate the direction of the association.\nIf the value of a predictor increases, we look at the sign of its coefficient:\n\nIf it is a ➕ positive coefficient, we predict an increase in the probability of the class\nIf it is a ➖ negative coefficient, we predict a decrease in the probability of the class"
   },
   {
     "objectID": "slides/week03_slides_part1.html#multiple-logistic-regression-1",
