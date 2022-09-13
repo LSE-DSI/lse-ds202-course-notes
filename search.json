@@ -147,11 +147,60 @@
     "text": "Your Checklist:\nReserve some time between Weeks 02 & 03 to revisit the content of this week’s lecture:\n\n📙 Read (James et al. 2021, chap. 3)\n👀 Browse the slides again\n📝 Take note of anything that isn’t clear to you\n📟 Share your questions on /week02 channel on Slack\n💻 Checkout the lab prep page to read about how you could come to the labs well prepared.\n\nFollowing this will help you ensure you are well prepared for the Linear Regression lab of Week 03.\n\n\n\n\n\nReferences\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/."
   },
   {
+    "objectID": "weeks/week02/lab.html",
+    "href": "weeks/week02/lab.html",
+    "title": "💻 Week 02 - Lab Roadmap (90 min)",
+    "section": "",
+    "text": "This week, we will recap some basic R commands for social data science and then apply these commands to a practical case. We will learn about data structures and some simple data visualisation skills in R .\nIt is expected that R has been downloaded locally. We recommend that you run R within an integrated development environment (IDE) such as RStudio, which can be freely downloaded."
+  },
+  {
+    "objectID": "weeks/week02/lab.html#step-1-basic-commands",
+    "href": "weeks/week02/lab.html#step-1-basic-commands",
+    "title": "💻 Week 02 - Lab Roadmap (90 min)",
+    "section": "Step 1: Basic commands",
+    "text": "Step 1: Basic commands\nWe will follow the instructions below step by step together while answering whatever questions you might encounter along the way.\n\nOpen R or RStudio. You can either run the folllowing commands in a R script or in the console window.\nCreate a vetor of numbers with the function c() and name it x. When we type x, it gives us back the vector:\n> x <- c(1, 3, 2, 5)\n> x\n[1] 1 3 2 5\nNote that the > is not part of the command; rather, it is printed by R to indicate that it is ready for another command to be entered. We can also save things using = rather than <-:\n> x = c(1, 3, 2, 5)\nCheck the length of vector x using the length() function:\n> length(x)\n[1] 3\nCreate a matrix of numbers with the function matrix() and name it y. When we type y, it gives us back the matrix:\n> y <- matrix(data = c(1:16), nrow = 4, ncol = 4)\n> y\n     [,1] [,2] [,3] [,4]\n[1,]    1    5    9   13\n[2,]    2    6   10   14\n[3,]    3    7   11   15\n[4,]    4    8   12   16\nIf you want to learn about the meaning of some arguments like nrow or ncol:\n> ?matrix\nSelect one element in the matrix y:\n> y[2,3]\n[1] 10\nThe first number after the open-bracket symbol [ always refers to the row, and the second number always refers to the column\nSelect multiple rows and column at a time in the matrix y:\n> y[c(1, 3), c(2, 4)]\n     [,1] [,2]\n[1,]    5   13\n[2,]    7   15\n> y[1:3, 2:4]\n     [,1] [,2] [,3]\n[1,]    5    9   13\n[2,]    6   10   14\n[3,]    7   11   15\n> y[1:2, ]\n     [,1] [,2] [,3] [,4]\n[1,]    1    5    9   13\n[2,]    2    6   10   14\n> y[-c(1, 3), ]\n     [,1] [,2] [,3] [,4]\n[1,]    2    6   10   14\n[2,]    4    8   12   16\nNo index for the columns or the rows indicates that R should include all columns or all rows, respectively. The use of a negative sign - in the index tells R to keep all rows or columns except those indicated in the index.\nCheck the number of rows and columns in a matrix:\n> dim(y)\n[1] 4 4\nGenerate a vector of random normal variables:\n> set.seed(1303)\n> x <- rnorm(50)\n> y <- x + rnorm(50, mean = 50, sd = .1)\n> cor(x, y)\n[1] 0.9942128\nBy default, rnorm() creates standard normal random variables with a mean of 0 and a standard deviation of 1. However, the mean and standard deviation can be altered as illustrated above.\nEach time we call the function rnorm(), we will get a different answer. However, sometimes we want our code to reproduce the exact same set of random numbers; we can use the set.seed() function to do this. We use set.seed() throughout the labs whenever we perform calculations involving random quantities.\nLet’s check some descriptive statistics of these vectors:\n> mean(y)\n[1] 50.18446\n> var(y)\n[1] 0.8002002\n> sqrt ( var (y))\n[1] 0.8945391\n> sd(y)\n[1] 0.8945391\n> cor (x, y)\n[1] 0.9942128\nThe mean() and var() functions can be used to compute the mean and variance of a vector of numbers. Applying sqrt() to the output of var() will give the standard deviation. Or we can simply use the sd() function. The cor() function is to compute the correlation between vector x and y."
+  },
+  {
+    "objectID": "weeks/week02/lab.html#step-2-graphics",
+    "href": "weeks/week02/lab.html#step-2-graphics",
+    "title": "💻 Week 02 - Lab Roadmap (90 min)",
+    "section": "Step 2: Graphics",
+    "text": "Step 2: Graphics\nWe will plot and save plots in R.\n\nProduce a scatterplot between two vectors of numbers using the function plot():\n> set.seed(1303)\n> x <- rnorm(100)\n> y <- rnorm(100)\n> plot(x,y)\n> plot(x, y, xlab = \" this is the x- axis \",\n       ylab = \" this is the y- axis \",\n       main = \" Plot of X vs Y\")\nBy default, the output plot will show in Plots window in the lower right cornor.\nSave the scatterplot in a pdf or a jpeg file:\n> pdf(\"Figure.pdf\")\n> plot(x, y, col = \"green\")\n> dev.off()\nnull device\n        1    \nTo create a jpeg, we use the function jpeg() instaed of pdf(). The function dev.off() indicates to R that we are done creating the plot.\nProduce a contour plot (like a topographical map) to represent 3-Dimentional data using the function contour():\n> x <- seq(1, 10)\n> y <- x\n> f <- outer(x, y, function (x, y) cos(y) / (1 + x^2))\n> contour(x, y, f)\n> contour(x, y, f, nlevels = 45, add = T)\n> fa <- (f - t(f)) / 2\n> contour(x, y, fa, nlevels = 15)\nThe image() function works the same way as contour(). Explore it if you are interested."
+  },
+  {
+    "objectID": "weeks/week02/lab.html#step-3-loading-data",
+    "href": "weeks/week02/lab.html#step-3-loading-data",
+    "title": "💻 Week 02 - Lab Roadmap (90 min)",
+    "section": "Step 3: Loading data",
+    "text": "Step 3: Loading data\nNow, we will learn how to importing a data set into R and explore the data set.\n\nDownload the Auto.data file and store it in a directory. Use the function setwd() to set the working directory to the directory you stored the data file.\n> setwd(dir)\nReplace dir with the path of the direcotry where you store the data set.\nLoad the data file Auto.data into R using the function read.table() and store it as an data frame called Auto:\n> Auto <- read.table(\"Auto.data\", header = T, na.strings = \"?\", stringsAsFactors = T)\nUsing the option header = T (or header = TRUE) in the read.table() function tells R that the first line of the file contains the variable names, and using the option na.strings tells R that any time it sees a particular character or set of characters (such as a question mark), it should be treated as a missing element of the data matrix.The explaination of other options could be found by typing ?read.table\nView the data frame:\n> View(Auto)\n> head(Auto)\nOnce the data has been loaded, the View() function can be used to view it in a spreadsheet-like window. The head() function can also be used to view the first few rows of the data\nDeal with the missing data by removing rows with missing observations:\n> Auto <- na.omit(Auto)\n> dim(Auto)\n[1] 392 9\nThe function dim() is to check the size of the data frame.\nProduce a numerical summary of each variable in the particular data frame:\n> summary(Auto)"
+  },
+  {
+    "objectID": "weeks/week02/lab.html#step-4-practical-exercises-in-pairs",
+    "href": "weeks/week02/lab.html#step-4-practical-exercises-in-pairs",
+    "title": "💻 Week 02 - Lab Roadmap (90 min)",
+    "section": "Step 4: Practical exercises (in pairs)",
+    "text": "Step 4: Practical exercises (in pairs)\nSo far, we have learnt some basic commands in R. In this practical case, we will continues with the data set Auto studied in Step 3. Make sure that the missing values have been removed from the data.\nSix questions are listed below. You are required to try to answer these questions in pair using R commands. We will go over the solutions once everyone has finished these questions.\n🎯 Questions\n\nWhich of the predictors are quantitative, and which are qualitative?\nWhat is the range of each quantitative predictor? (hint: You can answer this using the range() function)\nWhat is the mean and standard deviation of each quantitative predictor?\nNow remove the 10th through 85th observations. What is the range, mean, and standard deviation of each predictor in the subset of the data that remains?\nUsing the full data set, investigate the predictors graphically, using scatterplots or other tools of your choice. Create some plots highlighting the relationships among the predictors. Comment on your findings.\nSuppose that we wish to predict gas mileage (mpg) on the basis of the other variables. Do your plots suggest that any of the other variables might be useful in predicting mpg? Justify your answer."
+  },
+  {
+    "objectID": "weeks/week02/lab_solutions.html",
+    "href": "weeks/week02/lab_solutions.html",
+    "title": "💻 Week 02 - Lab Roadmap (90 min)",
+    "section": "",
+    "text": "Use the function View()to identify the type of a variable (quantitative or qualitative):\n> View(Auto)\nVariables mpg, cylinders, horsepower, weight, accelation, year, origin are quantitative variable. Variable name is qualitative varibale.\nUse the function range() to check the range of each quantitative predictor:\n> range(Auto$mpg)\n[1]  9.0 46.6\nor\n> attach(Auto)\n> range(mpg)\n[1]  9.0 46.6\nTo refer to a variable, we must type the data set and the variable name joined with a $ symbol. Alternatively, we can use the attach() function in attach() order to tell R to make the variables in this data frame available by name.\nUsing summary() to have an overall look at all variables and statistical features (like mean and standard deviation) are included in the outputs:\n> summary(Auto)\nor\n> mean(Auto$mpg)\n> sd(Auto$mpg)\nRemove 10th observation from the original data frame and store it as another new data frame:\n> Auto_tmp = Auto[1:9, ]\n> summary(Auto_tmp)\n> mean(Auto_tmp$mpg)\n> sd(Auto_tmp$mpg)\nCreate a scatterplot matrix using the function pairs():\n> pairs( ~ mpg + displacement + horsepower + weight + \n        acceleration + year + origin + cylinders, \n        data = Auto)\nNotice the linear or non-linear trends in the scatterplots.Then create a histogram of the variable mpg:\n> hist (Auto$mpg , col = 2, breaks = 15)\nUse the hist() function to produce some histograms with differing numbers of bins for a few of the quantitative variables. You may find the command par(mfrow = c(2, 2)) useful: it will divide the print window into four regions so that four plots can be made simultaneously. Modifying the arguments to this function will divide the screen in other ways.\nAfter observing the first row of the scatterplot matrix which indicates the relationship between gas mileage (mpg) and other variables, you will find evident linear or non-linear trends exist in the scatterplots with variables displacement, horsepower, weight, year and origin. Therefore, these varibles might be useful in predicting mpg.\n\nIf you want to achieve ststistical robust when exploring the relationship between variables, you need to culculate some statistics (like the correlation using the function cor()) and conduct statistical tests. This will be further illustrated in Week 03."
+  },
+  {
     "objectID": "weeks/week02/lecture.html",
     "href": "weeks/week02/lecture.html",
     "title": "👨‍🏫 Week 02 - Slides",
     "section": "",
     "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides.\n\n\n\n\n\n\nUse this time to chat, stretch, drink some coffee or just relax for a bit by yourself.\n\n\n\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
+  },
+  {
+    "objectID": "weeks/week02/prep.html",
+    "href": "weeks/week02/prep.html",
+    "title": "📒 Week 02 - Preparing for this week’s lab",
+    "section": "",
+    "text": "References\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/."
   },
   {
     "objectID": "weeks/week03/lecture.html#part-i---classifiers-logistic-regression-45-50-min",
@@ -487,7 +536,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  6.86\n2     9    12 14.6 \n3    12    15 16.4 \n4    15    18 16.5 \n5    18    21 20.7 \n6    21    24 23.4"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  7.27\n2     9    12 10.5 \n3    12    15 14.8 \n4    15    18 17.9 \n5    18    21 22.6 \n6    21    24 24.1"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -522,7 +571,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01:Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  6.86  2.14     2.14 \n2     9    12 14.6  -2.57     2.57 \n3    12    15 16.4  -1.37     1.37 \n4    15    18 16.5   1.51     1.51 \n5    18    21 20.7   0.322    0.322\n6    21    24 23.4   0.617    0.617\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.422303\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  7.27  1.73     1.73 \n2     9    12 10.5   1.54     1.54 \n3    12    15 14.8   0.156    0.156\n4    15    18 17.9   0.103    0.103\n5    18    21 22.6  -1.58     1.58 \n6    21    24 24.1  -0.128    0.128\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.8734748\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",

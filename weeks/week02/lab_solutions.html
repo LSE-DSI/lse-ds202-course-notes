@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
-<meta name="dcterms.date" content="13 September 2022">
+<meta name="dcterms.date" content="12 September 2022">
 
-<title>LSE DS202 2022/23 - 📒 Week 02 - Preparing for this week’s lab</title>
+<title>LSE DS202 2022/23 - 💻 Week 02 - Lab Roadmap (90 min)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,25 +22,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -51,8 +95,6 @@ div.csl-indent {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../weeks/week02/lab.html" rel="next">
-<link href="../../weeks/week02/checklist.html" rel="prev">
 <link href="../..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -113,7 +155,7 @@ div.csl-indent {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">📒 Week 02 - Preparing for this week’s lab</h1>
+      <h1 class="quarto-secondary-nav-title">💻 Week 02 - Lab Roadmap (90 min)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -182,11 +224,11 @@ div.csl-indent {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../weeks/week02.html" class="sidebar-item-text sidebar-link">Week 02</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../weeks/week02/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
@@ -199,7 +241,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week02/prep.html" class="sidebar-item-text sidebar-link active">📒 Prepare for this week’s lab</a>
+  <a href="../../weeks/week02/prep.html" class="sidebar-item-text sidebar-link">📒 Prepare for this week’s lab</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -262,7 +304,7 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#your-checklist" id="toc-your-checklist" class="nav-link active" data-scroll-target="#your-checklist">Your Checklist</a></li>
+  <li><a href="#solutions-to-exercises" id="toc-solutions-to-exercises" class="nav-link active" data-scroll-target="#solutions-to-exercises">Solutions to exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -271,7 +313,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">📒 Week 02 - Preparing for this week’s lab</h1>
+<h1 class="title d-none d-lg-block">💻 Week 02 - Lab Roadmap (90 min)</h1>
 <p class="subtitle lead">DS202 - Data Science for Social Scientists</p>
 </div>
 
@@ -282,14 +324,14 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a> </p>
+             <p>Yijun Wang </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">13 September 2022</p>
+      <p class="date">12 September 2022</p>
     </div>
   </div>
     
@@ -298,26 +340,45 @@ div.csl-indent {
 
 </header>
 
-<section id="your-checklist" class="level1">
-<h1>Your Checklist</h1>
-<ul>
-<li><p><span class="emoji" data-emoji="orange_book">📙</span> Read <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 3</a>)</span></p></li>
-<li><p><span class="emoji" data-emoji="eyes">👀</span> Browse the slides again</p></li>
-<li><p><span class="emoji" data-emoji="memo">📝</span> Take note of anything that isn’t clear to you</p></li>
-<li><p><span class="emoji" data-emoji="pager">📟</span> Share your questions on <code>/week02</code> channel on Slack</p></li>
-<li><p>👨‍💻 New to <code>R</code>? Our lab this week will involve a recap of basic <code>R</code> programming plus some Exploratory Data Analysis (EDA) of datasets we will be using throughout this course. Have a look at the self-guided courses and workshops offered by <a href="weeks/week01/appendix.html#lse-digital-skills-lab">LSE Digital Skills Lab</a>.</p></li>
-<li><p><span class="emoji" data-emoji="computer">💻</span> Have a look at <a href="../../weeks/week02/lab.html">this week’s lab page</a></p></li>
-</ul>
-
+<section id="solutions-to-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="solutions-to-exercises">Solutions to exercises</h2>
+<ol type="1">
+<li><p>Use the function <code>View()</code>to identify the type of a variable (quantitative or qualitative):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">View</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Variables mpg, cylinders, horsepower, weight, accelation, year, origin are quantitative variable. Variable name is qualitative varibale.</p></li>
+<li><p>Use the function <code>range()</code> to check the range of each quantitative predictor:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">range</span>(Auto<span class="sc">$</span>mpg)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="fl">9.0</span> <span class="fl">46.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">attach</span>(Auto)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">range</span>(mpg)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="fl">9.0</span> <span class="fl">46.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To refer to a variable, we must type the data set and the variable name joined with a <code>$</code> symbol. Alternatively, we can use the attach() function in attach() order to tell R to make the variables in this data frame available by name.</p></li>
+<li><p>Using <code>summary()</code> to have an overall look at all variables and statistical features (like mean and standard deviation) are included in the outputs:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(Auto<span class="sc">$</span>mpg)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sd</span>(Auto<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Remove 10th observation from the original data frame and store it as another new data frame:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Auto_tmp <span class="ot">=</span> Auto[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, ]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(Auto_tmp)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(Auto_tmp<span class="sc">$</span>mpg)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sd</span>(Auto_tmp<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Create a scatterplot matrix using the function pairs():</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">pairs</span>( <span class="sc">~</span> mpg <span class="sc">+</span> displacement <span class="sc">+</span> horsepower <span class="sc">+</span> weight <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>        acceleration <span class="sc">+</span> year <span class="sc">+</span> origin <span class="sc">+</span> cylinders, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice the linear or non-linear trends in the scatterplots.Then create a histogram of the variable mpg:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">hist</span> (Auto<span class="sc">$</span>mpg , <span class="at">col =</span> <span class="dv">2</span>, <span class="at">breaks =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use the <code>hist()</code> function to produce some histograms with differing numbers of bins for a few of the quantitative variables. You may find the command <code>par(mfrow = c(2, 2))</code> useful: it will divide the print window into four regions so that four plots can be made simultaneously. Modifying the arguments to this function will divide the screen in other ways.</p></li>
+<li><p>After observing the first row of the scatterplot matrix which indicates the relationship between gas mileage (<code>mpg</code>) and other variables, you will find evident linear or non-linear trends exist in the scatterplots with variables displacement, horsepower, weight, year and origin. Therefore, these varibles might be useful in predicting <code>mpg</code>.</p></li>
+</ol>
+<p>If you want to achieve ststistical robust when exploring the relationship between variables, you need to culculate some statistics (like the correlation using the function <code>cor()</code>) and conduct statistical tests. This will be further illustrated in <a href="../../weeks/week03">Week 03</a>.</p>
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-james_introduction_2021" class="csl-entry" role="doc-biblioentry">
-James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: With Applications in <span>R</span></em>. Second edition. Springer Texts in Statistics. New York NY: Springer. <a href="https://www.statlearning.com/">https://www.statlearning.com/</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -545,18 +606,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../weeks/week02/checklist.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">✅ Checklist</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../weeks/week02/lab.html" class="pagination-link">
-        <span class="nav-page-text">💻 Lab roadmap</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

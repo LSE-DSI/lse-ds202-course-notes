@@ -1,8 +1,21 @@
 ---
 title: "📒 Week 02 - Preparing for this week's lab"
-date: 10 September 2022
-date-meta: 10 September 2022
+date: 13 September 2022
+date-meta: 13 September 2022
 from: markdown+emoji
 ---
 
-<mark class="todo"></mark>
+# Your Checklist
+
+- :orange_book: Read [@james_introduction_2021, chapter 3]
+
+- :eyes: Browse the slides again
+
+- :memo: Take note of anything that isn't clear to you
+
+- :pager: Share your questions on `/week02` channel on Slack
+
+
+- 👨‍💻 New to `R`? Our lab this week will involve a recap of basic `R` programming plus some Exploratory Data Analysis (EDA) of datasets we will be using throughout this course. Have a look at the self-guided courses and workshops offered by [LSE Digital Skills Lab](weeks/week01/appendix.html#lse-digital-skills-lab).
+
+- :computer: Have a look at [this week's lab page](/weeks/week02/lab.qmd)
