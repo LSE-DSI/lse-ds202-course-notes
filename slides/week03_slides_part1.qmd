@@ -283,7 +283,11 @@ Source of illustration: [TIBCO](https://www.tibco.com/reference-center/what-is-l
 - This is how this function looks like
 :::
 
-## The Logistic function
+## The Logistic function {.smaller}
+
+
+- Changing $\beta_0$ while keeping $\beta_1 = 1$:
+
 
 ```{r out.width="100%"}
 #| echo: false
@@ -304,17 +308,6 @@ df <-
 df <- df %>% 
   transform(alpha=factor(alpha, ordered = TRUE),
             beta=factor(beta, ordered = TRUE))
-```
-
-::: columns
-
-::: {.column width=50%}
-
-```{r out.width="100%", out.height="100%", dpi=300}
-#| echo: false
-#| eval: true
-#| code-fold: show
-#| code-overflow: wrap
 
 library(tidyverse)
 
@@ -341,16 +334,19 @@ ggplot(df %>% filter(beta == 1),
         axis.title.x = element_text(size=24,margin = margin(t = 10, r = 0, b = 0, l = 0)),
         axis.title.y = element_text(size=24, margin = margin(t = 0,  r = 10, b = 0, l = 0)),
         legend.text = element_text(size=18),
-        legend.position="bottom",
+        legend.position="right",
         axis.text.x = element_text(size=18),
         axis.text.y = element_text(size=18),
         panel.grid.minor = element_blank(),
         aspect.ratio = 1/2)
 ```
-  
-:::
 
-::: {.column width=50%}
+
+## The Logistic function (cont.) {.smaller}
+
+
+- Keep $\beta_0 = 0$ but vary $\beta_1$:
+
 ```{r out.width="100%", out.height="100%", dpi=300}
 #| echo: false
 #| eval: true
@@ -382,15 +378,12 @@ ggplot(df %>% filter(alpha == 0),
         axis.title.x = element_text(size=24,margin = margin(t = 10, r = 0, b = 0, l = 0)),
         axis.title.y = element_text(size=24, margin = margin(t = 0,  r = 10, b = 0, l = 0)),
         legend.text = element_text(size=18),
-        legend.position="bottom",
+        legend.position="right",
         axis.text.x = element_text(size=18),
         axis.text.y = element_text(size=18),
         panel.grid.minor = element_blank(),
         aspect.ratio = 1/2)
 ```
-:::
-
-:::
 
 
 ## Maximum likelihood estimate {.smaller}
@@ -796,54 +789,132 @@ If X increases one unit then the odds increase by $e^{\beta_1}$
 
 ::: columns
 
-::: {.column width="50%"}
-- **Balance** 💸
+::: {.column style="width:50%;font-size:0.75em;"}
+- Model: **Default vs Balance** 💸
 
+$$
+\hat{y} = \frac{e^{-10.65133 + 0.005498917X}}{1 + e^{-10.65133 + 0.005498917X}}
+$$
+
+:::
+
+::: {.column style="width:50%;font-size:0.55em;"}
+<br/>
+<br/>
+That is:
+
+$$
+\begin{align}
+\hat{\beta}_0 &= -10.65133\\
+\hat{\beta}_1 &= 0.005498917
+\end{align}
+$$
+
+:::
+
+:::
+
+::: columns
+
+::: {.column style="width:50%;font-size:0.55em;"}
+
+<!-- ::: {.fragment} -->
+**Interpreting $\hat{\beta}_0$**:
+
+- In the absence of `balance` information:
+  - Log odds: $-10.65133$
+  - Odds    : $e^{-10.65133} = 2.366933 \times 10^{-5}$
+  $$
+  \begin{align}
+  p(\text{default}=\text{Yes}) &= \frac{\text{odds}}{(1 + \text{odds})} \\
+                               &= 2.366877 \times 10^{5}\end{align}
+  $$
+<!-- ::: -->
+:::
+
+::: {.column style="width:50%;font-size:0.55em;"}
+
+<!-- ::: {.fragment} -->
+**Interpreting $\hat{\beta}_1$**:
+
+- With `balance` information:
+  - Log odds: $0.005498917$
+  - Odds    : $e^{0.005498917} = 1.005514$
+  - That is, for every $\$1$ increase in balance, the probability of default increases by $+0.5514\%$
+
+<!-- ::: -->
+:::
+
+:::
+
+::: notes
+- Note that the increase is cumulative, not linear. It depends on where X is.
+:::
+
+# Multiple <br/> Logistic <br/> Regression {.smaller}
+
+## Multiple Logistic Regression {.smaller}
+
+- It is straightforward to extend the logistic model to include multiple predictors:
+
+$$
+log \left( \frac{p(X)}{1-p(X)} \right)=\beta_0 + \beta_1 X_1 + \ldots + \beta_p X_p
+$$
+
+$$
+p(X) = \frac{e^{\beta_0 + \beta_1 X_1 + \ldots + \beta_p X_p}}{1 + e^{\beta_0 + \beta_1 X_1 + \ldots + \beta_p X_p}}
+$$
+
+- Most things are still available (hypothesis test, confidence intervals, etc.)
+- Let's explore the output and summary of the full model ⏭️
+
+## Fitting all predictors of `Default` {.smaller}
+
+::: columns
+
+::: {.column width="60%"}
+
+**Full Model**
 ```{r}
+#| output-location: column-fragment
 #| echo: true
 #| eval: true
 #| code-fold: false
 #| code-overflow: wrap
 
-balance_model <- 
-  glm(default ~ balance, data=ISLR2::Default, family=binomial)
-cat(sprintf("beta_0 = %.5f | beta_1 = %.4f",
-            balance_model$coefficients["(Intercept)"],
-            balance_model$coefficients["balance"]))
+full_model <- glm(default ~ ., data=ISLR2::Default, family=binomial)
+summary(full_model)
 ```
 
 :::
 
-::: {.column style="width:50%;font-size:0.6em;"}
+::: {.column style="width:35%;margin-left:5%;"}
 
-**Interpreting $\beta_0$**:
+**Confidence Intervals**
+```{r}
+#| output-location: column-fragment
+#| echo: true
+#| eval: true
+#| code-fold: false
+#| code-overflow: wrap
 
-- In the absence of `balance` information:
-  - Log odds: $-10.65133$
-  - Odds    : $e^{-10.65133} = 2.366933 \times 10^{-5}$
-  - $p(\text{default}=\text{Yes}) = \frac{\text{odds}}{(1 + \text{odds})} = 2.366877 \times 10^{5}$
+confint(full_model)
+```
 
-**Interpreting $\beta_1$**:
-
-- With `balance` information:
-  - Log odds: $0.005498917$
-  - Odds    : $e^{0.005498917} = 1.005514$
-  - $p(\text{default}=\text{Yes}|\text{balance}) = \frac{\text{odds}}{(1 + \text{odds})} = 0.5013747$
-  
-:::
 
 :::
 
-# Assessing model's accuracy
+:::
 
-- Confusion Matrix
-- ROC curve
 
 # What's Next
 
 After our 10-min break ☕:
 
-- 
+- Thresholds
+- Confusion Matrix
+- ROC Curve
+- The Naive Bayes algorithm
 - What will happen in our 💻 labs this week?
 
 ---
