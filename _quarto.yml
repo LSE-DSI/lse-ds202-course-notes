@@ -50,10 +50,12 @@ website:
            contents:
              - href: weeks/week02/lecture.qmd
                text: 👨‍🏫 Lecture Slides
-             - href: weeks/week02/prep.qmd
-               text: 📒 Prepare for this week's lab
              - href: weeks/week02/checklist.qmd
                text: ✅ Checklist
+             - href: weeks/week02/prep.qmd
+               text: 📒 Prepare for this week's lab
+             - href: weeks/week02/lab.qmd
+               text: 💻 Lab roadmap
              - href: weeks/week02/appendix.qmd
                text: 🔖 Appendix
                  
