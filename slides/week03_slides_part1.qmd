@@ -30,15 +30,15 @@ format:
 
 ## Classification {.smaller}
 
-<!-- ::: {.incremental} -->
+::: {.incremental}
 - We have so far only modelled **quantitative** responses. 
 - Today, we focus on predicting <mark>categorical</mark>, or <mark>qualitative</mark>, responses.
-<!-- ::: -->
+:::
 
 ::: columns
 
 ::: {.column style="width: 30%;margin-right:0.5%;padding:1%;"}
-<!-- ::: {.fragment .fade-in-then-semi-out} -->
+::: {.fragment .fade-in-then-semi-out}
 The generic supervised model:
 
 $$
@@ -47,18 +47,18 @@ $$
 
 still applies, only this time $Y$ is categorical. ➡️
 
-<!-- ::: -->
+:::
 :::
 
 
 ::: {.column style="width: 64%;margin-right:0.5%;padding:1%;"}
-<!-- ::: {.fragment} -->
+::: {.fragment}
 Our categorical variables of interest take values in an **unordered set** $\mathcal{C}$, such as: 
 
 - $\text{eye color} \in \mathcal{C} = \{\color{brown}{brown},\color{blue}{blue},\color{green}{green}\}$
 - $\text{email} \in \mathcal{C} = \{spam, ham\}$
 - $\text{football results} \in \mathcal{C} \{away\ win,draw,home\ win\}$
-<!-- ::: -->
+:::
 :::
 
 :::
@@ -98,14 +98,14 @@ What could go wrong?
 ::: columns
 
 ::: {.column style="width: 60%;margin-right:0.5%;padding:1%;"}
-<!-- ::: fragment -->
+::: fragment
 
 How would you interpret a particular prediction if your model returned:
 
 - $\hat{y} = ~~1.5$ or 
 - $\hat{y} = ~~0.1$ or 
 - $\hat{y} = 20.0$?
-<!-- ::: -->
+:::
 :::
 
 ::: {.column style="width: 34%;margin-right:0.5%;padding:1%;"}
@@ -123,32 +123,32 @@ Key takeaway: Regression is not suitable for all problems.
 
 ## More on Classification {.smaller}
 
-<!-- ::: {.fragment fragment-index=1 style="margin-bottom:-2.5%;"} -->
+::: {.fragment fragment-index=1 style="margin-bottom:-2.5%;"}
 - Often we are more interested in estimating the <mark>probabilities</mark> that $X$ belongs to each category in $\mathcal{C}$.
-<!-- :::
+:::
 
-::: {.fragment fragment-index=2 style="margin-bottom:-2.5%;"} -->
+::: {.fragment fragment-index=2 style="margin-bottom:-2.5%;"}
 - For example, it is sometimes more valuable to have an estimate of the *probability* that an **insurance claim** is fraudulent, than a *classification* fraudulent or not.
-<!-- :::
+:::
 
 ::: {.fragment fragment-index=2 .fade-in-then-out}
 ![](/figures/week03/pexels-monstera-5849597.jpg){.absolute width="50%" top="37.5%" left="25%"}
 :::
 
-::: {.fragment fragment-index=3 style="margin-bottom:-2.5%;"} -->
+::: {.fragment fragment-index=3 style="margin-bottom:-2.5%;"}
 - A successful **gambling strategy**, for instance, requires placing bets on outcomes to which you believe the bookmakers have assigned incorrect probabilities. Knowing the most likely outcome is not enough!
-<!-- :::
+:::
 
 ::: {.fragment fragment-index=3 .fade-in-then-out}
 ![](/figures/week03/pexels-sascha-d%C3%BCser-187333.jpg){.absolute width="40%" top="50%" left="60%"}
 :::
 
-::: {.fragment fragment-index=4 style="margin-top:10%;"} -->
+::: {.fragment fragment-index=4 style="margin-top:10%;"}
 
 ::: callout-note
 Statistical models for ordinal response, when sets are discrete but have an order, are outside the scope of this course. Should you need to create models for ordinal variables, consult "ordinal logistic regression". A good reference about this is [@agresti_introduction_2019, chapter 6].
 :::
-<!-- ::: -->
+:::
 
 ::: notes
 Key takeaway: normally, we estimate
@@ -164,51 +164,51 @@ Let's talk about three possible <mark>interpretations of probability</mark>:
 
 ::: {.column width=25%}
 
-<!-- ::: {.fragment fragment-index=1} -->
+::: {.fragment fragment-index=1}
 ::: {style="min-height:15vh;display:block;"}
 **Classical**
 :::
-<!-- :::
+:::
 
-::: {.fragment fragment-index=2} -->
+::: {.fragment fragment-index=2}
 ::: {style="min-height:15vh;display:block;"}
 **Frequentist**
 :::
-<!-- :::
+:::
 
-::: {.fragment fragment-index=3} -->
+::: {.fragment fragment-index=3}
 ::: {style="min-height:15vh;display:block;"}
 **Bayesian**
 :::
-<!-- ::: -->
+:::
 
 :::
 
 ::: {.column width=75%}
 
-<!-- ::: {.fragment fragment-index=1} -->
+::: {.fragment fragment-index=1}
 ::: {style="min-height:15vh;display:block;font-size:0.75em;"}
 Events of the same kind can be reduced to a certain number of equally possible cases.
 
 Example: coin tosses lead to either heads or tails $1/2$ of the time ( $50\%/50\%$)
 :::
-<!-- ::: -->
+:::
 
-<!-- ::: {.fragment fragment-index=2} -->
+::: {.fragment fragment-index=2}
 ::: {style="min-height:15vh;display:block;font-size:0.75em;"}
 What would be the outcome if I repeat the process many times? 
 
 Example: if I toss a coin $1,000,000$ times, I expect $\approx 50\%$ heads and $\approx 50\%$ tails outcome.
 :::
-<!-- ::: -->
+:::
 
-<!-- ::: {.fragment fragment-index=3} -->
+::: {.fragment fragment-index=3}
 ::: {style="min-height:15vh;display:block;font-size:0.75em;"}
 What is your judgement of the likelihood of the outcome? Based on previous information. 
 
 Example: if I know that this coin has symmetric weight, I expect a $ 50\%/50\%$ outcome.
 :::
-<!-- ::: -->
+:::
 
 :::
 
@@ -232,13 +232,13 @@ Source: [@degroot_probability_2003]
 ::: columns
 
 ::: {.column style="width: 45%;"}
-<!-- ::: {.fragment} -->
+::: {.fragment}
 
 :::{.callout-note}
 💡 Although there is no such thing as "a probability of $120\%$" or "a probability of $-23\%$", you could still use this language to refer to increase or decrease in an outcome.
 
 ::: 
-<!-- ::: -->
+:::
 :::
 
 ::: {.column style="width: 55%;"}
@@ -251,7 +251,7 @@ Source: [@degroot_probability_2003]
 
 ## The Logistic Regression model {.smaller}
 
-<!-- ::: {.fragment} -->
+::: {.fragment}
 Consider a <mark>binary</mark> response:
 
 $$
@@ -260,19 +260,19 @@ Y = \begin{cases}
 1
 \end{cases}
 $$
-<!-- :::
+:::
 
-::: {.fragment} -->
+::: {.fragment}
 We model the probability that $Y = 1$ as:
 
 $$
 Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
 $$
-<!-- :::
+:::
 
-::: {.fragment} -->
+::: {.fragment}
 ![](/figures/week03/logistic-regression-diagram.svg){.absolute height=35% top=60% left=25%}
-<!-- ::: -->
+:::
 
 ::: footer
 Source of illustration: [TIBCO](https://www.tibco.com/reference-center/what-is-logistic-regression)
@@ -287,7 +287,6 @@ Source of illustration: [TIBCO](https://www.tibco.com/reference-center/what-is-l
 
 
 - Changing $\beta_0$ while keeping $\beta_1 = 1$:
-
 
 ```{r out.width="100%"}
 #| echo: false
@@ -388,15 +387,15 @@ ggplot(df %>% filter(alpha == 0),
 
 ## Maximum likelihood estimate {.smaller}
 
-<!-- ::: {.fragment} -->
+::: {.fragment}
 As with linear regression, the coefficients are unknown and need to be estimated from training data:
 
 $$
 \hat{p}(X) = \frac{e^{\hat{\beta}_0 + \hat{\beta}_1X}}{1 + e^{\hat{\beta}_0 + \hat{\beta}_1 X}}
 $$
-<!-- ::: -->
+:::
 
-<!-- ::: {.fragment} --> 
+::: {.fragment} 
 We estimate these by maximising the <mark>likelihood function</mark>:
 
 $$
@@ -404,12 +403,12 @@ $$
 $$
 
 and we call this method the <mark>Maximum Likelihood Estimate</mark> (MLE).
-<!-- :::
+:::
 
-::: {.fragment} -->
+::: {.fragment}
 
 ➡️ As usual, there are [multiple ways](https://www.wikiwand.com/en/Maximum_likelihood_estimation#/Iterative_procedures) to solve this equation!
-<!-- ::: -->
+:::
 
 
 ::: notes
@@ -422,27 +421,27 @@ Key takeaway of this slide: MLE (logistic regression) is analogous to OLS (linea
 
 ## Solutions to MLE {.smaller}
 
-<!-- ::: incremental -->
+::: incremental
 - MLE is much more difficult to solve than the least squares formulations.
 - Most solutions rely on a variant of the [Hill Climbing](https://www.wikiwand.com/en/Hill_climbing) algorithm
-<!-- ::: -->
+:::
 
 ::: {.columns style="margin-top:-1%;"}
 
 ::: {.column width=30%}
 
-<!-- ::: {.fragment} -->
+::: {.fragment}
 ![](/figures/week03/pexels-eberhard-grossgasteiger-1366909.jpg){width="80%"}
-<!-- ::: -->
+:::
 :::
 
 ::: {.column style="width:70%;font-size:0.95em;padding-top:1.75%;"}
 
-<!-- ::: {.fragment} -->
+::: {.fragment}
 How do you find the latitude and longitude of a mountain peak if you can't see very far?
-<!-- :::
+:::
 
-::: {.incremental} -->
+::: {.incremental}
 
 - Start somewhere.
 - Look around for the best way to go up.
@@ -450,7 +449,7 @@ How do you find the latitude and longitude of a mountain peak if you can't see v
 - Look around for the best way to go up.
 - Go a small distance in that direction.
 - $\cdots$
-<!-- ::: -->
+:::
 :::
 
 :::
@@ -658,7 +657,7 @@ g
 
 # Interpreting coefficients
 
-<br/><br/>
+<br/>
 Since we now mostly care about <mark>probabilities</mark>, how do the <mark>odds</mark> change according to features of the customers?
 
 ## Simple logistic regression models
@@ -740,14 +739,6 @@ $$
 \frac{p(X)}{1 - p(X)} = e^{\beta_0 + \beta_1 X}
 $$
 
-::: columns
-
-::: {.column width=40%}
-<!-- Ghost -->
-:::
-
-
-::: {.column width=60%}
 
 ::: {.callout-note style="margin-top:15%;"}
 ## Example
@@ -755,10 +746,6 @@ $$
 If the odds are 9, then $\frac{p(X)}{(1-p(X))} = 9 \Rightarrow p(X) = 0.9$. 
 
 This means that 9 out of 10 people will default. 
-:::
-:::
-
-
 :::
 
 
@@ -784,7 +771,7 @@ $$
 If X increases one unit then the odds increase by $e^{\beta_1}$
 :::
 
-## Back to our Default data...
+## Example: Default vs Balance
 
 
 ::: columns
@@ -818,7 +805,7 @@ $$
 
 ::: {.column style="width:50%;font-size:0.55em;"}
 
-<!-- ::: {.fragment} -->
+::: {.fragment}
 **Interpreting $\hat{\beta}_0$**:
 
 - In the absence of `balance` information:
@@ -829,26 +816,214 @@ $$
   p(\text{default}=\text{Yes}) &= \frac{\text{odds}}{(1 + \text{odds})} \\
                                &= 2.366877 \times 10^{5}\end{align}
   $$
-<!-- ::: -->
+:::
 :::
 
 ::: {.column style="width:50%;font-size:0.55em;"}
 
-<!-- ::: {.fragment} -->
+::: {.fragment}
 **Interpreting $\hat{\beta}_1$**:
 
 - With `balance` information:
   - Log odds: $0.005498917$
   - Odds    : $e^{0.005498917} = 1.005514$
-  - That is, for every $\$1$ increase in balance, the probability of default increases by $+0.5514\%$
+  - That is, for every $\$1$ increase in balance, the probability of default <mark style="color:#069F72;">increases</mark> by $+0.5514\%$
 
-<!-- ::: -->
+:::
 :::
 
 :::
 
 ::: notes
 - Note that the increase is cumulative, not linear. It depends on where X is.
+:::
+
+## Example: Default vs Income
+
+
+::: columns
+
+::: {.column style="width:50%;font-size:0.75em;"}
+- Model: **Default vs Income** 💰
+
+$$
+\hat{y} = \frac{e^{-3.094149 - 8.352575 \times 10^{-6} X}}{1 + e^{-3.094149 - 8.352575 \times 10^{-6} X}}
+$$
+
+:::
+
+::: {.column style="width:50%;font-size:0.55em;"}
+<br/>
+<br/>
+That is:
+
+$$
+\begin{align}
+\hat{\beta}_0 &= - 3.094149\\
+\hat{\beta}_1 &= - 8.352575 \times 10^{-6}
+\end{align}
+$$
+
+:::
+
+:::
+
+::: columns
+
+::: {.column style="width:50%;font-size:0.55em;"}
+
+::: {.fragment}
+**Interpreting $\hat{\beta}_0$**:
+
+- In the absence of `balance` information:
+  - Log odds: $- 3.094149$
+  - Odds    : $e^{- 3.094149} = 0.04531355$
+  $$
+  \begin{align}
+  p(\text{default}=\text{Yes}) &= \frac{\text{odds}}{(1 + \text{odds})} \\
+                               &= 0.04334924 = 4.33\%\end{align}
+  $$
+:::
+:::
+
+::: {.column style="width:50%;font-size:0.55em;"}
+
+::: {.fragment}
+**Interpreting $\hat{\beta}_1$**:
+
+- With `balance` information:
+  - Log odds: $- 8.352575$
+  - Odds    : $e^{- 8.352575} = 0.9999916$
+  - That is, for every $\$1$ increase in income, the probability of default <mark style="color:#c9594c;">decreases</mark> by $0.000835254\%$
+
+:::
+:::
+
+:::
+
+::: notes
+- Note that the increase is cumulative, not linear. It depends on where X is.
+:::
+
+## Example: Default vs Is Student?
+
+
+::: columns
+
+::: {.column style="width:50%;font-size:0.75em;"}
+- Model: **Default vs Student** 🧑‍🎓
+
+$$
+\hat{y} = \frac{e^{-3.504128 + 0.4048871 X}}{1 + e^{-3.504128 + 0.4048871 X}}
+$$
+
+:::
+
+::: {.column style="width:50%;font-size:0.55em;"}
+<br/>
+<br/>
+That is:
+
+$$
+\begin{align}
+\hat{\beta}_0 &= -3.504128\\
+\hat{\beta}_1 &= +0.4048871
+\end{align}
+$$
+
+:::
+
+:::
+
+::: columns
+
+::: {.column style="width:50%;font-size:0.55em;"}
+
+::: {.fragment}
+**Interpreting $\hat{\beta}_0$**:
+
+- In the absence of `balance` information:
+  - Log odds: $-3.504128$
+  - Odds    : $e^{- 3.504128} = 0.03007299$
+  $$
+  \begin{align}
+  p(\text{default}=\text{Yes}) &= \frac{\text{odds}}{(1 + \text{odds})} \\
+                               &= 0.02919501 \approx 2.92\%\end{align}
+  $$
+:::
+:::
+
+::: {.column style="width:50%;font-size:0.55em;"}
+
+::: {.fragment}
+**Interpreting $\hat{\beta}_1$**:
+
+- With `balance` information:
+  - Log odds: $0.4048871$
+  - Odds    : $e^{0.4048871} =  1.499133$
+  - If person is a student, then the probability of default <mark style="color:#069F72;">increases</mark> by $\approx 49\%$
+    - $p(\text{default}=\text{Yes}|\text{student}=\text{Yes}) \approx 4.3\%$
+:::
+:::
+
+:::
+
+## Model info {.smaller}
+
+The output of `summary` is similar to that of linear regression:
+
+::: columns
+
+::: {.column width="60%"}
+
+- Model: **Default vs Balance** 💸
+```{r}
+#| output-location: column-fragment
+#| echo: true
+#| eval: true
+#| code-fold: false
+#| code-overflow: wrap
+
+summary(balance_model)
+```
+
+:::
+
+::: {.column style="width:35%;margin-left:5%;"}
+
+**Confidence Intervals**
+```{r}
+#| output-location: column-fragment
+#| echo: true
+#| eval: true
+#| code-fold: false
+#| code-overflow: wrap
+
+confint(balance_model)
+```
+
+
+:::
+
+:::
+
+## Wraping up on coefficients: {.smaller}
+
+::: columns
+
+::: {.column width=80%}
+
+- Pay attention to the **sign** of the coefficient. The sign of the coefficients indicate the direction of the association.
+- If the value of a predictor increases, we look at the sign of its coefficient:
+  - If it is a ➕ **positive coefficient**, we predict an <mark style="color:#069F72;">increase</mark> in the probability of the class
+  - If it is a ➖ **negative coefficient**, we predict a <mark style="color:#c9594c;">decrease</mark> in the probability of the class
+
+:::
+
+::: {.column width=20%}
+
+:::
+
 :::
 
 # Multiple <br/> Logistic <br/> Regression {.smaller}
