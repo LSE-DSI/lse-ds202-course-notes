@@ -9,9 +9,11 @@ toc: true
 toc-depth: 1
 toc-title: "What we will cover today"
 center-title-slide: false
+tbl-cap-location: bottom
 from: markdown+emoji
 format:
   revealjs: 
+    html-q-tag: true
     pdf-separate-fragments: true
     code-fold: false
     theme: simple
@@ -25,3 +27,382 @@ format:
     footer: 'DS202 - Data Science for Social Scientists :robot: :juggling_person:'
 ---
 
+# Naive Bayes Classifier
+
+\<missing\>
+
+# Making decisions
+
+## Default: Yes or No? {.smaller}
+
+<!-- ::: {.incremental} -->
+- We have looked at how the probabilities (risk of default) change according to the value of predictors
+- But in practice we need to decide whether the risk is too high or tolerable
+- In our example, we might want to ask:
+
+<!-- :::
+
+::: {.fragment} -->
+<blockquote>_"Will this person default on their credit card? **YES** or **NO**?"_</blockquote>
+<!-- ::: -->
+
+## Default: Yes or No? {.smaller}
+
+::: columns
+
+::: {.column width="40%"}
+How would you classify the following customers?
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-fold: true
+#| code-overflow: wrap
+library(tidyverse)
+
+full_model <- 
+  glm(default ~ ., data=ISLR2::Default, family=binomial)
+
+set.seed(40)
+sample_customers <- 
+  ISLR2::Default %>% 
+  slice(9986, 9908, 6848, 9762, 9979, 7438)
+pred <- predict(full_model, sample_customers, type="response")
+# Format it as percentage
+sample_customers$prediction <- 
+  sapply(pred, function(x){sprintf("%.2f %%", 100*x)})
+sample_customers
+```
+:::
+
+::: {.column width="60%"}
+<!-- Ghost column -->
+:::
+
+:::
+
+::: aside
+
+Full model expression:
+$$
+\hat{y} \approxeq \frac{e^{-10.87 - 0.65\times\text{student[Yes]} + 5.74 \times 10^{-3}\times\text{balance} + 3\times 10^{-6}\times\text{income}}}{1 + e^{-10.87 - 0.65\times\text{student[Yes]} + 5.74 \times 10^{-3}\times\text{balance} + 3\times 10^{-6}\times\text{income}}}
+$$
+
+:::
+
+![](/figures/week01/dalle_robot_holding_question_mark.png){.absolute width="10%" bottom="2.5%" left="85%"}
+
+
+::: footer
+[Image created with the [DALL·E](https://openai.com/blog/dall-e/) algorithm using the prompt: *'35mm macro photography of a robot holding a question mark card, white background'*]{style="font-size:0.6em;"}
+:::
+
+## Default: Yes or No? {.smaller}
+
+::: columns
+
+
+::: {.column width="40%"}
+How would you classify the following customers?
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-fold: true
+#| code-overflow: wrap
+library(tidyverse)
+
+full_model <- 
+  glm(default ~ ., data=ISLR2::Default, family=binomial)
+
+set.seed(40)
+sample_customers <- 
+  ISLR2::Default %>% 
+  slice(9986, 9908, 6848, 9762, 9979, 7438)
+pred <- predict(full_model, sample_customers, type="response")
+# Format it as percentage
+sample_customers$prediction <- 
+  sapply(pred, function(x){sprintf("%.2f %%", 100*x)})
+sample_customers
+```
+:::
+
+
+::: {.column style="width:30%;font-size:0.75em;"}
+
+- If we set our <mark>threshold</mark> $= 50\%$, we get the following <mark>confusion matrix</mark>:
+
+|                | Actual    |          |
+|:--------------:|:---------:|:--------:|
+| Predicted      |   **No**  |  **Yes** |
+|    **No**      |    2      |   1      |
+|   **Yes**      |    1      |   2      |
+
+:::
+
+::: {.column style="width:30%;font-size:0.75em;"}
+
+<!-- ::: {.fragment} -->
+
+- If we set our <mark>threshold</mark> $= 40\%$, we get the following <mark>confusion matrix</mark>:
+
+|                | Actual    |          |
+|:--------------:|:---------:|:--------:|
+| Predicted      |   **No**  |  **Yes** |
+|    **No**      |    2      |   0      |
+|   **Yes**      |    1      |   3      |
+<!-- ::: -->
+
+:::
+
+:::
+
+<br/>
+
+<!-- ::: {.fragment} -->
+### Which of the two is more accurate?
+<!-- ::: -->
+
+## Thresholds {.smaller}
+
+- When making predictions about classes, we always have to make decisions.
+- <mark>Thresholds</mark>, applied to the predicted probability scores, are a way to decide whether to favour a particular class over another
+- ⏭️ Next, we will explore several metrics that can help us decide whether our classification model is good or bad.  
+
+# Classification Metrics
+
+## Confusion Matrix {.smaller}
+
+- Let's take another look at the confusion matrix. We can think of the numbers in each cell as the following:
+<br/>
+
+|                | Actual    |          |
+|:--------------:|:---------:|:--------:|
+| Predicted      |   **No**  |  **Yes** |
+|    **No**      |    <mark style="color:#069F72;">True Negative (TN)</mark>     |   <mark style="color:#c9594c;">False Negative (FN)</mark>      |
+|   **Yes**      |    <mark style="color:#c9594c;">False Positive (FP)</mark>      |   <mark style="color:#069F72;">True Positive (TP)</mark>      |
+
+:  {tbl-colwidths="[20,40,40]"}
+
+<br/>
+
+- Ideally, we would have no False Negatives and no False Positives but, of course, that is never the case.
+
+## Classification metrics {.smaller}
+
+<!-- ::: {.incremental} -->
+- It is convenient to aggregate those quantities into a few other metrics
+- Two of the most common ones are called <mark>sensitivity</mark> and <mark>specificity</mark>
+<!-- :::
+
+::: {.fragment} -->
+
+$$
+\begin{align}
+\text{Sensitivity} &= \text{True Positive Rate (TPR)} = \frac{TP}{P} \\
+\text{Specificity} &= \text{True Negative Rate (TNR)} = \frac{TN}{N} 
+\end{align}
+$$
+
+<!-- :::
+
+::: {.fragment} -->
+
+- Another common one is <mark>accuracy</mark>:
+
+$$
+\text{Accuracy} = \frac{TP + TN}{P + N}
+$$
+
+<!-- :::
+
+::: {.fragment} -->
+
+- A good model has **high** sensitivity and **high** specificity and **high** accuracy.
+
+<!-- ::: -->
+
+::: footer
+There are [many other ways](https://www.wikiwand.com/en/Sensitivity_and_specificity) to assess the results of a classification model 
+:::
+
+## Which threshold is better? {.smaller}
+
+::: columns
+
+<!-- ```{r}
+#| echo: true
+#| eval: true
+#| code-fold: true
+#| code-overflow: wrap
+
+require(caret)
+
+threshold <- 0.5
+
+full_predictions <-
+  predict(full_model, ISLR2::Default, type="response")
+full_predictions <- 
+  ifelse(full_predictions > threshold, "Yes", "No")
+
+comp_table <- 
+  table(predicted = full_predictions, 
+        actual = ISLR2::Default$default)
+
+caret::confusionMatrix(comp_table, positive="Yes")
+``` -->
+
+::: {.column width="30%"}
+📝 Now, looking at the logistic regression model we built for the entire dataset, work out the sensitivity, specificity and accuracy of the following confusion matrices:
+
+<br/>
+
+::: {.callout-tip}
+## Practice
+- ⏲️ 5 min to work out the math
+- 🗳️ Vote on your preferred threshold (on ![](/figures/logos/slack_logo_simple.svg){height=0.75em} Slack)
+:::
+:::
+
+::: {.column style="width:35%;font-size:0.75em;margin-left:3%;"}
+
+$\text{Threshold} = 50\%$:
+
+|                | Actual    |          |
+|:--------------:|:---------:|:--------:|
+| Predicted      |   **No**  |  **Yes** |
+|    **No**      |    9627      |   228      |
+|   **Yes**      |    40      |   105      |
+:::
+
+::: {.column style="width:35%;font-size:0.75em;margin-left:-3%;"}
+
+$\text{Threshold} = 40\%$:
+
+|                | Actual    |          |
+|:--------------:|:---------:|:--------:|
+| Predicted      |   **No**  |  **Yes** |
+|    **No**      |    9588      |   199      |
+|   **Yes**      |    79      |   134      |
+
+:::
+
+
+:::
+
+## Meet the ROC curve {.smaller}
+
+::: columns
+
+::: {.column style="width:100%;font-size:0.9em;"}
+- The <mark>Receiver Operating Characteristic</mark> (ROC) curve is another way to assess the model. 
+- It shows how sensitivity and specificity change as we vary the threshold from 0 to 1 <br/>(threshold not shown).
+:::
+
+::: {.column width=0%}
+<!-- Ghost column -->
+:::
+
+:::
+
+```{r out.width="85%", dpi=100}
+#| echo: false
+#| eval: true
+#| code-fold: show
+#| code-overflow: wrap
+
+library(tidyverse)
+library(pROC)
+
+full_predictions <-
+  predict(full_model, ISLR2::Default, type="response")
+
+rocobj <- roc(ISLR2::Default$default, full_predictions)
+
+
+ggroc(rocobj, colour = 'steelblue', size = 2) + 
+
+  xlab("Specificity (TNR)") + 
+  ylab("Sensitivity (TPR)") + 
+
+  # THEMING
+  theme_bw() +
+	theme(
+        axis.title.x = element_text(size=24,margin = margin(t = 10, r = 0, b = 0, l = 0)),
+        axis.title.y = element_text(size=24, margin = margin(t = 0,  r = 10, b = 0, l = 0)),
+        legend.text = element_text(size=18),
+        legend.position="right",
+        axis.text.x = element_text(size=18),
+        axis.text.y = element_text(size=18),
+        panel.grid.minor = element_blank(),
+        aspect.ratio = 1,
+        plot.margin=grid::unit(c(0,0,0,0), "mm"))
+```
+
+::: notes
+- Ask: how would an ideal curve look like?
+:::
+
+# What could go wrong?
+
+## Generalisation problems {.smaller}
+
+<!-- ::: incremental -->
+- The data used to train algorithms is called <mark>training data</mark>
+- Often, we want to use the fitted models to make **predictions** on new previously unseen data
+<!-- :::
+
+::: {.fragment} -->
+
+::: callout-important
+
+⚠️ **A model that performs well on training data will not _necessarily_ perform well on new data** ⚠️
+
+:::
+
+<!-- :::
+::: incremental -->
+
+- To make a robust assessment of our model, we have to split the data in two:
+  - the training data and 
+  - the <mark>test data</mark>
+- We do NOT use the test data to fit the model
+- We will come back to this next week, this is the topic of 🗓️ Week 04.
+
+<!-- ::: -->
+
+## Inappropriate reliance on metrics {.smaller}
+
+<!-- ::: incremental -->
+
+- Accuracy can be very misleading when classes are <mark>imbalanced</mark>
+- Consider the following model: $\hat{y} = \text{Yes}$ (always)
+  - Only $3\%$ of customers default on their credit cards
+  - Therefore, this model would have a $97\%$ accuracy! 
+  - It is correct ninety-seven percent of times. But is it a good model?
+    - 🙅‍♂️ **NO!**
+- Similarly, you have to ask yourself about the usefulness of any other metric
+  - Is True Positive Rate more or less important than True Negative Rate for the classification problem at hand?
+  - Why? Why not?
+- Ultimately, it boils down to how you plan to use this model afterwards.
+<!-- ::: -->
+
+# What's Next
+
+**Your Checklist:**
+
+- :orange_book: Read [@james_introduction_2021, chapter 4]
+
+- :eyes: Browse the slides again
+
+- :memo: Take note of anything that isn't clear to you
+
+- :pager: Share your questions on `/week03` channel on Slack
+
+- :computer: In our labs [this week](/weeks/week03/lab.qmd), we will reinforce our knowledge of linear regression.
+
+---
+## References {style="word-break:break-all;"}
+
+::: {#refs .r-fit-text}
+:::

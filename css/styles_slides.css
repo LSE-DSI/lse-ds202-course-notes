@@ -104,3 +104,8 @@ Similar to what was reported here: https://github.com/quarto-dev/quarto-cli/issu
     margin-left:15%;
     margin-right:15%;
 } */
+
+details {
+    margin-bottom: 1em;
+    font-size: 0.5em;
+}
