@@ -4,9 +4,9 @@ date: 15 September 2022
 date-meta: 15 September 2022
 ---
 
-On [🗓️ Week 02](/weeks/week02.qmd), we learned how to make predictions about numbers. But what if you wanted to predict whether someone will perform an action (a Yes or No question)? Or perhaps you are interested in assessing how the _risk_ of fraud increases depending on behaviour of a customer? These problems can be modelled using **classifiers**, a type of supervised learning.
+On [🗓️ Week 02](/weeks/week02.qmd), we learned how to make predictions about numerical variables. But what if you wanted to predict whether someone will perform an action (a Yes or No question)? Or, say, you were interested in assessing how the _risk_ of fraud increases depending on the behaviour of a customer? These problems can be modelled using **classifiers**, a type of supervised learning.
 
-This week we will learn about the Logistic Regression amd tje Naive Bayes classifiers, how those methods relate (or not) to linear regression, and how to interpret its results. We will also learn a few new metrics and of ways to assess the accuracy of classifier models. These metrics will be incredible important on Week 04!
+This week, we will explore two classifier algorithms: the Logistic Regression and the Naive Bayes classifiers. We will learn how those methods relate (or not) to linear regression, and how to interpret its results. You will also meet a few new metrics and will learn of new ways to assess the 'accuracy' of models. These metrics will be incrediblly important on Week 04!
 
 ## Links
 
