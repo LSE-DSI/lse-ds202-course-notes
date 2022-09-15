@@ -39,6 +39,10 @@ jobs:
         run: install.packages("ISLR2")
         shell: Rscript {0}
 
+      - name: Install pROC
+        run: install.packages("pROC")
+        shell: Rscript {0}
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
