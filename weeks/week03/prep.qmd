@@ -1,8 +1,0 @@
----
-title: "📒 Week 03 - Preparing for this week's lab"
-date: 10 September 2022
-date-meta: 10 September 2022
-from: markdown+emoji
----
-
-<mark class="todo"></mark>

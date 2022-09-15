@@ -1,7 +1,7 @@
 ---
 title: "✅ Week 02 - Checklist"
-date: 10 September 2022
-date-meta: 10 September 2022
+date: 15 September 2022
+date-meta: 15 September 2022
 from: markdown+emoji
 ---
 
@@ -10,16 +10,22 @@ Follow the suggested list of actions below to get the most out of this course:
 
 # Your Checklist:
 
-Reserve some time between Weeks 02 & 03 to revisit the content of this week's lecture:
+- 👨‍🏫 Attend the lecture. It will help you remember concepts more easily when revising later.
 
-- :orange_book: Read [@james_introduction_2021, chapter 3]
+- 👨‍💻 New to `R`? We strongly recommend you have a look at the self-guided courses and workshops offered by [LSE Digital Skills Lab](/weeks/week01/appendix.html#lse-digital-skills-lab) before the first lab.
 
-- :eyes: Browse the slides again
+- 🖥️ Skim through the [lab roadmap page](/weeks/week02/lab.qmd). This week, we will do a recap of basic `R` programming plus some Exploratory Data Analysis (EDA) of datasets we will be using throughout this course.
 
-- :memo: Take note of anything that isn't clear to you
+- 📙 Read [@james_introduction_2021, chapter 3] to reinforce your theoretical knowledge of Linear Regression.
 
-- :pager: Share your questions on `/week02` channel on Slack
+- 👀 Browse the slides again.
 
-- :computer: Checkout the [lab prep page](/weeks/week02/prep.qmd) to read about how you could come to the labs well prepared.
+- 💻 Replicate the R scripts used in the lecture.
 
-Following this will help you ensure you are well prepared for the Linear Regression lab of Week 03.
+- 📝 Take note of anything that is still not clear to you.
+
+- 📟 Share your questions on `/week02` channel on Slack.
+
+- 📤 Have anything else to share? Maybe you came across an interesting, curious, or perhaps [dangerous](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002106) study or application of linear regression? Feel free to share it on `/week02` or `/random` channels in our Slack group.
+
+Following this will keep you well prepared for the Linear Regression lab of [Week 03](/weeks/week03.qmd).

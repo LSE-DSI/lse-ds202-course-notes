@@ -53,8 +53,6 @@ website:
                text: 👨‍🏫 Lecture Slides
              - href: weeks/week02/checklist.qmd
                text: ✅ Checklist
-             - href: weeks/week02/prep.qmd
-               text: 📒 Prepare for this week's lab
              - href: weeks/week02/lab.qmd
                text: 💻 Lab roadmap
              - href: weeks/week02/appendix.qmd
@@ -66,8 +64,6 @@ website:
                text: 👨‍🏫 Lecture Slides
              - href: weeks/week03/checklist.qmd
                text: ✅ Checklist
-             - href: weeks/week03/prep.qmd
-               text: 📒 Prepare for this week's lab
              - href: weeks/week03/lab.qmd
                text: 💻 Lab roadmap
              - href: weeks/week03/appendix.qmd
@@ -86,6 +82,7 @@ website:
   
 format:
   html:
+    html-q-tag: true
     subtitle: "DS202 - Data Science for Social Scientists"
     email-obfuscation: javascript
     link-external-newwindow: true

@@ -1,21 +1,19 @@
 ---
 title: "🗓️ Week 03 - Classifiers"
-date: 12 September 2022
-date-meta: 12 September 2022
+date: 15 September 2022
+date-meta: 15 September 2022
 ---
 
-<mark class="todo"></mark>
+On [🗓️ Week 02](/weeks/week02.qmd), we learned how to make predictions about numbers. But what if you wanted to predict whether someone will perform an action (a Yes or No question)? Or perhaps you are interested in assessing how the _risk_ of fraud increases depending on behaviour of a customer? These problems can be modelled using **classifiers**, a type of supervised learning.
 
+This week we will learn about the Logistic Regression amd tje Naive Bayes classifiers, how those methods relate (or not) to linear regression, and how to interpret its results. We will also learn a few new metrics and of ways to assess the accuracy of classifier models. These metrics will be incredible important on Week 04!
 
-<!-- In this first week, we will cover what you can expect to learn from this course and the course logistics: all you need to know about the structure of the lectures, classes, assessments and how we will interact throughout this course. 
+## Links
 
-We will also cover some of the basics: what do we mean by data science & machine learning, and what do you need to do to get the most of this course?
+- 👨‍🏫 [Lecture slides](/weeks/week03/lecture.html)
 
+- ✅ [Take a look at this week's checklist](/weeks/week03/checklist.qmd)
 
-## Links -->
+- 💻 [This week's lab](/weeks/week02/lab.qmd)
 
-- 👨‍🏫 [Lecture slides](/weeks/week03/lecture.qmd)
-
-<!-- - 📒 [Preparing for next week's lab](/weeks/week02/prep.qmd)
-
-- 🔖 [Appendix](/weeks/week02/appendix.qmd) -->
+- 🔖 [Appendix](/weeks/week03/appendix.html)

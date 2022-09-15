@@ -5,5 +5,24 @@ date-meta: 12 September 2022
 from: markdown+emoji
 ---
 
+Follow the suggested list of actions below to get the most out of this course:
 
-<mark class="todo"></mark>
+# Your Checklist:
+
+- 👨‍🏫 Attend the lecture. It will help you remember concepts more easily when revising later.
+
+- 🖥️ Skim through the [lab roadmap page](/weeks/week03/lab.qmd). This week, we will practice some linear regression modelling.
+
+- 📙 Read [@james_introduction_2021, chapter 4] to reinforce your theoretical knowledge of Classifiers.
+
+- 👀 Browse the slides again.
+
+- 💻 Replicate the R scripts used in the lecture.
+
+- 📝 Take note of anything that is still not clear to you.
+
+- 📟 Share your questions on `/week03` channel on Slack.
+
+- 📤 What type of supervised learning method feels more useful to you? Regression or Classification? Share your thoughts on `/week03` or `/random` channels in our Slack group.
+
+Pro-tip: If you take the time this week to read, practice, explore and experiment with linear and logistic regression, the concepts of resampling and cross-validation that will be introduced on [Week 04](/weeks/week04.qmd) and revisited on [Week 05's lab](/weeks/week05.qmd) will make A LOT more sense to you.

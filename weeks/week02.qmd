@@ -1,19 +1,22 @@
 ---
 title: "🗓️ Week 02 - Simple and Multiple Linear Regression"
-date: 06 September 2022
-date-meta: 06 September 2022
+date: 15 September 2022
+date-meta: 15 September 2022
 ---
 
+If you have already taken stats level at university, it is likely that you have met the linear regression method. 
 
-In this first week, we will cover what you can expect to learn from this course and the course logistics: all you need to know about the structure of the lectures, classes, assessments and how we will interact throughout this course. 
+It is the most fundamental algorithm for regression and if you truly master it, you will be way ahead of the curve when it comes to the most advanced Machine Learning algorithms.
 
-We will also cover some of the basics: what do we mean by data science & machine learning, and what do you need to do to get the most of this course?
+Join the lecture on 7 October 2022 at 2pm on **(location TBC)**.
 
 
 ## Links
 
 - 👨‍🏫 [Lecture slides](/weeks/week02/lecture.qmd)
 
-<!-- - 📒 [Preparing for next week's lab](/weeks/week02/prep.qmd)
+- ✅ [Take a look at this week's checklist](/weeks/week02/checklist.qmd)
 
-- 🔖 [Appendix](/weeks/week02/appendix.qmd) -->
+- 💻 [This week's lab](/weeks/week02/lab.qmd)
+
+- 🔖 [Appendix](/weeks/week02/appendix.qmd)
