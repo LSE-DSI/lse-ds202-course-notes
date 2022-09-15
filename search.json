@@ -46,7 +46,7 @@
     "href": "weeks/week01.html",
     "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
     "section": "",
-    "text": "In this first week, we will cover what you can expect to learn from this course and the course logistics: all you need to know about the structure of the lectures, classes, assessments and how we will interact throughout this course.\nWe will also cover some of the basics: what do we mean by data science & machine learning, and what do you need to do to get the most of this course?"
+    "text": "In this first week, we will cover what you can expect to learn from this course and the course logistics: all you need to know about the structure of the lectures, classes, assessments and how we will interact throughout this course.\nWe will also cover some of the basics: what do we mean by data science & machine learning, and what do you need to do to get the most of this course?\nJoin the lecture on 30 September 2022 at 2pm on (location TBC)."
   },
   {
     "objectID": "weeks/week01.html#links",
@@ -60,21 +60,28 @@
     "href": "weeks/week02.html",
     "title": "🗓️ Week 02 - Simple and Multiple Linear Regression",
     "section": "",
-    "text": "In this first week, we will cover what you can expect to learn from this course and the course logistics: all you need to know about the structure of the lectures, classes, assessments and how we will interact throughout this course.\nWe will also cover some of the basics: what do we mean by data science & machine learning, and what do you need to do to get the most of this course?"
+    "text": "If you have already taken stats level at university, it is likely that you have met the linear regression method.\nIt is the most fundamental algorithm for regression and if you truly master it, you will be way ahead of the curve when it comes to the most advanced Machine Learning algorithms.\nJoin the lecture on 7 October 2022 at 2pm on (location TBC)."
   },
   {
     "objectID": "weeks/week02.html#links",
     "href": "weeks/week02.html#links",
     "title": "🗓️ Week 02 - Simple and Multiple Linear Regression",
     "section": "Links",
-    "text": "Links\n\n👨‍🏫 Lecture slides"
+    "text": "Links\n\n👨‍🏫 Lecture slides\n✅ Take a look at this week’s checklist\n💻 This week’s lab\n🔖 Appendix"
   },
   {
     "objectID": "weeks/week03.html",
     "href": "weeks/week03.html",
     "title": "🗓️ Week 03 - Classifiers",
     "section": "",
-    "text": "👨‍🏫 Lecture slides"
+    "text": "On 🗓️ Week 02, we learned how to make predictions about numbers. But what if you wanted to predict whether someone will perform an action (a Yes or No question)? Or perhaps you are interested in assessing how the risk of fraud increases depending on behaviour of a customer? These problems can be modelled using classifiers, a type of supervised learning.\nThis week we will learn about the Logistic Regression amd tje Naive Bayes classifiers, how those methods relate (or not) to linear regression, and how to interpret its results. We will also learn a few new metrics and of ways to assess the accuracy of classifier models. These metrics will be incredible important on Week 04!"
+  },
+  {
+    "objectID": "weeks/week03.html#links",
+    "href": "weeks/week03.html#links",
+    "title": "🗓️ Week 03 - Classifiers",
+    "section": "Links",
+    "text": "Links\n\n👨‍🏫 Lecture slides\n✅ Take a look at this week’s checklist\n💻 This week’s lab\n🔖 Appendix"
   },
   {
     "objectID": "weeks/week06.html",
@@ -116,7 +123,21 @@
     "href": "weeks/week01/lecture.html",
     "title": "👨‍🏫 Week 01 - Slides",
     "section": "",
-    "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides.\n\n\n\n\n\n\nUse this time to chat, stretch, drink some coffee or just relax for a bit by yourself.\n\n\n\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
+    "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
+  },
+  {
+    "objectID": "weeks/week01/lecture.html#coffee-break-10-min",
+    "href": "weeks/week01/lecture.html#coffee-break-10-min",
+    "title": "👨‍🏫 Week 01 - Slides",
+    "section": "☕ Coffee Break (10 min)",
+    "text": "☕ Coffee Break (10 min)\nUse this time to chat, stretch, drink some coffee or just relax for a bit by yourself."
+  },
+  {
+    "objectID": "weeks/week01/lecture.html#part-ii---key-concepts-45-50-min",
+    "href": "weeks/week01/lecture.html#part-ii---key-concepts-45-50-min",
+    "title": "👨‍🏫 Week 01 - Slides",
+    "section": "Part II - Key Concepts (45-50 min)",
+    "text": "Part II - Key Concepts (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
   },
   {
     "objectID": "weeks/week01/prep.html",
@@ -144,7 +165,7 @@
     "href": "weeks/week02/checklist.html",
     "title": "✅ Week 02 - Checklist",
     "section": "",
-    "text": "Your Checklist:\nReserve some time between Weeks 02 & 03 to revisit the content of this week’s lecture:\n\n📙 Read (James et al. 2021, chap. 3)\n👀 Browse the slides again\n📝 Take note of anything that isn’t clear to you\n📟 Share your questions on /week02 channel on Slack\n💻 Checkout the lab prep page to read about how you could come to the labs well prepared.\n\nFollowing this will help you ensure you are well prepared for the Linear Regression lab of Week 03.\n\n\n\n\n\nReferences\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/."
+    "text": "Your Checklist:\n\n👨‍🏫 Attend the lecture. It will help you remember concepts more easily when revising later.\n👨‍💻 New to R? We strongly recommend you have a look at the self-guided courses and workshops offered by LSE Digital Skills Lab before the first lab.\n🖥️ Skim through the lab roadmap page. This week, we will do a recap of basic R programming plus some Exploratory Data Analysis (EDA) of datasets we will be using throughout this course.\n📙 Read (James et al. 2021, chap. 3) to reinforce your theoretical knowledge of Linear Regression.\n👀 Browse the slides again.\n💻 Replicate the R scripts used in the lecture.\n📝 Take note of anything that is still not clear to you.\n📟 Share your questions on /week02 channel on Slack.\n📤 Have anything else to share? Maybe you came across an interesting, curious, or perhaps dangerous study or application of linear regression? Feel free to share it on /week02 or /random channels in our Slack group.\n\nFollowing this will keep you well prepared for the Linear Regression lab of Week 03.\n\n\n\n\n\nReferences\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/."
   },
   {
     "objectID": "weeks/week02/lab.html",
@@ -193,397 +214,425 @@
     "href": "weeks/week02/lecture.html",
     "title": "👨‍🏫 Week 02 - Slides",
     "section": "",
-    "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides.\n\n\n\n\n\n\nUse this time to chat, stretch, drink some coffee or just relax for a bit by yourself.\n\n\n\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
+    "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
   },
   {
-    "objectID": "weeks/week02/prep.html",
-    "href": "weeks/week02/prep.html",
-    "title": "📒 Week 02 - Preparing for this week’s lab",
+    "objectID": "weeks/week02/lecture.html#coffee-break-10-min",
+    "href": "weeks/week02/lecture.html#coffee-break-10-min",
+    "title": "👨‍🏫 Week 02 - Slides",
+    "section": "☕ Coffee Break (10 min)",
+    "text": "☕ Coffee Break (10 min)\nUse this time to chat, stretch, drink some coffee or just relax for a bit by yourself."
+  },
+  {
+    "objectID": "weeks/week02/lecture.html#part-ii---multiple-linear-regression-45-50-min",
+    "href": "weeks/week02/lecture.html#part-ii---multiple-linear-regression-45-50-min",
+    "title": "👨‍🏫 Week 02 - Slides",
+    "section": "Part II - Multiple Linear Regression (45-50 min)",
+    "text": "Part II - Multiple Linear Regression (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
+  },
+  {
+    "objectID": "weeks/week03/checklist.html",
+    "href": "weeks/week03/checklist.html",
+    "title": "✅ Week 03 - Checklist",
     "section": "",
-    "text": "References\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/."
+    "text": "Your Checklist:\n\n👨‍🏫 Attend the lecture. It will help you remember concepts more easily when revising later.\n🖥️ Skim through the lab roadmap page. This week, we will practice some linear regression modelling.\n📙 Read (James et al. 2021, chap. 4) to reinforce your theoretical knowledge of Classifiers.\n👀 Browse the slides again.\n💻 Replicate the R scripts used in the lecture.\n📝 Take note of anything that is still not clear to you.\n📟 Share your questions on /week03 channel on Slack.\n📤 What type of supervised learning method feels more useful to you? Regression or Classification? Share your thoughts on /week03 or /random channels in our Slack group.\n\nPro-tip: If you take the time this week to read, practice, explore and experiment with linear and logistic regression, the concepts of resampling and cross-validation that will be introduced on Week 04 and revisited on Week 05’s lab will make A LOT more sense to you.\n\n\n\n\n\nReferences\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/."
   },
   {
-    "objectID": "weeks/week03/lecture.html#part-i---classifiers-logistic-regression-45-50-min",
-    "href": "weeks/week03/lecture.html#part-i---classifiers-logistic-regression-45-50-min",
+    "objectID": "weeks/week03/lecture.html",
+    "href": "weeks/week03/lecture.html",
     "title": "👨‍🏫 Week 03 - Slides",
-    "section": "Part I - Classifiers (Logistic Regression) (45-50 min)",
-    "text": "Part I - Classifiers (Logistic Regression) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides.\n\n\n☕ Coffee Break (10 min)\nUse this time to chat, stretch, drink some coffee or just relax for a bit by yourself.\n\n\nPart II - Classifiers (Naive Bayes) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
+    "section": "",
+    "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
+  },
+  {
+    "objectID": "weeks/week03/lecture.html#coffee-break-10-min",
+    "href": "weeks/week03/lecture.html#coffee-break-10-min",
+    "title": "👨‍🏫 Week 03 - Slides",
+    "section": "☕ Coffee Break (10 min)",
+    "text": "☕ Coffee Break (10 min)\nUse this time to chat, stretch, drink some coffee or just relax for a bit by yourself."
+  },
+  {
+    "objectID": "weeks/week03/lecture.html#part-ii---classifiers-naive-bayes-45-50-min",
+    "href": "weeks/week03/lecture.html#part-ii---classifiers-naive-bayes-45-50-min",
+    "title": "👨‍🏫 Week 03 - Slides",
+    "section": "Part II - Classifiers (Naive Bayes) (45-50 min)",
+    "text": "Part II - Classifiers (Naive Bayes) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
+  },
+  {
+    "objectID": "slides/week01_slides_part1.html",
+    "href": "slides/week01_slides_part1.html",
+    "title": "LSE DS202 2022/23",
+    "section": "",
+    "text": "subtitle: “DS202 Data Science for Social Scientists” title: “🗓️ Week 01 Structure of this course” author: Dr. Jon Cardoso Silva institute: ‘LSE Data Science Institute’ date: 30 September 2022 date-meta: 30 September 2022 toc: true toc-depth: 1 toc-title: “What we will cover today” center-title-slide: false from: markdown+emoji format: revealjs: fig-responsive: true theme: simple slide-number: true mouse-wheel: false chalkboard: buttons: true preview-links: auto logo: /figures/logos/LSE Data Science Institute.png css: /css/styles_slides.css footer: ‘DS202 - Data Science for Social Scientists :robot: :juggling_person:’ —"
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-data-science-institute",
     "href": "slides/week01_slides_part1.html#the-data-science-institute",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "The Data Science Institute",
     "text": "The Data Science Institute\n\n\n\n\n\nThis course is offered by the LSE Data Science Institute (DSI).\nDSI is the hub for LSE’s interdisciplinary collaboration in data science\n\n\n\n\nSign up for DSI events at lse.ac.uk/DSI/Events"
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-data-science-institute-1",
     "href": "slides/week01_slides_part1.html#the-data-science-institute-1",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "The Data Science Institute",
     "text": "The Data Science Institute\n\n\n\n\nActivities of interest to you:\n\nCIVICA Seminar Series\nCareers in Data Science\nSocial events\nIndustry “field trips”\nSummer projects\n\n\n\n\nSign up for DSI events at lse.ac.uk/DSI/Events"
   },
   {
     "objectID": "slides/week01_slides_part1.html#our-courses",
     "href": "slides/week01_slides_part1.html#our-courses",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Our courses",
-    "text": "Our courses\nDSI offer accessible introductions to Data Science:\n\n\nDS101\nFundamentals of  Data Science\n🎯 Focus:  theoretical concepts of data science\n📂 How:  reflections through reading and writing\n\nDS105\nData for  Data Scientists\n🎯 Focus: collection and handling of real data\n📂 How: hands-on coding exercises and a group project\n\nDS202\nData Science for  Social Scientists\n🎯 Focus: fundamental machine learning algorithms\n📂 How: practical use of ML techniques and metrics"
+    "text": "Our courses\nDSI offer accessible introductions to Data Science:\n\n\n\nDS101\nFundamentals of  Data Science\n🎯 Focus:  theoretical concepts of data science\n📂 How:  reflections through reading and writing\n\n\n\nDS105\nData for  Data Scientists\n🎯 Focus: collection and handling of real data\n📂 How: hands-on coding exercises and a group project\n\n\n\nDS202\nData Science for  Social Scientists\n🎯 Focus: fundamental machine learning algorithms\n📂 How: practical use of ML techniques and metrics"
   },
   {
     "objectID": "slides/week01_slides_part1.html#your-lecturer",
     "href": "slides/week01_slides_part1.html#your-lecturer",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Your lecturer",
     "text": "Your lecturer\n\n \n Also present the teaching assistants"
   },
   {
     "objectID": "slides/week01_slides_part1.html#who-are-you",
     "href": "slides/week01_slides_part1.html#who-are-you",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Who are you",
-    "text": "Who are you\nBSc Psychological and Behavioural Science\n\n\n\n\n\n\n\n Add the overlaid graph, showing the actual paths these students took.\n\n\nData extracted from the UBPBS 2020/2021 degree regulation."
+    "text": "Who are you\n\nBSc Psychological and Behavioural Science\n\nData extracted from the UBPBS 2020/2021 degree regulation.\n\n\n\n\n\n\n\n Add the overlaid graph, showing the actual paths these students took."
   },
   {
     "objectID": "slides/week01_slides_part1.html#learning-objectives-cont.",
     "href": "slides/week01_slides_part1.html#learning-objectives-cont.",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Learning Objectives (cont.)",
     "text": "Learning Objectives (cont.)\n\n\nKnow how to evaluate and compare fitted models, and to improve model performance.\nUse applied computer programming, including the hands-on use of programming through course exercises.\nApply the methods learned to real data through hands-on exercises.\nIntegrate the insights from data analytics into knowledge generation and decision-making;"
   },
   {
     "objectID": "slides/week01_slides_part1.html#learning-objectives-cont.-1",
     "href": "slides/week01_slides_part1.html#learning-objectives-cont.-1",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Learning Objectives (cont.)",
     "text": "Learning Objectives (cont.)\n\nUnderstand an introductory framework for working with natural language (text) data using techniques of machine learning.\n\n\n\nLearn how data science methods have been applied to a particular domain of study (applications)."
   },
   {
     "objectID": "slides/week01_slides_part1.html#philosophy-of-this-course-cont.",
     "href": "slides/week01_slides_part1.html#philosophy-of-this-course-cont.",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Philosophy of this course (cont.)",
     "text": "Philosophy of this course (cont.)\n\nThis is an exciting research area, having important applications in science, industry and policy.\nMachine learning is a fundamental ingredient in the training of a modern data scientist.\n\n\nContent borrowed from ME314 Day 1"
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-basics-of-statistics",
     "href": "slides/week01_slides_part1.html#the-basics-of-statistics",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "The basics of statistics",
     "text": "The basics of statistics\nBasic concepts of Statistics you might want to recap:\n\n\nExpected value, mean, median, variance, standard deviation\nProbabilities and simple probability distributions\nTypes of data\n\ndiscrete vs continuous\ncategorical vs numerical vs ordinal"
   },
   {
     "objectID": "slides/week01_slides_part1.html#resources-stats",
     "href": "slides/week01_slides_part1.html#resources-stats",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Resources (Stats)",
     "text": "Resources (Stats)\nA few references that might be useful to read or skim through:\n\n(Warne 2018, chaps. 1-3,5,6,11-12)\n(Gelman, Hill, and Vehtari 2020, chaps. 1–4)\nIf you are a PBS student, you can revisit the content of PB130 (MT3, MT4, MT8-MT11)"
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-basics-of-r-programming",
     "href": "slides/week01_slides_part1.html#the-basics-of-r-programming",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "The basics of R programming",
     "text": "The basics of R programming\nBasic concepts of programming in R to recap:\n\n\ndata structures (vectors, matrices, data frames)\nhow to manipulate data (filter, subset, select)\nread/write data files (for example: CSV, JSON, TXT)\n(optional but encouraged) some knowledge tidyverse can give you a productive boost\n\nthe official website (tidyverse.org) has some good tutorials."
   },
   {
     "objectID": "slides/week01_slides_part1.html#resources-r",
     "href": "slides/week01_slides_part1.html#resources-r",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Resources (R)",
     "text": "Resources (R)\n\nCheck out “R for Data Science” (Wickham and Grolemund 2016, chaps. 1–21). The online version is free.\n“Statistical inference via data science” (Ismay and Kim 2020, chaps. 4–6) is another great free resource"
   },
   {
     "objectID": "slides/week01_slides_part1.html#what-if-i-struggle-with-r",
     "href": "slides/week01_slides_part1.html#what-if-i-struggle-with-r",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "‘What if I struggle with R’?",
     "text": "‘What if I struggle with R’?\n➡️ Our first lab (Week 02) is a recap of some basic R commands, plus some ggplot2.\n\n\nIf you are not confident with your R skills, I strongly encourage you invest in studying the basics in the next couple of weeks.\nContact LSE Digital Skills Lab to attend in-person workshops or self-paced online R courses."
   },
   {
     "objectID": "slides/week01_slides_part1.html#any-questions",
     "href": "slides/week01_slides_part1.html#any-questions",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Any questions?",
     "text": "Any questions?\n\n\n\n\n\n\nImage created with the DALL·E algorithm using the prompt: ‘35mm macro photography of a robot holding a question mark card, white background’"
   },
   {
     "objectID": "slides/week01_slides_part1.html#syllabus",
     "href": "slides/week01_slides_part1.html#syllabus",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Syllabus",
     "text": "Syllabus\n\n\n\n\n\n\n\nIntro\n\n\n\n\n\n    Introduction, Context & Key Concepts\nWeek 01\n\n\nSupervised Learning\n\n\n\n    Simple and Multiple Linear Regression      Classifiers (Logistic Regression & Naive Bayes)      Resampling methods       Non-linear algorithms (SVM & tree-based models)\nWeek 02  Week 03  Week 04  Week 05\n\n\nUnsupervised Learning\n\n\n\n    Principal Component Analysis (PCA) & Clustering     Dimensionality Reduction (t-SNE & UMAP)         \nWeek 07  Week 08\n\n\nApplications\n\n\n\n    Applications: Text as Data     Applications: Topic Modelling     Applications: Social Media Data\nWeek 09  Week 10  Week 11"
   },
   {
-    "objectID": "slides/week01_slides_part1.html#structure-of-lectures",
-    "href": "slides/week01_slides_part1.html#structure-of-lectures",
-    "title": "🗓️ Week 01:Structure of this course",
-    "section": "Structure of lectures 👨🏻‍🏫",
-    "text": "Structure of lectures 👨🏻‍🏫\nOur lectures will be split in two parts:\n\n\nPart I (~ 50 min): Traditional exposition of theoretical content\nbreak (~ 10 min): Grab coffee ☕ or relax 🧘\nPart II (~ 50 min): Live demo\n\nTypically, an exploratory analysis or application of an algorithm\nFeel free to follow along in your own laptops."
+    "objectID": "slides/week01_slides_part1.html#structure-of-lectures-school",
+    "href": "slides/week01_slides_part1.html#structure-of-lectures-school",
+    "title": "LSE DS202 2022/23",
+    "section": "Structure of lectures 👨🏻‍:school:",
+    "text": "Structure of lectures 👨🏻‍:school:\nOur lectures will be split in two parts:\n\n\nPart I (~ 50 min): Traditional exposition of theoretical content\nbreak (~ 10 min): Grab coffee :coffee: or relax :lotus_position:\nPart II (~ 50 min): Live demo\n\nTypically, an exploratory analysis or application of an algorithm\nFeel free to follow along in your own laptops."
   },
   {
-    "objectID": "slides/week01_slides_part1.html#structure-of-classes",
-    "href": "slides/week01_slides_part1.html#structure-of-classes",
-    "title": "🗓️ Week 01:Structure of this course",
-    "section": "Structure of classes 👩‍💻",
-    "text": "Structure of classes 👩‍💻\n\n\nStudents will work on weekly, structured problem sets in the staff-led class sessions.\nTips to get the most of classes:\n\nBring your own laptops 💻 (most tablets are not suitable for programming)\nRead the recommended reading prior to the class\nSkim through the problem set before class"
+    "objectID": "slides/week01_slides_part1.html#structure-of-classes-woman_technologist",
+    "href": "slides/week01_slides_part1.html#structure-of-classes-woman_technologist",
+    "title": "LSE DS202 2022/23",
+    "section": "Structure of classes :woman_technologist:",
+    "text": "Structure of classes :woman_technologist:\n\n\nStudents will work on weekly, structured problem sets in the staff-led class sessions.\nTips to get the most of classes:\n\nBring your own laptops :computer: (most tablets are not suitable for programming)\nRead the recommended reading prior to the class\nSkim through the problem set before class"
   },
   {
     "objectID": "slides/week01_slides_part1.html#class-groups",
     "href": "slides/week01_slides_part1.html#class-groups",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Class groups",
     "text": "Class groups\n Update the groups here once we hear back from LSE Timetables"
   },
   {
-    "objectID": "slides/week01_slides_part1.html#assessments",
-    "href": "slides/week01_slides_part1.html#assessments",
-    "title": "🗓️ Week 01:Structure of this course",
-    "section": "Assessments 📔",
-    "text": "Assessments 📔\nThe breakdown of assessment for this class will be as follows:"
+    "objectID": "slides/week01_slides_part1.html#assessments-notebook_with_decorative_cover",
+    "href": "slides/week01_slides_part1.html#assessments-notebook_with_decorative_cover",
+    "title": "LSE DS202 2022/23",
+    "section": "Assessments :notebook_with_decorative_cover:",
+    "text": "Assessments :notebook_with_decorative_cover:\nThe breakdown of assessment for this class will be as follows:"
   },
   {
-    "objectID": "slides/week01_slides_part1.html#assessments-1",
-    "href": "slides/week01_slides_part1.html#assessments-1",
-    "title": "🗓️ Week 01:Structure of this course",
-    "section": "Assessments 📔",
-    "text": "Assessments 📔\n\nProblem sets (60%)\n\n\nSummative problem sets released on Weeks 5, 8 & 11.\nThese will have a similar style to the formative problem sets, a mix of R tasks and your written interpretation of the analyses.\nYou will have 4-6 days to submit your solutions.\nEach of the three summative problem sets is worth 20% of the final mark, and will be graded on a 100 point scale."
+    "objectID": "slides/week01_slides_part1.html#assessments-notebook_with_decorative_cover-1",
+    "href": "slides/week01_slides_part1.html#assessments-notebook_with_decorative_cover-1",
+    "title": "LSE DS202 2022/23",
+    "section": "Assessments :notebook_with_decorative_cover:",
+    "text": "Assessments :notebook_with_decorative_cover:\n\n\nProblem sets (60%)\n\n\nSummative problem sets released on Weeks 5, 8 & 11.\nThese will have a similar style to the formative problem sets, a mix of R tasks and your written interpretation of the analyses.\nYou will have 4-6 days to submit your solutions.\nEach of the three summative problem sets is worth 20% of the final mark, and will be graded on a 100 point scale."
   },
   {
-    "objectID": "slides/week01_slides_part1.html#assessments-2",
-    "href": "slides/week01_slides_part1.html#assessments-2",
-    "title": "🗓️ Week 01:Structure of this course",
-    "section": "Assessments 📔",
-    "text": "Assessments 📔\n\nTake-home exam (40%)\n\n\nAn open-book take-home exam, taken during the January exams period.\nExam questions will be comparable in style to the problem sets.\nThe exam questions will be released on Moodle on 5 January 2023.\nThe exam is due on 11 January at 4pm."
+    "objectID": "slides/week01_slides_part1.html#assessments-notebook_with_decorative_cover-2",
+    "href": "slides/week01_slides_part1.html#assessments-notebook_with_decorative_cover-2",
+    "title": "LSE DS202 2022/23",
+    "section": "Assessments :notebook_with_decorative_cover:",
+    "text": "Assessments :notebook_with_decorative_cover:\n\n\nTake-home exam (40%)\n\n\nAn open-book take-home exam, taken during the January exams period.\nExam questions will be comparable in style to the problem sets.\nThe exam questions will be released on Moodle on 5 January 2023.\nThe exam is due on 11 January at 4pm."
   },
   {
     "objectID": "slides/week01_slides_part1.html#office-hours",
     "href": "slides/week01_slides_part1.html#office-hours",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Office hours",
     "text": "Office hours\n\n\nIt is probably a good idea to book office hours if:\n\nyou struggled with a technical or theoretical aspect of a problem set in the previous week,\nyou have queries about careers in data science,\nyou want guidance in how to apply data science to other things you are studying outside this course.\n\nCome prepared. You only have 15 minutes.\nAsk for help sooner rather than later.\nBook slots via StudentHub up to 12 hours in advance."
   },
   {
     "objectID": "slides/week01_slides_part1.html#communication",
     "href": "slides/week01_slides_part1.html#communication",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Communication",
-    "text": "Communication\n\n\nJoin our Slack group:  add link to slack\nUse the public Slack channels to talk to share links, content (or memes) with your colleagues.\nOur teaching team will dedicate some time during the week to answer questions or other interactions on Slack.\nReserve 📧 e-mail for formal requests: extensions, deferrals, etc.\n\nNo need to e-mail to inform you will skip a class, for example."
+    "text": "Communication\n\n\nJoin our Slack group:  add link to slack\nUse the public Slack channels to talk to share links, content (or memes) with your colleagues.\nOur teaching team will dedicate some time during the week to answer questions or other interactions on Slack.\nReserve :email: e-mail for formal requests: extensions, deferrals, etc.\n\nNo need to e-mail to inform you will skip a class, for example."
   },
   {
     "objectID": "slides/week01_slides_part1.html#any-questions-1",
     "href": "slides/week01_slides_part1.html#any-questions-1",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Any questions?",
     "text": "Any questions?\n\n\n\n\n\n\nImage created with the DALL·E algorithm using the prompt: ‘35mm macro photography of a robot holding a question mark card, white background’"
   },
   {
     "objectID": "slides/week01_slides_part1.html#we-changed-how-we-consume-music",
     "href": "slides/week01_slides_part1.html#we-changed-how-we-consume-music",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "We changed how we consume music 🎧",
     "text": "We changed how we consume music 🎧\n\n\n\n\n\n\nTo interact with this plot, check reference (Fischer-Baum 2017) at the end of this presentation."
   },
   {
     "objectID": "slides/week01_slides_part1.html#we-changed-how-we-consume-video",
     "href": "slides/week01_slides_part1.html#we-changed-how-we-consume-video",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "We changed how we consume video 🎞️",
     "text": "We changed how we consume video 🎞️\n\n\n\n\n\n\nTo interact with this plot, check reference (Fischer-Baum 2017) at the end of this presentation."
   },
   {
     "objectID": "slides/week01_slides_part1.html#smartphones-are-a-very-recent-thing",
     "href": "slides/week01_slides_part1.html#smartphones-are-a-very-recent-thing",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "Smartphones 📱 are a very recent thing",
     "text": "Smartphones 📱 are a very recent thing\n\n\n\n\n\n\nTo interact with this plot, check reference (Fischer-Baum 2017) at the end of this presentation."
   },
   {
     "objectID": "slides/week01_slides_part1.html#we-spend-a-lot-more-time-connected",
     "href": "slides/week01_slides_part1.html#we-spend-a-lot-more-time-connected",
-    "title": "🗓️ Week 01:Structure of this course",
+    "title": "LSE DS202 2022/23",
     "section": "We spend a lot more time connected",
-    "text": "We spend a lot more time connected"
-  },
-  {
-    "objectID": "slides/week01_slides_part1.html#references",
-    "href": "slides/week01_slides_part1.html#references",
-    "title": "🗓️ Week 01:Structure of this course",
-    "section": "References",
-    "text": "References\n\n\nFischer-Baum, Reuben. 2017. “What ‘Tech World’ Did You Grow up In?” Washington Post. https://www.washingtonpost.com/graphics/2017/entertainment/tech-generations/.\n\n\nGelman, Andrew, Jennifer Hill, and Aki Vehtari. 2020. Regression and Other Stories. 1st ed. Cambridge University Press. https://doi.org/10.1017/9781139161879.\n\n\nIsmay, Chester, and Albert Young-Sun Kim. 2020. Statistical Inference via Data Science: A ModernDive into R and the Tidyverse. Chapman & Hall/CRC the R Series. Boca Raton: CRC Press / Taylor & Francis Group. https://moderndive.com/.\n\n\nKolawole, Emi. 2013. “About Those 2005 and 2013 Photos of the Crowds in St. Peter’s Square.” Washington Post. http://wapo.st/WKKTMh.\n\n\nWarne, Russell T. 2018. Statistics for the Social Sciences: A General Linear Model Approach. https://www.cambridge.org/highereducation/books/statistics-for-the-social-sciences/716FF25785A6154CC6822D067A959445.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. First edition. Sebastopol, CA: O’Reilly. https://r4ds.had.co.nz/.\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
+    "text": "We spend a lot more time connected\n\n\n\n\n… and our social media habits keep on changing\n\n💡 Move the slider to explore the chart"
   },
   {
     "objectID": "slides/week01_slides_part2.html#data-science-is",
     "href": "slides/week01_slides_part2.html#data-science-is",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Data science is…",
     "text": "Data science is…\n\n\n“[…] a field of study and practice that involves the collection, storage, and processing of data in order to derive important 💡 insights into a problem or a phenomenon.\n\n\n\n\nSuch data may be generated by humans (surveys, logs, etc.) or machines (weather data, road vision, etc.),\n\n\n\n\nand could be in different formats (text, audio, video, augmented or virtual reality, etc.).”\n\n\n\n\n(Shah 2020, chap. 1) - Emphasis and emojis are of my own making."
   },
   {
     "objectID": "slides/week01_slides_part2.html#the-mythical-unicorn",
     "href": "slides/week01_slides_part2.html#the-mythical-unicorn",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "The mythical unicorn 🦄",
     "text": "The mythical unicorn 🦄\n\n\nknows everything about statistics\n\n\nable to communicate insights perfectly\n\n\nfully understands businesses like no one\n\n\nis a fluent computer programmer\n\n\n\nOf course, such a person does not exist!\n\n\nSee (Davenport 2020) for a more in-depth discussion about this"
   },
   {
     "objectID": "slides/week01_slides_part2.html#in-reality",
     "href": "slides/week01_slides_part2.html#in-reality",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "In reality…",
     "text": "In reality…\n\n\nWe are all jugglers 🤹\n\n\nEveryone brings a different skill set.\nWe need multi-disciplinary teams.\nGood data scientists know a bit of everything.\n\nNot fluent in all things\nUnderstands their strenghts and weaknessess\nThey know when and where to interface with others\n\n\n\n\n\n\n\n\n\nSee (Schutt and O’Neil 2013, chap. 1) for more on this."
   },
   {
     "objectID": "slides/week01_slides_part2.html#the-data-science-workflow-1",
     "href": "slides/week01_slides_part2.html#the-data-science-workflow-1",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "The Data Science Workflow",
     "text": "The Data Science Workflow\n\n\n\n\n\n   \n\nstart\n\n Start   \n\ngather\n\nGather data     \n\nstart->gather\n\n    \n\nstore\n\nStore it          somewhere   \n\ngather->store\n\n           \n\nclean\n\nClean &         pre-process   \n\nstore->clean\n\n           \n\nbuild\n\nBuild a  dataset   \n\nclean->build\n\n           \n\neda\n\nExploratory     data analysis   \n\nbuild->eda\n\n    \n\nml\n\nMachine learning   \n\neda->ml\n\n           \n\ninsight\n\nObtain    insights   \n\nml->insight\n\n           \n\ncommunicate\n\nCommunicate results            \n\ninsight->communicate\n\n           \n\nend\n\n End   \n\ncommunicate->end\n\n   \n\n\n\n\n\n\n\n⚠️ Note that this is a simplified version of what happens in a data science project.  In practice, the process is not linear and there are many feedback loops."
   },
   {
     "objectID": "slides/week01_slides_part2.html#the-data-science-workflow-2",
     "href": "slides/week01_slides_part2.html#the-data-science-workflow-2",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "The Data Science Workflow",
     "text": "The Data Science Workflow\n\n\n\n\n\n   \n\nstart\n\n Start   \n\ngather\n\n Gather data     \n\nstart->gather\n\n    \n\nend\n\n End   \n\nstore\n\n Store it          somewhere   \n\ngather->store\n\n           \n\nclean\n\n Clean &         pre-process   \n\nstore->clean\n\n           \n\nbuild\n\n Build a  dataset   \n\nclean->build\n\n           \n\neda\n\n Exploratory     data analysis   \n\nbuild->eda\n\n    \n\nml\n\n Machine learning   \n\neda->ml\n\n           \n\ninsight\n\n Obtain    insights   \n\nml->insight\n\n           \n\ncommunicate\n\n Communicate results            \n\ninsight->communicate\n\n           \n\ncommunicate->end\n\n   \n\n\n\n\n\nIt is often said that 80% of the time and effort spent on a data science project goes to the tasks highlighted above."
   },
   {
     "objectID": "slides/week01_slides_part2.html#the-data-science-workflow-3",
     "href": "slides/week01_slides_part2.html#the-data-science-workflow-3",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "The Data Science Workflow",
     "text": "The Data Science Workflow\n\n\n\n\n\n   \n\nstart\n\n Start   \n\ngather\n\n Gather data     \n\nstart->gather\n\n    \n\nend\n\n End   \n\nstore\n\n Store it          somewhere   \n\ngather->store\n\n           \n\nclean\n\n Clean &         pre-process   \n\nstore->clean\n\n           \n\nbuild\n\n Build a  dataset   \n\nclean->build\n\n           \n\neda\n\n Exploratory     data analysis   \n\nbuild->eda\n\n    \n\nml\n\n Machine learning   \n\neda->ml\n\n           \n\ninsight\n\n Obtain    insights   \n\nml->insight\n\n           \n\ncommunicate\n\n Communicate results            \n\ninsight->communicate\n\n           \n\ncommunicate->end\n\n   \n\n\n\n\n\nThis course is about Machine Learning. So, in most examples and tutorials, we will assume that we already have good quality data."
   },
   {
     "objectID": "slides/week01_slides_part2.html#data-science-and-social-science",
     "href": "slides/week01_slides_part2.html#data-science-and-social-science",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Data Science and Social Science",
     "text": "Data Science and Social Science\n\nIn reality, data scientists work as a multidisciplinary group, collaborating towards a common goal.\nContent borrowed from ME314 Day 1\n\n\n\nSocial science: The goal is typically explanation\nData science: The goal is frequently prediction, or data exploration\nMany of the same methods are used for both objectives\n\n\n\n\nCheck (Shmueli 2010) for a discussion about this topic."
   },
   {
     "objectID": "slides/week01_slides_part2.html#what-does-it-mean-to-learn-something",
     "href": "slides/week01_slides_part2.html#what-does-it-mean-to-learn-something",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "What does it mean to learn something?",
     "text": "What does it mean to learn something?\n\n\n\n\n\n\nImage created with the DALL·E algorithm using the prompt: ‘35mm macro photography of a robot holding a question mark card, white background’"
   },
   {
     "objectID": "slides/week01_slides_part2.html#predicting-a-sequence-intuitively",
     "href": "slides/week01_slides_part2.html#predicting-a-sequence-intuitively",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Predicting a sequence intuitively",
     "text": "Predicting a sequence intuitively\n\n\nSay our data is the following simple sequence:  \\(6, 9, 12, 15, 18, 21, 24, ...\\) \nWhat number do you expect to come next? Why?\nIt is very likely that you guessed that \\(\\operatorname{next number}=27\\)\nWe spot that the sequence follows a pattern\nFrom this, we notice — we learn — that the sequence is governed by: \\(\\operatorname{next number} = \\operatorname{previous number} + 3\\)"
   },
   {
     "objectID": "slides/week01_slides_part2.html#predicting-a-sequence-formula",
     "href": "slides/week01_slides_part2.html#predicting-a-sequence-formula",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Predicting a sequence (formula)",
     "text": "Predicting a sequence (formula)\nThe next number is a function of the previous one:\n \\[\n\\operatorname{next number} = f(\\operatorname{previous number})\n\\]"
   },
   {
     "objectID": "slides/week01_slides_part2.html#predicting-a-sequence-generic-formula",
     "href": "slides/week01_slides_part2.html#predicting-a-sequence-generic-formula",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Predicting a sequence (generic formula)",
     "text": "Predicting a sequence (generic formula)\nIn general terms, we can represented it as:\n \\[\n\\operatorname{Y} = f(\\operatorname{X})\n\\] \n\nwhere:\n\n\\(Y\\): a quantitative response.  It goes by many names: dependent variable, response, target, outcome\n\\(X\\): a set of predictors,  also called inputs, regressors, covariates, features, independent variables.\n\\(f\\): the systematic information that \\(X\\) provides about \\(Y\\)"
   },
   {
     "objectID": "slides/week01_slides_part2.html#predicting-a-sequence-generic-formula-1",
     "href": "slides/week01_slides_part2.html#predicting-a-sequence-generic-formula-1",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Predicting a sequence (generic formula)",
     "text": "Predicting a sequence (generic formula)\nIn general terms, we can represented it as:\n\n\\[\n\\operatorname{Y} = f(\\operatorname{X}) + \\epsilon\n\\]\n\nwhere:\n\n\\(Y\\): the output\n\\(X\\): a set of inputs\n\\(f\\): the systematic information that \\(X\\) provides about \\(Y\\)\n\\(\\epsilon~~\\): a random error term\n\n\nIn reality, there is some error \\(\\epsilon\\) that cannot be reduced."
   },
   {
     "objectID": "slides/week01_slides_part2.html#approximating-f",
     "href": "slides/week01_slides_part2.html#approximating-f",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Approximating \\(f\\)",
     "text": "Approximating \\(f\\)\n\n\n\\(f\\) is almost always unknown\nWe aim to find an approximation (a model). Let’s call it \\(\\hat{f}\\)\nthat can then use it to predict values of \\(Y\\) for whatever \\(X\\).\nThat is: \\(\\hat{Y} = \\hat{f}(X)\\)"
   },
   {
     "objectID": "slides/week01_slides_part2.html#what-is-machine-learning",
     "href": "slides/week01_slides_part2.html#what-is-machine-learning",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "What is Machine Learning?",
     "text": "What is Machine Learning?\n\n\nStatistical learning, or Machine learning, refers to a set of approaches for estimating \\(f\\).\nEach algorithm you will learn on this course has its own way to determine \\(\\hat{f}\\) given data"
   },
   {
     "objectID": "slides/week01_slides_part2.html#types-of-learning",
     "href": "slides/week01_slides_part2.html#types-of-learning",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Types of learning",
     "text": "Types of learning\n\nIn general terms, there are two main ways to learn from data:\n\n\nSupervised Learning\n\nEach observation (\\(x_i\\)) has an outcome associated with it (\\(y_i\\)).\nYour goal is to find a \\(\\hat{f}\\) that produces \\(\\hat{Y}\\) value close to the true \\(Y\\) values.\nOur focus on 🗓️ Weeks 2, 3, 4 & 5.\n\n\nUnsupervised Learning\n\nYou have observations (\\(x_i\\)) but there is no response variable.\nYour goal is to find a \\(\\hat{f}\\), focused only on \\(X\\) that best represents the patterns in the data.\nOur focus on 🗓️ Weeks 7 & 8."
   },
   {
     "objectID": "slides/week01_slides_part2.html#data-structure",
     "href": "slides/week01_slides_part2.html#data-structure",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Data Structure",
     "text": "Data Structure\nLet’s go back to our example:\n\n\n\nOur simple sequence:\n \\(6, 9, 12, 15, 18, 21, 24\\) \n\n\n\nBecomes:\n\n\n\n\\(X\\)\n\\(Y\\)\n\n\n\n\n6\n9\n\n\n9\n12\n\n\n12\n15\n\n\n15\n18\n\n\n18\n21\n\n\n21\n24\n\n\n\n\n\n\nAnd for prediction:\n\n\n\n\n\n\n\n\\(X\\)\n\\(\\hat{Y}\\)\n\n\n\n\n24\n?\n\n\n\nwe present the \\(X\\) values and ask the fitted model to give us \\(\\hat{Y}\\).\n\n\n\n\nSame data but now in tabular format\na few other terms: - training data/test data - fitted model"
   },
   {
     "objectID": "slides/week01_slides_part2.html#the-ground-truth",
     "href": "slides/week01_slides_part2.html#the-ground-truth",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "The ground truth",
     "text": "The ground truth\nLet’s create a dataframe to illustrate the process of training an algorithm:\n\nlibrary(tidyverse)\n\ndf = tibble(X=as.integer(seq(6, 21, 3)),\n            Y=as.integer(seq(6+3, 21+3, 3)))\nprint(df)\n\n\n\n# A tibble: 6 × 2\n      X     Y\n  <int> <int>\n1     6     9\n2     9    12\n3    12    15\n4    15    18\n5    18    21\n6    21    24"
   },
   {
     "objectID": "slides/week01_slides_part2.html#adding-noise",
     "href": "slides/week01_slides_part2.html#adding-noise",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  7.77\n2     9    12 11.5 \n3    12    15 17.3 \n4    15    18 15.3 \n5    18    21 20.5 \n6    21    24 25.6"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  7.45\n2     9    12 12.6 \n3    12    15 17.5 \n4    15    18 19.6 \n5    18    21 22.0 \n6    21    24 23.6"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
     "href": "slides/week01_slides_part2.html#visualizing-the-data",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Visualizing the data",
     "text": "Visualizing the data"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data-w-noise",
     "href": "slides/week01_slides_part2.html#visualizing-the-data-w-noise",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Visualizing the data (w/ noise)",
     "text": "Visualizing the data (w/ noise)"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data-w-noise-1",
     "href": "slides/week01_slides_part2.html#visualizing-the-data-w-noise-1",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Visualizing the data (w/ noise)",
     "text": "Visualizing the data (w/ noise)\n\n\n\n\n\n\n\nWhich line is closer to the “truth”?"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data-w-noise-2",
     "href": "slides/week01_slides_part2.html#visualizing-the-data-w-noise-2",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Visualizing the data (w/ noise)",
     "text": "Visualizing the data (w/ noise)\n\n\n\n\n\n\n\nHow much error can we accept?"
   },
   {
     "objectID": "slides/week01_slides_part2.html#assessing-error",
     "href": "slides/week01_slides_part2.html#assessing-error",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  7.77  1.23     1.23 \n2     9    12 11.5   0.510    0.510\n3    12    15 17.3  -2.34     2.34 \n4    15    18 15.3   2.65     2.65 \n5    18    21 20.5   0.493    0.493\n6    21    24 25.6  -1.62     1.62 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.473941\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  7.45  1.55     1.55 \n2     9    12 12.6  -0.590    0.590\n3    12    15 17.5  -2.48     2.48 \n4    15    18 19.6  -1.63     1.63 \n5    18    21 22.0  -0.979    0.979\n6    21    24 23.6   0.403    0.403\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.271969\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
     "href": "slides/week01_slides_part2.html#measures-of-error",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "Measures of error",
     "text": "Measures of error\nThis is what we computed:\n\\[\n\\operatorname{MAE} = \\frac{\\sum_{i=1}^n{|(y_i + \\epsilon) - y_i|}}{n}\n\\]\n\n\nWe were able to compute this error because we knew what the ground truth \\(Y\\), we knew what its real value was.\nIt was only possible because it was a simulation, not real data.\nIn practice, we will almost never be able to assess the impact of \\(\\epsilon\\).\nWe will use this same way of thinking to assess how good and accurate our models are. 🔜"
   },
   {
     "objectID": "slides/week01_slides_part2.html#references",
     "href": "slides/week01_slides_part2.html#references",
-    "title": "🗓️ Week 01:Overview of core concepts",
+    "title": "🗓️ Week 01Overview of core concepts",
     "section": "References",
     "text": "References\n\n\nDavenport, Thomas. 2020. “Beyond Unicorns: Educating, Classifying, and Certifying Business Data Scientists.” Harvard Data Science Review 2 (2). https://doi.org/10.1162/99608f92.55546b4a.\n\n\nSchutt, Rachel, and Cathy O’Neil. 2013. Doing Data Science. First edition. Beijing ; Sebastopol: O’Reilly Media. https://ebookcentral.proquest.com/lib/londonschoolecons/detail.action?docID=1465965.\n\n\nShah, Chirag. 2020. A Hands-on Introduction to Data Science. Cambridge, United Kingdom ; New York, NY, USA: Cambridge University Press. https://librarysearch.lse.ac.uk/permalink/f/1n2k4al/TN_cdi_askewsholts_vlebooks_9781108673907.\n\n\nShmueli, Galit. 2010. “To Explain or to Predict?” Statistical Science 25 (3). https://doi.org/10.1214/10-STS330.\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
   },
@@ -971,5 +1020,82 @@
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "References",
     "text": "References\n\n\nAgresti, Alan. 2019. An Introduction to Categorical Data Analysis. Third edition. Wiley Series in Probability and Statistics. Hoboken, NJ: John Wiley & Sons.\n\n\nDeGroot, Morris H., and Mark J. Schervish. 2003. Probability and Statistics. 3. ed., international edition. Boston Munich: Addison-Wesley.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#default-yes-or-no",
+    "href": "slides/week03_slides_part2.html#default-yes-or-no",
+    "title": "🗓️ Week 03:Classifiers Part II",
+    "section": "Default: Yes or No?",
+    "text": "Default: Yes or No?\n\n\nWe have looked at how the probabilities (risk of default) change according to the value of predictors\nBut in practice we need to decide whether the risk is too high or tolerable\nIn our example, we might want to ask:\n\n\n\n“Will this person default on their credit card? YES or NO?”"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#default-yes-or-no-1",
+    "href": "slides/week03_slides_part2.html#default-yes-or-no-1",
+    "title": "🗓️ Week 03:Classifiers Part II",
+    "section": "Default: Yes or No?",
+    "text": "Default: Yes or No?\n\n\nHow would you classify the following customers?\n\n\nCode\nlibrary(tidyverse)\n\nfull_model <- \n  glm(default ~ ., data=ISLR2::Default, family=binomial)\n\nset.seed(40)\nsample_customers <- \n  ISLR2::Default %>% \n  slice(9986, 9908, 6848, 9762, 9979, 7438)\npred <- predict(full_model, sample_customers, type=\"response\")\n# Format it as percentage\nsample_customers$prediction <- \n  sapply(pred, function(x){sprintf(\"%.2f %%\", 100*x)})\nsample_customers\n\n\n  default student   balance   income prediction\n1      No      No  842.9494 39957.13     0.27 %\n2      No      No 1500.5721 39891.86    10.53 %\n3     Yes     Yes 1957.1203 18805.95    44.23 %\n4      No      No 1902.1499 35008.67    53.71 %\n5     Yes      No 2202.4624 47287.26    87.09 %\n6     Yes     Yes 2461.5070 11878.56    93.34 %\n\n\n\n\n\n\n\n\n\nImage created with the DALL·E algorithm using the prompt: ‘35mm macro photography of a robot holding a question mark card, white background’\n\n\nFull model expression: \\[\n\\hat{y} \\approxeq \\frac{e^{-10.87 - 0.65\\times\\text{student[Yes]} + 5.74 \\times 10^{-3}\\times\\text{balance} + 3\\times 10^{-6}\\times\\text{income}}}{1 + e^{-10.87 - 0.65\\times\\text{student[Yes]} + 5.74 \\times 10^{-3}\\times\\text{balance} + 3\\times 10^{-6}\\times\\text{income}}}\n\\]"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#default-yes-or-no-2",
+    "href": "slides/week03_slides_part2.html#default-yes-or-no-2",
+    "title": "🗓️ Week 03:Classifiers Part II",
+    "section": "Default: Yes or No?",
+    "text": "Default: Yes or No?\n\n\nHow would you classify the following customers?\n\n\nCode\nlibrary(tidyverse)\n\nfull_model <- \n  glm(default ~ ., data=ISLR2::Default, family=binomial)\n\nset.seed(40)\nsample_customers <- \n  ISLR2::Default %>% \n  slice(9986, 9908, 6848, 9762, 9979, 7438)\npred <- predict(full_model, sample_customers, type=\"response\")\n# Format it as percentage\nsample_customers$prediction <- \n  sapply(pred, function(x){sprintf(\"%.2f %%\", 100*x)})\nsample_customers\n\n\n  default student   balance   income prediction\n1      No      No  842.9494 39957.13     0.27 %\n2      No      No 1500.5721 39891.86    10.53 %\n3     Yes     Yes 1957.1203 18805.95    44.23 %\n4      No      No 1902.1499 35008.67    53.71 %\n5     Yes      No 2202.4624 47287.26    87.09 %\n6     Yes     Yes 2461.5070 11878.56    93.34 %\n\n\n\n\nIf we set our threshold \\(= 50\\%\\), we get the following confusion matrix:\n\n\n\n\n\nActual\n\n\n\n\n\nPredicted\nNo\nYes\n\n\nNo\n2\n1\n\n\nYes\n1\n2\n\n\n\n\n\n\nIf we set our threshold \\(= 40\\%\\), we get the following confusion matrix:\n\n\n\n\n\nActual\n\n\n\n\n\nPredicted\nNo\nYes\n\n\nNo\n2\n0\n\n\nYes\n1\n3\n\n\n\n\n\n\n\n\nWhich of the two is more accurate?"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#thresholds",
+    "href": "slides/week03_slides_part2.html#thresholds",
+    "title": "🗓️ Week 03:Classifiers Part II",
+    "section": "Thresholds",
+    "text": "Thresholds\n\nWhen making predictions about classes, we always have to make decisions.\nThresholds, applied to the predicted probability scores, are a way to decide whether to favour a particular class over another\n⏭️ Next, we will explore several metrics that can help us decide whether our classification model is good or bad."
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#confusion-matrix",
+    "href": "slides/week03_slides_part2.html#confusion-matrix",
+    "title": "🗓️ Week 03:Classifiers Part II",
+    "section": "Confusion Matrix",
+    "text": "Confusion Matrix\n\nLet’s take another look at the confusion matrix. We can think of the numbers in each cell as the following: \n\n\n\n\n\n\n\n\n\n\nActual\n\n\n\n\n\nPredicted\nNo\nYes\n\n\nNo\nTrue Negative (TN)\nFalse Negative (FN)\n\n\nYes\nFalse Positive (FP)\nTrue Positive (TP)\n\n\n\n\n\nIdeally, we would have no False Negatives and no False Positives but, of course, that is never the case."
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#classification-metrics-1",
+    "href": "slides/week03_slides_part2.html#classification-metrics-1",
+    "title": "🗓️ Week 03:Classifiers Part II",
+    "section": "Classification metrics",
+    "text": "Classification metrics\n\n\nIt is convenient to aggregate those quantities into a few other metrics\nTwo of the most common ones are called sensitivity and specificity \n\n\\[\n\\begin{align}\n\\text{Sensitivity} &= \\text{True Positive Rate (TPR)} = \\frac{TP}{P} \\\\\n\\text{Specificity} &= \\text{True Negative Rate (TNR)} = \\frac{TN}{N}\n\\end{align}\n\\]\n\n\nAnother common one is accuracy:\n\n\\[\n\\text{Accuracy} = \\frac{TP + TN}{P + N}\n\\]\n\n\nA good model has high sensitivity and high specificity and high accuracy.\n\n\n\nThere are many other ways to assess the results of a classification model"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#which-threshold-is-better",
+    "href": "slides/week03_slides_part2.html#which-threshold-is-better",
+    "title": "🗓️ Week 03:Classifiers Part II",
+    "section": "Which threshold is better?",
+    "text": "Which threshold is better?\n\n\n\n📝 Now, looking at the logistic regression model we built for the entire dataset, work out the sensitivity, specificity and accuracy of the following confusion matrices:\n\n\n\n\n\n\n\nPractice\n\n\n\n⏲️ 5 min to work out the math\n🗳️ Vote on your preferred threshold (on  Slack)\n\n\n\n\n\n\\(\\text{Threshold} = 50\\%\\):\n\n\n\n\nActual\n\n\n\n\n\nPredicted\nNo\nYes\n\n\nNo\n9627\n228\n\n\nYes\n40\n105\n\n\n\n\n\\(\\text{Threshold} = 40\\%\\):\n\n\n\n\nActual\n\n\n\n\n\nPredicted\nNo\nYes\n\n\nNo\n9588\n199\n\n\nYes\n79\n134"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#meet-the-roc-curve",
+    "href": "slides/week03_slides_part2.html#meet-the-roc-curve",
+    "title": "🗓️ Week 03:Classifiers Part II",
+    "section": "Meet the ROC curve",
+    "text": "Meet the ROC curve\n\n\n\nThe Receiver Operating Characteristic (ROC) curve is another way to assess the model.\nIt shows how sensitivity and specificity change as we vary the threshold from 0 to 1 (threshold not shown).\n\n\n\n\n\n\n\n\nAsk: how would an ideal curve look like?"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#generalisation-problems",
+    "href": "slides/week03_slides_part2.html#generalisation-problems",
+    "title": "🗓️ Week 03:Classifiers Part II",
+    "section": "Generalisation problems",
+    "text": "Generalisation problems\n\n\nThe data used to train algorithms is called training data\nOften, we want to use the fitted models to make predictions on new previously unseen data \n\n\n\n\n\n\n\nImportant\n\n\n⚠️ A model that performs well on training data will not necessarily perform well on new data ⚠️\n\n\n\n\n\nTo make a robust assessment of our model, we have to split the data in two:\n\nthe training data and\nthe test data\n\nWe do NOT use the test data to fit the model\nWe will come back to this next week, this is the topic of 🗓️ Week 04."
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#inappropriate-reliance-on-metrics",
+    "href": "slides/week03_slides_part2.html#inappropriate-reliance-on-metrics",
+    "title": "🗓️ Week 03:Classifiers Part II",
+    "section": "Inappropriate reliance on metrics",
+    "text": "Inappropriate reliance on metrics\n\n\nAccuracy can be very misleading when classes are imbalanced\nConsider the following model: \\(\\hat{y} = \\text{Yes}\\) (always)\n\nOnly \\(3\\%\\) of customers default on their credit cards\nTherefore, this model would have a \\(97\\%\\) accuracy!\nIt is correct ninety-seven percent of times. But is it a good model?\n\n🙅‍♂️ NO!\n\n\nSimilarly, you have to ask yourself about the usefulness of any other metric\n\nIs True Positive Rate more or less important than True Negative Rate for the classification problem at hand?\nWhy? Why not?\n\nUltimately, it boils down to how you plan to use this model afterwards."
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#references",
+    "href": "slides/week03_slides_part2.html#references",
+    "title": "🗓️ Week 03:Classifiers Part II",
+    "section": "References",
+    "text": "References\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/.\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
   }
 ]
