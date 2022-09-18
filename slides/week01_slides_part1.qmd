@@ -1,5 +1,4 @@
 ---
-
 subtitle: "DS202 Data Science for Social Scientists"
 title: "<font style='font-size:1em;'>🗓️ Week 01<br/> Structure of this course</font>"
 author: Dr. [Jon Cardoso Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva)
@@ -48,7 +47,7 @@ Sign up for DSI events at [lse.ac.uk/DSI/Events](https://www.lse.ac.uk/DSI/Event
 
 ::: columns
 ::: {.column width="30%"}
-![](/figures/LSE%20Data%20Science%20Institute.png)
+![](/figures/logos/LSE%20Data%20Science%20Institute.png)
 :::
 
 ::: {.column .incremental .smaller width="60%"}
@@ -107,21 +106,42 @@ DSI offer accessible introductions to Data Science:
 
 ## Who are you {.scrollable}
 
+--------------
+
 ### BSc Psychological and Behavioural Science
 
-::: aside
+::: footer
 Data extracted from the [UBPBS 2020/2021 degree regulation](https://www.lse.ac.uk/resources/regulations/2020_UBPBS.html).
 :::
 
-::: columns
-::: {.column width="100%"}
-![](/figures/week01/UBPBS_2020_21.png){width="90%"}
-:::
-:::
+![](/figures/week01/UBPBS_2020_21v2.png){width="100%"}
+
 
 ::: notes
 <mark class="todo"> Add the overlaid graph, showing the actual paths these students took.</mark>
 :::
+
+--------------
+
+### BSc in Politics and Economics
+
+::: footer
+Data extracted from the [UBPOLEC 2020/2021 degree regulation](https://www.lse.ac.uk/resources/regulations/2020_UBPOLEC.html).
+:::
+
+![](/figures/week01/UBPOLEC_2020_21.png){width="100%"}
+
+--------------
+
+### BSc in International Relations
+
+::: footer
+Data extracted from the [UBIR 2020/2021 degree regulation](https://www.lse.ac.uk/resources/regulations/2020_UBIR.html).
+:::
+
+![](/figures/week01/UBIR_2020_21.png){width="100%"}
+
+
 
 # Learning Objectives
 
@@ -244,9 +264,9 @@ Basic concepts of programming in `R` to recap:
 | **Supervised Learning**                                  |                  |
 | &nbsp;&nbsp;&nbsp;&nbsp;Simple and Multiple Linear Regression  <br/> &nbsp;&nbsp;&nbsp;&nbsp;Classifiers (Logistic Regression & Naive Bayes) <br/> &nbsp;&nbsp;&nbsp;&nbsp;Resampling methods <br/> &nbsp;&nbsp;&nbsp;&nbsp; Non-linear algorithms (SVM & tree-based models)           | Week 02 <br/> Week 03 <br/> Week 04 <br/> Week 05|
 | **Unsupervised Learning**                                |                  |
-| &nbsp;&nbsp;&nbsp;&nbsp;Principal Component Analysis (PCA) & Clustering <br/>&nbsp;&nbsp;&nbsp;&nbsp;Dimensionality Reduction (t-SNE & UMAP)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Week 07 <br/> Week 08|
+| &nbsp;&nbsp;&nbsp;&nbsp;Unsupervised Learning: Clustering <br/>&nbsp;&nbsp;&nbsp;&nbsp;Unsupervised Learning: PCA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Week 07 <br/> Week 08|
 | **Applications**                                         |                  |
-| &nbsp;&nbsp;&nbsp;&nbsp;Applications: Text as Data <br/>&nbsp;&nbsp;&nbsp; Applications: Topic Modelling <br/>&nbsp;&nbsp;&nbsp;  Applications: Social Media Data| Week 09 <br/> Week 10 <br/> Week 11 |
+| &nbsp;&nbsp;&nbsp;&nbsp;Applications: Predictive Modelling on Tabular Data<br/>&nbsp;&nbsp;&nbsp; Applications: Text as Data & Topic Modelling <br/>&nbsp;&nbsp;&nbsp;  Applications: Social Media Data| Week 09 <br/> Week 10 <br/> Week 11 |
 
 ## Structure of lectures 👨🏻‍:school:
 
