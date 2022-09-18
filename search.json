@@ -259,207 +259,207 @@
     "text": "Part II - Classifiers (Naive Bayes) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
   },
   {
-    "objectID": "slides/week01_slides_part1.html",
-    "href": "slides/week01_slides_part1.html",
-    "title": "LSE DS202 2022/23",
-    "section": "",
-    "text": "subtitle: “DS202 Data Science for Social Scientists” title: “🗓️ Week 01 Structure of this course” author: Dr. Jon Cardoso Silva institute: ‘LSE Data Science Institute’ date: 30 September 2022 date-meta: 30 September 2022 toc: true toc-depth: 1 toc-title: “What we will cover today” center-title-slide: false from: markdown+emoji format: revealjs: fig-responsive: true theme: simple slide-number: true mouse-wheel: false chalkboard: buttons: true preview-links: auto logo: /figures/logos/LSE Data Science Institute.png css: /css/styles_slides.css footer: ‘DS202 - Data Science for Social Scientists :robot: :juggling_person:’ —"
-  },
-  {
     "objectID": "slides/week01_slides_part1.html#the-data-science-institute",
     "href": "slides/week01_slides_part1.html#the-data-science-institute",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "The Data Science Institute",
     "text": "The Data Science Institute\n\n\n\n\n\nThis course is offered by the LSE Data Science Institute (DSI).\nDSI is the hub for LSE’s interdisciplinary collaboration in data science\n\n\n\n\nSign up for DSI events at lse.ac.uk/DSI/Events"
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-data-science-institute-1",
     "href": "slides/week01_slides_part1.html#the-data-science-institute-1",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "The Data Science Institute",
     "text": "The Data Science Institute\n\n\n\n\nActivities of interest to you:\n\nCIVICA Seminar Series\nCareers in Data Science\nSocial events\nIndustry “field trips”\nSummer projects\n\n\n\n\nSign up for DSI events at lse.ac.uk/DSI/Events"
   },
   {
     "objectID": "slides/week01_slides_part1.html#our-courses",
     "href": "slides/week01_slides_part1.html#our-courses",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Our courses",
-    "text": "Our courses\nDSI offer accessible introductions to Data Science:\n\n\n\nDS101\nFundamentals of  Data Science\n🎯 Focus:  theoretical concepts of data science\n📂 How:  reflections through reading and writing\n\n\n\nDS105\nData for  Data Scientists\n🎯 Focus: collection and handling of real data\n📂 How: hands-on coding exercises and a group project\n\n\n\nDS202\nData Science for  Social Scientists\n🎯 Focus: fundamental machine learning algorithms\n📂 How: practical use of ML techniques and metrics"
+    "text": "Our courses\nDSI offer accessible introductions to Data Science:\n\n\nDS101\nFundamentals of  Data Science\n🎯 Focus:  theoretical concepts of data science\n📂 How:  reflections through reading and writing\n\nDS105\nData for  Data Scientists\n🎯 Focus: collection and handling of real data\n📂 How: hands-on coding exercises and a group project\n\nDS202\nData Science for  Social Scientists\n🎯 Focus: fundamental machine learning algorithms\n📂 How: practical use of ML techniques and metrics"
   },
   {
     "objectID": "slides/week01_slides_part1.html#your-lecturer",
     "href": "slides/week01_slides_part1.html#your-lecturer",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Your lecturer",
     "text": "Your lecturer\n\n \n Also present the teaching assistants"
   },
   {
     "objectID": "slides/week01_slides_part1.html#who-are-you",
     "href": "slides/week01_slides_part1.html#who-are-you",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Who are you",
-    "text": "Who are you\n\nBSc Psychological and Behavioural Science\n\nData extracted from the UBPBS 2020/2021 degree regulation.\n\n\n\n\n\n\n\n Add the overlaid graph, showing the actual paths these students took."
+    "text": "Who are you"
   },
   {
     "objectID": "slides/week01_slides_part1.html#learning-objectives-cont.",
     "href": "slides/week01_slides_part1.html#learning-objectives-cont.",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Learning Objectives (cont.)",
     "text": "Learning Objectives (cont.)\n\n\nKnow how to evaluate and compare fitted models, and to improve model performance.\nUse applied computer programming, including the hands-on use of programming through course exercises.\nApply the methods learned to real data through hands-on exercises.\nIntegrate the insights from data analytics into knowledge generation and decision-making;"
   },
   {
     "objectID": "slides/week01_slides_part1.html#learning-objectives-cont.-1",
     "href": "slides/week01_slides_part1.html#learning-objectives-cont.-1",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Learning Objectives (cont.)",
     "text": "Learning Objectives (cont.)\n\nUnderstand an introductory framework for working with natural language (text) data using techniques of machine learning.\n\n\n\nLearn how data science methods have been applied to a particular domain of study (applications)."
   },
   {
     "objectID": "slides/week01_slides_part1.html#philosophy-of-this-course-cont.",
     "href": "slides/week01_slides_part1.html#philosophy-of-this-course-cont.",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Philosophy of this course (cont.)",
     "text": "Philosophy of this course (cont.)\n\nThis is an exciting research area, having important applications in science, industry and policy.\nMachine learning is a fundamental ingredient in the training of a modern data scientist.\n\n\nContent borrowed from ME314 Day 1"
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-basics-of-statistics",
     "href": "slides/week01_slides_part1.html#the-basics-of-statistics",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "The basics of statistics",
     "text": "The basics of statistics\nBasic concepts of Statistics you might want to recap:\n\n\nExpected value, mean, median, variance, standard deviation\nProbabilities and simple probability distributions\nTypes of data\n\ndiscrete vs continuous\ncategorical vs numerical vs ordinal"
   },
   {
     "objectID": "slides/week01_slides_part1.html#resources-stats",
     "href": "slides/week01_slides_part1.html#resources-stats",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Resources (Stats)",
     "text": "Resources (Stats)\nA few references that might be useful to read or skim through:\n\n(Warne 2018, chaps. 1-3,5,6,11-12)\n(Gelman, Hill, and Vehtari 2020, chaps. 1–4)\nIf you are a PBS student, you can revisit the content of PB130 (MT3, MT4, MT8-MT11)"
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-basics-of-r-programming",
     "href": "slides/week01_slides_part1.html#the-basics-of-r-programming",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "The basics of R programming",
     "text": "The basics of R programming\nBasic concepts of programming in R to recap:\n\n\ndata structures (vectors, matrices, data frames)\nhow to manipulate data (filter, subset, select)\nread/write data files (for example: CSV, JSON, TXT)\n(optional but encouraged) some knowledge tidyverse can give you a productive boost\n\nthe official website (tidyverse.org) has some good tutorials."
   },
   {
     "objectID": "slides/week01_slides_part1.html#resources-r",
     "href": "slides/week01_slides_part1.html#resources-r",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Resources (R)",
     "text": "Resources (R)\n\nCheck out “R for Data Science” (Wickham and Grolemund 2016, chaps. 1–21). The online version is free.\n“Statistical inference via data science” (Ismay and Kim 2020, chaps. 4–6) is another great free resource"
   },
   {
     "objectID": "slides/week01_slides_part1.html#what-if-i-struggle-with-r",
     "href": "slides/week01_slides_part1.html#what-if-i-struggle-with-r",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "‘What if I struggle with R’?",
     "text": "‘What if I struggle with R’?\n➡️ Our first lab (Week 02) is a recap of some basic R commands, plus some ggplot2.\n\n\nIf you are not confident with your R skills, I strongly encourage you invest in studying the basics in the next couple of weeks.\nContact LSE Digital Skills Lab to attend in-person workshops or self-paced online R courses."
   },
   {
     "objectID": "slides/week01_slides_part1.html#any-questions",
     "href": "slides/week01_slides_part1.html#any-questions",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Any questions?",
     "text": "Any questions?\n\n\n\n\n\n\nImage created with the DALL·E algorithm using the prompt: ‘35mm macro photography of a robot holding a question mark card, white background’"
   },
   {
     "objectID": "slides/week01_slides_part1.html#syllabus",
     "href": "slides/week01_slides_part1.html#syllabus",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Syllabus",
-    "text": "Syllabus\n\n\n\n\n\n\n\nIntro\n\n\n\n\n\n    Introduction, Context & Key Concepts\nWeek 01\n\n\nSupervised Learning\n\n\n\n    Simple and Multiple Linear Regression      Classifiers (Logistic Regression & Naive Bayes)      Resampling methods       Non-linear algorithms (SVM & tree-based models)\nWeek 02  Week 03  Week 04  Week 05\n\n\nUnsupervised Learning\n\n\n\n    Principal Component Analysis (PCA) & Clustering     Dimensionality Reduction (t-SNE & UMAP)         \nWeek 07  Week 08\n\n\nApplications\n\n\n\n    Applications: Text as Data     Applications: Topic Modelling     Applications: Social Media Data\nWeek 09  Week 10  Week 11"
+    "text": "Syllabus\n\n\n\n\n\n\n\nIntro\n\n\n\n\n\n    Introduction, Context & Key Concepts\nWeek 01\n\n\nSupervised Learning\n\n\n\n    Simple and Multiple Linear Regression      Classifiers (Logistic Regression & Naive Bayes)      Resampling methods       Non-linear algorithms (SVM & tree-based models)\nWeek 02  Week 03  Week 04  Week 05\n\n\nUnsupervised Learning\n\n\n\n    Unsupervised Learning: Clustering     Unsupervised Learning: PCA         \nWeek 07  Week 08\n\n\nApplications\n\n\n\n    Applications: Predictive Modelling on Tabular Data    Applications: Text as Data & Topic Modelling     Applications: Social Media Data\nWeek 09  Week 10  Week 11"
   },
   {
-    "objectID": "slides/week01_slides_part1.html#structure-of-lectures-school",
-    "href": "slides/week01_slides_part1.html#structure-of-lectures-school",
-    "title": "LSE DS202 2022/23",
-    "section": "Structure of lectures 👨🏻‍:school:",
-    "text": "Structure of lectures 👨🏻‍:school:\nOur lectures will be split in two parts:\n\n\nPart I (~ 50 min): Traditional exposition of theoretical content\nbreak (~ 10 min): Grab coffee :coffee: or relax :lotus_position:\nPart II (~ 50 min): Live demo\n\nTypically, an exploratory analysis or application of an algorithm\nFeel free to follow along in your own laptops."
+    "objectID": "slides/week01_slides_part1.html#structure-of-lectures",
+    "href": "slides/week01_slides_part1.html#structure-of-lectures",
+    "title": "🗓️ Week 01 Structure of this course",
+    "section": "Structure of lectures 👨🏻‍🏫",
+    "text": "Structure of lectures 👨🏻‍🏫\nOur lectures will be split in two parts:\n\n\nPart I (~ 50 min): Traditional exposition of theoretical content\nbreak (~ 10 min): Grab coffee ☕ or relax 🧘\nPart II (~ 50 min): Live demo\n\nTypically, an exploratory analysis or application of an algorithm\nFeel free to follow along in your own laptops."
   },
   {
-    "objectID": "slides/week01_slides_part1.html#structure-of-classes-woman_technologist",
-    "href": "slides/week01_slides_part1.html#structure-of-classes-woman_technologist",
-    "title": "LSE DS202 2022/23",
-    "section": "Structure of classes :woman_technologist:",
-    "text": "Structure of classes :woman_technologist:\n\n\nStudents will work on weekly, structured problem sets in the staff-led class sessions.\nTips to get the most of classes:\n\nBring your own laptops :computer: (most tablets are not suitable for programming)\nRead the recommended reading prior to the class\nSkim through the problem set before class"
+    "objectID": "slides/week01_slides_part1.html#structure-of-classes",
+    "href": "slides/week01_slides_part1.html#structure-of-classes",
+    "title": "🗓️ Week 01 Structure of this course",
+    "section": "Structure of classes 👩‍💻",
+    "text": "Structure of classes 👩‍💻\n\n\nStudents will work on weekly, structured problem sets in the staff-led class sessions.\nTips to get the most of classes:\n\nBring your own laptops 💻 (most tablets are not suitable for programming)\nRead the recommended reading prior to the class\nSkim through the problem set before class"
   },
   {
     "objectID": "slides/week01_slides_part1.html#class-groups",
     "href": "slides/week01_slides_part1.html#class-groups",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Class groups",
     "text": "Class groups\n Update the groups here once we hear back from LSE Timetables"
   },
   {
-    "objectID": "slides/week01_slides_part1.html#assessments-notebook_with_decorative_cover",
-    "href": "slides/week01_slides_part1.html#assessments-notebook_with_decorative_cover",
-    "title": "LSE DS202 2022/23",
-    "section": "Assessments :notebook_with_decorative_cover:",
-    "text": "Assessments :notebook_with_decorative_cover:\nThe breakdown of assessment for this class will be as follows:"
+    "objectID": "slides/week01_slides_part1.html#assessments",
+    "href": "slides/week01_slides_part1.html#assessments",
+    "title": "🗓️ Week 01 Structure of this course",
+    "section": "Assessments 📔",
+    "text": "Assessments 📔\nThe breakdown of assessment for this class will be as follows:"
   },
   {
-    "objectID": "slides/week01_slides_part1.html#assessments-notebook_with_decorative_cover-1",
-    "href": "slides/week01_slides_part1.html#assessments-notebook_with_decorative_cover-1",
-    "title": "LSE DS202 2022/23",
-    "section": "Assessments :notebook_with_decorative_cover:",
-    "text": "Assessments :notebook_with_decorative_cover:\n\n\nProblem sets (60%)\n\n\nSummative problem sets released on Weeks 5, 8 & 11.\nThese will have a similar style to the formative problem sets, a mix of R tasks and your written interpretation of the analyses.\nYou will have 4-6 days to submit your solutions.\nEach of the three summative problem sets is worth 20% of the final mark, and will be graded on a 100 point scale."
+    "objectID": "slides/week01_slides_part1.html#assessments-1",
+    "href": "slides/week01_slides_part1.html#assessments-1",
+    "title": "🗓️ Week 01 Structure of this course",
+    "section": "Assessments 📔",
+    "text": "Assessments 📔\n\nProblem sets (60%)\n\n\nSummative problem sets released on Weeks 5, 8 & 11.\nThese will have a similar style to the formative problem sets, a mix of R tasks and your written interpretation of the analyses.\nYou will have 4-6 days to submit your solutions.\nEach of the three summative problem sets is worth 20% of the final mark, and will be graded on a 100 point scale."
   },
   {
-    "objectID": "slides/week01_slides_part1.html#assessments-notebook_with_decorative_cover-2",
-    "href": "slides/week01_slides_part1.html#assessments-notebook_with_decorative_cover-2",
-    "title": "LSE DS202 2022/23",
-    "section": "Assessments :notebook_with_decorative_cover:",
-    "text": "Assessments :notebook_with_decorative_cover:\n\n\nTake-home exam (40%)\n\n\nAn open-book take-home exam, taken during the January exams period.\nExam questions will be comparable in style to the problem sets.\nThe exam questions will be released on Moodle on 5 January 2023.\nThe exam is due on 11 January at 4pm."
+    "objectID": "slides/week01_slides_part1.html#assessments-2",
+    "href": "slides/week01_slides_part1.html#assessments-2",
+    "title": "🗓️ Week 01 Structure of this course",
+    "section": "Assessments 📔",
+    "text": "Assessments 📔\n\nTake-home exam (40%)\n\n\nAn open-book take-home exam, taken during the January exams period.\nExam questions will be comparable in style to the problem sets.\nThe exam questions will be released on Moodle on 5 January 2023.\nThe exam is due on 11 January at 4pm."
   },
   {
     "objectID": "slides/week01_slides_part1.html#office-hours",
     "href": "slides/week01_slides_part1.html#office-hours",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Office hours",
     "text": "Office hours\n\n\nIt is probably a good idea to book office hours if:\n\nyou struggled with a technical or theoretical aspect of a problem set in the previous week,\nyou have queries about careers in data science,\nyou want guidance in how to apply data science to other things you are studying outside this course.\n\nCome prepared. You only have 15 minutes.\nAsk for help sooner rather than later.\nBook slots via StudentHub up to 12 hours in advance."
   },
   {
     "objectID": "slides/week01_slides_part1.html#communication",
     "href": "slides/week01_slides_part1.html#communication",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Communication",
-    "text": "Communication\n\n\nJoin our Slack group:  add link to slack\nUse the public Slack channels to talk to share links, content (or memes) with your colleagues.\nOur teaching team will dedicate some time during the week to answer questions or other interactions on Slack.\nReserve :email: e-mail for formal requests: extensions, deferrals, etc.\n\nNo need to e-mail to inform you will skip a class, for example."
+    "text": "Communication\n\n\nJoin our Slack group:  add link to slack\nUse the public Slack channels to talk to share links, content (or memes) with your colleagues.\nOur teaching team will dedicate some time during the week to answer questions or other interactions on Slack.\nReserve 📧 e-mail for formal requests: extensions, deferrals, etc.\n\nNo need to e-mail to inform you will skip a class, for example."
   },
   {
     "objectID": "slides/week01_slides_part1.html#any-questions-1",
     "href": "slides/week01_slides_part1.html#any-questions-1",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Any questions?",
     "text": "Any questions?\n\n\n\n\n\n\nImage created with the DALL·E algorithm using the prompt: ‘35mm macro photography of a robot holding a question mark card, white background’"
   },
   {
     "objectID": "slides/week01_slides_part1.html#we-changed-how-we-consume-music",
     "href": "slides/week01_slides_part1.html#we-changed-how-we-consume-music",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "We changed how we consume music 🎧",
     "text": "We changed how we consume music 🎧\n\n\n\n\n\n\nTo interact with this plot, check reference (Fischer-Baum 2017) at the end of this presentation."
   },
   {
     "objectID": "slides/week01_slides_part1.html#we-changed-how-we-consume-video",
     "href": "slides/week01_slides_part1.html#we-changed-how-we-consume-video",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "We changed how we consume video 🎞️",
     "text": "We changed how we consume video 🎞️\n\n\n\n\n\n\nTo interact with this plot, check reference (Fischer-Baum 2017) at the end of this presentation."
   },
   {
     "objectID": "slides/week01_slides_part1.html#smartphones-are-a-very-recent-thing",
     "href": "slides/week01_slides_part1.html#smartphones-are-a-very-recent-thing",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "Smartphones 📱 are a very recent thing",
     "text": "Smartphones 📱 are a very recent thing\n\n\n\n\n\n\nTo interact with this plot, check reference (Fischer-Baum 2017) at the end of this presentation."
   },
   {
     "objectID": "slides/week01_slides_part1.html#we-spend-a-lot-more-time-connected",
     "href": "slides/week01_slides_part1.html#we-spend-a-lot-more-time-connected",
-    "title": "LSE DS202 2022/23",
+    "title": "🗓️ Week 01 Structure of this course",
     "section": "We spend a lot more time connected",
-    "text": "We spend a lot more time connected\n\n\n\n\n… and our social media habits keep on changing\n\n💡 Move the slider to explore the chart"
+    "text": "We spend a lot more time connected"
+  },
+  {
+    "objectID": "slides/week01_slides_part1.html#references",
+    "href": "slides/week01_slides_part1.html#references",
+    "title": "🗓️ Week 01 Structure of this course",
+    "section": "References",
+    "text": "References\n\n\nFischer-Baum, Reuben. 2017. “What ‘Tech World’ Did You Grow up In?” Washington Post. https://www.washingtonpost.com/graphics/2017/entertainment/tech-generations/.\n\n\nGelman, Andrew, Jennifer Hill, and Aki Vehtari. 2020. Regression and Other Stories. 1st ed. Cambridge University Press. https://doi.org/10.1017/9781139161879.\n\n\nIsmay, Chester, and Albert Young-Sun Kim. 2020. Statistical Inference via Data Science: A ModernDive into R and the Tidyverse. Chapman & Hall/CRC the R Series. Boca Raton: CRC Press / Taylor & Francis Group. https://moderndive.com/.\n\n\nKolawole, Emi. 2013. “About Those 2005 and 2013 Photos of the Crowds in St. Peter’s Square.” Washington Post. http://wapo.st/WKKTMh.\n\n\nWarne, Russell T. 2018. Statistics for the Social Sciences: A General Linear Model Approach. https://www.cambridge.org/highereducation/books/statistics-for-the-social-sciences/716FF25785A6154CC6822D067A959445.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. First edition. Sebastopol, CA: O’Reilly. https://r4ds.had.co.nz/.\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
   },
   {
     "objectID": "slides/week01_slides_part2.html#data-science-is",
@@ -585,7 +585,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  6.79\n2     9    12 11.6 \n3    12    15 14.8 \n4    15    18 15.5 \n5    18    21 21.9 \n6    21    24 24.5"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  11.1\n2     9    12  11.7\n3    12    15  14.8\n4    15    18  17.9\n5    18    21  21.1\n6    21    24  22.4"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -620,7 +620,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  6.79  2.21     2.21 \n2     9    12 11.6   0.421    0.421\n3    12    15 14.8   0.190    0.190\n4    15    18 15.5   2.47     2.47 \n5    18    21 21.9  -0.860    0.860\n6    21    24 24.5  -0.544    0.544\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.115533\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY   error absError\n  <int> <int> <dbl>   <dbl>    <dbl>\n1     6     9  11.1 -2.09     2.09  \n2     9    12  11.7  0.325    0.325 \n3    12    15  14.8  0.197    0.197 \n4    15    18  17.9  0.146    0.146 \n5    18    21  21.1 -0.0538   0.0538\n6    21    24  22.4  1.63     1.63  \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.7404593\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
