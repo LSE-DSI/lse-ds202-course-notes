@@ -1,12 +1,10 @@
 ---
 title: "👨‍🏫 Week 01 - Slides"
-date: 5 September 2022
-date-meta: 5 September 2022
+date: 19 September 2022
+date-meta: 19 September 2022
 ---
 
 ## Part I - Introduction (45-50 min)
-
-<mark class="todo"></mark>
 
 Either click on the slide area below or click [here](/slides/week01_slides_part1.qmd) to view it in fullscreen.
 Use your keypad to navigate the slides.
