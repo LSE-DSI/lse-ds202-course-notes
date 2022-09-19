@@ -99,10 +99,64 @@ DSI offer accessible introductions to Data Science:
 :::
 :::
 
-## Your lecturer
+## Your lecturer {.smaller}
 
--   <mark class="todo"> </mark>
--   <mark class="todo"> Also present the teaching assistants </mark>
+![](/figures/people/jon.jpeg){.absolute width="20%" left="15%" top="28.5%"}
+
+::: columns
+
+::: {.column width="40%"}
+:::
+
+::: {.column width="60%"}
+<br/>
+<br/>
+
+**Dr. Jonathan Cardoso-Silva**
+
+- PhD in Computer Science
+- Background: Computer Science,Engineering,Data Science
+- Research: 
+    - Networks
+    - Optimisation
+    - Machine Learning applications
+    - Data Science Workflow
+
+:::
+
+:::
+
+## Teaching Assistants {.smaller}
+
+::: columns
+
+::: {.column style="width: 30%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-left:0.5%;padding:1%;"}
+![](/figures/people/Anton.jpg){fig-align="left" fig-alt="Photo of Anton Boichenko" width="5em"}  
+**[Anton Boichenko](http://boychenko.pro/)** <br/>
+_Guest Teacher_<br/>
+Developer at Decoded
+<br/>
+<br/>
+<br/>
+:::
+
+::: {.column style="width: 30%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-left:0.5%;padding:1%;"}
+![](/figures/people/Xiaowei.png){fig-align="left" fig-alt="Photo of Xiaowei Gao" width="5em"}  
+**[Xiaowei Gao](https://github.com/UCLWilson)** <br/>
+_Guest Teacher_<br/>
+PhD Student at KCL in Health Informatics
+<br/>
+<br/>
+:::
+
+::: {.column style="width: 30%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-left:0.5%;padding:1%;"}
+![](/figures/people/Yijun.jpg){fig-align="left" fig-alt="Photo of Yijun Wang" width="5em"}  
+**[Yijun Wang](https://www.kcl.ac.uk/people/yijun-wang)** <br/>
+_Guest Teacher_<br/>
+PhD Student at UCL Centre for Advanced Spatial Analysis
+:::
+
+:::
 
 ## Who are you {.scrollable}
 
@@ -292,7 +346,41 @@ Our lectures will be split in two parts:
 
 ## Class groups
 
-<mark class="todo"> Update the groups here once we hear back from LSE Timetables</mark>
+<br/>
+
+::: columns
+
+::: {.column style="width: 29%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:1%;padding:1.5%;font-size:0.8em;"}
+**Group 01**
+
+- 📆 Mondays 
+- ⌚ 09:00 — 10:30
+- 📍 PAN.1.03
+:::
+
+::: {.column style="width: 29%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:1%;padding:1.5%;font-size:0.8em;"}
+**Group 02**
+
+- 📆 Mondays 
+- ⌚ 10:30 — 12:00
+- 📍 PAN.1.03
+:::
+
+::: {.column style="width: 29%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:1%;padding:1.5%;font-size:0.8em;"}
+**Group 03**
+
+- 📆 Mondays 
+- ⌚ 13:00 — 14:30
+- 📍 MAR.1.09
+:::
+
+
+:::
+
+::: footer
+🗺️ Check [LSE campus map](https://www.lse.ac.uk/lse-information/campus-map)
+:::
+
 
 ## Assessments :notebook_with_decorative_cover:
 
@@ -339,7 +427,7 @@ The breakdown of assessment for this class will be as follows:
 ## Communication
 
 ::: incremental
--   Join our Slack group: <mark class="todo"> add link to slack</mark>
+-   Join our Slack group (more info [here](/main/communication.html)).
 -   Use the public Slack channels to talk to share links, content (or *memes*) with your colleagues.
 -   Our teaching team will dedicate some time during the week to answer questions or other interactions on Slack.
 -   Reserve :email: e-mail for **formal requests**: extensions, deferrals, etc.
