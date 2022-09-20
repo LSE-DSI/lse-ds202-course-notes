@@ -1,0 +1,61 @@
+---
+title: "📝 Week 03 - Formative homework"
+author: Yijun Wang
+date: 19 September 2022
+date-meta: 19 September 2022
+---
+
+##  🔑 Solutions to formative homework
+
+1. Fit a multiple regression model to predict `Sales` using `Price`, `Urban`, and `US`.
+
+    ```r
+    > library(ISLR2)
+    > lm.fit <- lm(Sales ~ Price + Urban + US, data = Carseats)
+    > summary(lm.fit)
+    ``` 
+
+2. Provide an interpretation of each coefficient in the model. Be careful—some of the variables in the model are qualitative!
+   
+   β<sub>1</sub>: Holding Urban and US fixed, the Sales decrease 54.459 units on average when the Price company charges for car seats at each site increases 1000 units.
+
+   β<sub>2</sub>: Holding Price and US fixed, the Sales decrease 0.021916 units on average when the store is in urban area.
+
+   β<sub>3</sub>: Holding Price and Urban fixed, the Sales increase 1.200573 units on average when the store is in US.
+
+3. Write out the model in equation form, being careful to handle the qualitative variables properly.
+   
+   Sales = β<sub>0</sub> + β<sub>1</sub> x Price + β<sub>2</sub> + β<sub>3</sub>, when the store is in urban and in US
+
+   Sales = β<sub>0</sub> + β<sub>1</sub> x Price + β<sub>3</sub>, when the store is not in urban and but in US
+
+   Sales = β<sub>0</sub> + β<sub>1</sub> x Price + β<sub>2</sub>, when the store is in urban and but not in US
+
+   Sales = β<sub>0</sub> + β<sub>1</sub> x Price, when the store is not in urban and not in US
+
+4. For which of the predictors can you reject the null hypothesis H<sub>0</sub>: β<sub>j</sub> = 0?
+
+   From the p-values of t-test, we could reject the null hypothesis H<sub>0</sub>: β<sub>1</sub> = 0 for the predictor `Price` and the null hypothesis H<sub>0</sub>: β<sub>3</sub> = 0 for the predictor `US`. 
+
+5. On the basis of your response to the previous question, fit a smaller model that only uses the predictors for which there is evidence of association with the outcome.
+
+    ```r
+    > lm.fit1 <- lm(Sales ~ Price + US, data = Carseats)
+    > summary(lm.fit1)
+    ``` 
+
+6. How well do the models in question 1 and question 5 fit the data?
+
+   Neither model fits the data well according to the small value of R<sup>2</sup> and Adjusted R<sup>2</sup>. It means that the predictors included in both models can only interpret a small part of the change pattern of the response. 
+
+7. Using the model from question 5, obtain 95 % confidence intervals for the coefficient(s).
+   
+    ```r
+    > confint(lm.fit1)
+        2.5 %      97.5 %
+    (Intercept) 11.79032020 14.27126531
+    Price       -0.06475984 -0.04419543
+    USYes        0.69151957  1.70776632
+    ``` 
+
+    95% confidence interval for β<sub>0</sub> = [11.79032020, 14.27126531]; 95% confidence interval for β<sub>1</sub> = [-0.06475984 -0.04419543]; 95% confidence interval for β<sub>2</sub> = [0.69151957  1.70776632].

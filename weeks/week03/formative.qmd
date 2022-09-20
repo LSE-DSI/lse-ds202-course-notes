@@ -1,0 +1,26 @@
+---
+title: "📝 Week 03 - Formative homework"
+author: Yijun Wang
+date: 19 September 2022
+date-meta: 19 September 2022
+---
+
+##  🎯 Questions
+
+This question should be answered using the `Carseats` data set in `ISLR2` package.
+
+1. Fit a multiple regression model to predict `Sales` using `Price`, `Urban`, and `US`.
+
+2. Provide an interpretation of each coefficient in the model. Be careful—some of the variables in the model are qualitative!
+
+3. Write out the model in equation form, being careful to handle the qualitative variables properly.
+
+4. For which of the predictors can you reject the null hypothesis H<sub>0</sub>: β<sub>j</sub> = 0?
+
+5. On the basis of your response to the previous question, fit a smaller model that only uses the predictors for which there is evidence of association with the outcome.
+
+6. How well do the models in question 1 and question 5 fit the data?
+
+7. Using the model from question 5, obtain 95 % confidence intervals for the coefficient(s).
+
+8. Use the `*` and `:` symbols to fit linear regression models with interaction effects:

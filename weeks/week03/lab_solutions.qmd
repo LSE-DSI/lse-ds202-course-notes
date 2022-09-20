@@ -1,0 +1,147 @@
+---
+title: "💻 Week 03 - Lab Roadmap (90 min)"
+author: Yijun Wang
+date: 19 September 2022
+date-meta: 19 September 2022
+---
+
+## 🔑 Solutions to exercises
+
+1. Use the `lm()` function to perform a simple linear regression，and use the `summary()` function to print the results:
+
+    ```r
+    > library(ISLR2)
+    > Auto <- na.omit(Auto)
+    > lm.fit <- lm(mpg ~ horsepower, data = Auto)
+    > summary(lm.fit)
+    
+    Call:
+    lm(formula = mpg ~ horsepower, data = Auto)
+
+    Residuals:
+         Min       1Q   Median       3Q      Max 
+    -13.5710  -3.2592  -0.3435   2.7630  16.9240 
+
+    Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+    (Intercept) 39.935861   0.717499   55.66   <2e-16 ***
+    horsepower  -0.157845   0.006446  -24.49   <2e-16 ***
+    ---
+     Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+    Residual standard error: 4.906 on 390 degrees of freedom
+    Multiple R-squared:  0.6059,    Adjusted R-squared:  0.6049 
+    F-statistic: 599.7 on 1 and 390 DF,  p-value: < 2.2e-16
+    ```
+
+    Regarding to the p-values of t-test and F-test, there is a strong relationship between the predictor `horsepower` and the reponse `mpg`. From the sign of coefficients, the relationship between the predicator and the response is negative. Using the function `predict()` to predict the value of reponse and the confidence interval:
+
+    ```r
+    > predict(lm.fit, data.frame(horsepower = 98), interval = "confidence")
+           fit      lwr      upr
+    1 24.46708 23.97308 24.96108
+    ``` 
+    
+    Therefore, the predicted `mpg` associated with a `horsepower` of 98 is 24.47, and the associated 95 % confidence interval is [23.97308, 24.96108].
+
+2. Use the function `plot()` and `abline()`:
+
+    ```r
+    > attach(Auto)
+    > plot(mpg, horsepower, ylim = c(0, 250))
+    > abline (lm.fit, lwd = 3, col = "red")
+    > dev.off()
+    ``` 
+
+3. Using `plot()` function to produce diagnostic plots:
+
+    ```r
+    > par(mfrow = c(2, 2))
+    > plot (lm.fit)
+    > dev.off()
+    ```
+
+   By observing four diagnostic plots, we could find non-linear patttern in residual plots. The quadratic trend of the residuals could be a problem. Then we plot studentized residuals to identify outliers:
+
+    ```r
+    > plot(predict(lm.fit), rstudent(lm.fit))
+    > dev.off()
+    ```
+    
+    There are possible outliers as seen in the plot of studentized residuals because there are data with a value greater than 3.
+
+4. Use the `pairs()` function to produce a scatterplot matrix:
+
+    ```r
+    > pairs(Auto)
+    > dev.off()
+    ```
+
+5. Use the `cor()` function to compute the matrix of correlations between the variables while excluding the name variable:
+
+    ```r
+    > cor(subset(Auto, select = -name))
+    ```
+
+6. Use the `lm()` function to perform a multiple linear regression，and use the `summary()` function to print the results:
+
+    ```r
+    > lm.fit1 <- lm(mpg ~ . -name, data = Auto)
+    > summary (lm.fit1)
+    
+    Call:
+    lm(formula = mpg ~ . - name, data = Auto)
+
+    Residuals:
+        Min      1Q  Median      3Q     Max 
+    -9.5903 -2.1565 -0.1169  1.8690 13.0604 
+
+    Coefficients:
+                   Estimate Std. Error t value Pr(>|t|)    
+    (Intercept)  -17.218435   4.644294  -3.707  0.00024 ***
+    cylinders     -0.493376   0.323282  -1.526  0.12780    
+    displacement   0.019896   0.007515   2.647  0.00844 ** 
+    horsepower    -0.016951   0.013787  -1.230  0.21963    
+    weight        -0.006474   0.000652  -9.929  < 2e-16 ***
+    acceleration   0.080576   0.098845   0.815  0.41548    
+    year           0.750773   0.050973  14.729  < 2e-16 ***
+    origin         1.426141   0.278136   5.127 4.67e-07 ***
+    ---
+    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+    Residual standard error: 3.328 on 384 degrees of freedom
+    Multiple R-squared:  0.8215,    Adjusted R-squared:  0.8182 
+    F-statistic: 252.4 on 7 and 384 DF,  p-value: < 2.2e-16
+    ```
+    
+    i. Yes, there is a relatioship between the predictors and the response by testing the null hypothesis of whether all the regression coefficients are zero. The F-statistic is far from 1 (with a small p-value), indicating evidence against the null hypothesis.
+
+    ii. Obverving the p-values associated with each predictor’s t-statistic, we see that displacement, weight, year, and origin have a statistically significant relationship, while cylinders, horsepower and acceleration do not.
+
+    iii. The regression coefficient for year, 0.75, suggests that for a given amount of the other predicators, every year mpg increases additional 0.75 unit. In other words, cars become more fuel efficient every year by almost 1 mpg/year.
+
+7. Use the `plot()` function to produce diagnostic plots:
+
+    ```r
+    > par(mfrow = c(2, 2))
+    > plot (lm.fit1)
+    > dev.off()
+    ```
+    
+     We could also find from the leverage plot, point 14 appears to have high leverage, although not a high magnitude residual. Besides, the quadratic trend of the residuals could be a problem. Maybe linear regression is not the best fit for this prediction. Then we plot studentized residuals to identify outliers:
+
+    ```r
+    > plot(predict(lm.fit1), rstudent(lm.fit1))
+    > dev.off()
+    ```
+
+    There are possible outliers as seen in the plot of studentized residuals because there are data with a value greater than 3.
+
+8. Use the `*` and `:` symbols to fit linear regression models with interaction effects:
+
+    ```r
+    > lm.fit2 <-  lm(mpg ~ cylinders * displacement + displacement * weight, data = Auto)
+    > summary(lm.fit2)
+    ```
+
+    Interaction between `displacement` and `weight` is statistically signifcant, while the interaction between `cylinders` and `displacement` is not.
