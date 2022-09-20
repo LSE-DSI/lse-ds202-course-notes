@@ -109,7 +109,7 @@
     "href": "weeks/week01/appendix.html#lse-digital-skills-lab",
     "title": "🔖 Week 01 - Appendix",
     "section": "LSE Digital Skills Lab",
-    "text": "LSE Digital Skills Lab\nLSE Digital Skills Lab offers R and python workshops during Term time and they will also give DSI students access to self-paced programming courses via Dataquest.\nIf you want to take the self-paced course to revise basic R programming, sign up via this link.\nKeep an eye on the following pages for news of the in-person workshops:\n\nR workshops\nPython workshops"
+    "text": "LSE Digital Skills Lab\nLSE Digital Skills Lab offers R and python workshops during Term time and they will also give DSI students access to self-paced programming courses via Dataquest.\nFollow the links below to take the pre-sessional self-paced courses:\n\nR for Data Science Pre-sessional Course 22/23\n\nAlso, keep an eye on the following pages for news of the in-person workshops:\n\nR workshops"
   },
   {
     "objectID": "weeks/week01/appendix.html#other-resources",
@@ -592,7 +592,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  7.00\n2     9    12 12.0 \n3    12    15 14.2 \n4    15    18 18.1 \n5    18    21 21.5 \n6    21    24 27.5"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.55\n2     9    12 11.8 \n3    12    15 13.5 \n4    15    18 15.8 \n5    18    21 21.8 \n6    21    24 25.9"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -627,7 +627,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY   error absError\n  <int> <int> <dbl>   <dbl>    <dbl>\n1     6     9  7.00  2.00     2.00  \n2     9    12 12.0  -0.0401   0.0401\n3    12    15 14.2   0.770    0.770 \n4    15    18 18.1  -0.130    0.130 \n5    18    21 21.5  -0.497    0.497 \n6    21    24 27.5  -3.45     3.45  \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.14837\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  9.55 -0.548    0.548\n2     9    12 11.8   0.185    0.185\n3    12    15 13.5   1.47     1.47 \n4    15    18 15.8   2.20     2.20 \n5    18    21 21.8  -0.774    0.774\n6    21    24 25.9  -1.93     1.93 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.185339\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
