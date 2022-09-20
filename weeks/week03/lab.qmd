@@ -1,13 +1,12 @@
 ---
 title: "💻 Week 03 - Lab Roadmap (90 min)"
-date: 19 September 2022
-date-meta: 19 September 2022
+date: 20 September 2022
+date-meta: 20 September 2022
 from: markdown+emoji
+author: Yijun Wang
 ---
 
-<mark class="todo"></mark>
-
-This week, we will fit simple linear regression model and multiple linear regression model in R, and learn to interpret the R output. We will apply theoretical model to practical cases and deal with some potential problems.
+This week, we will fit simple and multiple linear regression models in R and learn to interpret the R output. We will apply this method to practical cases and deal with problems that commonly arise during this process.
 
 <details><summary>Step 1: Simple linear regression (15 min)</summary>
 
@@ -15,7 +14,7 @@ This week, we will fit simple linear regression model and multiple linear regres
 
 We will follow the instructions below step by step together while answering whatever questions you might encounter along the way.
 
-1. Install and load the `ISLR2` package which contains a very large collection of data sets and functions.
+1. Install and load the `ISLR2` package, which contains a large collection of data sets and functions.
 
     ```r
     > install.packages("ISLR2").
@@ -24,7 +23,7 @@ We will follow the instructions below step by step together while answering what
     
     The function `install.packages()` is used to download packages that don't come with R. This installation only needs to be done the first time you use a package. However, the `library()` function must be called within each R session to load packages.
 
-2.  Use the `Boston` data set in the `ISLR2` library. It records `medv` (median house value) for 506 census tracts in Boston. Have a look at first few rows of the Boston data set:
+2. Use the `Boston` data set in the `ISLR2` library. It records `medv` (median house value) for 506 census tracts in Boston. Have a look at the first few rows of the Boston data set:
 
     ```r
     > head (Boston)
@@ -37,9 +36,9 @@ We will follow the instructions below step by step together while answering what
     6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7  5.21 28.7
     ```
 
-    We will seek to predict `medv` using 12 predictors such as `rm` (average number of rooms per house), `age` (average age of houses), and `lstat` (percent of households with low socioeconomic status). To find out more about the data set, we can type `?Boston`.
+    We want to predict `medv` using the available predictors, such as `rm` (average number of rooms per house), `age` (average age of houses), and `lstat` (percentage of households with low socioeconomic status). To find out more about the data set, we can type `?Boston`.
 
-3.  Fit a simple linear regression `lm()` model, with `medv` as the response and `lstat` as the predictor:
+3. Fit a simple linear regression `lm()` model, with `medv` as the response and `lstat` as the predictor:
 
     ```r
     > lm.fit <- lm(medv ~ lstat , data = Boston)
@@ -47,14 +46,14 @@ We will follow the instructions below step by step together while answering what
 
     or 
 
-    ```r
+   ```r
     > attach (Boston)
     > lm.fit <- lm(medv ~ lstat)
     ```
 
-    The basic syntax is `lm(y ∼ x, data)`, where `y` is the response, `x` is the predictor, and `data` is the data set in which these two variables are kept.
+    The basic syntax is `lm(y ∼ x, data)`, where `y` is the response, `x` is the predictor, and `data` is the data set in which we keep these two variables.
 
-4.  Use the function `summary()` to understand detailed information about the model lm.fit we jsut fitted, like p-values and standard errors for the coefficients, as well as the R<sup>2</sup> statistic and F-statistic:
+4. Use the function `summary()` to understand detailed information about the model lm.fit we just fitted, like p-values and standard errors for the coefficients, as well as the R<sup>2</sup> statistic and F-statistic:
 
     ```r
     > summary(lm.fit)
@@ -78,9 +77,9 @@ We will follow the instructions below step by step together while answering what
     F-statistic: 601.6 on 1 and 504 DF,  p-value: < 2.2e-16
     ```
 
-    Because `lm.fit` is a simple linear regression model, there are only two coefficients: &beta;<sub>0</sub> and &beta;<sub>1</sub>. The Coefficients in the output shows the estimated value, standard error, t-test result and p-value for t-test of &beta;<sub>0</sub> and &beta;<sub>1</sub>. The model fit could be measured by the RSE and R<sup>2</sup> in the output.
+    Because `lm.fit` is a simple linear regression model, there are only two coefficients: &beta;<sub>0</sub> and &beta;<sub>1</sub>. The Coefficients in the output shows the estimated value, standard error, t-test result and p-value for t-test of &beta;<sub>0</sub> and &beta;<sub>1</sub>. The goodness-of-fit of the model can be measured by the RSE and R<sup>2</sup> in the output.
 
-    We can also use `lm.fit$coefficients` or `coef(lm.fit)` to check the coeficients of the regression model:
+    We can also use `lm.fit$coefficients` or `coef(lm.fit)` to check the coefficients of the regression model:
 
     ```r
     > coef(lm.fit)
@@ -108,9 +107,9 @@ We will follow the instructions below step by step together while answering what
     3 20.30310 19.73159 20.87461
     ```
 
-   For instance, the 95 % confidence interval associated with a lstat value of 10 is (24.47, 25.63). As expected, the confidence is centered around the same point (a predicted value of 25.05 for medv when lstat equals 10).
+   For instance, the 95 % confidence interval associated with a `lstat` value of 10 is (24.47, 25.63). As expected, the confidence is centred around the same point (a predicted value of 25.05 for `medv` when `lstat=10`).
 
-7. Plot medv and lstat along with the least squares regression line using the `plot()` and `abline()` functions.:
+7. Plot `medv` and `lstat` along with the least squares regression line using the `plot()` and `abline()` functions.:
 
     ```r
     > plot(Boston$lstat, Boston$medv, col = "red", pch = "+")
@@ -119,6 +118,8 @@ We will follow the instructions below step by step together while answering what
     ```
 
 </details>
+
+
 
 <details><summary>Step 2: Multiple linear regression (10 min)</summary>
 
@@ -193,11 +194,11 @@ We will still use the `Boston` data set to fit multiple linear regression. The f
 
 3. Select variables:
     
-    In these two multiple linear regression models, the results of t-tests and F-test suggest that all predictors are significant for the response variable. However,  it is more often the case that the response is only associated with a subset of the predictors. The task of determining which predictors are associated with the response, in order to fit a single model involving only those predictors, is referred to as variable selection.
+    In these two multiple linear regression models, the t-tests and F-test results suggest that all predictors are significant for the response variable. However,  it is more often the case that the response is only associated with a subset of the predictors. We call the process of determining which predictors are associated with the response as **variable selection**.
 
-    If the number of predictors is very small, we could perform variable selection by trying out a lot of different models, each containing a different subset of the predictors. We can then select the best model out of all of the models that we have considered.
+    If the number of predictors is very small, we could perform the variable selection by trying out a lot of different models, each containing a different subset of the predictors. We can then select the best model out of all of the models we have considered.
 
-    If the number of predicators is not very small, the function `regsubsets()` could be used to select the best subset of variables. 
+    If the number of predictors is not very small, the function `regsubsets()` could be used to select the best subset of variables. 
 
     ```r
     > install.packages('leaps')
@@ -206,20 +207,22 @@ We will still use the `Boston` data set to fit multiple linear regression. The f
     > summary (regfit.full)
     ```  
 
-    The `regsubsets()` function performs best sub- regsubsets() set selection by identifying the best model that contains a given number of predictors, where best is quantified using RSS. The syntax is the same as for `lm()`. The `summary()` command outputs the best set of variables for each model size. You can use the argument `method` = "forward" or "backward" or "seqrep" choose selection methods. 
+    The `regsubsets()` function identifies the best model with a given number of predictors, where the best is quantified using RSS. The syntax is the same as for `lm()`. The `summary()` command outputs the best set of variables for each model size. You can use the argument `method` = "forward" or "backward" or "seqrep" choose selection methods. 
 
 </details>
+
+
 
 <details><summary> Step 3: Some potential problems (15 min)</summary>
 ## Step 3: Some potential problems
 
-When we fit a linear regression model to a particular data set, many problems may occur. These problems will lead to inaccurate estimation. In this step, we will identify and overcome some potential problems such as outliers, collinearity and interaction effects. 
+Many problems may occur when we fit a linear regression model to a particular data set. These problems will lead to inaccurate estimation. In this step, we will identify and overcome potential problems such as outliers, collinearity and interaction effects. 
 
-We just present a few of the many methods available, but those interested can explore more after class.
+We present a few of the many methods available, but those interested can explore more after class.
 
 1. Handle interaction terms:
     
-    In regression, an interaction effect exists when the effect of an independent variable on the response variable changes, depending on the values of one or more other independent variables. When you believe there is interaction effect, it is easy to include interaction terms in a linear model using the `lm()` function.
+    In regression, an interaction effect exists when the effect of an independent variable on the response variable changes, depending on the values of one or more independent variables. When you believe there is an interaction effect, it is easy to include interaction terms in a linear model using the `lm()` function.
 
     ```r
     > summary (lm(medv ~ lstat * age , data = Boston))
@@ -249,7 +252,7 @@ We just present a few of the many methods available, but those interested can ex
 
 2. Identify outliers through residual plots:
 
-    An outlier is a point for which `y<sub>i</sub>` is far from the value predicted by the model. Outliers can arise for a variety of reasons, such as incorrect recording of an observation during data collection. Outliers could be identified through residual plots:
+    An outlier is a point for which `y<sub>i</sub>` is far from the value predicted by the model. Outliers can arise for a variety of reasons, such as incorrect recording of observation during data collection. Outliers could be identified through residual plots:
 
     ```r
     > par(mfrow = c(2, 2))
@@ -257,9 +260,9 @@ We just present a few of the many methods available, but those interested can ex
     > dev.off()
     ```
     
-    Four diagnostic plots are automatically produced by applying the `plot()` function directly to the output from `lm()`. Plots on the left column are residual plots, indicating the relatinship between residuals and fitted values.
+    The `plot` function automatically produces four diagnostic plots when you pass the output from `lm()`. Plots on the left column are residual plots, indicating the relationship between residuals and fitted values.
 
-    In practice, it can be difficult to decide how large a residual needs to be before we consider the point to be an outlier. To address this problem, instead of plotting the residuals, we can plot the studentized residuals, computed by dividing each residual e<sub>i</sub> by its estimated standard studentized residual error. Observations whose studentized residuals are greater than 3 in absolute value are possible outliers. Using the plot() function to plot the studentized residuals:
+    In practice, it can be difficult to decide how large a residual needs to be before we consider the point to be an outlier. Instead of plotting the residuals, we can address this problem by plotting the studentized residuals. These are computed by dividing each residual e<sub>i</sub> by its estimated standard studentized residual error. Observations with studentized residuals greater than 3 in absolute value are possible outliers. Using the plot() function to plot the studentized residuals:
 
     
     ```r
@@ -269,7 +272,7 @@ We just present a few of the many methods available, but those interested can ex
 
 3. Handle outliers:
 
-   If we believe that an outlier has occurred due to an error in data collection or recording, then one solution is to simply remove the observation. However, care should be taken, since an outlier may instead indicate a deficiency with the model, such as a missing predictor.
+   If we believe an outlier is due to an error in data collection or recording, then one solution is to simply remove the observation. However, care should be taken, as an outlier may instead signal a deficiency with our model, such as a missing predictor.
 
 4. Detect collinearity using the correlation matrix:
 
@@ -279,7 +282,7 @@ We just present a few of the many methods available, but those interested can ex
     > cor(Boston)
     ```
     
-    Igonoring the last row and the last column in the matrix which indicate the relatinship with response variable `medv`, an element of this matrix that is large in absolute value indicates a pair of highly correlated variables, and therefore a collinearity problem in the data.
+    Ignoring the last row and the last column in the matrix, which indicate the relationship with response variable `medv`, an element of this matrix that is large in absolute value indicates a pair of highly correlated variables, and therefore a collinearity problem in the data.
 
     Or we could detect collinearity quantitatively using `vif()` function:
 
@@ -293,18 +296,18 @@ We just present a few of the many methods available, but those interested can ex
 
     When faced with the problem of collinearity, there are two simple solutions. 
     
-    The first is to drop one of the problematic variables from the regression. This can usually be done without much compromise to the regression fit, since the presence of collinearity implies that the information that this variable provides about the response is redundant in the presence of the other variables.   
+    The first is to drop one of the problematic variables from the regression. Doing this does not compromise the regression fit much since collinearity implies that the information this variable provides about the response is redundant in the presence of the other variables.   
 
-    The second solution is to combine the collinear variables together into a single predictor.
+    The second solution is to combine the collinear variables into a single predictor.
 
 </details>
 
 <details><summary> Step 4: Practical exercises (50 min)</summary>
 ## Step 4: Practical exercises (in pairs)
 
-So far, we have learnt to fit simple and multipel linear regression medels in R. In this practical case, we will continues with the data set `Auto` studied in last lab. Make sure that the missing values have been removed from the data.
+So far, we have learnt to fit simple and multiple linear regression models in R. In this practical case, we will continue to use the data set `Auto` studied in the last lab. Make sure that the missing values have been removed from the data.
 
-Eight questions are listed below. You are required to try to answer these questions in pair using R commands. We will go over the solutions once everyone has finished these questions.
+Eight questions are listed below. You are required to try to answer these questions in pairs using R commands. We will go over the solutions once everyone has finished these questions.
 
 🎯 **Questions** 
 
@@ -319,7 +322,7 @@ Eight questions are listed below. You are required to try to answer these questi
     
 3. Use the `plot()` function to produce diagnostic plots of the least squares regression fit. Comment on any problems you see with the fit.
 
-4. Produce a scatterplot matrix which includes all of the variables in the data set.
+4. Produce a scatterplot matrix that includes all the variables in the data set.
 
 5. Compute the matrix of correlations between the variables using the function `cor()`. You will need to exclude the name variable, which is qualitative.
 

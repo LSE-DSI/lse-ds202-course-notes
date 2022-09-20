@@ -34,7 +34,7 @@ date-meta: 19 September 2022
     F-statistic: 599.7 on 1 and 390 DF,  p-value: < 2.2e-16
     ```
 
-    Regarding to the p-values of t-test and F-test, there is a strong relationship between the predictor `horsepower` and the reponse `mpg`. From the sign of coefficients, the relationship between the predicator and the response is negative. Using the function `predict()` to predict the value of reponse and the confidence interval:
+    Regarding to the p-values of t-test and F-test, there is a strong relationship between the predictor `horsepower` and the reponse `mpg`. From the sign of coefficients, the relationship between the predicator and the response is negative. Using the function `predict()` to predict the value of reponse and the confidence interval, we get:
 
     ```r
     > predict(lm.fit, data.frame(horsepower = 98), interval = "confidence")
@@ -114,11 +114,11 @@ date-meta: 19 September 2022
     F-statistic: 252.4 on 7 and 384 DF,  p-value: < 2.2e-16
     ```
     
-    i. Yes, there is a relatioship between the predictors and the response by testing the null hypothesis of whether all the regression coefficients are zero. The F-statistic is far from 1 (with a small p-value), indicating evidence against the null hypothesis.
+    i. Yes, there is a relationship between the predictors and the response by testing the null hypothesis of whether all the regression coefficients are zero. The F-statistic is far from 1 (with a small p-value), indicating evidence against the null hypothesis.
 
     ii. Obverving the p-values associated with each predictor’s t-statistic, we see that displacement, weight, year, and origin have a statistically significant relationship, while cylinders, horsepower and acceleration do not.
 
-    iii. The regression coefficient for year, 0.75, suggests that for a given amount of the other predicators, every year mpg increases additional 0.75 unit. In other words, cars become more fuel efficient every year by almost 1 mpg/year.
+    iii. The regression coefficient for year is 0.75. This suggests that, considering all other predictors fixed, mpg increases by additional 0.75 unit. In other words, cars become more fuel efficient every year by almost 1 mpg/year.
 
 7. Use the `plot()` function to produce diagnostic plots:
 
@@ -128,7 +128,9 @@ date-meta: 19 September 2022
     > dev.off()
     ```
     
-     We could also find from the leverage plot, point 14 appears to have high leverage, although not a high magnitude residual. Besides, the quadratic trend of the residuals could be a problem. Maybe linear regression is not the best fit for this prediction. Then we plot studentized residuals to identify outliers:
+     From the leverage plot, we see that point 14 appears to have a high leverage, although not a high magnitude residual. Besides, the quadratic trend of the residuals could be a problem. Maybe linear regression is not the best fit for this prediction. 
+     
+     We plot studentized residuals to identify outliers:
 
     ```r
     > plot(predict(lm.fit1), rstudent(lm.fit1))
