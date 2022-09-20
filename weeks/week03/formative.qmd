@@ -15,12 +15,12 @@ Use the `Carseats` data set in the `ISLR2` package to answer the following quest
 
 3. Write the model in equation form, carefully handling the qualitative variables properly.
 
-4. For which of the predictors can you reject the null hypothesis H<sub>0</sub>: β<sub>j</sub> = 0?
+4. For which of the predictors can you reject the null hypothesis $H_0: \beta_j = 0$?
 
 5. Based on your response to the previous question, fit a smaller model that only uses the predictors for which there is evidence of an association with the outcome. Justify your choices.
 
 6. How well do the models in Questions 1 & 5 fit the data?
 
-7. Using the model from question 5, obtain 95 % confidence intervals for the coefficient(s).
+7. Using the model from question 5, obtain 95% confidence intervals for the coefficient(s).
 
 8. Use the `*` and `:` symbols to fit linear regression models with interaction effects. Could you find any model with interactions that fit better than the models you built in Questions 1 & 5? Justify your answer. 

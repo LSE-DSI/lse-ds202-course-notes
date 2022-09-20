@@ -53,7 +53,7 @@ We will follow the instructions below step by step together while answering what
 
     The basic syntax is `lm(y ∼ x, data)`, where `y` is the response, `x` is the predictor, and `data` is the data set in which we keep these two variables.
 
-4. Use the function `summary()` to understand detailed information about the model lm.fit we just fitted, like p-values and standard errors for the coefficients, as well as the R<sup>2</sup> statistic and F-statistic:
+4. Use the function `summary()` to understand detailed information about the model lm.fit we just fitted, like p-values and standard errors for the coefficients, as well as the $R^2$ statistic and F-statistic:
 
     ```r
     > summary(lm.fit)
@@ -77,7 +77,7 @@ We will follow the instructions below step by step together while answering what
     F-statistic: 601.6 on 1 and 504 DF,  p-value: < 2.2e-16
     ```
 
-    Because `lm.fit` is a simple linear regression model, there are only two coefficients: &beta;<sub>0</sub> and &beta;<sub>1</sub>. The Coefficients in the output shows the estimated value, standard error, t-test result and p-value for t-test of &beta;<sub>0</sub> and &beta;<sub>1</sub>. The goodness-of-fit of the model can be measured by the RSE and R<sup>2</sup> in the output.
+    Because `lm.fit` is a simple linear regression model, there are only two coefficients: $\hat{\beta}_0$ and $\hat{\beta}_1$. The Coefficients in the output shows the estimated value, standard error, t-test result and p-value for t-test of $\hat{\beta}_0$ and $\hat{\beta}_1$. The goodness-of-fit of the model can be measured by the RSE and $R^2$ in the output.
 
     We can also use `lm.fit$coefficients` or `coef(lm.fit)` to check the coefficients of the regression model:
 
@@ -252,7 +252,7 @@ We present a few of the many methods available, but those interested can explore
 
 2. Identify outliers through residual plots:
 
-    An outlier is a point for which `y<sub>i</sub>` is far from the value predicted by the model. Outliers can arise for a variety of reasons, such as incorrect recording of observation during data collection. Outliers could be identified through residual plots:
+    An outlier is a point for which $\hat{y}_i$ is far from the value predicted by the model. Outliers can arise for a variety of reasons, such as incorrect recording of observation during data collection. Outliers could be identified through residual plots:
 
     ```r
     > par(mfrow = c(2, 2))
