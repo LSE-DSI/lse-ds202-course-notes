@@ -64,4 +64,19 @@ Use the `Carseats` data set in the `ISLR2` package to answer the following quest
 
 8. **Use the `*` and `:` symbols to fit linear regression models with interaction effects. Could you find any model with interactions that fit better than the models you built in Questions 1 & 5? Justify your answer.**
 
-    `#TODO`
+    ```r
+    > lm.fit2 <- lm(Sales ~ Price * US, data = Carseats)
+    > summary(lm.fit2)
+    > lm.fit3 <- lm(Sales ~ Price * Urban, data = Carseats)
+    > summary(lm.fit3)
+    > lm.fit4 <- lm(Sales ~ Price * US + Urban, data = Carseats)
+    > summary(lm.fit4)
+    > lm.fit5 <- lm(Sales ~ Price * Urban + US, data = Carseats)
+    > summary(lm.fit5)
+    > lm.fit6 <- lm(Sales ~ Price + US + Urban + Price:US + Price:Urban, data = Carseats)
+    > summary(lm.fit6)
+    > lm.fit7 <- lm(Sales ~ Price + US + Urban + Price:US + Price:Urban + Urban:US, data = Carseats)
+    > summary(lm.fit7)
+    ``` 
+
+    Different multiple linear regression models with interactions have been built. However, after comparision there is almost no difference between the values of the R<sup>2</sup> and adjusted R<sup>2</sup>, which means the goodness of fit is not significantly improved. The reason is that there is no interaction effects between `Price` and `US`, and between `Price` and `Urban`, and between `US` and `Urban` which is supported by the significance of these coeficients' t-tests.
