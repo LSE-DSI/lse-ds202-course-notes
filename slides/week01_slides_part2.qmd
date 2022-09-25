@@ -3,8 +3,8 @@ subtitle: "DS202 Data Science for Social Scientists"
 title: "<font style='font-size:1em;'>🗓️ Week 01<br/>Overview of core concepts</font>"
 author: Dr. [Jon Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva)
 institute: '[\@LSEDataScience](https://twitter.com/lsedatascience)'
-date: 14 October 2022
-date-meta: 14 October 2022
+date: 30 September 2022
+date-meta: 30 September 2022
 toc: true
 toc-depth: 1
 toc-title: "What we will cover today"
