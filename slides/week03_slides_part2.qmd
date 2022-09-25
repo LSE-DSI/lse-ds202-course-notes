@@ -204,18 +204,53 @@ Read [@james_introduction_2021, Section 4.4] to understand why these estimates a
 # Naive Bayes Classifier
 
 ## Naive Bayes Classifier {.smaller}
-
+::: {.fragment .fade-in-then-semi-out}
 - Main Assumption:
 
 <blockquote>
 _Within the $k$th class, the $p$ predictors are **independent**_
 </blockquote>
 
-::: {.fragment}
-- Assuming features are not associated (correlated), the likelihood becomes:
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+- Assuming features are not associated (not correlated), the likelihood becomes:
   $$ 
-  P(\mathbf{X}|\mathbf{Y}=k) = P(x_1 |\mathbf{Y}=k) \times P(x_2 |\mathbf{Y}=k) \times \ldots \times P(x_p |\mathbf{Y}=k)
+  P(\mathbf{X}|\mathbf{Y}=k) = \underbrace{P(x_1 |\mathbf{Y}=k)}_{1\text{st} \text{ predictor}} \times \underbrace{P(x_2 |\mathbf{Y}=k)}_{2\text{nd} \text{ predictor}} \times \ldots \times \underbrace{P(x_p |\mathbf{Y}=k)}_{p\text{-th} \text{ predictor}}
   $$
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+- This means the posterior is given by:
+$$
+P(\mathbf{Y} = k| \mathbf{X} = x) = \frac{\quad\quad P(k) \times P(x_1 |\mathbf{Y}=k) \times P(x_2 |\mathbf{Y}=k) \times \ldots \times P(x_p |\mathbf{Y}=k)}{\sum_{l=1}^K{P(l) \times P(x_1 |\mathbf{Y}=l) \times P(x_2 |\mathbf{Y}=l) \times \ldots \times P(x_p |\mathbf{Y}=l)}}
+$$
+:::
+
+## A naive approach indeed {.smaller}
+
+::: {.fragment .fade-in-then-semi-out}
+- This may all look very complicated but it is actually quite simple
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+- If data is discrete (categorical), you just count the proportion of each category.
+
+Example:
+
+$$
+P(\mathbf{Y} = k| \mathbf{X}_j = x_j) = 
+\begin{cases}
+0.32 & \text{if } x_j = 1\\
+0.55 & \text{if } x_j = 2\\
+0.13 & \text{if } x_j = 3
+\end{cases}
+$$
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+- If data is continuous, use a histogram as an estimate for the true density of $x_p$
+  - Alternatively, use a <mark>kernel density estimator</mark>
 :::
 
 
