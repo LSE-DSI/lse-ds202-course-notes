@@ -9,6 +9,7 @@ project:
     - "weeks/week01/*.qmd"
     - "weeks/week02/*.qmd"
     - "weeks/week03/*.qmd"
+    - "weeks/week04/*.qmd"
     - "slides/*.qmd"
 
 bibliography: references/references.bib
@@ -67,6 +68,17 @@ website:
              - href: weeks/week03/lab.qmd
                text: 💻 Lab roadmap
              - href: weeks/week03/appendix.qmd
+               text: 🔖 Appendix
+         - href: weeks/week04.qmd
+           text: Week 04
+           contents:
+             - href: weeks/week04/lecture.qmd
+               text: 👨‍🏫 Lecture Slides
+             - href: weeks/week04/checklist.qmd
+               text: ✅ Checklist
+             - href: weeks/week04/lab.qmd
+               text: 💻 Lab roadmap
+             - href: weeks/week04/appendix.qmd
                text: 🔖 Appendix
                  
   navbar:
