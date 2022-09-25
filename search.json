@@ -648,7 +648,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.66\n2     9    12  9.96\n3    12    15 14.0 \n4    15    18 18.0 \n5    18    21 21.6 \n6    21    24 22.5"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  11.6\n2     9    12  11.1\n3    12    15  15.2\n4    15    18  17.5\n5    18    21  23.8\n6    21    24  25.2"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -683,7 +683,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY   error absError\n  <int> <int> <dbl>   <dbl>    <dbl>\n1     6     9  9.66 -0.664    0.664 \n2     9    12  9.96  2.04     2.04  \n3    12    15 14.0   1.04     1.04  \n4    15    18 18.0   0.0272   0.0272\n5    18    21 21.6  -0.607    0.607 \n6    21    24 22.5   1.47     1.47  \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.9749044\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  11.6 -2.57     2.57 \n2     9    12  11.1  0.929    0.929\n3    12    15  15.2 -0.220    0.220\n4    15    18  17.5  0.522    0.522\n5    18    21  23.8 -2.76     2.76 \n6    21    24  25.2 -1.22     1.22 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.369801\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
@@ -1085,79 +1085,156 @@
     "text": "References\n\n\nAgresti, Alan. 2019. An Introduction to Categorical Data Analysis. Third edition. Wiley Series in Probability and Statistics. Hoboken, NJ: John Wiley & Sons.\n\n\nDeGroot, Morris H., and Mark J. Schervish. 2003. Probability and Statistics. 3. ed., international edition. Boston Munich: Addison-Wesley.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
   },
   {
+    "objectID": "slides/week03_slides_part2.html#bayes-theorem",
+    "href": "slides/week03_slides_part2.html#bayes-theorem",
+    "title": "🗓️ Week 03:Classifiers - Part II",
+    "section": "Bayes’ Theorem",
+    "text": "Bayes’ Theorem\n\nBefore we go on to explain what Naive Bayes is about, we need to understand the formula below.\n\n\\[\nP(\\mathbf{Y} = k | \\mathbf{X} = x) = \\frac{P(k)P(\\mathbf{X}|\\mathbf{Y}=k)}{\\sum_{l=1}^{K}{P(l)P(\\mathbf{X}|\\mathbf{Y}=l)}}\n\\]\n\n\nLet’s look at it step-by-step ⏭️"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#bayes-theorem-1",
+    "href": "slides/week03_slides_part2.html#bayes-theorem-1",
+    "title": "🗓️ Week 03:Classifiers - Part II",
+    "section": "Bayes’ Theorem",
+    "text": "Bayes’ Theorem\n\\[\nP(\\mathbf{Y} = k | \\mathbf{X} = x) = \\frac{P(k)P(\\mathbf{X}|\\mathbf{Y}=k)}{\\sum_{l=1}^{K}{P(l)P(\\mathbf{X}|\\mathbf{Y}=l)}}\n\\]\nNew variables\n\n\n\\(K \\Rightarrow\\) is the set of classes. In the binary case, \\(K = \\{0, 1\\}\\).\n\\(P(k) \\Rightarrow\\) is the probability that a random sample belongs to class \\(k\\).\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nThe textbook uses a slightly different notation."
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#bayes-theorem-2",
+    "href": "slides/week03_slides_part2.html#bayes-theorem-2",
+    "title": "🗓️ Week 03:Classifiers - Part II",
+    "section": "Bayes’ Theorem",
+    "text": "Bayes’ Theorem\n\\[\n\\color{blue}{P(\\mathbf{Y} = k | \\mathbf{X} = x)} \\color{Gainsboro}{= \\frac{P(k)P(\\mathbf{X}|\\mathbf{Y}=k)}{\\sum_{l=1}^{K}{P(l)P(\\mathbf{X}|\\mathbf{Y}=l)}}}\n\\]\n\n\nThe quantity above (in blue) is called the posterior distribution\nIt is what we are interested in when making inferences/predictions\n\n\n\nRead it as:\n\nWhat is the probability that the class is \\(k\\) given that the sample is \\(x\\)?"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#bayes-theorem-3",
+    "href": "slides/week03_slides_part2.html#bayes-theorem-3",
+    "title": "🗓️ Week 03:Classifiers - Part II",
+    "section": "Bayes’ Theorem",
+    "text": "Bayes’ Theorem\n\\[\n\\color{Gainsboro}{P(\\mathbf{Y} = k | \\mathbf{X} = x) =} \\frac{\\color{blue}{P(k)}\\color{Gainsboro}{P(\\mathbf{X}|\\mathbf{Y}=k)}}{\\color{Gainsboro}{\\sum_{l=1}^{K}{P(l)P(\\mathbf{X}|\\mathbf{Y}=l)}}}\n\\]\n\n\nThe quantity above (in blue) is called the prior distribution\nIt represents the proportion of samples of class \\(k\\) we believe (estimate) we would find if sampling at random.\n\n\n\nRead it as:\n\nWhat is the probability that the class is \\(k\\) given a random sample?"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#bayes-theorem-4",
+    "href": "slides/week03_slides_part2.html#bayes-theorem-4",
+    "title": "🗓️ Week 03:Classifiers - Part II",
+    "section": "Bayes’ Theorem",
+    "text": "Bayes’ Theorem\n\\[\n\\color{Gainsboro}{P(\\mathbf{Y} = k | \\mathbf{X} = x) =} \\frac{\\color{Gainsboro}{P(k)}\\color{blue}{P(\\mathbf{X}|\\mathbf{Y}=k)}}{\\color{Gainsboro}{\\sum_{l=1}^{K}{P(l)P(\\mathbf{X}|\\mathbf{Y}=l)}}}\n\\]\n\n\nThe quantity above (in blue) is often called the likelihood\nIt represents the density function of \\(\\mathbf{X}\\) for samples of class \\(k\\).\n\n\n\nThink of it as:\n\nWhat values would I expect \\(X\\) to take when the class is \\(\\mathbf{Y} = k\\)?"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#bayes-theorem-5",
+    "href": "slides/week03_slides_part2.html#bayes-theorem-5",
+    "title": "🗓️ Week 03:Classifiers - Part II",
+    "section": "Bayes’ Theorem",
+    "text": "Bayes’ Theorem\n\\[\n\\color{Gainsboro}{P(\\mathbf{Y} = k | \\mathbf{X} = x) =} \\frac{\\color{Gainsboro}{P(k)}\\color{Gainsboro}{P(\\mathbf{X}|\\mathbf{Y}=k)}}{\\color{blue}{\\sum_{l=1}^{K}{P(l)P(\\mathbf{X}|\\mathbf{Y}=l)}}}\n\\]\n\n\nThe quantity above (in blue) represents the density function of \\(\\mathbf{X}\\) regardless of the class\nIt is often called the marginal probability of \\(\\mathbf{X}\\).\n\nNote that \\(\\color{blue}{\\sum_{l=1}^{K}{P(l)P(\\mathbf{X}|\\mathbf{Y}=l)}} = P(\\mathbf{X})\\)\n\n\n\n\nThink of it as:\n\nWhat values would I expect \\(X\\) if ignored the class?"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#bayes-theorem-6",
+    "href": "slides/week03_slides_part2.html#bayes-theorem-6",
+    "title": "🗓️ Week 03:Classifiers - Part II",
+    "section": "Bayes’ Theorem",
+    "text": "Bayes’ Theorem\n\\[\nP(\\mathbf{Y} = k | \\mathbf{X} = x) = \\frac{P(k)P(\\mathbf{X}|\\mathbf{Y}=k)}{\\sum_{l=1}^{K}{P(l)P(\\mathbf{X}|\\mathbf{Y}=l)}}\n\\]\n\nLet’s look at how different algorithms explore this rule ⏭️"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#linear-discriminant-analysis-lda",
+    "href": "slides/week03_slides_part2.html#linear-discriminant-analysis-lda",
+    "title": "🗓️ Week 03:Classifiers - Part II",
+    "section": "Linear Discriminant Analysis (LDA)",
+    "text": "Linear Discriminant Analysis (LDA)\n\n\nAssumptions:\n\nLikelihood follows a Gaussian distribution\n\nEach class has its own mean, \\(\\mu_k\\)\nAll classes have the same standard deviation\n\nThat is, \\(\\sigma^2_1 = \\sigma^2_2 = \\ldots = \\sigma^2_K\\), or simply \\(\\sigma^2\\)\n\n\nWe denote this as: \\(P(\\mathbf{X}|\\mathbf{Y}=k) \\sim N(\\mu_k, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#lda---estimates",
+    "href": "slides/week03_slides_part2.html#lda---estimates",
+    "title": "🗓️ Week 03:Classifiers - Part II",
+    "section": "LDA - Estimates",
+    "text": "LDA - Estimates\n\nWe estimate the mean per class and the shared standard deviation as follows:\n\n\n\\[\n\\begin{align}\n\\hat{\\mu}_k &= \\frac{1}{n_k}\\sum_{i:y_i=k}{x_i}\\\\\n\\hat{\\sigma}^2 &= \\frac{1}{n - K}\\sum_{k=1}^K{\\sum_{i:y_i=k}{\\left(x_i - \\hat{\\mu}_k\\right)^2}} \\\\\n\\hat{P}(k) &= \\frac{n_k}{n}\n\\end{align}\n\\]\n\n\n\nwhere:\n\n\\(n\\) is the total number of training observations\n\\(n_k\\) is the number of training observations in the \\(k\\)th class\n\n\n\n\n\nRead (James et al. 2021, sec. 4.4) to understand why these estimates are the way they are.\n\n\n\n\nMention that priors could come from prior knowledge"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#naive-bayes-classifier-1",
+    "href": "slides/week03_slides_part2.html#naive-bayes-classifier-1",
+    "title": "🗓️ Week 03:Classifiers - Part II",
+    "section": "Naive Bayes Classifier",
+    "text": "Naive Bayes Classifier\n\n\nMain Assumption:\n\n\nWithin the \\(k\\)th class, the \\(p\\) predictors are independent\n\n\n\n\nAssuming features are not associated (not correlated), the likelihood becomes: \\[\nP(\\mathbf{X}|\\mathbf{Y}=k) = \\underbrace{P(x_1 |\\mathbf{Y}=k)}_{1\\text{st} \\text{ predictor}} \\times \\underbrace{P(x_2 |\\mathbf{Y}=k)}_{2\\text{nd} \\text{ predictor}} \\times \\ldots \\times \\underbrace{P(x_p |\\mathbf{Y}=k)}_{p\\text{-th} \\text{ predictor}}\n\\]\n\n\n\n\nThis means the posterior is given by: \\[\nP(\\mathbf{Y} = k| \\mathbf{X} = x) = \\frac{\\quad\\quad P(k) \\times P(x_1 |\\mathbf{Y}=k) \\times P(x_2 |\\mathbf{Y}=k) \\times \\ldots \\times P(x_p |\\mathbf{Y}=k)}{\\sum_{l=1}^K{P(l) \\times P(x_1 |\\mathbf{Y}=l) \\times P(x_2 |\\mathbf{Y}=l) \\times \\ldots \\times P(x_p |\\mathbf{Y}=l)}}\n\\]"
+  },
+  {
+    "objectID": "slides/week03_slides_part2.html#a-naive-approach-indeed",
+    "href": "slides/week03_slides_part2.html#a-naive-approach-indeed",
+    "title": "🗓️ Week 03:Classifiers - Part II",
+    "section": "A naive approach indeed",
+    "text": "A naive approach indeed\n\n\nThis may all look very complicated but it is actually quite simple\n\n\n\n\nIf data is discrete (categorical), you just count the proportion of each category.\n\nExample:\n\\[\nP(\\mathbf{Y} = k| \\mathbf{X}_j = x_j) =\n\\begin{cases}\n0.32 & \\text{if } x_j = 1\\\\\n0.55 & \\text{if } x_j = 2\\\\\n0.13 & \\text{if } x_j = 3\n\\end{cases}\n\\]\n\n\n\nIf data is continuous, use a histogram as an estimate for the true density of \\(x_p\\)\n\nAlternatively, use a kernel density estimator"
+  },
+  {
     "objectID": "slides/week03_slides_part2.html#default-yes-or-no",
     "href": "slides/week03_slides_part2.html#default-yes-or-no",
-    "title": "🗓️ Week 03:Classifiers Part II",
+    "title": "🗓️ Week 03:Classifiers - Part II",
     "section": "Default: Yes or No?",
-    "text": "Default: Yes or No?\n\n\nWe have looked at how the probabilities (risk of default) change according to the value of predictors\nBut in practice we need to decide whether the risk is too high or tolerable\nIn our example, we might want to ask:\n\n\n\n“Will this person default on their credit card? YES or NO?”"
+    "text": "Default: Yes or No?\n\n\nWe have looked at how the probabilities (risk of default) change according to the value of predictors\nBut in practice we need to decide whether the risk is too high or tolerable\nIn our example, we might want to ask:\n\n\n\n\n“Will this person default on their credit card? YES or NO?”"
   },
   {
     "objectID": "slides/week03_slides_part2.html#default-yes-or-no-1",
     "href": "slides/week03_slides_part2.html#default-yes-or-no-1",
-    "title": "🗓️ Week 03:Classifiers Part II",
+    "title": "🗓️ Week 03:Classifiers - Part II",
     "section": "Default: Yes or No?",
     "text": "Default: Yes or No?\n\n\nHow would you classify the following customers?\n\n\nCode\nlibrary(tidyverse)\n\nfull_model <- \n  glm(default ~ ., data=ISLR2::Default, family=binomial)\n\nset.seed(40)\nsample_customers <- \n  ISLR2::Default %>% \n  slice(9986, 9908, 6848, 9762, 9979, 7438)\npred <- predict(full_model, sample_customers, type=\"response\")\n# Format it as percentage\nsample_customers$prediction <- \n  sapply(pred, function(x){sprintf(\"%.2f %%\", 100*x)})\nsample_customers\n\n\n  default student   balance   income prediction\n1      No      No  842.9494 39957.13     0.27 %\n2      No      No 1500.5721 39891.86    10.53 %\n3     Yes     Yes 1957.1203 18805.95    44.23 %\n4      No      No 1902.1499 35008.67    53.71 %\n5     Yes      No 2202.4624 47287.26    87.09 %\n6     Yes     Yes 2461.5070 11878.56    93.34 %\n\n\n\n\n\n\n\n\n\nImage created with the DALL·E algorithm using the prompt: ‘35mm macro photography of a robot holding a question mark card, white background’\n\n\nFull model expression: \\[\n\\hat{y} \\approxeq \\frac{e^{-10.87 - 0.65\\times\\text{student[Yes]} + 5.74 \\times 10^{-3}\\times\\text{balance} + 3\\times 10^{-6}\\times\\text{income}}}{1 + e^{-10.87 - 0.65\\times\\text{student[Yes]} + 5.74 \\times 10^{-3}\\times\\text{balance} + 3\\times 10^{-6}\\times\\text{income}}}\n\\]"
   },
   {
     "objectID": "slides/week03_slides_part2.html#default-yes-or-no-2",
     "href": "slides/week03_slides_part2.html#default-yes-or-no-2",
-    "title": "🗓️ Week 03:Classifiers Part II",
+    "title": "🗓️ Week 03:Classifiers - Part II",
     "section": "Default: Yes or No?",
-    "text": "Default: Yes or No?\n\n\nHow would you classify the following customers?\n\n\nCode\nlibrary(tidyverse)\n\nfull_model <- \n  glm(default ~ ., data=ISLR2::Default, family=binomial)\n\nset.seed(40)\nsample_customers <- \n  ISLR2::Default %>% \n  slice(9986, 9908, 6848, 9762, 9979, 7438)\npred <- predict(full_model, sample_customers, type=\"response\")\n# Format it as percentage\nsample_customers$prediction <- \n  sapply(pred, function(x){sprintf(\"%.2f %%\", 100*x)})\nsample_customers\n\n\n  default student   balance   income prediction\n1      No      No  842.9494 39957.13     0.27 %\n2      No      No 1500.5721 39891.86    10.53 %\n3     Yes     Yes 1957.1203 18805.95    44.23 %\n4      No      No 1902.1499 35008.67    53.71 %\n5     Yes      No 2202.4624 47287.26    87.09 %\n6     Yes     Yes 2461.5070 11878.56    93.34 %\n\n\n\n\nIf we set our threshold \\(= 50\\%\\), we get the following confusion matrix:\n\n\n\n\n\nActual\n\n\n\n\n\nPredicted\nNo\nYes\n\n\nNo\n2\n1\n\n\nYes\n1\n2\n\n\n\n\n\n\nIf we set our threshold \\(= 40\\%\\), we get the following confusion matrix:\n\n\n\n\n\nActual\n\n\n\n\n\nPredicted\nNo\nYes\n\n\nNo\n2\n0\n\n\nYes\n1\n3\n\n\n\n\n\n\n\n\nWhich of the two is more accurate?"
+    "text": "Default: Yes or No?\n\n\nHow would you classify the following customers?\n\n\nCode\nlibrary(tidyverse)\n\nfull_model <- \n  glm(default ~ ., data=ISLR2::Default, family=binomial)\n\nset.seed(40)\nsample_customers <- \n  ISLR2::Default %>% \n  slice(9986, 9908, 6848, 9762, 9979, 7438)\npred <- predict(full_model, sample_customers, type=\"response\")\n# Format it as percentage\nsample_customers$prediction <- \n  sapply(pred, function(x){sprintf(\"%.2f %%\", 100*x)})\nsample_customers\n\n\n  default student   balance   income prediction\n1      No      No  842.9494 39957.13     0.27 %\n2      No      No 1500.5721 39891.86    10.53 %\n3     Yes     Yes 1957.1203 18805.95    44.23 %\n4      No      No 1902.1499 35008.67    53.71 %\n5     Yes      No 2202.4624 47287.26    87.09 %\n6     Yes     Yes 2461.5070 11878.56    93.34 %\n\n\n\n\nIf we set our threshold \\(= 50\\%\\), we get the following confusion matrix:\n\n\n\n\n\nActual\n\n\n\n\n\nPredicted\nNo\nYes\n\n\nNo\n2\n1\n\n\nYes\n1\n2\n\n\n\n\n\n\nIf we set our threshold \\(= 40\\%\\), we get the following confusion matrix:\n\n\n\n\n\nActual\n\n\n\n\n\nPredicted\nNo\nYes\n\n\nNo\n2\n0\n\n\nYes\n1\n3\n\n\n\n\n\n\n\n\n\nWhich of the two is more accurate?"
   },
   {
     "objectID": "slides/week03_slides_part2.html#thresholds",
     "href": "slides/week03_slides_part2.html#thresholds",
-    "title": "🗓️ Week 03:Classifiers Part II",
+    "title": "🗓️ Week 03:Classifiers - Part II",
     "section": "Thresholds",
     "text": "Thresholds\n\nWhen making predictions about classes, we always have to make decisions.\nThresholds, applied to the predicted probability scores, are a way to decide whether to favour a particular class over another\n⏭️ Next, we will explore several metrics that can help us decide whether our classification model is good or bad."
   },
   {
     "objectID": "slides/week03_slides_part2.html#confusion-matrix",
     "href": "slides/week03_slides_part2.html#confusion-matrix",
-    "title": "🗓️ Week 03:Classifiers Part II",
+    "title": "🗓️ Week 03:Classifiers - Part II",
     "section": "Confusion Matrix",
     "text": "Confusion Matrix\n\nLet’s take another look at the confusion matrix. We can think of the numbers in each cell as the following: \n\n\n\n\n\n\n\n\n\n\nActual\n\n\n\n\n\nPredicted\nNo\nYes\n\n\nNo\nTrue Negative (TN)\nFalse Negative (FN)\n\n\nYes\nFalse Positive (FP)\nTrue Positive (TP)\n\n\n\n\n\nIdeally, we would have no False Negatives and no False Positives but, of course, that is never the case."
   },
   {
     "objectID": "slides/week03_slides_part2.html#classification-metrics-1",
     "href": "slides/week03_slides_part2.html#classification-metrics-1",
-    "title": "🗓️ Week 03:Classifiers Part II",
+    "title": "🗓️ Week 03:Classifiers - Part II",
     "section": "Classification metrics",
-    "text": "Classification metrics\n\n\nIt is convenient to aggregate those quantities into a few other metrics\nTwo of the most common ones are called sensitivity and specificity \n\n\\[\n\\begin{align}\n\\text{Sensitivity} &= \\text{True Positive Rate (TPR)} = \\frac{TP}{P} \\\\\n\\text{Specificity} &= \\text{True Negative Rate (TNR)} = \\frac{TN}{N}\n\\end{align}\n\\]\n\n\nAnother common one is accuracy:\n\n\\[\n\\text{Accuracy} = \\frac{TP + TN}{P + N}\n\\]\n\n\nA good model has high sensitivity and high specificity and high accuracy.\n\n\n\nThere are many other ways to assess the results of a classification model"
+    "text": "Classification metrics\n\n\nIt is convenient to aggregate those quantities into a few other metrics\nTwo of the most common ones are called sensitivity and specificity\n\n\n\n\\[\n\\begin{align}\n\\text{Sensitivity} &= \\text{True Positive Rate (TPR)} = \\frac{TP}{P} \\\\\n\\text{Specificity} &= \\text{True Negative Rate (TNR)} = \\frac{TN}{N}\n\\end{align}\n\\]\n\n\n\nAnother common one is accuracy:\n\n\\[\n\\text{Accuracy} = \\frac{TP + TN}{P + N}\n\\]\n\n\nA good model has high sensitivity and high specificity and high accuracy.\n\n\n\nThere are many other ways to assess the results of a classification model"
   },
   {
     "objectID": "slides/week03_slides_part2.html#which-threshold-is-better",
     "href": "slides/week03_slides_part2.html#which-threshold-is-better",
-    "title": "🗓️ Week 03:Classifiers Part II",
+    "title": "🗓️ Week 03:Classifiers - Part II",
     "section": "Which threshold is better?",
     "text": "Which threshold is better?\n\n\n\n📝 Now, looking at the logistic regression model we built for the entire dataset, work out the sensitivity, specificity and accuracy of the following confusion matrices:\n\n\n\n\n\n\n\nPractice\n\n\n\n⏲️ 5 min to work out the math\n🗳️ Vote on your preferred threshold (on  Slack)\n\n\n\n\n\n\\(\\text{Threshold} = 50\\%\\):\n\n\n\n\nActual\n\n\n\n\n\nPredicted\nNo\nYes\n\n\nNo\n9627\n228\n\n\nYes\n40\n105\n\n\n\n\n\\(\\text{Threshold} = 40\\%\\):\n\n\n\n\nActual\n\n\n\n\n\nPredicted\nNo\nYes\n\n\nNo\n9588\n199\n\n\nYes\n79\n134"
   },
   {
     "objectID": "slides/week03_slides_part2.html#meet-the-roc-curve",
     "href": "slides/week03_slides_part2.html#meet-the-roc-curve",
-    "title": "🗓️ Week 03:Classifiers Part II",
+    "title": "🗓️ Week 03:Classifiers - Part II",
     "section": "Meet the ROC curve",
     "text": "Meet the ROC curve\n\n\n\nThe Receiver Operating Characteristic (ROC) curve is another way to assess the model.\nIt shows how sensitivity and specificity change as we vary the threshold from 0 to 1 (threshold not shown).\n\n\n\n\n\n\n\n\nAsk: how would an ideal curve look like?"
   },
   {
     "objectID": "slides/week03_slides_part2.html#generalisation-problems",
     "href": "slides/week03_slides_part2.html#generalisation-problems",
-    "title": "🗓️ Week 03:Classifiers Part II",
+    "title": "🗓️ Week 03:Classifiers - Part II",
     "section": "Generalisation problems",
-    "text": "Generalisation problems\n\n\nThe data used to train algorithms is called training data\nOften, we want to use the fitted models to make predictions on new previously unseen data \n\n\n\n\n\n\n\nImportant\n\n\n⚠️ A model that performs well on training data will not necessarily perform well on new data ⚠️\n\n\n\n\n\nTo make a robust assessment of our model, we have to split the data in two:\n\nthe training data and\nthe test data\n\nWe do NOT use the test data to fit the model\nWe will come back to this next week, this is the topic of 🗓️ Week 04."
+    "text": "Generalisation problems\n\n\nThe data used to train algorithms is called training data\nOften, we want to use the fitted models to make predictions on new previously unseen data\n\n\n\n\n\n\n\n\n\nImportant\n\n\n⚠️ A model that performs well on training data will not necessarily perform well on new data ⚠️\n\n\n\n\n\n\nTo make a robust assessment of our model, we have to split the data in two:\n\nthe training data and\nthe test data\n\nWe do NOT use the test data to fit the model\nWe will come back to this next week, this is the topic of 🗓️ Week 04."
   },
   {
     "objectID": "slides/week03_slides_part2.html#inappropriate-reliance-on-metrics",
     "href": "slides/week03_slides_part2.html#inappropriate-reliance-on-metrics",
-    "title": "🗓️ Week 03:Classifiers Part II",
+    "title": "🗓️ Week 03:Classifiers - Part II",
     "section": "Inappropriate reliance on metrics",
     "text": "Inappropriate reliance on metrics\n\n\nAccuracy can be very misleading when classes are imbalanced\nConsider the following model: \\(\\hat{y} = \\text{Yes}\\) (always)\n\nOnly \\(3\\%\\) of customers default on their credit cards\nTherefore, this model would have a \\(97\\%\\) accuracy!\nIt is correct ninety-seven percent of times. But is it a good model?\n\n🙅‍♂️ NO!\n\n\nSimilarly, you have to ask yourself about the usefulness of any other metric\n\nIs True Positive Rate more or less important than True Negative Rate for the classification problem at hand?\nWhy? Why not?\n\nUltimately, it boils down to how you plan to use this model afterwards."
   },
   {
     "objectID": "slides/week03_slides_part2.html#references",
     "href": "slides/week03_slides_part2.html#references",
-    "title": "🗓️ Week 03:Classifiers Part II",
+    "title": "🗓️ Week 03:Classifiers - Part II",
     "section": "References",
     "text": "References\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/.\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
   }
