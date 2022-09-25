@@ -460,9 +460,9 @@ How do you find the latitude and longitude of a mountain peak if you can't see v
 
 ::: footer
 
-<!-- ::: {style="font-size:0.75em;"} -->
+::: {style="font-size:0.75em;"}
 **Advanced:** If for whatever random reason, you find yourself enamored with the Maximum Likelihood Estimate, check [@agresti_introduction_2019] for a recent take on the statistical properties of this method.
-<!-- ::: -->
+:::
 
 :::
 
@@ -748,10 +748,11 @@ If the odds are 9, then $\frac{p(X)}{(1-p(X))} = 9 \Rightarrow p(X) = 0.9$.
 This means that 9 out of 10 people will default. 
 :::
 
+::: footer
 
-::: {.aside}
-
+::: {style="font-size:0.75em;"}
 📝 Give it a go! Using algebra, can you re-arrange the equation for $p(X)$ presented in the [_Logistic regression model_ slides](#the-logistic-regression-model) to arrive at the odds quantity shown above?
+:::
 :::
 
 ## Log odds or _logit_ {.smaller}
@@ -1086,10 +1087,11 @@ confint(full_model)
 
 After our 10-min break ☕:
 
+- Bayes' Theorem
+- The Naive Bayes algorithm
 - Thresholds
 - Confusion Matrix
 - ROC Curve
-- The Naive Bayes algorithm
 - What will happen in our 💻 labs this week?
 
 ---

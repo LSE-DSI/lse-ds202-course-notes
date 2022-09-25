@@ -1,6 +1,6 @@
 ---
 subtitle: "DS202 Data Science for Social Scientists"
-title: "🗓️ Week 03:<br/>Classifiers Part II"
+title: "🗓️ Week 03:<br/>Classifiers - Part II"
 author: Dr. [Jon Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva)
 institute: '[\@LSEDataScience](https://twitter.com/lsedatascience)'
 date: 14 October 2022
@@ -27,24 +27,247 @@ format:
     footer: 'DS202 - Data Science for Social Scientists :robot: :juggling_person:'
 ---
 
+# Generative models
+
+## Bayes' Theorem
+
+- Before we go on to explain what Naive Bayes is about, we need to understand the formula below. 
+
+
+$$
+P(\mathbf{Y} = k | \mathbf{X} = x) = \frac{P(k)P(\mathbf{X}|\mathbf{Y}=k)}{\sum_{l=1}^{K}{P(l)P(\mathbf{X}|\mathbf{Y}=l)}}
+$$
+
+::: {.fragment}
+- Let's look at it step-by-step ⏭️
+:::
+
+## Bayes' Theorem {.smaller}
+
+
+$$
+P(\mathbf{Y} = k | \mathbf{X} = x) = \frac{P(k)P(\mathbf{X}|\mathbf{Y}=k)}{\sum_{l=1}^{K}{P(l)P(\mathbf{X}|\mathbf{Y}=l)}}
+$$
+
+**New variables**
+
+::: incremental
+- $K \Rightarrow$ is the set of classes. In the binary case, $K = \{0, 1\}$.
+- $P(k) \Rightarrow$ is the probability that a random sample belongs to class $k$.
+:::
+
+::: columns
+
+::: {.column width="40%"}
+::: callout-note
+The textbook uses a slightly different notation.
+:::
+:::
+
+::: {.column width="60%"}
+<!-- Ghost column -->
+:::
+
+:::
+
+
+## Bayes' Theorem {.smaller}
+
+
+$$
+\color{blue}{P(\mathbf{Y} = k | \mathbf{X} = x)} \color{Gainsboro}{= \frac{P(k)P(\mathbf{X}|\mathbf{Y}=k)}{\sum_{l=1}^{K}{P(l)P(\mathbf{X}|\mathbf{Y}=l)}}}
+$$
+
+::: incremental
+- The quantity above (in blue) is called the <mark>posterior distribution</mark>
+- It is what we are interested in when making inferences/predictions
+:::
+
+::: fragment
+Read it as:
+<blockquote>
+_What is the probability that the class is $k$ given that the sample is $x$?_
+</blockquote>
+:::
+
+## Bayes' Theorem {.smaller}
+
+
+$$
+\color{Gainsboro}{P(\mathbf{Y} = k | \mathbf{X} = x) =} \frac{\color{blue}{P(k)}\color{Gainsboro}{P(\mathbf{X}|\mathbf{Y}=k)}}{\color{Gainsboro}{\sum_{l=1}^{K}{P(l)P(\mathbf{X}|\mathbf{Y}=l)}}}
+$$
+
+::: incremental
+- The quantity above (in blue) is called the <mark>prior distribution</mark>
+- It represents the proportion of samples of class $k$ we _believe_ (estimate) we would find if sampling at random.
+:::
+
+::: fragment
+Read it as:
+<blockquote>
+_What is the probability that the class is $k$ given a random sample?_
+</blockquote>
+:::
+
+## Bayes' Theorem {.smaller}
+
+
+$$
+\color{Gainsboro}{P(\mathbf{Y} = k | \mathbf{X} = x) =} \frac{\color{Gainsboro}{P(k)}\color{blue}{P(\mathbf{X}|\mathbf{Y}=k)}}{\color{Gainsboro}{\sum_{l=1}^{K}{P(l)P(\mathbf{X}|\mathbf{Y}=l)}}}
+$$
+
+::: incremental
+- The quantity above (in blue) is often called the <mark>likelihood</mark>
+- It represents the density function of $\mathbf{X}$ for samples of class $k$.
+:::
+
+::: fragment
+Think of it as:
+<blockquote>
+_What values would I expect $X$ to take when the class is $\mathbf{Y} = k$?_
+</blockquote>
+:::
+
+## Bayes' Theorem {.smaller}
+
+
+$$
+\color{Gainsboro}{P(\mathbf{Y} = k | \mathbf{X} = x) =} \frac{\color{Gainsboro}{P(k)}\color{Gainsboro}{P(\mathbf{X}|\mathbf{Y}=k)}}{\color{blue}{\sum_{l=1}^{K}{P(l)P(\mathbf{X}|\mathbf{Y}=l)}}}
+$$
+
+::: incremental
+- The quantity above (in blue) represents the density function of $\mathbf{X}$ regardless of the class
+- It is often called the <mark>marginal probability</mark> of $\mathbf{X}$.
+  - Note that $\color{blue}{\sum_{l=1}^{K}{P(l)P(\mathbf{X}|\mathbf{Y}=l)}} = P(\mathbf{X})$
+:::
+
+::: fragment
+Think of it as:
+<blockquote>
+_What values would I expect $X$ if ignored the class?_
+</blockquote>
+:::
+
+## Bayes' Theorem {.smaller}
+
+
+$$
+P(\mathbf{Y} = k | \mathbf{X} = x) = \frac{P(k)P(\mathbf{X}|\mathbf{Y}=k)}{\sum_{l=1}^{K}{P(l)P(\mathbf{X}|\mathbf{Y}=l)}}
+$$
+
+- Let's look at how different algorithms explore this rule ⏭️
+
+# Linear Discriminant Analysis
+
+## Linear Discriminant Analysis (LDA) {.smaller}
+
+::: incremental
+- Assumptions:
+  - Likelihood follows a _Gaussian_ distribution
+    - Each class has its own mean, $\mu_k$
+    - All classes have the same standard deviation
+      - That is, $\sigma^2_1 = \sigma^2_2 = \ldots = \sigma^2_K$, or simply $\sigma^2$ 
+  - We denote this as: $P(\mathbf{X}|\mathbf{Y}=k) \sim N(\mu_k, \sigma^2)$ 
+:::
+
+## LDA - Estimates {.smaller}
+
+- We estimate the mean per class and the shared standard deviation as follows:
+
+::: {.fragment}
+$$
+\begin{align}
+\hat{\mu}_k &= \frac{1}{n_k}\sum_{i:y_i=k}{x_i}\\
+\hat{\sigma}^2 &= \frac{1}{n - K}\sum_{k=1}^K{\sum_{i:y_i=k}{\left(x_i - \hat{\mu}_k\right)^2}} \\
+\hat{P}(k) &= \frac{n_k}{n} 
+\end{align}
+$$
+:::
+
+::: {.fragment}
+- where:
+  - $n$ is the total number of training observations
+  - $n_k$ is the number of training observations in the $k$th class
+:::
+
+
+::: footer
+::: {style="font-size:0.85em"}
+Read [@james_introduction_2021, Section 4.4] to understand why these estimates are the way they are.
+:::
+:::
+
+::: notes
+- Mention that priors could come from prior knowledge
+:::
+
 # Naive Bayes Classifier
 
-\<missing\>
+## Naive Bayes Classifier {.smaller}
+::: {.fragment .fade-in-then-semi-out}
+- Main Assumption:
+
+<blockquote>
+_Within the $k$th class, the $p$ predictors are **independent**_
+</blockquote>
+
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+- Assuming features are not associated (not correlated), the likelihood becomes:
+  $$ 
+  P(\mathbf{X}|\mathbf{Y}=k) = \underbrace{P(x_1 |\mathbf{Y}=k)}_{1\text{st} \text{ predictor}} \times \underbrace{P(x_2 |\mathbf{Y}=k)}_{2\text{nd} \text{ predictor}} \times \ldots \times \underbrace{P(x_p |\mathbf{Y}=k)}_{p\text{-th} \text{ predictor}}
+  $$
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+- This means the posterior is given by:
+$$
+P(\mathbf{Y} = k| \mathbf{X} = x) = \frac{\quad\quad P(k) \times P(x_1 |\mathbf{Y}=k) \times P(x_2 |\mathbf{Y}=k) \times \ldots \times P(x_p |\mathbf{Y}=k)}{\sum_{l=1}^K{P(l) \times P(x_1 |\mathbf{Y}=l) \times P(x_2 |\mathbf{Y}=l) \times \ldots \times P(x_p |\mathbf{Y}=l)}}
+$$
+:::
+
+## A naive approach indeed {.smaller}
+
+::: {.fragment .fade-in-then-semi-out}
+- This may all look very complicated but it is actually quite simple
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+- If data is discrete (categorical), you just count the proportion of each category.
+
+Example:
+
+$$
+P(\mathbf{Y} = k| \mathbf{X}_j = x_j) = 
+\begin{cases}
+0.32 & \text{if } x_j = 1\\
+0.55 & \text{if } x_j = 2\\
+0.13 & \text{if } x_j = 3
+\end{cases}
+$$
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+- If data is continuous, use a histogram as an estimate for the true density of $x_p$
+  - Alternatively, use a <mark>kernel density estimator</mark>
+:::
+
 
 # Making decisions
 
 ## Default: Yes or No? {.smaller}
 
-<!-- ::: {.incremental} -->
+::: {.incremental}
 - We have looked at how the probabilities (risk of default) change according to the value of predictors
 - But in practice we need to decide whether the risk is too high or tolerable
 - In our example, we might want to ask:
 
-<!-- :::
+:::
 
-::: {.fragment} -->
+::: {.fragment}
 <blockquote>_"Will this person default on their credit card? **YES** or **NO**?"_</blockquote>
-<!-- ::: -->
+:::
 
 ## Default: Yes or No? {.smaller}
 
@@ -142,7 +365,7 @@ sample_customers
 
 ::: {.column style="width:30%;font-size:0.75em;"}
 
-<!-- ::: {.fragment} -->
+::: {.fragment}
 
 - If we set our <mark>threshold</mark> $= 40\%$, we get the following <mark>confusion matrix</mark>:
 
@@ -151,7 +374,7 @@ sample_customers
 | Predicted      |   **No**  |  **Yes** |
 |    **No**      |    2      |   0      |
 |   **Yes**      |    1      |   3      |
-<!-- ::: -->
+:::
 
 :::
 
@@ -159,9 +382,9 @@ sample_customers
 
 <br/>
 
-<!-- ::: {.fragment} -->
+::: {.fragment}
 ### Which of the two is more accurate?
-<!-- ::: -->
+:::
 
 ## Thresholds {.smaller}
 
@@ -190,12 +413,12 @@ sample_customers
 
 ## Classification metrics {.smaller}
 
-<!-- ::: {.incremental} -->
+::: {.incremental}
 - It is convenient to aggregate those quantities into a few other metrics
 - Two of the most common ones are called <mark>sensitivity</mark> and <mark>specificity</mark>
-<!-- :::
+:::
 
-::: {.fragment} -->
+::: {.fragment}
 
 $$
 \begin{align}
@@ -204,9 +427,9 @@ $$
 \end{align}
 $$
 
-<!-- :::
+:::
 
-::: {.fragment} -->
+::: {.fragment}
 
 - Another common one is <mark>accuracy</mark>:
 
@@ -220,7 +443,7 @@ $$
 
 - A good model has **high** sensitivity and **high** specificity and **high** accuracy.
 
-<!-- ::: -->
+:::
 
 ::: footer
 There are [many other ways](https://www.wikiwand.com/en/Sensitivity_and_specificity) to assess the results of a classification model 
@@ -252,7 +475,7 @@ comp_table <-
 caret::confusionMatrix(comp_table, positive="Yes")
 ``` -->
 
-::: {.column width="30%"}
+::: {.column width="40%"}
 📝 Now, looking at the logistic regression model we built for the entire dataset, work out the sensitivity, specificity and accuracy of the following confusion matrices:
 
 <br/>
@@ -260,11 +483,11 @@ caret::confusionMatrix(comp_table, positive="Yes")
 ::: {.callout-tip}
 ## Practice
 - ⏲️ 5 min to work out the math
-- 🗳️ Vote on your preferred threshold (on ![](/figures/logos/slack_logo_simple.svg){height=0.75em} Slack)
+- 🗳️ Vote on your preferred threshold <br/>(on ![](/figures/logos/slack_logo_simple.svg){height=0.75em} Slack)
 :::
 :::
 
-::: {.column style="width:35%;font-size:0.75em;margin-left:3%;"}
+::: {.column style="width:30%;font-size:0.75em;margin-left:3%;"}
 
 $\text{Threshold} = 50\%$:
 
@@ -275,7 +498,7 @@ $\text{Threshold} = 50\%$:
 |   **Yes**      |    40      |   105      |
 :::
 
-::: {.column style="width:35%;font-size:0.75em;margin-left:-3%;"}
+::: {.column style="width:30%;font-size:0.75em;margin-left:-3%;"}
 
 $\text{Threshold} = 40\%$:
 
@@ -347,12 +570,12 @@ ggroc(rocobj, colour = 'steelblue', size = 2) +
 
 ## Generalisation problems {.smaller}
 
-<!-- ::: incremental -->
+::: incremental
 - The data used to train algorithms is called <mark>training data</mark>
 - Often, we want to use the fitted models to make **predictions** on new previously unseen data
-<!-- :::
+:::
 
-::: {.fragment} -->
+::: {.fragment}
 
 ::: callout-important
 
@@ -360,8 +583,8 @@ ggroc(rocobj, colour = 'steelblue', size = 2) +
 
 :::
 
-<!-- :::
-::: incremental -->
+:::
+::: incremental
 
 - To make a robust assessment of our model, we have to split the data in two:
   - the training data and 
@@ -369,11 +592,11 @@ ggroc(rocobj, colour = 'steelblue', size = 2) +
 - We do NOT use the test data to fit the model
 - We will come back to this next week, this is the topic of 🗓️ Week 04.
 
-<!-- ::: -->
+:::
 
 ## Inappropriate reliance on metrics {.smaller}
 
-<!-- ::: incremental -->
+::: incremental
 
 - Accuracy can be very misleading when classes are <mark>imbalanced</mark>
 - Consider the following model: $\hat{y} = \text{Yes}$ (always)
@@ -385,7 +608,7 @@ ggroc(rocobj, colour = 'steelblue', size = 2) +
   - Is True Positive Rate more or less important than True Negative Rate for the classification problem at hand?
   - Why? Why not?
 - Ultimately, it boils down to how you plan to use this model afterwards.
-<!-- ::: -->
+:::
 
 # What's Next
 
