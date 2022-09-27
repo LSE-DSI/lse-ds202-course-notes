@@ -79,4 +79,4 @@ Use the `Carseats` data set in the `ISLR2` package to answer the following quest
     > summary(lm.fit7)
     ``` 
 
-    Different multiple linear regression models with interactions have been built. However, after comparision there is almost no difference between the values of the R<sup>2</sup> and adjusted R<sup>2</sup>, which means the goodness of fit is not significantly improved. The reason is that there is no interaction effects between `Price` and `US`, and between `Price` and `Urban`, and between `US` and `Urban` which is supported by the significance of these coeficients' t-tests.
+    Different multiple linear regression models with interactions have been built. However, after comparision there is almost no difference between the values of the $R^2$ and adjusted $R^2$, which means the goodness of fit is not significantly improved. The reason is that there is no interaction effects between `Price` and `US`, and between `Price` and `Urban`, and between `US` and `Urban` which is supported by the significance of these coeficients' t-tests.
