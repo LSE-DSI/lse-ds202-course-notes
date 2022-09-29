@@ -1,8 +1,8 @@
 ---
 title: "LSE DS202 (2022/2023)"
 subtitle: "Data Science for Social Scientists"
-date: 05 September 2022
-date-meta: 05 September 2022
+date: 29 September 2022
+date-meta: 29 September 2022
 ---
 
 # 📑 Course Brief
@@ -36,6 +36,11 @@ Office Hours: book via StudentHub
 
 ## Teaching assistants
 
+![](/figures/people/stuart.jpg){fig-align="left" fig-alt="Photo of Stuart Bramwell" width="5em"}  
+Dr. **[Stuart Bramwell](https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell)** <br/>
+_Guest Teacher_<br/>
+Office Hours: book via StudentHub
+
 ![](/figures/people/Anton.jpg){fig-align="left" fig-alt="Photo of Anton Boichenko" width="5em"}  
 **[Anton Boichenko](http://boychenko.pro/)** <br/>
 _Guest Teacher_<br/>
@@ -43,6 +48,11 @@ Office Hours: book via StudentHub
 
 ![](/figures/people/Xiaowei.png){fig-align="left" fig-alt="Photo of Xiaowei Gao" width="5em"}  
 **[Xiaowei Gao](https://github.com/UCLWilson)** <br/>
+_Guest Teacher_<br/>
+Office Hours: book via StudentHub
+
+![](/figures/people/mustafa.jfif){fig-align="left" fig-alt="Photo of Mustafa Can Ozkan" width="5em"}  
+**Mustafa Can Ozkan** <br/>
 _Guest Teacher_<br/>
 Office Hours: book via StudentHub
 
