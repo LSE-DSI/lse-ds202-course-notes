@@ -26,42 +26,54 @@ date-meta: 29 September 2022
 # 🧑🏻‍🏫 Our Team
 
 ::: {.panel-tabset}
-## Teacher responsible
+## Teacher Responsible
+
 
 ![](/figures/people/JonathanCardosoSilva_2022.jpg){fig-align="left" fig-alt="Photo of Dr. Jonathan Cardoso-Silva" width="5em"}  
 **Dr. [Jonathan Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva)** <br/>
 _Assistant Professorial Lecturer_ <br/>
-LSE Data Science Institute<br/>
-Office Hours: book via StudentHub
+[LSE Data Science Institute](https://lse.ac.uk/dsi)</a><br/>
 
-## Teaching assistants
+Office Hours: 
+
+- 15-min slots, on **Wednesdays 13:00 – 15:00** during Term Time
+- Room: PEL 9.01c (check out the [🗺️ campus map](https://www.lse.ac.uk/lse-information/assets/documents/21-0099-Campus-Map-update-241121-V6.pdf))
+- Book via [Student Hub](https://studenthub.lse.ac.uk/) up to 12 hours in advance
+
+## Teaching Staff
 
 ![](/figures/people/stuart.jpg){fig-align="left" fig-alt="Photo of Stuart Bramwell" width="5em"}  
-Dr. **[Stuart Bramwell](https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell)** <br/>
-_Guest Teacher_<br/>
-Office Hours: book via StudentHub
-
-![](/figures/people/Anton.jpg){fig-align="left" fig-alt="Photo of Anton Boichenko" width="5em"}  
-**[Anton Boichenko](http://boychenko.pro/)** <br/>
-_Guest Teacher_<br/>
-Office Hours: book via StudentHub
-
-![](/figures/people/Xiaowei.png){fig-align="left" fig-alt="Photo of Xiaowei Gao" width="5em"}  
-**[Xiaowei Gao](https://github.com/UCLWilson)** <br/>
-_Guest Teacher_<br/>
-Office Hours: book via StudentHub
-
-![](/figures/people/mustafa.jfif){fig-align="left" fig-alt="Photo of Mustafa Can Ozkan" width="5em"}  
-**Mustafa Can Ozkan** <br/>
-_Guest Teacher_<br/>
-Office Hours: book via StudentHub
+**Dr. [Stuart Bramwell](https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell)** <br/>
+ESRC Postdoctoral Fellow <br> 
+Department of Methodology<br>
+PhD in Politics (Oxford)
 
 ![](/figures/people/Yijun.jpg){fig-align="left" fig-alt="Photo of Yijun Wang" width="5em"}  
 **[Yijun Wang](https://www.kcl.ac.uk/people/yijun-wang)** <br/>
-_Guest Teacher_<br/>
-Office Hours: book via StudentHub
+Guest Teacher at the [LSE Data Science Institute](https://lse.ac.uk/dsi)<br/> 
+PhD candidate in Health Informatics (KCL) <br/>
+MSc in Data Science (KCL)
 
-## Administrative support
+![](/figures/people/mustafa.jfif){fig-align="left" fig-alt="Photo of Mustafa Can Ozkan" width="5em"}  
+**Mustafa Can Ozkan** <br/>
+Guest Teacher at the [LSE Data Science Institute](https://lse.ac.uk/dsi)<br> 
+PhD candidate in the Spacetime Lab (UCL) <br> 
+MSc in Transport (Imperial/UCL)
+
+
+![](/figures/people/Xiaowei.png){fig-align="left" fig-alt="Photo of Xiaowei Gao" width="5em"}  
+**[Xiaowei Gao](https://github.com/UCLWilson)** <br/>
+Guest Teacher at the [LSE Data Science Institute](https://lse.ac.uk/dsi)<br> 
+PhD candidate in the Spacetime Lab (UCL) <br> 
+MSc in Data Science (KCL)
+
+![](/figures/people/Anton.jpg){fig-align="left" fig-alt="Photo of Anton Boichenko" width="5em"}  
+**[Anton Boichenko](http://boychenko.pro/)** <br/>
+Guest Teacher at the [LSE Data Science Institute](https://lse.ac.uk/dsi)<br> 
+Product Developer at [Decoded](https://decoded.com/) <br> 
+MSc in Applied Social Data Science (LSE)
+
+## Administrative Support
 
 
 ![](/figures/people/Nathaniel-Ocquaye-Cropped-450x450.jpg){fig-align="left" fig-alt="Photo of Nathaniel Ocquaye" width="5em"}  
