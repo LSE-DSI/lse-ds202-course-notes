@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "LSE DS202 (2022/2023)",
     "section": "",
-    "text": "🎯 Learning Objectives\n\nUnderstand the fundamentals of the data science approach, with an emphasis on social scientific analysis and the study of the social, political, and economic worlds;\nUnderstand how classical methods such as regression analysis or principal components analysis can be treated as machine learning approaches for prediction or for data mining.\nKnow how to fit and apply supervised machine learning models for classification and prediction.\nKnow how to evaluate and compare fitted models, and to improve model performance.\nUse applied computer programming, including the hands-on use of programming through course exercises.\nApply the methods learned to real data through hands-on exercises.\nIntegrate the insights from data analytics into knowledge generation and decision-making.\nUnderstand an introductory framework for working with natural language (text) data using techniques of machine learning.\nLearn how data science methods have been applied to a particular domain of study (applications).\n\n\n\n🧑🏻‍🏫 Our Team\n\nTeacher ResponsibleTeaching StaffAdministrative Support\n\n\n\nDr. Jonathan Cardoso-Silva  Assistant Professorial Lecturer  LSE Data Science Institute\nOffice Hours:\n\n15-min slots, on Wednesdays 13:00 – 15:00 during Term Time\nRoom: PEL 9.01c (check out the 🗺️ campus map)\nBook via Student Hub up to 12 hours in advance\n\n\n\n\nDr. Stuart Bramwell  ESRC Postdoctoral Fellow  Department of Methodology PhD in Politics (Oxford)\n\nYijun Wang  Guest Teacher at the LSE Data Science Institute PhD candidate in Health Informatics (KCL)  MSc in Data Science (KCL)\n\nMustafa Can Ozkan  Guest Teacher at the LSE Data Science Institute PhD candidate in the Spacetime Lab (UCL)  MSc in Transport (Imperial/UCL)\n\nXiaowei Gao  Guest Teacher at the LSE Data Science Institute PhD candidate in the Spacetime Lab (UCL)  MSc in Data Science (KCL)\n\nAnton Boichenko  Guest Teacher at the LSE Data Science Institute Product Developer at Decoded  MSc in Applied Social Data Science (LSE)\n\n\n\nNathaniel Ocquaye  Teaching Support and Events Officer Office: PEL 9.01 Email: DSI.UG at lse dot ac dot uk\n\nJill Beattie  Institute Coordinator Office: PEL 9.01E Tel: +44 (0) 20 7955 7759 Email: DSI.Admin at lse dot ac dot uk"
+    "text": "🎯 Learning Objectives\n\nUnderstand the fundamentals of the data science approach, with an emphasis on social scientific analysis and the study of the social, political, and economic worlds;\nUnderstand how classical methods such as regression analysis or principal components analysis can be treated as machine learning approaches for prediction or for data mining.\nKnow how to fit and apply supervised machine learning models for classification and prediction.\nKnow how to evaluate and compare fitted models, and to improve model performance.\nUse applied computer programming, including the hands-on use of programming through course exercises.\nApply the methods learned to real data through hands-on exercises.\nIntegrate the insights from data analytics into knowledge generation and decision-making.\nUnderstand an introductory framework for working with natural language (text) data using techniques of machine learning.\nLearn how data science methods have been applied to a particular domain of study (applications).\n\n\n\n🧑🏻‍🏫 Our Team\n\nTeacher ResponsibleTeaching StaffAdministrative Support\n\n\n\nDr. Jonathan Cardoso-Silva  Assistant Professorial Lecturer  LSE Data Science Institute 📧 J.Cardoso-Silva at lse dot ac dot uk\nOffice Hours:\n\n15-min slots, on Wednesdays 13:00 – 15:00 during Term Time\nRoom: PEL 9.01c (check out the 🗺️ campus map)\nBook via Student Hub up to 12 hours in advance\n\n\n\n\nDr. Stuart Bramwell  ESRC Postdoctoral Fellow  Department of Methodology PhD in Politics (Oxford)\n\nYijun Wang  Guest Teacher at the LSE Data Science Institute PhD candidate in Health Informatics (KCL)  MSc in Data Science (KCL)\n\nMustafa Can Ozkan  Guest Teacher at the LSE Data Science Institute PhD candidate in the Spacetime Lab (UCL)  MSc in Transport (Imperial/UCL)\n\nXiaowei Gao  Guest Teacher at the LSE Data Science Institute PhD candidate in the Spacetime Lab (UCL)  MSc in Data Science (KCL)\n\nAnton Boichenko  Guest Teacher at the LSE Data Science Institute Product Developer at Decoded  MSc in Applied Social Data Science (LSE)\n\n\n\nNathaniel Ocquaye  Teaching Support and Events Officer Office: PEL 9.01 Email: DSI.UG at lse dot ac dot uk\n\nJill Beattie  Institute Coordinator Office: PEL 9.01E Tel: +44 (0) 20 7955 7759 Email: DSI.Admin at lse dot ac dot uk"
   },
   {
     "objectID": "main/assessments.html",
@@ -95,7 +95,7 @@
     "href": "weeks/week01/appendix.html",
     "title": "🔖 Week 01 - Appendix",
     "section": "",
-    "text": "This week’s indicative reading: (James et al. 2021, chaps. 2, 2.1–2.2)"
+    "text": "This week’s indicative reading: (James et al. 2021, chaps. 2, 2.1–2.2)\n\n\nNeed to recap probability and statistics concepts? Check the suggested readings below:\n\n(Warne 2018, chaps. 1-3,5,6,11-12)\n(Gelman, Hill, and Vehtari 2020, chaps. 1–4)\nIf you are a PBS student, you can revisit the content of PB130 (MT3, MT4, MT8-MT11)"
   },
   {
     "objectID": "weeks/week01/appendix.html#recommended-additional-reading",
@@ -340,21 +340,21 @@
     "href": "slides/week01_slides_part1.html#your-lecturer",
     "title": "🗓️ Week 01 Structure of this course",
     "section": "Your lecturer",
-    "text": "Your lecturer\n\n\n\n\n\n \nDr. Jonathan Cardoso-Silva\n\nPhD in Computer Science\nBackground: Computer Science,Engineering,Data Science\nResearch:\n\nNetworks\nOptimisation\nMachine Learning applications\nData Science Workflow"
+    "text": "Your lecturer\n\n\n\n\n\n \nDr. Jonathan Cardoso-Silva\n\nPhD in Computer Science\nBackground: Engineering, Bio & Health Informatics\nFormer Lead Data Scientist\nResearch:\n\nNetworks\nOptimisation\nMachine Learning applications\nData Science Workflow"
   },
   {
     "objectID": "slides/week01_slides_part1.html#teaching-assistants",
     "href": "slides/week01_slides_part1.html#teaching-assistants",
     "title": "🗓️ Week 01 Structure of this course",
     "section": "Teaching Assistants",
-    "text": "Teaching Assistants\n\n\n\nAnton Boichenko  Guest Teacher Developer at Decoded   \n\n\nXiaowei Gao  Guest Teacher PhD Student at KCL in Health Informatics  \n\n\nYijun Wang  Guest Teacher PhD Student at UCL Centre for Advanced Spatial Analysis"
+    "text": "Teaching Assistants\n\n\n\nDr. Stuart Bramwell  ESRC Postdoctoral Fellow  Department of Methodology PhD in Politics (Oxford)\n\n\nYijun Wang  Guest Teacher at the DSI PhD cand. in Health Informatics (KCL)  MSc in Data Science (KCL)\n\n\nMustafa Can Ozkan  Guest Teacher at the DSI PhD cand. in the Spacetime Lab (UCL)  MSc in Transport (Imperial/UCL)\n\n\n\n\n\n\n\nXiaowei Gao  Guest Teacher at the DSI PhD cand. in the Spacetime Lab (UCL)  MSc in Data Science (KCL)\n\n\nAnton Boichenko  Guest Teacher at the DSI Product Developer at Decoded  MSc in Applied Social Data Science (LSE)"
   },
   {
     "objectID": "slides/week01_slides_part1.html#who-are-you",
     "href": "slides/week01_slides_part1.html#who-are-you",
     "title": "🗓️ Week 01 Structure of this course",
     "section": "Who are you",
-    "text": "Who are you"
+    "text": "Who are you\n\n\n\n\n\n\n\n\n\n\nProgramme\nFreq\n\n\n\n\nBSc in Economics\n34\n\n\nBSc in Pyschological and Behavioural Science\n32\n\n\nGeneral Course\n11\n\n\nBSc in Politics and Economics\n4\n\n\nLLB in Laws\n3\n\n\nBSc in International Relations\n2\n\n\nBSc in Philosophy and Economics\n2\n\n\nBSc in Philosophy, Politics and Economics\n2\n\n\nBSc in Economic History and Geography\n1\n\n\nBSc in Economics and Economic History\n1\n\n\nBSc in Geography with Economics\n1\n\n\nBSc in International Relations and History\n1\n\n\nBSc in Mathematics, Statistics and Business\n1\n\n\nBSc in Philosophy, Logic and Scientific Method\n1\n\n\nErasmus Reciprocal Programme of Study\n1\n\n\nExchange Programme for Students from University of California, Berkeley\n1\n\n\n\n\n\n\n\nSource: LSE For You. Last Updated: 30 September 2022"
   },
   {
     "objectID": "slides/week01_slides_part1.html#learning-objectives-cont.",
@@ -445,7 +445,7 @@
     "href": "slides/week01_slides_part1.html#class-groups",
     "title": "🗓️ Week 01 Structure of this course",
     "section": "Class groups",
-    "text": "Class groups\n\n\n\nGroup 01\n\n📆 Mondays\n⌚ 09:00 — 10:30\n📍 PAN.1.03\n\n\nGroup 02\n\n📆 Mondays\n⌚ 10:30 — 12:00\n📍 PAN.1.03\n\n\nGroup 03\n\n📆 Mondays\n⌚ 13:00 — 14:30\n📍 MAR.1.09\n\n\n\n\n🗺️ Check LSE campus map"
+    "text": "Class groups\n\n\nGroup 01\n\n📆 Mondays\n⌚ 09:00 — 10:30\n📍 PAN.1.03\n\n\nGroup 02\n\n📆 Mondays\n⌚ 10:30 — 12:00\n📍 PAN.1.03\n\n\nGroup 03\n\n📆 Mondays\n⌚ 13:00 — 14:30\n📍 MAR.1.09\n\n\nGroup 04\n\n📆 Fridays\n⌚ 16:00 — 17:30\n📍 NAB.1.04\n\n\nGroup 05\n\n📆 Mondays\n⌚ 09:00 — 10:30\n📍 32L.LG.11\n\n\nGroup 06\n\n📆 Mondays\n⌚ 10:30 — 12:00\n📍 32L.LG.11\n\n\nGroup 07\n\n📆 Fridays\n⌚ 09:30 — 11:00\n📍 CBG.2.06\n\n\n\n\n🗺️ Check LSE campus map"
   },
   {
     "objectID": "slides/week01_slides_part1.html#assessments",
@@ -466,7 +466,7 @@
     "href": "slides/week01_slides_part1.html#assessments-2",
     "title": "🗓️ Week 01 Structure of this course",
     "section": "Assessments 📔",
-    "text": "Assessments 📔\n\nTake-home exam (40%)\n\n\nAn open-book take-home exam, taken during the January exams period.\nExam questions will be comparable in style to the problem sets.\nThe exam questions will be released on Moodle on 5 January 2023.\nThe exam is due on 11 January at 4pm."
+    "text": "Assessments 📔\n\nTake-home exam (40%)\n\n\nAn open-book take-home exam, taken during the January exams period.\nExam questions will be comparable in style to the problem sets.\nThe exam questions will be released on Moodle on 5 January 2023. (tentative)\nThe exam is due on 11 January at 4pm (tentative)"
   },
   {
     "objectID": "slides/week01_slides_part1.html#office-hours",
@@ -648,7 +648,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  7.83\n2     9    12 11.5 \n3    12    15 14.4 \n4    15    18 18.8 \n5    18    21 17.7 \n6    21    24 21.2"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.95\n2     9    12 13.4 \n3    12    15 13.0 \n4    15    18 17.7 \n5    18    21 22.6 \n6    21    24 22.1"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -683,7 +683,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  7.83  1.17     1.17 \n2     9    12 11.5   0.509    0.509\n3    12    15 14.4   0.596    0.596\n4    15    18 18.8  -0.830    0.830\n5    18    21 17.7   3.28     3.28 \n6    21    24 21.2   2.82     2.82 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.533951\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  9.95 -0.952    0.952\n2     9    12 13.4  -1.37     1.37 \n3    12    15 13.0   1.99     1.99 \n4    15    18 17.7   0.313    0.313\n5    18    21 22.6  -1.58     1.58 \n6    21    24 22.1   1.93     1.93 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.35506\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",

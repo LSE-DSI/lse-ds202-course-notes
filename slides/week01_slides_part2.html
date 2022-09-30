@@ -1086,12 +1086,12 @@ communicate-&gt;end
 <pre><code># A tibble: 6 × 3
       X     Y  obsY
   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
-1     6     9  7.83
-2     9    12 11.5 
-3    12    15 14.4 
-4    15    18 18.8 
-5    18    21 17.7 
-6    21    24 21.2 </code></pre>
+1     6     9  9.95
+2     9    12 13.4 
+3    12    15 13.0 
+4    15    18 17.7 
+5    18    21 22.6 
+6    21    24 22.1 </code></pre>
 </div>
 </div>
 </section>
@@ -1146,12 +1146,12 @@ communicate-&gt;end
 <pre><code># A tibble: 6 × 5
       X     Y  obsY  error absError
   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-1     6     9  7.83  1.17     1.17 
-2     9    12 11.5   0.509    0.509
-3    12    15 14.4   0.596    0.596
-4    15    18 18.8  -0.830    0.830
-5    18    21 17.7   3.28     3.28 
-6    21    24 21.2   2.82     2.82 </code></pre>
+1     6     9  9.95 -0.952    0.952
+2     9    12 13.4  -1.37     1.37 
+3    12    15 13.0   1.99     1.99 
+4    15    18 17.7   0.313    0.313
+5    18    21 22.6  -1.58     1.58 
+6    21    24 22.1   1.93     1.93 </code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -1159,7 +1159,7 @@ communicate-&gt;end
 <div class="cell" data-output-location="fragment">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>absError)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.533951</code></pre>
+<pre><code>[1] 1.35506</code></pre>
 </div>
 </div>
 </div>
