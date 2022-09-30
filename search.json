@@ -448,6 +448,13 @@
     "text": "Class groups\n\n\nGroup 01\n\n📆 Mondays\n⌚ 09:00 — 10:30\n📍 PAN.1.03\n\n\nGroup 02\n\n📆 Mondays\n⌚ 10:30 — 12:00\n📍 PAN.1.03\n\n\nGroup 03\n\n📆 Mondays\n⌚ 13:00 — 14:30\n📍 MAR.1.09\n\n\nGroup 04\n\n📆 Fridays\n⌚ 16:00 — 17:30\n📍 NAB.1.04\n\n\nGroup 05\n\n📆 Mondays\n⌚ 09:00 — 10:30\n📍 32L.LG.11\n\n\nGroup 06\n\n📆 Mondays\n⌚ 10:30 — 12:00\n📍 32L.LG.11\n\n\nGroup 07\n\n📆 Fridays\n⌚ 09:30 — 11:00\n📍 CBG.2.06\n\n\n\n\n🗺️ Check LSE campus map"
   },
   {
+    "objectID": "slides/week01_slides_part1.html#your-background-knowledge",
+    "href": "slides/week01_slides_part1.html#your-background-knowledge",
+    "title": "🗓️ Week 01 Structure of this course",
+    "section": "Your background knowledge",
+    "text": "Your background knowledge\n\nPlease, help our teaching team understand your needs as we prepare for the first labs next week.\nFind the link to the survey on our Slack group or point your phone to the QR code below"
+  },
+  {
     "objectID": "slides/week01_slides_part1.html#assessments",
     "href": "slides/week01_slides_part1.html#assessments",
     "title": "🗓️ Week 01 Structure of this course",
@@ -648,7 +655,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.08\n2     9    12 10.3 \n3    12    15 16.4 \n4    15    18 18.9 \n5    18    21 21.8 \n6    21    24 24.8"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  8.59\n2     9    12 11.3 \n3    12    15 18.0 \n4    15    18 16.6 \n5    18    21 19.2 \n6    21    24 20.6"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -683,7 +690,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY   error absError\n  <int> <int> <dbl>   <dbl>    <dbl>\n1     6     9  9.08 -0.0785   0.0785\n2     9    12 10.3   1.74     1.74  \n3    12    15 16.4  -1.39     1.39  \n4    15    18 18.9  -0.946    0.946 \n5    18    21 21.8  -0.755    0.755 \n6    21    24 24.8  -0.833    0.833 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.9570927\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  8.59  0.407    0.407\n2     9    12 11.3   0.710    0.710\n3    12    15 18.0  -2.98     2.98 \n4    15    18 16.6   1.43     1.43 \n5    18    21 19.2   1.81     1.81 \n6    21    24 20.6   3.36     3.36 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.782654\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
