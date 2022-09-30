@@ -1,7 +1,7 @@
 ---
 title: "🗓️ Week 01 - Introduction, Context & Key Concepts"
-date: 30 August 2022
-date-meta: 30 August 2022
+date: 30 September 2022
+date-meta: 30 September 2022
 ---
 
 

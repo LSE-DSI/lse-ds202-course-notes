@@ -514,6 +514,14 @@ Our lectures will be split in two parts:
 🗺️ Check [LSE campus map](https://www.lse.ac.uk/lse-information/campus-map)
 :::
 
+## Your background knowledge
+
+- Please, help our teaching team understand your needs as we prepare for the first labs next week. 
+
+- Find the link to the survey on our Slack group or point your phone to the QR code below
+
+![](/figures/week01/QRCode%20for%20How%20much%20do%20you%20know%20about%20R_.png)
+
 
 ## Assessments :notebook_with_decorative_cover:
 
