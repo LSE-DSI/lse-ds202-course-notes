@@ -108,14 +108,15 @@ DSI offer accessible introductions to Data Science:
 ::: {.column width="40%"}
 :::
 
-::: {.column width="60%"}
+::: {.column style="width:60%;font-size:0.85em;"}
 <br/>
 <br/>
 
 **Dr. Jonathan Cardoso-Silva**
 
 - PhD in Computer Science
-- Background: Computer Science,Engineering,Data Science
+- **Background**: Engineering, Bio & Health Informatics
+- Former **Lead Data Scientist**
 - Research: 
     - Networks
     - Optimisation
@@ -130,39 +131,139 @@ DSI offer accessible introductions to Data Science:
 
 ::: columns
 
-::: {.column style="width: 30%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-left:0.5%;padding:1%;"}
-![](/figures/people/Anton.jpg){fig-align="left" fig-alt="Photo of Anton Boichenko" width="5em"}  
-**[Anton Boichenko](http://boychenko.pro/)** <br/>
-_Guest Teacher_<br/>
-Developer at Decoded
-<br/>
-<br/>
-<br/>
+::: {.column style="width: 25%;font-size:0.7em;margin-left:0.5%;padding:1%;"}
+![](/figures/people/stuart.jpg){fig-align="left" fig-alt="Photo of Stuart Bramwell" width="5em"}  
+**Dr. [Stuart Bramwell](https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell)** <br/>
+ESRC Postdoctoral Fellow <br> 
+Department of Methodology<br>
+PhD in Politics (Oxford)
 :::
 
-::: {.column style="width: 30%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-left:0.5%;padding:1%;"}
-![](/figures/people/Xiaowei.png){fig-align="left" fig-alt="Photo of Xiaowei Gao" width="5em"}  
-**[Xiaowei Gao](https://github.com/UCLWilson)** <br/>
-_Guest Teacher_<br/>
-PhD Student at KCL in Health Informatics
-<br/>
-<br/>
-:::
+::: {.column style="width: 33%;font-size:0.7em;margin-left:0.5%;padding:1%;"}
 
-::: {.column style="width: 30%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-left:0.5%;padding:1%;"}
 ![](/figures/people/Yijun.jpg){fig-align="left" fig-alt="Photo of Yijun Wang" width="5em"}  
 **[Yijun Wang](https://www.kcl.ac.uk/people/yijun-wang)** <br/>
-_Guest Teacher_<br/>
-PhD Student at UCL Centre for Advanced Spatial Analysis
+Guest Teacher at the [DSI](https://lse.ac.uk/dsi)<br/> 
+PhD cand. in Health Informatics (KCL) <br/>
+MSc in Data Science (KCL)
+:::
+
+::: {.column style="width: 33%;font-size:0.7em;margin-left:0.5%;padding:1%;"}
+![](/figures/people/mustafa.jfif){fig-align="left" fig-alt="Photo of Mustafa Can Ozkan" width="5em"}  
+**Mustafa Can Ozkan** <br/>
+Guest Teacher at the [DSI](https://lse.ac.uk/dsi)<br> 
+PhD cand. in the Spacetime Lab (UCL) <br> 
+MSc in Transport (Imperial/UCL)
 :::
 
 :::
 
-## Who are you {.scrollable}
+
+::: columns
+
+::: {.column style="width: 25%;font-size:0.7em;margin-left:0.5%;padding:1%;"}
+
+:::
+
+::: {.column style="width: 33%;font-size:0.7em;margin-left:0.5%;padding:1%;"}
+![](/figures/people/Xiaowei.png){fig-align="left" fig-alt="Photo of Xiaowei Gao" width="5em"}  
+**[Xiaowei Gao](https://github.com/UCLWilson)** <br/>
+Guest Teacher at the [DSI](https://lse.ac.uk/dsi)<br> 
+PhD cand. in the Spacetime Lab (UCL) <br> 
+MSc in Data Science (KCL)
+:::
+
+::: {.column style="width: 33%;font-size:0.7em;margin-left:0.5%;padding:1%;"}
+![](/figures/people/Anton.jpg){fig-align="left" fig-alt="Photo of Anton Boichenko" width="5em"}  
+**[Anton Boichenko](http://boychenko.pro/)** <br/>
+Guest Teacher at the [DSI](https://lse.ac.uk/dsi)<br> 
+Product Developer at [Decoded](https://decoded.com/) <br> 
+MSc in Applied Social Data Science (LSE)
+:::
+
+:::
+
+## Who are you
+
+
+::: {.smaller style="font-size:0.50em;"}
+```{r}
+#| show: false
+#| label: tally
+
+library(knitr)
+library(tidyverse)
+
+ds105 <- readr::read_csv("../resources/ds202_enrollment.csv")
+progrs <- table(ds105$programmeName, dnn=c("Programme")) %>% sort(decreasing=TRUE)
+
+kable(progrs)
+
+```
+:::
+
+::: footer
+Source: LSE For You. Last Updated: 30 September 2022
+:::
+
+------
+
+### Degree Programme vs Year of Study
+
+```{r}
+#| show: false
+#| label: tally_yos
+
+library(knitr)
+library(tidyverse)
+
+plot_df <- 
+    ds105 %>% group_by(programmeName, yearOfStudy) %>% tally()
+plot_df$programmeName <- 
+    factor(plot_df$programmeName, levels=rev(names(progrs)))
+plot_df$yearOfStudy <- factor(plot_df$yearOfStudy, levels=seq(4))
+
+g <- ggplot(plot_df, aes(x=yearOfStudy, y=programmeName, fill=n, label=n)) +
+    geom_bin2d() +
+    geom_text(aes(color=n)) +
+    
+    scale_fill_viridis_c(name="Count", option="E", guide="none") + 
+    scale_colour_gradient2(name="", low="#ffffff", mid="#fafafa", high="#212121", midpoint=4.9, guide="none") +
+    scale_x_discrete(name="Year of Study") +
+    scale_y_discrete(name="") +
+
+    theme_bw() +
+	theme(
+        legend.position = "bottom",
+        legend.text = element_text(size=16),
+        axis.title.x = element_text(size=17),
+        axis.title.y = element_text(size=17),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        panel.grid.minor = element_blank(),
+        aspect.ratio=8/4
+        ) 
+g
+
+```
+
+
 
 --------------
 
-### BSc Psychological and Behavioural Science
+### Course Selection Options
+**BSc in Economics**
+
+::: footer
+Data extracted from the [UBEC 2021/2022 degree regulation](https://www.lse.ac.uk/resources/regulations/2021_UBEC.html).
+:::
+
+![](/figures/week01/UBEC_2021_22v2.png){width="100%"}
+
+---------------
+
+### Course Selection Options
+**BSc Psychological and Behavioural Science**
 
 ::: footer
 Data extracted from the [UBPBS 2020/2021 degree regulation](https://www.lse.ac.uk/resources/regulations/2020_UBPBS.html).
@@ -177,7 +278,8 @@ Data extracted from the [UBPBS 2020/2021 degree regulation](https://www.lse.ac.u
 
 --------------
 
-### BSc in Politics and Economics
+### Course Selection Options
+**BSc in Politics and Economics**
 
 ::: footer
 Data extracted from the [UBPOLEC 2020/2021 degree regulation](https://www.lse.ac.uk/resources/regulations/2020_UBPOLEC.html).
@@ -187,7 +289,8 @@ Data extracted from the [UBPOLEC 2020/2021 degree regulation](https://www.lse.ac
 
 --------------
 
-### BSc in International Relations
+### Course Selection Options
+**BSc in International Relations**
 
 ::: footer
 Data extracted from the [UBIR 2020/2021 degree regulation](https://www.lse.ac.uk/resources/regulations/2020_UBIR.html).
@@ -346,11 +449,9 @@ Our lectures will be split in two parts:
 
 ## Class groups
 
-<br/>
-
 ::: columns
 
-::: {.column style="width: 29%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:1%;padding:1.5%;font-size:0.8em;"}
+::: {.column style="width: 20.5%;font-size:0.6em;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:1%;padding:1.5%;"}
 **Group 01**
 
 - 📆 Mondays 
@@ -358,7 +459,7 @@ Our lectures will be split in two parts:
 - 📍 PAN.1.03
 :::
 
-::: {.column style="width: 29%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:1%;padding:1.5%;font-size:0.8em;"}
+::: {.column style="width: 20.5%;font-size:0.6em;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:1%;padding:1.5%;"}
 **Group 02**
 
 - 📆 Mondays 
@@ -366,12 +467,44 @@ Our lectures will be split in two parts:
 - 📍 PAN.1.03
 :::
 
-::: {.column style="width: 29%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:1%;padding:1.5%;font-size:0.8em;"}
+::: {.column style="width: 20.5%;font-size:0.6em;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:1%;padding:1.5%;"}
 **Group 03**
 
 - 📆 Mondays 
 - ⌚ 13:00 — 14:30
 - 📍 MAR.1.09
+:::
+
+::: {.column style="width: 20.5%;font-size:0.6em;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:1%;padding:1.5%;"}
+**Group 04**
+
+- 📆 Fridays 
+- ⌚ 16:00 — 17:30
+- 📍 NAB.1.04
+:::
+
+::: {.column style="width: 20.5%;font-size:0.6em;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:1%;margin-top:1%;padding:1.5%;"}
+**Group 05**
+
+- 📆 Mondays 
+- ⌚ 09:00 — 10:30
+- 📍 32L.LG.11
+:::
+
+::: {.column style="width: 20.5%;font-size:0.6em;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:1%;margin-top:1%;padding:1.5%;"}
+**Group 06**
+
+- 📆 Mondays 
+- ⌚ 10:30 — 12:00
+- 📍 32L.LG.11
+:::
+
+::: {.column style="width: 20.5%;font-size:0.6em;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:1%;margin-top:1%;padding:1.5%;"}
+**Group 07**
+
+- 📆 Fridays 
+- ⌚ 09:30 — 11:00
+- 📍 CBG.2.06
 :::
 
 
@@ -408,9 +541,11 @@ The breakdown of assessment for this class will be as follows:
 ::: incremental
 -   An open-book take-home exam, taken during the January exams period.
 -   Exam questions will be comparable in style to the problem sets.
--   The exam questions will be released on Moodle on <mark>5 January 2023.</mark>
--   The exam is due on <mark>11 January at 4pm</mark>.
+-   The exam questions will be released on Moodle on <mark>5 January 2023.</mark> (tentative)
+-   The exam is due on <mark>11 January at 4pm</mark> (tentative)
 :::
+
+
 
 ## Office hours
 

@@ -1,8 +1,8 @@
 ---
 title: "LSE DS202 (2022/2023)"
 subtitle: "Data Science for Social Scientists"
-date: 29 September 2022
-date-meta: 29 September 2022
+date: 30 September 2022
+date-meta: 30 September 2022
 ---
 
 # 📑 Course Brief
@@ -33,6 +33,7 @@ date-meta: 29 September 2022
 **Dr. [Jonathan Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva)** <br/>
 _Assistant Professorial Lecturer_ <br/>
 [LSE Data Science Institute](https://lse.ac.uk/dsi)</a><br/>
+📧 [J.Cardoso-Silva@lse.ac.uk](mailto:J.Cardoso-Silva@lse.ac.uk)
 
 Office Hours: 
 
