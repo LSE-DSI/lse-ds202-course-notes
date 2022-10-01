@@ -129,7 +129,7 @@ name it x. When we type x, it gives us back the vector:
 
 </details>
 
-<details><summary>Step 2: Graphics (10 min)</summary>
+<details><summary>Step 2: Graphics (15 min)</summary>
 
 ## Step 2: Graphics
 
@@ -173,6 +173,71 @@ We will plot and save plots in R.
     ```
   
     The `image()` function works the same way as `contour()`. Explore it if you are interested.
+
+
+4. Create a heatmap with `ggplot2` package:
+   
+    In R, the data is stored in a structure called `dataframe`. Dataframe can be seen as a 2-dimensional table consisting of rows and columns and their values. These values might be in different types such as `numeric`, `character` or `logical`. However, each column should have the exactly same data type.
+
+    We can use the open-source data visualization package - ggplot2 to construct aesthetic mappings based on our data.
+
+    -Since `tidyverse` library includes ggplot2, if you install `tidyverse` you will have access to ggplot2; installation can be done;
+
+    ```r
+    > install.packages("tidyverse")
+    ```
+
+    -Alternatively, `ggplot2` package can be installed
+
+    ```r
+    > install.packages("ggplot2")
+    ```
+
+    After the installation  is completed, it should be called in R environment:
+
+    ```r
+    > library(ggplot2)
+    ```
+    To create a dummy dataframe, we can use country names, a time period and random GDP for each country.
+
+     ```r
+    countries <- c("Canada", "France","Greece","Libya","Malta")
+    years <- c(2012:2021)
+    ```
+    Let's gather them together and see what our dataframe looks like:
+
+    ```r
+    data <- expand.grid(Country=countries, Year=years)
+    data
+    ```
+    `expand.grid` creates a dataframe from all combinations of the supplied vectors.
+
+
+    Now to create random GPD for each country and each year, and add these values into our dataframe as GDP column::
+
+    ```r
+    gdps  <- runif(50, min=20000, max=500000)
+    data$GDP = gdps
+    ```
+    `runif` generates a certain number of random values between min and maximum values with a uniform distribution. Since we have 5 countries and 10 year, we generated 50 random GPD value.
+     
+    To check the data and type of the variable `data`:
+
+    ```r
+    View(data)
+    class(data)
+    ```
+
+    We can plot now a very basic heatmap
+
+    ```r
+    ggplot(data, aes(Year, Country, fill= GDP)) + geom_tile()
+    ```
+    To create a heatmap, our dataframe should look like a tabular dataset with three columns.
+    `aes` defines X,Y axis and the values filling these pairs in the heatmap. geom_tile creates a heatmap with rectangulars with different options. For detailed information `?geom_tile` 
+
+
+
 
 </details>
 
@@ -258,7 +323,7 @@ Now, we will learn how to import a data set into R and explore the data set. For
 
 </details>
 
-<details><summary> Step 4: Practical exercises (50 min)</summary>
+<details><summary> Step 4: Practical exercises (45 min)</summary>
 ## Step 4: Practical exercises (in pairs)
 
 So far, we have learnt some basic commands in R. In this practical case, we will continues with the data set Auto studied in Step 3. Make sure that the missing values have been removed from the data.
