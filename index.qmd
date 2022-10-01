@@ -1,8 +1,8 @@
 ---
 title: "LSE DS202 (2022/2023)"
 subtitle: "Data Science for Social Scientists"
-date: 30 September 2022
-date-meta: 30 September 2022
+date: 01 October 2022
+date-meta: 01 October 2022
 ---
 
 # 📑 Course Brief
@@ -90,4 +90,74 @@ Office: PEL 9.01E<br/>
 Tel: +44 (0) 20 7955 7759<br/>
 Email: [DSI.Admin@lse.ac.uk](mailto:DSI.Admin@lse.ac.uk)
 
+:::
+
+# Class Groups
+
+
+::: {style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+**Group 01**
+
+- 📆 Mondays
+- ⌚ 09:00 — 10:30
+- 📍 PAN.1.03
+- 🧑‍🏫 _Xiaowei_
+:::
+
+
+::: {style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+**Group 02**
+
+- 📆 Mondays
+- ⌚ 10:30 — 12:00
+- 📍 PAN.1.03
+- 🧑‍🏫 _Xiaowei_
+        
+:::
+
+::: {style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+**Group 03**
+
+- 📆 Mondays
+- ⌚ 13:00 — 14:30
+- 📍 MAR.1.09
+- 🧑‍🏫 _Stuart/Jon_
+        
+:::
+
+::: {style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+**Group 04**
+
+- 📆 Fridays
+- ⌚ 16:00 — 17:30
+- 📍 NAB.1.04
+- 🧑‍🏫 _Stuart/Yijun_
+        
+:::
+
+::: {style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+**Group 05**
+
+- 📆 Mondays
+- ⌚ 09:00 — 10:30
+- 📍 32L.LG.11
+- 🧑‍🏫 _Mustafa_
+:::
+
+::: {style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+**Group 06**
+
+- 📆 Mondays
+- ⌚ 10:30 — 12:00
+- 📍 32L.LG.11
+- 🧑‍🏫 _Mustafa_
+:::
+
+::: {style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+**Group 07**
+
+- 📆 Fridays
+- ⌚ 09:30 — 11:00
+- 📍 CBG.2.06
+- 🧑‍🏫 _Stuart/Yijun_
 :::
