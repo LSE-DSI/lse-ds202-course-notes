@@ -1,8 +1,8 @@
 ---
 title: "💻 Week 02 - Lab Roadmap (90 min)"
-author: Yijun Wang
-date: 12 September 2022
-date-meta: 12 September 2022
+author: Yijun Wang/Mustafa Can Ozkan
+date: 01 October 2022
+date-meta: 01 October 2022
 ---
 
 This week, we will recap some basic R commands for social data science and then apply these commands to a practical case. We will learn about data structures and some simple data visualisation skills in R .    
@@ -181,13 +181,13 @@ We will plot and save plots in R.
 
     We can use the open-source data visualization package - ggplot2 to construct aesthetic mappings based on our data.
 
-    -Since `tidyverse` library includes ggplot2, if you install `tidyverse` you will have access to ggplot2; installation can be done;
+    - Since `tidyverse` library includes ggplot2, if you install `tidyverse` you will have access to ggplot2; installation can be done;
 
     ```r
     > install.packages("tidyverse")
     ```
 
-    -Alternatively, `ggplot2` package can be installed
+    - Alternatively, `ggplot2` package can be installed
 
     ```r
     > install.packages("ggplot2")
