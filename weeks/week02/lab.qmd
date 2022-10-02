@@ -199,33 +199,33 @@ We will plot and save plots in R.
     > library(ggplot2)
     ```
 
-    There are some ready datasets to play with in the package `ggplot2`. Let's explore and plot a vehicle dataset called `mtcars` showing car information and their fuel consumptions. You can explore the variable meanings with `?mtcars` command.
+    There are some ready datasets to play with in the package `ggplot2`. Let's explore and plot a dataset called `diamonds` showing the prices and some features of over 50000 diamonds. You can explore the meanings of the variables with `?diamonds` command.
     
     
     Please type:
 
      ```r
-    > View(mtcars)
+    > View(diamonds)
     ```
     the `View()` function can be used to view it in a spreadsheet-like window.
 
     we can plot this dataset with desired variables. 
 
     ```r
-     > ggplot(mtcars, aes(x=wt, y=mpg)) +
+     > ggplot(diamonds[0:50,], aes(x=carat, y=price)) +
     geom_point() + 
-    geom_text(label=rownames(mtcars))
+    geom_text(label=diamonds[0:50,]$cut)
 
     ```
-    x and y in `aes` shows the axis which are weights and Miles/gallon consumption.  `mtcars` is the dataframe used in the plot. `geom_point` defines the shape of data to be plot and `geom_text` adds the labels. 
+    x and y in `aes` shows the axis which are the carat and the price info each diamond.  `diamonds` is the dataframe used in the plot and We used only the first 50 lines for clear visualisation. `geom_point` defines the shape of data to be plot and `geom_text` adds the labels. With `$` sign, you can access a column in your dataset.  
 
-    We can also plot a histogram showing `mpg`
+    We can also plot a histogram showing `price`
 
     ```r
-     > ggplot(mtcars,aes(x=mpg)) + geom_histogram(binwidth=5)
+     > ggplot(diamonds,aes(x=price)) + geom_histogram(binwidth=100)
     ```
 
-    For more detailed information and some examples  you can use `?ggplot` and `?aes` 
+    This time all dataset is used for the visualisation.. For more detailed information and some examples  you can use `?ggplot` and `?aes` 
 
 :::{.callout-tip collapse="true"}
 ## Further Study - Heatmap Example
