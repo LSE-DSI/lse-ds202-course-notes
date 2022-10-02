@@ -1,7 +1,7 @@
 ---
 title: "✅ Week 02 - Checklist"
-date: 15 September 2022
-date-meta: 15 September 2022
+date: 02 October 2022
+date-meta: 02 October 2022
 from: markdown+emoji
 ---
 
@@ -10,22 +10,14 @@ Follow the suggested list of actions below to get the most out of this course:
 
 # Your Checklist:
 
-- 👨‍🏫 Attend the lecture. It will help you remember concepts more easily when revising later.
+Your Checklist:
 
-- 👨‍💻 New to `R`? We strongly recommend you have a look at the self-guided courses and workshops offered by [LSE Digital Skills Lab](/weeks/week01/appendix.html#lse-digital-skills-lab) before the first lab.
-
-- 🖥️ Skim through the [lab roadmap page](/weeks/week02/lab.qmd). This week, we will do a recap of basic `R` programming plus some Exploratory Data Analysis (EDA) of datasets we will be using throughout this course.
-
-- 📙 Read [@james_introduction_2021, chapter 3] to reinforce your theoretical knowledge of Linear Regression.
-
-- 👀 Browse the slides again.
-
-- 💻 Replicate the R scripts used in the lecture.
-
+- 🖥️ Before you come to the class, skim through the [W02 lab roadmap page](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week02/lab.html) to have an idea of what we are going to do. 
+- 👨‍💻 New to `R`? Or perhaps you are in one of the Monday sessions and struggled to follow the lab? There is still time to take the [R pre-sessional course](https://moodle.lse.ac.uk/course/view.php?id=8366). (Read the **Getting access and using Dataquest** session carefully)
+- 📚 Before you attend the lecture on Friday, try to catch up on the [recommended reading](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week01/appendix.html) of last week.
+- 💻 Assess your own understanding: did you understand all the exercises of the lab?
 - 📝 Take note of anything that is still not clear to you.
-
-- 📟 Share your questions on `/week02` channel on Slack.
-
-- 📤 Have anything else to share? Maybe you came across an interesting, curious, or perhaps [dangerous](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002106) study or application of linear regression? Feel free to share it on `/week02` or `/random` channels in our Slack group.
+- 📟 Share your conceptual or programming-related questions on `#week02` channel on Slack.
+- 📤 Have anything else to share? If came across an interesting resource for R beginners, or curious articles about exploratory data analysis, feel free to share it on `/week02` or `/random` channels in our Slack group.
 
 Following this will keep you well prepared for the Linear Regression lab of [Week 03](/weeks/week03.qmd).
