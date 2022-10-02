@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
-<meta name="dcterms.date" content="12 September 2022">
+<meta name="dcterms.date" content="01 October 2022">
 
 <title>LSE DS202 2022/23 - 💻 Week 02 - Lab Roadmap (90 min)</title>
 <style>
@@ -349,14 +349,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Yijun Wang </p>
+             <p>Yijun Wang/Mustafa Can Ozkan </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">12 September 2022</p>
+      <p class="date">01 October 2022</p>
     </div>
   </div>
     
@@ -384,7 +384,7 @@ Step 1: Basic commands (15 min)
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Check the length of vector <code>x</code> using the <code>length()</code> function:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">length</span>(x)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Create a matrix of numbers with the function <code>matrix()</code> and name it <code>y</code>. When we type <code>y</code>, it gives us back the matrix:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>), <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y</span>
@@ -445,7 +445,7 @@ Step 1: Basic commands (15 min)
 </section></details>
 <details>
 <summary>
-Step 2: Graphics (10 min)
+Step 2: Graphics (15 min)
 </summary>
 
 <section id="step-2-graphics" class="level2">
@@ -477,7 +477,65 @@ Step 2: Graphics (10 min)
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fa <span class="ot">&lt;-</span> (f <span class="sc">-</span> <span class="fu">t</span>(f)) <span class="sc">/</span> <span class="dv">2</span></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">contour</span>(x, y, fa, <span class="at">nlevels =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>image()</code> function works the same way as <code>contour()</code>. Explore it if you are interested.</p></li>
+<li><p>Using <code>ggplot2</code> package for graphic:</p>
+<p>In R, the data is stored in a structure called <code>dataframe</code>. Dataframe can be seen as a 2-dimensional table consisting of rows and columns and their values. These values might be in different types such as <code>numeric</code>, <code>character</code> or <code>logical</code>. However, each column should have the exactly same data type.</p>
+<p>We can use the open-source data visualization package - ggplot2 to construct aesthetic mappings based on our data.</p>
+<ul>
+<li>Since <code>tidyverse</code> library includes ggplot2, if you install <code>tidyverse</code> you will have access to ggplot2; installation can be done;</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Alternatively, <code>ggplot2</code> package can be installed</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>After the installation is completed, it should be called in R environment:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are some ready datasets to play with in the package <code>ggplot2</code>. Let’s explore and plot a dataset called <code>diamonds</code> showing the prices and some features of over 50000 diamonds. You can explore the meanings of the variables with <code>?diamonds</code> command.</p>
+<p>Please type:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">View</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>the <code>View()</code> function can be used to view it in a spreadsheet-like window.</p>
+<p>we can plot this dataset with desired variables.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a> <span class="sc">&gt;</span> <span class="fu">ggplot</span>(diamonds[<span class="dv">0</span><span class="sc">:</span><span class="dv">50</span>,], <span class="fu">aes</span>(<span class="at">x=</span>carat, <span class="at">y=</span>price)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="at">label=</span>diamonds[<span class="dv">0</span><span class="sc">:</span><span class="dv">50</span>,]<span class="sc">$</span>cut)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>x and y in <code>aes</code> shows the axis which are the carat and the price info each diamond. <code>diamonds</code> is the dataframe used in the plot and We used only the first 50 lines for clear visualisation. <code>geom_point</code> defines the shape of data to be plot and <code>geom_text</code> adds the labels. With <code>$</code> sign, you can access a column in your dataset.</p>
+<p>We can also plot a histogram showing <code>price</code></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a> <span class="sc">&gt;</span> <span class="fu">ggplot</span>(diamonds,<span class="fu">aes</span>(<span class="at">x=</span>price)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This time all dataset is used for the visualisation.. For more detailed information and some examples you can use <code>?ggplot</code> and <code>?aes</code></p></li>
 </ol>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Further Study - Heatmap Example
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Creating a heatmap with <code>ggplot2</code> package:</p>
+<p>This time we will create a dummy dataframe with country names, a time period and random GDP for each country.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Canada"</span>, <span class="st">"France"</span>,<span class="st">"Greece"</span>,<span class="st">"Libya"</span>,<span class="st">"Malta"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2012</span><span class="sc">:</span><span class="dv">2021</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s gather them together and see what our dataframe looks like:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">Country=</span>countries, <span class="at">Year=</span>years)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>expand.grid</code> creates a dataframe from all combinations of the supplied vectors.</p>
+<p>to create random GPD for each country and for each year, and to add these values into our dataframe as GDP column::</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>gdps  <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">50</span>, <span class="at">min=</span><span class="dv">20000</span>, <span class="at">max=</span><span class="dv">500000</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>GDP <span class="ot">=</span> gdps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>runif</code> generates a certain number of random values between min and maximum values with a uniform distribution. Since we have 5 countries and 10 year, we generated 50 random GPD value.</p>
+<p>To check the data and type of the variable <code>data</code>:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(data)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can plot now a very basic heatmap</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(Year, Country, <span class="at">fill=</span> GDP)) <span class="sc">+</span> <span class="fu">geom_tile</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To create a heatmap, our dataframe should look like a tabular dataset with three columns. <code>aes</code> defines X,Y axis and the values filling these pairs in the heatmap. geom_tile creates a heatmap with rectangulars with different options. For detailed information <code>?geom_tile</code></p>
+</div>
+</div>
+</div>
 </section></details>
 <details>
 <summary>
@@ -486,30 +544,53 @@ Step 3: Loading data (15 min)
 
 <section id="step-3-loading-data" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-loading-data">Step 3: Loading data</h2>
-<p>Now, we will learn how to importing a data set into R and explore the data set.</p>
+<p>Now, we will learn how to import a data set into R and explore the data set. For this lab session, we will use a ready-to-use dataset <code>AUTO</code> in the book “Introduction to Statistical Learning, with Applications in R”. With the package <code>ISLR2</code>, we can use all the datasets in the book.</p>
 <ol type="1">
-<li><p>Download the Auto.data file and store it in a directory. Use the function <code>setwd()</code> to set the working directory to the directory you stored the data file.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setwd</span>(dir)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Replace dir with the path of the direcotry where you store the data set.</p></li>
-<li><p>Load the data file Auto.data into R using the function <code>read.table()</code> and store it as an data frame called <code>Auto</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Auto <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"Auto.data"</span>, <span class="at">header =</span> T, <span class="at">na.strings =</span> <span class="st">"?"</span>, <span class="at">stringsAsFactors =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Using the option <code>header = T</code> (or <code>header = TRUE</code>) in the <code>read.table()</code> function tells R that the first line of the file contains the variable names, and using the option na.strings tells R that any time it sees a particular character or set of characters (such as a question mark), it should be treated as a missing element of the data matrix.The explaination of other options could be found by typing ?read.table</p></li>
-<li><p>View the data frame:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">View</span>(Auto)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Once the data has been loaded, the <code>View()</code> function can be used to view it in a spreadsheet-like window. The <code>head()</code> function can also be used to view the first few rows of the data</p></li>
+<li><p>First, we need to install <code>ISLR2</code> into our R environment for future use.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">"ISLR2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>To use <code>ISLR2</code> package and the datasets in our analyses, we need to call it in each R session with;</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(ISLR2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That’s it! We now can use all datasets by calling them by their names. The package includes numerous <a href="https://cran.r-project.org/web/packages/ISLR2/ISLR2.pdf">datasets</a> and you can explore them with R.</p></li>
+<li><p><code>AUTO</code> dataset is ready to be used in the analyse. You can explore the dataset by using:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">View</span>(Auto)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>head()</code> function can also be used to view the first few rows of the data</p></li>
+<li><p>You may want to save this dataset on a local computer, which is useful for your future analyses while doing some changes on it. To save a dataset as a csv file:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">write.csv</span>(DataFrameName, <span class="at">file=</span><span class="st">"Path to save the DataFrame//File Name.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The option <code>row.names = FALSE</code> deletes the row names when you are saving the dataset. In this case, it will remove basic incremental indexes such as 1,2,… from the data. A detailed explanation of <code>write.csv</code> and its options could be found by typing ?write.csv</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You need to include the path where you would like to save the dataset on your computer. For example, if you work in a folder called <code>Test</code> in your desktop in a Windows machine. The code:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">write.csv</span>(Auto, <span class="st">"C:Users//LSE//Desktop//Test//autodataset.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></li>
+<li><p>To use the dataset in the future, you need to load it into a dataframe by importing the csv file.</p>
+<p>We will load this dataset in a dataframe called <code>Auto</code>. Dataframe name is changable, however we would like to use words understandable and readable.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Auto <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C://Users//LSE//Desktop//Test//autodataset.csv"</span>, <span class="at">na.strings =</span> <span class="st">"?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Using the option <code>na.strings</code> tells R that any time it sees a particular character or set of characters (such as a question mark), it should be treated as a missing element of the data matrix.</p>
+<p>You can check the dataset:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">View</span>(Auto)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Deal with the missing data by removing rows with missing observations:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Auto <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(Auto)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dim</span>(Auto)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">392</span> <span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Auto <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(Auto)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dim</span>(Auto)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">392</span> <span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The function <code>dim()</code> is to check the size of the data frame.</p></li>
 <li><p>Produce a numerical summary of each variable in the particular data frame:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section></details>
 <details>
 <summary>
-Step 4: Practical exercises (50 min)
+Step 4: Practical exercises (45 min)
 </summary>
 
 <section id="step-4-practical-exercises-in-pairs" class="level2">
