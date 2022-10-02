@@ -35,7 +35,7 @@ name it x. When we type x, it gives us back the vector:
 
     ```r
     > length(x)
-    [1] 3
+    [1] 4
     ```
 
 4.  Create a matrix of numbers with the function `matrix()` and name it `y`. When we type `y`, it gives us back the matrix:
@@ -129,7 +129,7 @@ name it x. When we type x, it gives us back the vector:
 
 </details>
 
-<details><summary>Step 2: Graphics (10 min)</summary>
+<details><summary>Step 2: Graphics (15 min)</summary>
 
 ## Step 2: Graphics
 
@@ -174,38 +174,177 @@ We will plot and save plots in R.
   
     The `image()` function works the same way as `contour()`. Explore it if you are interested.
 
+
+4. Using `ggplot2` package for graphic:
+   
+    In R, the data is stored in a structure called `dataframe`. Dataframe can be seen as a 2-dimensional table consisting of rows and columns and their values. These values might be in different types such as `numeric`, `character` or `logical`. However, each column should have the exactly same data type.
+
+    We can use the open-source data visualization package - ggplot2 to construct aesthetic mappings based on our data.
+
+    -Since `tidyverse` library includes ggplot2, if you install `tidyverse` you will have access to ggplot2; installation can be done;
+
+    ```r
+    > install.packages("tidyverse")
+    ```
+
+    -Alternatively, `ggplot2` package can be installed
+
+    ```r
+    > install.packages("ggplot2")
+    ```
+
+    After the installation  is completed, it should be called in R environment:
+
+    ```r
+    > library(ggplot2)
+    ```
+
+    There are some ready datasets to play with in the package `ggplot2`. Let's explore and plot a dataset called `diamonds` showing the prices and some features of over 50000 diamonds. You can explore the meanings of the variables with `?diamonds` command.
+    
+    
+    Please type:
+
+     ```r
+    > View(diamonds)
+    ```
+    the `View()` function can be used to view it in a spreadsheet-like window.
+
+    we can plot this dataset with desired variables. 
+
+    ```r
+     > ggplot(diamonds[0:50,], aes(x=carat, y=price)) +
+    geom_point() + 
+    geom_text(label=diamonds[0:50,]$cut)
+
+    ```
+    x and y in `aes` shows the axis which are the carat and the price info each diamond.  `diamonds` is the dataframe used in the plot and We used only the first 50 lines for clear visualisation. `geom_point` defines the shape of data to be plot and `geom_text` adds the labels. With `$` sign, you can access a column in your dataset.  
+
+    We can also plot a histogram showing `price`
+
+    ```r
+     > ggplot(diamonds,aes(x=price)) + geom_histogram(binwidth=100)
+    ```
+
+    This time all dataset is used for the visualisation.. For more detailed information and some examples  you can use `?ggplot` and `?aes` 
+
+:::{.callout-tip collapse="true"}
+## Further Study - Heatmap Example
+
+Creating a heatmap with `ggplot2` package:
+
+This time we will create a dummy dataframe with country names, a time period and random GDP for each country.
+
+```r
+countries <- c("Canada", "France","Greece","Libya","Malta")
+years <- c(2012:2021)
+```
+
+Let's gather them together and see what our dataframe looks like:
+
+```r
+data <- expand.grid(Country=countries, Year=years)
+data
+```
+`expand.grid` creates a dataframe from all combinations of the supplied vectors.
+
+
+to create random GPD for each country and for each year, and to add these values into our dataframe as GDP column::
+
+```r
+gdps  <- runif(50, min=20000, max=500000)
+data$GDP = gdps
+```
+`runif` generates a certain number of random values between min and maximum values with a uniform distribution. Since we have 5 countries and 10 year, we generated 50 random GPD value.
+    
+To check the data and type of the variable `data`:
+
+```r
+View(data)
+class(data)
+```
+
+We can plot now a very basic heatmap
+
+```r
+ggplot(data, aes(Year, Country, fill= GDP)) + geom_tile()
+```
+To create a heatmap, our dataframe should look like a tabular dataset with three columns.
+`aes` defines X,Y axis and the values filling these pairs in the heatmap. geom_tile creates a heatmap with rectangulars with different options. For detailed information `?geom_tile` 
+
+
+:::
+
+
+
 </details>
+
+
 
 <details><summary> Step 3: Loading data (15 min)</summary>
 ## Step 3: Loading data
 
-Now, we will learn how to importing a data set into R and explore the data set. 
+Now, we will learn how to import a data set into R and explore the data set. For this lab session, we will use a ready-to-use dataset `AUTO` in the book "Introduction to Statistical Learning, with Applications in R". With the package `ISLR2`, we can use all the datasets in the book. 
 
-1. Download the Auto.data file and store it in a directory. Use the function `setwd()` to set the working directory to the directory you stored the data file.
-
-    ```r
-    > setwd(dir)
-    ```
-    Replace dir with the path of the direcotry where you store the data set.
-
-2. Load the data file Auto.data into R using the function `read.table()` and store it as an data frame called `Auto`:
+1. First, we need to install `ISLR2` into our R environment for future use.
 
     ```r
-    > Auto <- read.table("Auto.data", header = T, na.strings = "?", stringsAsFactors = T)
+    > install.packages("ISLR2")
     ```
+2. To use `ISLR2` package and the datasets in our analyses, we need to call it in each R session with;
 
-   Using the option `header = T` (or `header = TRUE`) in the `read.table()` function tells R that the first line of the file contains the variable names, and using the option na.strings tells R that any time it sees a particular character or set of characters (such as a question mark), it should be treated as a missing element of the data matrix.The explaination of other options could be found by typing ?read.table
+    ```r
+    > library(ISLR2)
+    ```
+    That's it! We now can use all datasets by calling them by their names. The package includes numerous [datasets](https://cran.r-project.org/web/packages/ISLR2/ISLR2.pdf) and you can explore them with R. 
 
-3. View the data frame:
+3.  `AUTO` dataset is ready to be used in the analyse. You can explore the dataset by using:
+
 
     ```r
     > View(Auto)
     > head(Auto)
     ```
     
-    Once the data has been loaded, the `View()` function can be used to view it in a spreadsheet-like window. The `head()` function can also be used to view the first few rows of the data
+    The `head()` function can also be used to view the first few rows of the data
 
-4. Deal with the missing data by removing rows with missing observations:
+3.  You may want to save this dataset on a local computer, which is useful for your future analyses while doing some changes on it. 
+    To save a dataset as a csv file:
+
+    ```r
+    > write.csv(DataFrameName, file="Path to save the DataFrame//File Name.csv", row.names = FALSE)
+
+    ```
+    The option `row.names = FALSE`  deletes the row names when you are saving the dataset. In this case, it will remove basic incremental indexes such as 1,2,... from the data. A detailed explanation of `write.csv` and its options could be found by typing  ?write.csv
+
+    :::{.callout-tip}
+    ## Example
+    You need to include the path where you would like to save the dataset on your computer. For example, if you work in a folder called `Test` in your desktop in a Windows machine. The code:
+
+    ```r
+    > write.csv(Auto, "C:Users//LSE//Desktop//Test//autodataset.csv", row.names = FALSE )
+    ``` 
+    :::
+
+
+4. To use the dataset in the future, you need to load it into a dataframe by importing the csv file.
+
+    We will load this dataset in a dataframe called `Auto`. Dataframe name is changable, however we would like to use words understandable and readable.
+
+
+    ```r
+    > Auto <- read.csv("C://Users//LSE//Desktop//Test//autodataset.csv", na.strings = "?")
+    ```
+
+    Using the option `na.strings` tells R that any time it sees a particular character or set of characters (such as a question mark), it should be treated as a missing element of the data matrix.
+
+    You can check the dataset:
+
+    ```r
+    > View(Auto)
+    > head(Auto)
+    ```
+
+5. Deal with the missing data by removing rows with missing observations:
 
     ```r
     > Auto <- na.omit(Auto)
@@ -215,7 +354,7 @@ Now, we will learn how to importing a data set into R and explore the data set.
 
     The function `dim()` is to check the size of the data frame.
 
-5. Produce a numerical summary of each variable in the particular data frame:
+6. Produce a numerical summary of each variable in the particular data frame:
 
     ```r
     > summary(Auto)
@@ -223,7 +362,7 @@ Now, we will learn how to importing a data set into R and explore the data set.
 
 </details>
 
-<details><summary> Step 4: Practical exercises (50 min)</summary>
+<details><summary> Step 4: Practical exercises (45 min)</summary>
 ## Step 4: Practical exercises (in pairs)
 
 So far, we have learnt some basic commands in R. In this practical case, we will continues with the data set Auto studied in Step 3. Make sure that the missing values have been removed from the data.
