@@ -165,7 +165,7 @@
     "href": "weeks/week02/checklist.html",
     "title": "✅ Week 02 - Checklist",
     "section": "",
-    "text": "Your Checklist:\n\n👨‍🏫 Attend the lecture. It will help you remember concepts more easily when revising later.\n👨‍💻 New to R? We strongly recommend you have a look at the self-guided courses and workshops offered by LSE Digital Skills Lab before the first lab.\n🖥️ Skim through the lab roadmap page. This week, we will do a recap of basic R programming plus some Exploratory Data Analysis (EDA) of datasets we will be using throughout this course.\n📙 Read (James et al. 2021, chap. 3) to reinforce your theoretical knowledge of Linear Regression.\n👀 Browse the slides again.\n💻 Replicate the R scripts used in the lecture.\n📝 Take note of anything that is still not clear to you.\n📟 Share your questions on /week02 channel on Slack.\n📤 Have anything else to share? Maybe you came across an interesting, curious, or perhaps dangerous study or application of linear regression? Feel free to share it on /week02 or /random channels in our Slack group.\n\nFollowing this will keep you well prepared for the Linear Regression lab of Week 03.\n\n\n\n\n\nReferences\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/."
+    "text": "Your Checklist:\nYour Checklist:\n\n🖥️ Before you come to the class, skim through the W02 lab roadmap page to have an idea of what we are going to do.\n👨‍💻 New to R? Or perhaps you are in one of the Monday sessions and struggled to follow the lab? There is still time to take the R pre-sessional course. (Read the Getting access and using Dataquest session carefully)\n📚 Before you attend the lecture on Friday, try to catch up on the recommended reading of last week.\n💻 Assess your own understanding: did you understand all the exercises of the lab?\n📝 Take note of anything that is still not clear to you.\n📟 Share your conceptual or programming-related questions on #week02 channel on Slack.\n📤 Have anything else to share? If came across an interesting resource for R beginners, or curious articles about exploratory data analysis, feel free to share it on /week02 or /random channels in our Slack group.\n\nFollowing this will keep you well prepared for the Linear Regression lab of Week 03."
   },
   {
     "objectID": "weeks/week02/lab.html",
@@ -655,7 +655,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  8.65\n2     9    12 10.5 \n3    12    15 13.4 \n4    15    18 17.8 \n5    18    21 21.4 \n6    21    24 23.5"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  5.03\n2     9    12 10.0 \n3    12    15 13.6 \n4    15    18 20.1 \n5    18    21 22.2 \n6    21    24 25.7"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -690,7 +690,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  8.65  0.345    0.345\n2     9    12 10.5   1.50     1.50 \n3    12    15 13.4   1.62     1.62 \n4    15    18 17.8   0.198    0.198\n5    18    21 21.4  -0.419    0.419\n6    21    24 23.5   0.544    0.544\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.7709161\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY error absError\n  <int> <int> <dbl> <dbl>    <dbl>\n1     6     9  5.03  3.97     3.97\n2     9    12 10.0   1.98     1.98\n3    12    15 13.6   1.40     1.40\n4    15    18 20.1  -2.08     2.08\n5    18    21 22.2  -1.22     1.22\n6    21    24 25.7  -1.68     1.68\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 2.053428\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
