@@ -209,7 +209,7 @@ We will plot and save plots in R.
     ```
     the `View()` function can be used to view it in a spreadsheet-like window.
 
-    we can plot this dataset with desired variables.
+    we can plot this dataset with desired variables. 
 
     ```r
      > ggplot(mtcars, aes(x=wt, y=mpg)) +
@@ -217,16 +217,66 @@ We will plot and save plots in R.
     geom_text(label=rownames(mtcars))
 
     ```
-    x and y in `aes` shows the axis which are weights and Miles/gallon consumption.  `mtcars` is the dataframe used in the plot. `geom_point` defines the shape of data to be plot and `geom_text` adds the labels.
-
+    x and y in `aes` shows the axis which are weights and Miles/gallon consumption.  `mtcars` is the dataframe used in the plot. `geom_point` defines the shape of data to be plot and `geom_text` adds the labels. 
 
     We can also plot a histogram showing `mpg`
 
     ```r
      > ggplot(mtcars,aes(x=mpg)) + geom_histogram(binwidth=5)
     ```
-    For more detailed information and some exmaples you can use `?ggplot` and `?aes`
-    </details>
+
+    For more detailed information and some examples  you can use `?ggplot` and `?aes` 
+
+:::{.callout-tip collapse="true"}
+## Further Study - Heatmap Example
+
+Creating a heatmap with `ggplot2` package:
+
+This time we will create a dummy dataframe with country names, a time period and random GDP for each country.
+
+```r
+countries <- c("Canada", "France","Greece","Libya","Malta")
+years <- c(2012:2021)
+```
+
+Let's gather them together and see what our dataframe looks like:
+
+```r
+data <- expand.grid(Country=countries, Year=years)
+data
+```
+`expand.grid` creates a dataframe from all combinations of the supplied vectors.
+
+
+to create random GPD for each country and for each year, and to add these values into our dataframe as GDP column::
+
+```r
+gdps  <- runif(50, min=20000, max=500000)
+data$GDP = gdps
+```
+`runif` generates a certain number of random values between min and maximum values with a uniform distribution. Since we have 5 countries and 10 year, we generated 50 random GPD value.
+    
+To check the data and type of the variable `data`:
+
+```r
+View(data)
+class(data)
+```
+
+We can plot now a very basic heatmap
+
+```r
+ggplot(data, aes(Year, Country, fill= GDP)) + geom_tile()
+```
+To create a heatmap, our dataframe should look like a tabular dataset with three columns.
+`aes` defines X,Y axis and the values filling these pairs in the heatmap. geom_tile creates a heatmap with rectangulars with different options. For detailed information `?geom_tile` 
+
+
+:::
+
+
+
+</details>
 
 
 
