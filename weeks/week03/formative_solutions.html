@@ -127,6 +127,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../css/custom_style.css">
 </head>
@@ -392,7 +393,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>USYes        <span class="fl">0.69151957</span>  <span class="fl">1.70776632</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>95% confidence interval for β<sub>0</sub> = [11.79032020, 14.27126531]; 95% confidence interval for β<sub>1</sub> = [-0.06475984 -0.04419543]; 95% confidence interval for β<sub>2</sub> = [0.69151957 1.70776632].</p></li>
 <li><p><strong>Use the <code>*</code> and <code>:</code> symbols to fit linear regression models with interaction effects. Could you find any model with interactions that fit better than the models you built in Questions 1 &amp; 5? Justify your answer.</strong></p>
-<p><code>#TODO</code></p></li>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lm.fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">*</span> US, <span class="at">data =</span> Carseats)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(lm.fit2)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lm.fit3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">*</span> Urban, <span class="at">data =</span> Carseats)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(lm.fit3)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lm.fit4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">*</span> US <span class="sc">+</span> Urban, <span class="at">data =</span> Carseats)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(lm.fit4)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lm.fit5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">*</span> Urban <span class="sc">+</span> US, <span class="at">data =</span> Carseats)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(lm.fit5)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lm.fit6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">+</span> US <span class="sc">+</span> Urban <span class="sc">+</span> Price<span class="sc">:</span>US <span class="sc">+</span> Price<span class="sc">:</span>Urban, <span class="at">data =</span> Carseats)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(lm.fit6)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lm.fit7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">+</span> US <span class="sc">+</span> Urban <span class="sc">+</span> Price<span class="sc">:</span>US <span class="sc">+</span> Price<span class="sc">:</span>Urban <span class="sc">+</span> Urban<span class="sc">:</span>US, <span class="at">data =</span> Carseats)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(lm.fit7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Different multiple linear regression models with interactions have been built. However, after comparision there is almost no difference between the values of the <span class="math inline">\(R^2\)</span> and adjusted <span class="math inline">\(R^2\)</span>, which means the goodness of fit is not significantly improved. The reason is that there is no interaction effects between <code>Price</code> and <code>US</code>, and between <code>Price</code> and <code>Urban</code>, and between <code>US</code> and <code>Urban</code> which is supported by the significance of these coeficients’ t-tests.</p></li>
 </ol>
 
 
