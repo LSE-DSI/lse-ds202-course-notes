@@ -1,13 +1,24 @@
 ---
 title: "💻 Week 02 - Lab Roadmap (90 min)"
-author: Yijun Wang/Mustafa Can Ozkan
-date: 01 October 2022
-date-meta: 01 October 2022
+author: Yijun Wang/Mustafa Can Ozkan/Dr. Jon Cardoso-Silva
+date: 03 October 2022
+date-meta: 03 October 2022
 ---
 
 This week, we will recap some basic R commands for social data science and then apply these commands to a practical case. We will learn about data structures and some simple data visualisation skills in R .    
 
 It is expected that R has been downloaded locally. We recommend that you run R within an integrated development environment (IDE) such as RStudio, which can be freely downloaded. 
+
+
+:::{.callout-tip collapse="true"}
+## Are you a complete beginner in R?
+
+You might to install R and RStudio _before_ you come to the lab. We think the instructions contained in the following might help you: ["Before we start"](https://lgatto.github.io/2017_11_09_Rcourse_Jena/before-we-start.html) (part of Data analysis and R programming course by Laurent Gatto).
+
+Also, do not forget that as a DSI student, you have access to a premium license to Dataquest's [R courses](https://moodle.lse.ac.uk/mod/page/view.php?id=1117178). Read the access instructions on Moodle carefully! 
+
+:::
+
 
 <details><summary>Step 1: Basic commands (15 min)</summary>
 
