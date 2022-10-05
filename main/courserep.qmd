@@ -1,0 +1,78 @@
+---
+title: "Course Representative"
+subtitle: "Data for Data Science"
+author: Nathaniel Ocquaye/Dr. Jon Cardoso-Silva
+date: 5 October 2022
+date-meta: 5 October 2022
+---
+
+The [Data Science Institute](https://lse.ac.uk/dsi) (DSI) is excited to announce that the elections for Student Academic Representatives have now gone live! You can nominate yourself if you are taking DS105M or DS202 this Term, and all students get to to cast their votes **anonymously** on the candidates. The nomination and voting process will be conducted via Slack.
+ 
+As a Student Academic Representative (Course Rep), you'll work with staff to ensure your peers' feedback is seen and acted on, and that student voices are represented in institutional decision-making. It is also a fantastic way to develop new skills, get to know the Institute better, and bolster your CV.
+
+You can see the positions available in the table below:
+
+| **Course** | **Number of Positions** |
+|:------:|:-------------------:|
+| DS105M |	1 |
+| DS202   |	2 |
+
+# 📝 Commitments
+
+What can you expect from this role:
+
+## Engagement
+
+- You will have a direct channel of communication to voice suggestions, concerns and recommendations to the teaching and administrative staff at the DSI.
+- You will be allowed to use the DSI space on certain periods during the week.
+- You will have direct contact to PhD students and researchers who are visiting the DSI.
+- You will be the first to know about internal research projects available to undergraduate students.
+
+## Teaching Committees
+
+As a course rep, you will be invited to attend **two** Teaching Committees at the DSI during Michaelmas Term:
+
+- the first on Week 07
+- the second on Week 11
+
+:::{.callout-note collapse="true"}
+## What are Teaching Committees?
+
+
+_Teaching Committees are official meetings where academic and professional service staff at the DSI discuss how the courses are going, devise adjustments for what is not going as planned, and plan new ways to boost recognition of innovative work of students enrolled in DSI courses. These meetings typically involve Lecturers, the Teaching Support Officer, the Communications Officer, the Institute Manager, and the Director of the DSI._
+:::
+
+# 🧑Why should you nominate yourself? 
+
+- You will play a significant role in making a difference and improving the academic experience for yourself and your peers
+- You will build strong interpersonal skills, including confidence, effective communication, and dealing with and resolving complex issues
+- You will get to know your classmates much better, as well as senior staff in your department and around the university
+- The skills you will gain will greatly enhance your CV - big bonus points for when looking for a job!
+
+
+# 🗳️ The Election Process 
+
+There are two stages to this election: 
+
+## 1. Nominations
+
+- Write down a short paragraph (max. ~50 words) explaining why you feel you would be great for the role! 
+- Head to your Slack group and post your short paragraph on the `#student-rep` channel.
+- You can nominate yourself **anytime** but no later than **Monday 10 October 12 p.m.**. 
+
+## 2. Voting 
+
+- We will set up an (**anonymous**) poll on the `#student-rep` channel using the app [Polly](www.polly.ai/slack-poll) 
+- No one will be able to see who is winning/losing. Only when the poll closes will we know the results.
+- All students will be able to cast their votes **anonymously** on their favourite candidates from **Tuesday 11 October – Thursday 13 October** (end of Week 03).
+- Results will be announced on the `#student-rep` channel.
+
+# 💬 Q & A
+
+**Q: What if there is a tie?**
+
+A: We will do a very quick run-off election within a day (**Friday 14 October**)
+
+**Q: Can I nominate myself to represent more than one course?**
+
+A: No. If you are taking DS105M & DS202 this academic term, you can only run for course rep in one course. 
