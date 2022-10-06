@@ -17,8 +17,8 @@ We will follow the instructions below step by step together while answering what
 1. Install and load the `ISLR2` package, which contains a large collection of data sets and functions.
 
     ```r
-    > install.packages("ISLR2").
-    > library (ISLR2)
+    install.packages("ISLR2").
+    library (ISLR2)
     ```
     
     The function `install.packages()` is used to download packages that don't come with R. This installation only needs to be done the first time you use a package. However, the `library()` function must be called within each R session to load packages.
@@ -26,7 +26,7 @@ We will follow the instructions below step by step together while answering what
 2. Use the `Boston` data set in the `ISLR2` library. It records `medv` (median house value) for 506 census tracts in Boston. Have a look at the first few rows of the Boston data set:
 
     ```r
-    > head (Boston)
+    head (Boston)
         crim zn indus chas   nox    rm  age    dis rad tax ptratio lstat medv
     1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3  4.98 24.0
     2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8  9.14 21.6
@@ -41,14 +41,7 @@ We will follow the instructions below step by step together while answering what
 3. Fit a simple linear regression `lm()` model, with `medv` as the response and `lstat` as the predictor:
 
     ```r
-    > lm.fit <- lm(medv ~ lstat , data = Boston)
-    ```
-
-    or 
-
-   ```r
-    > attach (Boston)
-    > lm.fit <- lm(medv ~ lstat)
+    lm.fit <- lm(medv ~ lstat , data = Boston)
     ```
 
     The basic syntax is `lm(y ∼ x, data)`, where `y` is the response, `x` is the predictor, and `data` is the data set in which we keep these two variables.
@@ -56,7 +49,7 @@ We will follow the instructions below step by step together while answering what
 4. Use the function `summary()` to understand detailed information about the model lm.fit we just fitted, like p-values and standard errors for the coefficients, as well as the $R^2$ statistic and F-statistic:
 
     ```r
-    > summary(lm.fit)
+    summary(lm.fit)
 
     Call:
     lm(formula = medv ~ lstat, data = Boston)
@@ -90,31 +83,17 @@ We will follow the instructions below step by step together while answering what
 5. Obtain a confidence interval for the coefficient estimates using the `confint()` function:
 
     ```r
-    > confint (lm.fit)
+    confint (lm.fit)
                     2.5 %     97.5 %
     (Intercept) 33.448457 35.6592247
     lstat       -1.026148 -0.8739505
     ```
 
-6. Predict the value of `medv` for a given value of `lstat` and generate the confidence intervals of the predicted value:
+6. Plot `medv` and `lstat` along with the least squares regression line using the `plot()` and `abline()` functions.:
 
     ```r
-    > predict(lm.fit, data.frame(lstat = (c(5, 10, 15))),
-               interval = "confidence")
-           fit      lwr      upr
-    1 29.80359 29.00741 30.59978
-    2 25.05335 24.47413 25.63256
-    3 20.30310 19.73159 20.87461
-    ```
-
-   For instance, the 95 % confidence interval associated with a `lstat` value of 10 is (24.47, 25.63). As expected, the confidence is centred around the same point (a predicted value of 25.05 for `medv` when `lstat=10`).
-
-7. Plot `medv` and `lstat` along with the least squares regression line using the `plot()` and `abline()` functions.:
-
-    ```r
-    > plot(Boston$lstat, Boston$medv, col = "red", pch = "+")
-    > abline(lm.fit , lwd = 3, col = "blue")
-    > dev.off()
+    plot(Boston$lstat, Boston$medv, col = "red", pch = "+")
+    abline(lm.fit , lwd = 3, col = "blue")
     ```
 
 </details>
@@ -130,8 +109,8 @@ We will still use the `Boston` data set to fit multiple linear regression. The f
 1. Fit a multiple linear regression `lm()` model, with `medv` as the response, `lstat` and `age` as the predictors:
     
     ```r
-    > lm.fit <- lm(medv ~ lstat + age , data = Boston)
-    > summary (lm.fit)
+    lm.fit <- lm(medv ~ lstat + age , data = Boston)
+    summary (lm.fit)
 
     Call:
     lm(formula = medv ~ lstat + age, data = Boston)
@@ -157,8 +136,8 @@ We will still use the `Boston` data set to fit multiple linear regression. The f
 2. Fit a multiple linear regression `lm()` model, with `medv` as the response, all rest variables as the predictors:
 
     ```r
-    > lm.fit <- lm(medv ~ ., data = Boston)
-    > summary(lm.fit)
+    lm.fit <- lm(medv ~ ., data = Boston)
+    summary(lm.fit)
 
     Call:
     lm(formula = medv ~ ., data = Boston)
@@ -201,10 +180,10 @@ We will still use the `Boston` data set to fit multiple linear regression. The f
     If the number of predictors is not very small, the function `regsubsets()` could be used to select the best subset of variables. 
 
     ```r
-    > install.packages('leaps')
-    > library(leaps)
-    > regfit.full <- regsubsets(medv ~ ., Boston)
-    > summary (regfit.full)
+    install.packages('leaps')
+    library(leaps)
+    regfit.full <- regsubsets(medv ~ ., Boston)
+    summary (regfit.full)
     ```  
 
     The `regsubsets()` function identifies the best model with a given number of predictors, where the best is quantified using RSS. The syntax is the same as for `lm()`. The `summary()` command outputs the best set of variables for each model size. You can use the argument `method` = "forward" or "backward" or "seqrep" choose selection methods. 
@@ -225,7 +204,7 @@ We present a few of the many methods available, but those interested can explore
     In regression, an interaction effect exists when the effect of an independent variable on the response variable changes, depending on the values of one or more independent variables. When you believe there is an interaction effect, it is easy to include interaction terms in a linear model using the `lm()` function.
 
     ```r
-    > summary (lm(medv ~ lstat * age , data = Boston))
+    summary (lm(medv ~ lstat * age , data = Boston))
 
     Call:
     lm(formula = medv ~ lstat * age, data = Boston)
@@ -248,16 +227,15 @@ We present a few of the many methods available, but those interested can explore
     F-statistic: 209.3 on 3 and 502 DF,  p-value: < 2.2e-16
     ```
     
-    The syntax `lstat:black` tells R to include an interaction term between lstat and black. The syntax `lstat*age` simultaneously includes `lstat`, `age`, and the interaction term `lstat×age` as predictors; it is a shorthand for `lstat+age+lstat:age`.
+    The syntax `lstat:age` tells R to include an interaction term between `lstat` and `age`. The syntax `lstat*age` simultaneously includes `lstat`, `age`, and the interaction term `lstat×age` as predictors; it is a shorthand for `lstat+age+lstat:age`.
 
 2. Identify outliers through residual plots:
 
     An outlier is a point for which $\hat{y}_i$ is far from the value predicted by the model. Outliers can arise for a variety of reasons, such as incorrect recording of observation during data collection. Outliers could be identified through residual plots:
 
     ```r
-    > par(mfrow = c(2, 2))
-    > plot(lm.fit)
-    > dev.off()
+    par(mfrow = c(2, 2))
+    plot(lm.fit)
     ```
     
     The `plot` function automatically produces four diagnostic plots when you pass the output from `lm()`. Plots on the left column are residual plots, indicating the relationship between residuals and fitted values.
@@ -266,8 +244,7 @@ We present a few of the many methods available, but those interested can explore
 
     
     ```r
-    > plot(predict(lm.fit), rstudent(lm.fit)
-    > dev.off()
+    plot(predict(lm.fit), rstudent(lm.fit)
     ```
 
 3. Handle outliers:
@@ -279,7 +256,7 @@ We present a few of the many methods available, but those interested can explore
     Collinearity refers to the situation in which two or more predictor variables collinearity are closely related to one another. It can be detected through the correlation matrix:
     
     ```r
-    > cor(Boston)
+    cor(Boston)
     ```
     
     Ignoring the last row and the last column in the matrix, which indicate the relationship with response variable `medv`, an element of this matrix that is large in absolute value indicates a pair of highly correlated variables, and therefore a collinearity problem in the data.
@@ -287,10 +264,20 @@ We present a few of the many methods available, but those interested can explore
     Or we could detect collinearity quantitatively using `vif()` function:
 
     ```r
-    > vif(lm.fit)
+    install.packages("car")
+    library(car)
+
+    vif(lm.fit)
     ```
 
     Instead of inspecting the correlation matrix, a better way to assess multicollinearity is to compute the variance inflation factor (VIF). As a rule of thumb, a VIF value that exceeds 5 or 10 indicates a problematic amount of collinearity.
+
+:::{.callout-tip collapse="true"}
+## Read more about VIF
+
+Check out our textbook [@james_introduction_2021, pages 99-103] for a description of the Variance Inflation Factor (VIF).
+
+:::
 
 5. Handle collinearity:
 
@@ -335,5 +322,13 @@ Eight questions are listed below. You are required to try to answer these questi
 7. Use the `plot()` function to produce diagnostic plots of the linear regression fit. Comment on any problems you see with the fit. Do the residual plots suggest any unusually large outliers? 
 
 8. Use the `*` and `:` symbols to fit linear regression models with interaction effects. Do any interactions appear to be statistically significant?
+
+:::{.callout-tip}
+
+If you could not finish all eight questions during the lab, take that as a home exercise. 
+
+Use the `#week03` channel on Slack if you have any questions.
+
+:::
 
 </details>
