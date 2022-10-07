@@ -13,7 +13,7 @@ date-meta: 12 September 2022
     > View(Auto)
     ```
 
-   Variables mpg, cylinders, horsepower, weight, accelation, year, origin are quantitative variable. Variable name is qualitative varibale.
+   Variables mpg, cylinders, horsepower, weight, accelation, year are quantitative variable. Variables origin, name are qualitative varibale.
 
 2. Use the function `range()` to check the range of each quantitative predictor:
 
@@ -45,10 +45,10 @@ date-meta: 12 September 2022
     > sd(Auto$mpg)
     ```
 
-4. Remove 10th observation from the original data frame and store it as another new data frame:
+4. Remove the 10th through 85th observations from the original data frame and store it as another new data frame:
 
     ```r
-    > Auto_tmp = Auto[1:9, ]
+    > Auto_tmp = Auto[-c(10:85), ]
     > summary(Auto_tmp)
     > mean(Auto_tmp$mpg)
     > sd(Auto_tmp$mpg)
