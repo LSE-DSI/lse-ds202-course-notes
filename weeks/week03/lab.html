@@ -308,36 +308,6 @@ div.csl-indent {
 </li>
       </ul>
   </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../weeks/week04.qmd" class="sidebar-item-text sidebar-link">Week 04</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../weeks/week04/lecture.qmd" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../weeks/week04/checklist.qmd" class="sidebar-item-text sidebar-link">✅ Checklist</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../weeks/week04/lab.qmd" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../weeks/week04/appendix.qmd" class="sidebar-item-text sidebar-link">🔖 Appendix</a>
-  </div>
-</li>
-      </ul>
-  </li>
       </ul>
   </li>
     </ul>
@@ -414,41 +384,29 @@ Step 1: Simple linear regression (15 min)
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="fl">0.02985</span>  <span class="dv">0</span>  <span class="fl">2.18</span>    <span class="dv">0</span> <span class="fl">0.458</span> <span class="fl">6.430</span> <span class="fl">58.7</span> <span class="fl">6.0622</span>   <span class="dv">3</span> <span class="dv">222</span>    <span class="fl">18.7</span>  <span class="fl">5.21</span> <span class="fl">28.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We want to predict <code>medv</code> using the available predictors, such as <code>rm</code> (average number of rooms per house), <code>age</code> (average age of houses), and <code>lstat</code> (percentage of households with low socioeconomic status). To find out more about the data set, we can type <code>?Boston</code>.</p></li>
 <li><p>Fit a simple linear regression <code>lm()</code> model, with <code>medv</code> as the response and <code>lstat</code> as the predictor:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lm.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> lstat , <span class="at">data =</span> Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lm.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> lstat , <span class="at">data =</span> Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The basic syntax is <code>lm(y ∼ x, data)</code>, where <code>y</code> is the response, <code>x</code> is the predictor, and <code>data</code> is the data set in which we keep these two variables.</p></li>
-<li><p>Use the function <code>summary()</code> to understand detailed information about the model lm.fit we just fitted, like p-values and standard errors for the coefficients, as well as the <span class="math inline">\(R^2\)</span> statistic and F-statistic:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.fit)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Call<span class="sc">:</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula =</span> medv <span class="sc">~</span> lstat, <span class="at">data =</span> Boston)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Residuals<span class="sc">:</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    Min      1Q  Median      3Q     Max </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">15.168</span>  <span class="sc">-</span><span class="fl">3.990</span>  <span class="sc">-</span><span class="fl">1.318</span>   <span class="fl">2.034</span>  <span class="fl">24.500</span> </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Coefficients<span class="sc">:</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>            Estimate Std. Error t value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>(Intercept) <span class="fl">34.55384</span>    <span class="fl">0.56263</span>   <span class="fl">61.41</span>   <span class="sc">&lt;</span><span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>lstat       <span class="sc">-</span><span class="fl">0.95005</span>    <span class="fl">0.03873</span>  <span class="sc">-</span><span class="fl">24.53</span>   <span class="sc">&lt;</span><span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> ‘<span class="sc">**</span><span class="er">*</span>’ <span class="fl">0.001</span> ‘<span class="sc">**</span>’ <span class="fl">0.01</span> ‘<span class="sc">*</span>’ <span class="fl">0.05</span> ‘.’ <span class="fl">0.1</span> ‘ ’ <span class="dv">1</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>Residual standard error<span class="sc">:</span> <span class="fl">6.216</span> on <span class="dv">504</span> degrees of freedom</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.5441</span>,    Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.5432</span> </span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">601.6</span> on <span class="dv">1</span> and <span class="dv">504</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="er">&lt;</span> <span class="fl">2.2e-16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Because <code>lm.fit</code> is a simple linear regression model, there are only two coefficients: <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span>. The Coefficients in the output shows the estimated value, standard error, t-test result and p-value for t-test of <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span>. The goodness-of-fit of the model can be measured by the RSE and <span class="math inline">\(R^2\)</span> in the output.</p>
-<p>We can also use <code>lm.fit$coefficients</code> or <code>coef(lm.fit)</code> to check the coefficients of the regression model:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">coef</span>(lm.fit)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(Intercept)       lstat </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a> <span class="fl">34.5538409</span>  <span class="sc">-</span><span class="fl">0.9500494</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Obtain a confidence interval for the coefficient estimates using the <code>confint()</code> function:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span> (lm.fit)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                <span class="fl">2.5</span> <span class="sc">%     97.5 %</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>(Intercept) <span class="fl">33.448457</span> <span class="fl">35.6592247</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>lstat       <span class="sc">-</span><span class="fl">1.026148</span> <span class="sc">-</span><span class="fl">0.8739505</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Plot <code>medv</code> and <code>lstat</code> along with the least squares regression line using the <code>plot()</code> and <code>abline()</code> functions.:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Boston<span class="sc">$</span>lstat, Boston<span class="sc">$</span>medv, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">pch =</span> <span class="st">"+"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(lm.fit , <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Use the <code>tidy</code> function to create a dataframe with columns for the estimate, standard error, f-statistic (estimate/standard error), p-values, and 95 percent confidence intervals:</p>
+<p>installing/loading broom:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"broom"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">tidy</span>(lm.fit, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 2 × 7</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>term        estimate std.error statistic   p.value conf.low conf.high</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>chr<span class="sc">&gt;</span>          <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> (Intercept)   <span class="fl">34.6</span>      <span class="fl">0.563</span>       <span class="fl">61.4</span> <span class="fl">3.74e-236</span>    <span class="fl">33.4</span>     <span class="fl">35.7</span>  </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> lstat         <span class="sc">-</span><span class="fl">0.950</span>    <span class="fl">0.0387</span>     <span class="sc">-</span><span class="fl">24.5</span> <span class="fl">5.08</span>e<span class="sc">-</span> <span class="dv">88</span>    <span class="sc">-</span><span class="fl">1.03</span>    <span class="sc">-</span><span class="fl">0.874</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Because <code>lm.fit</code> is a simple linear regression model, there are only two coefficients: <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span>. The goodness-of-fit of the model can be measured by the <span class="math inline">\(R^2\)</span> in the output, which can be obtained (along with other model statistics) using the <code>glance</code> function.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">glance</span>(lm.fit)<span class="sc">$</span>r.squared</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.5441463</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Plot <code>medv</code> and <code>lstat</code> along with the least squares regression line using the <code>geom_point()</code> and <code>geom_abline()</code> functions.::</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">ggplot</span>(<span class="at">data =</span> Boston, <span class="fu">aes</span>(<span class="at">x =</span> lstat, <span class="at">y =</span> medv)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_abline</span>(<span class="at">intercept =</span> lm.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>], <span class="at">slope =</span> lm.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section></details>
 <details>
@@ -461,70 +419,51 @@ Step 2: Multiple linear regression (10 min)
 <p>We will still use the <code>Boston</code> data set to fit multiple linear regression. The fitting process is similar to simple linear regression.</p>
 <ol type="1">
 <li><p>Fit a multiple linear regression <code>lm()</code> model, with <code>medv</code> as the response, <code>lstat</code> and <code>age</code> as the predictors:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lm.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> lstat <span class="sc">+</span> age , <span class="at">data =</span> Boston)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (lm.fit)</span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lm.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> lstat <span class="sc">+</span> age , <span class="at">data =</span> Boston)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">tidy</span>(lm.fit, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Call<span class="sc">:</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula =</span> medv <span class="sc">~</span> lstat <span class="sc">+</span> age, <span class="at">data =</span> Boston)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>Residuals<span class="sc">:</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    Min      1Q  Median      3Q     Max </span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">15.981</span>  <span class="sc">-</span><span class="fl">3.978</span>  <span class="sc">-</span><span class="fl">1.283</span>   <span class="fl">1.968</span>  <span class="fl">23.158</span> </span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>Coefficients<span class="sc">:</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>            Estimate Std. Error t value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>(Intercept) <span class="fl">33.22276</span>    <span class="fl">0.73085</span>  <span class="fl">45.458</span>  <span class="sc">&lt;</span> <span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>lstat       <span class="sc">-</span><span class="fl">1.03207</span>    <span class="fl">0.04819</span> <span class="sc">-</span><span class="fl">21.416</span>  <span class="sc">&lt;</span> <span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>age          <span class="fl">0.03454</span>    <span class="fl">0.01223</span>   <span class="fl">2.826</span>  <span class="fl">0.00491</span> <span class="sc">**</span> </span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> ‘<span class="sc">**</span><span class="er">*</span>’ <span class="fl">0.001</span> ‘<span class="sc">**</span>’ <span class="fl">0.01</span> ‘<span class="sc">*</span>’ <span class="fl">0.05</span> ‘.’ <span class="fl">0.1</span> ‘ ’ <span class="dv">1</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>Residual standard error<span class="sc">:</span> <span class="fl">6.173</span> on <span class="dv">503</span> degrees of freedom</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.5513</span>,    Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.5495</span> </span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>F<span class="sc">-</span>statistic<span class="sc">:</span>   <span class="dv">309</span> on <span class="dv">2</span> and <span class="dv">503</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="er">&lt;</span> <span class="fl">2.2e-16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The syntax <code>lm(y ~ x1 + x2 + x3)</code> is used to fit a model with three predictors, <code>x1</code>, <code>x2</code>, and <code>x3</code>. The <code>summary()</code> function now outputs the regression coefficients for all the predictors.</p></li>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 × 7</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>term        estimate std.error statistic   p.value conf.low conf.high</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>chr<span class="sc">&gt;</span>          <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> (Intercept)  <span class="fl">33.2</span>       <span class="fl">0.731</span>      <span class="fl">45.5</span>  <span class="fl">2.94e-180</span>  <span class="fl">31.8</span>      <span class="fl">34.7</span>   </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> lstat        <span class="sc">-</span><span class="fl">1.03</span>      <span class="fl">0.0482</span>    <span class="sc">-</span><span class="fl">21.4</span>  <span class="fl">8.42</span>e<span class="sc">-</span> <span class="dv">73</span>  <span class="sc">-</span><span class="fl">1.13</span>     <span class="sc">-</span><span class="fl">0.937</span> </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> age           <span class="fl">0.0345</span>    <span class="fl">0.0122</span>      <span class="fl">2.83</span> <span class="fl">4.91</span>e<span class="sc">-</span>  <span class="dv">3</span>   <span class="fl">0.0105</span>    <span class="fl">0.0586</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The syntax <code>lm(y ~ x1 + x2 + x3)</code> is used to fit a model with three predictors, <code>x1</code>, <code>x2</code>, and <code>x3</code>. The <code>tidy()</code> function now outputs the regression coefficients for all the predictors.</p></li>
 <li><p>Fit a multiple linear regression <code>lm()</code> model, with <code>medv</code> as the response, all rest variables as the predictors:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lm.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> ., <span class="at">data =</span> Boston)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.fit)</span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lm.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> ., <span class="at">data =</span> Boston)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">tidy</span>(lm.fit, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Call<span class="sc">:</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula =</span> medv <span class="sc">~</span> ., <span class="at">data =</span> Boston)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>Residuals<span class="sc">:</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>     Min       1Q   Median       3Q      Max </span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">15.1304</span>  <span class="sc">-</span><span class="fl">2.7673</span>  <span class="sc">-</span><span class="fl">0.5814</span>   <span class="fl">1.9414</span>  <span class="fl">26.2526</span> </span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>Coefficients<span class="sc">:</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>              Estimate Std. Error t value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>(Intercept)  <span class="fl">41.617270</span>   <span class="fl">4.936039</span>   <span class="fl">8.431</span> <span class="fl">3.79e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>crim         <span class="sc">-</span><span class="fl">0.121389</span>   <span class="fl">0.033000</span>  <span class="sc">-</span><span class="fl">3.678</span> <span class="fl">0.000261</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>zn            <span class="fl">0.046963</span>   <span class="fl">0.013879</span>   <span class="fl">3.384</span> <span class="fl">0.000772</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>indus         <span class="fl">0.013468</span>   <span class="fl">0.062145</span>   <span class="fl">0.217</span> <span class="fl">0.828520</span>    </span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>chas          <span class="fl">2.839993</span>   <span class="fl">0.870007</span>   <span class="fl">3.264</span> <span class="fl">0.001173</span> <span class="sc">**</span> </span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>nox         <span class="sc">-</span><span class="fl">18.758022</span>   <span class="fl">3.851355</span>  <span class="sc">-</span><span class="fl">4.870</span> <span class="fl">1.50e-06</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>rm            <span class="fl">3.658119</span>   <span class="fl">0.420246</span>   <span class="fl">8.705</span>  <span class="sc">&lt;</span> <span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>age           <span class="fl">0.003611</span>   <span class="fl">0.013329</span>   <span class="fl">0.271</span> <span class="fl">0.786595</span>    </span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>dis          <span class="sc">-</span><span class="fl">1.490754</span>   <span class="fl">0.201623</span>  <span class="sc">-</span><span class="fl">7.394</span> <span class="fl">6.17e-13</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>rad           <span class="fl">0.289405</span>   <span class="fl">0.066908</span>   <span class="fl">4.325</span> <span class="fl">1.84e-05</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>tax          <span class="sc">-</span><span class="fl">0.012682</span>   <span class="fl">0.003801</span>  <span class="sc">-</span><span class="fl">3.337</span> <span class="fl">0.000912</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>ptratio      <span class="sc">-</span><span class="fl">0.937533</span>   <span class="fl">0.132206</span>  <span class="sc">-</span><span class="fl">7.091</span> <span class="fl">4.63e-12</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>lstat        <span class="sc">-</span><span class="fl">0.552019</span>   <span class="fl">0.050659</span> <span class="sc">-</span><span class="fl">10.897</span>  <span class="sc">&lt;</span> <span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> ‘<span class="sc">**</span><span class="er">*</span>’ <span class="fl">0.001</span> ‘<span class="sc">**</span>’ <span class="fl">0.01</span> ‘<span class="sc">*</span>’ <span class="fl">0.05</span> ‘.’ <span class="fl">0.1</span> ‘ ’ <span class="dv">1</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>Residual standard error<span class="sc">:</span> <span class="fl">4.798</span> on <span class="dv">493</span> degrees of freedom</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.7343</span>,    Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.7278</span> </span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">113.5</span> on <span class="dv">12</span> and <span class="dv">493</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="er">&lt;</span> <span class="fl">2.2e-16</span>   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We can access the individual components of a summary object by name (type <code>?summary.lm</code> to see what is available). Hence <code>summary(lm.fit)$r.sq</code> gives us the R2, and <code>summary(lm.fit)$sigma</code> gives us the RSE.</p></li>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 13 × 7</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>term         estimate std.error statistic  p.value conf.low conf.high</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>chr<span class="sc">&gt;</span>           <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> (Intercept)  <span class="fl">41.6</span>       <span class="fl">4.94</span>        <span class="fl">8.43</span>  <span class="fl">3.79e-16</span>  <span class="fl">31.9</span>     <span class="fl">51.3</span>    </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> crim         <span class="sc">-</span><span class="fl">0.121</span>     <span class="fl">0.0330</span>     <span class="sc">-</span><span class="fl">3.68</span>  <span class="fl">2.61</span>e<span class="sc">-</span> <span class="dv">4</span>  <span class="sc">-</span><span class="fl">0.186</span>   <span class="sc">-</span><span class="fl">0.0565</span> </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> zn            <span class="fl">0.0470</span>    <span class="fl">0.0139</span>      <span class="fl">3.38</span>  <span class="fl">7.72</span>e<span class="sc">-</span> <span class="dv">4</span>   <span class="fl">0.0197</span>   <span class="fl">0.0742</span> </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> indus         <span class="fl">0.0135</span>    <span class="fl">0.0621</span>      <span class="fl">0.217</span> <span class="fl">8.29</span>e<span class="sc">-</span> <span class="dv">1</span>  <span class="sc">-</span><span class="fl">0.109</span>    <span class="fl">0.136</span>  </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> chas          <span class="fl">2.84</span>      <span class="fl">0.870</span>       <span class="fl">3.26</span>  <span class="fl">1.17</span>e<span class="sc">-</span> <span class="dv">3</span>   <span class="fl">1.13</span>     <span class="fl">4.55</span>   </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> nox         <span class="sc">-</span><span class="fl">18.8</span>       <span class="fl">3.85</span>       <span class="sc">-</span><span class="fl">4.87</span>  <span class="fl">1.50</span>e<span class="sc">-</span> <span class="dv">6</span> <span class="sc">-</span><span class="fl">26.3</span>    <span class="sc">-</span><span class="fl">11.2</span>    </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> rm            <span class="fl">3.66</span>      <span class="fl">0.420</span>       <span class="fl">8.70</span>  <span class="fl">4.81e-17</span>   <span class="fl">2.83</span>     <span class="fl">4.48</span>   </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> age           <span class="fl">0.00361</span>   <span class="fl">0.0133</span>      <span class="fl">0.271</span> <span class="fl">7.87</span>e<span class="sc">-</span> <span class="dv">1</span>  <span class="sc">-</span><span class="fl">0.0226</span>   <span class="fl">0.0298</span> </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span> dis          <span class="sc">-</span><span class="fl">1.49</span>      <span class="fl">0.202</span>      <span class="sc">-</span><span class="fl">7.39</span>  <span class="fl">6.17e-13</span>  <span class="sc">-</span><span class="fl">1.89</span>    <span class="sc">-</span><span class="fl">1.09</span>   </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> rad           <span class="fl">0.289</span>     <span class="fl">0.0669</span>      <span class="fl">4.33</span>  <span class="fl">1.84</span>e<span class="sc">-</span> <span class="dv">5</span>   <span class="fl">0.158</span>    <span class="fl">0.421</span>  </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> tax          <span class="sc">-</span><span class="fl">0.0127</span>    <span class="fl">0.00380</span>    <span class="sc">-</span><span class="fl">3.34</span>  <span class="fl">9.12</span>e<span class="sc">-</span> <span class="dv">4</span>  <span class="sc">-</span><span class="fl">0.0202</span>  <span class="sc">-</span><span class="fl">0.00521</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span> ptratio      <span class="sc">-</span><span class="fl">0.938</span>     <span class="fl">0.132</span>      <span class="sc">-</span><span class="fl">7.09</span>  <span class="fl">4.63e-12</span>  <span class="sc">-</span><span class="fl">1.20</span>    <span class="sc">-</span><span class="fl">0.678</span>  </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span> lstat        <span class="sc">-</span><span class="fl">0.552</span>     <span class="fl">0.0507</span>    <span class="sc">-</span><span class="fl">10.9</span>   <span class="fl">6.39e-25</span>  <span class="sc">-</span><span class="fl">0.652</span>   <span class="sc">-</span><span class="fl">0.452</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<p>We can access the individual components of a summary object by name (type <code>?glance</code> to see what is available). Hence <code>glance(lm.fit)$r.squared</code> gives us the <span class="math inline">\(R^2\)</span>.</p>
+<ol start="3" type="1">
 <li><p>Select variables:</p>
-<p>In these two multiple linear regression models, the t-tests and F-test results suggest that all predictors are significant for the response variable. However, it is more often the case that the response is only associated with a subset of the predictors. We call the process of determining which predictors are associated with the response as <strong>variable selection</strong>.</p>
+<p>In these two multiple linear regression models, the t-tests and F-test results suggest that many of the predictors are significant for the response variable. However, some do not achieve statistical significance. Can you see which variables these are?</p>
+<p>We call the process of determining which predictors are associated with the response as <strong>variable selection</strong>.</p>
 <p>If the number of predictors is very small, we could perform the variable selection by trying out a lot of different models, each containing a different subset of the predictors. We can then select the best model out of all of the models we have considered.</p>
-<p>If the number of predictors is not very small, the function <code>regsubsets()</code> could be used to select the best subset of variables.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'leaps'</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaps)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>regfit.full <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(medv <span class="sc">~</span> ., Boston)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (regfit.full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>regsubsets()</code> function identifies the best model with a given number of predictors, where the best is quantified using RSS. The syntax is the same as for <code>lm()</code>. The <code>summary()</code> command outputs the best set of variables for each model size. You can use the argument <code>method</code> = “forward” or “backward” or “seqrep” choose selection methods.</p></li>
+<p>Using the template below, try figuring out the model which produces the highest adjusted <span class="math inline">\(R^2\)</span>. The adjusted <span class="math inline">\(R^2\)</span> has a similar interpretation to <span class="math inline">\(R^2\)</span>, only it is an advantage here as it penalises models that include insignificant parameters.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lm.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> ., <span class="at">data =</span> Boston)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.fit)<span class="sc">$</span>adj.r.squared</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.7278399</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We found that if you remove <code>indus</code> and <code>age</code>, the adjusted <span class="math inline">\(R^2\)</span> becomes slightly larger compared to including all predictors.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lm.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> ., <span class="at">data =</span> Boston[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">7</span>)])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.fit)<span class="sc">$</span>adj.r.squared</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.7288734</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section></details>
 <details>
@@ -539,46 +478,33 @@ Step 3: Some potential problems (15 min)
 <ol type="1">
 <li><p>Handle interaction terms:</p>
 <p>In regression, an interaction effect exists when the effect of an independent variable on the response variable changes, depending on the values of one or more independent variables. When you believe there is an interaction effect, it is easy to include interaction terms in a linear model using the <code>lm()</code> function.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (<span class="fu">lm</span>(medv <span class="sc">~</span> lstat <span class="sc">*</span> age , <span class="at">data =</span> Boston))</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Call<span class="sc">:</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula =</span> medv <span class="sc">~</span> lstat <span class="sc">*</span> age, <span class="at">data =</span> Boston)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>Residuals<span class="sc">:</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    Min      1Q  Median      3Q     Max </span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">15.806</span>  <span class="sc">-</span><span class="fl">4.045</span>  <span class="sc">-</span><span class="fl">1.333</span>   <span class="fl">2.085</span>  <span class="fl">27.552</span> </span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>Coefficients<span class="sc">:</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>              Estimate Std. Error t value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>(Intercept) <span class="fl">36.0885359</span>  <span class="fl">1.4698355</span>  <span class="fl">24.553</span>  <span class="sc">&lt;</span> <span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>lstat       <span class="sc">-</span><span class="fl">1.3921168</span>  <span class="fl">0.1674555</span>  <span class="sc">-</span><span class="fl">8.313</span> <span class="fl">8.78e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>age         <span class="sc">-</span><span class="fl">0.0007209</span>  <span class="fl">0.0198792</span>  <span class="sc">-</span><span class="fl">0.036</span>   <span class="fl">0.9711</span>    </span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>lstat<span class="sc">:</span>age    <span class="fl">0.0041560</span>  <span class="fl">0.0018518</span>   <span class="fl">2.244</span>   <span class="fl">0.0252</span> <span class="sc">*</span>  </span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> ‘<span class="sc">**</span><span class="er">*</span>’ <span class="fl">0.001</span> ‘<span class="sc">**</span>’ <span class="fl">0.01</span> ‘<span class="sc">*</span>’ <span class="fl">0.05</span> ‘.’ <span class="fl">0.1</span> ‘ ’ <span class="dv">1</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>Residual standard error<span class="sc">:</span> <span class="fl">6.149</span> on <span class="dv">502</span> degrees of freedom</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.5557</span>,    Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.5531</span> </span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">209.3</span> on <span class="dv">3</span> and <span class="dv">502</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="er">&lt;</span> <span class="fl">2.2e-16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The syntax <code>lstat:age</code> tells R to include an interaction term between <code>lstat</code> and <code>age</code>. The syntax <code>lstat*age</code> simultaneously includes <code>lstat</code>, <code>age</code>, and the interaction term <code>lstat×age</code> as predictors; it is a shorthand for <code>lstat+age+lstat:age</code>.</p></li>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">tidy</span>(<span class="fu">lm</span>(medv <span class="sc">~</span> lstat <span class="sc">*</span> age , <span class="at">data =</span> Boston))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 4 × 5</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>term         estimate std.error statistic  p.value</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>chr<span class="sc">&gt;</span>           <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> (Intercept) <span class="fl">36.1</span>        <span class="fl">1.47</span>      <span class="fl">24.6</span>    <span class="fl">4.91e-88</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> lstat       <span class="sc">-</span><span class="fl">1.39</span>       <span class="fl">0.167</span>     <span class="sc">-</span><span class="fl">8.31</span>   <span class="fl">8.78e-16</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> age         <span class="sc">-</span><span class="fl">0.000721</span>   <span class="fl">0.0199</span>    <span class="sc">-</span><span class="fl">0.0363</span> <span class="fl">9.71</span>e<span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> lstat<span class="sc">:</span>age    <span class="fl">0.00416</span>    <span class="fl">0.00185</span>    <span class="fl">2.24</span>   <span class="fl">2.52</span>e<span class="sc">-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The syntax <code>lstat:age</code> tells R to include an interaction term between lstat and age. The syntax <code>lstat*age</code> simultaneously includes <code>lstat</code>, <code>age</code>, and the interaction term <code>lstat×age</code> as predictors; it is a shorthand for <code>lstat+age+lstat:age</code>.</p></li>
 <li><p>Identify outliers through residual plots:</p>
 <p>An outlier is a point for which <span class="math inline">\(\hat{y}_i\)</span> is far from the value predicted by the model. Outliers can arise for a variety of reasons, such as incorrect recording of observation during data collection. Outliers could be identified through residual plots:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(lm.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>plot</code> function automatically produces four diagnostic plots when you pass the output from <code>lm()</code>. Plots on the left column are residual plots, indicating the relationship between residuals and fitted values.</p>
 <p>In practice, it can be difficult to decide how large a residual needs to be before we consider the point to be an outlier. Instead of plotting the residuals, we can address this problem by plotting the studentized residuals. These are computed by dividing each residual e<sub>i</sub> by its estimated standard studentized residual error. Observations with studentized residuals greater than 3 in absolute value are possible outliers. Using the plot() function to plot the studentized residuals:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">predict</span>(lm.fit), <span class="fu">rstudent</span>(lm.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(<span class="fu">predict</span>(lm.fit), <span class="fu">rstudent</span>(lm.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Handle outliers:</p>
 <p>If we believe an outlier is due to an error in data collection or recording, then one solution is to simply remove the observation. However, care should be taken, as an outlier may instead signal a deficiency with our model, such as a missing predictor.</p></li>
-<li><p>Detect collinearity using the correlation matrix:</p>
-<p>Collinearity refers to the situation in which two or more predictor variables collinearity are closely related to one another. It can be detected through the correlation matrix:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<li><p>Detect multicollinearity using the correlation matrix:</p>
+<p>Multicollinearity refers to the situation in which two or more predictor variables are highly correlated to one another. It can be detected through the correlation matrix:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ignoring the last row and the last column in the matrix, which indicate the relationship with response variable <code>medv</code>, an element of this matrix that is large in absolute value indicates a pair of highly correlated variables, and therefore a collinearity problem in the data.</p>
-<p>Or we could detect collinearity quantitatively using <code>vif()</code> function:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"car"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(lm.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can detect multicollinearity quantitatively using <code>vif()</code> function in the `car’ package:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"car"</span>)<span class="er">)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">vif</span>(lm.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Instead of inspecting the correlation matrix, a better way to assess multicollinearity is to compute the variance inflation factor (VIF). As a rule of thumb, a VIF value that exceeds 5 or 10 indicates a problematic amount of collinearity.</p></li>
 </ol>
 <div class="callout-tip callout callout-style-default callout-captioned">
@@ -599,9 +525,9 @@ Read more about VIF
 </div>
 <ol start="5" type="1">
 <li><p>Handle collinearity:</p>
-<p>When faced with the problem of collinearity, there are two simple solutions.</p>
-<p>The first is to drop one of the problematic variables from the regression. Doing this does not compromise the regression fit much since collinearity implies that the information this variable provides about the response is redundant in the presence of the other variables.</p>
-<p>The second solution is to combine the collinear variables into a single predictor.</p></li>
+<p>When faced with the problem of multicollinearity, there are two simple solutions.</p>
+<p>-The first is to drop one of the problematic variables from the regression.</p>
+<p>-The second solution is to combine the collinear variables into a single predictor, where such combination makes theoretical sense.</p></li>
 </ol>
 </section></details>
 <details>
@@ -615,18 +541,18 @@ Step 4: Practical exercises (50 min)
 <p>Eight questions are listed below. You are required to try to answer these questions in pairs using R commands. We will go over the solutions once everyone has finished these questions.</p>
 <p>🎯 <strong>Questions</strong></p>
 <ol type="1">
-<li><p>Use the <code>lm()</code> function to perform a simple linear regression with <code>mpg</code> as the response and <code>horsepower</code> as the predictor. Use the <code>summary()</code> function to print the results. Comment on the output. For example:</p>
+<li><p>Use the <code>lm()</code> function to perform a simple linear regression with <code>mpg</code> as the response and <code>horsepower</code> as the predictor. Use the <code>tidy()</code> function to print the results. Comment on the output. For example:</p>
 <ol type="i">
 <li>Is there a relationship between the predictor and the response?</li>
 <li>How strong is the relationship between the predictor and the response?</li>
 <li>Is the relationship between the predictor and the response positive or negative?</li>
 <li>What is the predicted <code>mpg</code> associated with a <code>horsepower</code> of 98? What are the associated 95 % confidence intervals?</li>
 </ol></li>
-<li><p>Plot the response and the predictor. Use the <code>abline()</code> function to display the least squares regression line.</p></li>
+<li><p>Plot the response and the predictor. Use the <code>geom_abline()</code> function to display the least squares regression line.</p></li>
 <li><p>Use the <code>plot()</code> function to produce diagnostic plots of the least squares regression fit. Comment on any problems you see with the fit.</p></li>
 <li><p>Produce a scatterplot matrix that includes all the variables in the data set.</p></li>
-<li><p>Compute the matrix of correlations between the variables using the function <code>cor()</code>. You will need to exclude the name variable, which is qualitative.</p></li>
-<li><p>Use the <code>lm()</code> function to perform a multiple linear regression with <code>mpg</code> as the response and all other variables except <code>name</code> as the predictors. Use the <code>summary()</code> function to print the results. Comment on the output. For instance:</p>
+<li><p>Compute the matrix of correlations between the variables using the function <code>cor()</code>. You will need to exclude the <code>name</code> and <code>origin</code> variable, which are qualitative.</p></li>
+<li><p>Use the <code>lm()</code> function to perform a multiple linear regression with <code>mpg</code> as the response and all other variables except <code>name</code> as the predictors. Use the <code>tidy()</code> function to print the results. Comment on the output. For instance:</p>
 <ol type="i">
 <li>Is there a relationship between the predictors and the response?</li>
 <li>Which predictors appear to have a statistically significant relationship to the response?</li>
