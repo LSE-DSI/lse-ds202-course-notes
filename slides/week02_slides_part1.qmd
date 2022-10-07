@@ -1126,11 +1126,10 @@ by
 $$
 t = \frac{\hat{\beta}_1 - 0}{\mathrm{SE}(\hat{\beta}_1)},
 $$
-::: incremental
 - This will have a t-distribution[^1] with $n - 2$ degrees of freedom, assuming $\beta_1 = 0$.
 - Using statistical software, it is easy to compute the probability of observing any value equal to $\mid t \mid$ or larger.
 - We call this probability the <mark>p-value</mark>.
-:::
+
 
 [^1]: 🤔 How are the t-distribution and the Normal distribution related? Check [this link](https://rpsychologist.com/d3/tdist/) to find out.
 
