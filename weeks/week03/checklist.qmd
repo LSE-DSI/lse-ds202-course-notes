@@ -1,7 +1,7 @@
 ---
 title: "✅ Week 03 - Checklist"
-date: 12 September 2022
-date-meta: 12 September 2022
+date: 9 October 2022
+date-meta: 9 October 2022
 from: markdown+emoji
 ---
 
@@ -9,20 +9,32 @@ Follow the suggested list of actions below to get the most out of this course:
 
 # Your Checklist:
 
+- 📙 Read [@james_introduction_2021, chapter 3] to reinforce your theoretical knowledge of Linear Regression. The textbook is available online for free.
+
+- 🧑‍💻 If you already know linear regression from previous courses you have taken, why not take this knowledge to next level? 
+
+    - Try to find a dataset online that contains a numerical variable you could predict by fitting a linear regression to it. I will be curious to see what you find. Share your findings on the `#week03` channel in our Slack.
+
+- 🖥️ Before you come to the class, skim the [W03 lab roadmap page](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week03/lab.html) to have an idea of what we are going to do. 
+
+    - This week, instead of just typing things in the terminal, we will use R Markdown. You can read about it [here](https://rmarkdown.rstudio.com/). This is also how you will be submitting solutions to formative and summative assignments in the future.
+
+    - I will post solutions to the practical exercises at the end of the week.
+
+- 💻 Assess yourself: did you understand all the exercises in the lab?
+
+    - If you are new to linear regression and you are enrolled in the Monday sessions, it is likely that you will struggle a bit in the lab. During the week, reserve some time to read about Linear Regression and then practice the exercises again. 
+
+- 📟 Struggling with something? Don't know what a particular `R` command do? Share your questions on the `#week03` channel in our Slack.
+
+    - I will also be posting follow up questions on Slack during the week.
+
+- 📝 Keep in mind that: after the lecture on Friday, **14 October 2022**, we will post the first formative assignment on Moodle.
+    
+    - You will have until Thursday of the following week (20 October 2022) to submit your solutions.
+
+    - This assignment is not marked, it doesn't count towards your final grade, but you will receive feedback if you submit.
+
+    - The assignment will have a similar format as the questions we explore in the lab.
+
 - 👨‍🏫 Attend the lecture. It will help you remember concepts more easily when revising later.
-
-- 🖥️ Skim through the [lab roadmap page](/weeks/week03/lab.qmd). This week, we will practice some linear regression modelling.
-
-- 📙 Read [@james_introduction_2021, chapter 4] to reinforce your theoretical knowledge of Classifiers.
-
-- 👀 Browse the slides again.
-
-- 💻 Replicate the R scripts used in the lecture.
-
-- 📝 Take note of anything that is still not clear to you.
-
-- 📟 Share your questions on `/week03` channel on Slack.
-
-- 📤 What type of supervised learning method feels more useful to you? Regression or Classification? Share your thoughts on `/week03` or `/random` channels in our Slack group.
-
-Pro-tip: If you take the time this week to read, practice, explore and experiment with linear and logistic regression, the concepts of resampling and cross-validation that will be introduced on [Week 04](/weeks/week04.qmd) and revisited on [Week 05's lab](/weeks/week05.qmd) will make A LOT more sense to you.

@@ -58,8 +58,6 @@ website:
                text: ✅ Checklist
              - href: weeks/week02/lab.qmd
                text: 💻 Lab roadmap
-             - href: weeks/week02/appendix.qmd
-               text: 🔖 Appendix
          - href: weeks/week03.qmd
            text: Week 03
            contents:
@@ -69,8 +67,6 @@ website:
                text: ✅ Checklist
              - href: weeks/week03/lab.qmd
                text: 💻 Lab roadmap
-             - href: weeks/week03/appendix.qmd
-               text: 🔖 Appendix
         #  - href: weeks/week04.qmd
         #    text: Week 04
         #    contents:

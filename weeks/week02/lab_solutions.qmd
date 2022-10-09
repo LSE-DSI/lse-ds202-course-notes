@@ -1,8 +1,8 @@
 ---
 title: "💻 Week 02 - Lab Roadmap (90 min)"
 author: Yijun Wang
-date: 12 September 2022
-date-meta: 12 September 2022
+date: 07 October 2022
+date-meta: 07 October 2022
 ---
 
 ## Solutions to exercises
