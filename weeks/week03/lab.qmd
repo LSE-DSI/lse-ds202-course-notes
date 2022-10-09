@@ -1,12 +1,23 @@
 ---
 title: "💻 Week 03 - Lab Roadmap (90 min)"
-date: 20 September 2022
-date-meta: 20 September 2022
+date: 9 October 2022
+date-meta: 9 October 2022
 from: markdown+emoji
-author: Yijun Wang
+author: DSI Teaching Team
 ---
 
 This week, we will fit simple and multiple linear regression models in R and learn to interpret the R output. We will apply this method to practical cases and deal with problems that commonly arise during this process.
+
+:::{.callout-tip collapse="true"}
+## Already know linear regression?
+
+If you already know linear regression from previous courses you have taken, why not take this knowledge to next level? Try to find a dataset online that contains a numerical variable you could predict by fitting a linear regression to it. I will be curious to see what you find. Share your findings on the `#week03` channel in our Slack. 
+
+You might want to check out, for example, [Data is Plural](https://www.data-is-plural.com/), run by Buzzfeed’s former data editor [🧑 Jeremy Singer-Vine](https://www.jsvine.com/). People send him interesting/funny/odd datasets and he shares them in this website and on a weekly newsletter. 
+
+:::
+
+
 
 <details><summary>Step 1: Simple linear regression (15 min)</summary>
 
