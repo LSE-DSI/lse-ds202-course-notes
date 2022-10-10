@@ -1,0 +1,11 @@
+---
+title: "Is there an intuitive way to arrive at the formula of Standard Errors?"
+subtitle: "DS202 Blog Post"
+date: 10 October 2022
+date-meta: 10 October 2022
+categories: [week02, Normal theory, equations]
+theme: lumen
+---
+
+[Potentially useful reference](https://math.stackexchange.com/questions/834681/when-residual-standard-error-is-equal-to-standard-deviation-of-dependent-variabl)
+

@@ -4,6 +4,8 @@ project:
   output-dir: _output
   render:
     - "index.qmd"
+    - "blog/*.qmd"
+    - "blog/posts/*.qmd"
     - "main/*.qmd"
     - "weeks/*.qmd"
     - "weeks/week01/*.qmd"
@@ -38,6 +40,8 @@ website:
         text: "✍️ Assessments"
       - href: main/courserep.qmd
         text: "🗳️ Course Rep"
+      - href: blog/main.qmd
+        text: "📚 Blog"
       - section: "🗓️ Weeks"
         contents:
          - href: weeks/week01.qmd

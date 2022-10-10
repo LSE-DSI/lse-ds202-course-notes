@@ -1,0 +1,11 @@
+---
+title: "Why does R-squared increase when we add more predictors?"
+subtitle: "DS202 Blog Post"
+date: 10 October 2022
+date-meta: 10 October 2022
+categories: [week02, R-squared, equations]
+theme: lumen
+---
+
+[Reference](https://math.stackexchange.com/questions/1976747/prove-that-r2-cannot-decrease-when-adding-a-variable)
+
