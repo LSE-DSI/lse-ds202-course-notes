@@ -508,7 +508,7 @@
     "href": "slides/week01_slides_part1.html#assessments-2",
     "title": "🗓️ Week 01 Structure of this course",
     "section": "Assessments 📔",
-    "text": "Assessments 📔\n\nTake-home exam (40%)\n\n\nAn open-book take-home exam, taken during the January exams period.\nExam questions will be comparable in style to the problem sets.\nThe exam questions will be released on Moodle on 5 January 2023. (tentative)\nThe exam is due on 11 January at 4pm (tentative)"
+    "text": "Assessments 📔\n\nTake-home exam (40%)\n\n\nAn open-book take-home exam, taken during the January exams period.\nExam questions will be comparable in style to the problem sets.\nThe exam questions will be released on Moodle on 5 January 2023. (tentative)\nThe exam is due on 11 January at 4pm (tentative)\n⚠️ Update 11/10/2022: Last year, DS202 exam was performed entirely online due to COVID-19 mitigation procedures. We want to run it online via our own Moodle page again this academic term, we just need to understand LSE regulations about exams for this year. We will update you on this very soon (hopefully by the end of W04)."
   },
   {
     "objectID": "slides/week01_slides_part1.html#office-hours",
@@ -690,7 +690,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  7.11\n2     9    12 11.7 \n3    12    15 15.2 \n4    15    18 17.8 \n5    18    21 20.2 \n6    21    24 21.8"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  7.93\n2     9    12 12.8 \n3    12    15 13.1 \n4    15    18 17.2 \n5    18    21 20.0 \n6    21    24 23.0"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -725,7 +725,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  7.11  1.89     1.89 \n2     9    12 11.7   0.320    0.320\n3    12    15 15.2  -0.214    0.214\n4    15    18 17.8   0.249    0.249\n5    18    21 20.2   0.830    0.830\n6    21    24 21.8   2.20     2.20 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.9491349\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  7.93  1.07     1.07 \n2     9    12 12.8  -0.792    0.792\n3    12    15 13.1   1.94     1.94 \n4    15    18 17.2   0.765    0.765\n5    18    21 20.0   1.02     1.02 \n6    21    24 23.0   1.02     1.02 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.10178\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
