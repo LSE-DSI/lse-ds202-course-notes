@@ -9,3 +9,112 @@ theme: lumen
 
 [Reference](https://math.stackexchange.com/questions/1976747/prove-that-r2-cannot-decrease-when-adding-a-variable)
 
+```{r, eval=TRUE, echo=TRUE, warning=FALSE, results=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+
+# 1. Synthetic Data
+
+First, I will generate two random features (i.e. $x$ will have 2 columns). Then, I will create a $y$ to correspond to a linear combination of both features, plus some added noise: 
+
+```{r}
+set.seed(10) # Fixing the seed so you can replicate exactly the same results
+x1 <- rnorm(100, mean=0, sd=1)
+x2 <- rnorm(100, mean=10, sd=2)
+
+y <- 0.9 + 0.1*x1 + 0.2*x2 + rnorm(100, mean=0, 0.2)
+
+df <- data.frame(x1=x1, x2=x2, 
+                 x3=rnorm(100, mean=2, sd=1), 
+                 x4=rnorm(100, mean=2, sd=1), 
+                 x5=rnorm(100, mean=2, sd=1),
+                 x6=rnorm(100, mean=2, sd=1),
+                 x7=rnorm(100, mean=2, sd=1),
+                 x8=rnorm(100, mean=2, sd=1),
+                 y=y)
+head(df)
+```
+
+Visualising the scatterplot matrix of all features:
+
+```{r}
+pairs(df %>% select(c(x1, x2, y)))
+```
+
+Notice that `x1` and `x2` are both independently highly correlated with `y`. This is expected, after all we made it so that $y = 0.9 + 0.1 \times x1 + 0.2 \times x2 + \epsilon$.
+
+# 2. Fitting a linear model
+
+Because we created this dataset with a linear relationship between the features, a linear regression (with Ordinary Least Squares) will offer a good estimate for the regression coefficient:
+
+```{r}
+lm.fit <- lm(y ~ x1 + x2, data=df)
+summary(lm.fit)
+```
+
+## 2.1 Regression coefficients
+
+Notice that the estimate of the intercept ($\hat{\beta}_0$) deviates a bit more from the "true" value than the other coefficients to "absorb" the random noise:
+
+$$
+\begin{align}
+\hat{\beta}_0 \approx 1.04 \approx \beta_0 = 0.90 \\
+\hat{\beta}_1 \approx 0.10 \approx \beta_1 = 0.10 \\
+\hat{\beta}_2 \approx 0.19 \approx \beta_2 = 0.20
+\end{align}
+$$
+
+## 2.2 Diagnostic Plots
+
+The four diagnostic plots are not weird, so it means linear regression is a good estimate:
+
+```{r}
+preds <- predict(lm.fit, df)
+
+rss <- sum((preds - df$y) ^ 2)  ## residual sum of squares
+tss <- sum((df$y - mean(df$y)) ^ 2)  ## total sum of squares
+rsq <- 1 - rss/tss
+
+rsq
+```
+
+## 3. Add new random variable
+
+```{r}
+lm.fit2 <- lm(y ~ ., data=df)
+summary(lm.fit2)
+```
+
+
+
+<!-- 
+```{r}
+
+g <- 
+  ggplot(df, aes(x=x, y=y)) + 
+
+  geom_point(shape=21, size=5, fill="#274f92", alpha=0.5) +
+
+
+  # EXTRA
+  geom_vline(xintercept = 0, linetype="dashed") +
+  geom_hline(yintercept = 0, linetype="dashed") +
+  # THEMING
+  theme_bw() +
+	theme(legend.position = "bottom",
+        legend.text = element_text(size=16),
+        axis.title.x = element_text(size=25),
+        axis.title.y = element_text(size=25),
+        axis.text.x = element_text(size=20),
+        axis.text.y = element_text(size=20),
+        panel.grid.minor = element_blank()) +
+  scale_x_continuous(name="x", limits=c(0, 3), breaks=seq(-1,10,0.5)) +
+  scale_y_continuous(name=expression(paste("Estimated Y (", hat(y), ")")), 
+                     limits=c(0, 2), breaks=seq(-1,4,0.5))
+
+
+
+
+g
+``` -->
