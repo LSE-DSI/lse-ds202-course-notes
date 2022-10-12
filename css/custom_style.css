@@ -1,17 +1,14 @@
 mark{
     /* background-color:#FFFF00; */
-    color: #1F2D3D;
+    background: none;
+    color: #E69F25;
     font-weight: bold;
 
     padding-left: 0em;
     padding-right: 0em;
-    margin-right: 0.3em;
-    padding-top: 0.025em;
-    padding-bottom: 0.025em;
-}
-
-mark:before {
-    content: '⚠️ revise '
+    margin-right: 0em;
+    padding-top: 0em;
+    padding-bottom: 0em;
 }
 
 mark.todo:before{

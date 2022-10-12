@@ -1,5 +1,5 @@
 ---
-title: "Why does R-squared increase when we add more predictors?"
+title: "What happens to R-squared when we add more predictors?"
 subtitle: "DS202 Blog Post"
 date: 10 October 2022
 date-meta: 10 October 2022
@@ -7,114 +7,140 @@ categories: [week02, R-squared, equations]
 theme: lumen
 ---
 
-[Reference](https://math.stackexchange.com/questions/1976747/prove-that-r2-cannot-decrease-when-adding-a-variable)
+::: callout-tip
+## TLDR
 
-```{r, eval=TRUE, echo=TRUE, warning=FALSE, results=FALSE, message=FALSE}
-library(tidyverse)
-```
+$R^2$ will always stay the same or increase you add more features to a linear regression, even if those features are "useless".
+
+:::
+
+## Data and Variables
+
+Suppose you have the following data:
+
+$$
+\mathbf{X} = \left[
+\begin{array}{cc}
+x_{11}&x_{12}\\
+x_{21}&x_{22}\\
+\vdots&\vdots\\
+x_{n1}&x_{n2} 
+\end{array}\right],
+$$
+
+ that is, $p=2$ features for $n$ observations, and you want to fit a linear regression to attempt to predict the $\mathbf{y}$ column below:
+ 
+$$
+\mathbf{y} = \left[
+\begin{array}{c}
+y_{1}\\
+y_2\\
+\vdots\\
+y_n
+\end{array}\right].
+$$
 
 
-# 1. Synthetic Data
+## A simple linear regression (p=1)
 
-First, I will generate two random features (i.e. $x$ will have 2 columns). Then, I will create a $y$ to correspond to a linear combination of both features, plus some added noise: 
+Let's start with the simplest case where you use just one feature, $\mathbf{y} \sim \mathbf{x}_1$. To simplify the notation later on, I will denote the estimated regression coefficients $\beta_0'$ and $\beta_1'$.
 
-```{r}
-set.seed(10) # Fixing the seed so you can replicate exactly the same results
-x1 <- rnorm(100, mean=0, sd=1)
-x2 <- rnorm(100, mean=10, sd=2)
+As we saw briefly on [Week 02](/weeks/week02/lecture.qmd) and as defined in Chapter 3 of the textbook [@james_introduction_2021], $R^2$ represents the proportion of variability in the response variable that can be explained using the dependent variables (features). More specifically:
 
-y <- 0.9 + 0.1*x1 + 0.2*x2 + rnorm(100, mean=0, 0.2)
+$$
+R^2 = \frac{1 - \operatorname{RSS}}{\operatorname{TSS}}
+$$
 
-df <- data.frame(x1=x1, x2=x2, 
-                 x3=rnorm(100, mean=2, sd=1), 
-                 x4=rnorm(100, mean=2, sd=1), 
-                 x5=rnorm(100, mean=2, sd=1),
-                 x6=rnorm(100, mean=2, sd=1),
-                 x7=rnorm(100, mean=2, sd=1),
-                 x8=rnorm(100, mean=2, sd=1),
-                 y=y)
-head(df)
-```
+where $\operatorname{TSS}$ represents the <mark>Total Sum of Squares</mark>:
 
-Visualising the scatterplot matrix of all features:
+$$
+\operatorname{TSS} =  \sum_i^n{\left(y_i - \bar{y}\right)^2},
+$$
 
-```{r}
-pairs(df %>% select(c(x1, x2, y)))
-```
+and $\bar{y}$ is the mean of $\mathbf{y}$.
 
-Notice that `x1` and `x2` are both independently highly correlated with `y`. This is expected, after all we made it so that $y = 0.9 + 0.1 \times x1 + 0.2 \times x2 + \epsilon$.
+As for the $\operatorname{RSS}$, it represents the <mark>Residual Sum of Squares</mark>. I will denote the RSS of the simple linear regression as  $\operatorname{RSS}_{(p=1)}$:
 
-# 2. Fitting a linear model
+$$
+\operatorname{RSS}_{(p=1)} = \sum_i^n{e_i^2} = \sum_i^n{\left(y_i - \hat{y}_i'\right)} = \sum_i^n{\left(y_i - \beta_0' - \beta_1' x_{i1}\right)^2}
+$$
 
-Because we created this dataset with a linear relationship between the features, a linear regression (with Ordinary Least Squares) will offer a good estimate for the regression coefficient:
 
-```{r}
-lm.fit <- lm(y ~ x1 + x2, data=df)
-summary(lm.fit)
-```
 
-## 2.1 Regression coefficients
+## Now, increase one feature (p=2)
 
-Notice that the estimate of the intercept ($\hat{\beta}_0$) deviates a bit more from the "true" value than the other coefficients to "absorb" the random noise:
+When we add the second column of $\mathbf{x}_2$ to the linear regression and we fit $\mathbf{y} \sim \mathbf{x}_1 + \mathbf{x}_2$, we will obtain a new set of regression coefficients — ${\beta}_0''$,  ${\beta}_1''$ and ${\beta}_2''$ — as well as new corresponding $\operatorname{RSS}_{(p=2)}$ and $\operatorname{R^2}_{(p=2)}$ values. Note that $\operatorname{TSS}$ is always the same, irrespective of the number of features.
+
+To understand why $R^2$ always stays the same or increases when $p$ increases, let's compare $\operatorname{RSS}_{(p=2)}$ to $\operatorname{RSS}_{(p=1)}$. First, let's expand $\operatorname{RSS}_{(p=2)}$:
 
 $$
 \begin{align}
-\hat{\beta}_0 \approx 1.04 \approx \beta_0 = 0.90 \\
-\hat{\beta}_1 \approx 0.10 \approx \beta_1 = 0.10 \\
-\hat{\beta}_2 \approx 0.19 \approx \beta_2 = 0.20
+\operatorname{RSS}_{(p=2)} =& \sum_i^n{\left(y_i - \hat{y}_i''\right)}\\
+                           =& \sum_i^n{\left( y_i - {\beta}_0'' - {\beta}_1'' x_{i1} - {\beta}_2'' x_{i2} \right)^2}\\
 \end{align}
 $$
 
-## 2.2 Diagnostic Plots
+Now, <mark style="color:red">let's plug the previous estimate, $y_i = \beta_0' + \beta_1' x_{i1}$</mark> and re-arrange the terms:
 
-The four diagnostic plots are not weird, so it means linear regression is a good estimate:
+$$
+\begin{align}
+& \sum_i^n{\left( {\beta}_0' + {\beta}_1' x_{i1} - {\beta}_0'' - {\beta}_1'' x_{i1} - {\beta}_2'' x_{i2} \right)^2} & \\
+=& \sum_i^n{\left( ({\beta}_0' - {\beta}_0'') + ({\beta}_1'  - {\beta}_1'') x_{i1} - {\beta}_2'' x_{i2} \right)^2} & \text{  Eq. A}
+\end{align}
+$$
 
-```{r}
-preds <- predict(lm.fit, df)
+From the above, you can see that the signs of coefficients do not interfer in $\operatorname{RSS}$, as the equation takes the **square** of errors but their magnitudes do. 
 
-rss <- sum((preds - df$y) ^ 2)  ## residual sum of squares
-tss <- sum((df$y - mean(df$y)) ^ 2)  ## total sum of squares
-rsq <- 1 - rss/tss
-
-rsq
-```
-
-## 3. Add new random variable
-
-```{r}
-lm.fit2 <- lm(y ~ ., data=df)
-summary(lm.fit2)
-```
-
-
+In the simple case where ${\beta}_0' = {\beta}_0''$ and ${\beta}_1' = {\beta}_1''$, we are left with the expression $\operatorname{RSS}_{(p=2)} = \sum_i^n{\left(- {\beta}_2'' x_{i2}\right)^2}$, which goes from $0$ to $\infty$ but never negative. Note that the expression in Eq. A can never go below 0, even if ${\beta}_0' \neq {\beta}_0''$ and ${\beta}_1' \neq {\beta}_1''$. Thus, $\operatorname{RSS}_{(p=2)} - \operatorname{RSS}_{(p=1)} \geq 0$ and  $R^2_{(p=2)} \geq R^2_{(p=1)}$.
 
 <!-- 
-```{r}
+<HIDDEN> A longer route:
 
-g <- 
-  ggplot(df, aes(x=x, y=y)) + 
+We want to show that the following is always true:
 
-  geom_point(shape=21, size=5, fill="#274f92", alpha=0.5) +
+$$
+\begin{align}
+\operatorname{RSS}_{(p=1)} \leq \operatorname{RSS}_{(p=2)}.
+\end{align}
+$$
+
+So let's expand these expressions and see what we find.
+
+$$
+\begin{align}
+\operatorname{RSS}_{(p=1)} &\leq \operatorname{RSS}_{(p=2)} & \text{}\\
+\sum_i^n{\left(y_i - \hat{y}_i'\right)^2} &\leq \sum_i^n{\left(y_i - \hat{y}_i''\right)^2} & \text{expanding}\\
+\sum_i^n{y_i^2 + (\hat{y}_i')^2 - 2y_i\hat{y}_i'} &\leq \sum_i^n{y_i^2 + (\hat{y}_i'')^2 - 2y_i\hat{y}_i''} & \text{expanding square}\\
+\sum_i^n{(\hat{y}_i')^2 - 2y_i\hat{y}_i'} &\leq \sum_i^n{(\hat{y}_i'')^2 - 2y_i\hat{y}_i''} & \text{subtract} \sum_i^n{y_i^2}\\
+\end{align}
+$$
+
+which, if we expand $\hat{y}_i'$ and $\hat{y}_i''$, we arrive at:
+
+$$
+\begin{align}
+\sum_i^n{({\beta}_0' + {\beta}_1' x_{i1})^2 - 2y_i({\beta}_0' + {\beta}_1' x_{i1})} &\leq \sum_i^n{({\beta}_0'' + {\beta}_1'' x_{i1} + {\beta}_2'' x_{i2})^2 - 2y_i({\beta}_0'' + {\beta}_1'' x_{i1} + {\beta}_2'' x_{i2})} \\
+\end{align}
+$$
+
+Keep on expanding:
 
 
-  # EXTRA
-  geom_vline(xintercept = 0, linetype="dashed") +
-  geom_hline(yintercept = 0, linetype="dashed") +
-  # THEMING
-  theme_bw() +
-	theme(legend.position = "bottom",
-        legend.text = element_text(size=16),
-        axis.title.x = element_text(size=25),
-        axis.title.y = element_text(size=25),
-        axis.text.x = element_text(size=20),
-        axis.text.y = element_text(size=20),
-        panel.grid.minor = element_blank()) +
-  scale_x_continuous(name="x", limits=c(0, 3), breaks=seq(-1,10,0.5)) +
-  scale_y_continuous(name=expression(paste("Estimated Y (", hat(y), ")")), 
-                     limits=c(0, 2), breaks=seq(-1,4,0.5))
+$$
+\begin{align}
+\operatorname{RSS}_{(p=1)} &= \sum_i^n{{\beta}_0'^2 + ({\beta}_1' x_{i1})^2 + 2\beta_0'\beta_1'x_{i1} - 2y_i{\beta}_0' - 2y_i{\beta}_1' x_{i1}} \\ 
+=& \sum_i^n{{\beta}_1'^2 x_{i1}^2 + (2\beta_0'\beta_1' - 2y_i{\beta}_1')x_{i1} + {\beta}_0'^2}
+\end{align}
+$$
+
+$$
+\begin{align}
+\operatorname{RSS}_{(p=2)} &=
+\sum_i^n{({\beta}_0'' + {\beta}_1'' x_{i1} + {\beta}_2'' x_{i2})^2 - 2y_i{\beta}_0'' - 2y_i{\beta}_1'' x_{i1} - 2y_i{\beta}_2'' x_{i2}} \\
+\sum_i^n{{\beta}_0''^2 + ({\beta}_1'' x_{i1})^2 + ({\beta}_2'' x_{i2})^2 + 2 {\beta}_0''{\beta}_1'' x_{i1} + 2 {\beta}_1'' x_{i1} {\beta}_2'' x_{i2} + 2 {\beta}_2'' x_{i2}{\beta}_0 - 2y_i{\beta}_0'' - 2y_i{\beta}_1'' x_{i1} - 2y_i{\beta}_2'' x_{i2}} \\
+\ldots
+\end{align}
+$$ -->
 
 
-
-
-g
-``` -->
+[Reference](https://math.stackexchange.com/questions/1976747/prove-that-r2-cannot-decrease-when-adding-a-variable)
