@@ -19,3 +19,11 @@ This course is assessed by a mix of problem sets and final exam. You can find th
 -   An open-book take-home exam, taken during the January exams period.
 -   Exam questions will be comparable in style to the problem sets.
 -   The exam questions will be released on Moodle
+
+::: {.callout-important style="color:red"}
+## ⚠️ Import Update 11/10/2022
+
+Last year, DS202 exam was performed entirely online due to COVID-19 mitigation procedures. We want to run it online via our own Moodle page again this academic term, we just need to understand LSE regulations about exams for this year. 
+
+We will update you on this very soon (hopefully by the end of W04).
+:::
