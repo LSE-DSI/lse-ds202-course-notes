@@ -249,7 +249,7 @@
     "href": "weeks/week02/lecture.html",
     "title": "👨‍🏫 Week 02 - Slides",
     "section": "",
-    "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
+    "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides. For a PDF copy, check Moodle."
   },
   {
     "objectID": "weeks/week02/lecture.html#coffee-break-10-min",
@@ -263,7 +263,7 @@
     "href": "weeks/week02/lecture.html#part-ii---multiple-linear-regression-45-50-min",
     "title": "👨‍🏫 Week 02 - Slides",
     "section": "Part II - Multiple Linear Regression (45-50 min)",
-    "text": "Part II - Multiple Linear Regression (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
+    "text": "Part II - Multiple Linear Regression (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides. For a PDF copy, check Moodle."
   },
   {
     "objectID": "weeks/week03/checklist.html",
@@ -333,7 +333,7 @@
     "href": "weeks/week03/lecture.html",
     "title": "👨‍🏫 Week 03 - Slides",
     "section": "",
-    "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
+    "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides. For a PDF copy, check Moodle."
   },
   {
     "objectID": "weeks/week03/lecture.html#coffee-break-10-min",
@@ -347,7 +347,7 @@
     "href": "weeks/week03/lecture.html#part-ii---classifiers-naive-bayes-45-50-min",
     "title": "👨‍🏫 Week 03 - Slides",
     "section": "Part II - Classifiers (Naive Bayes) (45-50 min)",
-    "text": "Part II - Classifiers (Naive Bayes) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides."
+    "text": "Part II - Classifiers (Naive Bayes) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides. For a PDF copy, check Moodle."
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-data-science-institute",
@@ -690,7 +690,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.00\n2     9    12 10.3 \n3    12    15 15.1 \n4    15    18 20.8 \n5    18    21 23.1 \n6    21    24 24.1"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  10.0\n2     9    12  13.5\n3    12    15  16.0\n4    15    18  19.3\n5    18    21  21.7\n6    21    24  21.4"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -725,7 +725,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY     error absError\n  <int> <int> <dbl>     <dbl>    <dbl>\n1     6     9  9.00 -0.000852 0.000852\n2     9    12 10.3   1.66     1.66    \n3    12    15 15.1  -0.0943   0.0943  \n4    15    18 20.8  -2.75     2.75    \n5    18    21 23.1  -2.06     2.06    \n6    21    24 24.1  -0.0873   0.0873  \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.10987\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  10.0 -1.05     1.05 \n2     9    12  13.5 -1.52     1.52 \n3    12    15  16.0 -0.962    0.962\n4    15    18  19.3 -1.34     1.34 \n5    18    21  21.7 -0.721    0.721\n6    21    24  21.4  2.60     2.60 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.36594\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
