@@ -186,9 +186,9 @@ We used t-statistic to compute p-values for the coefficients ($\hat{\beta}_0$ an
 - For this, we perform the hypothesis test:
 $$
 \begin{align}
-&~~~~H_0:&\beta_1 = \beta_2 = \ldots = \beta_0 = 0 \\
+&~~~~H_0:&\beta_1 = \beta_2 = \ldots = \beta_j = 0 \\
 &\text{vs} \\
-&~~~~H_A:& \text{at least one} \beta_j \neq 0.
+&~~~~H_A:& \text{at least one } \beta_j \neq 0.
 \end{align}
 $$
 :::
@@ -204,7 +204,7 @@ $$
 ::: {.column width="50%"}
 ::: {.incremental style="font-size:0.9em;"}
 - If F is close to 1, there is no relationship between the response and the predictor(s).
-- If $H_\alpha$ is true, then we expect $F$ to be greater than 1.
+- If $H_A$ is true, then we expect $F$ to be greater than 1.
 - Check [@james_introduction_2021, pages 75-77] for an in-depth explanation of this test.
 :::
 :::
