@@ -126,9 +126,9 @@ Direction.2005 <- Smarket$Direction [ Smarket$Year==2005 ]
 ```
 
 
-`Smarket$Year < 2005` returns `True` for the values satisfying `<2005` (smaller than 2005) condition in `Year` column in `Smarket` dataset.  The same logic can be applied to `>`, `<=` , `>=` or `==`(equal) and `!=` (not equal). 
+`Smarket$Year < 2005` returns `True` for the values satisfying `<2005` (smaller than 2005) condition in `Year` column in `Smarket` dataset.  The same logic can be applied to `>`, `<=` , `>=`, `==`(equal) or `!=` (not equal). 
 
-We can define a vector variable named `train` with `True` and `False` values depending on whether they meet the condition or not. And we can put this vector into open brackets `[` `]` to access corresponding rows. Or we can explicitly put the condition in the open brackets.
+To access corresponding rows, we can create a vector (`train`) and put it in open brackets to make it more readable and reusable, or we can explicitly specify in the open brackets.
 
 Using `Smarket[ Smarket$Year==2005,]` gives all the rows satisfying this condition with all columns. The same logic can be applied to `<` , `>`, `<=` , `>=` or `!=` (not equal).
 
