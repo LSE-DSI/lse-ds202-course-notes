@@ -79,7 +79,7 @@ Let's compare the linear models we fitted earlier:
 ::: columns
 
 ::: {.column width="50%"}
-```{r}
+```{r echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
 #| echo: false
 #| eval: true
 
@@ -94,7 +94,7 @@ newspaper_model <- lm(sales ~ newspaper, data=advertising)
 
 - **TV** 📺
 
-```{r}
+```{r echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -106,7 +106,7 @@ cat(paste(out[16:16]), sep="\n")
 ```
 
 - **Radio** 📻
-```{r}
+```{r echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -121,7 +121,7 @@ cat(paste(out[16:16]), sep="\n")
 
 ::: {.column width="50%"}
 - **Newspaper** 📰
-```{r}
+```{r echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -228,7 +228,7 @@ How well do our models explain the variability of the response?
 
 - **TV** 📺
 
-```{r}
+```{r echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -240,7 +240,7 @@ cat(paste(out[17:18]), sep="\n")
 ```
 
 - **Radio** 📻
-```{r}
+```{r echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -255,7 +255,7 @@ cat(paste(out[17:18]), sep="\n")
 
 ::: {.column width="50%"}
 - **Newspaper** 📰
-```{r}
+```{r echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -293,7 +293,7 @@ Fitting all predictors:
 ::: {.column width="50%"}
 
 **TV** 📺 + **Radio** 📻 + **Newspaper** 📰
-```{r}
+```{r echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: column-fragment
 #| echo: true
 #| eval: true
@@ -309,7 +309,7 @@ summary(full_model)
 ::: {.column width="50%"}
 
 **Confidence Intervals**
-```{r}
+```{r echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: column-fragment
 #| echo: true
 #| eval: true
