@@ -10,7 +10,7 @@ theme: lumen
 ::: callout-tip
 ## TLDR
 
-$R^2$ will always stay the same or increase you add more features to a linear regression, even if those features are "useless".
+When using [OLS](/slides/week02_slides_part1.html#/ordinary-least-squares), $R^2$ will always stay the same or increase you add more features to a linear regression, even if those features are "useless".
 
 :::
 
@@ -48,7 +48,7 @@ Let's start with the simplest case where you use just one feature, $\mathbf{y} \
 As we saw briefly on [Week 02](/weeks/week02/lecture.qmd) and as defined in Chapter 3 of the textbook [@james_introduction_2021], $R^2$ represents the proportion of variability in the response variable that can be explained using the dependent variables (features). More specifically:
 
 $$
-R^2 = \frac{1 - \operatorname{RSS}}{\operatorname{TSS}}
+R^2 = 1 - \frac{\operatorname{RSS}}{\operatorname{TSS}}
 $$
 
 where $\operatorname{TSS}$ represents the <mark>Total Sum of Squares</mark>:
@@ -62,7 +62,7 @@ and $\bar{y}$ is the mean of $\mathbf{y}$.
 As for the $\operatorname{RSS}$, it represents the <mark>Residual Sum of Squares</mark>. I will denote the RSS of the simple linear regression as  $\operatorname{RSS}_{(p=1)}$:
 
 $$
-\operatorname{RSS}_{(p=1)} = \sum_i^n{e_i^2} = \sum_i^n{\left(y_i - \hat{y}_i'\right)} = \sum_i^n{\left(y_i - \beta_0' - \beta_1' x_{i1}\right)^2}
+\operatorname{RSS}_{(p=1)} = \sum_i^n{e_i^2} = \sum_i^n{\left(y_i - \hat{y}_i'\right)^2} = \sum_i^n{\left(y_i - \beta_0' - \beta_1' x_{i1}\right)^2}
 $$
 
 
@@ -75,10 +75,14 @@ To understand why $R^2$ always stays the same or increases when $p$ increases, l
 
 $$
 \begin{align}
-\operatorname{RSS}_{(p=2)} =& \sum_i^n{\left(y_i - \hat{y}_i''\right)}\\
+\operatorname{RSS}_{(p=2)} =& \sum_i^n{\left(y_i - \hat{y}_i''\right)^2}\\
                            =& \sum_i^n{\left( y_i - {\beta}_0'' - {\beta}_1'' x_{i1} - {\beta}_2'' x_{i2} \right)^2}\\
 \end{align}
 $$
+
+## Recall the objective function of OLS
+
+In this course we are only interested in the <mark>Ordinary Least Squares</mark> ([OLS](/slides/week02_slides_part1.html#/ordinary-least-squares)) method to estimate the regression coefficients of our linear model. OLS will always try to minimize $\operatorname{RSS}$ and so, what does that mean to $\operatorname{RSS}_{(p=2)}$?
 
 Now, <mark style="color:red">let's plug the previous estimate, $y_i = \beta_0' + \beta_1' x_{i1}$</mark> and re-arrange the terms:
 
