@@ -1,313 +1,355 @@
 ---
 title: "💻 Week 04 - Lab Roadmap (90 min)"
-author: Yijun Wang
-date: 09 October 2022
+author: Yijun Wang/Dr. Stuart Bramwell
+date: 13 October 2022
 from: markdown+emoji
-author: Yijun Wang
 ---
 
-This week, we will build diverse classification models to deal with situation when the response variable is qualitative in R. We predict these qualitative variables through some widely-used classifiers inclduing Generalized Linear Model (GLM) and naive Bayes in this lab session. We will also apply these classification models into practical practices and compare their performance on different data sets.
+This week, we will build diverse classification models to deal with situation when the response variable is qualitative in R. We predict these qualitative variables through some widely-used classifiers including Generalized Linear Model (GLM) and naive Bayes in this lab session. We will also apply these classification models into practical practices and compare their performance on different data sets.
 
 We will follow the instructions below step by step together while answering whatever questions you might encounter along the way.
 
-<details><summary>Step 1: Explore the dataset (5 min)</summary>
+R packages you will need:
+
+``` r
+install.packages("tidyverse")
+install.packages("broom")
+install.packages("ISLR2")
+install.packages("e1071")
+```
+
+
+<details>
+
+<summary>
+
+Step 1: Explore the dataset (5 min)
+
+</summary>
 
 ## Step 1: Explore the dataset
 
-1. Load the `ISLR2` package, which contains a large collection of data sets and functions. We will begin by examining some numerical and graphical summaries of the `Smarket` data, which is part of the `ISLR2` library.
 
-    ```r
-    library("ISLR2")
-    names("Smarket")
-    dim("Smarket")
-    summary(Smarket)
-    pairs(Smarket)
-    ```
-    
-    This data set consists of percentage returns for the S&P 500 stock index over 1250 days, from the beginning of 2001 until the end of 2005. We use the command `names()` to obtain the variable names of this data set. For each date, we have recorded the percentage returns for each of the five previous trading days, `Lag1` through `Lag5`. We have also recorded `Volume` (the number of shares traded on the previous day, in billions), `Today` (the percentage return on the date in question) and `Direction` (whether the market was Up or Down on this date). Our goal is to predict `Direction` (a qualitative response) using the other features.
+### Step 1.1 Load the Data
 
-2.  Produce a matrix that contains all of the pairwise correlations among the predictors in a data set:
+Load the `ISLR2` package, which contains a large collection of data sets and functions. We will begin by examining some numerical and graphical summaries of the `Smarket` data, which is part of the `ISLR2` library.
 
-    ```r
-    cor(Smarket[, -9])
-        Year Lag1 Lag2 Lag3 Lag4 Lag5 Volume Today
-    Year 1.0000 0.02970 0.03060 0.03319 0.03569 0.02979 0.5390 0.03010
-    Lag1 0.0297 1.00000 -0.02629 -0.01080 -0.00299 -0.00567 0.0409 -0.02616
-    Lag2 0.0306 -0.02629 1.00000 -0.02590 -0.01085 -0.00356 -0.0434 -0.01025
-    Lag3 0.0332 -0.01080 -0.02590 1.00000 -0.02405 -0.01881 -0.0418 -0.00245
-    Lag4 0.0357 -0.00299 -0.01085 -0.02405 1.00000 -0.02708 -0.0484 -0.00690
-    Lag5 0.0298 -0.00567 -0.00356 -0.01881 -0.02708 1.00000 -0.0220 -0.03486
-    Volume 0.5390 0.04091 -0.04338 -0.04182 -0.04841 -0.02200 1.0000 0.01459
-    Today 0.0301 -0.02616 -0.01025 -0.00245 -0.00690 -0.03486 0.0146 1.00000
-    ```
+```{r, warning=FALSE, message=FALSE}
+library("ISLR2")
+head(Smarket)
+```
 
-    The function `cor()` can only take quantitative variables. Because the `Direction` variable is qualitative, therefore we exclude it when calculating the correlation matrix. 
+This data set consists of percentage returns for the S&P 500 stock index over 1250 days, from the beginning of 2001 until the end of 2005. We use the command `names()` to obtain the variable names of this data set:
 
-    As one would expect, the correlations between the lag variables and today’s returns are close to zero. In other words, there appears to be little correlation between today’s returns and previous days’ returns. The only substantial correlation is between `Year` and `Volume`. We could explore how Volume changed chronologically.
+```{r}
+names(Smarket)
+```
 
-    ```r
-    attach(Smarket)
-    plot(Volume)
-    ```
-    
-    By plotting the data, which is ordered chronologically, we see that `Volume` is increasing over time. In other words, the average number of shares traded daily increased from 2001 to 2005.
+How many rows and columns do we have in this dataset?
 
-</details>
+```{r}
+dim(Smarket)
+```
 
+Let's add another column `day` to index the number of days in this dataset:
 
+```{r}
+Smarket$day <- 1:nrow(Smarket)
+head(Smarket)
+```
 
-<details><summary>Step 2: Logistic Regression (25 min)</summary>
+ For each date, we have recorded the percentage returns for each of the five previous trading days, `Lag1` through `Lag5`. We have also recorded `Volume` (the number of shares traded on the previous day, in billions), `Today` (the percentage return on the date in question) and `Direction` (whether the market was Up or Down on this date). Our goal is to predict `Direction` (a qualitative response) using the other features.
 
-## Step 2:  Logistic Regression
+Let's look at a generic summary of this data and how each pair of variables are related:
 
-We will still use the `Smarket` data set to fit a Logistic Regression Model to predict `Direction`. 
+```{r}
+summary(Smarket)
+```
 
-1.  Build a training and a testing dataset. In practice we will be interested in our model’s performance not on the data that we used to fit the model, but rather on days in the future for which the market’s movements are unknown. Therefore, we will first create a training data set corresponding to the observations from 2001 through 2004. We will then create a testing data set of observations from 2005.:
-    
-    ```r
-    train <- (Year < 2005)
-    Smarket.2005 <- Smarket[!train , ]
-    Smarket.before_2005 <- Smarket[train , ]
-    dim(Smarket.2005)
-    [1] 252 9
-    Direction.2005 <- Direction[!train]
-    ```
-    The object `train` is a vector of 1,250 elements, corresponding to the observations in our data set. If observations that occurred before 2005, then the elements of the vector that correspond to are set to `TRUE`; If observations that occurred in 2005, then those that correspond to are set to `FALSE`. The object `train` is a Boolean vector, since its elements are `TRUE` and `FALSE`. Boolean vectors can boolean be used to obtain a subset of the rows or columns of a matrix. For instance, the command `Smarket[train, ]` would pick out a submatrix of the stock market data set, corresponding only to the dates before 2005, since those are the ones for which the elements of train are `TRUE`. 
-    
-    The `!` symbol can be used to reverse all of the elements of a Boolean vector. That is, `!train` is a vector similar to `train`, except that the elements that are `TRUE` in `train` get swapped to `FALSE` in `!train`, and the elements that are `FALSE` in `train` get swapped to `TRUE`in `!train`. Therefore, `Smarket[!train, ]` yields a submatrix of the stock market data containing only the observations for which `train` is `FALSE`—that is, the observations with dates in 2005. The output above indicates that there are 252 such observations.
+```{r}
+pairs(Smarket)
+```
 
-    Thus, we construct a training data set named Smarket.before_2005, and a testing data set named Smarket.2005.
+### Step 1.2 Initial exploratory data analysis
 
-2. Fit a Logistic Regression Model in order to predict `Direction` using `Lag1` through `Lag5` and `Volume` based on training data set:
+Produce a matrix that contains all of the pairwise correlations among the predictors in a data set:
 
-    ```r
-    glm.fits <- glm(Direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + Volume, data = Smarket, family = binomial, subset = train)
-    ```
+```{r}
+cor(Smarket[, -9])
+```
 
-    or
+The function `cor()` can only take quantitative variables. Because the `Direction` variable is qualitative, therefore we exclude it when calculating the correlation matrix.
 
-    ```r
-    glm.fits <- glm(Direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + Volume, data = Smarket.before_2005, family = binomial)
-    ```
+As one would expect, the correlations between the lag variables and today's returns are close to zero. In other words, there appears to be little correlation between today's returns and previous days' returns. The only substantial correlation is between `Year` and `Volume`. We could explore how Volume changed chronologically.
 
-    The generalized linear model syntax of the `glm()` function is similar to that of `lm()`, except that we must pass in the argument `family = binomial` in order to tell R to run a logistic regression rather than some other type of generalized linear model. 
+```{r, warning=FALSE, message=FALSE, fig.width=8, fig.dpi=200}
+library(tidyverse)
 
-    We now fit a logistic regression model using only the subset of the observations that correspond to dates before 2005, using the `subset` argument.
+ggplot(data = Smarket, aes(x = day, y = Volume)) +
+    geom_col(fill="#665797") +
 
-3. Have a look at p-values of this Logistic Regression Model:
-    
-    ```r
-    summary(glm.fits)
-    Call:
-    glm(formula = Direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + Volume, family = binomial, data = Smarket, subset = train)
+    ggtitle("Volume of shares traded over the period of this dataset") +
 
-    Deviance Residuals: 
-       Min      1Q  Median      3Q     Max  
-    -1.302  -1.190   1.079   1.160   1.350  
+    xlab("Day") + ylab("Volume (in billion US dollars)") +
 
-    Coefficients:
-                 Estimate Std. Error z value Pr(>|z|)
-    (Intercept)  0.191213   0.333690   0.573    0.567
-    Lag1        -0.054178   0.051785  -1.046    0.295
-    Lag2        -0.045805   0.051797  -0.884    0.377
-    Lag3         0.007200   0.051644   0.139    0.889
-    Lag4         0.006441   0.051706   0.125    0.901
-    Lag5        -0.004223   0.051138  -0.083    0.934
-    Volume      -0.116257   0.239618  -0.485    0.628
+    theme_minimal() +
+    theme(aspect.ratio = 2/5)
+```
 
-    (Dispersion parameter for binomial family taken to be 1)
-
-        Null deviance: 1383.3  on 997  degrees of freedom
-    Residual deviance: 1381.1  on 991  degrees of freedom
-    AIC: 1395.1
-
-    Number of Fisher Scoring iterations: 3
-    ```
-
-    The smallest p-value here is associated with `Lag1`. The negative coefficient for this predictor suggests that if the market had a positive return yesterday, then it is less likely to go up today. However, at a value of 0.295, the p-value is still relatively large, and so there is no clear evidence of a real association between `Lag1` and `Direction`. So do other predictors.
-
-4.  Obtain predicted probabilities of the stock market going up for each of the days in our testing data set, that is, for the days in 2005:
-
-    ```r
-    glm.probs <- predict(glm.fits, Smarket.2005, type = "response") 
-    glm.probs[1:10]   
-    ```
-
-    The `predict()` function can be used to predict the probability that the market will go up, given values of the predictors. The `type = "response"` option tells R to output probabilities of the form `P(Y = 1|X)`, as opposed to other information such as the logit. If no data set is supplied to the `predict()` function, then the probabilities are computed for the training data set that was used to fit the logistic regression model. Here we have printed only the first ten probabilities.
-    
-    ```r
-    contrasts(Direction)
-        Up
-    Down  0
-    Up    1
-
-    ```
-    
-    We know that these values correspond to the probability of the market going up, rather than down, because the `contrasts()` function indicates that R has created a dummy variable with a `1` for `Up`.  
-
-    In order to make a prediction as to whether the market will go up or down on a particular day, we must convert these predicted probabilities into class labels, `Up` or `Down`. The following commands create a vector of class predictions based on whether the predicted probability of a market increase is greater than or less than `0.5`. 
-
-    ```r
-    glm.pred <- rep("Down", 252)
-    glm.pred[glm.probs > .5] <- "Up"
-    ```
-
-    The first command creates a vector of 252 `Down` elements. The second line transforms to `Up` all of the elements for which the predicted probability of a market increase exceeds 0.5. 
-
-5.  Construct confusion matrix in order to determine how many observations in testing data set were correctly or incorrectly classified. 
-
-    ```r
-    table(glm.pred, Direction.2005)
-    table(glm.pred, Direction.2005)
-        Direction.2005
-    glm.pred Down Up
-    Down 77 97
-    Up 34 44        
-    ```
-    
-    Given the predictions, the `table()` function can be used to produce a confusion matrix in order to determine how many observations were correctly or incorrectly classified.
-
-6. Calculate the test set error rate:
-
-    ```r
-    mean (glm.pred == Direction.2005)
-    [1] 0.48
-    mean (glm.pred != Direction.2005)
-    [1] 0.52
-    ```
-    
-    The `!=` notation means not equal to, and so the last command computes the test set error rate. The results are rather disappointing: the test error rate is 52%, which is worse than random guessing! Of course this result is not all that surprising, given that one would not generally expect to be able to use previous days’ returns to predict future market performance.
-
-7. Remove the variables that appear not to be helpful in predicting `Direction` and fit a new Logistic Regression model. We recall that the logistic regression model had very underwhelming p-values associated with all of the predictors, and that the smallest p-value, though not very small, corresponded to `Lag1`. Perhaps by removing the variables that appear not to be helpful in predicting `Direction`, we can obtain a more effective model. After all, using predictors that have no relationship with the response tends to cause a deterioration in the test error rate (since such predictors cause an increase in variance without a corresponding decrease in bias), and so removing such predictors may in turn yield an improvement.
-   
-    ```r
-    glm.fits <- glm(Direction ~ Lag1 + Lag2, data = Smarket, family = binomial, subset = train)
-    glm.probs <- predict(glm.fits, Smarket.2005, type = "response")
-    glm.pred <- rep("Down", 252)
-    glm.pred[glm.probs > .5] <- "Up"
-    table(glm.pred , Direction.2005)
-       Direction.2005
-    glm.pred Down Up
-    Down 35 35
-    Up 76 106
-    mean(glm.pred == Direction.2005)
-    [1] 0.56
-    106 / (106 + 76)
-    [1] 0.582
-    ```
-
-    Above we have refit the logistic regression using just `Lag1` and `Lag2`, which seemed to have the highest predictive power in the original logistic regression model.
-
-    Now the results appear to be a little better: 56% of the daily movements have been correctly predicted. It is worth noting that in this case, a much simpler strategy of predicting that the market will increase every day will also be correct 56% of the time! Hence, in terms of overall error rate, the logistic regression method is no better than the naive approach However, the confusion matrix shows that on days when logistic regression predicts an increase in the market, it has a 58% accuracy rate. This suggests a possible trading strategy of buying on days when the model predicts an increasing market, and avoiding trades on days when a decrease is predicted. Of course one would need to investigate more carefully whether this small improvement was real or just due to random chance.
-
-    Suppose that we want to predict the returns associated with particular values of Lag1 and Lag2. In particular, we want to predict Direction on a day when Lag1 and Lag2 equal 1.2 and 1.1, respectively, and on a day when they equal 1.5 and −0.8. We do this using the predict() function.
-
-    ```r
-    predict(glm.fits, newdata = data.frame (Lag1 = c(1.2, 1.5), Lag2 = c(1.1, -0.8)), type = "response")
-    1 2
-    0.4791 0.4961
-    ```
-
-8.  In this lab we used the `glm()` function with `family = binomial` to perform logistic regression. Other choices for the `family` argument can be used to fit other types of GLMs. For instance, `family = Gamma` fits a gamma regression model. You can alwarys use the following command to explore more about `family` argument and possible choices.
-    
-    ```r
-    ?glm()
-    ```
-
+By plotting the data, which is ordered chronologically, we see that `Volume` is increasing over time. In other words, the average number of shares traded daily increased from 2001 to 2005.
 
 </details>
 
+<details>
 
+<summary>
 
-<details><summary> Step 3: Naive Bayes (10 min)</summary>
+Step 2: Logistic Regression (25 min)
+
+</summary>
+
+## Step 2: Logistic Regression
+
+We will still use the `Smarket` data set to fit a Logistic Regression Model to predict `Direction`.
+
+### Step 2.1 Separate some data just for training
+
+Build a training and a testing dataset. In practice we will be interested in our model's performance not on the data that we used to fit the model, but rather on days in the future for which the market's movements are unknown. Therefore, we will first create a training data set corresponding to the observations from 2001 through 2004. We will then create a testing data set of observations from 2005.:
+
+```{r}
+train <- (Smarket$Year < 2005)
+Smarket.2005 <- Smarket[!train , ]
+Smarket.before.2005 <- Smarket[train , ]
+Direction.2005 <- Smarket$Direction[!train]
+```
+
+**How many observations we have in the <mark>training set</mark> (< 2005)?**
+
+```{r}
+nrow(Smarket.before.2005)
+```
+
+**What about the <mark>test set</mark> (2005)?**
+
+```{r}
+nrow(Smarket.2005)
+```
+
+The object `train` is a vector of 1,250 elements, corresponding to the observations in our data set. If observations that occurred before 2005, then the elements of the vector that correspond to are set to `TRUE`; If observations that occurred in 2005, then those that correspond to are set to `FALSE`. The object `train` is a Boolean vector, since its elements are `TRUE` and `FALSE`. Boolean vectors can boolean be used to obtain a subset of the rows or columns of a matrix. For instance, the command `Smarket[train, ]` would pick out a submatrix of the stock market data set, corresponding only to the dates before 2005, since those are the ones for which the elements of train are `TRUE`.
+
+The `!` symbol can be used to reverse all of the elements of a Boolean vector. That is, `!train` is a vector similar to `train`, except that the elements that are `TRUE` in `train` get swapped to `FALSE` in `!train`, and the elements that are `FALSE` in `train` get swapped to `TRUE`in `!train`. Therefore, `Smarket[!train, ]` yields a submatrix of the stock market data containing only the observations for which `train` is `FALSE`---that is, the observations with dates in 2005. The output above indicates that there are 252 such observations.
+
+Thus, we construct a training data set named Smarket.before.2005, and a testing data set named Smarket.2005.
+
+### Step 2.2 Fit a logistic regression model
+
+Fit a Logistic Regression Model in order to predict `Direction` using `Lag1` through `Lag5` and `Volume` based on training data set:
+
+```{r}
+glm.fits <- 
+    glm(Direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + Volume, 
+        data = Smarket.before.2005, family = binomial)
+```
+
+The generalized linear model syntax of the `glm()` function is similar to that of `lm()`, except that we must pass in the argument `family = binomial` in order to tell R to run a logistic regression rather than some other type of generalized linear model.
+
+We now fit a logistic regression model using only the subset of the observations that correspond to dates before 2005, using the `subset` argument.
+
+### Step 2.3 Inspect the model
+
+Have a look at p-values of this Logistic Regression Model:
+
+```{r}
+library(broom)
+
+tidy(glm.fits)
+```
+
+The smallest p-value here is associated with `Lag1`. The negative coefficient for this predictor suggests that if the market had a positive return yesterday, then it is less likely to go up today. However, at a value of 0.295, the p-value is still relatively large, and so there is no clear evidence of a real association between `Lag1` and `Direction`. So do other predictors.
+
+### Step 2.4 Make predictions about the future (2005)
+
+Obtain predicted probabilities of the stock market going up for each of the days in our testing data set, that is, for the days in 2005:
+
+```{r}
+glm.probs <- predict(glm.fits, Smarket.2005, type = "response") 
+glm.probs[1:10]   
+```
+
+The `predict()` function can be used to predict the probability that the market will go up, given values of the predictors. The `type = "response"` option tells R to output probabilities of the form `P(Y = 1|X)`, as opposed to other information such as the logit. If no data set is supplied to the `predict()` function, then the probabilities are computed for the training data set that was used to fit the logistic regression model. Here we have printed only the first ten probabilities.
+
+```{r}
+contrasts(Smarket$Direction)
+```
+
+We know that these values correspond to the probability of the market going up, rather than down, because the `contrasts()` function indicates that R has created a dummy variable with a `1` for `Up`.
+
+In order to make a prediction as to whether the market will go up or down on a particular day, we must convert these predicted probabilities into class labels, `Up` or `Down`. The following commands create a vector of class predictions based on whether the predicted probability of a market increase is greater than or less than `0.5`.
+
+```{r}
+glm.pred <- rep("Down", 252)
+glm.pred[glm.probs > .5] <- "Up"
+```
+
+The first command creates a vector of 252 `Down` elements. The second line transforms to `Up` all of the elements for which the predicted probability of a market increase exceeds 0.5.
+
+### Step 2.5 Create a confusion matrix
+
+Construct confusion matrix in order to determine how many observations in testing data set were correctly or incorrectly classified.
+
+```{r}
+table(glm.pred, Direction.2005)    
+```
+
+Given the predictions, the `table()` function can be used to produce a confusion matrix in order to determine how many observations were correctly or incorrectly classified.
+
+### Step 2.6 What is the error in the test set?
+
+Calculate the test set error rate:
+
+```{r}
+mean(glm.pred == Direction.2005)
+```
+
+```{r}
+mean(glm.pred != Direction.2005)
+```
+
+The `!=` notation means not equal to, and so the last command computes the test set error rate. The results are rather disappointing: the test error rate is 52%, which is worse than random guessing! Of course this result is not all that surprising, given that one would not generally expect to be able to use previous days' returns to predict future market performance.
+
+### Step 2.7 Can we find a better combination of features?
+
+Remove the variables that appear not to be helpful in predicting `Direction` and fit a new Logistic Regression model. We recall that the logistic regression model had very underwhelming p-values associated with all of the predictors, and that the smallest p-value, though not very small, corresponded to `Lag1`. Perhaps by removing the variables that appear not to be helpful in predicting `Direction`, we can obtain a more effective model. After all, using predictors that have no relationship with the response tends to cause a deterioration in the test error rate (since such predictors cause an increase in variance without a corresponding decrease in bias), and so removing such predictors may in turn yield an improvement.
+
+```{r}
+glm.fits <- glm(Direction ~ Lag1 + Lag2, 
+                data = Smarket.before.2005, family = binomial)
+summary(glm.fits)
+```
+
+```{r}
+glm.probs <- predict(glm.fits, Smarket.2005, type = "response")
+glm.pred <- rep("Down", 252)
+glm.pred[glm.probs > .5] <- "Up"
+table(glm.pred , Direction.2005)
+```
+
+```{r}
+mean(glm.pred == Direction.2005)
+```
+
+Check proportion:
+
+```{r}
+106 / (106 + 76)
+```
+
+Above we have refit the logistic regression using just `Lag1` and `Lag2`, which seemed to have the highest predictive power in the original logistic regression model.
+
+Now the results appear to be a little better: 56% of the daily movements have been correctly predicted. It is worth noting that in this case, a much simpler strategy of predicting that the market will increase every day will also be correct 56% of the time! Hence, in terms of overall error rate, the logistic regression method is no better than the naive approach However, the confusion matrix shows that on days when logistic regression predicts an increase in the market, it has a 58% accuracy rate. This suggests a possible trading strategy of buying on days when the model predicts an increasing market, and avoiding trades on days when a decrease is predicted. Of course one would need to investigate more carefully whether this small improvement was real or just due to random chance.
+
+Suppose that we want to predict the returns associated with particular values of Lag1 and Lag2. In particular, we want to predict Direction on a day when Lag1 and Lag2 equal 1.2 and 1.1, respectively, and on a day when they equal 1.5 and −0.8. We do this using the predict() function.
+
+```{r}
+predict(glm.fits, 
+        newdata = data.frame (Lag1 = c(1.2, 1.5), Lag2 = c(1.1, -0.8)), 
+        type = "response")
+```
+
+### Step 2.8 Logistic regression siblings
+
+In this lab we used the `glm()` function with `family = binomial` to perform logistic regression. Other choices for the `family` argument can be used to fit other types of GLMs. For instance, `family = Gamma` fits a gamma regression model. You can alwarys use the following command to explore more about `family` argument and possible choices.
+
+```r
+?glm()
+```
+
+</details>
+
+<details>
+
+<summary>
+
+Step 3: Naive Bayes (10 min)
+
+</summary>
+
 ## Step 3: Naive Bayes
 
-The `Smarket` data set will still be utilised to fit a naive Bayes classifier to predict `Direction`. 
+The `Smarket` data set will still be utilised to fit a naive Bayes classifier to predict `Direction`.
 
-1. Fit a naive Bayes model to predict `Direction` using `Lag1` and `Lag2`:
+### Step 3.1 Let's fit a Naive Bayes model
 
-    ```r
-    library(e1071)
-    nb.fit <- naiveBayes (Direction ~ Lag1 + Lag2, data = Smarket, subset = train)
-    nb.fit
-    Naive Bayes Classifier for Discrete Predictors
-    Call:
-    naiveBayes.default(x = X, y = Y, laplace = laplace)
-    A-priori probabilities:
-    Y
-    Down Up
-    0.492 0.508
-    Conditional probabilities:
-    Lag1
-    Y [,1] [,2]
-    Down 0.0428 1.23
-    Up -0.0395 1.23
-    Lag2
-    Y [,1] [,2]
-    Down 0.0339 1.24
-    Up -0.0313 1.22
-    ```
-    
-    Naive Bayes is implemented in R using the `naiveBayes()` function, which is part of the `e1071` library. By default, this implementation of the naive Bayes classifier models each quantitative feature using a Gaussian distribution. However, a kernel density method can also be used to estimate the distributions.
+Fit a naive Bayes model to predict `Direction` using `Lag1` and `Lag2`:
 
-    The output contains the estimated mean and standard deviation for each variable in each class. For example, the mean for Lag1 is 0.0428 for Direction=Down, and the standard deviation is 1.23. We can easily verify this:
+```{r}
+library(e1071)
+nb.fit <- naiveBayes (Direction ~ Lag1 + Lag2, data = Smarket, subset = train)
+nb.fit
+```
 
-    ```r
-    mean(Lag1[train][Direction[train] == "Down"])
-    [1] 0.0428
-    sd(Lag1[train][Direction[train] == "Down"])
-    [1] 1.23
-    ```
+Naive Bayes is implemented in R using the `naiveBayes()` function, which is part of the `e1071` library. By default, this implementation of the naive Bayes classifier models each quantitative feature using a Gaussian distribution. However, a kernel density method can also be used to estimate the distributions.
 
-2. Predict `Direction` in testing data set:
+The output contains the estimated mean and standard deviation for each variable in each class. For example, the mean for Lag1 is 0.0428 for Direction=Down, and the standard deviation is 1.23. We can easily verify this:
 
-    ```r
-    nb.class <- predict(nb.fit, Smarket.2005)
-    table(nb.class, Direction.2005)
-         Direction.2005
-    nb.class Down Up
-    Down 28 20
-    Up 83 121
-    mean(nb.class == Direction.2005)
-    [1] 0.591
-    ```
-    
-    The `predict()` function is straightforward. From the confusion matrix, Naive Bayes performs very well on this data, with accurate predictions over 59% of the time. This is better than Logistic Regression Model.
+```{r}
+mean(Smarket$Lag1[train][Smarket$Direction[train] == "Down"])
+```
 
-    The `predict()` function can also generate estimates of the probability that each observation belongs to a particular class.
+```{r}
+sd(Smarket$Lag1[train][Smarket$Direction[train] == "Down"])
+```
 
-    ```r
-    nb.preds <- predict(nb.fit, Smarket.2005, type = "raw")
-    nb.preds[1:5, ]
-        Down Up
-    [1,] 0.487 0.513
-    [2,] 0.476 0.524
-    [3,] 0.465 0.535
-    [4,] 0.475 0.525
-    [5,] 0.490 0.510
-    ```
+### Step 3.2 Predict the test set
+
+Predict `Direction` in testing data set:
+
+```{r}
+nb.class <- predict(nb.fit, Smarket.2005)
+table(nb.class, Direction.2005)
+```
+
+```{r}
+mean(nb.class == Direction.2005)
+```
+
+The `predict()` function is straightforward. From the confusion matrix, Naive Bayes performs very well on this data, with accurate predictions over 59% of the time. This is better than Logistic Regression Model.
+
+The `predict()` function can also generate estimates of the probability that each observation belongs to a particular class.
+
+```{r}
+nb.preds <- predict(nb.fit, Smarket.2005, type = "raw")
+nb.preds[1:5, ]
+```
 
 </details>
 
-<details><summary> Step 4: Practical exercises (50 min)</summary>
+<details>
+
+<summary>
+
+Step 4: Practical exercises (50 min)
+
+</summary>
+
 ## Step 4: Practical exercises (in pairs)
 
 So far, we have learnt to fit some kinds of classification models in R. In this practical case, we will continue to use the data set `Auto`. Make sure that the missing values have been removed from the data.
 
 Six questions are listed below. In this part, you will develop a model to predict whether a given car gets high or low gas mileage based on the `Auto` data set.
 
-🎯 **Questions** 
+🎯 **Questions**
 
-1. Create a binary variable, `mpg01`, that contains a 1 if `mpg` contains a value above its median, and a 0 if `mpg` contains a value below its median. You can compute the median using the `median()` function. Note you may find it helpful to use the `data.frame()` function to create a single data set containing both `mpg01` and the other `Auto` variables.
+1.  Create a binary variable, `mpg01`, that contains a 1 if `mpg` contains a value above its median, and a 0 if `mpg` contains a value below its median. You can compute the median using the `median()` function. Note you may find it helpful to use the `data.frame()` function to create a single data set containing both `mpg01` and the other `Auto` variables.
 
-2. Explore the data graphically in order to investigate the association between `mpg01` and the other features. Which of the other features seem most likely to be useful in predicting `mpg01`? Scatterplots and boxplots may be useful tools to answer this question. Describe your findings.
-    
-3. Split the data into a training set and a test set. Train set contains observations before 1979. Test set contains the rest of the observations.
+2.  Explore the data graphically in order to investigate the association between `mpg01` and the other features. Which of the other features seem most likely to be useful in predicting `mpg01`? Scatterplots and boxplots may be useful tools to answer this question. Describe your findings.
 
-4. Perform logistic regression on the training data in order to predict `mpg01` using the variables that seemed most associated with `mpg01` in question 2. What is the test error of the model obtained?
+3.  Split the data into a training set and a test set. Train set contains observations before 1979. Test set contains the rest of the observations.
 
-5. Perform naive Bayes on the training data in order to predict `mpg01` using the variables that seemed most associated with `mpg01` in question 2. What is the test error of the model obtained?
+4.  Perform logistic regression on the training data in order to predict `mpg01` using the variables that seemed most associated with `mpg01` in question 2. What is the test error of the model obtained?
 
-6. Which of these two methods appears to provide the best results on this data? Justify your choice.
+5.  Perform naive Bayes on the training data in order to predict `mpg01` using the variables that seemed most associated with `mpg01` in question 2. What is the test error of the model obtained?
+
+6.  Which of these two methods appears to provide the best results on this data? Justify your choice.
 
 </details>
