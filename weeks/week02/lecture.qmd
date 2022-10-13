@@ -8,7 +8,7 @@ date-meta: 6 September 2022
 
 
 Either click on the slide area below or click [here](/slides/week02_slides_part1.qmd) to view it in fullscreen.
-Use your keypad to navigate the slides.
+Use your keypad to navigate the slides. **For a PDF copy, check Moodle.**
 
 <div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
 <iframe src="/slides/week02_slides_part1.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;"></iframe>
@@ -23,7 +23,7 @@ Use this time to chat, stretch, drink some coffee or just relax for a bit by you
 
 
 Either click on the slide area below or click [here](/slides/week02_slides_part2.qmd) to view it in fullscreen.
-Use your keypad to navigate the slides.
+Use your keypad to navigate the slides. **For a PDF copy, check Moodle.**
 
 <div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
 <iframe src="/slides/week02_slides_part2.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;"></iframe>
