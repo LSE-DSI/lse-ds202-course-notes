@@ -584,9 +584,9 @@ R^2 = \frac{\mathrm{TSS - RSS}}{\mathrm{TSS}} = 1 - \frac{\mathrm{RSS}}{\mathrm{
 <ul>
 <li>For this, we perform the hypothesis test: <span class="math display">\[
 \begin{align}
-&amp;~~~~H_0:&amp;\beta_1 = \beta_2 = \ldots = \beta_0 = 0 \\
+&amp;~~~~H_0:&amp;\beta_1 = \beta_2 = \ldots = \beta_j = 0 \\
 &amp;\text{vs} \\
-&amp;~~~~H_A:&amp; \text{at least one} \beta_j \neq 0.
+&amp;~~~~H_A:&amp; \text{at least one } \beta_j \neq 0.
 \end{align}
 \]</span></li>
 </ul>
@@ -602,7 +602,7 @@ F = \frac{(TSS - RSS) / p}{RSS/(n - p - 1)} \sim F_{p, n-p-1}
 <div style="font-size:0.9em;">
 <ul>
 <li class="fragment">If F is close to 1, there is no relationship between the response and the predictor(s).</li>
-<li class="fragment">If <span class="math inline">\(H_\alpha\)</span> is true, then we expect <span class="math inline">\(F\)</span> to be greater than 1.</li>
+<li class="fragment">If <span class="math inline">\(H_A\)</span> is true, then we expect <span class="math inline">\(F\)</span> to be greater than 1.</li>
 <li class="fragment">Check <span class="citation" data-cites="james_introduction_2021">(<a href="#/references" role="doc-biblioref" onclick="">James et al. 2021, 75–77</a>)</span> for an in-depth explanation of this test.</li>
 </ul>
 </div>

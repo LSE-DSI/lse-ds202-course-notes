@@ -102,21 +102,21 @@
     "href": "weeks/week02.html#links",
     "title": "🗓️ Week 02 - Simple and Multiple Linear Regression",
     "section": "Links",
-    "text": "Links\n\n👨‍🏫 Lecture slides\n✅ Take a look at this week’s checklist\n💻 This week’s lab\n🔖 Appendix"
+    "text": "Links\n\n👨‍🏫 Lecture slides\n✅ Take a look at this week’s checklist\n💻 This week’s lab"
   },
   {
     "objectID": "weeks/week03.html",
     "href": "weeks/week03.html",
     "title": "🗓️ Week 03 - Classifiers",
     "section": "",
-    "text": "On 🗓️ Week 02, we learned how to make predictions about numerical variables. But what if you wanted to predict whether someone will perform an action (a Yes or No question)? Or, say, you were interested in assessing how the risk of fraud increases depending on the behaviour of a customer? These problems can be modelled using classifiers, a type of supervised learning.\nThis week, we will explore two classifier algorithms: the Logistic Regression and the Naive Bayes classifiers. We will learn how those methods relate (or not) to linear regression, and how to interpret its results. You will also meet a few new metrics and will learn of new ways to assess the ‘accuracy’ of models. These metrics will be incrediblly important on Week 04!"
+    "text": "On 🗓️ Week 02, we learned how to make predictions about numerical variables. But what if you wanted to predict whether someone will perform an action (a Yes or No question)? Or, say, you were interested in assessing how the risk of fraud increases depending on the behaviour of a customer? These problems can be modelled using classifiers, a type of supervised learning.\nThis week, we will explore two classifier algorithms: the Logistic Regression and the Naive Bayes classifiers. We will learn how those methods relate (or not) to linear regression, and how to interpret its results. You will also meet a few new metrics and will learn of new ways to assess the ‘accuracy’ of models. These metrics will be incrediblly important on Week 04!\nJoin the lecture 14 October 2022 2pm at NAB LG.01 (Wolfson Theatre)."
   },
   {
     "objectID": "weeks/week03.html#links",
     "href": "weeks/week03.html#links",
     "title": "🗓️ Week 03 - Classifiers",
     "section": "Links",
-    "text": "Links\n\n👨‍🏫 Lecture slides\n✅ Take a look at this week’s checklist\n💻 This week’s lab\n🔖 Appendix"
+    "text": "Links\n\n👨‍🏫 Lecture slides\n✅ Take a look at this week’s checklist\n💻 This week’s lab"
   },
   {
     "objectID": "weeks/week06.html",
@@ -690,7 +690,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.00\n2     9    12 14.1 \n3    12    15 14.4 \n4    15    18 16.5 \n5    18    21 21.2 \n6    21    24 24.6"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  11.9\n2     9    12  16.1\n3    12    15  13.8\n4    15    18  17.4\n5    18    21  21.2\n6    21    24  26.0"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -725,7 +725,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY    error absError\n  <int> <int> <dbl>    <dbl>    <dbl>\n1     6     9  9.00 -0.00323  0.00323\n2     9    12 14.1  -2.06     2.06   \n3    12    15 14.4   0.569    0.569  \n4    15    18 16.5   1.50     1.50   \n5    18    21 21.2  -0.170    0.170  \n6    21    24 24.6  -0.618    0.618  \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.8195212\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  11.9 -2.95     2.95 \n2     9    12  16.1 -4.12     4.12 \n3    12    15  13.8  1.16     1.16 \n4    15    18  17.4  0.632    0.632\n5    18    21  21.2 -0.245    0.245\n6    21    24  26.0 -1.99     1.99 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.847192\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
@@ -886,7 +886,7 @@
     "href": "slides/week02_slides_part1.html#back-to-our-advertising-linear-models-1",
     "title": "🗓️ Week 02:Linear Regression",
     "section": "Back to our Advertising linear models",
-    "text": "Back to our Advertising linear models\nHow significant are the linear models?\n\n\n\nTV 📺\n\n\nout <- capture.output(summary(tv_model))\ncat(paste(out[16:16]), sep=\"\\n\")\n\nResidual standard error: 3.259 on 198 degrees of freedom\n\n\n\nRadio 📻\n\n\nout <- capture.output(summary(radio_model))\ncat(paste(out[9:15]), sep=\"\\n\")\n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)  9.31164    0.56290  16.542   <2e-16 ***\nradio        0.20250    0.02041   9.921   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\nNewspaper 📰\n\n\nout <- capture.output(summary(newspaper_model))\ncat(paste(out[9:15]), sep=\"\\n\")\n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept) 12.35141    0.62142   19.88  < 2e-16 ***\nnewspaper    0.05469    0.01658    3.30  0.00115 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n🗨️ What does it mean?"
+    "text": "Back to our Advertising linear models\nHow significant are the linear models?\n\n\n\nTV 📺\n\n\nout <- capture.output(summary(tv_model))\ncat(paste(out[9:15]), sep=\"\\n\")\n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept) 7.032594   0.457843   15.36   <2e-16 ***\nTV          0.047537   0.002691   17.67   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nRadio 📻\n\n\nout <- capture.output(summary(radio_model))\ncat(paste(out[9:15]), sep=\"\\n\")\n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)  9.31164    0.56290  16.542   <2e-16 ***\nradio        0.20250    0.02041   9.921   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\nNewspaper 📰\n\n\nout <- capture.output(summary(newspaper_model))\ncat(paste(out[9:15]), sep=\"\\n\")\n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept) 12.35141    0.62142   19.88  < 2e-16 ***\nnewspaper    0.05469    0.01658    3.30  0.00115 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n🗨️ What does it mean?"
   },
   {
     "objectID": "slides/week02_slides_part1.html#references",
@@ -935,7 +935,7 @@
     "href": "slides/week02_slides_part2.html#f-statistic",
     "title": "🗓️ Week 02:Multiple Linear Regression",
     "section": "F-statistic",
-    "text": "F-statistic\nWe used t-statistic to compute p-values for the coefficients (\\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\)).Now how do I test whether the model, as a whole, makes sense?\n\n\n\n\nFor this, we perform the hypothesis test: \\[\n\\begin{align}\n&~~~~H_0:&\\beta_1 = \\beta_2 = \\ldots = \\beta_0 = 0 \\\\\n&\\text{vs} \\\\\n&~~~~H_A:& \\text{at least one} \\beta_j \\neq 0.\n\\end{align}\n\\]\n\n\n\n\nwhich is performed by computing the F-statistic: \\[\nF = \\frac{(TSS - RSS) / p}{RSS/(n - p - 1)} \\sim F_{p, n-p-1}\n\\]\n\n\n\n\n\nIf F is close to 1, there is no relationship between the response and the predictor(s).\nIf \\(H_\\alpha\\) is true, then we expect \\(F\\) to be greater than 1.\nCheck (James et al. 2021, 75–77) for an in-depth explanation of this test.\n\n\n\n\n\n\n\n\nNote that the F-statistic applies to both simple and multiple linear regression models.\nCheck this link if you want to understand the difference between the t-test and the the F-test."
+    "text": "F-statistic\nWe used t-statistic to compute p-values for the coefficients (\\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\)).Now how do I test whether the model, as a whole, makes sense?\n\n\n\n\nFor this, we perform the hypothesis test: \\[\n\\begin{align}\n&~~~~H_0:&\\beta_1 = \\beta_2 = \\ldots = \\beta_j = 0 \\\\\n&\\text{vs} \\\\\n&~~~~H_A:& \\text{at least one } \\beta_j \\neq 0.\n\\end{align}\n\\]\n\n\n\n\nwhich is performed by computing the F-statistic: \\[\nF = \\frac{(TSS - RSS) / p}{RSS/(n - p - 1)} \\sim F_{p, n-p-1}\n\\]\n\n\n\n\n\nIf F is close to 1, there is no relationship between the response and the predictor(s).\nIf \\(H_A\\) is true, then we expect \\(F\\) to be greater than 1.\nCheck (James et al. 2021, 75–77) for an in-depth explanation of this test.\n\n\n\n\n\n\n\n\nNote that the F-statistic applies to both simple and multiple linear regression models.\nCheck this link if you want to understand the difference between the t-test and the the F-test."
   },
   {
     "objectID": "slides/week02_slides_part2.html#back-to-our-advertising-linear-models-1",

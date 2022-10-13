@@ -539,7 +539,7 @@ Y = \beta_0 &amp;+ \beta_1 X_1 + \beta_2 X_2 \\
 Y = \beta_0 + \beta_1 X + \epsilon ,
 \]</span></p>
 <p></p>
-</div><div class="column" style="width: 40%;margin-left:20%;padding:0%;">
+</div><div class="column" style="width: 45%;margin-left:5%;padding:0%;">
 <div class="cell">
 <div class="cell-output-display">
 <p><img data-src="week02_slides_part1_files/figure-revealjs/unnamed-chunk-1-1.png" width="3000"></p>
@@ -547,7 +547,7 @@ Y = \beta_0 + \beta_1 X + \epsilon ,
 </div>
 </div>
 </div>
-<div class="r-fit-text">
+<div style="margin-top:-10%">
 <p>where:</p>
 <ul>
 <li class="fragment"><mark class="math"><span class="math inline">\(\beta_0\)</span></mark>: an unknown constant that represents the <strong>intercept</strong> of the line.</li>
@@ -569,7 +569,7 @@ Y = \beta_0 + \beta_1 X + \epsilon ,
 <p><span class="math display">\[
 \hat{y} = \hat{\beta_0} + \hat{\beta_1} x
 \]</span></p>
-</div><div class="column" style="width: 40%;margin-left:20%;padding:0%;">
+</div><div class="column" style="width: 45%;margin-left:5%;padding:0%;">
 <div class="cell">
 <div class="cell-output-display">
 <p><img data-src="week02_slides_part1_files/figure-revealjs/unnamed-chunk-2-1.png" width="3000"></p>
@@ -577,7 +577,7 @@ Y = \beta_0 + \beta_1 X + \epsilon ,
 </div>
 </div>
 </div>
-<div>
+<div style="margin-top:-10%">
 <p>where:</p>
 <ul>
 <li class="fragment"><mark class="math"><span class="math inline">\(\hat{y}\)</span></mark>: is a prediction of <span class="math inline">\(Y\)</span> on the basis of <span class="math inline">\(X = x\)</span>.</li>
@@ -609,7 +609,7 @@ Y = \beta_0 + \beta_1 X + \epsilon ,
 </ul></li>
 </ul>
 </div>
-</div><div class="column" style="width: 40%;margin-left:0%;padding:0%;">
+</div><div class="column" style="width: 35%;margin-left:5%;padding:0%;">
 <div class="cell">
 <div class="cell-output-display">
 <p><img data-src="week02_slides_part1_files/figure-revealjs/unnamed-chunk-3-1.png" style="height:100.0%" width="3000"></p>
@@ -628,7 +628,7 @@ Y = \beta_0 + \beta_1 X + \epsilon ,
 <h1>Residual errors</h1>
 <p>To understand the Ordinary Least Squares method, we first need to understand the concept of residuals.</p>
 </section>
-<section id="the-concept-of-residuals" class="slide level2">
+<section id="the-concept-of-residuals" class="slide level2 smalller">
 <h2>The concept of <mark style="color:#c9594c;">residuals</mark></h2>
 <p>Suppose you came across some data:</p>
 <div class="cell">
@@ -653,7 +653,7 @@ Y = \beta_0 + \beta_1 X + \epsilon ,
 <aside><div>
 <p><em>And you suspect there is a linear relationship between X and Y.</em></p>
 </div></aside></section>
-<section id="the-concept-of-residuals-1" class="slide level2">
+<section id="the-concept-of-residuals-1" class="slide level2 smaller">
 <h2>The concept of <mark style="color:#c9594c;">residuals</mark></h2>
 <p>So, you decide to fit a line to it.</p>
 <div class="cell">
@@ -665,7 +665,7 @@ Y = \beta_0 + \beta_1 X + \epsilon ,
 <aside><div>
 <p><em>A line that goes right through the middle of the cloud of data.</em></p>
 </div></aside></section>
-<section id="the-concept-of-residuals-2" class="slide level2">
+<section id="the-concept-of-residuals-2" class="slide level2 smaller">
 <h2>The concept of <mark style="color:#c9594c;">residuals</mark></h2>
 <!-- <p class="r-fit-text"> -->
 <p><mark style="color:#c9594c;">Residuals</mark> are the distances from each data point to this line. <!-- </p> --></p>
@@ -959,7 +959,7 @@ n\hat{\beta}_0 &amp;= \sum_i^n{y_i} - \hat{\beta}_1\sum_i^n{ x_i} &amp; (\text{i
 <p>Is advertising spending related to sales?</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img data-src="week02_slides_part1_files/figure-revealjs/unnamed-chunk-12-1.png" style="width:100.0%"></p>
+<p><img data-src="week02_slides_part1_files/figure-revealjs/unnamed-chunk-12-1.png" width="864"></p>
 </div>
 </div>
 
@@ -972,7 +972,7 @@ n\hat{\beta}_0 &amp;= \sum_i^n{y_i} - \hat{\beta}_1\sum_i^n{ x_i} &amp; (\text{i
 <p>Is advertising spending related to sales?</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img data-src="week02_slides_part1_files/figure-revealjs/unnamed-chunk-13-1.png" style="width:100.0%"></p>
+<p><img data-src="week02_slides_part1_files/figure-revealjs/unnamed-chunk-13-1.png" width="864"></p>
 </div>
 </div>
 
@@ -1052,7 +1052,7 @@ n\hat{\beta}_0 &amp;= \sum_i^n{y_i} - \hat{\beta}_1\sum_i^n{ x_i} &amp; (\text{i
 <ul>
 <li class="fragment">If we were to fit a linear model from repeated samples of the data, we would get different coefficients every time.</li>
 <li class="fragment">Because of the <a href="https://statisticsbyjim.com/basics/central-limit-theorem/">Central Limit Theorem</a>, we know that the <strong>mean of this sampling distribution</strong> can be approximated by a <mark>Normal Distribution</mark>.</li>
-<li class="fragment">We know from <a href="http://www.homepages.ucl.ac.uk/~ucaktwa/teaching/NormalTheory.pdf">Normal Theory</a> that 95% of the distribution lies in <span class="math inline">\([\mu - 2 \sigma, \mu + 2 \sigma]\)</span>.<br>
+<li class="fragment">We know from <a href="http://www.homepages.ucl.ac.uk/~ucaktwa/teaching/NormalTheory.pdf">Normal Theory</a> that 95% of the distribution lies within two times the standard deviation (centered around the mean).<br>
 </li>
 </ul>
 </div>
@@ -1277,9 +1277,14 @@ t = \frac{\hat{\beta}_1 - 0}{\mathrm{SE}(\hat{\beta}_1)},
 </ul>
 <div class="cell" data-output-location="fragment">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>out <span class="ot">&lt;-</span> <span class="fu">capture.output</span>(<span class="fu">summary</span>(tv_model))</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">cat</span>(<span class="fu">paste</span>(out[<span class="dv">16</span><span class="sc">:</span><span class="dv">16</span>]), <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">cat</span>(<span class="fu">paste</span>(out[<span class="dv">9</span><span class="sc">:</span><span class="dv">15</span>]), <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Residual standard error: 3.259 on 198 degrees of freedom</code></pre>
+<pre><code>Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 7.032594   0.457843   15.36   &lt;2e-16 ***
+TV          0.047537   0.002691   17.67   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <ul>
