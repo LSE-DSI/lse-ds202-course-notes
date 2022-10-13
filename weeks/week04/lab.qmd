@@ -117,11 +117,26 @@ We will still use the `Smarket` data set to fit a Logistic Regression Model to p
 Build a training and a testing dataset. In practice we will be interested in our model's performance not on the data that we used to fit the model, but rather on days in the future for which the market's movements are unknown. Therefore, we will first create a training data set corresponding to the observations from 2001 through 2004. We will then create a testing data set of observations from 2005.:
 
 ```{r}
+
 train <- (Smarket$Year < 2005)
-Smarket.2005 <- Smarket[!train , ]
-Smarket.before.2005 <- Smarket[train , ]
-Direction.2005 <- Smarket$Direction[!train]
+Smarket.before.2005 <- Smarket [ train , ]
+
+Smarket.2005 <- Smarket[ Smarket$Year==2005, ]
+Direction.2005 <- Smarket$Direction [ Smarket$Year==2005 ]
 ```
+
+
+`Smarket$Year < 2005` returns `True` for the values satisfying `<2005` (smaller than 2005) condition in `Year` column in `Smarket` dataset.  The same logic can be applied to `>`, `<=` , `>=` or `==`(equal) and `!=` (not equal). 
+
+We can define a vector variable named `train` with `True` and `False` values depending on whether they meet the condition or not. And we can put this vector into open brackets `[` `]` to access corresponding rows. Or we can explicitly put the condition in the open brackets.
+
+Using `Smarket[ Smarket$Year==2005,]` gives all the rows satisfying this condition with all columns. The same logic can be applied to `<` , `>`, `<=` , `>=` or `!=` (not equal).
+
+`Smarket$Direction [ Smarket$Year==2005 ]` tells the `direction` values corresponding to the rows equal to 2005 in the `year` column are requested. 
+
+Thus, we can construct a training data set named Smarket.before.2005, and a testing data set named Smarket.2005.
+
+
 
 **How many observations we have in the <mark>training set</mark> (< 2005)?**
 
@@ -135,11 +150,6 @@ nrow(Smarket.before.2005)
 nrow(Smarket.2005)
 ```
 
-The object `train` is a vector of 1,250 elements, corresponding to the observations in our data set. If observations that occurred before 2005, then the elements of the vector that correspond to are set to `TRUE`; If observations that occurred in 2005, then those that correspond to are set to `FALSE`. The object `train` is a Boolean vector, since its elements are `TRUE` and `FALSE`. Boolean vectors can boolean be used to obtain a subset of the rows or columns of a matrix. For instance, the command `Smarket[train, ]` would pick out a submatrix of the stock market data set, corresponding only to the dates before 2005, since those are the ones for which the elements of train are `TRUE`.
-
-The `!` symbol can be used to reverse all of the elements of a Boolean vector. That is, `!train` is a vector similar to `train`, except that the elements that are `TRUE` in `train` get swapped to `FALSE` in `!train`, and the elements that are `FALSE` in `train` get swapped to `TRUE`in `!train`. Therefore, `Smarket[!train, ]` yields a submatrix of the stock market data containing only the observations for which `train` is `FALSE`---that is, the observations with dates in 2005. The output above indicates that there are 252 such observations.
-
-Thus, we construct a training data set named Smarket.before.2005, and a testing data set named Smarket.2005.
 
 ### Step 2.2 Fit a logistic regression model
 
