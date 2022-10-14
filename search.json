@@ -697,7 +697,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  7.05\n2     9    12 12.2 \n3    12    15 15.9 \n4    15    18 18.6 \n5    18    21 21.1 \n6    21    24 25.6"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  7.08\n2     9    12  8.20\n3    12    15 15.3 \n4    15    18 17.6 \n5    18    21 19.8 \n6    21    24 23.6"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -732,7 +732,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  7.05  1.95     1.95 \n2     9    12 12.2  -0.203    0.203\n3    12    15 15.9  -0.904    0.904\n4    15    18 18.6  -0.552    0.552\n5    18    21 21.1  -0.130    0.130\n6    21    24 25.6  -1.57     1.57 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.8850281\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  7.08  1.92     1.92 \n2     9    12  8.20  3.80     3.80 \n3    12    15 15.3  -0.336    0.336\n4    15    18 17.6   0.443    0.443\n5    18    21 19.8   1.23     1.23 \n6    21    24 23.6   0.373    0.373\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.349406\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
@@ -1019,7 +1019,7 @@
     "href": "slides/week03_slides_part1.html#the-logistic-regression-model",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "The Logistic Regression model",
-    "text": "The Logistic Regression model\n\nConsider a binary response:\n\\[\nY = \\begin{cases}\n0 \\\\\n1\n\\end{cases}\n\\]\n\n\nWe model the probability that \\(Y = 1\\) as:\n\\[\nPr(Y = 1|X) = p(X) = \\frac{e^{\\beta_0 + \\beta_1X}}{1 + e^{\\beta_0 + \\beta_1 X}}\n\\]\n\n\n\n\n\nSource of illustration: TIBCO\n\n\n\nThis is how this function looks like"
+    "text": "The Logistic Regression model\n\nConsider a binary response:\n\\[\nY = \\begin{cases}\n0 \\\\\n1\n\\end{cases}\n\\]\n\n\nWe model the probability that \\(Y = 1\\) using the logistic function (aka. sigmoid curve):\n\\[\nPr(Y = 1|X) = p(X) = \\frac{e^{\\beta_0 + \\beta_1X}}{1 + e^{\\beta_0 + \\beta_1 X}}\n\\]\n\n\n\n\n\nSource of illustration: TIBCO\n\n\n\nThis is how this function looks like"
   },
   {
     "objectID": "slides/week03_slides_part1.html#the-logistic-function",
@@ -1040,7 +1040,7 @@
     "href": "slides/week03_slides_part1.html#maximum-likelihood-estimate",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "Maximum likelihood estimate",
-    "text": "Maximum likelihood estimate\n\nAs with linear regression, the coefficients are unknown and need to be estimated from training data:\n\\[\n\\hat{p}(X) = \\frac{e^{\\hat{\\beta}_0 + \\hat{\\beta}_1X}}{1 + e^{\\hat{\\beta}_0 + \\hat{\\beta}_1 X}}\n\\]\n\n\nWe estimate these by maximising the likelihood function:\n\\[\n\\max \\ell(\\beta_0, \\beta_1) = \\prod_{i:y_i=1}{p(x_i)} \\prod_{i':y_{i'}=0} (1 - p(x_{i'})),\n\\]\nand we call this method the Maximum Likelihood Estimate (MLE).\n\n\n➡️ As usual, there are multiple ways to solve this equation!\n\n\nKey takeaway of this slide: MLE (logistic regression) is analogous to OLS (linear regression).\nIntuition: What are the values for \\(\\alpha\\) and \\(\\beta\\) that generate predicted probabilities, \\(\\hat{Y}_i\\) for each training observation that are as close as possible to the realised outcomes, \\(Y_i\\)?"
+    "text": "Maximum likelihood estimate\n\nAs with linear regression, the coefficients are unknown and need to be estimated from training data:\n\\[\n\\hat{p}(X) = \\frac{e^{\\hat{\\beta}_0 + \\hat{\\beta}_1X}}{1 + e^{\\hat{\\beta}_0 + \\hat{\\beta}_1 X}}\n\\]\n\n\nWe estimate these by maximising the likelihood function:\n\\[\n\\max \\ell(\\beta_0, \\beta_1) = \\prod_{i:y_i=1}{p(x_i)} \\prod_{i':y_{i'}=0} (1 - p(x_{i'})),\n\\]\nand we call this method the Maximum Likelihood Estimate (MLE).\n\n\n➡️ As usual, there are multiple ways to solve this equation!\n\n\n\nKey takeaway of this slide: MLE (logistic regression) is analogous to OLS (linear regression).\nIntuition: What are the values for \\(\\alpha\\) and \\(\\beta\\) that generate predicted probabilities, \\(\\hat{Y}_i\\) for each training observation that are as close as possible to the realised outcomes, \\(Y_i\\)?\n\n\n\n💡 If you want to read on how exactly this is solved check this link"
   },
   {
     "objectID": "slides/week03_slides_part1.html#solutions-to-mle",
@@ -1048,20 +1048,6 @@
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "Solutions to MLE",
     "text": "Solutions to MLE\n\n\nMLE is much more difficult to solve than the least squares formulations.\nMost solutions rely on a variant of the Hill Climbing algorithm\n\n\n\n\n\n\n\n\n\nHow do you find the latitude and longitude of a mountain peak if you can’t see very far?\n\n\n\nStart somewhere.\nLook around for the best way to go up.\nGo a small distance in that direction.\nLook around for the best way to go up.\nGo a small distance in that direction.\n\\(\\cdots\\)\n\n\n\n\n\n\n\nAdvanced: If for whatever random reason, you find yourself enamored with the Maximum Likelihood Estimate, check (Agresti 2019) for a recent take on the statistical properties of this method."
-  },
-  {
-    "objectID": "slides/week03_slides_part1.html#example-default-data",
-    "href": "slides/week03_slides_part1.html#example-default-data",
-    "title": "🗓️ Week 03 Classifiers - Part I",
-    "section": "Example: Default data",
-    "text": "Example: Default data\n\n\nA sample of the data:\n\nlibrary(ISLR2)\n\nhead(ISLR2::Default, n=15)\n\n   default student   balance    income\n1       No      No  729.5265 44361.625\n2       No     Yes  817.1804 12106.135\n3       No      No 1073.5492 31767.139\n4       No      No  529.2506 35704.494\n5       No      No  785.6559 38463.496\n6       No     Yes  919.5885  7491.559\n7       No      No  825.5133 24905.227\n8       No     Yes  808.6675 17600.451\n9       No      No 1161.0579 37468.529\n10      No      No    0.0000 29275.268\n11      No     Yes    0.0000 21871.073\n12      No     Yes 1220.5838 13268.562\n13      No      No  237.0451 28251.695\n14      No      No  606.7423 44994.556\n15      No      No 1112.9684 23810.174\n\n\n\nHow the data is spread:\n\nsummary(ISLR2::Default$default)\n\n  No  Yes \n9667  333 \n\n\n\nsummary(ISLR2::Default$balance)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n    0.0   481.7   823.6   835.4  1166.3  2654.3 \n\n\n\nsummary(ISLR2::Default$income)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n    772   21340   34553   33517   43808   73554 \n\n\n\nsummary(ISLR2::Default$student)\n\n  No  Yes \n7056 2944"
-  },
-  {
-    "objectID": "slides/week03_slides_part1.html#simple-logistic-regression-models",
-    "href": "slides/week03_slides_part1.html#simple-logistic-regression-models",
-    "title": "🗓️ Week 03 Classifiers - Part I",
-    "section": "Simple logistic regression models",
-    "text": "Simple logistic regression models\n\n\n\nIncome 💰\n\n\nincome_model <- \n  glm(default ~ income, data=ISLR2::Default, family=binomial)\ncat(sprintf(\"beta_0 = %.5f | beta_1 = %e\",\n            income_model$coefficients[\"(Intercept)\"],\n            income_model$coefficients[\"income\"]))\n\nbeta_0 = -3.09415 | beta_1 = -8.352575e-06\n\n\n\nBalance 💸\n\n\nbalance_model <- \n  glm(default ~ balance, data=ISLR2::Default, family=binomial)\ncat(sprintf(\"beta_0 = %.5f | beta_1 = %.4f\",\n            balance_model$coefficients[\"(Intercept)\"],\n            balance_model$coefficients[\"balance\"]))\n\nbeta_0 = -10.65133 | beta_1 = 0.0055\n\n\n\n\nStudent 🧑‍🎓\n\n\nstudent_model <- \n  glm(default ~ student, data=ISLR2::Default, family=binomial)\ncat(sprintf(\"beta_0 = %.5f | beta_1 = %.4f\",\n            student_model$coefficients[\"(Intercept)\"],\n            student_model$coefficients[\"studentYes\"]))\n\nbeta_0 = -3.50413 | beta_1 = 0.4049\n\n\n\n\n\n\n\n\n\nNote\n\n\nLogistic regression coefficients are a bit trickier to interpret when compared to those of linear regression. Let’s look at how it works ➡️\n\n\n\n\n\n\n\n\nGather answers from students."
   },
   {
     "objectID": "slides/week03_slides_part1.html#the-concept-of-odds",
@@ -1076,6 +1062,20 @@
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "Log odds or logit",
     "text": "Log odds or logit\n\nIt is also useful to think of the odds in log terms.\n\n\\[\nlog\\left(\\frac{p(X)}{1 - p(X)}\\right) = \\beta_0 + \\beta_1 X\n\\]\n\nWe call the quantity above the log odds or logit\n\n\n\n\n\n\n\nTip\n\n\nHow to interpret \\(\\beta_1\\)\nIf X increases one unit then the log odds increase by \\(\\beta_1\\)"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#example-default-data",
+    "href": "slides/week03_slides_part1.html#example-default-data",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Example: Default data",
+    "text": "Example: Default data\n\n\nA sample of the data:\n\nlibrary(ISLR2)\n\nhead(ISLR2::Default, n=15)\n\n   default student   balance    income\n1       No      No  729.5265 44361.625\n2       No     Yes  817.1804 12106.135\n3       No      No 1073.5492 31767.139\n4       No      No  529.2506 35704.494\n5       No      No  785.6559 38463.496\n6       No     Yes  919.5885  7491.559\n7       No      No  825.5133 24905.227\n8       No     Yes  808.6675 17600.451\n9       No      No 1161.0579 37468.529\n10      No      No    0.0000 29275.268\n11      No     Yes    0.0000 21871.073\n12      No     Yes 1220.5838 13268.562\n13      No      No  237.0451 28251.695\n14      No      No  606.7423 44994.556\n15      No      No 1112.9684 23810.174\n\n\n\nHow the data is spread:\n\nsummary(ISLR2::Default$default)\n\n  No  Yes \n9667  333 \n\n\n\nsummary(ISLR2::Default$balance)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n    0.0   481.7   823.6   835.4  1166.3  2654.3 \n\n\n\nsummary(ISLR2::Default$income)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n    772   21340   34553   33517   43808   73554 \n\n\n\nsummary(ISLR2::Default$student)\n\n  No  Yes \n7056 2944"
+  },
+  {
+    "objectID": "slides/week03_slides_part1.html#simple-logistic-regression-models",
+    "href": "slides/week03_slides_part1.html#simple-logistic-regression-models",
+    "title": "🗓️ Week 03 Classifiers - Part I",
+    "section": "Simple logistic regression models",
+    "text": "Simple logistic regression models\n\n\n\nIncome 💰\n\n\nincome_model <- \n  glm(default ~ income, data=ISLR2::Default, family=binomial)\ncat(sprintf(\"beta_0 = %.5f | beta_1 = %e\",\n            income_model$coefficients[\"(Intercept)\"],\n            income_model$coefficients[\"income\"]))\n\nbeta_0 = -3.09415 | beta_1 = -8.352575e-06\n\n\n\nBalance 💸\n\n\nbalance_model <- \n  glm(default ~ balance, data=ISLR2::Default, family=binomial)\ncat(sprintf(\"beta_0 = %.5f | beta_1 = %.4f\",\n            balance_model$coefficients[\"(Intercept)\"],\n            balance_model$coefficients[\"balance\"]))\n\nbeta_0 = -10.65133 | beta_1 = 0.0055\n\n\n\n\nStudent 🧑‍🎓\n\n\nstudent_model <- \n  glm(default ~ student, data=ISLR2::Default, family=binomial)\ncat(sprintf(\"beta_0 = %.5f | beta_1 = %.4f\",\n            student_model$coefficients[\"(Intercept)\"],\n            student_model$coefficients[\"studentYes\"]))\n\nbeta_0 = -3.50413 | beta_1 = 0.4049\n\n\n\n\n\n\n\n\n\nNote\n\n\nLogistic regression coefficients are a bit trickier to interpret when compared to those of linear regression. Let’s look at how it works ➡️\n\n\n\n\n\n\n\n\nGather answers from students."
   },
   {
     "objectID": "slides/week03_slides_part1.html#example-default-vs-balance",

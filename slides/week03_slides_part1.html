@@ -669,7 +669,7 @@ Y = \begin{cases}
 \]</span></p>
 </div>
 <div class="fragment">
-<p>We model the probability that <span class="math inline">\(Y = 1\)</span> as:</p>
+<p>We model the probability that <span class="math inline">\(Y = 1\)</span> using the <mark>logistic function</mark> (aka. sigmoid curve):</p>
 <p><span class="math display">\[
 Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
 \]</span></p>
@@ -728,6 +728,7 @@ Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
 <div class="fragment">
 <p>➡️ As usual, there are <a href="https://www.wikiwand.com/en/Maximum_likelihood_estimation#/Iterative_procedures">multiple ways</a> to solve this equation!</p>
 </div>
+
 <aside class="notes">
 <p>Key takeaway of this slide: MLE (logistic regression) is analogous to OLS (linear regression).</p>
 <p><mark>Intuition:</mark> What are the values for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> that generate predicted probabilities, <span class="math inline">\(\hat{Y}_i\)</span> for each training observation that are as close as possible to the realised outcomes, <span class="math inline">\(Y_i\)</span>?</p>
@@ -742,7 +743,11 @@ Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
+<aside><div>
+<div class="fragment">
+<p>💡 If you want to read on how exactly this is solved check <a href="https://rh8liuqy.github.io/logistic_regression_theory_hand_check.html">this link</a></p>
+</div>
+</div></aside></section>
 <section id="solutions-to-mle" class="slide level2 smaller">
 <h2>Solutions to MLE</h2>
 <div>
@@ -776,6 +781,77 @@ Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
 <div class="footer">
 <div style="font-size:0.75em;">
 <p><strong>Advanced:</strong> If for whatever random reason, you find yourself enamored with the Maximum Likelihood Estimate, check <span class="citation" data-cites="agresti_introduction_2019">(<a href="#/references" role="doc-biblioref" onclick="">Agresti 2019</a>)</span> for a recent take on the statistical properties of this method.</p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="interpreting-coefficients" class="title-slide slide level1">
+<h1>Interpreting coefficients</h1>
+<p><br> Since we now mostly care about <mark>probabilities</mark>, how do the <mark>odds</mark> change according to features of the customers?</p>
+</section>
+<section id="the-concept-of-odds" class="slide level2 smaller">
+<h2>The concept of <mark>odds</mark></h2>
+<p>The quantity below is called the <mark>odds</mark>:</p>
+<p><span class="math display">\[
+\frac{p(X)}{1 - p(X)} = e^{\beta_0 + \beta_1 X}
+\]</span></p>
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Example</strong></p>
+</div>
+<div class="callout-content">
+<p>If the odds are 9, then <span class="math inline">\(\frac{p(X)}{(1-p(X))} = 9 \Rightarrow p(X) = 0.9\)</span>.</p>
+<p>This means that 9 out of 10 people will default.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>How to interpret <span class="math inline">\(\beta_1\)</span></strong></p>
+<p>If X increases one unit then the odds increase by a factor of <span class="math inline">\(e^{\beta_1}\)</span></p>
+</div>
+</div>
+</div>
+<div class="footer">
+<div style="font-size:0.75em;">
+<p>📝 Give it a go! Using algebra, can you re-arrange the equation for <span class="math inline">\(p(X)\)</span> presented in the <a href="#/the-logistic-regression-model"><em>Logistic regression model</em> slides</a> to arrive at the odds quantity shown above?</p>
+</div>
+</div>
+</section>
+<section id="log-odds-or-logit" class="slide level2 smaller">
+<h2>Log odds or <em>logit</em></h2>
+<ul>
+<li>It is also useful to think of the odds in log terms.</li>
+</ul>
+<p><span class="math display">\[
+log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X
+\]</span></p>
+<ul>
+<li>We call the quantity above the <mark>log odds</mark> or <mark>logit</mark></li>
+</ul>
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>How to interpret <span class="math inline">\(\beta_1\)</span></strong></p>
+<p>If X increases one unit then the log odds increase by <span class="math inline">\(\beta_1\)</span></p>
+</div>
 </div>
 </div>
 </section>
@@ -871,12 +947,7 @@ Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
 
 <h3 id="does-it-matter-if-customer-is-a-student">Does it matter if customer is a student?</h3>
 
-<img data-src="week03_slides_part1_files/figure-revealjs/unnamed-chunk-9-1.png" style="width:100.0%" class="r-stretch"></section></section>
-<section>
-<section id="interpreting-coefficients" class="title-slide slide level1">
-<h1>Interpreting coefficients</h1>
-<p><br> Since we now mostly care about <mark>probabilities</mark>, how do the <mark>odds</mark> change according to features of the customers?</p>
-</section>
+<img data-src="week03_slides_part1_files/figure-revealjs/unnamed-chunk-9-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="simple-logistic-regression-models" class="slide level2">
 <h2>Simple logistic regression models</h2>
 <div class="columns">
@@ -953,72 +1024,6 @@ Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="the-concept-of-odds" class="slide level2 smaller">
-<h2>The concept of <mark>odds</mark></h2>
-<p>The quantity below is called the <mark>odds</mark>:</p>
-<p><span class="math display">\[
-\frac{p(X)}{1 - p(X)} = e^{\beta_0 + \beta_1 X}
-\]</span></p>
-<div class="callout callout-note callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Example</strong></p>
-</div>
-<div class="callout-content">
-<p>If the odds are 9, then <span class="math inline">\(\frac{p(X)}{(1-p(X))} = 9 \Rightarrow p(X) = 0.9\)</span>.</p>
-<p>This means that 9 out of 10 people will default.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-tip callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p><strong>How to interpret <span class="math inline">\(\beta_1\)</span></strong></p>
-<p>If X increases one unit then the odds increase by a factor of <span class="math inline">\(e^{\beta_1}\)</span></p>
-</div>
-</div>
-</div>
-<div class="footer">
-<div style="font-size:0.75em;">
-<p>📝 Give it a go! Using algebra, can you re-arrange the equation for <span class="math inline">\(p(X)\)</span> presented in the <a href="#/the-logistic-regression-model"><em>Logistic regression model</em> slides</a> to arrive at the odds quantity shown above?</p>
-</div>
-</div>
-</section>
-<section id="log-odds-or-logit" class="slide level2 smaller">
-<h2>Log odds or <em>logit</em></h2>
-<ul>
-<li>It is also useful to think of the odds in log terms.</li>
-</ul>
-<p><span class="math display">\[
-log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X
-\]</span></p>
-<ul>
-<li>We call the quantity above the <mark>log odds</mark> or <mark>logit</mark></li>
-</ul>
-<div class="callout callout-tip callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p><strong>How to interpret <span class="math inline">\(\beta_1\)</span></strong></p>
-<p>If X increases one unit then the log odds increase by <span class="math inline">\(\beta_1\)</span></p>
-</div>
-</div>
-</div>
 </section>
 <section id="example-default-vs-balance" class="slide level2">
 <h2>Example: Default vs Balance</h2>
