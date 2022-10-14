@@ -23,7 +23,7 @@ install.packages("e1071")
 
 <summary>
 
-Step 1: Explore the dataset (5 min)
+Step 1: Explore the dataset (10 min)
 
 </summary>
 
@@ -338,7 +338,7 @@ nb.preds[1:5, ]
 
 <summary>
 
-Step 4: Practical exercises (50 min)
+Step 4: Practical exercises (45 min)
 
 </summary>
 
