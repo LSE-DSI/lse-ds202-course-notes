@@ -1,11 +1,11 @@
 ---
 title: "💻 Week 04 - Lab Roadmap (90 min)"
-author: Yijun Wang/Dr. Stuart Bramwell
+author: DS202 2022MT Teaching Team
 date: 13 October 2022
 from: markdown+emoji
 ---
 
-This week, we will build diverse classification models to deal with situation when the response variable is qualitative in R. We predict these qualitative variables through some widely-used classifiers including Generalized Linear Model (GLM) and naive Bayes in this lab session. We will also apply these classification models into practical practices and compare their performance on different data sets.
+This week, we will build diverse classification models to deal with situation when the response variable is qualitative in R. We predict these qualitative variables through some widely-used classifiers including Logistic Regression (one of many Generalized Linear Models) and Naïve Bayes in this lab session. We will also apply these classification models into practical practices and compare their performance on different data sets.
 
 We will follow the instructions below step by step together while answering whatever questions you might encounter along the way.
 
@@ -168,6 +168,12 @@ We now fit a logistic regression model using only the subset of the observations
 ### Step 2.3 Inspect the model
 
 Have a look at p-values of this Logistic Regression Model:
+
+```{r}
+summary(glm.fits)
+```
+
+Or, alternatively, you can gather the same information using the [broom](https://cran.r-project.org/web/packages/broom/vignettes/broom.html) package:
 
 ```{r}
 library(broom)
