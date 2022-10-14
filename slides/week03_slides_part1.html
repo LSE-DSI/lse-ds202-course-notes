@@ -612,7 +612,7 @@ Y =
 <div class="fragment" data-fragment-index="3">
 <div style="min-height:15vh;display:block;font-size:0.75em;">
 <p>What is your judgement of the likelihood of the outcome? Based on previous information.</p>
-<p>Example: if I know that this coin has symmetric weight, I expect a $ 50%/50%$ outcome.</p>
+<p>Example: if I know that this coin has symmetric weight, I expect a <span class="math inline">\(50\%/50\%\)</span> outcome.</p>
 </div>
 </div>
 </div>
@@ -708,12 +708,8 @@ Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
 <ul>
 <li>Keep <span class="math inline">\(\beta_0 = 0\)</span> but vary <span class="math inline">\(\beta_1\)</span>:</li>
 </ul>
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="week03_slides_part1_files/figure-revealjs/unnamed-chunk-2-1.png" style="width:100.0%;height:100.0%"></p>
-</div>
-</div>
-</section>
+
+<img data-src="week03_slides_part1_files/figure-revealjs/unnamed-chunk-2-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="maximum-likelihood-estimate" class="slide level2 smaller">
 <h2>Maximum likelihood estimate</h2>
 <div class="fragment">
@@ -849,7 +845,7 @@ Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
 <h3 id="who-is-more-likely-to-default">Who is more likely to default?</h3>
 <div class="cell">
 <div class="cell-output-display">
-<p><img data-src="week03_slides_part1_files/figure-revealjs/unnamed-chunk-8-1.png" style="width:100.0%"></p>
+<p><img data-src="week03_slides_part1_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
 </div>
 </div>
 
@@ -978,6 +974,20 @@ Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
 </div>
 </div>
 </div>
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>How to interpret <span class="math inline">\(\beta_1\)</span></strong></p>
+<p>If X increases one unit then the odds increase by a factor of <span class="math inline">\(e^{\beta_1}\)</span></p>
+</div>
+</div>
+</div>
 <div class="footer">
 <div style="font-size:0.75em;">
 <p>📝 Give it a go! Using algebra, can you re-arrange the equation for <span class="math inline">\(p(X)\)</span> presented in the <a href="#/the-logistic-regression-model"><em>Logistic regression model</em> slides</a> to arrive at the odds quantity shown above?</p>
@@ -1005,7 +1015,7 @@ log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X
 </div>
 <div class="callout-content">
 <p><strong>How to interpret <span class="math inline">\(\beta_1\)</span></strong></p>
-<p>If X increases one unit then the odds increase by <span class="math inline">\(e^{\beta_1}\)</span></p>
+<p>If X increases one unit then the log odds increase by <span class="math inline">\(\beta_1\)</span></p>
 </div>
 </div>
 </div>
@@ -1041,7 +1051,7 @@ log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X
 <li>Odds : <span class="math inline">\(e^{-10.65133} = 2.366933 \times 10^{-5}\)</span> <span class="math display">\[
 \begin{align}
 p(\text{default}=\text{Yes}) &amp;= \frac{\text{odds}}{(1 + \text{odds})} \\
-                           &amp;= 2.366877 \times 10^{5}\end{align}
+                           &amp;= 2.366877 \times 10^{-5}\end{align}
 \]</span></li>
 </ul></li>
 </ul>
@@ -1054,7 +1064,7 @@ p(\text{default}=\text{Yes}) &amp;= \frac{\text{odds}}{(1 + \text{odds})} \\
 <ul>
 <li>Log odds: <span class="math inline">\(0.005498917\)</span></li>
 <li>Odds : <span class="math inline">\(e^{0.005498917} = 1.005514\)</span></li>
-<li>That is, for every <span class="math inline">\(\$1\)</span> increase in balance, the probability of default <mark style="color:#069F72;">increases</mark> by <span class="math inline">\(+0.5514\%\)</span></li>
+<li>That is, for every <span class="math inline">\(\$1\)</span> increase in balance, the probability of default <mark style="color:#069F72;">increases</mark> <!--by $+0.5514\%$ --></li>
 </ul></li>
 </ul>
 </div>
@@ -1120,7 +1130,7 @@ p(\text{default}=\text{Yes}) &amp;= \frac{\text{odds}}{(1 + \text{odds})} \\
 <ul>
 <li>Log odds: <span class="math inline">\(- 8.352575\)</span></li>
 <li>Odds : <span class="math inline">\(e^{- 8.352575} = 0.9999916\)</span></li>
-<li>That is, for every <span class="math inline">\(\$1\)</span> increase in income, the probability of default <mark style="color:#c9594c;">decreases</mark> by <span class="math inline">\(0.000835254\%\)</span></li>
+<li>That is, for every <span class="math inline">\(\$1\)</span> increase in income, the probability of default <mark style="color:#c9594c;">decreases</mark> <!-- by $0.000835254\%$ --></li>
 </ul></li>
 </ul>
 </div>
@@ -1186,11 +1196,8 @@ p(\text{default}=\text{Yes}) &amp;= \frac{\text{odds}}{(1 + \text{odds})} \\
 <ul>
 <li>Log odds: <span class="math inline">\(0.4048871\)</span></li>
 <li>Odds : <span class="math inline">\(e^{0.4048871} = 1.499133\)</span></li>
-<li>If person is a student, then the probability of default <mark style="color:#069F72;">increases</mark> by <span class="math inline">\(\approx 49\%\)</span>
-<ul>
-<li><span class="math inline">\(p(\text{default}=\text{Yes}|\text{student}=\text{Yes}) \approx 4.3\%\)</span></li>
 </ul></li>
-</ul></li>
+<li>If person is a student, then the probability of default <mark style="color:#069F72;">increases</mark> <!-- by $\approx 49\%$ --> <!-- - $p(\text{default}=\text{Yes}|\text{student}=\text{Yes}) \approx 4.3\%$ --></li>
 </ul>
 </div>
 </div>

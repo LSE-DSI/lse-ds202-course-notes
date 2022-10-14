@@ -333,7 +333,14 @@
     "href": "weeks/week03/lecture.html",
     "title": "👨‍🏫 Week 03 - Slides",
     "section": "",
-    "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides. For a PDF copy, check Moodle."
+    "text": "Tip\n\n\n\nFeel free to browse the slides before the lecture, but it is probably safer to wait until the time of the lecture to download/save them, as we might make small changes to slides before then."
+  },
+  {
+    "objectID": "weeks/week03/lecture.html#part-i---classifiers-logistic-regression-45-50-min",
+    "href": "weeks/week03/lecture.html#part-i---classifiers-logistic-regression-45-50-min",
+    "title": "👨‍🏫 Week 03 - Slides",
+    "section": "Part I - Classifiers (Logistic Regression) (45-50 min)",
+    "text": "Part I - Classifiers (Logistic Regression) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides. For a PDF copy, check Moodle."
   },
   {
     "objectID": "weeks/week03/lecture.html#coffee-break-10-min",
@@ -690,7 +697,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  10.0\n2     9    12  13.5\n3    12    15  16.0\n4    15    18  19.3\n5    18    21  21.7\n6    21    24  21.4"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  7.05\n2     9    12 12.2 \n3    12    15 15.9 \n4    15    18 18.6 \n5    18    21 21.1 \n6    21    24 25.6"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -725,7 +732,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  10.0 -1.05     1.05 \n2     9    12  13.5 -1.52     1.52 \n3    12    15  16.0 -0.962    0.962\n4    15    18  19.3 -1.34     1.34 \n5    18    21  21.7 -0.721    0.721\n6    21    24  21.4  2.60     2.60 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.36594\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  7.05  1.95     1.95 \n2     9    12 12.2  -0.203    0.203\n3    12    15 15.9  -0.904    0.904\n4    15    18 18.6  -0.552    0.552\n5    18    21 21.1  -0.130    0.130\n6    21    24 25.6  -1.57     1.57 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.8850281\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
@@ -998,7 +1005,7 @@
     "href": "slides/week03_slides_part1.html#speaking-of-probabilities",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "Speaking of Probabilities…",
-    "text": "Speaking of Probabilities…\nLet’s talk about three possible interpretations of probability:\n\n\n\n\nClassical\n\n\n\n\nFrequentist\n\n\n\n\nBayesian\n\n\n\n\n\nEvents of the same kind can be reduced to a certain number of equally possible cases.\nExample: coin tosses lead to either heads or tails \\(1/2\\) of the time ( \\(50\\%/50\\%\\))\n\n\n\n\nWhat would be the outcome if I repeat the process many times?\nExample: if I toss a coin \\(1,000,000\\) times, I expect \\(\\approx 50\\%\\) heads and \\(\\approx 50\\%\\) tails outcome.\n\n\n\n\nWhat is your judgement of the likelihood of the outcome? Based on previous information.\nExample: if I know that this coin has symmetric weight, I expect a $ 50%/50%$ outcome.\n\n\n\n\n\n\nSource: (DeGroot and Schervish 2003)"
+    "text": "Speaking of Probabilities…\nLet’s talk about three possible interpretations of probability:\n\n\n\n\nClassical\n\n\n\n\nFrequentist\n\n\n\n\nBayesian\n\n\n\n\n\nEvents of the same kind can be reduced to a certain number of equally possible cases.\nExample: coin tosses lead to either heads or tails \\(1/2\\) of the time ( \\(50\\%/50\\%\\))\n\n\n\n\nWhat would be the outcome if I repeat the process many times?\nExample: if I toss a coin \\(1,000,000\\) times, I expect \\(\\approx 50\\%\\) heads and \\(\\approx 50\\%\\) tails outcome.\n\n\n\n\nWhat is your judgement of the likelihood of the outcome? Based on previous information.\nExample: if I know that this coin has symmetric weight, I expect a \\(50\\%/50\\%\\) outcome.\n\n\n\n\n\n\nSource: (DeGroot and Schervish 2003)"
   },
   {
     "objectID": "slides/week03_slides_part1.html#speaking-of-probabilities-1",
@@ -1061,35 +1068,35 @@
     "href": "slides/week03_slides_part1.html#the-concept-of-odds",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "The concept of odds",
-    "text": "The concept of odds\nThe quantity below is called the odds:\n\\[\n\\frac{p(X)}{1 - p(X)} = e^{\\beta_0 + \\beta_1 X}\n\\]\n\n\n\n\n\n\nExample\n\n\nIf the odds are 9, then \\(\\frac{p(X)}{(1-p(X))} = 9 \\Rightarrow p(X) = 0.9\\).\nThis means that 9 out of 10 people will default.\n\n\n\n\n\n📝 Give it a go! Using algebra, can you re-arrange the equation for \\(p(X)\\) presented in the Logistic regression model slides to arrive at the odds quantity shown above?"
+    "text": "The concept of odds\nThe quantity below is called the odds:\n\\[\n\\frac{p(X)}{1 - p(X)} = e^{\\beta_0 + \\beta_1 X}\n\\]\n\n\n\n\n\n\nExample\n\n\nIf the odds are 9, then \\(\\frac{p(X)}{(1-p(X))} = 9 \\Rightarrow p(X) = 0.9\\).\nThis means that 9 out of 10 people will default.\n\n\n\n\n\n\n\n\n\nTip\n\n\nHow to interpret \\(\\beta_1\\)\nIf X increases one unit then the odds increase by a factor of \\(e^{\\beta_1}\\)\n\n\n\n\n\n📝 Give it a go! Using algebra, can you re-arrange the equation for \\(p(X)\\) presented in the Logistic regression model slides to arrive at the odds quantity shown above?"
   },
   {
     "objectID": "slides/week03_slides_part1.html#log-odds-or-logit",
     "href": "slides/week03_slides_part1.html#log-odds-or-logit",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "Log odds or logit",
-    "text": "Log odds or logit\n\nIt is also useful to think of the odds in log terms.\n\n\\[\nlog\\left(\\frac{p(X)}{1 - p(X)}\\right) = \\beta_0 + \\beta_1 X\n\\]\n\nWe call the quantity above the log odds or logit\n\n\n\n\n\n\n\nTip\n\n\nHow to interpret \\(\\beta_1\\)\nIf X increases one unit then the odds increase by \\(e^{\\beta_1}\\)"
+    "text": "Log odds or logit\n\nIt is also useful to think of the odds in log terms.\n\n\\[\nlog\\left(\\frac{p(X)}{1 - p(X)}\\right) = \\beta_0 + \\beta_1 X\n\\]\n\nWe call the quantity above the log odds or logit\n\n\n\n\n\n\n\nTip\n\n\nHow to interpret \\(\\beta_1\\)\nIf X increases one unit then the log odds increase by \\(\\beta_1\\)"
   },
   {
     "objectID": "slides/week03_slides_part1.html#example-default-vs-balance",
     "href": "slides/week03_slides_part1.html#example-default-vs-balance",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "Example: Default vs Balance",
-    "text": "Example: Default vs Balance\n\n\n\nModel: Default vs Balance 💸\n\n\\[\n\\hat{y} = \\frac{e^{-10.65133 + 0.005498917X}}{1 + e^{-10.65133 + 0.005498917X}}\n\\]\n\n  That is:\n\\[\n\\begin{align}\n\\hat{\\beta}_0 &= -10.65133\\\\\n\\hat{\\beta}_1 &= 0.005498917\n\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_0\\):\n\nIn the absence of balance information:\n\nLog odds: \\(-10.65133\\)\nOdds : \\(e^{-10.65133} = 2.366933 \\times 10^{-5}\\) \\[\n\\begin{align}\np(\\text{default}=\\text{Yes}) &= \\frac{\\text{odds}}{(1 + \\text{odds})} \\\\\n                           &= 2.366877 \\times 10^{5}\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_1\\):\n\nWith balance information:\n\nLog odds: \\(0.005498917\\)\nOdds : \\(e^{0.005498917} = 1.005514\\)\nThat is, for every \\(\\$1\\) increase in balance, the probability of default increases by \\(+0.5514\\%\\)\n\n\n\n\n\n\n\nNote that the increase is cumulative, not linear. It depends on where X is."
+    "text": "Example: Default vs Balance\n\n\n\nModel: Default vs Balance 💸\n\n\\[\n\\hat{y} = \\frac{e^{-10.65133 + 0.005498917X}}{1 + e^{-10.65133 + 0.005498917X}}\n\\]\n\n  That is:\n\\[\n\\begin{align}\n\\hat{\\beta}_0 &= -10.65133\\\\\n\\hat{\\beta}_1 &= 0.005498917\n\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_0\\):\n\nIn the absence of balance information:\n\nLog odds: \\(-10.65133\\)\nOdds : \\(e^{-10.65133} = 2.366933 \\times 10^{-5}\\) \\[\n\\begin{align}\np(\\text{default}=\\text{Yes}) &= \\frac{\\text{odds}}{(1 + \\text{odds})} \\\\\n                           &= 2.366877 \\times 10^{-5}\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_1\\):\n\nWith balance information:\n\nLog odds: \\(0.005498917\\)\nOdds : \\(e^{0.005498917} = 1.005514\\)\nThat is, for every \\(\\$1\\) increase in balance, the probability of default increases \n\n\n\n\n\n\n\nNote that the increase is cumulative, not linear. It depends on where X is."
   },
   {
     "objectID": "slides/week03_slides_part1.html#example-default-vs-income",
     "href": "slides/week03_slides_part1.html#example-default-vs-income",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "Example: Default vs Income",
-    "text": "Example: Default vs Income\n\n\n\nModel: Default vs Income 💰\n\n\\[\n\\hat{y} = \\frac{e^{-3.094149 - 8.352575 \\times 10^{-6} X}}{1 + e^{-3.094149 - 8.352575 \\times 10^{-6} X}}\n\\]\n\n  That is:\n\\[\n\\begin{align}\n\\hat{\\beta}_0 &= - 3.094149\\\\\n\\hat{\\beta}_1 &= - 8.352575 \\times 10^{-6}\n\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_0\\):\n\nIn the absence of balance information:\n\nLog odds: \\(- 3.094149\\)\nOdds : \\(e^{- 3.094149} = 0.04531355\\) \\[\n\\begin{align}\np(\\text{default}=\\text{Yes}) &= \\frac{\\text{odds}}{(1 + \\text{odds})} \\\\\n                           &= 0.04334924 = 4.33\\%\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_1\\):\n\nWith balance information:\n\nLog odds: \\(- 8.352575\\)\nOdds : \\(e^{- 8.352575} = 0.9999916\\)\nThat is, for every \\(\\$1\\) increase in income, the probability of default decreases by \\(0.000835254\\%\\)\n\n\n\n\n\n\n\nNote that the increase is cumulative, not linear. It depends on where X is."
+    "text": "Example: Default vs Income\n\n\n\nModel: Default vs Income 💰\n\n\\[\n\\hat{y} = \\frac{e^{-3.094149 - 8.352575 \\times 10^{-6} X}}{1 + e^{-3.094149 - 8.352575 \\times 10^{-6} X}}\n\\]\n\n  That is:\n\\[\n\\begin{align}\n\\hat{\\beta}_0 &= - 3.094149\\\\\n\\hat{\\beta}_1 &= - 8.352575 \\times 10^{-6}\n\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_0\\):\n\nIn the absence of balance information:\n\nLog odds: \\(- 3.094149\\)\nOdds : \\(e^{- 3.094149} = 0.04531355\\) \\[\n\\begin{align}\np(\\text{default}=\\text{Yes}) &= \\frac{\\text{odds}}{(1 + \\text{odds})} \\\\\n                           &= 0.04334924 = 4.33\\%\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_1\\):\n\nWith balance information:\n\nLog odds: \\(- 8.352575\\)\nOdds : \\(e^{- 8.352575} = 0.9999916\\)\nThat is, for every \\(\\$1\\) increase in income, the probability of default decreases \n\n\n\n\n\n\n\nNote that the increase is cumulative, not linear. It depends on where X is."
   },
   {
     "objectID": "slides/week03_slides_part1.html#example-default-vs-is-student",
     "href": "slides/week03_slides_part1.html#example-default-vs-is-student",
     "title": "🗓️ Week 03 Classifiers - Part I",
     "section": "Example: Default vs Is Student?",
-    "text": "Example: Default vs Is Student?\n\n\n\nModel: Default vs Student 🧑‍🎓\n\n\\[\n\\hat{y} = \\frac{e^{-3.504128 + 0.4048871 X}}{1 + e^{-3.504128 + 0.4048871 X}}\n\\]\n\n  That is:\n\\[\n\\begin{align}\n\\hat{\\beta}_0 &= -3.504128\\\\\n\\hat{\\beta}_1 &= +0.4048871\n\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_0\\):\n\nIn the absence of balance information:\n\nLog odds: \\(-3.504128\\)\nOdds : \\(e^{- 3.504128} = 0.03007299\\) \\[\n\\begin{align}\np(\\text{default}=\\text{Yes}) &= \\frac{\\text{odds}}{(1 + \\text{odds})} \\\\\n                           &= 0.02919501 \\approx 2.92\\%\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_1\\):\n\nWith balance information:\n\nLog odds: \\(0.4048871\\)\nOdds : \\(e^{0.4048871} = 1.499133\\)\nIf person is a student, then the probability of default increases by \\(\\approx 49\\%\\)\n\n\\(p(\\text{default}=\\text{Yes}|\\text{student}=\\text{Yes}) \\approx 4.3\\%\\)"
+    "text": "Example: Default vs Is Student?\n\n\n\nModel: Default vs Student 🧑‍🎓\n\n\\[\n\\hat{y} = \\frac{e^{-3.504128 + 0.4048871 X}}{1 + e^{-3.504128 + 0.4048871 X}}\n\\]\n\n  That is:\n\\[\n\\begin{align}\n\\hat{\\beta}_0 &= -3.504128\\\\\n\\hat{\\beta}_1 &= +0.4048871\n\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_0\\):\n\nIn the absence of balance information:\n\nLog odds: \\(-3.504128\\)\nOdds : \\(e^{- 3.504128} = 0.03007299\\) \\[\n\\begin{align}\np(\\text{default}=\\text{Yes}) &= \\frac{\\text{odds}}{(1 + \\text{odds})} \\\\\n                           &= 0.02919501 \\approx 2.92\\%\\end{align}\n\\]\n\n\n\n\n\nInterpreting \\(\\hat{\\beta}_1\\):\n\nWith balance information:\n\nLog odds: \\(0.4048871\\)\nOdds : \\(e^{0.4048871} = 1.499133\\)\n\nIf person is a student, then the probability of default increases"
   },
   {
     "objectID": "slides/week03_slides_part1.html#model-info",
