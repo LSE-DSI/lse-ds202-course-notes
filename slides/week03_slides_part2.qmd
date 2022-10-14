@@ -276,7 +276,7 @@ $$
 ::: {.column width="40%"}
 How would you classify the following customers?
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| echo: true
 #| eval: true
 #| code-fold: true
@@ -325,7 +325,7 @@ $$
 ::: columns
 
 
-::: {.column width="40%"}
+::: {.column width="45%"}
 How would you classify the following customers?
 
 ```{r}
@@ -351,7 +351,7 @@ sample_customers
 :::
 
 
-::: {.column style="width:30%;font-size:0.75em;"}
+::: {.column style="width:27.5%;font-size:0.75em;"}
 
 - If we set our <mark>threshold</mark> $= 50\%$, we get the following <mark>confusion matrix</mark>:
 
@@ -363,7 +363,7 @@ sample_customers
 
 :::
 
-::: {.column style="width:30%;font-size:0.75em;"}
+::: {.column style="width:27.5%;font-size:0.75em;"}
 
 ::: {.fragment}
 
@@ -528,7 +528,7 @@ $\text{Threshold} = 40\%$:
 
 :::
 
-```{r out.width="85%", dpi=100}
+```{r out.width="85%", dpi=100, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
 #| echo: false
 #| eval: true
 #| code-fold: show
