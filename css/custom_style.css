@@ -1,18 +1,16 @@
 mark{
     /* background-color:#FFFF00; */
-    color: #1F2D3D;
+    background: none;
+    color: #E69F25;
     font-weight: bold;
 
     padding-left: 0em;
     padding-right: 0em;
-    margin-right: 0.3em;
-    padding-top: 0.025em;
-    padding-bottom: 0.025em;
+    margin-right: 0em;
+    padding-top: 0em;
+    padding-bottom: 0em;
 }
 
-mark:before {
-    content: '⚠️ revise '
-}
 
 mark.todo:before{
     content: '🚧 This section is being updated. Come back later for the final version.'

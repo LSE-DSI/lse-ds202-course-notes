@@ -1,0 +1,102 @@
+---
+title: "💻 Week 04 - Lab Roadmap (90 min)"
+author: Yijun Wang
+date: 09 October 2022
+date-meta: 09 October 2022
+---
+
+## 🔑 Solutions to exercises
+
+1. Create a binary variable, `mpg01`, that contains a 1 if `mpg` contains a value above its median, and a 0 if `mpg` contains a value below its median. You can compute the median using the `median()` function. Note you may find it helpful to use the `data.frame()` function to create a single data set containing both `mpg01` and the other `Auto` variables.
+
+    ```r
+    library(ISLR2)
+    Auto = na.omit(Auto)
+    mpg01 = rep(0, dim(Auto)[1])
+    mpg01[Auto$mpg > median(Auto$mpg)] = 1
+    Auto = data.frame(Auto, mpg01)
+    head(Auto)
+    ```
+
+    Before we move to next step, we need to lable `mpg01` and `orgin` as `factor` so that R could recognized them as quanlitative variables instead of quantitative variables.
+    
+    ```r
+    Auto$mpg01 = as.factor(Auto$mpg01)
+    Auto$origin = as.factor(Auto$origin)
+    ```
+2. Explore the data graphically in order to investigate the association between `mpg01` and the other features. Which of the other features seem most likely to be useful in predicting `mpg01`? Scatterplots and boxplots may be useful tools to answer this question. Describe your findings.
+
+    ```r
+    par(mfrow = c(2, 3))
+    plot(factor(Auto$mpg01), Auto$cylinders, ylab = "Number of engine cylinders")
+    plot(factor(Auto$mpg01), Auto$displacement, ylab = "Engine displacement (cubic inches)")
+    plot(factor(Auto$mpg01), Auto$horsepower, ylab = "Horsepower")
+    plot(factor(Auto$mpg01), Auto$weight, ylab = "Weight (pounds)")
+    plot(factor(Auto$mpg01), Auto$acceleration, ylab = "Time to reach 60mpg (seconds)")
+    plot(factor(Auto$mpg01), Auto$year, ylab = "Manufacture year")
+    mtext("Boxplots for cars with above(1) and below(0) median mpg", outer = TRUE, line = -3)
+    ```
+
+    Boxplots were plotted to compare the distributions for each of the quantitative variables between cars with above-median mpg and those with below median-mpg. If the distribution of a predictor significantly varies with the response variable, then it may contribute to the prediction of response variable. If the distribution of a predictor does not significantly differ between different values of the response variable, then it may not contribute to the prediction of response variable. The boxplots suggest that `cylinders`, `displacement`, `horsepower`, and `weight` might be the most useful in predicting `mpg01`. The function `par()` is used to change the layout of output plots.  
+
+    To visualise the association between `mpg01`, `year` and `origin`, scatterplot is used.
+
+    ```r
+    par(mfrow = c(1, 1))
+    plot(Auto$year, Auto$mpg)
+    abline(h = median(Auto$mpg), lwd = 2, col = "red")
+    ```
+
+    The above scatterplot of `mpg` vs `year` shows that the newer cars in the data set tend to be more fuel efficient. Therefore, while manufacture year might not be as useful as the other four quantitative variables, it still seems worth including.
+
+    ```r
+    plot(Auto$origin, Auto$mpg, xlab = "Origin", ylab = "mpg")
+    abline(h = median(Auto$mpg), lwd = 2, col = "red")
+    ```
+
+    Lastly, when looking at a boxplot that compares the `mpg` values for each car, categorized by country of `origin`, we see that there is a clear difference between American cars, which tend to have below-median fuel efficiency, and European and Japanese cars, which tend to have above-median fuel efficiency. Thus, it seems that `origin` will also be useful in predicting `mpg01`.
+
+    In conclusion, all of the predictors except for `acceleration` and `name` will be used in fitting this classification model for trying to predict `mpg01`. Also, `mpg` will be excluded because that was directly used to create the classification label.
+    
+3. Split the data into a training set and a test set. Train set contains observations before 1979. Test set contains the rest of the observations.
+
+    ```r
+    attach(Auto)
+    train <- (year < 79)
+    Auto_train <- Auto[train , ]
+    Auto_test <- Auto[!train , ]
+    ```
+
+4. Perform logistic regression on the training data in order to predict `mpg01` using the variables that seemed most associated with `mpg01` in question 2. What is the test error of the model obtained?
+
+    ```r
+    glm.fit = glm(mpg01 ~ cylinders + displacement + horsepower + weight + year + origin, data = Auto, subset = train, family = "binomial")
+    summary(glm.fit)
+    glm.probs = predict(glm.fit, Auto_test, type = "response")
+    glm.pred = rep(0, dim(Auto_test)[1])
+    glm.pred[glm.probs > 0.5] = 1
+    table(glm.pred, Auto_test$mpg01, dnn = c("Predicted", "Actual"))
+    mean(glm.pred == Auto_test$mpg01)
+    [1] 0.877193
+    ```
+    
+    As is shown, the test error of the model ontained is (1-0.877193) = 0.122807.
+
+5. Perform naive Bayes on the training data in order to predict `mpg01` using the variables that seemed most associated with `mpg01` in question 2. What is the test error of the model obtained?
+
+    ```r
+    library (e1071)
+    nb.fit = naiveBayes(mpg01 ~ cylinders + displacement + horsepower + weight + year + origin, data = Auto, subset = train)
+    nb.fit
+    nb.class <- predict(nb.fit, Auto_test)
+    table(nb.class, Auto_test$mpg01, dnn = c("Predicted", "Actual"))
+    mean(nb.class == Auto_test$mpg01)
+    ```
+    
+    As is shown, the test error of the model ontained is (1-0.877193) = 0.122807.
+
+6. Which of these two methods appears to provide the best results on this data? Justify your choice.
+
+   After comparing the test errors, these two classification models were equally good. To further compare the performance of these two model, we have to look at the confusion matrix and find these two classification models have identiical confusion matrix. It means that Precision, Recall, Accuracy and F-Score of these two models are all same. Therefore, we can conclude that these two classification models have equally good performace on this data set. One thing that should be cautious of is that the data set is imbalnced. Therefore, we cannot judge the performance of this data set based on test error. More detailed explaination about be found here: https://www.analyticsvidhya.com/blog/2021/06/5-techniques-to-handle-imbalanced-data-for-a-classification-problem/ .
+
+   
