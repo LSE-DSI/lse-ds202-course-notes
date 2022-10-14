@@ -263,7 +263,7 @@ $$
 :::
 
 ::: {.fragment}
-We model the probability that $Y = 1$ as:
+We model the probability that $Y = 1$ using the <mark>logistic function</mark> (aka. sigmoid curve):
 
 $$
 Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
@@ -343,8 +343,8 @@ ggplot(df %>% filter(beta == 1),
 
 ## The Logistic function (cont.) {.smaller}
 
-
 - Keep $\beta_0 = 0$ but vary $\beta_1$:
+
 
 ```{r out.width="100%", dpi=300, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: false
@@ -410,6 +410,15 @@ and we call this method the <mark>Maximum Likelihood Estimate</mark> (MLE).
 ➡️ As usual, there are [multiple ways](https://www.wikiwand.com/en/Maximum_likelihood_estimation#/Iterative_procedures) to solve this equation!
 :::
 
+::: aside
+
+::: {.fragment}
+💡 If you want to read on how exactly this is solved check [this link](https://rh8liuqy.github.io/logistic_regression_theory_hand_check.html)
+
+:::
+
+:::
+
 
 ::: notes
 Key takeaway of this slide: MLE (logistic regression) is analogous to OLS (linear regression).
@@ -467,6 +476,59 @@ How do you find the latitude and longitude of a mountain peak if you can't see v
 :::
 
 
+
+# Interpreting coefficients
+
+<br/>
+Since we now mostly care about <mark>probabilities</mark>, how do the <mark>odds</mark> change according to features of the customers?
+
+## The concept of <mark>odds</mark> {.smaller}
+
+The quantity below is called the <mark>odds</mark>:
+
+$$
+\frac{p(X)}{1 - p(X)} = e^{\beta_0 + \beta_1 X}
+$$
+
+
+::: {.callout-note style="margin-top:15%;"}
+## Example
+
+If the odds are 9, then $\frac{p(X)}{(1-p(X))} = 9 \Rightarrow p(X) = 0.9$. 
+
+This means that 9 out of 10 people will default. 
+:::
+
+::: callout-tip
+
+**How to interpret $\beta_1$**
+
+If X increases one unit then the odds increase by a factor of $e^{\beta_1}$
+:::
+
+::: footer
+
+::: {style="font-size:0.75em;"}
+📝 Give it a go! Using algebra, can you re-arrange the equation for $p(X)$ presented in the [_Logistic regression model_ slides](#the-logistic-regression-model) to arrive at the odds quantity shown above?
+:::
+:::
+
+## Log odds or _logit_ {.smaller}
+
+- It is also useful to think of the odds in log terms.
+
+$$
+log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X
+$$
+
+- We call the quantity above the <mark>log odds</mark> or <mark>logit</mark>
+
+::: callout-tip
+
+**How to interpret $\beta_1$**
+
+If X increases one unit then the log odds increase by $\beta_1$
+:::
 
 ## Example: `Default` data
 
@@ -655,11 +717,6 @@ g <-
 g
 ```
 
-# Interpreting coefficients
-
-<br/>
-Since we now mostly care about <mark>probabilities</mark>, how do the <mark>odds</mark> change according to features of the customers?
-
 ## Simple logistic regression models
 
 
@@ -731,53 +788,6 @@ Logistic regression coefficients are a bit trickier to interpret when compared t
 
 :::
 
-## The concept of <mark>odds</mark> {.smaller}
-
-The quantity below is called the <mark>odds</mark>:
-
-$$
-\frac{p(X)}{1 - p(X)} = e^{\beta_0 + \beta_1 X}
-$$
-
-
-::: {.callout-note style="margin-top:15%;"}
-## Example
-
-If the odds are 9, then $\frac{p(X)}{(1-p(X))} = 9 \Rightarrow p(X) = 0.9$. 
-
-This means that 9 out of 10 people will default. 
-:::
-
-::: callout-tip
-
-**How to interpret $\beta_1$**
-
-If X increases one unit then the odds increase by a factor of $e^{\beta_1}$
-:::
-
-::: footer
-
-::: {style="font-size:0.75em;"}
-📝 Give it a go! Using algebra, can you re-arrange the equation for $p(X)$ presented in the [_Logistic regression model_ slides](#the-logistic-regression-model) to arrive at the odds quantity shown above?
-:::
-:::
-
-## Log odds or _logit_ {.smaller}
-
-- It is also useful to think of the odds in log terms.
-
-$$
-log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X
-$$
-
-- We call the quantity above the <mark>log odds</mark> or <mark>logit</mark>
-
-::: callout-tip
-
-**How to interpret $\beta_1$**
-
-If X increases one unit then the log odds increase by $\beta_1$
-:::
 
 ## Example: Default vs Balance
 
