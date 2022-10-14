@@ -288,7 +288,7 @@ Source of illustration: [TIBCO](https://www.tibco.com/reference-center/what-is-l
 
 - Changing $\beta_0$ while keeping $\beta_1 = 1$:
 
-```{r out.width="100%"}
+```{r out.width="100%", echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: false
 #| eval: true
 #| code-fold: show
@@ -346,7 +346,7 @@ ggplot(df %>% filter(beta == 1),
 
 - Keep $\beta_0 = 0$ but vary $\beta_1$:
 
-```{r out.width="100%", out.height="100%", dpi=300}
+```{r out.width="100%", out.height="100%", dpi=300, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}}
 #| echo: false
 #| eval: true
 #| code-fold: show
@@ -475,7 +475,7 @@ How do you find the latitude and longitude of a mountain peak if you can't see v
 ::: {.column width="45%"}
 A sample of the data:
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -492,7 +492,7 @@ head(ISLR2::Default, n=15)
 
 How the data is spread:
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -501,7 +501,7 @@ How the data is spread:
 summary(ISLR2::Default$default)
 ```
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -510,7 +510,7 @@ summary(ISLR2::Default$default)
 summary(ISLR2::Default$balance)
 ```
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -520,7 +520,7 @@ summary(ISLR2::Default$income)
 ```
 
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -536,7 +536,7 @@ summary(ISLR2::Default$student)
 
 ### Who is more likely to default?
 
-```{r out.width="100%"}
+```{r out.width="100%", echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: false
 #| eval: true
 #| code-fold: show
@@ -598,7 +598,7 @@ This is essentially the same plot as Figure 4.1 in [@james_introduction_2021]
 ### Does it matter if customer is a student? 
 
 
-```{r out.width="100%"}
+```{r out.width="100%", echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: false
 #| eval: true
 #| code-fold: show
@@ -667,7 +667,7 @@ Since we now mostly care about <mark>probabilities</mark>, how do the <mark>odds
 
 ::: {.column width="50%"}
 - **Income** 💰
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: true
 #| eval: true
 #| code-fold: false
@@ -683,7 +683,7 @@ cat(sprintf("beta_0 = %.5f | beta_1 = %e",
 
 - **Balance** 💸
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: true
 #| eval: true
 #| code-fold: false
@@ -702,7 +702,7 @@ cat(sprintf("beta_0 = %.5f | beta_1 = %.4f",
 ::: {.column width="50%"}
 - **Student** 🧑‍🎓
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: true
 #| eval: true
 #| code-fold: false
@@ -815,7 +815,7 @@ $$
   $$
   \begin{align}
   p(\text{default}=\text{Yes}) &= \frac{\text{odds}}{(1 + \text{odds})} \\
-                               &= 2.366877 \times 10^{5}\end{align}
+                               &= 2.366877 \times 10^{-5}\end{align}
   $$
 :::
 :::

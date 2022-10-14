@@ -7,5 +7,5 @@ categories: [week02, Normal theory, equations]
 theme: lumen
 ---
 
-[Potentially useful reference](https://math.stackexchange.com/questions/834681/when-residual-standard-error-is-equal-to-standard-deviation-of-dependent-variabl)
+<!-- [Potentially useful reference](https://math.stackexchange.com/questions/834681/when-residual-standard-error-is-equal-to-standard-deviation-of-dependent-variabl) -->
 
