@@ -371,6 +371,27 @@
     "text": "Part II - Classifiers (Naive Bayes) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides. For a PDF copy, check Moodle."
   },
   {
+    "objectID": "weeks/week04/checklist.html",
+    "href": "weeks/week04/checklist.html",
+    "title": "✅ Week 04 - Checklist",
+    "section": "",
+    "text": "Here is a suggestion of how to program your week in relation to this course:\nExtra:"
+  },
+  {
+    "objectID": "weeks/week04/checklist.html#if-your-lab-is-on-monday",
+    "href": "weeks/week04/checklist.html#if-your-lab-is-on-monday",
+    "title": "✅ Week 04 - Checklist",
+    "section": "If your lab is on Monday:",
+    "text": "If your lab is on Monday:\n\n📥 Download: Before or once you arrive at the classroom, download the DS202_2022MT_w04_lab_rmark.Rmd file that contains the lab roadmap or browse the webpage version here.\n🧑‍💻Participate: Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Work with others whenever possible and take notes of theoretical concepts or practical coding skill you might want to revisit later in the week.\n\nIt is ok if you feel a bit lost in the lab. After all, you haven’t had much time to read the material to reinforce the concepts in your mind. That is why participation and note-taking is so important.\n\n📙 Read: Find some time before Thursday to read (James et al. 2021, chap. 4) and reinforce your theoretical knowledge of Classifiers (Logistic Regression & other methods, including Naïve Bayes); the textbook is available online for free.\n\nAs you go through the text, try to connect what you read to the things you heard about in the lecture or the examples you explored in the lab.\n\n✍️ Solve: Also before Thursday, take a look at the problem sets of the first formative assessment. Either try to complete it before Thursday or at least have a look to see what it contains. Take note of whatever questions you might have about R or linear regression.\n\nThe Formative Problem Set 01 is available on Moodle and you can submit your solutions until Tuesday 25 October 2022, 23:50 UK time.\n\n✋Teacher Support: Stuart will host a drop-in session on Thursday 20 October 2022 2pm-4pm (provisionally at the FAW 9.04 room). Bring your notes and questions or just simply use this shared space to work on your problem set.\n🧑‍🏫 Attend the lecture: This week, the lecture will look more like a workshop. We won’t explore new algorithms but we will work on regression/classification metrics and explore the concepts of train/test splits and cross-validation. You will need to use those in your first summative problem set."
+  },
+  {
+    "objectID": "weeks/week04/checklist.html#if-your-lab-is-on-friday",
+    "href": "weeks/week04/checklist.html#if-your-lab-is-on-friday",
+    "title": "✅ Week 04 - Checklist",
+    "section": "If your lab is on Friday:",
+    "text": "If your lab is on Friday:\n\n📙 Read: Find some time before Thursday to read (James et al. 2021, chap. 4) and reinforce your theoretical knowledge of Classifiers (Logistic Regression & other methods, including Naïve Bayes); the textbook is available online for free. As you go through the text, try to connect what you read to the things you heard about in the lecture.\n\nYou can ask questions on Slack (#week04) or take them with you to the drop-in session on Thursday.\n\n✍️ Solve: Also before Thursday, take a look at the problem sets of the first formative assessment. Either try to complete it before Thursday or at least have a look to see what it contains. Take note of whatever questions you might have about R or linear regression.\n\nThe Formative Problem Set 01 is available on Moodle and you can submit your solutions until Tuesday 25 October 2022, 23:50 UK time.\n\n✋Teacher Support: Stuart will host a drop-in session on Thursday 20 October 2022 2pm-4pm (provisionally at the FAW 9.04 room). Bring your notes and questions or just simply use this shared space to work on your problem set.\n📥Download: Before or once you arrive at the classroom, download the DS202_2022MT_w04_lab_rmark.Rmd file that contains the lab roadmap or browse the webpage version here.\n🧑‍💻Participate: Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Keep your notes and the textbook handy so you can consult them during the session.\n🧑‍🏫Attend the lecture: This week, the lecture will look more like a workshop. We won’t explore new algorithms but we will work on regression/classification metrics and explore the concepts of train/test splits and cross-validation. You will need to use those in your first summative problem set."
+  },
+  {
     "objectID": "weeks/week04/lab.html",
     "href": "weeks/week04/lab.html",
     "title": "💻 Week 04 - Lab Roadmap (90 min)",
@@ -753,7 +774,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  8.49\n2     9    12 13.0 \n3    12    15 15.3 \n4    15    18 22.0 \n5    18    21 21.6 \n6    21    24 24.5"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  6.74\n2     9    12 12.5 \n3    12    15 16.3 \n4    15    18 17.7 \n5    18    21 20.4 \n6    21    24 22.3"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -788,7 +809,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  8.49  0.514    0.514\n2     9    12 13.0  -1.01     1.01 \n3    12    15 15.3  -0.281    0.281\n4    15    18 22.0  -4.03     4.03 \n5    18    21 21.6  -0.573    0.573\n6    21    24 24.5  -0.472    0.472\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.146914\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  6.74  2.26     2.26 \n2     9    12 12.5  -0.461    0.461\n3    12    15 16.3  -1.28     1.28 \n4    15    18 17.7   0.256    0.256\n5    18    21 20.4   0.636    0.636\n6    21    24 22.3   1.67     1.67 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.094385\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
