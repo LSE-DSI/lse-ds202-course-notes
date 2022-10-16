@@ -5,5 +5,55 @@ date-meta: 14 October 2022
 from: markdown+emoji
 ---
 
+Here is a suggestion of how to program your week in relation to this course:
 
-<mark class="todo"></mark>
+<details>
+
+<summary>If your lab is on Monday
+</summary>
+
+## If your lab is on Monday:
+
+- 📥 **Download:** Before or once you arrive at the classroom, download the [DS202_2022MT_w04_lab_rmark.Rmd](https://raw.githubusercontent.com/LSE-DSI/lse-ds202-course-notes/main/RMarkdown/DS202_2022MT_w04_lab_rmark.Rmd) file that contains the lab roadmap or browse the webpage version [here](/weeks/week04/lab.html).
+
+- 🧑‍💻**Participate:** Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Work with others whenever possible and take notes of theoretical concepts or practical coding skill you might want to revisit later in the week.
+    - _It is ok if you feel a bit lost in the lab. After all, you haven't had much time to read the material to reinforce the concepts in your mind. That is why participation and note-taking is so important._
+
+- 📙 **Read:** Find some time before Thursday to read [@james_introduction_2021, chap. 4] and reinforce your theoretical knowledge of Classifiers (Logistic Regression & other methods, including Naïve Bayes); the textbook is available online for free. 
+    - _As you go through the text, try to connect what you read to the things you heard about in the lecture or the examples you explored in the lab._ 
+
+- ✍️ **Solve:** Also _before Thursday_, take a look at the problem sets of the first formative assessment. Either try to complete it before Thursday or at least have a look to see what it contains. Take note of whatever questions you might have about R or linear regression. 
+    - _The Formative Problem Set 01 is available on Moodle and you can submit your solutions until **Tuesday 25 October 2022**, 23:50 UK time._ 
+
+- ✋**Teacher Support:** Stuart will host a drop-in session on **Thursday 20 October 2022 2pm-4pm** (provisionally at the FAW 9.04 room). Bring your notes and questions or just simply use this shared space to work on your problem set.
+
+- 🧑‍🏫 **Attend the lecture:** This week, the lecture will look more like a workshop. We won't explore new algorithms but we will work on regression/classification metrics and explore the concepts of train/test splits and cross-validation. You will need to use those in your first summative problem set.
+</details>
+
+<details>
+
+<summary>If your lab is on Friday
+</summary>
+
+## If your lab is on Friday:
+
+- 📙 **Read:** Find some time before Thursday to read (James et al. 2021, chap. 4) and reinforce your theoretical knowledge of Classifiers (Logistic Regression & other methods, including Naïve Bayes); the textbook is available online for free. As you go through the text, try to connect what you read to the things you heard about in the lecture. 
+    - _You can ask questions on Slack (`#week04`) or take them with you to the drop-in session on Thursday._
+
+- ✍️ **Solve:** Also before Thursday, take a look at the problem sets of the first formative assessment. Either try to complete it before Thursday or at least have a look to see what it contains. Take note of whatever questions you might have about R or linear regression.
+    - _The Formative Problem Set 01 is available on Moodle and you can submit your solutions until **Tuesday 25 October 2022**, 23:50 UK time._ 
+
+- ✋**Teacher Support:** Stuart will host a drop-in session on **Thursday 20 October** 2022 2pm-4pm (provisionally at the FAW 9.04 room). Bring your notes and questions or just simply use this shared space to work on your problem set.
+
+- 📥**Download:** Before or once you arrive at the classroom, download the [DS202_2022MT_w04_lab_rmark.Rmd](https://raw.githubusercontent.com/LSE-DSI/lse-ds202-course-notes/main/RMarkdown/DS202_2022MT_w04_lab_rmark.Rmd) file that contains the lab roadmap or browse the webpage version [here](/weeks/week04/lab.html).
+
+- 🧑‍💻**Participate:** Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Keep your notes and the textbook handy so you can consult them during the session.
+
+- 🧑‍🏫**Attend the lecture:** This week, the lecture will look more like a workshop. We won't explore new algorithms but we will work on regression/classification metrics and explore the concepts of train/test splits and cross-validation. You will need to use those in your first summative problem set.
+</details>
+
+**Extra:**
+
+- 📟 Struggling with something? Don’t know what a particular R command do? Share your questions on the `#week04` channel in our Slack.
+
+- 👂Want to talk to someone else about this course? Try reaching out to your course representatives, `@Zhang Ruishan (Yoyo)` or `@Rachitha Raghuram`.
