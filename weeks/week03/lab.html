@@ -340,6 +340,17 @@ div.csl-indent {
   <li><a href="#step-2-multiple-linear-regression" id="toc-step-2-multiple-linear-regression" class="nav-link" data-scroll-target="#step-2-multiple-linear-regression">Step 2: Multiple linear regression</a></li>
   <li><a href="#step-3-some-potential-problems" id="toc-step-3-some-potential-problems" class="nav-link" data-scroll-target="#step-3-some-potential-problems">Step 3: Some potential problems</a></li>
   <li><a href="#step-4-practical-exercises-in-pairs" id="toc-step-4-practical-exercises-in-pairs" class="nav-link" data-scroll-target="#step-4-practical-exercises-in-pairs">Step 4: Practical exercises (in pairs)</a></li>
+  <li><a href="#solutions-to-exercises" id="toc-solutions-to-exercises" class="nav-link" data-scroll-target="#solutions-to-exercises">🔑 Solutions to exercises</a>
+  <ul class="collapse">
+  <li><a href="#q1" id="toc-q1" class="nav-link" data-scroll-target="#q1">Q1</a></li>
+  <li><a href="#q2" id="toc-q2" class="nav-link" data-scroll-target="#q2">Q2</a></li>
+  <li><a href="#q3" id="toc-q3" class="nav-link" data-scroll-target="#q3">Q3</a></li>
+  <li><a href="#q4" id="toc-q4" class="nav-link" data-scroll-target="#q4">Q4</a></li>
+  <li><a href="#q5" id="toc-q5" class="nav-link" data-scroll-target="#q5">Q5</a></li>
+  <li><a href="#q6" id="toc-q6" class="nav-link" data-scroll-target="#q6">Q6</a></li>
+  <li><a href="#q7" id="toc-q7" class="nav-link" data-scroll-target="#q7">Q7</a></li>
+  <li><a href="#q8" id="toc-q8" class="nav-link" data-scroll-target="#q8">Q8</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -608,6 +619,251 @@ Tip
 </div>
 </div>
 </section></details>
+<details>
+<summary>
+<strong>🔑 Solutions to practical exercises</strong>
+</summary>
+
+<section id="solutions-to-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="solutions-to-exercises">🔑 Solutions to exercises</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="q1" class="level3">
+<h3 class="anchored" data-anchor-id="q1">Q1</h3>
+<p><strong>Use the <code>lm()</code> function to perform a simple linear regression with <code>mpg</code> as the response and <code>horsepower</code> as the predictor. Use the <code>tidy()</code> function to print the results. Comment on the output.</strong></p>
+<p><strong>For example:</strong></p>
+<ol type="i">
+<li><strong>Is there a relationship between the predictor and the response?</strong></li>
+<li><strong>How strong is the relationship between the predictor and the response?</strong></li>
+<li><strong>Is the relationship between the predictor and the response positive or negative?</strong></li>
+<li><strong>What is the predicted <code>mpg</code> associated with a <code>horsepower</code> of 98? What are the associated 95 % confidence intervals?</strong></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Auto <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(Auto)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>lm.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> horsepower, <span class="at">data =</span> Auto)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ horsepower, data = Auto)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-13.5710  -3.2592  -0.3435   2.7630  16.9240 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***
+horsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4.906 on 390 degrees of freedom
+Multiple R-squared:  0.6059,    Adjusted R-squared:  0.6049 
+F-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>Regarding to the p-values of t-test and F-test, there is a strong relationship between the predictor <code>horsepower</code> and the response <code>mpg</code>. From the sign of coefficients, the relationship between the predictor and the response is negative. Using the function <code>predict()</code> to predict the value of response and the confidence interval, we get:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(lm.fit, <span class="fu">data.frame</span>(<span class="at">horsepower =</span> <span class="dv">98</span>), <span class="at">interval =</span> <span class="st">"confidence"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit      lwr      upr
+1 24.46708 23.97308 24.96108</code></pre>
+</div>
+</div>
+<p>Therefore, the predicted <code>mpg</code> associated with a <code>horsepower</code> of 98 is 24.47, and the associated 95 % confidence interval is [23.97308, 24.96108].</p>
+</section>
+<section id="q2" class="level3">
+<h3 class="anchored" data-anchor-id="q2">Q2</h3>
+<p><strong>Pot the response and the predictor. Use the <code>geom_abline()</code> function to display the least squares regression line.</strong></p>
+<p>In base R (without using any tidverse or any other package):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Auto<span class="sc">$</span>horsepower, Auto<span class="sc">$</span>mpg, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span> (lm.fit, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Using ggplot (from tidyverse):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Auto, <span class="fu">aes</span>(<span class="at">x =</span> horsepower, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.6</span>, <span class="at">size=</span><span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> lm.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>], </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> lm.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>],</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"red"</span>, <span class="at">size=</span><span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="q3" class="level3">
+<h3 class="anchored" data-anchor-id="q3">Q3</h3>
+<p><strong>Use the <code>plot()</code> function to produce diagnostic plots of the least squares regression fit. Comment on any problems you see with the fit.</strong>*</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>By observing four diagnostic plots, we could find non-linear pattern in residual plots. The quadratic trend of the residuals could be a problem. Then we plot studentized residuals to identify outliers:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">predict</span>(lm.fit), <span class="fu">rstudent</span>(lm.fit))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There are possible outliers as seen in the plot of studentized residuals because there are data with a value greater than 3.</p>
+</section>
+<section id="q4" class="level3">
+<h3 class="anchored" data-anchor-id="q4">Q4</h3>
+<p><strong>Produce a scatterplot matrix that includes all the variables in the data set.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="q5" class="level3">
+<h3 class="anchored" data-anchor-id="q5">Q5</h3>
+<p><strong>Compute the matrix of correlations between the variables using the function <code>cor()</code>. You will need to exclude the <code>name</code> and <code>origin</code> variable, which is qualitative.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">subset</span>(Auto, <span class="at">select =</span> <span class="sc">-</span>name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    mpg  cylinders displacement horsepower     weight
+mpg           1.0000000 -0.7776175   -0.8051269 -0.7784268 -0.8322442
+cylinders    -0.7776175  1.0000000    0.9508233  0.8429834  0.8975273
+displacement -0.8051269  0.9508233    1.0000000  0.8972570  0.9329944
+horsepower   -0.7784268  0.8429834    0.8972570  1.0000000  0.8645377
+weight       -0.8322442  0.8975273    0.9329944  0.8645377  1.0000000
+acceleration  0.4233285 -0.5046834   -0.5438005 -0.6891955 -0.4168392
+year          0.5805410 -0.3456474   -0.3698552 -0.4163615 -0.3091199
+origin        0.5652088 -0.5689316   -0.6145351 -0.4551715 -0.5850054
+             acceleration       year     origin
+mpg             0.4233285  0.5805410  0.5652088
+cylinders      -0.5046834 -0.3456474 -0.5689316
+displacement   -0.5438005 -0.3698552 -0.6145351
+horsepower     -0.6891955 -0.4163615 -0.4551715
+weight         -0.4168392 -0.3091199 -0.5850054
+acceleration    1.0000000  0.2903161  0.2127458
+year            0.2903161  1.0000000  0.1815277
+origin          0.2127458  0.1815277  1.0000000</code></pre>
+</div>
+</div>
+<p>A nicer way to plot correlations is through the package <code>ggcorrplot</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggcorrplot)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcorrplot</span>(<span class="fu">cor</span>(Auto <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(name))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="q6" class="level3">
+<h3 class="anchored" data-anchor-id="q6">Q6</h3>
+<p><strong>Use the <code>lm()</code> function to perform a multiple linear regression with <code>mpg</code> as the response and all other variables except <code>name</code> as the predictors. Use the <code>tidy()</code> function to print the results. Comment on the output.</strong></p>
+<p><strong>For instance:</strong></p>
+<ol type="i">
+<li><strong>Is there a relationship between the predictors and the response?</strong></li>
+<li><strong>Which predictors appear to have a statistically significant relationship to the response?</strong></li>
+<li><strong>What does the coefficient for the year variable suggest?</strong></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>lm.fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> . <span class="sc">-</span>name, <span class="at">data =</span> Auto)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ . - name, data = Auto)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.5903 -2.1565 -0.1169  1.8690 13.0604 
+
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -17.218435   4.644294  -3.707  0.00024 ***
+cylinders     -0.493376   0.323282  -1.526  0.12780    
+displacement   0.019896   0.007515   2.647  0.00844 ** 
+horsepower    -0.016951   0.013787  -1.230  0.21963    
+weight        -0.006474   0.000652  -9.929  &lt; 2e-16 ***
+acceleration   0.080576   0.098845   0.815  0.41548    
+year           0.750773   0.050973  14.729  &lt; 2e-16 ***
+origin         1.426141   0.278136   5.127 4.67e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.328 on 384 degrees of freedom
+Multiple R-squared:  0.8215,    Adjusted R-squared:  0.8182 
+F-statistic: 252.4 on 7 and 384 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<ol type="i">
+<li><p>Yes, there is a relationship between the predictors and the response by testing the null hypothesis of whether all the regression coefficients are zero. The F-statistic is far from 1 (with a small p-value), indicating evidence against the null hypothesis.</p></li>
+<li><p>Observing the p-values associated with each predictor’s t-statistic, we see that displacement, weight, year, and origin have a statistically significant relationship, while cylinders, horsepower and acceleration do not.</p></li>
+<li><p>The regression coefficient for year is 0.75. This suggests that, considering all other predictors fixed, mpg increases by additional 0.75 unit. In other words, cars become more fuel efficient every year by almost 1 mpg/year.</p></li>
+</ol>
+</section>
+<section id="q7" class="level3">
+<h3 class="anchored" data-anchor-id="q7">Q7</h3>
+<p><strong>Use the <code>plot()</code> function to produce diagnostic plots of the linear regression fit. Comment on any problems you see with the fit. Do the residual plots suggest any unusually large outliers?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm.fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>From the leverage plot, we see that point 14 appears to have a high leverage, although not a high magnitude residual. Besides, the quadratic trend of the residuals could be a problem. Maybe linear regression is not the best fit for this prediction.</p>
+<p>We plot studentized residuals to identify outliers:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">predict</span>(lm.fit1), <span class="fu">rstudent</span>(lm.fit1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There are possible outliers as seen in the plot of studentized residuals because there are data with a value greater than 3.</p>
+</section>
+<section id="q8" class="level3">
+<h3 class="anchored" data-anchor-id="q8">Q8</h3>
+<p><strong>Use the <code>*</code> and <code>:</code> symbols to fit linear regression models with interaction effects. Do any interactions appear to be statistically significant?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>lm.fit2 <span class="ot">&lt;-</span>  <span class="fu">lm</span>(mpg <span class="sc">~</span> cylinders <span class="sc">*</span> displacement <span class="sc">+</span> displacement <span class="sc">*</span> weight, <span class="at">data =</span> Auto)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ cylinders * displacement + displacement * 
+    weight, data = Auto)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-13.2934  -2.5184  -0.3476   1.8399  17.7723 
+
+Coefficients:
+                         Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)             5.262e+01  2.237e+00  23.519  &lt; 2e-16 ***
+cylinders               7.606e-01  7.669e-01   0.992    0.322    
+displacement           -7.351e-02  1.669e-02  -4.403 1.38e-05 ***
+weight                 -9.888e-03  1.329e-03  -7.438 6.69e-13 ***
+cylinders:displacement -2.986e-03  3.426e-03  -0.872    0.384    
+displacement:weight     2.128e-05  5.002e-06   4.254 2.64e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4.103 on 386 degrees of freedom
+Multiple R-squared:  0.7272,    Adjusted R-squared:  0.7237 
+F-statistic: 205.8 on 5 and 386 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>Interaction between <code>displacement</code> and <code>weight</code> is statistically signifcant, while the interaction between <code>cylinders</code> and <code>displacement</code> is not.</p>
+</section></section></details>
+
 
 
 
