@@ -195,7 +195,7 @@ $$Your~equation~goes~here$$
 
 ### Q15. Interaction Effects
 
-**Use the `*` and `:` symbols to fit linear regression models with interaction effects. Could you find any model with interactions that fit better than the models you built in Questions Q5 & Q8 & Q13? Feel free to use as many interactions and variables as you prefer. Justify your answer. Explain how you reached that conclusion, show us the summary of that model and write the model in equation form.** (Worth 15/100 mock marks)
+**Use the `*` and `:` symbols to fit linear regression models with interaction effects. Could you find any model with interactions that fit better than the models you built in Questions Q5 & Q8 & Q14? Feel free to use as many interactions and variables as you prefer. Justify your answer. Explain how you reached that conclusion, show us the summary of that model and write the model in equation form.** (Worth 15/100 mock marks)
 
 > Your justification goes here
 
