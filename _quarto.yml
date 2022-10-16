@@ -35,7 +35,7 @@ website:
       - href: main/communication.qmd
         text: "📟 Communication"
       - href: main/assessments.qmd
-        text: "✍️ Assessments"
+        text: "✍️ Assessments (🆕)"
       - href: main/courserep.qmd
         text: "🗳️ Course Rep"
       - section: "🗓️ Weeks"
@@ -68,7 +68,7 @@ website:
              - href: weeks/week03/lab.qmd
                text: 💻 Lab roadmap
          - href: weeks/week04.qmd
-           text: Week 04
+           text: Week 04 (🆕)
            contents:
              - href: weeks/week04/lecture.qmd
                text: 👨‍🏫 Lecture Slides
