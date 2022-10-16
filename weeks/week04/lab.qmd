@@ -12,7 +12,7 @@ We will follow the instructions below step by step together while answering what
 :::{.callout-important collapse="false"}
 ## Download .Rmd
 
-Download this roadmap as an .Rmd file <a href="https://raw.githubusercontent.com/LSE-DSI/lse-ds202-course-notes/main/RMarkdown/DS202_2022MT_w04_lab_rmark.Rmd" target="_blank">here</a>.
+Download this roadmap as an .Rmd file <a href="https://raw.githubusercontent.com/LSE-DSI/lse-ds202-course-notes/main/RMarkdown/DS202_2022MT_w04_lab_rmark.Rmd" download="DS202_2022MT_w04_lab_rmark.Rmd" target="_blank">here</a>.
 :::
 
 R packages you will need:
