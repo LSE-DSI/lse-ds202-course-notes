@@ -276,7 +276,7 @@ $$
 ::: {.column width="40%"}
 How would you classify the following customers?
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| echo: true
 #| eval: true
 #| code-fold: true
@@ -325,7 +325,7 @@ $$
 ::: columns
 
 
-::: {.column width="40%"}
+::: {.column width="45%"}
 How would you classify the following customers?
 
 ```{r}
@@ -351,7 +351,7 @@ sample_customers
 :::
 
 
-::: {.column style="width:30%;font-size:0.75em;"}
+::: {.column style="width:27.5%;font-size:0.75em;"}
 
 - If we set our <mark>threshold</mark> $= 50\%$, we get the following <mark>confusion matrix</mark>:
 
@@ -363,7 +363,7 @@ sample_customers
 
 :::
 
-::: {.column style="width:30%;font-size:0.75em;"}
+::: {.column style="width:27.5%;font-size:0.75em;"}
 
 ::: {.fragment}
 
@@ -528,7 +528,7 @@ $\text{Threshold} = 40\%$:
 
 :::
 
-```{r out.width="85%", dpi=100}
+```{r out.width="55%", dpi=200, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
 #| echo: false
 #| eval: true
 #| code-fold: show
@@ -561,6 +561,8 @@ ggroc(rocobj, colour = 'steelblue', size = 2) +
         aspect.ratio = 1,
         plot.margin=grid::unit(c(0,0,0,0), "mm"))
 ```
+
+
 
 ::: notes
 - Ask: how would an ideal curve look like?
@@ -620,9 +622,7 @@ ggroc(rocobj, colour = 'steelblue', size = 2) +
 
 - :memo: Take note of anything that isn't clear to you
 
-- :pager: Share your questions on `/week03` channel on Slack
-
-- :computer: In our labs [this week](/weeks/week03/lab.qmd), we will reinforce our knowledge of linear regression.
+- :pager: Share your questions on `/week04` channel on Slack
 
 ---
 ## References {style="word-break:break-all;"}

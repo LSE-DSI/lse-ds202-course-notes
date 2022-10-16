@@ -37,7 +37,7 @@ website:
       - href: main/communication.qmd
         text: "📟 Communication"
       - href: main/assessments.qmd
-        text: "<span style='color:red'>✍️ Assessments (🆕)</span>"
+        text: "✍️ Assessments (🆕)"
       - href: main/courserep.qmd
         text: "🗳️ Course Rep"
       - href: blog/main.qmd
@@ -71,17 +71,15 @@ website:
                text: ✅ Checklist
              - href: weeks/week03/lab.qmd
                text: 💻 Lab roadmap
-        #  - href: weeks/week04.qmd
-        #    text: Week 04
-        #    contents:
-        #      - href: weeks/week04/lecture.qmd
-        #        text: 👨‍🏫 Lecture Slides
-        #      - href: weeks/week04/checklist.qmd
-        #        text: ✅ Checklist
-        #      - href: weeks/week04/lab.qmd
-        #        text: 💻 Lab roadmap
-        #      - href: weeks/week04/appendix.qmd
-        #        text: 🔖 Appendix
+         - href: weeks/week04.qmd
+           text: Week 04 (🆕)
+           contents:
+             - href: weeks/week04/lecture.qmd
+               text: 👨‍🏫 Lecture Slides
+             - href: weeks/week04/checklist.qmd
+               text: ✅ Checklist
+             - href: weeks/week04/lab.qmd
+               text: 💻 Lab roadmap
                  
   navbar:
     background: primary

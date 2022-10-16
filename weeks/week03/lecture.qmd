@@ -4,6 +4,12 @@ date: 13 October 2022
 date-meta: 13 October 2022
 ---
 
+::: {.callout-tip}
+
+Feel free to browse the slides before the lecture, but it is probably safer to wait until the time of the lecture to download/save them, as we might make small changes to slides before then.
+
+:::
+
 ## Part I - Classifiers (Logistic Regression) (45-50 min)
 
 

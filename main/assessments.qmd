@@ -1,9 +1,17 @@
 ---
 title: "Assessments"
 subtitle: "Data for Data Science"
-date: 05 September 2022
-date-meta: 05 September 2022
+date: 16 October 2022
+date-meta: 16 October 2022
 ---
+
+# Submissions
+
+Click on the assignments below to go to the Moodle page and submit your responses:
+
+- **✍️ Formative Problem Set (01)**: [Moodle link](https://moodle.lse.ac.uk/mod/coursework/view.php?id=1127006) & associated <a href="https://raw.githubusercontent.com/LSE-DSI/lse-ds202-course-notes/main/RMarkdown/DS202 2022 MT - Formative Assignment W03-W04.Rmd" download="DS202 2022 MT - Formative Assignment W03-W04.Rmd" target="_blank">RMarkdown file</a>.
+
+# List of assessments
 
 This course is assessed by a mix of problem sets and final exam. You can find the details below:
 
@@ -20,10 +28,11 @@ This course is assessed by a mix of problem sets and final exam. You can find th
 -   Exam questions will be comparable in style to the problem sets.
 -   The exam questions will be released on Moodle
 
-::: {.callout-important style="color:red"}
+::: {.callout-important}
 ## ⚠️ Import Update 11/10/2022
 
 Last year, DS202 exam was performed entirely online due to COVID-19 mitigation procedures. We want to run it online via our own Moodle page again this academic term, we just need to understand LSE regulations about exams for this year. 
 
 We will update you on this very soon (hopefully by the end of W04).
 :::
+

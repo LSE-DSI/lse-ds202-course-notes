@@ -1,0 +1,21 @@
+---
+title: "🗓️ Week 04 - Resampling Methods"
+date: 14 October 2022
+date-meta: 14 October 2022
+---
+
+We have made it to Week 04! In the labs, you will get a chance to explore different Classification algorithms (Logistic Regression and Naive Bayes) and how to think about their output. What can we say about predicted probabilities?
+
+
+This week's lecture (on **Friday 21 October 2022, Wolfson Theatre NAB.LG.01 2pm-4pm**) will be a bit different. We will not learn about new algorithms. Instead, we will learn how to compare models built from the three algorithms we learned about (linear regression, logistic regression and naive bayes). You will learn about the different metrics one could use to assess the predictive performance on a <mark>test set</mark> rather than just the goodness-of-fit of the <mark>training data</mark>.
+
+The structure of the lecture will also be a bit different, it will resemble a workshop more than a taught lecture. See you there!
+
+
+## Links
+
+- 👨‍🏫 [Lecture slides](/weeks/week04/lecture.qmd)
+
+- ✅ [Take a look at this week's checklist](/weeks/week04/checklist.qmd)
+
+- 💻 [This week's lab](/weeks/week04/lab.qmd)
