@@ -1,0 +1,23 @@
+---
+title: "Understanding Bayes' Theorem"
+subtitle: "DS202 Blog Post"
+date: 17 October 2022
+date-meta: 17 October 2022
+categories: [week03, bayesian statistics, equations]
+theme: lumen
+---
+
+This video will help you grasp the intuition behind Bayes' Theorem. 
+
+On [Week 03](/weeks/week03/lecture.qmd) (Part II), I showed you the following equation and mentioned that it forms the basis for one of the algorithms we explore in this course, Naive Bayes.
+
+$$
+P(\mathbf{Y} = k | \mathbf{X} = x) = \frac{P(k)P(\mathbf{X}|\mathbf{Y}=k)}{\sum_{l=1}^{K}{P(l)P(\mathbf{X}|\mathbf{Y}=l)}}
+$$
+
+The following video might help you understand the intuition behind the equation. Enjoy!
+
+<iframe width="728" height="410" src="https://www.youtube.com/embed/R13BD8qKeTg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<!-- [Potentially useful reference](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC374386/) -->
+
