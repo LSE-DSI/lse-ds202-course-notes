@@ -540,18 +540,19 @@ The breakdown of assessment for this class will be as follows:
 -   Each of the three summative problem sets is worth 20% of the final mark, and will be graded on a 100 point scale.
 :::
 
-## Assessments :notebook_with_decorative_cover:
+## Assessments :notebook_with_decorative_cover: {.smaller}
 
 <br/>
 
 ### Take-home exam (40%)
 
-::: incremental
+<!-- ::: incremental -->
 -   An open-book take-home exam, taken during the January exams period.
 -   Exam questions will be comparable in style to the problem sets.
--   The exam questions will be released on Moodle on <mark>5 January 2023.</mark> (tentative)
--   The exam is due on <mark>11 January at 4pm</mark> (tentative)
-:::
+-   ~~The exam questions will be released on Moodle on <mark>5 January 2023.</mark> (tentative)~~
+-   ~~The exam is due on <mark>11 January at 4pm</mark> (tentative)~~
+- <mark style="color: red">⚠️ Update 11/10/2022: Last year, DS202 exam was performed entirely online due to COVID-19 mitigation procedures. We want to run it online via our own Moodle page again this academic term, we just need to understand LSE regulations about exams for this year. We will update you on this very soon (hopefully by the end of W04).</mark>
+<!-- ::: -->
 
 
 

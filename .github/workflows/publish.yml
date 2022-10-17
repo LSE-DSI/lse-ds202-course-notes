@@ -39,8 +39,8 @@ jobs:
         run: install.packages("ISLR2")
         shell: Rscript {0}
 
-      - name: Install pROC
-        run: install.packages("pROC")
+      - name: Install pROC and e1071
+        run: install.packages("pROC");install.packages("e1071")
         shell: Rscript {0}
 
       - name: Set up Quarto

@@ -1,8 +1,0 @@
----
-title: "🔖 Week 02 - Appendix"
-date: 6 September 2022
-date-meta: 6 September 2022
-from: markdown+emoji
----
-
-<mark class="todo"></mark>

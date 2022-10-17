@@ -1,8 +1,8 @@
 ---
 title: "💻 Week 02 - Lab Roadmap (90 min)"
 author: Yijun Wang
-date: 12 September 2022
-date-meta: 12 September 2022
+date: 07 October 2022
+date-meta: 07 October 2022
 ---
 
 ## Solutions to exercises
@@ -10,54 +10,46 @@ date-meta: 12 September 2022
 1. Use the function `View() `to identify the type of a variable (quantitative or qualitative):
 
     ```r
-    > View(Auto)
+    View(Auto)
     ```
 
-   Variables mpg, cylinders, horsepower, weight, accelation, year, origin are quantitative variable. Variable name is qualitative varibale.
+   Variables mpg, cylinders, horsepower, weight, accelation, year are quantitative variable. Variables origin, name are qualitative varibale.
 
 2. Use the function `range()` to check the range of each quantitative predictor:
 
     ```r
-    > range(Auto$mpg)
-    [1]  9.0 46.6
-    ```
-
-    or
-
-     ```r
-    > attach(Auto)
-    > range(mpg)
+    range(Auto$mpg)
     [1]  9.0 46.6
     ```
    
-   To refer to a variable, we must type the data set and the variable name joined with a `$` symbol. Alternatively, we can use the attach() function in attach() order to tell R to make the variables in this data frame available by name. 
+   To refer to a variable, we must type the data set and the variable name joined with a `$` symbol. 
 
 3. Using `summary()` to have an overall look at all variables and statistical features (like mean and standard deviation) are included in the outputs:
 
     ```r
-    > summary(Auto)
+    summary(Auto)
     ```
 
    or
 
     ```r
-    > mean(Auto$mpg)
-    > sd(Auto$mpg)
+    mean(Auto$mpg)
+    sd(Auto$mpg)
     ```
 
-4. Remove 10th observation from the original data frame and store it as another new data frame:
+4. Remove the 10th through 85th observations from the original data frame and store it as another new data frame:
 
     ```r
-    > Auto_tmp = Auto[1:9, ]
-    > summary(Auto_tmp)
-    > mean(Auto_tmp$mpg)
-    > sd(Auto_tmp$mpg)
+    Auto_tmp = Auto[-c(10:85), ]
+    summary(Auto_tmp)
+    mean(Auto_tmp$mpg)
+    sd(Auto_tmp$mpg)
     ```
 
 5. Create a scatterplot matrix using the function pairs():
 
     ```r
-    > pairs( ~ mpg + displacement + horsepower + weight + 
+    pairs( ~ mpg + displacement + horsepower + weight + 
             acceleration + year + origin + cylinders, 
             data = Auto)
     ```
@@ -65,7 +57,7 @@ date-meta: 12 September 2022
     Notice the linear or non-linear trends in the scatterplots.Then create a histogram of the variable mpg:
    
     ```r
-    > hist (Auto$mpg , col = 2, breaks = 15)
+    hist (Auto$mpg , col = 2, breaks = 15)
     ```
     
     Use the `hist()` function to produce some histograms with differing numbers of bins for a few of the quantitative variables. You may find the command `par(mfrow = c(2, 2))` useful: it will divide the print window into four regions so that four plots can be made simultaneously. Modifying the arguments to this function will divide the screen in other ways.

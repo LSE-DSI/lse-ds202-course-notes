@@ -206,7 +206,7 @@ Example: if I toss a coin $1,000,000$ times, I expect $\approx 50\%$ heads and $
 ::: {style="min-height:15vh;display:block;font-size:0.75em;"}
 What is your judgement of the likelihood of the outcome? Based on previous information. 
 
-Example: if I know that this coin has symmetric weight, I expect a $ 50\%/50\%$ outcome.
+Example: if I know that this coin has symmetric weight, I expect a $50\%/50\%$ outcome.
 :::
 :::
 
@@ -263,7 +263,7 @@ $$
 :::
 
 ::: {.fragment}
-We model the probability that $Y = 1$ as:
+We model the probability that $Y = 1$ using the <mark>logistic function</mark> (aka. sigmoid curve):
 
 $$
 Pr(Y = 1|X) = p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1 X}}
@@ -288,7 +288,7 @@ Source of illustration: [TIBCO](https://www.tibco.com/reference-center/what-is-l
 
 - Changing $\beta_0$ while keeping $\beta_1 = 1$:
 
-```{r out.width="100%"}
+```{r out.width="100%", echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: false
 #| eval: true
 #| code-fold: show
@@ -343,10 +343,10 @@ ggplot(df %>% filter(beta == 1),
 
 ## The Logistic function (cont.) {.smaller}
 
-
 - Keep $\beta_0 = 0$ but vary $\beta_1$:
 
-```{r out.width="100%", out.height="100%", dpi=300}
+
+```{r out.width="100%", dpi=300, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: false
 #| eval: true
 #| code-fold: show
@@ -410,6 +410,15 @@ and we call this method the <mark>Maximum Likelihood Estimate</mark> (MLE).
 ➡️ As usual, there are [multiple ways](https://www.wikiwand.com/en/Maximum_likelihood_estimation#/Iterative_procedures) to solve this equation!
 :::
 
+::: aside
+
+::: {.fragment}
+💡 If you want to read on how exactly this is solved check [this link](https://rh8liuqy.github.io/logistic_regression_theory_hand_check.html)
+
+:::
+
+:::
+
 
 ::: notes
 Key takeaway of this slide: MLE (logistic regression) is analogous to OLS (linear regression).
@@ -468,6 +477,59 @@ How do you find the latitude and longitude of a mountain peak if you can't see v
 
 
 
+# Interpreting coefficients
+
+<br/>
+Since we now mostly care about <mark>probabilities</mark>, how do the <mark>odds</mark> change according to features of the customers?
+
+## The concept of <mark>odds</mark> {.smaller}
+
+The quantity below is called the <mark>odds</mark>:
+
+$$
+\frac{p(X)}{1 - p(X)} = e^{\beta_0 + \beta_1 X}
+$$
+
+
+::: {.callout-note style="margin-top:15%;"}
+## Example
+
+If the odds are 9, then $\frac{p(X)}{(1-p(X))} = 9 \Rightarrow p(X) = 0.9$. 
+
+This means that 9 out of 10 people will default. 
+:::
+
+::: callout-tip
+
+**How to interpret $\beta_1$**
+
+If X increases one unit then the odds increase by a factor of $e^{\beta_1}$
+:::
+
+::: footer
+
+::: {style="font-size:0.75em;"}
+📝 Give it a go! Using algebra, can you re-arrange the equation for $p(X)$ presented in the [_Logistic regression model_ slides](#the-logistic-regression-model) to arrive at the odds quantity shown above?
+:::
+:::
+
+## Log odds or _logit_ {.smaller}
+
+- It is also useful to think of the odds in log terms.
+
+$$
+log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X
+$$
+
+- We call the quantity above the <mark>log odds</mark> or <mark>logit</mark>
+
+::: callout-tip
+
+**How to interpret $\beta_1$**
+
+If X increases one unit then the log odds increase by $\beta_1$
+:::
+
 ## Example: `Default` data
 
 ::: columns
@@ -475,7 +537,7 @@ How do you find the latitude and longitude of a mountain peak if you can't see v
 ::: {.column width="45%"}
 A sample of the data:
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -492,7 +554,7 @@ head(ISLR2::Default, n=15)
 
 How the data is spread:
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -501,7 +563,7 @@ How the data is spread:
 summary(ISLR2::Default$default)
 ```
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -510,7 +572,7 @@ summary(ISLR2::Default$default)
 summary(ISLR2::Default$balance)
 ```
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -520,7 +582,7 @@ summary(ISLR2::Default$income)
 ```
 
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -536,7 +598,7 @@ summary(ISLR2::Default$student)
 
 ### Who is more likely to default?
 
-```{r out.width="100%"}
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: false
 #| eval: true
 #| code-fold: show
@@ -598,7 +660,7 @@ This is essentially the same plot as Figure 4.1 in [@james_introduction_2021]
 ### Does it matter if customer is a student? 
 
 
-```{r out.width="100%"}
+```{r out.width="100%", echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: false
 #| eval: true
 #| code-fold: show
@@ -655,11 +717,6 @@ g <-
 g
 ```
 
-# Interpreting coefficients
-
-<br/>
-Since we now mostly care about <mark>probabilities</mark>, how do the <mark>odds</mark> change according to features of the customers?
-
 ## Simple logistic regression models
 
 
@@ -667,7 +724,7 @@ Since we now mostly care about <mark>probabilities</mark>, how do the <mark>odds
 
 ::: {.column width="50%"}
 - **Income** 💰
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: true
 #| eval: true
 #| code-fold: false
@@ -683,7 +740,7 @@ cat(sprintf("beta_0 = %.5f | beta_1 = %e",
 
 - **Balance** 💸
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: true
 #| eval: true
 #| code-fold: false
@@ -702,7 +759,7 @@ cat(sprintf("beta_0 = %.5f | beta_1 = %.4f",
 ::: {.column width="50%"}
 - **Student** 🧑‍🎓
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 #| echo: true
 #| eval: true
 #| code-fold: false
@@ -731,46 +788,6 @@ Logistic regression coefficients are a bit trickier to interpret when compared t
 
 :::
 
-## The concept of <mark>odds</mark> {.smaller}
-
-The quantity below is called the <mark>odds</mark>:
-
-$$
-\frac{p(X)}{1 - p(X)} = e^{\beta_0 + \beta_1 X}
-$$
-
-
-::: {.callout-note style="margin-top:15%;"}
-## Example
-
-If the odds are 9, then $\frac{p(X)}{(1-p(X))} = 9 \Rightarrow p(X) = 0.9$. 
-
-This means that 9 out of 10 people will default. 
-:::
-
-::: footer
-
-::: {style="font-size:0.75em;"}
-📝 Give it a go! Using algebra, can you re-arrange the equation for $p(X)$ presented in the [_Logistic regression model_ slides](#the-logistic-regression-model) to arrive at the odds quantity shown above?
-:::
-:::
-
-## Log odds or _logit_ {.smaller}
-
-- It is also useful to think of the odds in log terms.
-
-$$
-log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X
-$$
-
-- We call the quantity above the <mark>log odds</mark> or <mark>logit</mark>
-
-::: callout-tip
-
-**How to interpret $\beta_1$**
-
-If X increases one unit then the odds increase by $e^{\beta_1}$
-:::
 
 ## Example: Default vs Balance
 
@@ -815,7 +832,7 @@ $$
   $$
   \begin{align}
   p(\text{default}=\text{Yes}) &= \frac{\text{odds}}{(1 + \text{odds})} \\
-                               &= 2.366877 \times 10^{5}\end{align}
+                               &= 2.366877 \times 10^{-5}\end{align}
   $$
 :::
 :::
@@ -828,7 +845,7 @@ $$
 - With `balance` information:
   - Log odds: $0.005498917$
   - Odds    : $e^{0.005498917} = 1.005514$
-  - That is, for every $\$1$ increase in balance, the probability of default <mark style="color:#069F72;">increases</mark> by $+0.5514\%$
+  - That is, for every $\$1$ increase in balance, the probability of default <mark style="color:#069F72;">increases</mark> <!--by $+0.5514\%$ -->
 
 :::
 :::
@@ -895,7 +912,7 @@ $$
 - With `balance` information:
   - Log odds: $- 8.352575$
   - Odds    : $e^{- 8.352575} = 0.9999916$
-  - That is, for every $\$1$ increase in income, the probability of default <mark style="color:#c9594c;">decreases</mark> by $0.000835254\%$
+  - That is, for every $\$1$ increase in income, the probability of default <mark style="color:#c9594c;">decreases</mark> <!-- by $0.000835254\%$ -->
 
 :::
 :::
@@ -962,8 +979,9 @@ $$
 - With `balance` information:
   - Log odds: $0.4048871$
   - Odds    : $e^{0.4048871} =  1.499133$
-  - If person is a student, then the probability of default <mark style="color:#069F72;">increases</mark> by $\approx 49\%$
-    - $p(\text{default}=\text{Yes}|\text{student}=\text{Yes}) \approx 4.3\%$
+ - If person is a student, then the probability of default <mark style="color:#069F72;">increases</mark>  <!-- by $\approx 49\%$ -->
+    <!-- - $p(\text{default}=\text{Yes}|\text{student}=\text{Yes}) \approx 4.3\%$ -->
+    
 :::
 :::
 

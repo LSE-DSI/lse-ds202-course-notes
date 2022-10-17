@@ -1,12 +1,23 @@
 ---
 title: "💻 Week 03 - Lab Roadmap (90 min)"
-date: 20 September 2022
-date-meta: 20 September 2022
+date: 9 October 2022
+date-meta: 9 October 2022
 from: markdown+emoji
-author: Yijun Wang
+author: DSI Teaching Team
 ---
 
 This week, we will fit simple and multiple linear regression models in R and learn to interpret the R output. We will apply this method to practical cases and deal with problems that commonly arise during this process.
+
+:::{.callout-tip collapse="true"}
+## Already know linear regression?
+
+If you already know linear regression from previous courses you have taken, why not take this knowledge to next level? Try to find a dataset online that contains a numerical variable you could predict by fitting a linear regression to it. I will be curious to see what you find. Share your findings on the `#week03` channel in our Slack. 
+
+You might want to check out, for example, [Data is Plural](https://www.data-is-plural.com/), run by Buzzfeed’s former data editor [🧑 Jeremy Singer-Vine](https://www.jsvine.com/). People send him interesting/funny/odd datasets and he shares them in this website and on a weekly newsletter. 
+
+:::
+
+
 
 <details><summary>Step 1: Simple linear regression (15 min)</summary>
 
@@ -17,8 +28,8 @@ We will follow the instructions below step by step together while answering what
 1. Install and load the `ISLR2` package, which contains a large collection of data sets and functions.
 
     ```r
-    > install.packages("ISLR2").
-    > library (ISLR2)
+    install.packages("ISLR2").
+    library (ISLR2)
     ```
     
     The function `install.packages()` is used to download packages that don't come with R. This installation only needs to be done the first time you use a package. However, the `library()` function must be called within each R session to load packages.
@@ -26,7 +37,7 @@ We will follow the instructions below step by step together while answering what
 2. Use the `Boston` data set in the `ISLR2` library. It records `medv` (median house value) for 506 census tracts in Boston. Have a look at the first few rows of the Boston data set:
 
     ```r
-    > head (Boston)
+    head (Boston)
         crim zn indus chas   nox    rm  age    dis rad tax ptratio lstat medv
     1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3  4.98 24.0
     2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8  9.14 21.6
@@ -44,77 +55,49 @@ We will follow the instructions below step by step together while answering what
     > lm.fit <- lm(medv ~ lstat , data = Boston)
     ```
 
-    or 
-
-   ```r
-    > attach (Boston)
-    > lm.fit <- lm(medv ~ lstat)
-    ```
 
     The basic syntax is `lm(y ∼ x, data)`, where `y` is the response, `x` is the predictor, and `data` is the data set in which we keep these two variables.
 
-4. Use the function `summary()` to understand detailed information about the model lm.fit we just fitted, like p-values and standard errors for the coefficients, as well as the $R^2$ statistic and F-statistic:
+4. Use the `tidy` function  to create a dataframe with columns for the estimate, standard error, f-statistic (estimate/standard error), p-values, and 95 percent confidence intervals: 
 
-    ```r
-    > summary(lm.fit)
-
-    Call:
-    lm(formula = medv ~ lstat, data = Boston)
-
-    Residuals:
-        Min      1Q  Median      3Q     Max 
-    -15.168  -3.990  -1.318   2.034  24.500 
-
-    Coefficients:
-                Estimate Std. Error t value Pr(>|t|)    
-    (Intercept) 34.55384    0.56263   61.41   <2e-16 ***
-    lstat       -0.95005    0.03873  -24.53   <2e-16 ***
-    ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-    Residual standard error: 6.216 on 504 degrees of freedom
-    Multiple R-squared:  0.5441,    Adjusted R-squared:  0.5432 
-    F-statistic: 601.6 on 1 and 504 DF,  p-value: < 2.2e-16
-    ```
-
-    Because `lm.fit` is a simple linear regression model, there are only two coefficients: $\hat{\beta}_0$ and $\hat{\beta}_1$. The Coefficients in the output shows the estimated value, standard error, t-test result and p-value for t-test of $\hat{\beta}_0$ and $\hat{\beta}_1$. The goodness-of-fit of the model can be measured by the RSE and $R^2$ in the output.
-
-    We can also use `lm.fit$coefficients` or `coef(lm.fit)` to check the coefficients of the regression model:
-
-    ```r
-    > coef(lm.fit)
-    (Intercept)       lstat 
-     34.5538409  -0.9500494 
-    ```
+    installing/loading broom:
     
-5. Obtain a confidence interval for the coefficient estimates using the `confint()` function:
-
     ```r
-    > confint (lm.fit)
-                    2.5 %     97.5 %
-    (Intercept) 33.448457 35.6592247
-    lstat       -1.026148 -0.8739505
+    install.packages("broom")
+    library(broom)
+
     ```
 
-6. Predict the value of `medv` for a given value of `lstat` and generate the confidence intervals of the predicted value:
 
     ```r
-    > predict(lm.fit, data.frame(lstat = (c(5, 10, 15))),
-               interval = "confidence")
-           fit      lwr      upr
-    1 29.80359 29.00741 30.59978
-    2 25.05335 24.47413 25.63256
-    3 20.30310 19.73159 20.87461
+    > tidy(lm.fit, conf.int = TRUE)
+
+
+    # A tibble: 2 × 7
+    term        estimate std.error statistic   p.value conf.low conf.high
+    <chr>          <dbl>     <dbl>     <dbl>     <dbl>    <dbl>     <dbl>
+    1 (Intercept)   34.6      0.563       61.4 3.74e-236    33.4     35.7  
+    2 lstat         -0.950    0.0387     -24.5 5.08e- 88    -1.03    -0.874
+
     ```
 
-   For instance, the 95 % confidence interval associated with a `lstat` value of 10 is (24.47, 25.63). As expected, the confidence is centred around the same point (a predicted value of 25.05 for `medv` when `lstat=10`).
-
-7. Plot `medv` and `lstat` along with the least squares regression line using the `plot()` and `abline()` functions.:
+    Because `lm.fit` is a simple linear regression model, there are only two coefficients: $\hat{\beta}_0$ and $\hat{\beta}_1$. The goodness-of-fit of the model can be measured by the $R^2$ in the output, which can be obtained (along with other model statistics) using the `glance` function.
 
     ```r
-    > plot(Boston$lstat, Boston$medv, col = "red", pch = "+")
-    > abline(lm.fit , lwd = 3, col = "blue")
-    > dev.off()
+    > glance(lm.fit)$r.squared
+    [1] 0.5441463
+    ```
+
+
+
+5. Plot `medv` and `lstat` along with the least squares regression line using the `geom_point()` and `geom_abline()` functions.::
+
+    ```r
+    library(tidyverse)
+
+    > ggplot(data = Boston, aes(x = lstat, y = medv)) +
+    geom_point() + 
+    geom_abline(intercept = lm.fit$coefficients[1], slope = lm.fit$coefficients[2])
     ```
 
 </details>
@@ -131,83 +114,67 @@ We will still use the `Boston` data set to fit multiple linear regression. The f
     
     ```r
     > lm.fit <- lm(medv ~ lstat + age , data = Boston)
-    > summary (lm.fit)
+    > tidy(lm.fit, conf.int = TRUE)
 
-    Call:
-    lm(formula = medv ~ lstat + age, data = Boston)
-
-    Residuals:
-        Min      1Q  Median      3Q     Max 
-    -15.981  -3.978  -1.283   1.968  23.158 
-
-    Coefficients:
-                Estimate Std. Error t value Pr(>|t|)    
-    (Intercept) 33.22276    0.73085  45.458  < 2e-16 ***
-    lstat       -1.03207    0.04819 -21.416  < 2e-16 ***
-    age          0.03454    0.01223   2.826  0.00491 ** 
-    ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-    Residual standard error: 6.173 on 503 degrees of freedom
-    Multiple R-squared:  0.5513,    Adjusted R-squared:  0.5495 
-    F-statistic:   309 on 2 and 503 DF,  p-value: < 2.2e-16
+    # A tibble: 3 × 7
+    term        estimate std.error statistic   p.value conf.low conf.high
+    <chr>          <dbl>     <dbl>     <dbl>     <dbl>    <dbl>     <dbl>
+    1 (Intercept)  33.2       0.731      45.5  2.94e-180  31.8      34.7   
+    2 lstat        -1.03      0.0482    -21.4  8.42e- 73  -1.13     -0.937 
+    3 age           0.0345    0.0122      2.83 4.91e-  3   0.0105    0.0586
     ```
-    The syntax `lm(y ~ x1 + x2 + x3)` is used to fit a model with three predictors, `x1`, `x2`, and `x3`. The `summary()` function now outputs the regression coefficients for all the predictors.
+    The syntax `lm(y ~ x1 + x2 + x3)` is used to fit a model with three predictors, `x1`, `x2`, and `x3`. The `tidy()` function now outputs the regression coefficients for all the predictors.
 
 2. Fit a multiple linear regression `lm()` model, with `medv` as the response, all rest variables as the predictors:
 
     ```r
     > lm.fit <- lm(medv ~ ., data = Boston)
-    > summary(lm.fit)
+    > tidy(lm.fit, conf.int = TRUE)
 
-    Call:
-    lm(formula = medv ~ ., data = Boston)
-
-    Residuals:
-         Min       1Q   Median       3Q      Max 
-    -15.1304  -2.7673  -0.5814   1.9414  26.2526 
-
-    Coefficients:
-                  Estimate Std. Error t value Pr(>|t|)    
-    (Intercept)  41.617270   4.936039   8.431 3.79e-16 ***
-    crim         -0.121389   0.033000  -3.678 0.000261 ***
-    zn            0.046963   0.013879   3.384 0.000772 ***
-    indus         0.013468   0.062145   0.217 0.828520    
-    chas          2.839993   0.870007   3.264 0.001173 ** 
-    nox         -18.758022   3.851355  -4.870 1.50e-06 ***
-    rm            3.658119   0.420246   8.705  < 2e-16 ***
-    age           0.003611   0.013329   0.271 0.786595    
-    dis          -1.490754   0.201623  -7.394 6.17e-13 ***
-    rad           0.289405   0.066908   4.325 1.84e-05 ***
-    tax          -0.012682   0.003801  -3.337 0.000912 ***
-    ptratio      -0.937533   0.132206  -7.091 4.63e-12 ***
-    lstat        -0.552019   0.050659 -10.897  < 2e-16 ***
-    ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-    Residual standard error: 4.798 on 493 degrees of freedom
-    Multiple R-squared:  0.7343,    Adjusted R-squared:  0.7278 
-    F-statistic: 113.5 on 12 and 493 DF,  p-value: < 2.2e-16   
+    # A tibble: 13 × 7
+    term         estimate std.error statistic  p.value conf.low conf.high
+    <chr>           <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
+    1 (Intercept)  41.6       4.94        8.43  3.79e-16  31.9     51.3    
+    2 crim         -0.121     0.0330     -3.68  2.61e- 4  -0.186   -0.0565 
+    3 zn            0.0470    0.0139      3.38  7.72e- 4   0.0197   0.0742 
+    4 indus         0.0135    0.0621      0.217 8.29e- 1  -0.109    0.136  
+    5 chas          2.84      0.870       3.26  1.17e- 3   1.13     4.55   
+    6 nox         -18.8       3.85       -4.87  1.50e- 6 -26.3    -11.2    
+    7 rm            3.66      0.420       8.70  4.81e-17   2.83     4.48   
+    8 age           0.00361   0.0133      0.271 7.87e- 1  -0.0226   0.0298 
+    9 dis          -1.49      0.202      -7.39  6.17e-13  -1.89    -1.09   
+    10 rad           0.289     0.0669      4.33  1.84e- 5   0.158    0.421  
+    11 tax          -0.0127    0.00380    -3.34  9.12e- 4  -0.0202  -0.00521
+    12 ptratio      -0.938     0.132      -7.09  4.63e-12  -1.20    -0.678  
+    13 lstat        -0.552     0.0507    -10.9   6.39e-25  -0.652   -0.452  
     ```
-
-    We can access the individual components of a summary object by name (type `?summary.lm` to see what is available). Hence `summary(lm.fit)$r.sq` gives us the R2, and `summary(lm.fit)$sigma` gives us the RSE.
+    
+We can access the individual components of a summary object by name (type `?glance` to see what is available). Hence `glance(lm.fit)$r.squared` gives us the $R^2$.
 
 3. Select variables:
     
-    In these two multiple linear regression models, the t-tests and F-test results suggest that all predictors are significant for the response variable. However,  it is more often the case that the response is only associated with a subset of the predictors. We call the process of determining which predictors are associated with the response as **variable selection**.
+    In these two multiple linear regression models, the t-tests and F-test results suggest that many of the predictors are significant for the response variable. However, some do not achieve statistical significance. Can you see which variables these are? 
+
+    We call the process of determining which predictors are associated with the response as **variable selection**.
 
     If the number of predictors is very small, we could perform the variable selection by trying out a lot of different models, each containing a different subset of the predictors. We can then select the best model out of all of the models we have considered.
 
-    If the number of predictors is not very small, the function `regsubsets()` could be used to select the best subset of variables. 
+    Using the template below, try figuring out the model which produces the highest adjusted $R^2$. The adjusted $R^2$ has a similar interpretation to $R^2$, only it is an advantage here as it penalises models that include insignificant parameters.
 
     ```r
-    > install.packages('leaps')
-    > library(leaps)
-    > regfit.full <- regsubsets(medv ~ ., Boston)
-    > summary (regfit.full)
+    lm.fit <- lm(medv ~ ., data = Boston)
+    glance(lm.fit)$adj.r.squared
+    [1] 0.7278399
+    ```  
+    We found that if you remove `indus` and `age`, the adjusted $R^2$ becomes slightly larger compared to including all predictors.
+
+    ```r
+    lm.fit <- lm(medv ~ ., data = Boston[,-c(3,7)])
+    glance(lm.fit)$adj.r.squared
+    [1] 0.7288734
     ```  
 
-    The `regsubsets()` function identifies the best model with a given number of predictors, where the best is quantified using RSS. The syntax is the same as for `lm()`. The `summary()` command outputs the best set of variables for each model size. You can use the argument `method` = "forward" or "backward" or "seqrep" choose selection methods. 
+
 
 </details>
 
@@ -225,30 +192,18 @@ We present a few of the many methods available, but those interested can explore
     In regression, an interaction effect exists when the effect of an independent variable on the response variable changes, depending on the values of one or more independent variables. When you believe there is an interaction effect, it is easy to include interaction terms in a linear model using the `lm()` function.
 
     ```r
-    > summary (lm(medv ~ lstat * age , data = Boston))
+    > tidy(lm(medv ~ lstat * age , data = Boston))
 
-    Call:
-    lm(formula = medv ~ lstat * age, data = Boston)
-
-    Residuals:
-        Min      1Q  Median      3Q     Max 
-    -15.806  -4.045  -1.333   2.085  27.552 
-
-    Coefficients:
-                  Estimate Std. Error t value Pr(>|t|)    
-    (Intercept) 36.0885359  1.4698355  24.553  < 2e-16 ***
-    lstat       -1.3921168  0.1674555  -8.313 8.78e-16 ***
-    age         -0.0007209  0.0198792  -0.036   0.9711    
-    lstat:age    0.0041560  0.0018518   2.244   0.0252 *  
-    ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-    Residual standard error: 6.149 on 502 degrees of freedom
-    Multiple R-squared:  0.5557,    Adjusted R-squared:  0.5531 
-    F-statistic: 209.3 on 3 and 502 DF,  p-value: < 2.2e-16
+    # A tibble: 4 × 5
+    term         estimate std.error statistic  p.value
+    <chr>           <dbl>     <dbl>     <dbl>    <dbl>
+    1 (Intercept) 36.1        1.47      24.6    4.91e-88
+    2 lstat       -1.39       0.167     -8.31   8.78e-16
+    3 age         -0.000721   0.0199    -0.0363 9.71e- 1
+    4 lstat:age    0.00416    0.00185    2.24   2.52e- 2
     ```
     
-    The syntax `lstat:black` tells R to include an interaction term between lstat and black. The syntax `lstat*age` simultaneously includes `lstat`, `age`, and the interaction term `lstat×age` as predictors; it is a shorthand for `lstat+age+lstat:age`.
+    The syntax `lstat:age` tells R to include an interaction term between lstat and age. The syntax `lstat*age` simultaneously includes `lstat`, `age`, and the interaction term `lstat×age` as predictors; it is a shorthand for `lstat+age+lstat:age`.
 
 2. Identify outliers through residual plots:
 
@@ -257,7 +212,6 @@ We present a few of the many methods available, but those interested can explore
     ```r
     > par(mfrow = c(2, 2))
     > plot(lm.fit)
-    > dev.off()
     ```
     
     The `plot` function automatically produces four diagnostic plots when you pass the output from `lm()`. Plots on the left column are residual plots, indicating the relationship between residuals and fitted values.
@@ -267,24 +221,29 @@ We present a few of the many methods available, but those interested can explore
     
     ```r
     > plot(predict(lm.fit), rstudent(lm.fit)
-    > dev.off()
+    
     ```
 
 3. Handle outliers:
 
    If we believe an outlier is due to an error in data collection or recording, then one solution is to simply remove the observation. However, care should be taken, as an outlier may instead signal a deficiency with our model, such as a missing predictor.
 
-4. Detect collinearity using the correlation matrix:
+4. Detect multicollinearity using the correlation matrix:
 
-    Collinearity refers to the situation in which two or more predictor variables collinearity are closely related to one another. It can be detected through the correlation matrix:
+    Multicollinearity refers to the situation in which two or more predictor variables are highly correlated to one another. It can be detected through the correlation matrix:
     
     ```r
-    > cor(Boston)
+    cor(Boston)
     ```
     
     Ignoring the last row and the last column in the matrix, which indicate the relationship with response variable `medv`, an element of this matrix that is large in absolute value indicates a pair of highly correlated variables, and therefore a collinearity problem in the data.
 
-    Or we could detect collinearity quantitatively using `vif()` function:
+    We can detect multicollinearity quantitatively using `vif()` function in the `car' package:
+
+    ```r
+    install.packages("car"))
+    library(car)
+    ```
 
     ```r
     > vif(lm.fit)
@@ -292,13 +251,20 @@ We present a few of the many methods available, but those interested can explore
 
     Instead of inspecting the correlation matrix, a better way to assess multicollinearity is to compute the variance inflation factor (VIF). As a rule of thumb, a VIF value that exceeds 5 or 10 indicates a problematic amount of collinearity.
 
+:::{.callout-tip collapse="true"}
+## Read more about VIF
+
+Check out our textbook [@james_introduction_2021, pages 99-103] for a description of the Variance Inflation Factor (VIF).
+
+:::
+
 5. Handle collinearity:
 
-    When faced with the problem of collinearity, there are two simple solutions. 
-    
-    The first is to drop one of the problematic variables from the regression. Doing this does not compromise the regression fit much since collinearity implies that the information this variable provides about the response is redundant in the presence of the other variables.   
+    When faced with the problem of multicollinearity, there are two simple solutions. 
 
-    The second solution is to combine the collinear variables into a single predictor.
+    -The first is to drop one of the problematic variables from the regression.
+
+    -The second solution is to combine the collinear variables into a single predictor, where such combination makes theoretical sense.
 
 </details>
 
@@ -311,22 +277,22 @@ Eight questions are listed below. You are required to try to answer these questi
 
 🎯 **Questions** 
 
-1. Use the `lm()` function to perform a simple linear regression with `mpg` as the response and `horsepower` as the predictor. Use the `summary()` function to print the results. Comment on the output. For example:
+1. Use the `lm()` function to perform a simple linear regression with `mpg` as the response and `horsepower` as the predictor. Use the `tidy()` function to print the results. Comment on the output. For example:
 
    i. Is there a relationship between the predictor and the response?
    ii. How strong is the relationship between the predictor and the response?
    iii. Is the relationship between the predictor and the response positive or negative?
    iv. What is the predicted `mpg` associated with a `horsepower` of 98? What are the associated 95 % confidence intervals?
 
-2. Plot the response and the predictor. Use the `abline()` function to display the least squares regression line.
+2. Plot the response and the predictor. Use the `geom_abline()` function to display the least squares regression line.
     
 3. Use the `plot()` function to produce diagnostic plots of the least squares regression fit. Comment on any problems you see with the fit.
 
 4. Produce a scatterplot matrix that includes all the variables in the data set.
 
-5. Compute the matrix of correlations between the variables using the function `cor()`. You will need to exclude the name variable, which is qualitative.
+5. Compute the matrix of correlations between the variables using the function `cor()`. You will need to exclude the `name` and `origin` variable, which are qualitative.
 
-6. Use the `lm()` function to perform a multiple linear regression with `mpg` as the response and all other variables except `name` as the predictors. Use the `summary()` function to print the results. Comment on the output. For instance:
+6. Use the `lm()` function to perform a multiple linear regression with `mpg` as the response and all other variables except `name` as the predictors. Use the `tidy()` function to print the results. Comment on the output. For instance:
 
    i. Is there a relationship between the predictors and the response?
    ii. Which predictors appear to have a statistically significant relationship to the response?
@@ -335,5 +301,13 @@ Eight questions are listed below. You are required to try to answer these questi
 7. Use the `plot()` function to produce diagnostic plots of the linear regression fit. Comment on any problems you see with the fit. Do the residual plots suggest any unusually large outliers? 
 
 8. Use the `*` and `:` symbols to fit linear regression models with interaction effects. Do any interactions appear to be statistically significant?
+
+:::{.callout-tip}
+
+If you could not finish all eight questions during the lab, take that as a home exercise. 
+
+Use the `#week03` channel on Slack if you have any questions.
+
+:::
 
 </details>

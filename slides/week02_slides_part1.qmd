@@ -136,8 +136,8 @@ $$
 </mark>
 :::
 
-::: {.column style="width: 40%;margin-left:20%;padding:0%;"}
-```{r dpi=300}
+::: {.column style="width: 45%;margin-left:5%;padding:0%;"}
+```{r dpi=300, echo=FALSE}
 # | data-id=1
 library(ggplot2)
 
@@ -164,7 +164,7 @@ g
 
 :::
 
-::: {.incremental .r-fit-text}
+::: {.incremental style="margin-top:-10%"}
 where:
 
 - <mark class="math">$\beta_0$</mark>: an unknown constant that represents the **intercept** of the line.
@@ -193,9 +193,8 @@ $$
 
 :::
 
-::: {.column style="width: 40%;margin-left:20%;padding:0%;"}
-```{r dpi=300}
-# | data-id=1
+::: {.column style="width: 45%;margin-left:5%;padding:0%;"}
+```{r dpi=300, echo=FALSE, warning=FALSE}
 
 library(ggplot2)
 
@@ -234,7 +233,7 @@ g
 
 :::
 
-::: {.incremental}
+::: {.incremental style="margin-top:-10%"}
 where:
 
 - <mark class="math">$\hat{y}$</mark>: is a prediction of $Y$ on the basis of $X = x$.
@@ -272,9 +271,9 @@ There are multiple ways to estimate the coefficients.
 :::
 
 
-::: {.column style="width: 40%;margin-left:0%;padding:0%;"}
+::: {.column style="width: 35%;margin-left:5%;padding:0%;"}
 
-```{r out.height="100%", dpi=300}
+```{r out.height="100%", dpi=300, echo=FALSE, warning=FALSE}
 # | data-id=1
 
 library(ggplot2)
@@ -333,11 +332,11 @@ We will only cover <mark>OLS</mark> in this course.
 
 To understand the Ordinary Least Squares method, we first need to understand the concept of residuals.
 
-## The concept of <mark style="color:#c9594c;">residuals</mark>
+## The concept of <mark style="color:#c9594c;">residuals</mark> {.smalller}
 
 Suppose you came across some data:
 
-```{r fig.height=4, dpi=300}
+```{r fig.height=3, dpi=300, echo=FALSE, warning=FALSE}
 # | data-id=1
 
 library(ggplot2)
@@ -362,8 +361,8 @@ g <-
   theme_bw() +
 	theme(legend.position = "bottom",
         legend.text = element_text(size=16),
-        axis.title.x = element_text(size=25),
-        axis.title.y = element_text(size=25),
+        axis.title.x = element_text(size=22),
+        axis.title.y = element_text(size=22),
         axis.text.x = element_text(size=20),
         axis.text.y = element_text(size=20),
         panel.grid.minor = element_blank()) +
@@ -385,11 +384,11 @@ _And you suspect there is a linear relationship between X and Y._
 First, let's think of the concept of residuals...
 :::
 
-## The concept of <mark style="color:#c9594c;">residuals</mark>
+## The concept of <mark style="color:#c9594c;">residuals</mark> {.smaller}
 
 So, you decide to fit a line to it.
 
-```{r fig.height=4, dpi=300}
+```{r fig.height=3, dpi=300, echo=FALSE, warning=FALSE}
 # | data-id=1
 
 library(ggplot2)
@@ -410,7 +409,7 @@ g <-
   geom_abline(intercept=0.90, slope=0.17, size=1.4, color="#585858", alpha=0.8) +
 
 
-  annotate(geom="text", x=1.51, y=0.25, color="#585858", size=7, hjust=0,
+  annotate(geom="text", x=1.51, y=0.25, color="#585858", size=5.5, hjust=0,
            label=expression(paste("Fitted line: ", hat(y) == ~0.90 + 0.17 * ~X))) +
 
   # EXTRA
@@ -420,8 +419,8 @@ g <-
   theme_bw() +
 	theme(legend.position = "bottom",
         legend.text = element_text(size=16),
-        axis.title.x = element_text(size=25),
-        axis.title.y = element_text(size=25),
+        axis.title.x = element_text(size=22),
+        axis.title.y = element_text(size=22),
         axis.text.x = element_text(size=20),
         axis.text.y = element_text(size=20),
         panel.grid.minor = element_blank()) +
@@ -438,13 +437,13 @@ g
 _A line that goes right through the middle of the cloud of data._
 :::
 
-## The concept of <mark style="color:#c9594c;">residuals</mark>
+## The concept of <mark style="color:#c9594c;">residuals</mark> {.smaller}
 
 <!-- <p class="r-fit-text"> -->
 <mark style="color:#c9594c;">Residuals</mark> are the distances from each data point to this line.
 <!-- </p> -->
 
-```{r fig.height=4, dpi=300}
+```{r fig.height=3, dpi=300, echo=FALSE, warning=FALSE}
 # | data-id=1
 
 library(ggplot2)
@@ -467,7 +466,7 @@ g <-
   geom_abline(intercept=0.90, slope=0.17, size=1.4, color="#585858", alpha=0.8) +
 
 
-  annotate(geom="text", x=1.51, y=0.25, color="#585858", size=7, hjust=0,
+  annotate(geom="text", x=1.51, y=0.25, color="#585858", size=5.5, hjust=0,
            label=expression(paste("Fitted line: ", hat(y) == ~0.90 + 0.17 * ~X))) +
 
   # EXTRA
@@ -477,8 +476,8 @@ g <-
   theme_bw() +
 	theme(legend.position = "bottom",
         legend.text = element_text(size=16),
-        axis.title.x = element_text(size=25),
-        axis.title.y = element_text(size=25),
+        axis.title.x = element_text(size=22),
+        axis.title.y = element_text(size=22),
         axis.text.x = element_text(size=20),
         axis.text.y = element_text(size=20),
         panel.grid.minor = element_blank()) +
@@ -708,7 +707,7 @@ The values $\hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_p$ that minimize RS
 ::: {.column width="45%"}
 A sample of the data:
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -727,7 +726,7 @@ head(advertising, 11)
 
 How the data is spread:
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -736,7 +735,7 @@ How the data is spread:
 summary(advertising$TV)
 ```
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -745,7 +744,7 @@ summary(advertising$TV)
 summary(advertising$radio)
 ```
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -755,7 +754,7 @@ summary(advertising$newspaper)
 ```
 
 
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -773,11 +772,10 @@ summary(advertising$sales)
 
 Is advertising spending related to sales?
 
-```{r out.width="100%"}
+```{r fig.width=9, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
 #| echo: false
 #| eval: true
-#| code-fold: show
-#| code-overflow: wrap
+#| code-fold: false
 
 plot_df <- 
   advertising %>% 
@@ -829,7 +827,7 @@ This is the plot you see in the book [@james_introduction_2021, chapter 3]
 
 Is advertising spending related to sales?
 
-```{r out.width="100%"}
+```{r fig.width=9, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
 #| echo: false
 #| eval: true
 #| code-fold: show
@@ -887,7 +885,7 @@ This is the same plot but now all scales match
 ::: {.column width="50%"}
 
 - **TV** 📺
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| echo: true
 #| eval: true
 #| code-fold: false
@@ -900,7 +898,7 @@ cat(sprintf("Sales (1k units) = %.4f %+.4f TV ($ 1k)\n",
 ```
 
 - **Radio** 📻
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| echo: true
 #| eval: true
 #| code-fold: false
@@ -916,7 +914,7 @@ cat(sprintf("Sales (1k units) = %.4f %+.4f Radio ($ 1k)\n",
 
 ::: {.column width="50%"}
 - **Newspaper** 📰
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| echo: true
 #| eval: true
 #| code-fold: false
@@ -953,7 +951,7 @@ cat(sprintf("Sales (1k units) = %.4f %+.4f Newspaper ($ 1k)\n",
 ::: {.incremental}
 - If we were to fit a linear model from repeated samples of the data, we would get different coefficients every time.
 - Because of the [Central Limit Theorem](https://statisticsbyjim.com/basics/central-limit-theorem/), we know that the **mean of this sampling distribution** can be approximated by a <mark>Normal Distribution</mark>.
-- We know from [Normal Theory](http://www.homepages.ucl.ac.uk/~ucaktwa/teaching/NormalTheory.pdf) that 95% of the distribution lies in $[\mu - 2 \sigma, \mu + 2 \sigma]$.  
+- We know from [Normal Theory](http://www.homepages.ucl.ac.uk/~ucaktwa/teaching/NormalTheory.pdf) that 95% of the distribution lies within two times the standard deviation (centered around the mean).  
 :::
 
 ::: {.fragment fragment-index=5}
@@ -1043,7 +1041,7 @@ What are the confidence intervals of our independent linear models?
 ::: {.column width="50%"}
 
 - **TV** 📺
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -1054,7 +1052,7 @@ confint(tv_model)
 ```
 
 - **Radio** 📻
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -1068,7 +1066,7 @@ confint(radio_model)
 
 ::: {.column width="50%"}
 - **Newspaper** 📰
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -1126,11 +1124,10 @@ by
 $$
 t = \frac{\hat{\beta}_1 - 0}{\mathrm{SE}(\hat{\beta}_1)},
 $$
-::: incremental
 - This will have a t-distribution[^1] with $n - 2$ degrees of freedom, assuming $\beta_1 = 0$.
 - Using statistical software, it is easy to compute the probability of observing any value equal to $\mid t \mid$ or larger.
 - We call this probability the <mark>p-value</mark>.
-:::
+
 
 [^1]: 🤔 How are the t-distribution and the Normal distribution related? Check [this link](https://rpsychologist.com/d3/tdist/) to find out.
 
@@ -1143,7 +1140,7 @@ How significant are the linear models?
 ::: {.column width="50%"}
 
 - **TV** 📺
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -1151,11 +1148,11 @@ How significant are the linear models?
 #| code-overflow: wrap
 
 out <- capture.output(summary(tv_model))
-cat(paste(out[16:16]), sep="\n")
+cat(paste(out[9:15]), sep="\n")
 ```
 
 - **Radio** 📻
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true
@@ -1170,7 +1167,7 @@ cat(paste(out[9:15]), sep="\n")
 
 ::: {.column width="50%"}
 - **Newspaper** 📰
-```{r}
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 #| output-location: fragment
 #| echo: true
 #| eval: true

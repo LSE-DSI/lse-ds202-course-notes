@@ -1,0 +1,165 @@
+---
+title: "Week 03 - Lab Roadmap"
+author: "Yijun Wang"
+date: "2022-10-10"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(ISLR2)
+library(tidyverse)
+```
+
+## 🔑 Solutions to exercises
+
+
+### Q1
+
+**Use the `lm()` function to perform a simple linear regression with `mpg` as the response and `horsepower` as the predictor. Use the `tidy()` function to print the results. Comment on the output.**
+
+**For example:**
+
+i. **Is there a relationship between the predictor and the response?**
+ii. **How strong is the relationship between the predictor and the response?**
+iii. **Is the relationship between the predictor and the response positive or negative?**
+iv. **What is the predicted `mpg` associated with a `horsepower` of 98? What are the associated 95 % confidence intervals?**
+
+```{r}
+Auto <- na.omit(Auto)
+lm.fit <- lm(mpg ~ horsepower, data = Auto)
+summary(lm.fit)
+```
+    
+
+Regarding to the p-values of t-test and F-test, there is a strong relationship between the predictor `horsepower` and the response `mpg`. From the sign of coefficients, the relationship between the predictor and the response is negative. Using the function `predict()` to predict the value of response and the confidence interval, we get:
+
+```{r}
+predict(lm.fit, data.frame(horsepower = 98), interval = "confidence")
+``` 
+    
+Therefore, the predicted `mpg` associated with a `horsepower` of 98 is 24.47, and the associated 95 % confidence interval is [23.97308, 24.96108].
+
+### Q2
+
+**Pot the response and the predictor. Use the `geom_abline()` function to display the least squares regression line.**
+
+
+In base R (without using any tidverse or any other package):
+
+```{r}
+plot(Auto$horsepower, Auto$mpg, xlim = c(0, 250))
+abline (lm.fit, lwd = 3, col = "red")
+``` 
+
+Using ggplot (from tidyverse):
+
+```{r}
+ggplot(data = Auto, aes(x = horsepower, y = mpg)) +
+  geom_point(alpha=0.6, size=2.5) +
+  geom_abline(intercept = lm.fit$coefficients[1], 
+              slope = lm.fit$coefficients[2],
+              color="red", size=1.2) +
+  theme_bw()
+```
+
+### Q3
+
+**Use the `plot()` function to produce diagnostic plots of the least squares regression fit. Comment on any problems you see with the fit.***
+
+
+```{r}
+par(mfrow = c(2, 2))
+plot(lm.fit)
+```
+
+By observing four diagnostic plots, we could find non-linear pattern in residual plots. The quadratic trend of the residuals could be a problem. Then we plot studentized residuals to identify outliers:
+
+```{r}
+plot(predict(lm.fit), rstudent(lm.fit))
+```
+    
+There are possible outliers as seen in the plot of studentized residuals because there are data with a value greater than 3.
+
+### Q4
+
+**Produce a scatterplot matrix that includes all the variables in the data set.**
+
+
+```{r}
+pairs(Auto)
+```
+
+### Q5
+
+**Compute the matrix of correlations between the variables using the function `cor()`. You will need to exclude the `name` and `origin` variable, which is qualitative.**
+
+```{r}
+cor(subset(Auto, select = -name))
+```
+
+A nicer way to plot correlations is through the package `ggcorrplot`:
+
+```{r warning=FALSE, message=FALSE}
+library(ggcorrplot)
+
+ggcorrplot(cor(Auto %>% select(-c(name))))
+```
+
+### Q6
+
+**Use the `lm()` function to perform a multiple linear regression with `mpg` as the response and all other variables except `name` as the predictors. Use the `tidy()` function to print the results. Comment on the output.**
+
+**For instance:**
+
+i. **Is there a relationship between the predictors and the response?**
+ii. **Which predictors appear to have a statistically significant relationship to the response?**
+iii. **What does the coefficient for the year variable suggest?**
+
+
+```{r}
+lm.fit1 <- lm(mpg ~ . -name, data = Auto)
+summary(lm.fit1)
+```
+    
+i. Yes, there is a relationship between the predictors and the response by testing the null hypothesis of whether all the regression coefficients are zero. The F-statistic is far from 1 (with a small p-value), indicating evidence against the null hypothesis.
+
+ii. Observing the p-values associated with each predictor’s t-statistic, we see that displacement, weight, year, and origin have a statistically significant relationship, while cylinders, horsepower and acceleration do not.
+
+iii. The regression coefficient for year is 0.75. This suggests that, considering all other predictors fixed, mpg increases by additional 0.75 unit. In other words, cars become more fuel efficient every year by almost 1 mpg/year.
+
+### Q7
+
+**Use the `plot()` function to produce diagnostic plots of the linear regression fit. Comment on any problems you see with the fit. Do the residual plots suggest any unusually large outliers?**
+
+
+```{r}
+par(mfrow = c(2, 2))
+plot(lm.fit1)
+```
+    
+From the leverage plot, we see that point 14 appears to have a high leverage, although not a high magnitude residual. Besides, the quadratic trend of the residuals could be a problem. Maybe linear regression is not the best fit for this prediction. 
+     
+We plot studentized residuals to identify outliers:
+
+```{r}
+plot(predict(lm.fit1), rstudent(lm.fit1))
+```
+
+There are possible outliers as seen in the plot of studentized residuals because there are data with a value greater than 3.
+
+### Q8
+
+**Use the `*` and `:` symbols to fit linear regression models with interaction effects. Do any interactions appear to be statistically significant?**
+
+
+```{r}
+lm.fit2 <-  lm(mpg ~ cylinders * displacement + displacement * weight, data = Auto)
+summary(lm.fit2)
+```
+
+Interaction between `displacement` and `weight` is statistically signifcant, while the interaction between `cylinders` and `displacement` is not.
