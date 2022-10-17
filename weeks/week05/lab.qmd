@@ -23,9 +23,9 @@ In this step, we will explore how to extract the subset of the whole dataset as 
 1. Split the `Auto` dataset into two halves, as randomly selecting 196 observations out of the original 392 observations.
 	
 	```{r}
-	> library(ISLR2)
-	> set.seed(1)
-	> train <- sample(392, 196)
+	library(ISLR2)
+	set.seed(1)
+	train <- sample(392, 196)
 	```
 	Please note that, the `set.seed()` is important here as it set a **seed** for the random number generator. Literally, the same results will be replicated in the following steps. Further information can be found in the official documentation.[Seeding Random Variate Generators](https://www.rdocumentation.org/packages/simEd/versions/2.0.0/topics/set.seed) Also, I provide some details to help you understand this function in the following part.
 
