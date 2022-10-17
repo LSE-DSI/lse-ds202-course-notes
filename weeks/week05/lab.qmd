@@ -3,7 +3,7 @@ title: "💻 Week 05 - Lab Roadmap (90 min)"
 date: 06 October 2022
 date-meta: 06 October 2022
 from: markdown+emoji
-author: Xiaowei Gao
+author: Xiaowei Gao & Stuart Bramwell
 ---
 
 <p> Last week we learnt how to do the Classification Methods in R. As data scientists, we need to know how to examine the results we generated and also to justify our results.  So, we will focus on and practice the validation methods in the R language in this week's lab. 
@@ -22,7 +22,7 @@ In this step, we will explore how to extract the subset of the whole dataset as 
 
 1. Split the `Auto` dataset into two halves, as randomly selecting 196 observations out of the original 392 observations.
 	
-	```r
+	```{r}
 	> library(ISLR2)
 	> set.seed(1)
 	> train <- sample(392, 196)
