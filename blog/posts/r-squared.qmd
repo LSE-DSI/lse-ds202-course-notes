@@ -40,10 +40,7 @@ y_n
 \end{array}\right].
 $$
 
-
-## A simple linear regression (p=1)
-
-Let's start with the simplest case where you use just one feature, $\mathbf{y} \sim \mathbf{x}_1$. To simplify the notation later on, I will denote the estimated regression coefficients $\beta_0'$ and $\beta_1'$.
+## About $R^2$
 
 As we saw briefly on [Week 02](/weeks/week02/lecture.qmd) and as defined in Chapter 3 of the textbook [@james_introduction_2021], $R^2$ represents the proportion of variability in the response variable that can be explained using the dependent variables (features). More specifically:
 
@@ -59,13 +56,72 @@ $$
 
 and $\bar{y}$ is the mean of $\mathbf{y}$.
 
-As for the $\operatorname{RSS}$, it represents the <mark>Residual Sum of Squares</mark>. I will denote the RSS of the simple linear regression as  $\operatorname{RSS}_{(p=1)}$:
+As for the $\operatorname{RSS}$, it represents the <mark>Residual Sum of Squares</mark>. 
+
+To understand why $R^2$ can never decrease if we add more features, I think it is useful to visualise linear regression in matrix format.
+
+## Linear Regression in matrix format
+
+We can also represent the regression coefficients obtained by <mark>Ordinary Least Squares</mark> ([OLS](/slides/week02_slides_part1.html#/ordinary-least-squares)) in matrix format. $\hat{\boldsymbol{\beta}}$ is a $1 \times (p+1)$ matrix:
 
 $$
-\operatorname{RSS}_{(p=1)} = \sum_i^n{e_i^2} = \sum_i^n{\left(y_i - \hat{y}_i'\right)^2} = \sum_i^n{\left(y_i - \beta_0' - \beta_1' x_{i1}\right)^2}
+\hat{\boldsymbol{\beta}} = \left[
+\begin{array}{c}
+\hat{\beta}_{0}\\
+\hat{\beta}_1\\
+\hat{\beta}_2
+\end{array}\right].
 $$
 
+When thinking about regression this way, it is often useful to add an additional column of 1s to $\mathbf{X}$:
 
+$$
+\mathbf{X} = \left[
+\begin{array}{ccc}
+1 & x_{11}&x_{12}\\
+1 & x_{21}&x_{22}\\
+1 & \vdots&\vdots\\
+1 & x_{n1}&x_{n2} 
+\end{array}\right],
+$$
+
+so that:
+
+$$
+\hat{\boldsymbol{\beta}}\mathbf{X} =\left[
+\begin{array}{c}
+\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{11} + \hat{\beta}_2 \times x_{12}\\
+\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{21} + \hat{\beta}_2 \times x_{22}\\
+\vdots  \\ 
+\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{n1} + \hat{\beta}_2 \times x_{n2}\\
+\end{array}\right] = \hat{\mathbf{y}}
+$$
+
+represents the estimated values $\hat{\mathbf{y}}$.
+
+Residuals can then be represented as $\mathbf{e} = (\mathbf{y} - \hat{\mathbf{y}})$, or
+
+$$
+\mathbf{e} =\left[
+\begin{array}{c}
+y_{1} - (\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{11} + \hat{\beta}_2 \times x_{12})\\
+y_{2} - (\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{21} + \hat{\beta}_2 \times x_{22})\\
+\vdots  \\ 
+y_{n} = (\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{n1} + \hat{\beta}_2 \times x_{n2})\\
+\end{array}\right] 
+$$
+
+OLS provides an optimal way to find coefficients $\mathbf{\hat{\beta}}$ that minimizes $\operatorname{RSS}$.
+
+In matrix format, the $\operatorname{RSS}$ can be represented as:
+
+$$
+\operatorname{RSS} = \mathbf{e}^T\mathbf{e}.
+$$
+
+## Regression with all features
+
+If we use all features ($p=2$) of our example, then OLS will find an optimal solution to $\text{min } \operatorname{RSS}$. Let's call it $$
 
 ## Now, increase one feature (p=2)
 
