@@ -74,6 +74,19 @@ Guest Teacher at the [LSE Data Science Institute](https://lse.ac.uk/dsi)<br>
 Product Developer at [Decoded](https://decoded.com/) <br> 
 MSc in Applied Social Data Science (LSE)
 
+## Students
+
+
+![](/figures/people/Yoyo.png){fig-align="left" fig-alt="Photo of Zhang Ruishan (Yoyo)" width="5em"}  
+**Zhang Ruishan (Yoyo)** <br/>
+1st Year BSc Economics Student <br/>
+Course Representative for DS202
+
+![](/figures/people/Rachitha.png){fig-align="left" fig-alt="Photo of Rachitha Raghuram" width="5em"}  
+**Rachitha Raghuram** <br/>
+2nd Year BSc Economics Student <br/>
+Course Representative for DS202
+
 ## Administrative Support
 
 
@@ -91,6 +104,8 @@ Tel: +44 (0) 20 7955 7759<br/>
 Email: [DSI.Admin@lse.ac.uk](mailto:DSI.Admin@lse.ac.uk)
 
 :::
+
+
 
 # Class Groups
 
