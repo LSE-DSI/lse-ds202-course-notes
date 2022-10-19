@@ -14,32 +14,6 @@ When using [OLS](/slides/week02_slides_part1.html#/ordinary-least-squares), $R^2
 
 :::
 
-## Data and Variables
-
-Suppose you have the following data:
-
-$$
-\mathbf{X} = \left[
-\begin{array}{cc}
-x_{11}&x_{12}\\
-x_{21}&x_{22}\\
-\vdots&\vdots\\
-x_{n1}&x_{n2} 
-\end{array}\right],
-$$
-
- that is, $p=2$ features for $n$ observations, and you want to fit a linear regression to attempt to predict the $\mathbf{y}$ column below:
- 
-$$
-\mathbf{y} = \left[
-\begin{array}{c}
-y_{1}\\
-y_2\\
-\vdots\\
-y_n
-\end{array}\right].
-$$
-
 ## About $R^2$
 
 As we saw briefly on [Week 02](/weeks/week02/lecture.qmd) and as defined in Chapter 3 of the textbook [@james_introduction_2021], $R^2$ represents the proportion of variability in the response variable that can be explained using the dependent variables (features). More specifically:
@@ -60,16 +34,44 @@ As for the $\operatorname{RSS}$, it represents the <mark>Residual Sum of Squares
 
 To understand why $R^2$ can never decrease if we add more features, I think it is useful to visualise linear regression in matrix format.
 
-## Linear Regression in matrix format
+## Data and Variables
 
-We can also represent the regression coefficients obtained by <mark>Ordinary Least Squares</mark> ([OLS](/slides/week02_slides_part1.html#/ordinary-least-squares)) in matrix format. $\hat{\boldsymbol{\beta}}$ is a $1 \times (p+1)$ matrix:
+Suppose you have the following data:
+
+$$
+\mathbf{X} = \left[
+\begin{array}{cc}
+x_{11}\\
+x_{21}\\
+\vdots\\
+x_{n1} 
+\end{array}\right],
+$$
+
+
+
+that is, there i only $p=1$ feature for the $n$ observations of data, and you want to fit a linear regression to attempt to predict the $\mathbf{y}$ column below:
+ 
+$$
+\mathbf{y} = \left[
+\begin{array}{c}
+y_{1}\\
+y_2\\
+\vdots\\
+y_n
+\end{array}\right].
+$$
+
+
+## Simple Linear Regression in matrix format
+
+We can also represent the regression coefficients obtained by <mark>Ordinary Least Squares</mark> ([OLS](/slides/week02_slides_part1.html#/ordinary-least-squares)) in matrix format.<br/> $\hat{\boldsymbol{\beta}}$ is a $1 \times (p+1)$ matrix:
 
 $$
 \hat{\boldsymbol{\beta}} = \left[
 \begin{array}{c}
 \hat{\beta}_{0}\\
-\hat{\beta}_1\\
-\hat{\beta}_2
+\hat{\beta}_1
 \end{array}\right].
 $$
 
@@ -77,11 +79,11 @@ When thinking about regression this way, it is often useful to add an additional
 
 $$
 \mathbf{X} = \left[
-\begin{array}{ccc}
-1 & x_{11}&x_{12}\\
-1 & x_{21}&x_{22}\\
-1 & \vdots&\vdots\\
-1 & x_{n1}&x_{n2} 
+\begin{array}{cc}
+1 & x_{11}\\
+1 & x_{21}\\
+1 & \vdots\\
+1 & x_{n1} 
 \end{array}\right],
 $$
 
@@ -90,10 +92,10 @@ so that:
 $$
 \hat{\boldsymbol{\beta}}\mathbf{X} =\left[
 \begin{array}{c}
-\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{11} + \hat{\beta}_2 \times x_{12}\\
-\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{21} + \hat{\beta}_2 \times x_{22}\\
+\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{11} \\
+\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{21} \\
 \vdots  \\ 
-\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{n1} + \hat{\beta}_2 \times x_{n2}\\
+\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{n1}\\
 \end{array}\right] = \hat{\mathbf{y}}
 $$
 
@@ -104,14 +106,14 @@ Residuals can then be represented as $\mathbf{e} = (\mathbf{y} - \hat{\mathbf{y}
 $$
 \mathbf{e} =\left[
 \begin{array}{c}
-y_{1} - (\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{11} + \hat{\beta}_2 \times x_{12})\\
-y_{2} - (\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{21} + \hat{\beta}_2 \times x_{22})\\
+y_{1} - (\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{11}) \\
+y_{2} - (\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{21} )\\
 \vdots  \\ 
-y_{n} = (\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{n1} + \hat{\beta}_2 \times x_{n2})\\
+y_{n} - (\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{n1})\\
 \end{array}\right] 
 $$
 
-OLS provides an optimal way to find coefficients $\mathbf{\hat{\beta}}$ that minimizes $\operatorname{RSS}$.
+OLS provides an optimal way to find coefficients $\hat{\boldsymbol{\beta}}$ that minimizes $\operatorname{RSS}$.
 
 In matrix format, the $\operatorname{RSS}$ can be represented as:
 
@@ -119,88 +121,66 @@ $$
 \operatorname{RSS} = \mathbf{e}^T\mathbf{e}.
 $$
 
-## Regression with all features
+OLS will find an optimal solution to $\text{minimise } \operatorname{RSS}$. Let's call it $\operatorname{RSS}_{(p=1)}$.
 
-If we use all features ($p=2$) of our example, then OLS will find an optimal solution to $\text{min } \operatorname{RSS}$. Let's call it $$
+## What if I add another feature?
 
-## Now, increase one feature (p=2)
+💡 **What would happen if I added a second feature and ran a regression with $p=2$?**
 
-When we add the second column of $\mathbf{x}_2$ to the linear regression and we fit $\mathbf{y} \sim \mathbf{x}_1 + \mathbf{x}_2$, we will obtain a new set of regression coefficients — ${\beta}_0''$,  ${\beta}_1''$ and ${\beta}_2''$ — as well as new corresponding $\operatorname{RSS}_{(p=2)}$ and $\operatorname{R^2}_{(p=2)}$ values. Note that $\operatorname{TSS}$ is always the same, irrespective of the number of features.
+Think of the implications this has for the matrix of coefficients $\hat{\boldsymbol{\beta}}$ and matrix of residuals $\mathbf{e}$ if I decided to add a second column of data to $\mathbf{X}$.
 
-To understand why $R^2$ always stays the same or increases when $p$ increases, let's compare $\operatorname{RSS}_{(p=2)}$ to $\operatorname{RSS}_{(p=1)}$. First, let's expand $\operatorname{RSS}_{(p=2)}$:
+The new extended feature matrix, let's call it $\mathbf{X}'$, would look like the following:
 
-$$
-\begin{align}
-\operatorname{RSS}_{(p=2)} =& \sum_i^n{\left(y_i - \hat{y}_i''\right)^2}\\
-                           =& \sum_i^n{\left( y_i - {\beta}_0'' - {\beta}_1'' x_{i1} - {\beta}_2'' x_{i2} \right)^2}\\
-\end{align}
-$$
-
-## Recall the objective function of OLS
-
-In this course we are only interested in the <mark>Ordinary Least Squares</mark> ([OLS](/slides/week02_slides_part1.html#/ordinary-least-squares)) method to estimate the regression coefficients of our linear model. OLS will always try to minimize $\operatorname{RSS}$ and so, what does that mean to $\operatorname{RSS}_{(p=2)}$?
-
-Now, <mark style="color:red">let's plug the previous estimate, $y_i = \beta_0' + \beta_1' x_{i1}$</mark> and re-arrange the terms:
-
-$$
-\begin{align}
-& \sum_i^n{\left( {\beta}_0' + {\beta}_1' x_{i1} - {\beta}_0'' - {\beta}_1'' x_{i1} - {\beta}_2'' x_{i2} \right)^2} & \\
-=& \sum_i^n{\left( ({\beta}_0' - {\beta}_0'') + ({\beta}_1'  - {\beta}_1'') x_{i1} - {\beta}_2'' x_{i2} \right)^2} & \text{  Eq. A}
-\end{align}
+$$ 
+\mathbf{X} = \left[
+\begin{array}{ccc}
+1 & x_{11}&x_{12}\\
+1 & x_{21}&x_{22}\\
+1 & \vdots&\vdots\\
+1 & x_{n1}&x_{n2} 
+\end{array}\right],
 $$
 
-From the above, you can see that the signs of coefficients do not interfer in $\operatorname{RSS}$, as the equation takes the **square** of errors but their magnitudes do. 
 
-In the simple case where ${\beta}_0' = {\beta}_0''$ and ${\beta}_1' = {\beta}_1''$, we are left with the expression $\operatorname{RSS}_{(p=2)} = \sum_i^n{\left(- {\beta}_2'' x_{i2}\right)^2}$, which goes from $0$ to $\infty$ but never negative. Note that the expression in Eq. A can never go below 0, even if ${\beta}_0' \neq {\beta}_0''$ and ${\beta}_1' \neq {\beta}_1''$. Thus, $\operatorname{RSS}_{(p=2)} - \operatorname{RSS}_{(p=1)} \geq 0$ and  $R^2_{(p=2)} \geq R^2_{(p=1)}$.
-
-<!-- 
-<HIDDEN> A longer route:
-
-We want to show that the following is always true:
+OLS would find new coefficients, let's call them $\hat{\boldsymbol{\beta}}'$:
 
 $$
-\begin{align}
-\operatorname{RSS}_{(p=1)} \leq \operatorname{RSS}_{(p=2)}.
-\end{align}
+\hat{\boldsymbol{\beta}} = \left[
+\begin{array}{c}
+\hat{\beta}'_{0}\\
+\hat{\beta}'_1\\
+\hat{\beta}'_2
+\end{array}\right].
 $$
 
-So let's expand these expressions and see what we find.
+Similarly, the new $\mathbf{e}'$ could be represented as:
 
 $$
-\begin{align}
-\operatorname{RSS}_{(p=1)} &\leq \operatorname{RSS}_{(p=2)} & \text{}\\
-\sum_i^n{\left(y_i - \hat{y}_i'\right)^2} &\leq \sum_i^n{\left(y_i - \hat{y}_i''\right)^2} & \text{expanding}\\
-\sum_i^n{y_i^2 + (\hat{y}_i')^2 - 2y_i\hat{y}_i'} &\leq \sum_i^n{y_i^2 + (\hat{y}_i'')^2 - 2y_i\hat{y}_i''} & \text{expanding square}\\
-\sum_i^n{(\hat{y}_i')^2 - 2y_i\hat{y}_i'} &\leq \sum_i^n{(\hat{y}_i'')^2 - 2y_i\hat{y}_i''} & \text{subtract} \sum_i^n{y_i^2}\\
-\end{align}
+\mathbf{e}' =\left[
+\begin{array}{c}
+y_{1} - (\hat{\beta}'_{0} \times 1 + \hat{\beta}'_1 \times x_{11} + \hat{\beta}'_2 \times x_{12})\\
+y_{2} - (\hat{\beta}'_{0} \times 1 + \hat{\beta}'_1 \times x_{21} + \hat{\beta}'_2 \times x_{22})\\
+\vdots  \\ 
+y_{n} - (\hat{\beta}'_{0} \times 1 + \hat{\beta}'_1 \times x_{n1} + \hat{\beta}'_2 \times x_{n2})\\
+\end{array}\right] 
 $$
 
-which, if we expand $\hat{y}_i'$ and $\hat{y}_i''$, we arrive at:
 
-$$
-\begin{align}
-\sum_i^n{({\beta}_0' + {\beta}_1' x_{i1})^2 - 2y_i({\beta}_0' + {\beta}_1' x_{i1})} &\leq \sum_i^n{({\beta}_0'' + {\beta}_1'' x_{i1} + {\beta}_2'' x_{i2})^2 - 2y_i({\beta}_0'' + {\beta}_1'' x_{i1} + {\beta}_2'' x_{i2})} \\
-\end{align}
-$$
-
-Keep on expanding:
+Again, if we run OLS, the algorithm will find an optimal solution to the the residuals above, a minimum $\operatorname{RSS}_{(p=2)}$. What can we expect of $\operatorname{RSS}_{(p=2)}$ in relation to $\operatorname{RSS}_{(p=1)}$? Let's think through some scenarios:
 
 
-$$
-\begin{align}
-\operatorname{RSS}_{(p=1)} &= \sum_i^n{{\beta}_0'^2 + ({\beta}_1' x_{i1})^2 + 2\beta_0'\beta_1'x_{i1} - 2y_i{\beta}_0' - 2y_i{\beta}_1' x_{i1}} \\ 
-=& \sum_i^n{{\beta}_1'^2 x_{i1}^2 + (2\beta_0'\beta_1' - 2y_i{\beta}_1')x_{i1} + {\beta}_0'^2}
-\end{align}
-$$
+If it turned out that $\hat{\beta}'_0 = \hat{\beta}_0$ and $\hat{\beta}'_1 = \hat{\beta}_1$:
 
-$$
-\begin{align}
-\operatorname{RSS}_{(p=2)} &=
-\sum_i^n{({\beta}_0'' + {\beta}_1'' x_{i1} + {\beta}_2'' x_{i2})^2 - 2y_i{\beta}_0'' - 2y_i{\beta}_1'' x_{i1} - 2y_i{\beta}_2'' x_{i2}} \\
-\sum_i^n{{\beta}_0''^2 + ({\beta}_1'' x_{i1})^2 + ({\beta}_2'' x_{i2})^2 + 2 {\beta}_0''{\beta}_1'' x_{i1} + 2 {\beta}_1'' x_{i1} {\beta}_2'' x_{i2} + 2 {\beta}_2'' x_{i2}{\beta}_0 - 2y_i{\beta}_0'' - 2y_i{\beta}_1'' x_{i1} - 2y_i{\beta}_2'' x_{i2}} \\
-\ldots
-\end{align}
-$$ -->
+- If $\hat{\beta}'_2 = 0$, then we could conclude that $\mathbf{e}' = \mathbf{e}$ and $\operatorname{RSS}_{(p=2)} = \operatorname{RSS}_{(p=1)}$. That is, by minimising the sum of squares, OLS cannot find a better solution that involves $\hat{\beta}'_2$.
+- If $\hat{\beta}'_2 \neq 0$ then notice that the new residuals are related to the previous ones: ${e_i}' = (e_i - \hat{\beta}'_2x_{i2}) ~~\forall i$. <br/>That means $({e_i}')^2 \geq e_i^2~~\forall i$ and therefore $\operatorname{RSS}_{(p=2)} \geq \operatorname{RSS}_{(p=1)}$.
+
+A similar logic applies to the case where $\hat{\beta}'_0 \neq \hat{\beta}_0$ and $\hat{\beta}'_1 \neq \hat{\beta}_1$ — check [^1] for a more formal proof.
+    
+## Conclusion
+
+By adding a new feature, given the fact that OLS uses **squares of errors**, it is inevitable that $({e_i}')^2 \geq e_i^2~~\forall i$. OLS will always find an equivalent or a lower $\operatorname{RSS}$ value. If you check the $R^2$ definition once again, you will realise that $\operatorname{TSS}$ will never change — as it is not related to $\mathbf{X}$, only to $\mathbf{y}$ — only $\operatorname{RSS}$ can vary when you add new features. Since $\operatorname{RSS}$ can only decrease or stay the same, $R^2$ will always increase or stay the same, never decrease, if you add more features.
+
+To correct this misleading tendency of R-squared, an adjusted index has been proposed. The [ajusted R-squared](https://www.wikiwand.com/en/Coefficient_of_determination#/Adjusted_R2) takes the number of features into account and it is what you should rely on when assessing the goodness-of-fit of a linear regression.
 
 
-[Reference](https://math.stackexchange.com/questions/1976747/prove-that-r2-cannot-decrease-when-adding-a-variable)
+[^1]: [Math Exchange - Prove that $R^2$ cannot decrease when adding a variable](https://math.stackexchange.com/a/1976916/261792)

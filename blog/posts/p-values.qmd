@@ -1,0 +1,27 @@
+---
+title: "Don't give p-values more credit than they deserve"
+subtitle: "DS202 Blog Post"
+date: 19 October 2022
+date-meta: 19 October 2022
+categories: [week04, p-values]
+theme: lumen
+---
+
+::: callout-tip
+## TLDR
+
+The practice and dangers of p-hacking.
+
+:::
+
+When you run a linear or logistic regression and find out that a regression coefficient has a low associated p-value, it is tempting to scream _THIS FEATURE IS SIGNIFICANT AND I CAN PROVE_!
+
+In reality, although p-values _might suggest_ a non-zero relationship between variables, you shouldn't base judge the performance or explainability of a model simply by the p-values of coefficients, nor the p-value associated with the full model (say, the F-statistic). 
+
+When assessing a model, look beyond goodness-of-fit. Perform train/test splits, cross-validation, bootstrap, and use appropriate measures of success to the problem you have at hand.
+
+The reason I am saying all this is because p-values are very easy to hack. In fact, there is even a term for misuse of p-values in the scientific literature: _p-hacking_.
+
+I have separated a list of articles and commentaries about this topic. Check references [@nahm_what_2017; @sterne_sifting_2001; @amrhein_scientists_2019; @aschwanden_science_2015] below.
+
+**💡 If you are in a hurry and want to read just ONE thing, read [@aschwanden_science_2015]. They have a cool visualisation to illustrate the problem.**
