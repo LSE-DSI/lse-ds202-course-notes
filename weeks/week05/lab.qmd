@@ -3,75 +3,126 @@ title: "💻 Week 05 - Lab Roadmap (90 min)"
 date: 06 October 2022
 date-meta: 06 October 2022
 from: markdown+emoji
-author: Xiaowei Gao & Stuart Bramwell
+author: DS202 2022MT Teaching Team
 ---
 
-<p> Last week we learnt how to do the Classification Methods in R. As data scientists, we need to know how to examine the results we generated and also to justify our results.  So, we will focus on and practice the validation methods in the R language in this week's lab. 
+Last week we learnt how to do the Classification Methods in R. As data scientists, we need to know how to examine the results we generated and also to justify our results.  So, we will focus on and practice the validation methods in the R language in this week's lab. 
 
 If you feel confident at the current stage, free to explore more on your own. We have provided you with some supplementary online resources : 
 
-<br>
-👉 [R for Data Analytics](https://rforanalytics.com/13.6-k-fold-cross-validation.html) (part of the courses by Abhay Singh)
+- 👉 [R for Data Analytics](https://rforanalytics.com/13.6-k-fold-cross-validation.html) (part of the courses by Abhay Singh)
+- 👉 [R for Data Science](https://r4ds.had.co.nz/index.html) (book by Hadley Wickham & Garrett Grolemund)
 
-👉 [R for Data Science](https://r4ds.had.co.nz/index.html) (book by Hadley Wickham & Garrett Grolemund)
-</p>
+:::{.callout-important collapse="false"}
+## Download .Rmd
+
+<mark class="todo"></mark>
+
+Download this roadmap as an .Rmd file <a href="" target="_blank">here</a>.
+:::
+
+R packages you will need:
+
+```r
+install.packages("tidyverse")
+install.packages("ISLR2")
+install.packages("rsample")
+install.packages("boot")
+```
+
 
 <details><summary> Step 1: The Validation Set Approach (15mins) </summary>
-<br>
+
+## Step 1: The Validation Set Approach
+
 In this step, we will explore how to extract the subset of the whole dataset as a training dataset, and then estimate the test error rates of various linear models. The dataset is `Auto` from the `ISLR2` package.
 
-1. Split the `Auto` dataset into two halves, as randomly selecting 196 observations out of the original 392 observations. We performed splits using base R in the last lab. However, this can be done more easily using the `rsample` package. We first create a split object `Auto.split` using `prop = 0.5` to specify a 50/50 train/test split. We also specify `strata = mpg` as we want our train/test split to have a similar mean/standard deviation for `mpg`. We then create dataframes using the `training` and `testing` functions.
-	
-	```r
-	library(ISLR2)
-    library(rsample)
+### Step 1.1: Training vs Testing splits
 
-	set.seed(1)
+Split the `Auto` dataset into two halves, as randomly selecting 196 observations out of the original 392 observations. We performed splits using base R in the last lab. However, this can be done more easily using the `rsample` package. We first create a split object `Auto.split` using `prop = 0.5` to specify a $50\%/50\%$ train/test split. We also specify `strata = mpg` as we want our train/test split to have a similar mean/standard deviation for `mpg`. We then create dataframes using the `training` and `testing` functions.
 	
-    Auto.split <- initial_split(Auto, prop = 0.5, strata = mpg)
-    Auto.train <- training(Auto.split)
-    Auto.test <- testing(Auto.split)
-    
-	```
+```{r, message=FALSE, warning=FALSE}
+library(ISLR2)
+library(rsample)
+
+set.seed(1) # Just so you and I have the same "random" numbers.
+
+Auto.split <- initial_split(Auto, prop = 0.5, strata = mpg)
+Auto.train <- training(Auto.split)
+Auto.test <- testing(Auto.split)
+```
+
+:::{.callout-note collapse="true"}
+## About `set.seed()`
 
 `set.seed()` is important here as it set a **seed** for the random number generator. Literally, the same results will be replicated in the following steps. Further information can be found in the official documentation.[Seeding Random Variate Generators](https://www.rdocumentation.org/packages/simEd/versions/2.0.0/topics/set.seed) 
+:::
 
-2. Fit a linear regression model using the training dataset (`Auto.train`), making the `mpg` as the dependent variable(x) and `horsepower` as the independent variable(y). Then, using the fitted model to estimate the `mpg` from `Auto.test`. Finally, calculating the MSE of the 196 observations in the validation set.
+### Step 1.2: How good is your model at predicting the test set?
 
-	```r
-	# use the lm() function to fit a linear regression model
-	lm.fit <- lm(mpg ~ horsepower, data = Auto.train)
-	# estimate the 'mpg' values by the lm.fit model
-	lm.pred <- predict(lm.fit, Auto.test)
-	# calculate MSE
-	mean((Auto.test$mpg - lm.pred)^2)
-	[1] 25.59
-	```
-Therefore, we have estimated the test MSE for the linear regression model, **25.59**. (Well Done! 💪 )
-<br>
-Please note, here we use new functions, namely `lm` and `predict`. By typing `?`, you can find the official explanation of these functions. 
+Fit a linear regression model using the training dataset (`Auto.train`), making the `mpg` as the dependent variable(x) and `horsepower` as the independent variable(y). Then, using the fitted model to estimate the `mpg` from `Auto.test`. Finally, calculating the MSE of the 196 observations in the validation set.
 
-⚡️The `-train` index selects only the observations that are not in the training set.
+```{r, message=FALSE, warning=FALSE}
+
+# use the lm() function to fit a linear regression model
+lm.fit <- lm(mpg ~ horsepower, data = Auto.train)
+
+# estimate the 'mpg' values by the lm.fit model
+lm.pred <- predict(lm.fit, Auto.test)
+
+# calculate MSE
+mean((Auto.test$mpg - lm.pred)^2)
+
+```
+
+Therefore, we have estimated the test MSE for the linear regression model, $\mathbf{25.59}$. (Well Done! 💪 )
+
+
+:::{.callout-tip collapse="true"}
+## How to get help in R
+
+If you are ever in doubt of what a particular R function do, you can consult the R documentation for it by using `?`. 
+
+For example, you have been using `lm` and `predict` but you want to see what other arguments/parameters this function can take, just type `?lm` or `?predict` in your console.
+:::
+
+
+:::{.callout-tip collapse="true"}
+## How to access or create columns in R?
 
 In base R, you generally use the `$` sign to access columns or create new columns.
 
-	```r
-	Auto$mpg
-	[1] You can see all the values from the 'mpg' column.
-	```
+```{r}
+#You can see all the values from the 'mpg' column.
+Auto$mpg
+```
+:::
 
-3. Repeat the second part to estimate the test error for the quadratic and cubic regressions.
 
-	```r
-	lm.fit2 <- lm(mpg ~ poly(horsepower, 2), data = Auto.train)
-	mean((Auto.test$mpg - predict(lm.fit2, Auto.test))^2)
-	[1] 19.08
-	lm.fit3 <- lm(mpg ~ poly(horsepower, 3), data = Auto.train)
-	mean((Auto.test$mpg - predict(lm.fit3, Auto.test))^2)
-	[1] 19.00
-	```
+### Step 1.3: Does it get better if I modify the features using polynomial terms?
 
-We can see a model that predicts `mpg` using a quadratic function of `horsepower` performs better than a model that involves only a linear function of `horsepower`. Furthermore, we see that adding a cubic function of `horsepower` actually increases MSE when compared to the quadratic function. Thus, the quadratic function of `horsepower` appears to perform the best out of all the functions considered. Want to see how the quadratic fit maps onto the raw data. Let's create a scatter plot with `horsepower` on the x-axis and `mpg` on the y-axis. Now, we can predict `mpg` using `lm.fit2` and specify `interval = 'confidence'` to get 95 percent confidence intervals. Along with `geom_line` we can use `geom_ribbon` to plot the line of best fit and associated confidence intervals. Remember to specify `alpha` so that we can see the predicted value - otherwise the ribbon will not be translucent.
+Repeat the second part to estimate the test error for the quadratic and cubic regressions.
+
+```{r}
+lm.fit2 <- lm(mpg ~ poly(horsepower, 2), data = Auto.train)
+```
+
+```{r}
+mean((Auto.test$mpg - predict(lm.fit2, Auto.test))^2)
+```
+
+```{r}
+lm.fit3 <- lm(mpg ~ poly(horsepower, 3), data = Auto.train)
+mean((Auto.test$mpg - predict(lm.fit3, Auto.test))^2)
+```
+
+💡 We can see a model that predicts `mpg` using a quadratic function of `horsepower` performs better than a model that involves only a linear function of `horsepower`. Furthermore, we see that adding a cubic function of `horsepower` actually increases MSE when compared to the quadratic function. Thus, the quadratic function of `horsepower` appears to perform the best out of all the functions considered. 
+
+### Step 1.4: Visualisation
+
+Want to see how well does the quadratic fit maps onto the raw data?
+
+Let's create a scatter plot with `horsepower` on the x-axis and `mpg` on the y-axis. Now, we can predict `mpg` using `lm.fit2` and specify `interval = 'confidence'` to get $95\%$ confidence intervals. Along with `geom_line` we can use `geom_ribbon` to plot the line of best fit and associated confidence intervals. Remember to specify `alpha` so that we can see the predicted value - otherwise the ribbon will not be translucent.
 
 ```{r, message = FALSE, warning = FALSE}
 
@@ -93,253 +144,233 @@ We can see a model that predicts `mpg` using a quadratic function of `horsepower
 
 </details>
 
-<details><summary> Step 2: Leave-One-Out Cross-Validation (LOOCV) (15mins) </summary>
-<br>
+<details>
+<summary> Step 2: Leave-One-Out Cross-Validation (LOOCV) (15mins) </summary>
+
+## Step 2: Leave-One-Out Cross-Validation (LOOCV)
+
 Hereby, We will compute the LOOCV values by using the function `glm` rather than `lm`.
 
-1. Generate the cross-validation results with the generalized linear model.
+### Step 2.1: Generate the cross-validation results with the generalized linear model.
 	
-    ```r
-	library(boot)
+```{r message=FALSE, warning=FALSE}
 
-	#fit the glm model
-	glm.fit <- glm(mpg ~ horsepower, data = Auto)
+#fit the glm model
+glm.fit <- glm(mpg ~ horsepower, data = Auto)
 
-	# get the information about the model
-	summary(glm.fit)
+# get the information about the model
+summary(glm.fit)
 
-	[1] Call: glm(formula = mpg ~ horsepower, data = Auto)
-        Deviance Residuals: 
-            Min        1Q    Median        3Q       Max  
-        -13.5710   -3.2592   -0.3435    2.7630   16.9240  
+```
 
-        Coefficients:
-                    Estimate Std. Error t value Pr(>|t|)    
-        (Intercept) 39.935861   0.717499   55.66   <2e-16 ***
-        horsepower  -0.157845   0.006446  -24.49   <2e-16 ***
-        ---
-        Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+The `cv.glm()` function is part of the `boot` library. Meanwhile, you can explore the `cv.err` by yourself to see what `call`,`K`,`delta` and `seed` mean. This online webpage will be useful when interpreting the results. [Intepretation of cross-validation result](https://stats.stackexchange.com/questions/48766/intepretation-of-crossvalidation-result-cv-glm)
 
-        (Dispersion parameter for gaussian family taken to be 24.06645)
 
-            Null deviance: 23819.0  on 391  degrees of freedom
-        Residual deviance:  9385.9  on 390  degrees of freedom
-        AIC: 2363.3
+```{r message=FALSE, warning=FALSE}
+library(boot)
 
-        Number of Fisher Scoring iterations: 2
+# get the cross-validation results by the 'cv.glm' function
+cv.err <- cv.glm(Auto, glm.fit)
+cv.err$delta
+```
+
+```{r message=FALSE, warning=FALSE}
+# explore cv.err 
+summary(cv.err)
+
+```
+
+
+### Step 2.2: Repeat the former step and fit increasingly complex polynomial models
 	
-	# get the cross-validation results by the 'cv.glm' function
-	cv.err <- cv.glm(Auto, glm.fit)
-	cv.err$delta
-	[1] 24.23 24.23
+```{r, message=FALSE, warning=FALSE}
+# initialise an empty vector to store results
+cv.error <- c() 
 
-	# explore cv.err 
-	summary(cv.err)
+for(i in 1:10){
+    glm.fit <- glm(mpg ~ poly(horsepower, i), data = Auto)
+    cv.error[i] <- cv.glm(data = Auto, glmfit = glm.fit)$delta[1]
+}
 
-    [1]	      Length Class  Mode   
-        call    3    -none- call   
-        K       1    -none- numeric
-        delta   2    -none- numeric
-        seed  626    -none- numeric
-	
-	```
+# check the cv.error 
+cv.error
 
-The `cv.glm()` function is part of the `boot` library. Meanwhile, you can explore the `cv.err` by yourself to see what `call`,`K`,`delta` and `seed` mean. This online webpage will be useful when interpreting the results. [Intepretation of crossvalidation result](https://stats.stackexchange.com/questions/48766/intepretation-of-crossvalidation-result-cv-glm)
+```{r, message=FALSE, warning=FALSE}
 
-🏋️ There is a bonus for the senior students. You can explore the package `caret` for the LOOCV estimation. 
+# we can plot the results by passing a data frame to ggplot
 
-2. Repeat the former step and fit increasingly complex polynomial models
-	
-    ```{r}
-	# initialise an empty vector to store results
-	cv.error <- c() 
+cv.data <- data.frame(poly = 1:10, cv.errors = cv.error)
 
-	for(i in 1:10){
-	  glm.fit <- glm(mpg ~ poly(horsepower, i), data = Auto)
-	  cv.error[i] <- cv.glm(data = Auto, glmfit = glm.fit)$delta[1]
-	}
+ggplot(data = cv.data, aes(x = poly, y = cv.errors)) +
+    geom_point() +
+    geom_line(linetype = 'dashed') +
+    scale_x_continuous(breaks = 1:10) +
+    theme_minimal() +
+    labs(x = 'Degree of polynomial', y = 'Cross-validated MSE')
 
-	# check the cv.error 
-	cv.error
-	[1] 24.23151 19.24821 19.33498 19.42443 19.03321 18.97864 18.83305 18.96115 19.06863 19.49093
-
-    # we can plot the results by passing a data frame to ggplot
-
-    cv.data <- data.frame(poly = 1:10, cv.errors = cv.error)
-
-    ggplot(data = cv.data, aes(x = poly, y = cv.errors)) +
-        geom_point() +
-        geom_line(linetype = 'dashed') +
-        scale_x_continuous(breaks = 1:10) +
-        theme_minimal() +
-        labs(x = 'Degree of polynomial', y = 'Cross-validated MSE')
-    
-	```
+```
 
 We use the `for` loop to iterate the number from 1 to 10, and store the first `delta` number to the **i** th position of `cv.error`. When creating a `for` loop, we need to initialise an empty container to store our results in which is what `cv.error <- c()` achieves.
 
-I would also encourage you to basically visualise the results using `ggplot`. We can clearly see a sharp drop in the estimated test MSE between the linear and quadratic fits, from 24.27 to 19.27, but then no clear improvement from using higher-order polynomials. 
+I would also encourage you to basically visualise the results using `ggplot`. We can clearly see a sharp drop in the estimated test $\operatorname{MSE}$ between the linear and quadratic fits, from $24.27$ to $19.27$, but then no clear improvement from using higher-order polynomials. 
 
 </details>
 
 <details><summary> Step 3: k-Fold Cross-Validation (5mins)</summary>
-<br>
+
+## Step 3: k-Fold Cross-Validation
+
 It will be easy to follow the former procedure in Step 2, by the `cv.glm` to implement ***K-fold*** CV.
 
-1. Estimate CV errors corresponding to the polynomial fits of orders one to ten using ten-fold cross-validation (via `K = 10`). 
+### Step 3.1: Using K=10 folds
 
-	```{r}
+Let's estimate Cross-Validation errors corresponding to the polynomial fits of orders one to ten using ten-fold cross-validation (via `K = 10`). 
 
-	set.seed(17)
+```{r}
 
-	cv.error.10 <- c() 
-	
-    for(i in 1:10){
-	  glm.fit <- glm(mpg ~ poly(horsepower, i), data = Auto)
-	  cv.error.10[i] <- cv.glm(data = Auto, glmfit = glm.fit, K = 10)$delta[1]
-	}
+set.seed(17)
 
-	cv.error.10
-	[1] 24.27207 19.26909 19.34805 19.29496 19.03198 18.89781 19.12061 19.14666 18.87013 20.95520
+cv.error.10 <- c() 
 
-    # we can plot the results by passing a data frame to ggplot
+for(i in 1:10){
+    glm.fit <- glm(mpg ~ poly(horsepower, i), data = Auto)
+    cv.error.10[i] <- cv.glm(data = Auto, glmfit = glm.fit, K = 10)$delta[1]
+}
 
-    cv.data <- data.frame(poly = 1:10, cv.errs = cv.error.10)
+cv.error.10
+```
 
-    ggplot(data = cv.data, aes(x = poly, y = cv.errs)) +
-        geom_point() +
-        geom_line(linetype = 'dashed') +
-        scale_x_continuous(breaks = 1:10) +
-        theme_minimal() +
-        labs(x = 'Degree of polynomial', y = 'Cross-validated MSE')
-	```
+```{r}
+# we can plot the results by passing a data frame to ggplot
+
+cv.data <- data.frame(poly = 1:10, cv.errs = cv.error.10)
+
+ggplot(data = cv.data, aes(x = poly, y = cv.errs)) +
+    geom_point() +
+    geom_line(linetype = 'dashed') +
+    scale_x_continuous(breaks = 1:10) +
+    theme_minimal() +
+    labs(x = 'Degree of polynomial', y = 'Cross-validated MSE')
+```
+
 Note that in the line of `cv.error.10[i] <- cv.glm(data = Auto, glmfit = glm.fit, K=10)$delta[1]`, it will be very strict to `K` rather than `k`.
 
 </details>
 
 <details><summary> Step 4: The Bootstrap (20mins) </summary>
-<br>
+
+## Step 4: The Bootstrap
+
 We have learnt the theoretical method regarding Bootstrap. I understand that it may be a bit difficult for beginners in statistics, but we will mainly focus on the coding implementation and visualisation here. Also, we will introduce how to create a `function` below.
 
 **Functions are “self contained” modules of code that accomplish a specific task.** referenced from [Functions and theri argumens](https://hbctraining.github.io/Intro-to-R/lessons/03_introR-functions-and-arguments.html)
-<br>
+
 
 With the help of a function, you can reuse the same pattern codes with a simple function name. In fact, you work with functions all the time in R - perhaps without even realising it! 
 
 ### Step 4.1 Estimating the Accuracy of a Linear Regression Model
-<br>
+
 In this step, we will use the boostrap approach to assess the variability of a coefficient estimate. For the sake of simplicity we will look at the relationship between `weight` and `horsepower` which appears to be linear.
 
-<br>
 
-1. Create a function as `boot.fn()` which 
+Create a function as `boot.fn()` which 
 
-    ```r
-    boot.fn <- function(data, index) {
-  
-        lm(horsepower ~ weight, data = data[index,])$coefficients
+```{r}
+boot.fn <- function(data, index) {
 
-    }  
-    ```
+    lm(horsepower ~ weight, data = data[index,])$coefficients
+
+}  
+```
 
 `boot.fn` simply returns a vector of coefficient estimates. It takes two parameters: `data` and `index`. `data` is a placeholder for the dataframe used in the model. `index` is a placeholder for the sample used to subset the dataframe. Other than this, the body of the function should look familiar. We are estimating a linear model where we are looking to predict `horsepower` by `weight`, and then extracting the coefficients.
 
-2. Compare the results from bootstrap estimates and the standard estimates 
+Now, compare the results from bootstrap estimates and the standard estimates 
     
-    ```r
-    # bootstrap with 1000 times
+```{r}
+# bootstrap with 1000 times
 
-    boot(Auto, boot.fn, 1000)
-    [1]     ORDINARY NONPARAMETRIC BOOTSTRAP
+boot(Auto, boot.fn, 1000)
+```
 
-    Call:
-    boot(data = Auto, statistic = boot.fn, R = 1000)
+```{r}
+summary(lm(horsepower ~ weight, data = Auto))$coef
+```
 
-    Bootstrap Statistics :
-            original        bias    std. error
-    t1* -12.18348470 -1.956721e-02  3.31027642
-    t2*   0.03917702  3.291367e-06  0.00128659
+We can find that in the bootstrap estimation process, $\mathrm{SE}(\hat{\beta}_{0}) = 3.5704$ and $\mathrm{SE}(\hat{\beta}_{1}) = 0.0012$ , while in the standard estimation process, $\hat{\beta}_{Intercept}=-12.1835$ and $\hat{\beta}_{horsepower}=0.0392$. 
 
-    # standard estimates
+To get a better intuition of what the bootstrap algorithm does let's create a ggplot. We can get the intercepts and slopes estimated and overlay them on a scatterplot (`weight` on x-axis, `horsepower` on y-axis). We will create 50 bootstrap resamples for ease of visualisation and use `geom_abline` to overlay all the lines of best fit.
 
-    summary(lm(horsepower ~ weight, data = Auto))$coef
-    [1]          Estimate    Std. Error  t value    Pr(>|t|)
-    (Intercept) -12.18348470 3.570431493 -3.412328  7.115312e-04
-    weight        0.03917702 0.001153214 33.972031  1.364347e-118
-    ```
+```{r}
 
-    We can find that in the bootstrap esimation process, $\mathrm{SE}(\hat{\beta}_{0}) = 3.5704$ and $\mathrm{SE}(\hat{\beta}_{1}) = 0.0012$ , while in the standard esimation process, $\hat{\beta}_{Intercept}=-12.1835$ and $\hat{\beta}_{horsepower}=0.0392$. To get better intuition of what the bootstrap algorithm does let's create a ggplot. We can get the intercepts and slopes estimated and overlay them on a scatterplot (`weight` on x-axis, `horsepower` on y-axis). We will create 50 bootstrap resamples for ease of visualisation and use `geom_abline` to overlay all the lines of best fit.
+boot.model <- boot(Auto, boot.fn, 50)
 
-    ```{r}
+boot.df <- as.data.frame(boot.model$t)
+names(boot.df) <- c('b0','b1')
 
-    boot.model <- boot(Auto, boot.fn, 50)
+ggplot(data = Auto, aes(x = weight, y = horsepower)) +
+    geom_point() +
+    geom_abline(data = boot.df,
+                aes(intercept = b0, slope = b1), 
+                alpha = 0.1, colour = 'blue') +
+    theme_minimal() +
+    labs(x = 'Weight (lbs.)', y = 'Engine horsepower')
 
-    boot.df <- as.data.frame(boot.model$t)
-    names(boot.df) <- c('b0','b1')
-
-    ggplot(data = Auto, aes(x = weight, y = horsepower)) +
-        geom_point() +
-        geom_abline(data = boot.df,
-                    aes(intercept = b0, slope = b1), 
-                    alpha = 0.1, colour = 'blue') +
-        theme_minimal() +
-        labs(x = 'Weight (lbs.)', y = 'Engine horsepower')
-
-    ``` 
+``` 
 
 </details>
 
-<details><summary> Step 5: Exercise (35mins)</summary>
-<br>
+<!-- # 🎯 Practical Exercises -->
+
+<details><summary> Step 5: 🎯 Practical Exercises (35mins)</summary>
+
+## Step 5: 🎯 Practical Exercises
+
 Since then, we have known and implemented the coding with Cross-validation and Bootstrap.  In this practical case, we will use the new dataset `Default`  and also `Weekly` from the `ISRL` package. **Do not forget to set a random seed before beginning your analysis.**
 
-Some questions are listed below. You are required to try to answer these questions in pairs using R commands. We will go over the solutions once everyone has finished these questions
+Some questions are listed below. You are required to try to answer these questions in pairs using R commands. We will go over the solutions once everyone has finished these questions.
 
-🎯 **Questions** 
+### Q1: Train vs test sets
 
-1. For the `Default` dataset, please Split the sample set into a training set and a test set, then fit a logistic regression model that uses `income` and `balance` to predict `default`. As following,
+For the `Default` dataset, please split the sample set into a training set and a test set, then fit a logistic regression model that uses `income` and `balance` to predict `default`:
 
-    i.  Use three different splits of the observations into a training set and a test set.
-    <br>
+- Q1.1: Use three different splits of the observations into a training set and a test set.
+- Q1.2: Fit three multiple logistic regression models using only the training observations.
+- Q1.3: Based on the three models, obtain a prediction of default status for each individual in the test set by computing the posterior probability of default for that individual, and classifying the individual to the `default` category if the posterior probability is greater than 0.5.
+- Q1.4: Based on the three models, compute the test set error, which is the fraction of the observations in the test set that are misclassified.
 
-    ii. Fit three multiple logistic regression models using only the training observations.
-    <br>
+### Q2: Bootstrap
 
-    iii. Based on the three models, obtain a prediction of default status for each individual in the test set by computing the posterior probability of default for that individual, and classifying the individual to the `default` category if the posterior probability is greater than 0.5.
-    <br>
+For the `Default` dataset, We continue to consider the use of a logistic regression model to predict the probability of `default` using `income` and `balance` on the `Default` data set. 
 
-    iv. Based on the three models, compute the test set error, which is the fraction of the observations in the test set that are misclassified.
+In particular, we will now compute estimates for the standard errors of the `income` and `balance` logistic regression coefficients in two different ways: 2.1. Using the `bootstrap`, 2.2. Using the standard formula for computing the standard errors in the `glm()` function. As following,
 
-2. For the `Default` dataset, We continue to consider the use of a logistic regression model to predict the probability of `default` using `income` and `balance` on the `Default` data set. In particular, we will now compute estimates for the standard errors of the `income` and `balance` logistic regression coefficients in two different ways: 2.1. Using the `bootstrap`, 2.2. Using the standard formula for computing the standard errors in the `glm()` function. As following,
+i. Using the `summary()` and `glm()` functions, determine the estimated standard errors for the coefficients associated with `income` and `balance` in a multiple logistic regression model that uses both predictors.
 
-    i. Using the `summary()` and `glm()` functions, determine the estimated standard errors for the coefficients associated with `income` and `balance` in a multiple logistic regression model that uses both predictors.
-    <br>
 
-    ii. Write a function,`boot.fn()`,that takes as input the `Default` data set as well as an index of the observations, and that outputs the coefficient estimates for `income` and `balance` in the multiple logistic regression model.
-    <br>
+ii. Write a function,`boot.fn()`,that takes as input the `Default` data set as well as an index of the observations, and that outputs the coefficient estimates for `income` and `balance` in the multiple logistic regression model.
 
-    iii. Use the `boot()` function together with your `boot.fn()` function to estimate the standard errors of the logistic regression coefficients for `income` and `balance`. Then, Create a histogram of the bootstrap parameter estimates with `ggplot2`, and also set the `bins=20`, title as `1,000 Bootstrap Parameter Estimates - 'balance' & 'income`.
-    <br>
 
-3. We saw that the `cv.glm()` function can be used in order to compute the LOOCV test error estimate. However, one could compute those quantities using just the `glm()` and `predict.glm()` functions, and a for loop. You will now take this approach in order to compute the LOOCV error for a simple logistic regression model on the `Weekly` data set. As following,
+iii. Use the `boot()` function together with your `boot.fn()` function to estimate the standard errors of the logistic regression coefficients for `income` and `balance`. Then, Create a histogram of the bootstrap parameter estimates with `ggplot2`, and also set the `bins=20`, title as `1,000 Bootstrap Parameter Estimates - 'balance' & 'income`.
 
-    i. Logistic Regression- Fit a logistic regression model that predicts `Direction` using `Lag1` and `Lag2`.
-    <br>
 
-    ii. Omitting One Observation from Training- Fit a logistic regression model that predicts `Direction` using `Lag1` and `Lag2` *using all but the first observation* .
-    <br>
+### Q3: Leave-One-Out-Cross-Validation (LOOCV)
 
-    iii. Predicting the Omitted Observation- Use the model from ii. to predict the `direction` of the first observation. You can do this by predicting that the first observation will go up if $P(\text { Direction }=' U p ' \mid \operatorname{Lag} 1, \text { Lag2 })>0.5$. Was this observation correctly classified?
-    <br>
+We saw that the `cv.glm()` function can be used in order to compute the LOOCV test error estimate. However, one could compute those quantities using just the `glm()` and `predict.glm()` functions, and a for loop. You will now take this approach in order to compute the LOOCV error for a simple logistic regression model on the `Weekly` data set as following:
 
-    iv. Writing a LOOCV Loop- Write a for loop from i = 1 to i = n, where n is the number of observations in the data set, that performs each of the following steps:
-        1. Fit a logistic regression model using all but the ith observation to predict `Direction` using `Lag1` and `Lag2`.
-        2.  Compute the posterior probability of the market moving up for the `i` th observation.
-        3. Use the posterior probability for the `i` th observation in order to predict whether or not the market moves up.
-        4. Determine whether or not an error was made in predicting the direction for the `i` th observation. If an error was made, then indicate this as a `1` , and otherwise indicate it as a `0` .
-    <br>
+i. Logistic Regression- Fit a logistic regression model that predicts `Direction` using `Lag1` and `Lag2`.
 
-    v. The LOOCV Estimate for the Test Error- Take the average of the `n` numbers obtained in `(iv)-4`. in order to obtain the LOOCV estimate for the test error. Comment on the results.
+ii. Omitting One Observation from Training- Fit a logistic regression model that predicts `Direction` using `Lag1` and `Lag2` *using all but the first observation* .
+
+iii. Predicting the Omitted Observation- Use the model from ii. to predict the `direction` of the first observation. You can do this by predicting that the first observation will go up if $P(\text { Direction }=' U p ' \mid \operatorname{Lag} 1, \text { Lag2 })>0.5$. Was this observation correctly classified?
+
+iv. Writing a LOOCV Loop- Write a for loop from i = 1 to i = n, where n is the number of observations in the data set, that performs each of the following steps:
+    1. Fit a logistic regression model using all but the ith observation to predict `Direction` using `Lag1` and `Lag2`.
+    2.  Compute the posterior probability of the market moving up for the `i` th observation.
+    3. Use the posterior probability for the `i` th observation in order to predict whether or not the market moves up.
+    4. Determine whether or not an error was made in predicting the direction for the `i` th observation. If an error was made, then indicate this as a `1` , and otherwise indicate it as a `0` .
+
+v. The LOOCV Estimate for the Test Error- Take the average of the `n` numbers obtained in `(iv)-4`. in order to obtain the LOOCV estimate for the test error. Comment on the results.
     
 </details>
 

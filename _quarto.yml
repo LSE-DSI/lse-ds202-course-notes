@@ -10,6 +10,7 @@ project:
     - "weeks/week02/*.qmd"
     - "weeks/week03/*.qmd"
     - "weeks/week04/*.qmd"
+    - "weeks/week05/*.qmd"
     - "slides/*.qmd"
 
 bibliography: references/references.bib
