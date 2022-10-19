@@ -1,0 +1,11 @@
+---
+title: "If two variables are highly correlated, why exactly is that so bad for linear regression, in mathematical terms?"
+subtitle: "DS202 Blog Post"
+date: 10 October 2022
+date-meta: 10 October 2022
+categories: [week02, pearson correlation, equations]
+theme: lumen
+---
+
+<!-- [Potentially useful reference](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC374386/) -->
+
