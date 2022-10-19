@@ -7,6 +7,69 @@
     "text": "🎯 Learning Objectives\n\nUnderstand the fundamentals of the data science approach, with an emphasis on social scientific analysis and the study of the social, political, and economic worlds;\nUnderstand how classical methods such as regression analysis or principal components analysis can be treated as machine learning approaches for prediction or for data mining.\nKnow how to fit and apply supervised machine learning models for classification and prediction.\nKnow how to evaluate and compare fitted models, and to improve model performance.\nUse applied computer programming, including the hands-on use of programming through course exercises.\nApply the methods learned to real data through hands-on exercises.\nIntegrate the insights from data analytics into knowledge generation and decision-making.\nUnderstand an introductory framework for working with natural language (text) data using techniques of machine learning.\nLearn how data science methods have been applied to a particular domain of study (applications).\n\n\n\n🧑🏻‍🏫 Our Team\n\nTeacher ResponsibleTeaching StaffStudentsAdministrative Support\n\n\n\nDr. Jonathan Cardoso-Silva  Assistant Professorial Lecturer  LSE Data Science Institute 📧 J.Cardoso-Silva at lse dot ac dot uk\nOffice Hours:\n\n15-min slots, on Wednesdays 13:00 – 15:00 during Term Time\nRoom: PEL 9.01c (check out the 🗺️ campus map)\nBook via Student Hub up to 12 hours in advance\n\n\n\n\nDr. Stuart Bramwell  ESRC Postdoctoral Fellow  Department of Methodology PhD in Politics (Oxford)\n\nYijun Wang  Guest Teacher at the LSE Data Science Institute PhD candidate in Health Informatics (KCL)  MSc in Data Science (KCL)\n\nMustafa Can Ozkan  Guest Teacher at the LSE Data Science Institute PhD candidate in the Spacetime Lab (UCL)  MSc in Transport (Imperial/UCL)\n\nXiaowei Gao  Guest Teacher at the LSE Data Science Institute PhD candidate in the Spacetime Lab (UCL)  MSc in Data Science (KCL)\n\nAnton Boichenko  Guest Teacher at the LSE Data Science Institute Product Developer at Decoded  MSc in Applied Social Data Science (LSE)\n\n\n\nZhang Ruishan (Yoyo)  1st Year BSc Economics Student  Course Representative for DS202\n\nRachitha Raghuram  2nd Year BSc Economics Student  Course Representative for DS202\n\n\n\nNathaniel Ocquaye  Teaching Support and Events Officer Office: PEL 9.01 Email: DSI.UG at lse dot ac dot uk\n\nJill Beattie  Institute Coordinator Office: PEL 9.01E Tel: +44 (0) 20 7955 7759 Email: DSI.Admin at lse dot ac dot uk\n\n\n\n\n\nClass Groups\n\nGroup 01\n\n📆 Mondays\n⌚ 09:00 — 10:30\n📍 PAN.1.03\n🧑‍🏫 Xiaowei\n\n\n\nGroup 02\n\n📆 Mondays\n⌚ 10:30 — 12:00\n📍 PAN.1.03\n🧑‍🏫 Xiaowei\n\n\n\nGroup 03\n\n📆 Mondays\n⌚ 13:00 — 14:30\n📍 MAR.1.09\n🧑‍🏫 Stuart/Jon\n\n\n\nGroup 04\n\n📆 Fridays\n⌚ 16:00 — 17:30\n📍 NAB.1.04\n🧑‍🏫 Stuart/Yijun\n\n\n\nGroup 05\n\n📆 Mondays\n⌚ 09:00 — 10:30\n📍 32L.LG.11\n🧑‍🏫 Mustafa\n\n\n\nGroup 06\n\n📆 Mondays\n⌚ 10:30 — 12:00\n📍 32L.LG.11\n🧑‍🏫 Mustafa\n\n\n\nGroup 07\n\n📆 Fridays\n⌚ 09:30 — 11:00\n📍 CBG.2.06\n🧑‍🏫 Stuart/Yijun"
   },
   {
+    "objectID": "blog/main.html",
+    "href": "blog/main.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n1 min\n\n\n\nweek04\n\n\np-values\n\n\n\n\n\n\n\n19 October 2022\n\n\n\n\n\n\n\n\n\n\n\n\n0 min\n\n\n\nweek03\n\n\nbayesian statistics\n\n\nequations\n\n\n\n\n\n\n\n17 October 2022\n\n\n\n\n\n\n\n\n\n\n\n\n3 min\n\n\n\nweek02\n\n\nR-squared\n\n\nequations\n\n\n\n\n\n\n\n10 October 2022\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/posts/bayes-theorem.html",
+    "href": "blog/posts/bayes-theorem.html",
+    "title": "Understanding Bayes’ Theorem",
+    "section": "",
+    "text": "On Week 03 (Part II), I showed you the following equation and mentioned that it forms the basis for one of the algorithms we explore in this course, Naive Bayes.\n\\[\nP(\\mathbf{Y} = k | \\mathbf{X} = x) = \\frac{P(k)P(\\mathbf{X}|\\mathbf{Y}=k)}{\\sum_{l=1}^{K}{P(l)P(\\mathbf{X}|\\mathbf{Y}=l)}}\n\\]\nThe following video might help you understand the intuition behind the equation. Enjoy!"
+  },
+  {
+    "objectID": "blog/posts/p-values.html",
+    "href": "blog/posts/p-values.html",
+    "title": "Don’t give p-values more credit than they deserve",
+    "section": "",
+    "text": "When you run a linear or logistic regression and find out that a regression coefficient has a low associated p-value, it is tempting to scream THIS FEATURE IS SIGNIFICANT AND I CAN PROVE!\nIn reality, although p-values might suggest a non-zero relationship between variables, you shouldn’t judge the performance or explainability of a model simply by the p-values of coefficients, nor the p-value associated with the full model (say, the F-statistic).\nWhen assessing a model, look beyond goodness-of-fit. Perform train/test splits, cross-validation, bootstrap, and use appropriate measures of success to the problem you have at hand. Come to 🗓️ Week 04 workshop (the lecture) this Friday 21 October to learn more about this.\nThe reason I am saying all this is because p-values are very easy to hack. In fact, there is even a term for misuse of p-values in the scientific literature: p-hacking.\nWhere do I inform myself about this?\nI have separated a list of articles and commentaries about this topic. Check them out:\n\nNahm, Francis Sahngun. 2017. “What the P Values Really Tell Us.” The Korean Journal of Pain 30 (4): 241.\nAmrhein, Valentin, Sander Greenland, and Blake McShane. 2019. “Scientists Rise up Against Statistical Significance.” Nature 567 (7748): 305–7.\nAschwanden, Christie. 2015. “Science Isn’t Broken.” FiveThirtyEight.\nSterne, Jonathan A C, and George Davey Smith. 2001. “Sifting the Evidence—What’s Wrong with Significance Tests?” BMJ : British Medical Journal 322 (7280): 226–31.\n\n💡 If you are in a hurry and want to read just ONE thing, read the “Science Isn’t Broken.” piece at FiveThirtyEight. They have a cool visualisation to illustrate the problem."
+  },
+  {
+    "objectID": "blog/posts/r-squared.html",
+    "href": "blog/posts/r-squared.html",
+    "title": "What happens to R-squared when we add more predictors?",
+    "section": "",
+    "text": "TLDR\n\n\n\nWhen using OLS, \\(R^2\\) will always stay the same or increase you add more features to a linear regression, even if those features are “useless”."
+  },
+  {
+    "objectID": "blog/posts/r-squared.html#about-r2",
+    "href": "blog/posts/r-squared.html#about-r2",
+    "title": "What happens to R-squared when we add more predictors?",
+    "section": "About \\(R^2\\)",
+    "text": "About \\(R^2\\)\nAs we saw briefly on Week 02 and as defined in Chapter 3 of the textbook (James et al. 2021), \\(R^2\\) represents the proportion of variability in the response variable that can be explained using the dependent variables (features). More specifically:\n\\[\nR^2 = 1 - \\frac{\\operatorname{RSS}}{\\operatorname{TSS}}\n\\]\nwhere \\(\\operatorname{TSS}\\) represents the Total Sum of Squares:\n\\[\n\\operatorname{TSS} =  \\sum_i^n{\\left(y_i - \\bar{y}\\right)^2},\n\\]\nand \\(\\bar{y}\\) is the mean of \\(\\mathbf{y}\\).\nAs for the \\(\\operatorname{RSS}\\), it represents the Residual Sum of Squares.\nTo understand why \\(R^2\\) can never decrease if we add more features, I think it is useful to visualise linear regression in matrix format."
+  },
+  {
+    "objectID": "blog/posts/r-squared.html#data-and-variables",
+    "href": "blog/posts/r-squared.html#data-and-variables",
+    "title": "What happens to R-squared when we add more predictors?",
+    "section": "Data and Variables",
+    "text": "Data and Variables\nSuppose you have the following data:\n\\[\n\\mathbf{X} = \\left[\n\\begin{array}{cc}\nx_{11}\\\\\nx_{21}\\\\\n\\vdots\\\\\nx_{n1}\n\\end{array}\\right],\n\\]\nthat is, there i only \\(p=1\\) feature for the \\(n\\) observations of data, and you want to fit a linear regression to attempt to predict the \\(\\mathbf{y}\\) column below:\n\\[\n\\mathbf{y} = \\left[\n\\begin{array}{c}\ny_{1}\\\\\ny_2\\\\\n\\vdots\\\\\ny_n\n\\end{array}\\right].\n\\]"
+  },
+  {
+    "objectID": "blog/posts/r-squared.html#simple-linear-regression-in-matrix-format",
+    "href": "blog/posts/r-squared.html#simple-linear-regression-in-matrix-format",
+    "title": "What happens to R-squared when we add more predictors?",
+    "section": "Simple Linear Regression in matrix format",
+    "text": "Simple Linear Regression in matrix format\nWe can also represent the regression coefficients obtained by Ordinary Least Squares (OLS) in matrix format. \\(\\hat{\\boldsymbol{\\beta}}\\) is a \\(1 \\times (p+1)\\) matrix:\n\\[\n\\hat{\\boldsymbol{\\beta}} = \\left[\n\\begin{array}{c}\n\\hat{\\beta}_{0}\\\\\n\\hat{\\beta}_1\n\\end{array}\\right].\n\\]\nWhen thinking about regression this way, it is often useful to add an additional column of 1s to \\(\\mathbf{X}\\):\n\\[\n\\mathbf{X} = \\left[\n\\begin{array}{cc}\n1 & x_{11}\\\\\n1 & x_{21}\\\\\n1 & \\vdots\\\\\n1 & x_{n1}\n\\end{array}\\right],\n\\]\nso that:\n\\[\n\\hat{\\boldsymbol{\\beta}}\\mathbf{X} =\\left[\n\\begin{array}{c}\n\\hat{\\beta}_{0} \\times 1 + \\hat{\\beta}_1 \\times x_{11} \\\\\n\\hat{\\beta}_{0} \\times 1 + \\hat{\\beta}_1 \\times x_{21} \\\\\n\\vdots  \\\\\n\\hat{\\beta}_{0} \\times 1 + \\hat{\\beta}_1 \\times x_{n1}\\\\\n\\end{array}\\right] = \\hat{\\mathbf{y}}\n\\]\nrepresents the estimated values \\(\\hat{\\mathbf{y}}\\).\nResiduals can then be represented as \\(\\mathbf{e} = (\\mathbf{y} - \\hat{\\mathbf{y}})\\), or\n\\[\n\\mathbf{e} =\\left[\n\\begin{array}{c}\ny_{1} - (\\hat{\\beta}_{0} \\times 1 + \\hat{\\beta}_1 \\times x_{11}) \\\\\ny_{2} - (\\hat{\\beta}_{0} \\times 1 + \\hat{\\beta}_1 \\times x_{21} )\\\\\n\\vdots  \\\\\ny_{n} - (\\hat{\\beta}_{0} \\times 1 + \\hat{\\beta}_1 \\times x_{n1})\\\\\n\\end{array}\\right]\n\\]\nOLS provides an optimal way to find coefficients \\(\\hat{\\boldsymbol{\\beta}}\\) that minimizes \\(\\operatorname{RSS}\\).\nIn matrix format, the \\(\\operatorname{RSS}\\) can be represented as:\n\\[\n\\operatorname{RSS} = \\mathbf{e}^T\\mathbf{e}.\n\\]\nOLS will find an optimal solution to \\(\\text{minimise } \\operatorname{RSS}\\). Let’s call it \\(\\operatorname{RSS}_{(p=1)}\\)."
+  },
+  {
+    "objectID": "blog/posts/r-squared.html#what-if-i-add-another-feature",
+    "href": "blog/posts/r-squared.html#what-if-i-add-another-feature",
+    "title": "What happens to R-squared when we add more predictors?",
+    "section": "What if I add another feature?",
+    "text": "What if I add another feature?\n💡 What would happen if I added a second feature and ran a regression with \\(p=2\\)?\nThink of the implications this has for the matrix of coefficients \\(\\hat{\\boldsymbol{\\beta}}\\) and matrix of residuals \\(\\mathbf{e}\\) if I decided to add a second column of data to \\(\\mathbf{X}\\).\nThe new extended feature matrix, let’s call it \\(\\mathbf{X}'\\), would look like the following:\n\\[\n\\mathbf{X} = \\left[\n\\begin{array}{ccc}\n1 & x_{11}&x_{12}\\\\\n1 & x_{21}&x_{22}\\\\\n1 & \\vdots&\\vdots\\\\\n1 & x_{n1}&x_{n2}\n\\end{array}\\right],\n\\]\nOLS would find new coefficients, let’s call them \\(\\hat{\\boldsymbol{\\beta}}'\\):\n\\[\n\\hat{\\boldsymbol{\\beta}} = \\left[\n\\begin{array}{c}\n\\hat{\\beta}'_{0}\\\\\n\\hat{\\beta}'_1\\\\\n\\hat{\\beta}'_2\n\\end{array}\\right].\n\\]\nSimilarly, the new \\(\\mathbf{e}'\\) could be represented as:\n\\[\n\\mathbf{e}' =\\left[\n\\begin{array}{c}\ny_{1} - (\\hat{\\beta}'_{0} \\times 1 + \\hat{\\beta}'_1 \\times x_{11} + \\hat{\\beta}'_2 \\times x_{12})\\\\\ny_{2} - (\\hat{\\beta}'_{0} \\times 1 + \\hat{\\beta}'_1 \\times x_{21} + \\hat{\\beta}'_2 \\times x_{22})\\\\\n\\vdots  \\\\\ny_{n} - (\\hat{\\beta}'_{0} \\times 1 + \\hat{\\beta}'_1 \\times x_{n1} + \\hat{\\beta}'_2 \\times x_{n2})\\\\\n\\end{array}\\right]\n\\]\nAgain, if we run OLS, the algorithm will find an optimal solution to the the residuals above, a minimum \\(\\operatorname{RSS}_{(p=2)}\\). What can we expect of \\(\\operatorname{RSS}_{(p=2)}\\) in relation to \\(\\operatorname{RSS}_{(p=1)}\\)? Let’s think through some scenarios:\nIf it turned out that \\(\\hat{\\beta}'_0 = \\hat{\\beta}_0\\) and \\(\\hat{\\beta}'_1 = \\hat{\\beta}_1\\):\n\nIf \\(\\hat{\\beta}'_2 = 0\\), then we could conclude that \\(\\mathbf{e}' = \\mathbf{e}\\) and \\(\\operatorname{RSS}_{(p=2)} = \\operatorname{RSS}_{(p=1)}\\). That is, by minimising the sum of squares, OLS cannot find a better solution that involves \\(\\hat{\\beta}'_2\\).\nIf \\(\\hat{\\beta}'_2 \\neq 0\\) then notice that the new residuals are related to the previous ones: \\({e_i}' = (e_i - \\hat{\\beta}'_2x_{i2}) ~~\\forall i\\). That means \\(({e_i}')^2 \\geq e_i^2~~\\forall i\\) and therefore \\(\\operatorname{RSS}_{(p=2)} \\geq \\operatorname{RSS}_{(p=1)}\\).\n\nA similar logic applies to the case where \\(\\hat{\\beta}'_0 \\neq \\hat{\\beta}_0\\) and \\(\\hat{\\beta}'_1 \\neq \\hat{\\beta}_1\\) — check 1 for a more formal proof."
+  },
+  {
+    "objectID": "blog/posts/r-squared.html#conclusion",
+    "href": "blog/posts/r-squared.html#conclusion",
+    "title": "What happens to R-squared when we add more predictors?",
+    "section": "Conclusion",
+    "text": "Conclusion\nBy adding a new feature, given the fact that OLS uses squares of errors, it is inevitable that \\(({e_i}')^2 \\geq e_i^2~~\\forall i\\). OLS will always find an equivalent or a lower \\(\\operatorname{RSS}\\) value. If you check the \\(R^2\\) definition once again, you will realise that \\(\\operatorname{TSS}\\) will never change — as it is not related to \\(\\mathbf{X}\\), only to \\(\\mathbf{y}\\) — only \\(\\operatorname{RSS}\\) can vary when you add new features. Since \\(\\operatorname{RSS}\\) can only decrease or stay the same, \\(R^2\\) will always increase or stay the same, never decrease, if you add more features.\nTo correct this misleading tendency of R-squared, an adjusted index has been proposed. The ajusted R-squared takes the number of features into account and it is what you should rely on when assessing the goodness-of-fit of a linear regression."
+  },
+  {
     "objectID": "main/assessments.html",
     "href": "main/assessments.html",
     "title": "Assessments",
@@ -781,7 +844,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.66\n2     9    12 12.0 \n3    12    15 14.0 \n4    15    18 19.2 \n5    18    21 22.0 \n6    21    24 22.6"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.25\n2     9    12 14.9 \n3    12    15 16.2 \n4    15    18 17.6 \n5    18    21 17.7 \n6    21    24 25.7"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -816,7 +879,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY   error absError\n  <int> <int> <dbl>   <dbl>    <dbl>\n1     6     9  9.66 -0.664    0.664 \n2     9    12 12.0  -0.0409   0.0409\n3    12    15 14.0   0.951    0.951 \n4    15    18 19.2  -1.21     1.21  \n5    18    21 22.0  -0.967    0.967 \n6    21    24 22.6   1.39     1.39  \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.8706284\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  9.25 -0.253    0.253\n2     9    12 14.9  -2.90     2.90 \n3    12    15 16.2  -1.24     1.24 \n4    15    18 17.6   0.364    0.364\n5    18    21 17.7   3.25     3.25 \n6    21    24 25.7  -1.67     1.67 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.613991\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",

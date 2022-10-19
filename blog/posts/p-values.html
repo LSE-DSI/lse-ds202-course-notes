@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
-<meta name="dcterms.date" content="01 October 2022">
+<meta name="dcterms.date" content="19 October 2022">
 
-<title>LSE DS202 2022/23 - LSE DS202 (2022/2023)</title>
+<title>LSE DS202 2022/23 - Don’t give p-values more credit than they deserve</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,26 +25,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./main/syllabus.html" rel="next">
-<link href=".//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="css/custom_style.css">
+<link rel="stylesheet" href="../../css/custom_style.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -76,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">LSE DS202 2022/23</span>
     </a>
   </div>
@@ -93,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">LSE DS202 (2022/2023)</h1>
+      <h1 class="quarto-secondary-nav-title">Don’t give p-values more credit than they deserve</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -108,32 +107,32 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">🏠 Home</a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">🏠 Home</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./main/syllabus.html" class="sidebar-item-text sidebar-link">📓 Syllabus</a>
+  <a href="../../main/syllabus.html" class="sidebar-item-text sidebar-link">📓 Syllabus</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./main/communication.html" class="sidebar-item-text sidebar-link">📟 Communication</a>
+  <a href="../../main/communication.html" class="sidebar-item-text sidebar-link">📟 Communication</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./main/assessments.html" class="sidebar-item-text sidebar-link">✍️ Assessments</a>
+  <a href="../../main/assessments.html" class="sidebar-item-text sidebar-link">✍️ Assessments</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./main/courserep.html" class="sidebar-item-text sidebar-link">🗳️ Course Rep</a>
+  <a href="../../main/courserep.html" class="sidebar-item-text sidebar-link">🗳️ Course Rep</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./blog/main.html" class="sidebar-item-text sidebar-link">📚 Blog (🆕)</a>
+  <a href="../../blog/main.html" class="sidebar-item-text sidebar-link">📚 Blog (🆕)</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -146,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./weeks/week01.html" class="sidebar-item-text sidebar-link">Week 01</a>
+            <a href="../../weeks/week01.html" class="sidebar-item-text sidebar-link">Week 01</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -154,24 +153,24 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week01/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  <a href="../../weeks/week01/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week01/prep.html" class="sidebar-item-text sidebar-link">📒 Prepare for next week’s lab</a>
+  <a href="../../weeks/week01/prep.html" class="sidebar-item-text sidebar-link">📒 Prepare for next week’s lab</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week01/appendix.html" class="sidebar-item-text sidebar-link">🔖 Appendix</a>
+  <a href="../../weeks/week01/appendix.html" class="sidebar-item-text sidebar-link">🔖 Appendix</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./weeks/week02.html" class="sidebar-item-text sidebar-link">Week 02</a>
+            <a href="../../weeks/week02.html" class="sidebar-item-text sidebar-link">Week 02</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -179,24 +178,24 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week02/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  <a href="../../weeks/week02/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week02/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../../weeks/week02/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week02/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../../weeks/week02/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./weeks/week03.html" class="sidebar-item-text sidebar-link">Week 03</a>
+            <a href="../../weeks/week03.html" class="sidebar-item-text sidebar-link">Week 03</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -204,24 +203,24 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week03/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  <a href="../../weeks/week03/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week03/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../../weeks/week03/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week03/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../../weeks/week03/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./weeks/week04.html" class="sidebar-item-text sidebar-link">Week 04</a>
+            <a href="../../weeks/week04.html" class="sidebar-item-text sidebar-link">Week 04</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,17 +228,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week04/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  <a href="../../weeks/week04/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week04/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../../weeks/week04/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week04/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../../weeks/week04/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
       </ul>
@@ -251,27 +250,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
-<p><img src="./figures/logos/LSE Data Science Institute.png" class="img-fluid"></p>
+<p><img src="../../figures/logos/LSE Data Science Institute.png" class="img-fluid"></p>
 </div></div>
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#course-brief" id="toc-course-brief" class="nav-link active" data-scroll-target="#course-brief">📑 Course Brief</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">🎯 Learning Objectives</a></li>
-  <li><a href="#our-team" id="toc-our-team" class="nav-link" data-scroll-target="#our-team">🧑🏻‍🏫 Our Team</a></li>
-  <li><a href="#class-groups" id="toc-class-groups" class="nav-link" data-scroll-target="#class-groups">Class Groups</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">LSE DS202 (2022/2023)</h1>
-<p class="subtitle lead">Data Science for Social Scientists</p>
-</div>
+<h1 class="title d-none d-lg-block">Don’t give p-values more credit than they deserve</h1>
+<p class="subtitle lead">DS202 Blog Post</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">week04</div>
+    <div class="quarto-category">p-values</div>
+  </div>
+  </div>
 
 
 
@@ -287,7 +281,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">01 October 2022</p>
+      <p class="date">19 October 2022</p>
     </div>
   </div>
     
@@ -296,150 +290,34 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="course-brief" class="level1">
-<h1>📑 Course Brief</h1>
-<p><strong>Focus:</strong> learn and understand the most fundamental machine learning algorithms</p>
-<p><strong>How:</strong> practical use of machine learning techniques and its metrics, applied to relevant data sets</p>
-</section>
-<section id="learning-objectives" class="level1">
-<h1>🎯 Learning Objectives</h1>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+TLDR
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are dangers in relying too much on p-values.</p>
+</div>
+</div>
+<p>When you run a linear or logistic regression and find out that a regression coefficient has a low associated p-value, it is tempting to scream <em>THIS FEATURE IS SIGNIFICANT AND I CAN PROVE</em>!</p>
+<p>In reality, although p-values <em>might suggest</em> a non-zero relationship between variables, you shouldn’t judge the performance or explainability of a model simply by the p-values of coefficients, nor the p-value associated with the full model (say, the F-statistic).</p>
+<p>When assessing a model, look beyond goodness-of-fit. Perform train/test splits, cross-validation, bootstrap, and use appropriate measures of success to the problem you have at hand. Come to <a href="../../weeks/week04.html">🗓️ Week 04</a> workshop (the lecture) this Friday 21 October to learn more about this.</p>
+<p>The reason I am saying all this is because p-values are very easy to hack. In fact, there is even a term for misuse of p-values in the scientific literature: <em>p-hacking</em>.</p>
+<p><strong>Where do I inform myself about this?</strong></p>
+<p>I have separated a list of articles and commentaries about this topic. Check them out:</p>
 <ul>
-<li>Understand the <strong>fundamentals of the data science approach</strong>, with an emphasis on social scientific analysis and the study of the social, political, and economic worlds;</li>
-<li>Understand how <strong>classical methods</strong> such as regression analysis or principal components analysis can be treated <strong>as machine learning approaches</strong> for prediction or for data mining.</li>
-<li>Know how to fit and apply <strong>supervised machine learning models</strong> for classification and prediction.</li>
-<li>Know how to evaluate and <strong>compare fitted models</strong>, and to improve model performance.</li>
-<li>Use applied computer programming, including the <strong>hands-on use of programming</strong> through course exercises.</li>
-<li>Apply the methods learned to <strong>real data</strong> through hands-on exercises.</li>
-<li>Integrate the insights from data analytics into <strong>knowledge generation</strong> and <strong>decision-making</strong>.</li>
-<li>Understand an introductory framework for working with <strong>natural language (text) data</strong> using techniques of machine learning.</li>
-<li>Learn how data science methods have been applied to a particular domain of study (<strong>applications</strong>).</li>
+<li>Nahm, Francis Sahngun. 2017. <a href="https://doi.org/10.3344/kjp.2017.30.4.241">“What the P Values Really Tell Us.”</a> The Korean Journal of Pain 30 (4): 241.</li>
+<li>Amrhein, Valentin, Sander Greenland, and Blake McShane. 2019. <a href="https://doi.org/10.1038/d41586-019-00857-9">“Scientists Rise up Against Statistical Significance.”</a> Nature 567 (7748): 305–7.</li>
+<li>Aschwanden, Christie. 2015. <a href="https://fivethirtyeight.com/features/science-isnt-broken/">“Science Isn’t Broken.”</a> FiveThirtyEight.</li>
+<li>Sterne, Jonathan A C, and George Davey Smith. 2001. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1119478/">“Sifting the Evidence—What’s Wrong with Significance Tests?”</a> BMJ : British Medical Journal 322 (7280): 226–31.</li>
 </ul>
-</section>
-<section id="our-team" class="level1">
-<h1>🧑🏻‍🏫 Our Team</h1>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Teacher Responsible</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Teaching Staff</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Students</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Administrative Support</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p><img src="./figures/people/JonathanCardosoSilva_2022.jpg" class="img-fluid" style="width:5em" data-fig-align="left" alt="Photo of Dr. Jonathan Cardoso-Silva"><br>
-<strong>Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jonathan Cardoso-Silva</a></strong> <br> <em>Assistant Professorial Lecturer</em> <br> <a href="https://lse.ac.uk/dsi">LSE Data Science Institute</a><br> 📧 <script type="text/javascript">
-<!--
-h='&#108;&#x73;&#x65;&#46;&#x61;&#x63;&#46;&#x75;&#x6b;';a='&#64;';n='&#74;&#46;&#x43;&#x61;&#114;&#100;&#x6f;&#x73;&#x6f;&#x2d;&#x53;&#x69;&#108;&#118;&#x61;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
-// -->
-</script><noscript>J.Cardoso-Silva at lse dot ac dot uk</noscript></p>
-<p>Office Hours:</p>
-<ul>
-<li>15-min slots, on <strong>Wednesdays 13:00 – 15:00</strong> during Term Time</li>
-<li>Room: PEL 9.01c (check out the <a href="https://www.lse.ac.uk/lse-information/assets/documents/21-0099-Campus-Map-update-241121-V6.pdf">🗺️ campus map</a>)</li>
-<li>Book via <a href="https://studenthub.lse.ac.uk/">Student Hub</a> up to 12 hours in advance</li>
-</ul>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p><img src="./figures/people/stuart.jpg" class="img-fluid" style="width:5em" data-fig-align="left" alt="Photo of Stuart Bramwell"><br>
-<strong>Dr.&nbsp;<a href="https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell">Stuart Bramwell</a></strong> <br> ESRC Postdoctoral Fellow <br> Department of Methodology<br> PhD in Politics (Oxford)</p>
-<p><img src="./figures/people/Yijun.jpg" class="img-fluid" style="width:5em" data-fig-align="left" alt="Photo of Yijun Wang"><br>
-<strong><a href="https://www.kcl.ac.uk/people/yijun-wang">Yijun Wang</a></strong> <br> Guest Teacher at the <a href="https://lse.ac.uk/dsi">LSE Data Science Institute</a><br> PhD candidate in Health Informatics (KCL) <br> MSc in Data Science (KCL)</p>
-<p><img src="./figures/people/mustafa.jfif" class="img-fluid" style="width:5em" data-fig-align="left" alt="Photo of Mustafa Can Ozkan"><br>
-<strong>Mustafa Can Ozkan</strong> <br> Guest Teacher at the <a href="https://lse.ac.uk/dsi">LSE Data Science Institute</a><br> PhD candidate in the Spacetime Lab (UCL) <br> MSc in Transport (Imperial/UCL)</p>
-<p><img src="./figures/people/Xiaowei.png" class="img-fluid" style="width:5em" data-fig-align="left" alt="Photo of Xiaowei Gao"><br>
-<strong><a href="https://github.com/UCLWilson">Xiaowei Gao</a></strong> <br> Guest Teacher at the <a href="https://lse.ac.uk/dsi">LSE Data Science Institute</a><br> PhD candidate in the Spacetime Lab (UCL) <br> MSc in Data Science (KCL)</p>
-<p><img src="./figures/people/Anton.jpg" class="img-fluid" style="width:5em" data-fig-align="left" alt="Photo of Anton Boichenko"><br>
-<strong><a href="http://boychenko.pro/">Anton Boichenko</a></strong> <br> Guest Teacher at the <a href="https://lse.ac.uk/dsi">LSE Data Science Institute</a><br> Product Developer at <a href="https://decoded.com/">Decoded</a> <br> MSc in Applied Social Data Science (LSE)</p>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p><img src="./figures/people/Yoyo.png" class="img-fluid" style="width:5em" data-fig-align="left" alt="Photo of Zhang Ruishan (Yoyo)"><br>
-<strong>Zhang Ruishan (Yoyo)</strong> <br> 1st Year BSc Economics Student <br> Course Representative for DS202</p>
-<p><img src="./figures/people/Rachitha.png" class="img-fluid" style="width:5em" data-fig-align="left" alt="Photo of Rachitha Raghuram"><br>
-<strong>Rachitha Raghuram</strong> <br> 2nd Year BSc Economics Student <br> Course Representative for DS202</p>
-</div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<p><img src="./figures/people/Nathaniel-Ocquaye-Cropped-450x450.jpg" class="img-fluid" style="width:5em" data-fig-align="left" alt="Photo of Nathaniel Ocquaye"><br>
-<strong>Nathaniel Ocquaye</strong> <br> <em>Teaching Support and Events Officer</em><br> Office: PEL 9.01<br> Email: <script type="text/javascript">
-<!--
-h='&#108;&#x73;&#x65;&#46;&#x61;&#x63;&#46;&#x75;&#x6b;';a='&#64;';n='&#68;&#x53;&#x49;&#46;&#x55;&#x47;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
-// -->
-</script><noscript>DSI.UG at lse dot ac dot uk</noscript></p>
-<p><img src="./figures/people/Jill-Beattie.png" class="img-fluid" style="width:5em" data-fig-align="left" alt="Photo of Jill Beattie"><br>
-<strong>Jill Beattie</strong> <br> <em>Institute Coordinator</em><br> Office: PEL 9.01E<br> Tel: +44 (0) 20 7955 7759<br> Email: <script type="text/javascript">
-<!--
-h='&#108;&#x73;&#x65;&#46;&#x61;&#x63;&#46;&#x75;&#x6b;';a='&#64;';n='&#68;&#x53;&#x49;&#46;&#x41;&#100;&#x6d;&#x69;&#110;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
-// -->
-</script><noscript>DSI.Admin at lse dot ac dot uk</noscript></p>
-</div>
-</div>
-</div>
-</section>
-<section id="class-groups" class="level1">
-<h1>Class Groups</h1>
-<div style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa">
-<p><strong>Group 01</strong></p>
-<ul>
-<li>📆 Mondays</li>
-<li>⌚ 09:00 — 10:30</li>
-<li>📍 PAN.1.03</li>
-<li>🧑‍🏫 <em>Xiaowei</em></li>
-</ul>
-</div>
-<div style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa">
-<p><strong>Group 02</strong></p>
-<ul>
-<li>📆 Mondays</li>
-<li>⌚ 10:30 — 12:00</li>
-<li>📍 PAN.1.03</li>
-<li>🧑‍🏫 <em>Xiaowei</em></li>
-</ul>
-</div>
-<div style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa">
-<p><strong>Group 03</strong></p>
-<ul>
-<li>📆 Mondays</li>
-<li>⌚ 13:00 — 14:30</li>
-<li>📍 MAR.1.09</li>
-<li>🧑‍🏫 <em>Stuart/Jon</em></li>
-</ul>
-</div>
-<div style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa">
-<p><strong>Group 04</strong></p>
-<ul>
-<li>📆 Fridays</li>
-<li>⌚ 16:00 — 17:30</li>
-<li>📍 NAB.1.04</li>
-<li>🧑‍🏫 <em>Stuart/Yijun</em></li>
-</ul>
-</div>
-<div style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa">
-<p><strong>Group 05</strong></p>
-<ul>
-<li>📆 Mondays</li>
-<li>⌚ 09:00 — 10:30</li>
-<li>📍 32L.LG.11</li>
-<li>🧑‍🏫 <em>Mustafa</em></li>
-</ul>
-</div>
-<div style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa">
-<p><strong>Group 06</strong></p>
-<ul>
-<li>📆 Mondays</li>
-<li>⌚ 10:30 — 12:00</li>
-<li>📍 32L.LG.11</li>
-<li>🧑‍🏫 <em>Mustafa</em></li>
-</ul>
-</div>
-<div style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa">
-<p><strong>Group 07</strong></p>
-<ul>
-<li>📆 Fridays</li>
-<li>⌚ 09:30 — 11:00</li>
-<li>📍 CBG.2.06</li>
-<li>🧑‍🏫 <em>Stuart/Yijun</em></li>
-</ul>
-</div>
+<p><strong>💡 If you are in a hurry and want to read just ONE thing, read the <a href="https://fivethirtyeight.com/features/science-isnt-broken/">“Science Isn’t Broken.”</a> piece at FiveThirtyEight. They have a cool visualisation to illustrate the problem.</strong></p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -669,15 +547,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./main/syllabus.html" class="pagination-link">
-        <span class="nav-page-text">📓 Syllabus</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
