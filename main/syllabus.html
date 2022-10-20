@@ -133,7 +133,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../main/syllabus.html" class="sidebar-item-text sidebar-link active">📓 Syllabus</a>
+  <a href="../main/syllabus.html" class="sidebar-item-text sidebar-link active">📓 Syllabus (🆕)</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -153,7 +153,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../blog/main.html" class="sidebar-item-text sidebar-link">📚 Blog (🆕)</a>
+  <a href="../blog/main.html" class="sidebar-item-text sidebar-link">📚 Blog</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -315,7 +315,27 @@ div.csl-indent {
 
 <section id="syllabus" class="level1">
 <h1>📓 Syllabus</h1>
-<p>A list of what will happen every week.</p>
+<p>A list of what happens every week.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Updates (20 October 2022) :</p>
+<ul>
+<li>Added deadlines of assessments</li>
+<li>Added relevant chapters of textbook for lectures and labs</li>
+</ul>
+</div>
+</div>
+</div>
 <p>Click on each Week’s link for more information (slides, lab instructions, recommended resources, etc.).</p>
 
 <table class="syllabus table">
@@ -338,7 +358,7 @@ Intro
 Lecture
 </td>
 <td>
-Introduction, Context &amp; Key Concepts
+Introduction, Context &amp; Key Concepts <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 2</a>)</span>
 </td>
 </tr>
 <tr class="even">
@@ -367,7 +387,7 @@ Supervised Learning
 Lecture
 </td>
 <td>
-Simple and Multiple Linear Regression
+Simple and Multiple Linear Regression <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 3</a>)</span>
 </td>
 </tr>
 <tr class="even">
@@ -382,16 +402,16 @@ Revision of <code>R</code>: data structures, basic commands and some tidyverse
 <!-- WEEK 03 -->
 <tbody>
 <tr class="even">
-<td rowspan="2">
+<td rowspan="3">
 </td>
-<td rowspan="2">
+<td rowspan="3">
 🗓️ <a href="../weeks/week03.html">Week 03</a>
 </td>
 <td style="font-weight:bold;">
 Lecture
 </td>
 <td>
-Classifiers (Logistic Regression &amp; Naive Bayes)
+Classifiers (Logistic Regression &amp; Naive Bayes) <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 4</a>)</span>
 </td>
 </tr>
 <tr class="even">
@@ -402,6 +422,28 @@ Lab
 Linear Regression <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 3</a>)</span>
 </td>
 </tr>
+<tr class="even">
+<td style="font-weight:bold;">
+Formative
+</td>
+<td>
+<ul>
+<li>
+Worth: knowledge!
+</li>
+<li>
+Problem set involving linear regression.
+</li>
+<li>
+<strong>Release date:</strong> 15 October 2022
+</li>
+(<a href="https://moodle.lse.ac.uk/mod/coursework/view.php?id=1127006">link to Moodle</a>)
+<li>
+<strong>Deadline:</strong> 25 October 2022 (Week 05)
+</li>
+</ul>
+</td>
+</tr>
 </tbody>
 <!-- WEEK 04 -->
 <tbody>
@@ -409,13 +451,13 @@ Linear Regression <span class="citation" data-cites="james_introduction_2021">(<
 <td rowspan="2">
 </td>
 <td rowspan="2">
-🗓️ <a href="">Week 04</a>
+🗓️ <a href="../weeks/week04.html">Week 04</a>
 </td>
 <td style="font-weight:bold;">
 Lecture
 </td>
 <td>
-Resampling methods
+Resampling methods <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 5</a>)</span>
 </td>
 </tr>
 <tr class="even">
@@ -439,7 +481,7 @@ Classification Methods <span class="citation" data-cites="james_introduction_202
 Lecture
 </td>
 <td>
-Non-linear algorithms (SVM &amp; tree-based models)
+Non-linear algorithms (SVM &amp; tree-based models) <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chaps. 8–9</a>)</span>
 </td>
 </tr>
 <tr class="even">
@@ -460,10 +502,13 @@ Summative
 Worth: 20% of final marks
 </li>
 <li>
-Problem set involving all content covered until Week 05
+Problem set involving regression, classification and resampling
 </li>
 <li>
-Deadline: day before next lab
+<strong>Release date:</strong> 28 October 2022
+</li>
+<li>
+<strong>Deadline:</strong> 9 November 2022 (Week 07)
 </li>
 </ul>
 </td>
@@ -486,7 +531,7 @@ Unsupervised Learning
 Lecture
 </td>
 <td>
-Unsupervised Learning: Clustering
+Unsupervised Learning: Clustering <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 12</a>)</span>
 </td>
 </tr>
 <tr class="even">
@@ -494,7 +539,7 @@ Unsupervised Learning: Clustering
 Lab
 </td>
 <td>
-Unsupervised Learning: Clustering <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 12</a>)</span>
+Tree-based models &amp; SVM <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chaps. 8–9</a>)</span>
 </td>
 </tr>
 </tbody>
@@ -510,7 +555,7 @@ Unsupervised Learning: Clustering <span class="citation" data-cites="james_intro
 Lecture
 </td>
 <td>
-Unsupervised Learning: Dimensionality Reduction
+Unsupervised Learning: Dimensionality Reduction <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 12</a>)</span>
 </td>
 </tr>
 <tr class="even">
@@ -518,7 +563,7 @@ Unsupervised Learning: Dimensionality Reduction
 Lab
 </td>
 <td>
-Unsupervised Learning: PCA <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 12</a>)</span>
+Unsupervised Learning: Clustering <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 12</a>)</span>
 </td>
 </tr>
 <tr class="even">
@@ -531,10 +576,13 @@ Summative
 Worth: 20% of final marks
 </li>
 <li>
-Problem set about non-linear regression and clustering
+Problem set about unsupervised learning
 </li>
 <li>
-Deadline: day before next lab
+<strong>Release date:</strong> 18 November 2022
+</li>
+<li>
+<strong>Deadline:</strong> 29 November 2022 (Week 10)
 </li>
 </ul>
 </td>
@@ -565,16 +613,16 @@ Applications: Predictive Modelling on Tabular Data
 Lab
 </td>
 <td>
-We will create machine learning models using a selected real tabular dataset
+Unsupervised Learning: PCA <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 12</a>)</span>
 </td>
 </tr>
 </tbody>
 <!-- WEEK 10 -->
 <tbody>
 <tr class="even">
-<td rowspan="2">
+<td rowspan="3">
 </td>
-<td rowspan="2">
+<td rowspan="3">
 🗓️ <a href="">Week 10</a>
 </td>
 <td style="font-weight:bold;">
@@ -592,13 +640,34 @@ Lab
 We will explore unsupervised models using a couple of text datasets
 </td>
 </tr>
+<tr class="even">
+<td style="font-weight:bold;">
+Summative
+</td>
+<td>
+<ul>
+<li>
+Worth: 20% of final marks
+</li>
+<li>
+Problem set about ML applications (text mining/social media)
+</li>
+<li>
+<strong>Release date:</strong> 30 November 2022
+</li>
+<li>
+<strong>Deadline:</strong> 13 December 2022 (Week 11+1)
+</li>
+</ul>
+</td>
+</tr>
 </tbody>
 <!-- WEEK 11 -->
 <tbody>
 <tr class="even">
-<td rowspan="3">
+<td rowspan="2">
 </td>
-<td rowspan="3">
+<td rowspan="2">
 🗓️ <a href="">Week 11</a>
 </td>
 <td style="font-weight:bold;">
@@ -616,27 +685,53 @@ Lab
 We will create ML models using the data provided by <span class="citation" data-cites="sumner_predicting_2012">(<a href="#ref-sumner_predicting_2012" role="doc-biblioref">Sumner et al. 2012</a>)</span> <br>followed by a discussion on explainability and potential ethical issues
 </td>
 </tr>
+</tbody>
+<tbody>
+<tr class="even">
+<td rowspan="2">
+</td>
+<td rowspan="2">
+</td>
+<td style="font-weight:bold;">
+</td>
+<td>
+</td>
+</tr>
 <tr class="even">
 <td style="font-weight:bold;">
-Summative
+…
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+<tbody>
+<tr class="even">
+<td rowspan="2">
+</td>
+<td rowspan="2">
+🗓️ <a href="">January</a>
+</td>
+<td style="font-weight:bold;">
+Exam
 </td>
 <td>
 <ul>
 <li>
-Worth: 20% of final marks
+Worth: 40% of final marks
 </li>
 <li>
-Problem set about unsupervised learning applications
+Problem set about supervised + unsupervised learning + applications
 </li>
 <li>
-Deadline: end of Week 11+1
+<strong>Date:</strong> To be confirmed by LSE
 </li>
 </ul>
 </td>
 </tr>
-</tbody>
+</tbody><tbody>
 
-</table>
+</tbody></table>
 
 
 
