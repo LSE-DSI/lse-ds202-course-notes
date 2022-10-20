@@ -255,7 +255,7 @@ ggplot(data = Auto, aes(x = weight, y = horsepower)) +
 
 <!-- # 🎯 Practical Exercises -->
 
-<details><summary> Step 4: 🎯 Practical Exercises (35mins)</summary>
+<details><summary> Step 4: 🎯 Practical Exercises (50 mins)</summary>
 
 ## Step 4: 🎯 Practical Exercises
 
@@ -285,25 +285,6 @@ ii. Write a function,`boot.fn()`,that takes as input the `Default` data set as w
 
 
 iii. Use the `boot()` function together with your `boot.fn()` function to estimate the standard errors of the logistic regression coefficients for `income` and `balance`. Then, Create a histogram of the bootstrap parameter estimates with `ggplot2`, and also set the `bins=20`, title as `1,000 Bootstrap Parameter Estimates - 'balance' & 'income`.
-
-
-### Q3: Leave-One-Out-Cross-Validation (LOOCV)
-
-We saw that the `cv.glm()` function can be used in order to compute the LOOCV test error estimate. However, one could compute those quantities using just the `glm()` and `predict.glm()` functions, and a for loop. You will now take this approach in order to compute the LOOCV error for a simple logistic regression model on the `Weekly` data set as following:
-
-i. Logistic Regression- Fit a logistic regression model that predicts `Direction` using `Lag1` and `Lag2`.
-
-ii. Omitting One Observation from Training- Fit a logistic regression model that predicts `Direction` using `Lag1` and `Lag2` *using all but the first observation* .
-
-iii. Predicting the Omitted Observation- Use the model from ii. to predict the `direction` of the first observation. You can do this by predicting that the first observation will go up if $P(\text { Direction }=' U p ' \mid \operatorname{Lag} 1, \text { Lag2 })>0.5$. Was this observation correctly classified?
-
-iv. Writing a LOOCV Loop- Write a for loop from i = 1 to i = n, where n is the number of observations in the data set, that performs each of the following steps:
-    1. Fit a logistic regression model using all but the ith observation to predict `Direction` using `Lag1` and `Lag2`.
-    2.  Compute the posterior probability of the market moving up for the `i` th observation.
-    3. Use the posterior probability for the `i` th observation in order to predict whether or not the market moves up.
-    4. Determine whether or not an error was made in predicting the direction for the `i` th observation. If an error was made, then indicate this as a `1` , and otherwise indicate it as a `0` .
-
-v. The LOOCV Estimate for the Test Error- Take the average of the `n` numbers obtained in `(iv)-4`. in order to obtain the LOOCV estimate for the test error. Comment on the results.
     
 </details>
 
