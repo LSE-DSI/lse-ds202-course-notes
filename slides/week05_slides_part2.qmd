@@ -1,0 +1,154 @@
+---
+subtitle: "DS202 Data Science for Social Scientists"
+title: "🗓️ Week 05:<br/>Non-Linear Algorithms - Part II"
+author: Dr. [Jon Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva) and Dr. [Stuart Bramwell](https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell)
+institute: '[\@LSEDataScience](https://twitter.com/lsedatascience)'
+date: 14 October 2022
+date-meta: 14 October 2022
+toc: true
+toc-depth: 1
+toc-title: "What we will cover today"
+center-title-slide: false
+tbl-cap-location: bottom
+from: markdown+emoji
+format:
+  revealjs: 
+    html-q-tag: true
+    pdf-separate-fragments: true
+    code-fold: false
+    theme: simple
+    slide-number: true
+    mouse-wheel: true
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    logo: /figures/logos/LSE Data Science Institute.png
+    css: /css/styles_slides.css
+    footer: 'DS202 - Data Science for Social Scientists :robot: :juggling_person:'
+---
+
+## Support Vector Machines for Classification
+
+- Considered one of the best out-of-the-box classifiers (ISLR)
+- Able to accommodate non-linear decision boundaries
+
+## Building Intuition: the Hyperplane
+
+```{r}
+library(tidyverse)
+
+sim.data <- crossing(x1 = seq(-1.5, 1.5, 0.1),
+                     x2 = seq(-1.5, 1.5, 0.1)) %>%
+            mutate(hp = if_else(1 + 2*x1 + 3*x2 > 0, 'Yes', 'No')) 
+
+sim.line <- tibble(x1 = c(-1.5, 1.5),
+                   slope = (-1 - 2*x1)/3)
+
+sim.data %>%
+    ggplot() +
+    geom_point(aes(x1, x2, colour = hp), size = 2) +
+    geom_line(data = sim.line, aes(x = x1, y = slope), size = 1) +
+    theme_minimal() +
+    theme(legend.position = 'bottom',
+          panel.grid = element_blank()) +
+    scale_colour_manual(values = c('#709AE1FF','#FED439FF')) +
+    labs(x = 'First variable', y = 'Second variable',
+         colour = 'Above hyperplane?')
+
+```
+
+## Building Intuition: the Hyperplane (cont.)
+
+When $1 + 2x_1 + 3x_2 < 0$
+
+```{r}
+
+library(ggsci)
+
+sim.data %>%
+    ggplot() +
+    geom_point(aes(x1, x2, colour = hp), size = 2) +
+    # geom_line(data = sim.line, aes(x = x1, y = slope), size = 1) +
+    theme_minimal() +
+    theme(legend.position = 'none',
+          panel.grid = element_blank()) +
+    scale_colour_manual(values = c('#709AE1FF','white')) +
+    labs(x = 'First variable', y = 'Second variable')
+
+```
+
+## Building Intuition: the Hyperplane (cont.)
+
+When $1 + 2x_1 + 3x_2 > 0$
+
+```{r}
+
+library(ggsci)
+
+sim.data %>%
+    ggplot() +
+    geom_point(aes(x1, x2, colour = hp), size = 2) +
+    # geom_line(data = sim.line, aes(x = x1, y = slope), size = 1) +
+    theme_minimal() +
+    theme(legend.position = 'none',
+          panel.grid = element_blank()) +
+    scale_colour_manual(values = c('white','#FED439FF')) +
+    labs(x = 'First variable', y = 'Second variable')
+
+```
+
+## Building Intuition: the Hyperplane (cont.)
+
+When $1 + 2x_1 + 3x_2 = 0$
+
+```{r}
+
+library(ggsci)
+
+sim.data %>%
+    ggplot() +
+    geom_point(aes(x1, x2, colour = hp), size = 2, colour = 'white') +
+    geom_line(data = sim.line, aes(x = x1, y = slope), size = 1) +
+    theme_minimal() +
+    theme(legend.position = 'none') +
+    labs(x = 'First variable', y = 'Second variable')
+
+```
+
+## Building Intuition: the Maximal Marginal Classifier
+
+The linearly separable case
+
+```{r}
+
+library(e1071)
+
+set.seed(123)
+x1 <- c(rnorm(50, 1, 1) , rnorm(50, 4, 1))
+set.seed(234)
+x2 <- c(rnorm(50, 1, 1) , rnorm(50, 4, 1))
+
+sim.data <- tibble(x1 = x1, x2 = x2,
+                   cl = as.factor(c(rep('1', 50), rep('2', 50))))
+  
+sim.data %>%
+  ggplot() +
+  geom_point(aes(x1, x2, colour = cl), size = 2) +
+  theme_minimal() +
+  theme(legend.position = 'none') +
+  labs(x = 'First variable', y = 'Second variable')
+
+mmc <- svm(cl ~ x1 + x2, data = sim.data, kernel = 'linear')
+
+sim.data %>% 
+  mutate(support_vects = if_else(row_number() %in% mmc$index, 'Yes', 'No')) %>% 
+  ggplot(aes(x1, x2, colour = cl, shape = support_vects, size = support_vects)) +
+  geom_point(size = 3) +
+  scale_shape_manual(values = c(1, 4)) +
+  scale_size_manual(values = c(1, 10)) +
+  theme_minimal() +
+  theme(legend.position = 'bottom') +
+  labs(x = 'First variable', y = 'Second variable',
+       shape = 'Support vectors?', colour = 'Class')
+
+```
