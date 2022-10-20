@@ -27,6 +27,14 @@ format:
     footer: 'DS202 - Data Science for Social Scientists :robot: :juggling_person:'
 ---
 
+```{r}
+
+library(e1071)
+library(ggsci)
+library(tidyverse)
+
+```
+
 ## Support Vector Machines for Classification
 
 - Considered one of the best out-of-the-box classifiers (ISLR)
@@ -35,7 +43,6 @@ format:
 ## Building Intuition: the Hyperplane
 
 ```{r}
-library(tidyverse)
 
 sim.data <- crossing(x1 = seq(-1.5, 1.5, 0.1),
                      x2 = seq(-1.5, 1.5, 0.1)) %>%
@@ -63,12 +70,9 @@ When $1 + 2x_1 + 3x_2 < 0$
 
 ```{r}
 
-library(ggsci)
-
 sim.data %>%
     ggplot() +
     geom_point(aes(x1, x2, colour = hp), size = 2) +
-    # geom_line(data = sim.line, aes(x = x1, y = slope), size = 1) +
     theme_minimal() +
     theme(legend.position = 'none',
           panel.grid = element_blank()) +
@@ -83,12 +87,9 @@ When $1 + 2x_1 + 3x_2 > 0$
 
 ```{r}
 
-library(ggsci)
-
 sim.data %>%
     ggplot() +
     geom_point(aes(x1, x2, colour = hp), size = 2) +
-    # geom_line(data = sim.line, aes(x = x1, y = slope), size = 1) +
     theme_minimal() +
     theme(legend.position = 'none',
           panel.grid = element_blank()) +
@@ -103,25 +104,22 @@ When $1 + 2x_1 + 3x_2 = 0$
 
 ```{r}
 
-library(ggsci)
-
 sim.data %>%
     ggplot() +
     geom_point(aes(x1, x2, colour = hp), size = 2, colour = 'white') +
     geom_line(data = sim.line, aes(x = x1, y = slope), size = 1) +
     theme_minimal() +
-    theme(legend.position = 'none') +
+    theme(legend.position = 'none',
+          panel.grid = element_blank()) +
     labs(x = 'First variable', y = 'Second variable')
 
 ```
 
 ## Building Intuition: the Maximal Marginal Classifier
 
-The linearly separable case
+The linearly separable case. The x's represent the so-called support vectors.
 
 ```{r}
-
-library(e1071)
 
 set.seed(123)
 x1 <- c(rnorm(50, 1, 1) , rnorm(50, 4, 1))
@@ -134,21 +132,217 @@ sim.data <- tibble(x1 = x1, x2 = x2,
 sim.data %>%
   ggplot() +
   geom_point(aes(x1, x2, colour = cl), size = 2) +
+  scale_colour_lancet() +
   theme_minimal() +
   theme(legend.position = 'none') +
   labs(x = 'First variable', y = 'Second variable')
 
+```
+
+## Identifying support vectors
+
+```{r}
+
 mmc <- svm(cl ~ x1 + x2, data = sim.data, kernel = 'linear')
 
 sim.data %>% 
-  mutate(support_vects = if_else(row_number() %in% mmc$index, 'Yes', 'No')) %>% 
-  ggplot(aes(x1, x2, colour = cl, shape = support_vects, size = support_vects)) +
-  geom_point(size = 3) +
+  mutate(support_vects = if_else(row_number() %in% mmc$index, 'sv', 'o')) %>% 
+  ggplot(aes(x1, x2, colour = cl, label = support_vects)) +
+  geom_text(size = 5) +
   scale_shape_manual(values = c(1, 4)) +
   scale_size_manual(values = c(1, 10)) +
+  scale_colour_lancet() +
   theme_minimal() +
-  theme(legend.position = 'bottom') +
+  theme(legend.position = 'bottom',
+        plot.caption = element_text(hjust = 0.5, vjust = -1, size = 12.5)) +
   labs(x = 'First variable', y = 'Second variable',
-       shape = 'Support vectors?', colour = 'Class')
+       label = 'Support vectors?', colour = 'Class',
+       caption = 'sv = support vector')
+
+```
+
+## When data is not linearly separable
+
+Suppose we have a case that is not linearly separable like this. We have two classes but class 1 is "sandwiched" in between class 2.
+
+```{r}
+
+set.seed (1)
+x <- matrix(rnorm (200 * 2), ncol = 2)
+x[1:100, ] <- x[1:100, ] + 2
+x[101:150, ] <- x[101:150, ] - 2
+y <- c(rep(1, 150) , rep(2, 50))
+sim.train <- data.frame(x1 = x[,1], x2 = x[,2], y = as.factor(y))
+
+sim.train %>%   
+  ggplot() +
+  geom_point(aes(x1, x2, colour = y), size = 3) +
+  ggsci::scale_colour_lancet() +
+  ggsci::scale_fill_lancet() +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'First variable', y = 'Second variable',
+       colour = 'Class')
+
+```
+
+## Enter support vector machines
+
+Let's start with a (linear) support vector classifier function
+
+$$
+
+f(x) = \beta_0 + \sum_{i\in\mathcal{S}}^{} \alpha_i\left\langle x_i, x_{i'} \right\rangle
+
+$$
+
+A couple of points:
+
+- $\left\langle x_i, x_{i'} \right\rangle$ is the inner product of two observations
+- $\alpha_i$ is a parameter fitted for all pairs of training observations
+- $i\in\mathcal{S}$ indicates observations that are support vectors (all other observations are ignored by setting all $\alpha_i \notin \mathcal{S}$ to zero.)
+
+## Enter support vector machines (cont.)
+
+We can replace $\left\langle x_i, x_{i'} \right\rangle$ with a \textit{generalisation} of the form $K(x_i, x_{i'})$ where $K$ is a kernel.
+
+- Two well-known kernels
+- Polynomial $K(x_i, x_{i'}) = (1 + \sum_{j = 1}^{p} x_{ij}x_{i'j})^d $ where $d > 1$
+- Radial or "Gaussian" $K(x_i, x_{i'}) = \text{exp}(-\gamma\sum_{j=1}^{p}(x_{ij}-x_{i'j})^2)$ where $\gamma$ is a positive constant.
+
+## Overfitting illustrated
+
+Simple models can sometimes be better than complex models.
+
+```{r}
+
+svm.model.simple <- 
+  svm(y ~ ., data = sim.train, kernel = 'radial')
+
+svm.model.complex <-
+  svm(y ~ ., data = sim.train, kernel = 'radial',
+      gamma = 10^2,  
+      cost = 10^4)
+
+kernel.points <-
+  crossing(x1 = seq(-5, 5, 0.1),
+           x2 = seq(-5, 5, 0.1)) %>% 
+  mutate(class.simple = predict(svm.model.simple, .),
+         class.complex = predict(svm.model.complex, .))
+
+sim.train <-
+  sim.train %>% 
+  as_tibble() %>% 
+  mutate(pred.simple = predict(svm.model.simple, .),
+         pred.complex = predict(svm.model.complex, .),
+         correct.simple = if_else(pred.simple == y, TRUE, FALSE),
+         correct.complex = if_else(pred.complex == y, TRUE, FALSE))
+```
+
+## Simple model on training set
+
+```{r}
+sim.train %>%   
+  ggplot() +
+  geom_tile(data = kernel.points, aes(x1, x2, fill = class.simple), alpha = 0.325) +
+  geom_point(aes(x1, x2, colour = y, shape = correct.simple), size = 3) +
+  scale_shape_manual(values = c(4, 1)) +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'First variable', y = 'Second variable',
+       fill = 'Class', colour = 'Class',
+       shape = 'Correct prediction?',
+       title = paste('Training accuracy =', mean(sim.train$correct.simple)))
+```
+
+## Complex model on training set
+
+```{r}
+sim.train %>%   
+  ggplot() +
+  geom_tile(data = kernel.points, aes(x1, x2, fill = class.complex), alpha = 0.325) +
+  geom_point(aes(x1, x2, colour = y, shape = correct.complex), size = 3) +
+  scale_shape_manual(values = c(1, 4)) +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'First variable', y = 'Second variable',
+       fill = 'Class', colour = 'Class',
+       shape = 'Correct prediction?',
+       title = paste('Training accuracy =', mean(sim.train$correct.complex)))
+
+```
+
+## Now let's create some testing data
+
+Look what happens when I set a different seed (nothing else changes) to construct a test set.
+
+```{r}
+
+set.seed (2)
+x <- matrix(rnorm (200 * 2), ncol = 2)
+x[1:100, ] <- x[1:100, ] + 2
+x[101:150, ] <- x[101:150, ] - 2
+y <- c(rep(1, 150) , rep(2, 50))
+sim.test <- data.frame(x1 = x[,1], x2 = x[,2], y = as.factor(y))
+
+sim.test <-
+  sim.test %>% 
+  as_tibble() %>% 
+  mutate(pred.simple = predict(svm.model.simple, .),
+         pred.complex = predict(svm.model.complex, .),
+         correct.simple = if_else(pred.simple == y, TRUE, FALSE),
+         correct.complex = if_else(pred.complex == y, TRUE, FALSE))
+
+```
+
+## Simple model on test set
+
+```{r}
+
+sim.test %>%   
+  ggplot() +
+  geom_tile(data = kernel.points, aes(x1, x2, fill = class.simple), alpha = 0.325) +
+  geom_point(aes(x1, x2, colour = y, shape = correct.simple), size = 3) +
+  scale_shape_manual(values = c(4, 1)) +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'First variable', y = 'Second variable',
+       fill = 'Class', colour = 'Class',
+       shape = 'Correct prediction?',
+       title = paste('Testing accuracy =', mean(sim.test$correct.simple)))
+```
+
+## Complex model on test set
+
+```{r}
+sim.test %>%   
+  ggplot() +
+  geom_tile(data = kernel.points, aes(x1, x2, fill = class.complex), alpha = 0.325) +
+  geom_point(aes(x1, x2, colour = y, shape = correct.complex), size = 3) +
+  scale_shape_manual(values = c(4, 1)) +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'First variable', y = 'Second variable',
+       fill = 'Class', colour = 'Class',
+       shape = 'Correct prediction?',
+       title = paste('Testing accuracy =', mean(sim.test$correct.complex)))
 
 ```
