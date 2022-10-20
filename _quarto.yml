@@ -33,7 +33,7 @@ website:
       - href: index.qmd
         text: "🏠 Home"
       - href: main/syllabus.qmd
-        text: "📓 Syllabus"
+        text: "📓 Syllabus  (🆕)"
       - href: main/communication.qmd
         text: "📟 Communication"
       - href: main/assessments.qmd
@@ -41,7 +41,7 @@ website:
       - href: main/courserep.qmd
         text: "🗳️ Course Rep"
       - href: blog/main.qmd
-        text: "📚 Blog (🆕)"
+        text: "📚 Blog"
       - section: "🗓️ Weeks"
         contents:
          - href: weeks/week01.qmd

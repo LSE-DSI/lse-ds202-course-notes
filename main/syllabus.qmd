@@ -7,7 +7,15 @@ date-meta: 05 September 2022
 
 # 📓 Syllabus
 
-A list of what will happen every week. 
+A list of what happens every week.
+
+::: {.callout-important collapse="false"}
+
+Updates (20 October 2022) :
+
+- Added deadlines of assessments
+- Added relevant chapters of textbook for lectures and labs
+:::
 
 Click on each Week's link for more information (slides, lab instructions, recommended resources, etc.).
 
@@ -26,7 +34,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
             <td rowspan=2></td>
             <td rowspan=2>🗓️ <a href="/weeks/week01.qmd">Week 01</a></td>
             <td style="font-weight:bold;">Lecture</td>
-            <td>Introduction, Context & Key Concepts</td>
+            <td>Introduction, Context & Key Concepts <br/> [@james_introduction_2021, chapter 2]</td>
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Lab</td>
@@ -44,7 +52,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
            <td rowspan=2></td>
            <td rowspan=2>🗓️ <a href="/weeks/week02.qmd">Week 02</a></td>
            <td style="font-weight:bold;">Lecture</td>
-           <td>Simple and Multiple Linear Regression</td>
+           <td>Simple and Multiple Linear Regression <br/> [@james_introduction_2021, chapter 3]</td>
        </tr>
        <tr class="even">
            <td style="font-weight:bold;">Lab</td>
@@ -55,14 +63,25 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <!-- WEEK 03 -->
     <tbody>
     <tr class="even">
-        <td rowspan=2></td>
-        <td rowspan=2>🗓️ <a href="/weeks/week03.qmd">Week 03</a></td>
+        <td rowspan=3></td>
+        <td rowspan=3>🗓️ <a href="/weeks/week03.qmd">Week 03</a></td>
         <td style="font-weight:bold;">Lecture</td>
-        <td>Classifiers (Logistic Regression & Naive Bayes)</td>
+        <td>Classifiers (Logistic Regression & Naive Bayes) <br/> [@james_introduction_2021, chapter 4]</td>
     </tr>
     <tr class="even">
         <td style="font-weight:bold;">Lab</td>
         <td>Linear Regression [@james_introduction_2021, chapter 3]</td>
+    </tr>
+    <tr class="even">
+        <td style="font-weight:bold;">Formative</td>
+        <td>
+            <ul>
+                <li>Worth: knowledge!</li>
+                <li>Problem set involving linear regression.</li>
+                <li>**Release date:** 15 October 2022</li> ([link to Moodle](https://moodle.lse.ac.uk/mod/coursework/view.php?id=1127006))
+                <li>**Deadline:** 25 October 2022 (Week 05)</li>
+            </ul>
+        </td>
     </tr>
    </tbody>
 
@@ -70,9 +89,9 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <tbody>
         <tr class="even">
             <td rowspan=2></td>
-            <td rowspan=2>🗓️ <a href="">Week 04</a></td>
+            <td rowspan=2>🗓️ <a href="/weeks/week04.qmd">Week 04</a></td>
             <td style="font-weight:bold;">Lecture</td>
-            <td>Resampling methods</td>
+            <td>Resampling methods <br/> [@james_introduction_2021, chapter 5]</td>
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Lab</td>
@@ -86,7 +105,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
             <td rowspan=3></td>
             <td rowspan=3>🗓️ <a href="">Week 05</a></td>
             <td style="font-weight:bold;">Lecture</td>
-            <td>Non-linear algorithms (SVM & tree-based models)</td>
+            <td>Non-linear algorithms (SVM & tree-based models) <br/> [@james_introduction_2021, chapter 8-9]</td>
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Lab</td>
@@ -97,8 +116,9 @@ Click on each Week's link for more information (slides, lab instructions, recomm
             <td>
                 <ul>
                     <li>Worth: 20% of final marks</li>
-                    <li>Problem set involving all content covered until Week 05</li>
-                    <li>Deadline: day before next lab</li>
+                    <li>Problem set involving regression, classification and resampling</li>
+                    <li>**Release date:** 28 October 2022</li>
+                    <li>**Deadline:** 9 November 2022 (Week 07)</li>
                 </ul>
             </td>
         </tr>
@@ -114,11 +134,11 @@ Click on each Week's link for more information (slides, lab instructions, recomm
             <td rowspan=2></td>
             <td rowspan=2>🗓️ <a href="">Week 07</a></td>
             <td style="font-weight:bold;">Lecture</td>
-            <td>Unsupervised Learning: Clustering</td>
+            <td>Unsupervised Learning: Clustering <br/> [@james_introduction_2021, chapter 12]</td>
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Lab</td>
-            <td>Unsupervised Learning: Clustering [@james_introduction_2021, chapter 12]</td>
+            <td>Tree-based models & SVM [@james_introduction_2021, chapter 8-9]</td>
         </tr>
     </tbody>
 
@@ -128,19 +148,20 @@ Click on each Week's link for more information (slides, lab instructions, recomm
             <td rowspan=3></td>
             <td rowspan=3>🗓️ <a href="">Week 08</a></td>
             <td style="font-weight:bold;">Lecture</td>
-            <td>Unsupervised Learning: Dimensionality Reduction</td>
+            <td>Unsupervised Learning: Dimensionality Reduction <br/> [@james_introduction_2021, chapter 12]</td>
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Lab</td>
-            <td>Unsupervised Learning: PCA [@james_introduction_2021, chapter 12]</td>
+            <td>Unsupervised Learning: Clustering [@james_introduction_2021, chapter 12]</td>
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Summative</td>
             <td>
                 <ul>
                     <li>Worth: 20% of final marks</li>
-                    <li>Problem set about non-linear regression and clustering</li>
-                    <li>Deadline: day before next lab</li>
+                    <li>Problem set about unsupervised learning</li>
+                    <li>**Release date:** 18 November 2022</li>
+                    <li>**Deadline:** 29 November 2022 (Week 10)</li>
                 </ul>
             </td>
         </tr>
@@ -160,15 +181,15 @@ Click on each Week's link for more information (slides, lab instructions, recomm
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Lab</td>
-            <td>We will create machine learning models using a selected real tabular dataset</td>
+            <td>Unsupervised Learning: PCA [@james_introduction_2021, chapter 12]</td>
         </tr>
     </tbody>
 
     <!-- WEEK 10 -->
     <tbody>
         <tr class="even">
-            <td rowspan=2></td>
-            <td rowspan=2>🗓️ <a href="">Week 10</a></td>
+            <td rowspan=3></td>
+            <td rowspan=3>🗓️ <a href="">Week 10</a></td>
             <td style="font-weight:bold;">Lecture</td>
             <td>Applications: Text as Data & Topic Modelling (with guest speakers)</td>
         </tr>
@@ -176,13 +197,24 @@ Click on each Week's link for more information (slides, lab instructions, recomm
             <td style="font-weight:bold;">Lab</td>
             <td>We will explore unsupervised models using a couple of text datasets</td>
         </tr>
+        <tr class="even">
+            <td style="font-weight:bold;">Summative</td>
+            <td>
+                <ul>
+                    <li>Worth: 20% of final marks</li>
+                    <li>Problem set about ML applications (text mining/social media)</li>
+                    <li>**Release date:** 30 November 2022</li>
+                    <li>**Deadline:** 13 December 2022 (Week 11+1)</li>
+                </ul>
+            </td>
+        </tr>
     </tbody>
 
     <!-- WEEK 11 -->
     <tbody>
         <tr class="even">
-            <td rowspan=3></td>
-            <td rowspan=3>🗓️ <a href="">Week 11</a></td>
+            <td rowspan=2></td>
+            <td rowspan=2>🗓️ <a href="">Week 11</a></td>
             <td style="font-weight:bold;">Lecture</td>
             <td>Applications: Social Media Data (with guest speakers)</td>
         </tr>
@@ -190,16 +222,34 @@ Click on each Week's link for more information (slides, lab instructions, recomm
             <td style="font-weight:bold;">Lab</td>
             <td>We will create ML models using the data provided by [@sumner_predicting_2012] <br/>followed by a discussion on explainability and potential ethical issues</td>
         </tr>
+    </tbody>
+
+    <tbody>
         <tr class="even">
-            <td style="font-weight:bold;">Summative</td>
+            <td rowspan=2></td>
+            <td rowspan=2></td>
+            <td style="font-weight:bold;"></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td style="font-weight:bold;">...</td>
+            <td></td>
+        </tr>
+    </tbody>
+
+    <tbody>
+        <tr class="even">
+            <td rowspan=2></td>
+            <td rowspan=2>🗓️ <a href="">January</a></td>
+            <td style="font-weight:bold;">Exam</td>
             <td>
                 <ul>
-                    <li>Worth: 20% of final marks</li>
-                    <li>Problem set about unsupervised learning applications</li>
-                    <li>Deadline: end of Week 11+1</li>
+                    <li>Worth: 40% of final marks</li>
+                    <li>Problem set about supervised + unsupervised learning + applications</li>
+                    <li>**Date:** To be confirmed by LSE</li>
                 </ul>
             </td>
         </tr>
-    </tbody>
+    <tbody>
     
 </table>
