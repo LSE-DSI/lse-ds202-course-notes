@@ -144,89 +144,22 @@ Let's create a scatter plot with `horsepower` on the x-axis and `mpg` on the y-a
 
 </details>
 
-<details>
-<summary> Step 2: Leave-One-Out Cross-Validation (LOOCV) (15mins) </summary>
 
-## Step 2: Leave-One-Out Cross-Validation (LOOCV)
+<details><summary> Step 2: k-Fold Cross-Validation (5mins)</summary>
 
-Hereby, We will compute the LOOCV values by using the function `glm` rather than `lm`.
-
-### Step 2.1: Generate the cross-validation results with the generalized linear model.
-	
-```{r message=FALSE, warning=FALSE}
-
-#fit the glm model
-glm.fit <- glm(mpg ~ horsepower, data = Auto)
-
-# get the information about the model
-summary(glm.fit)
-
-```
-
-The `cv.glm()` function is part of the `boot` library. Meanwhile, you can explore the `cv.err` by yourself to see what `call`,`K`,`delta` and `seed` mean. This online webpage will be useful when interpreting the results. [Intepretation of cross-validation result](https://stats.stackexchange.com/questions/48766/intepretation-of-crossvalidation-result-cv-glm)
-
-
-```{r message=FALSE, warning=FALSE}
-library(boot)
-
-# get the cross-validation results by the 'cv.glm' function
-cv.err <- cv.glm(Auto, glm.fit)
-cv.err$delta
-```
-
-```{r message=FALSE, warning=FALSE}
-# explore cv.err 
-summary(cv.err)
-
-```
-
-
-### Step 2.2: Repeat the former step and fit increasingly complex polynomial models
-	
-```{r, message=FALSE, warning=FALSE}
-# initialise an empty vector to store results
-cv.error <- c() 
-
-for(i in 1:10){
-    glm.fit <- glm(mpg ~ poly(horsepower, i), data = Auto)
-    cv.error[i] <- cv.glm(data = Auto, glmfit = glm.fit)$delta[1]
-}
-
-# check the cv.error 
-cv.error
-
-```{r, message=FALSE, warning=FALSE}
-
-# we can plot the results by passing a data frame to ggplot
-
-cv.data <- data.frame(poly = 1:10, cv.errors = cv.error)
-
-ggplot(data = cv.data, aes(x = poly, y = cv.errors)) +
-    geom_point() +
-    geom_line(linetype = 'dashed') +
-    scale_x_continuous(breaks = 1:10) +
-    theme_minimal() +
-    labs(x = 'Degree of polynomial', y = 'Cross-validated MSE')
-
-```
-
-We use the `for` loop to iterate the number from 1 to 10, and store the first `delta` number to the **i** th position of `cv.error`. When creating a `for` loop, we need to initialise an empty container to store our results in which is what `cv.error <- c()` achieves.
-
-I would also encourage you to basically visualise the results using `ggplot`. We can clearly see a sharp drop in the estimated test $\operatorname{MSE}$ between the linear and quadratic fits, from $24.27$ to $19.27$, but then no clear improvement from using higher-order polynomials. 
-
-</details>
-
-<details><summary> Step 3: k-Fold Cross-Validation (5mins)</summary>
-
-## Step 3: k-Fold Cross-Validation
+## Step 2: k-Fold Cross-Validation
 
 It will be easy to follow the former procedure in Step 2, by the `cv.glm` to implement ***K-fold*** CV.
 
-### Step 3.1: Using K=10 folds
+### Step 2.1: Using K=10 folds
 
 Let's estimate Cross-Validation errors corresponding to the polynomial fits of orders one to ten using ten-fold cross-validation (via `K = 10`). 
 
+The `cv.glm()` function is part of the `boot` library. Meanwhile, you can explore the `cv.err` by yourself to see what `call`,`K`,`delta` and `seed` mean. This online webpage will be useful when interpreting the results.
+
 ```{r}
+library(boot)
+
 
 set.seed(17)
 
@@ -257,9 +190,9 @@ Note that in the line of `cv.error.10[i] <- cv.glm(data = Auto, glmfit = glm.fit
 
 </details>
 
-<details><summary> Step 4: The Bootstrap (20mins) </summary>
+<details><summary> Step 3: The Bootstrap (20mins) </summary>
 
-## Step 4: The Bootstrap
+## Step 3: The Bootstrap
 
 We have learnt the theoretical method regarding Bootstrap. I understand that it may be a bit difficult for beginners in statistics, but we will mainly focus on the coding implementation and visualisation here. Also, we will introduce how to create a `function` below.
 
@@ -268,7 +201,7 @@ We have learnt the theoretical method regarding Bootstrap. I understand that it 
 
 With the help of a function, you can reuse the same pattern codes with a simple function name. In fact, you work with functions all the time in R - perhaps without even realising it! 
 
-### Step 4.1 Estimating the Accuracy of a Linear Regression Model
+### Step 3.1 Estimating the Accuracy of a Linear Regression Model
 
 In this step, we will use the boostrap approach to assess the variability of a coefficient estimate. For the sake of simplicity we will look at the relationship between `weight` and `horsepower` which appears to be linear.
 
@@ -322,9 +255,9 @@ ggplot(data = Auto, aes(x = weight, y = horsepower)) +
 
 <!-- # 🎯 Practical Exercises -->
 
-<details><summary> Step 5: 🎯 Practical Exercises (35mins)</summary>
+<details><summary> Step 4: 🎯 Practical Exercises (35mins)</summary>
 
-## Step 5: 🎯 Practical Exercises
+## Step 4: 🎯 Practical Exercises
 
 Since then, we have known and implemented the coding with Cross-validation and Bootstrap.  In this practical case, we will use the new dataset `Default`  and also `Weekly` from the `ISRL` package. **Do not forget to set a random seed before beginning your analysis.**
 
