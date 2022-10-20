@@ -14,7 +14,7 @@ The structure of the lecture will also be a bit different, it will resemble a wo
 
 ## Links
 
-- 👨‍🏫 [Lecture slides](/weeks/week04/lecture.qmd)
+- 👨‍🏫 [Lecture](/weeks/week04/lecture.qmd)
 
 - ✅ [Take a look at this week's checklist](/weeks/week04/checklist.qmd)
 

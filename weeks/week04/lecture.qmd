@@ -1,7 +1,21 @@
 ---
-title: "👨‍🏫 Week 04 - Slides"
-date: 14 October 2022
-date-meta: 14 October 2022
+title: "👨‍🏫 Week 04 - Lecture"
+date: 21 October 2022
+date-meta: 21 October 2022
 ---
 
-<mark class="todo"></mark>
+# Topic: Resampling methods
+
+There are no slides this week! Instead, you will form groups (of five people) and we will run a couple of live experiments together. 
+
+- 📥 When the lecture starts, I will send a link on Slack. Follow the link to download the required files. 
+- 💻 Bring your laptop or team up with someone who will bring one!
+
+::: {.callout-tip collapse="true"}
+## If there are no slides, how do I revise this later?
+
+- You can read all about resampling methods in our textbook, more specifically [@james_introduction_2021, Chapter 5].
+- The RMarkdown you will use during the lecture will help you revise later, too.
+
+
+:::
