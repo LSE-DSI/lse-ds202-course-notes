@@ -333,7 +333,11 @@ Just for your knowledge:
 
 </details>
 
+
+
 <details>
+
+<mark class="todo"></mark>
 
 <summary>**🎯 ACTION POINT 2 & 3**: Tell us your best threshold (training data)</summary>
 
@@ -504,6 +508,8 @@ Just for your knowledge:
 
 <details>
 <summary>**🎯 ACTION POINT 4 & 5**: What is the best threshold both for training and test?</summary>
+
+<mark class="todo"></mark>
 
 <details><summary>**DATASET 1**</summary>
 
@@ -840,6 +846,9 @@ Just for your knowledge:
 
 <summary>**🎯 ACTION POINT 6 & 7**: What about the external dataset?</summary>
 <br/>
+
+<mark class="todo"></mark>
+
 You will be asked to upload your model to Slack. I will then run your model on the external data and report back the results!
 
 </details>

@@ -1,8 +1,8 @@
 ---
-title: "💻 Week 04 - Lab Roadmap (90 min)"
+title: "✔️ Week 04 - Lab Solutions"
 author: Yijun Wang
-date: 09 October 2022
-date-meta: 09 October 2022
+date: 21 October 2022
+date-meta: 21 October 2022
 ---
 
 ## 🔑 Solutions to exercises

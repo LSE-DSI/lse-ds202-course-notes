@@ -80,6 +80,8 @@ website:
                text: ✅ Checklist
              - href: weeks/week04/lab.qmd
                text: 💻 Lab roadmap
+             - href: weeks/week04/lab_solutions.qmd
+               text: ✔️ Lab solutions
                  
   navbar:
     background: primary
