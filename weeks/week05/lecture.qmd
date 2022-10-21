@@ -1,0 +1,9 @@
+---
+title: "👨‍🏫 Week 05 - Lecture"
+date: 21 October 2022
+date-meta: 21 October 2022
+---
+
+# Topic: Non-linear algorithms
+
+<mark class="todo"></mark>

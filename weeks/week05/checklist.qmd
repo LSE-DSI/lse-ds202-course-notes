@@ -1,0 +1,8 @@
+---
+title: "✅ Week 05 - Checklist"
+date: 21 October 2022
+date-meta: 21 October 2022
+from: markdown+emoji
+---
+
+<mark class="todo"></mark>

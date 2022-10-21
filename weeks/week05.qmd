@@ -1,0 +1,15 @@
+---
+title: "🗓️ Week 05 - Non-linear algorithms"
+date: 21 October 2022
+date-meta: 21 October 2022
+---
+
+
+
+## Links
+
+- 👨‍🏫 [Lecture](/weeks/week05/lecture.qmd)
+
+- ✅ [Take a look at this week's checklist](/weeks/week05/checklist.qmd)
+
+- 💻 [This week's lab](/weeks/week05/lab.qmd)
