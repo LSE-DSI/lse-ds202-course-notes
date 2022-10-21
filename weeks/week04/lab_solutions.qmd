@@ -18,6 +18,15 @@ date-meta: 09 October 2022
     head(Auto)
     ```
 
+    or a easier way by using `ifelse()` function:
+
+    ```r
+    library(ISLR2)
+    Auto = na.omit(Auto)
+    Auto$mpg01 <- ifelse(Auto$mpg > median(Auto$mpg), 1, 0)
+    head(Auto)
+    ```
+
     Before we move to next step, we need to lable `mpg01` and `orgin` as `factor` so that R could recognized them as quanlitative variables instead of quantitative variables.
     
     ```r
@@ -28,18 +37,26 @@ date-meta: 09 October 2022
 
     ```r
     par(mfrow = c(2, 3))
-    plot(factor(Auto$mpg01), Auto$cylinders, ylab = "Number of engine cylinders")
-    plot(factor(Auto$mpg01), Auto$displacement, ylab = "Engine displacement (cubic inches)")
-    plot(factor(Auto$mpg01), Auto$horsepower, ylab = "Horsepower")
-    plot(factor(Auto$mpg01), Auto$weight, ylab = "Weight (pounds)")
-    plot(factor(Auto$mpg01), Auto$acceleration, ylab = "Time to reach 60mpg (seconds)")
-    plot(factor(Auto$mpg01), Auto$year, ylab = "Manufacture year")
+    plot(Auto$mpg01, Auto$cylinders, xlab = "mpg01", ylab = "Number of engine cylinders")
+    plot(Auto$mpg01, Auto$displacement, xlab = "mpg01", ylab = "Engine displacement (cubic inches)")
+    plot(Auto$mpg01, Auto$horsepower, xlab = "mpg01", ylab = "Horsepower")
+    plot(Auto$mpg01, Auto$weight, xlab = "mpg01", ylab = "Weight (pounds)")
+    plot(Auto$mpg01, Auto$acceleration, xlab = "mpg01", ylab = "Time to reach 60mpg (seconds)")
+    plot(Auto$mpg01, Auto$year, xlab = "mpg01", ylab = "Manufacture year")
     mtext("Boxplots for cars with above(1) and below(0) median mpg", outer = TRUE, line = -3)
     ```
 
-    Boxplots were plotted to compare the distributions for each of the quantitative variables between cars with above-median mpg and those with below median-mpg. If the distribution of a predictor significantly varies with the response variable, then it may contribute to the prediction of response variable. If the distribution of a predictor does not significantly differ between different values of the response variable, then it may not contribute to the prediction of response variable. The boxplots suggest that `cylinders`, `displacement`, `horsepower`, and `weight` might be the most useful in predicting `mpg01`. The function `par()` is used to change the layout of output plots.  
+    Boxplots were plotted to compare the distributions for each of the quantitative variables between cars with above-median mpg and those with below median-mpg. If the distribution of a predictor significantly varies with the response variable, then it may contribute to the prediction of response variable. If the distribution of a predictor does not significantly differ between different values of the response variable, then it may not contribute to the prediction of response variable. The boxplots suggest that `cylinders`, `displacement`, `horsepower`, and `weight` might be the most useful in predicting `mpg01`. The function `par()` is used to change the layout of output plots. 
 
-    To visualise the association between `mpg01`, `year` and `origin`, scatterplot is used.
+    We could try to use `ggplot()` function to creat some fancy plots which is a combination of boxplot and scatterplot:
+
+    ```r
+    ggplot(data = Auto, aes(acceleration, mpg01, colour = mpg01, fill = mpg01)) +
+    geom_boxplot(alpha = 0.125) +
+    geom_jitter(alpha = 0.5, size = 2)  
+    ``` 
+
+    To visualise the association between `mpg01` and `year`, scatterplot is used.
 
     ```r
     par(mfrow = c(1, 1))
@@ -97,6 +114,7 @@ date-meta: 09 October 2022
 
 6. Which of these two methods appears to provide the best results on this data? Justify your choice.
 
-   After comparing the test errors, these two classification models were equally good. To further compare the performance of these two model, we have to look at the confusion matrix and find these two classification models have identiical confusion matrix. It means that Precision, Recall, Accuracy and F-Score of these two models are all same. Therefore, we can conclude that these two classification models have equally good performace on this data set. One thing that should be cautious of is that the data set is imbalnced. Therefore, we cannot judge the performance of this data set based on test error. More detailed explaination about be found here: https://www.analyticsvidhya.com/blog/2021/06/5-techniques-to-handle-imbalanced-data-for-a-classification-problem/ .
+   After comparing the test errors, these two classification models were equally good. To further compare the performance of these two model, we have to look at the confusion matrix and find these two classification models have identiical confusion matrix. It means that Precision, Recall, Accuracy and F-Score of these two models are all same. Therefore, we can conclude that these two classification models have equally good performace on this data set. One thing that should be cautious of is that the data set is imbalnced. Therefore, we cannot judge the performance of this data set based on test error. More detailed explaination about be found here: 
+   [https://www.analyticsvidhya.com/blog/2021/06/5-techniques-to-handle-imbalanced-data-for-a-classification-problem/](https://www.analyticsvidhya.com/blog/2021/06/5-techniques-to-handle-imbalanced-data-for-a-classification-problem/).
 
    
