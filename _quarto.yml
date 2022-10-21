@@ -75,7 +75,7 @@ website:
            text: Week 04
            contents:
              - href: weeks/week04/lecture.qmd
-               text: 👨‍🏫 Lecture Slides
+               text: 👨‍🏫 Lecture
              - href: weeks/week04/checklist.qmd
                text: ✅ Checklist
              - href: weeks/week04/lab.qmd
