@@ -1,0 +1,427 @@
+---
+title: "🗓️ Week 04 Resampling Workshop"
+author: "DS202 2022MT Teaching Group"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Setup
+
+1.  Form groups of \~5 people
+2.  
+
+Packages you will need:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ISLR2)
+library(cvms)
+library(pROC)
+library(scales)
+```
+
+# Obtain the Data
+
+Follow the links on Slack/Moodle to download
+
+# Exploratory Data Analysis
+
+We are going to work with the `Wage` Data that comes with the `ISLR2` package.
+
+How many rows/columns are there in the dataset?
+
+```{r}
+dim(Wage)
+```
+
+Let's have a look at it:
+
+```{r}
+head(Wage)
+```
+
+What are we looking at? Let's understand the distribution of some of these columns:
+
+## Column: `age`
+
+What is the range of values that the column `age` takes?
+
+```{r}
+summary(Wage$age)
+```
+
+Now look at the distribution:
+
+```{r}
+ggplot(Wage, aes(x=age)) + 
+  geom_histogram(binwidth=2) +
+  
+  # Customizing the plot
+  theme_bw() +
+  scale_x_continuous(breaks=seq(0, 80, 10), limits=c(0, 80)) +
+  
+  ggtitle("Thankfully, there is no data about child labour!")
+```
+
+## Column: `education`
+
+What is the range of values that the column `education` takes?
+
+```{r}
+summary(Wage$education)
+```
+
+```{r}
+ggplot(Wage, aes(x=education)) + 
+  geom_bar() +
+  
+  # Customising the plot
+  theme_bw() +
+  coord_flip() +
+
+  ggtitle("Most people in this dataset have a '2. HS Grad' level of education")
+```
+
+**Take-home Challenge:** Can you convert the plot above to a [donut chart](https://r-graph-gallery.com/128-ring-or-donut-plot.html)?
+
+## Compare `age` vs `education`
+
+```{r, fig.width=9}
+ggplot(Wage, aes(x=age, y=education)) +
+  
+  geom_bin2d() +
+  
+  # Customising the plot
+  theme_bw() +
+  scale_fill_viridis_c() +
+  
+  scale_x_continuous(breaks=seq(0, 80, 10)) +
+  
+  ggtitle("Comparison age vs education level")
+```
+
+## Column: `jobclass`
+
+What is the range of values that the column `jobclass` takes?
+
+```{r}
+summary(Wage$jobclass)
+```
+
+```{r}
+ggplot(Wage, aes(x=jobclass)) + 
+  geom_bar() +
+  
+  # Customising the plot
+  theme_bw() +
+  coord_flip() +
+
+  ggtitle("Most people in this dataset have a '2. HS Grad' level of education")
+```
+
+## What about `wage`?
+
+### Distribution of `wage`:
+
+```{r}
+summary(Wage$wage)
+```
+
+```{r, message=FALSE, }
+ggplot(Wage, aes(x=wage)) + 
+  geom_histogram(binwidth=10) +
+  
+  # Add a line to represent the MEDIAN WAGE  
+  geom_vline(xintercept=median(Wage$wage), color="#fb6341", size=1.4, linetype="dashed") + 
+  
+  # Customising the plot
+  theme_bw() +
+  
+  ggtitle("The median salary is $104k")
+```
+
+### Compare `wage` vs `age`:
+
+```{r, fig.width=9, message=FALSE, warning=FALSE}
+
+ggplot(Wage, aes(x=age, y=wage, group=age)) +
+  
+  geom_boxplot(fill="#008fd4") +
+  
+  theme_bw() +
+  scale_x_continuous(breaks=seq(0, 80, 10)) +
+  
+  ggtitle("How does wage vary according to age?")
+
+```
+
+### Compare `wage` vs `education`:
+
+```{r, fig.width=7, message=FALSE, warning=FALSE}
+
+ggplot(Wage, aes(x=education, y=wage, group=education)) +
+  
+  geom_boxplot(fill="#008fd4") +
+  
+  theme_bw() +
+  
+  ggtitle("💡 Wage increases with education level")
+
+```
+
+### Compare `wage` vs `jobclass`:
+
+```{r, fig.width=7, message=FALSE, warning=FALSE}
+
+ggplot(Wage, aes(x=jobclass, y=wage, group=jobclass)) +
+  
+  geom_boxplot(fill="#008fd4") +
+  
+  theme_bw() +
+  
+  ggtitle("💡 Information jobs pay slightly larger wages")
+
+```
+
+### Compare `wage` vs `maritl`:
+
+```{r, fig.width=7, message=FALSE, warning=FALSE}
+
+ggplot(Wage, aes(x=maritl, y=wage)) +
+  
+  geom_boxplot(fill="#008fd4") +
+  
+  theme_bw() +
+  
+  ggtitle("How does marital status affect wages?")
+
+```
+
+# Let's convert this to a classification problem
+
+Say we don't care so much about the actual wage but we are interested in predicting whether a particular person makes above $\$ 150k$. Let's create a variable to represent that:
+
+```{r}
+new_wage <- data.frame(Wage %>% select(-c(year, logwage))) # Create a copy of Wage
+new_wage$above150k <- factor(ifelse(Wage$wage < 150, "No", "Yes"))
+
+cat("How many are there in the sample?\n") # cat is just another way to print something
+table(new_wage$above150k)
+```
+
+## Separate a sample for external validation
+
+```{r}
+library(tidymodels)
+
+external_split <- validation_split(new_wage, prop=0.9)
+
+external_data <- new_wage[-external_split$splits[[1]][[2]],]
+table(external_data$above150k)
+```
+
+### Split the internal data split into 5 folds
+
+```{r}
+internal_data <- new_wage[external_split$splits[[1]][[2]],]
+dim(internal_data)
+```
+
+```{r}
+internal_splits <- vfold_cv(internal_data, v=5)
+internal_splits$splits
+```
+
+#### Group 01
+
+```{r}
+
+samples_train <- internal_data[internal_splits$splits[[1]][[2]], ]
+samples_test  <- internal_data[-internal_splits$splits[[1]][[2]], ]
+table(samples_test$above150k)
+```
+
+```{r}
+saveRDS(samples_train, "Group 01/samples_train.rds")
+saveRDS(samples_test, "Group 01/samples_test.rds")
+```
+
+#### Group 02
+
+```{r}
+
+samples_train <- internal_data[internal_splits$splits[[2]][[2]], ]
+samples_test  <- internal_data[-internal_splits$splits[[2]][[2]], ]
+table(samples_test$above150k)
+```
+
+```{r}
+saveRDS(samples_train, "Group 02/samples_train.rds")
+saveRDS(samples_test, "Group 02/samples_test.rds")
+```
+
+#### Group 03
+
+```{r}
+
+samples_train <- internal_data[internal_splits$splits[[3]][[2]], ]
+samples_test  <- internal_data[-internal_splits$splits[[3]][[2]], ]
+table(samples_test$above150k)
+```
+
+```{r}
+saveRDS(samples_train, "Group 03/samples_train.rds")
+saveRDS(samples_test, "Group 03/samples_test.rds")
+```
+
+#### Group 04
+
+```{r}
+
+samples_train <- internal_data[internal_splits$splits[[4]][[2]], ]
+samples_test  <- internal_data[-internal_splits$splits[[4]][[2]], ]
+table(samples_test$above150k)
+```
+
+```{r}
+saveRDS(samples_train, "Group 04/samples_train.rds")
+saveRDS(samples_test, "Group 04/samples_test.rds")
+```
+
+#### Group 05
+
+```{r}
+
+samples_train <- internal_data[internal_splits$splits[[5]][[2]], ]
+samples_test  <- internal_data[-internal_splits$splits[[5]][[2]], ]
+table(samples_test$above150k)
+```
+
+```{r}
+saveRDS(samples_train, "Group 05/samples_train.rds")
+saveRDS(samples_test, "Group 05/samples_test.rds")
+```
+
+## Fit a logistic regression
+
+```{r}
+model <- glm(above150k ~ age + education + maritl + jobclass, data=new_wage, family=binomial)
+#summary(model)
+```
+
+### Look at the assigned probabilities for the training data:
+
+```{r, fig.width=8, fig.height=3, message=FALSE, warning=FALSE}
+target           <- new_wage$above150k
+pred_probability <- predict(model, new_wage, type="response")
+
+df_results <- data.frame(target=target, pred_probability=pred_probability)
+
+
+ggplot(df_results, aes(x=pred_probability, fill=target)) +
+  geom_histogram(binwidth=0.05) +
+  
+  theme_bw() +
+  xlim(c(0, 1)) +
+  
+  ggtitle("This plot compares the predict probability with the target variable (colours)")
+```
+
+Where should we cut? What is a **good threshold**?
+
+```{r}
+selected_threshold <- 0.50 ## Change this to see the change in the confusion matrix
+
+prediction <- factor(ifelse(pred_probability < selected_threshold, "No", "Yes"))
+
+confusion_matrix <- table(target, prediction)
+confusion_matrix
+```
+
+Let's make it more visual:
+
+```{r, message=FALSE, warning=FALSE}
+
+library(cvms)
+
+
+plot_confusion_matrix(as_tibble(confusion_matrix), 
+                      target_col = "target", 
+                      prediction_col = "prediction",
+                      
+                      # Customizing the plot
+                      add_normalized = TRUE,
+                      add_col_percentages = FALSE,
+                      add_row_percentages = FALSE,
+                      counts_col = "n",
+                      )
+
+```
+
+## Calculate some metrics out of the confusion matrix
+
+**ACCURACY:** How many observations did we get right?
+
+```{r}
+accuracy <- sum(prediction == target)/nrow(new_wage)
+cat(sprintf("%.2f %%", accuracy*100)) # cat is just another way to print() things
+```
+
+**SPECIFICITY:** True Negative Rate
+
+```{r}
+total_real_no      <- sum(target == "No")
+total_correct_no   <- sum(prediction == "No" & target == "No")
+
+TNR <- total_correct_no/total_real_no
+cat(sprintf("%.2f %%", TNR*100))
+
+```
+
+**SENSITIVITY:** True Positive Rate
+
+```{r}
+total_real_yes      <- sum(target == "Yes")
+total_correct_yes   <- sum(prediction == "Yes" & target == "Yes")
+
+TPR <- total_correct_yes/total_real_yes
+cat(sprintf("%.2f %%", TPR*100)) 
+
+```
+
+**🎯 EXERCISE 01:** Go back up and tweak the threshold again until you find one that works better for your **training data**!
+
+To help you find out, tweak the parameters below, let us look at the Receiving Operating Characteristic (ROC) curve:
+
+```{r, message=FALSE, warning=FALSE}
+library(pROC)
+
+rocobj <- roc(target, pred_probability)
+
+
+ggroc(rocobj, colour = 'steelblue', size = 2) + 
+
+  xlab("Specificity (TNR)") + 
+  ylab("Sensitivity (TPR)") + 
+
+  # THEMING
+  theme_bw() +
+  scale_x_reverse(labels=scales::percent) +
+  scale_y_continuous(labels=scales::percent) +
+  
+	theme(
+        axis.title.x = element_text(size=20,margin = margin(t = 10, r = 0, b = 0, l = 0)),
+        axis.title.y = element_text(size=20, margin = margin(t = 0,  r = 10, b = 0, l = 0)),
+        legend.text = element_text(size=18),
+        legend.position="right",
+        axis.text.x = element_text(size=18),
+        axis.text.y = element_text(size=18),
+        panel.grid.minor = element_blank(),
+        aspect.ratio = 1,
+        plot.margin=grid::unit(c(0,0,0,0), "mm"))
+
+```

@@ -8,8 +8,16 @@ date-meta: 21 October 2022
 
 There are no slides this week! Instead, you will form groups (of five people) and we will run a couple of live experiments together. 
 
-- 📥 When the lecture starts, I will send a link on Slack. Follow the link to download the required files. 
 - 💻 Bring your laptop or team up with someone who will bring one!
+
+## How this is going to work
+
+1. Head over to [📥W04 Lecture Files](https://moodle.lse.ac.uk/mod/folder/view.php?id=1129071) (on Moodle) to download the files you will need for this lecture.
+
+2. You will form groups of five people to work on getting the "best" model for your specific dataset by following a set of tasks marked as **🎯 ACTION POINT** in the RMarkdown.
+
+3. As you work on the solutions, you will send me the responses on Slack and I will update the tables below live during the lecture. The final outcome will be available on the website later.
+
 
 ::: {.callout-tip collapse="true"}
 ## If there are no slides, how do I revise this later?
@@ -19,3 +27,986 @@ There are no slides this week! Instead, you will form groups (of five people) an
 
 
 :::
+
+<details>
+<summary>**The Setup**: Click here to understand how I created the datasets used in this lecture</summary>
+
+### The cross-validation setup
+
+How did I create the datasets you are using in this lecture?
+
+#### Step 1:
+
+First, I selected the dataset `Wage` from the ISLR2 package in R and randomly split it into two subsets:
+
+- $10\%$ for <mark>external validation set</mark>: this is a portion of data that I have kept hidden from everyone.  
+- $90\%$ available for model training, that I further distributed to groups. I call this the <mark>internal validation set</mark>
+
+#### Step 2: 
+
+I then took the internal validation set and further split it into five random subsets:
+
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;background-color:#fdd0c6;color:#fdd0c6;color:#fdd0c6"}
+Fold1
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;background-color:#fdd0c6;color:#fdd0c6"}
+Fold2
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;background-color:#fdd0c6;color:#fdd0c6"}
+Fold3
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;background-color:#fdd0c6;color:#fdd0c6"}
+Fold4
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;background-color:#fdd0c6;color:#fdd0c6"}
+Fold5
+:::
+
+We call each of this subsets a <mark>fold</mark>. Therefore, we have 5 folds of data.
+
+#### Step 3:
+
+The point of doing this is to perform <mark>cross-validation</mark>. The goal is to answer the following question: 
+
+> _How well does our model perform on data it has not seen yet?_
+
+Notice that this goes beyond asessing goodness-of-fit. Instead of focusing on how well our model _fits the current data_, we ask whether it would still be generalisable should be receive new data. 
+
+How do we do that? We could run the same model on different subsets of the data, holding one of the folds for testing.
+
+For example:
+
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;border-width: 1px;color:#ffffff;border-color:#fefefe; margin:1%;text-align:center;background-color:#fb6341"}
+Test
+:::
+
+#### Step 4:
+
+Since I have split the data into five folds, I could train and test algorithms using five different splits of my data. This 5-fold cross-validation looks like this:
+
+
+::: {style="display:inline-block;width: 90px;height=60px;border-style: none;color:#212121;margin:1%;"}
+**Split 1:**
+:::
+
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;border-width: 1px;color:#ffffff;border-color:#fefefe; margin:1%;text-align:center;background-color:#fb6341"}
+Test
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+::: 
+
+<br/>
+
+::: {style="display:inline-block;width: 90px;height=60px;border-style: none;color:#212121;margin:1%;"}
+**Split 2:**
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;border-width: 1px;color:#ffffff;border-color:#fefefe; margin:1%;text-align:center;background-color:#fb6341"}
+Test
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+
+<br/>
+
+::: {style="display:inline-block;width: 90px;height=60px;border-style: none;color:#212121;margin:1%;"}
+**Split 3:**
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;border-width: 1px;color:#ffffff;border-color:#fefefe; margin:1%;text-align:center;background-color:#fb6341"}
+Test
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+
+<br/>
+
+::: {style="display:inline-block;width: 90px;height=60px;border-style: none;color:#212121;margin:1%;"}
+**Split 4:**
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;border-width: 1px;color:#ffffff;border-color:#fefefe; margin:1%;text-align:center;background-color:#fb6341"}
+Test
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+
+<br/>
+
+::: {style="display:inline-block;width: 90px;height=60px;border-style: none;color:#212121;margin:1%;"}
+**Split 5:**
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6"}
+Train
+:::
+::: {style="display:inline-block;width: 60px;height=60px;border-style: dotted;border-width: 1px;color:#ffffff;border-color:#fefefe; margin:1%;text-align:center;background-color:#fb6341"}
+Test
+:::
+
+Each group will be working on a separate split of this data. You will train your models on 80% of the data, evaluate the goodness-of-fit in the training data, then assess the performance in the test data. Once you find a model that has a good performance, balanced in training vs test data, then we will see how well your model performs in the **external data set**.
+
+</details>
+
+
+The action points below will be updated during the lecture:
+
+<details>
+
+<summary>**🎯 ACTION POINT 1**: Check if your numbers match</summary>
+
+<br/>
+
+
+::: {style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+
+##### 🗄️ DATASET 1
+
+Distribution of `above150k`
+
+(Training)
+```r
+  No  Yes 
+1910  250 
+```
+
+(Test)
+```r
+ No Yes 
+473  67 
+```
+
+:::
+
+::: {style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+
+##### 🗄️ DATASET 2
+
+Distribution of `above150k`
+
+(Training)
+```r
+  No  Yes 
+1900  260 
+```
+
+(Test)
+```r
+ No Yes 
+483  57 
+```
+
+:::
+
+::: {style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+
+##### 🗄️ DATASET 3
+
+Distribution of `above150k`
+
+(Training)
+```r
+  No  Yes 
+1904  256 
+```
+
+(Test)
+```r
+ No Yes 
+479  61 
+```
+
+:::
+
+::: {style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+
+##### 🗄️ DATASET 4
+
+Distribution of `above150k`
+
+(Training)
+```r
+  No  Yes 
+1915  245 
+```
+
+(Test)
+```r
+ No Yes 
+468  72  
+```
+
+:::
+
+::: {style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+
+##### 🗄️ DATASET 5
+
+Distribution of `above150k`
+
+(Training)
+```r
+  No  Yes 
+1903  257 
+```
+
+(Test)
+```r
+ No Yes 
+480  60 
+```
+
+:::
+
+
+::: {style="display:inline-block;width: 30.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fff4ea"}
+
+##### 🗄️ EXTERNAL DATA
+
+Distribution of `above150k`
+
+Just for your knowledge:
+
+```r
+ No Yes 
+274  26 
+```
+
+:::
+
+</details>
+
+<details>
+
+<summary>**🎯 ACTION POINT 2 & 3**: Tell us your best threshold (training data)</summary>
+
+<details><summary>**DATASET 1**</summary>
+
+**DATASET 1**
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+</details>
+
+<details><summary>**DATASET 2**</summary>
+
+**DATASET 2**
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+</details>
+
+<details><summary>**DATASET 3**</summary>
+
+**DATASET 3**
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+</details>
+
+<details><summary>**DATASET 4**</summary>
+
+**DATASET 4**
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+</details>
+
+<details><summary>**DATASET 5**</summary>
+
+**DATASET 5**
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training Stats)
+
+- Accuracy = $$
+- TNR = $$
+- TPR = $$
+- Precision = $$
+- Recall = $$
+- F1-score = $$
+:::
+
+</details>
+
+</details>
+
+<details>
+<summary>**🎯 ACTION POINT 4 & 5**: What is the best threshold both for training and test?</summary>
+
+<details><summary>**DATASET 1**</summary>
+
+**DATASET 1**
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $$ 
+
+(Training vs Test)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+</details>
+
+<details><summary>**DATASET 2**</summary>
+
+**DATASET 2**
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+</details>
+
+<details><summary>**DATASET 3**</summary>
+
+**DATASET 3**
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+</details>
+
+<details><summary>**DATASET 4**</summary>
+
+**DATASET 4**
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+</details>
+
+<details><summary>**DATASET 5**</summary>
+
+**DATASET 5**
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
+🗣️ **\<Person\>**
+
+- Best threshold = $ $ vs $ $ 
+
+(Training Stats)
+
+- Accuracy = $ $ vs $ $
+- TNR = $ $ vs $ $
+- TPR = $ $ vs $ $
+- Precision = $ $ vs $ $
+- Recall = $ $ vs $ $
+- F1-score = $ $ vs $ $
+:::
+
+</details>
+</details>
+
+<details>
+
+<summary>**🎯 ACTION POINT 6 & 7**: What about the external dataset?</summary>
+<br/>
+You will be asked to upload your model to Slack. I will then run your model on the external data and report back the results!
+
+</details>

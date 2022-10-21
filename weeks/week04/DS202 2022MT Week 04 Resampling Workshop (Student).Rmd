@@ -1,0 +1,370 @@
+---
+title: "🗓️ Week 04 Resampling Workshop"
+author: "DS202 2022MT Teaching Group"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Step 1: Setup
+
+1.  Form groups of \~5 people. Each group will be assigned a specific DATASET by the teacher
+2.  Decide who will act as the spokesperson for the group
+3.  Check Slack for the link to download the files you will need
+4.  Download the RMarkdown from there
+5.  Locate the folder that is relevant to your group (ex.: `Dataset 1`) and download the two files from there
+6.  Open RStudio, create a new project (File -\> New Project), and move all downloaded files to there
+7.  Let's get started
+
+# Step 2: Setup packages
+
+Packages you will need:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(cvms)
+library(pROC)
+library(scales)
+library(e1071)
+```
+
+Install any packages you don't have
+
+# Step 3: Check everything is in order
+
+## Step 3.1: Load the data
+
+Run the following. Ensure it doesn't throw an error:
+
+```{r}
+train_samples <- readRDS("Group 01/samples_train.rds")
+test_samples  <- readRDS("Group 01/samples_test.rds") 
+```
+
+## Step 3.2: Check size of datasets
+
+```{r}
+dim(train_samples)
+```
+
+**This must print: 2160 rows and 10 columns**
+
+```{r}
+dim(test_samples)
+```
+
+**This must print: 540 rows and 10 columns**
+
+## Step 3.3 Check columns
+
+```{r}
+colnames(train_samples)
+```
+
+You should see the following
+
+> "age" "maritl" "race" "education" "region" "jobclass" "health" "health_ins" "wage" "above150k"
+
+This data set contains data about people's `wages`. We will take a quick look at the data soon.
+
+Our goal is to predict whether a particular person makes above $\$ 150k$. So, we will be using `above150k` as the independent variable/target for all purposes in this workshop.
+
+## Step 3.4 Check distribution of variable `above150k`
+
+**🎯 ACTION POINT 01:** Run the two cells below then paste the output to the designated space on Slack (if you don't know where to paste it, ask your lecturer for instructions)
+
+```{r}
+table(train_samples$above150k)
+```
+
+```{r}
+table(test_samples$above150k)
+```
+
+# Step 4: Exploratory Data Analysis
+
+Let's look at what this data represents:
+
+```{r}
+head(train_samples)
+```
+
+What are we looking at? Let's understand the distribution of some of these columns:
+
+## Column: `age`
+
+What is the range of values that the column `age` takes?
+
+```{r}
+summary(train_samples$age)
+```
+
+Now look at the distribution:
+
+```{r}
+
+ggplot(train_samples, aes(x=age, fill=above150k)) + 
+  geom_histogram(binwidth=2) +
+  
+  # Customizing the plot
+  theme_bw() +
+  scale_x_continuous(breaks=seq(0, 80, 10), limits=c(0, 80)) +
+  
+  ggtitle("Thankfully, there is no data about child labour!")
+```
+
+## Column: `education`
+
+What is the range of values that the column `education` takes?
+
+```{r}
+summary(train_samples$education)
+```
+
+```{r}
+ggplot(train_samples, aes(x=education, fill=above150k)) + 
+  geom_bar() +
+  
+  # Customizing the plot
+  theme_bw() +
+  coord_flip() +
+
+  ggtitle("Proportionally,\nthere are more people earning above 150k\namongst those with advanced degrees ")
+```
+
+**Take-home Challenge:** Can you convert the plot above to a [donut chart](https://r-graph-gallery.com/128-ring-or-donut-plot.html)?
+
+## Column: `jobclass`
+
+What is the range of values that the column `jobclass` takes?
+
+```{r}
+summary(train_samples$jobclass)
+```
+
+```{r}
+ggplot(train_samples, aes(x=jobclass, fill=above150k)) + 
+  geom_bar() +
+  
+  # Customising the plot
+  theme_bw() +
+  coord_flip() 
+```
+
+💡 Feel free to create plots for the other variables if you like.
+
+# Step 5: Fitting a logistic regression model
+
+```{r}
+model <- glm(above150k ~ age + education + maritl + jobclass, data=train_samples, family=binomial)
+#summary(model)
+```
+
+### Look at the assigned probabilities for the training data:
+
+```{r, fig.width=8, fig.height=3, message=FALSE, warning=FALSE}
+target_train          <- train_samples$above150k
+pred_train_prob       <- predict(model, train_samples, type="response")
+
+df_results <- data.frame(target_train=target_train, pred_train_prob=pred_train_prob)
+
+
+ggplot(df_results, aes(x=pred_train_prob, fill=target_train)) +
+  geom_histogram(binwidth=0.05) +
+  
+  theme_bw() +
+  xlim(c(0, 1)) +
+  
+  ggtitle("This plot compares the predict probability with the target variable (colours)")
+```
+
+Where should we cut? What is a **good threshold**?
+
+```{r}
+selected_threshold <- 0.50 ## Change this to see the change in the confusion matrix
+
+pred_train <- factor(ifelse(pred_train_prob < selected_threshold, "No", "Yes"))
+
+confusion_matrix <- table(target_train, pred_train)
+confusion_matrix
+```
+
+Let's make it more visual:
+
+```{r, message=FALSE, warning=FALSE}
+
+library(cvms)
+
+
+plot_confusion_matrix(as_tibble(confusion_matrix), 
+                      target_col = "target_train", 
+                      prediction_col = "pred_train",
+                      
+                      # Customizing the plot
+                      add_normalized = TRUE,
+                      add_col_percentages = FALSE,
+                      add_row_percentages = FALSE,
+                      counts_col = "n",
+                      )
+
+```
+
+## Calculate some metrics out of the confusion matrix
+
+**ACCURACY:** How many observations did we get right?
+
+```{r}
+accuracy <- sum(pred_train == target_train)/nrow(train_samples)
+cat(sprintf("%.2f %%", accuracy*100)) # cat is just another way to print() things
+```
+
+**SPECIFICITY:** True Negative Rate
+
+```{r}
+total_real_no      <- sum(target_train == "No")
+total_correct_no   <- sum(pred_train == "No" & target_train == "No")
+
+TNR <- total_correct_no/total_real_no
+cat(sprintf("%.2f %%", TNR*100))
+
+```
+
+**SENSITIVITY:** True Positive Rate
+
+```{r}
+total_real_yes      <- sum(target_train == "Yes")
+total_correct_yes   <- sum(pred_train == "Yes" & target_train == "Yes")
+
+TPR <- total_correct_yes/total_real_yes
+cat(sprintf("%.2f %%", TPR*100)) 
+
+```
+
+**🎯 ACTION POINT 02:** Go back up and tweak the `selected_threshold` until you find one that works "better" for your **training data**!
+
+**🎯 ACTION POINT 03:** Once the previous step is done, paste the following on the designated space on Slack:
+
+``` r
+Spokesperson <- "<Replace this by the name of the spokesperson for your group>"
+selected_threshold <- <Replace by your selected value>
+
+accuracy <- <Replace by the measure of accuracy you obtained>
+TNR <- <Replace by the measure of TNR you obtained>
+TPR <- <Replace by the measure of TPR you obtained>
+```
+
+## Let's look at the test sample
+
+```{r}
+target_test           <- test_samples$above150k
+pred_test_prob        <- predict(model, test_samples, type="response")
+
+df_results <- data.frame(target_test=target_test, pred_test_prob=pred_test_prob)
+
+
+ggplot(df_results, aes(x=pred_test_prob, fill=target_test)) +
+  geom_histogram(binwidth=0.05) +
+  
+  theme_bw() +
+  xlim(c(0, 1)) +
+  
+  ggtitle("This plot compares the predict probability with the target variable (colours)")
+```
+
+
+```{r}
+pred_test <- factor(ifelse(pred_test_prob < selected_threshold, "No", "Yes"), levels=c("No", "Yes"))
+
+confusion_matrix <- table(target_test, pred_test)
+confusion_matrix
+```
+
+Let's make it more visual:
+
+```{r, message=FALSE, warning=FALSE}
+
+library(cvms)
+
+
+plot_confusion_matrix(as_tibble(confusion_matrix), 
+                      target_col = "target_test", 
+                      prediction_col = "pred_test",
+                      
+                      # Customizing the plot
+                      add_normalized = TRUE,
+                      add_col_percentages = FALSE,
+                      add_row_percentages = FALSE,
+                      counts_col = "n",
+                      )
+
+```
+
+## Calculate some metrics out of the confusion matrix
+
+**ACCURACY:** How many observations did we get right?
+
+```{r}
+accuracy <- sum(pred_test == target_test)/nrow(test_samples)
+cat(sprintf("%.2f %%", accuracy*100)) # cat is just another way to print() things
+```
+
+**SPECIFICITY:** True Negative Rate
+
+```{r}
+total_real_no      <- sum(target_test == "No")
+total_correct_no   <- sum(pred_test == "No" & target_test == "No")
+
+TNR <- total_correct_no/total_real_no
+cat(sprintf("%.2f %%", TNR*100))
+
+```
+
+**SENSITIVITY:** True Positive Rate
+
+```{r}
+total_real_yes      <- sum(target_test == "Yes")
+total_correct_yes   <- sum(pred_test == "Yes" & target_test == "Yes")
+
+TPR <- total_correct_yes/total_real_yes
+cat(sprintf("%.2f %%", TPR*100)) 
+
+```
+
+
+**🎯 ACTION POINT 04:** Go back up and tweak the `selected_threshold` until you find one that works "better" for your **test data**!
+
+**🎯 ACTION POINT 05:** Once the previous step is done, paste the following on the designated space on Slack:
+
+``` r
+Spokesperson <- "<Replace this by the name of the spokesperson for your group>"
+selected_threshold <- <Replace by your selected value>
+
+## Answer the following about your training data
+accuracy <- <Replace by the measure of accuracy you obtained>
+TNR <- <Replace by the measure of TNR you obtained>
+TPR <- <Replace by the measure of TPR you obtained>
+
+## Answer the following about your test data
+accuracy <- <Replace by the measure of accuracy you obtained>
+TNR <- <Replace by the measure of TNR you obtained>
+TPR <- <Replace by the measure of TPR you obtained>
+```
+
+# Step 6 (If we have the time):
+
+If we have time, we will see which model is best at predicting the external set!
+
+**🎯 ACTION POINT 06:** Feel free to back to Step 5 above and fit a new logistic regression with different features, interaction effects etc. See if any modification improves your `model`, both in the training set as well as the test set. Remember to tweak the threshold again.
+
+
+**🎯 ACTION POINT 07:** Use the code below to save your model to your disk, then upload the `rds` file to the designated space on Slack
+
+```{r}
+model$threshold <- selected_threshold
+saveRDS(model, file="ml_model_group_<SPOKESPERSON>.rds")
+```
+
+I will run your model on the external data and report back to you the results!
