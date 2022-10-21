@@ -337,12 +337,10 @@ Just for your knowledge:
 
 <summary>**🎯 ACTION POINT 2 & 3**: Tell us your best threshold (training data)</summary>
 
-<details><summary>**DATASET 1**</summary>
-
 **DATASET 1**
 
 ::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
+🗣️ **Sofie**
 
 - Best threshold = $$ 
 
@@ -357,73 +355,38 @@ Just for your knowledge:
 :::
 
 ::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
+🗣️ **Yujia**
 
-- Best threshold = $$ 
-
-(Training Stats)
-
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
-:::
-
-::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
-
-- Best threshold = $$ 
+- Best threshold = $0.245$ 
 
 (Training Stats)
 
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
+- Accuracy = $82.41 \%$
+- TNR = $ 84.97 \%$
+- TPR = $ 62.80 \%$
+- Precision = $ 35.36 \%$
+- F1-score = $0.4524496$
 :::
 
-::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
-
-- Best threshold = $$ 
-
-(Training Stats)
-
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
-:::
-
-</details>
-
-<details><summary>**DATASET 2**</summary>
 
 **DATASET 2**
 
 ::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
+🗣️ **Vansh**
 
-- Best threshold = $$ 
+- Best threshold = $0.2$ 
 
 (Training Stats)
 
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
+- Accuracy = $79.44 \%$
+- TNR = $80.58 \%$
+- TPR = $71.15 \%$
+- Precision = $33.39 \%$
+- F1-score = $0.4545$
 :::
 
 ::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
+🗣️ **Ekki**
 
 - Best threshold = $$ 
 
@@ -437,59 +400,26 @@ Just for your knowledge:
 - F1-score = $$
 :::
 
-::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
 
-- Best threshold = $$ 
-
-(Training Stats)
-
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
-:::
-
-::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
-
-- Best threshold = $$ 
-
-(Training Stats)
-
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
-:::
-
-</details>
-
-<details><summary>**DATASET 3**</summary>
 
 **DATASET 3**
 
 ::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
+🗣️ **Yoyo**
 
-- Best threshold = $$ 
+- Best threshold = $0.23$ 
 
 (Training Stats)
 
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
+- Accuracy = $81.85 \%$
+- TNR = $84.40 \%$
+- TPR = $62.89 \%$
+- Precision = $35.15 \%$
+- F1-score = $0.4509804$
 :::
 
 ::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
+🗣️ **Diljot**
 
 - Best threshold = $$ 
 
@@ -503,59 +433,26 @@ Just for your knowledge:
 - F1-score = $$
 :::
 
-::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
 
-- Best threshold = $$ 
-
-(Training Stats)
-
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
-:::
-
-::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
-
-- Best threshold = $$ 
-
-(Training Stats)
-
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
-:::
-
-</details>
-
-<details><summary>**DATASET 4**</summary>
 
 **DATASET 4**
 
 ::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
+🗣️ **Ashley**
 
-- Best threshold = $$ 
+- Best threshold = $0.23$ 
 
 (Training Stats)
 
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
+- Accuracy = $ 83.94 \%$
+- TNR = $ 86.95 \%$
+- TPR = $60.41 \%$
+- Precision = $ 37.19 \%$
+- F1-score = $0.4603421$
 :::
 
 ::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
+🗣️ **Lisa**
 
 - Best threshold = $$ 
 
@@ -569,100 +466,36 @@ Just for your knowledge:
 - F1-score = $$
 :::
 
-::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
 
-- Best threshold = $$ 
-
-(Training Stats)
-
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
-:::
-
-::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
-
-- Best threshold = $$ 
-
-(Training Stats)
-
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
-:::
-
-</details>
-
-<details><summary>**DATASET 5**</summary>
 
 **DATASET 5**
 
 ::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
+🗣️ **Paul Keenan**
 
-- Best threshold = $$ 
+- Best threshold = $0.245$ 
 
 (Training Stats)
 
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
+- Accuracy = $82.59259 \%$
+- TNR = $85.54913 \%$
+- TPR (Recall) = $60.70039 \%$
+- Precision = $36.1949 \%$
+- F1-score = $0.4534884$
 :::
 
 ::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
+🗣️ **Andres**
 
-- Best threshold = $$ 
-
-(Training Stats)
-
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
-:::
-
-::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
-
-- Best threshold = $$ 
+- Best threshold = $0.25$ 
 
 (Training Stats)
 
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
-:::
-
-::: {style="display:inline-block;width: 40.5%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa"}
-🗣️ **\<Person\>**
-
-- Best threshold = $$ 
-
-(Training Stats)
-
-- Accuracy = $$
-- TNR = $$
-- TPR = $$
-- Precision = $$
-- Recall = $$
-- F1-score = $$
+- Accuracy = $83.01 \%$
+- TNR = $86.50 \%$
+- TPR (Recall) = $57.20 \%$
+- Precision = $36.39 \%$
+- F1-score = $0.4447806 $
 :::
 
 </details>
