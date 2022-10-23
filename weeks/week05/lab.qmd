@@ -1,12 +1,12 @@
 ---
 title: "💻 Week 05 - Lab Roadmap (90 min)"
-date: 06 October 2022
-date-meta: 06 October 2022
+date: 24 October 2022
+date-meta: 24 October 2022
 from: markdown+emoji
 author: DS202 2022MT Teaching Team
 ---
 
-Last week we learnt how to do the Classification Methods in R. As data scientists, we need to know how to examine the results we generated and also to justify our results.  So, we will focus on and practice the validation methods in the R language in this week's lab. 
+Last week we learned how to do the Classification Methods in R. As data scientists, we need to know how to examine the results we generated and also to justify our results.  So, we will focus on and practice the validation methods in the R language in this week's lab. 
 
 If you feel confident at the current stage, free to explore more on your own. We have provided you with some supplementary online resources : 
 
