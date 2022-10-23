@@ -1,5 +1,5 @@
 ---
-title: "💻 Week 04 - Lab Roadmap Solutions"
+title: "✔️ Week 04 - Lab Solutions"
 author: Yijun Wang
 date: 21 October 2022
 date-meta: 21 October 2022

@@ -40,7 +40,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Install packages for labs
-        run: install.packages("pROC");install.packages("e1071");install.packages("ggcorrplot");install.packages("car")
+        run: install.packages("pROC");install.packages("e1071");install.packages("ggcorrplot");install.packages("car");install.packages("rsample")
         shell: Rscript {0}
 
       - name: Set up Quarto

@@ -1,5 +1,5 @@
 ---
-title: "💻 Week 02 - Lab Roadmap (90 min)"
+title: "✔️ Week 02 - Lab Solutions"
 author: Yijun Wang
 date: 07 October 2022
 date-meta: 07 October 2022
@@ -13,7 +13,7 @@ date-meta: 07 October 2022
     View(Auto)
     ```
 
-   Variables mpg, cylinders, horsepower, weight, accelation, year are quantitative variable. Variables origin, name are qualitative varibale.
+   Variables mpg, cylinders, horsepower, weight, acceleration, year are quantitative variable. Variables origin, name are qualitative variable
 
 2. Use the function `range()` to check the range of each quantitative predictor:
 

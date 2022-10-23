@@ -12,6 +12,7 @@ project:
     - "weeks/week02/*.qmd"
     - "weeks/week03/*.qmd"
     - "weeks/week04/*.qmd"
+    - "weeks/week05/*.qmd"
     - "slides/*.qmd"
 
 bibliography: references/references.bib
@@ -33,7 +34,7 @@ website:
       - href: index.qmd
         text: "🏠 Home"
       - href: main/syllabus.qmd
-        text: "📓 Syllabus  (🆕)"
+        text: "📓 Syllabus"
       - href: main/communication.qmd
         text: "📟 Communication"
       - href: main/assessments.qmd
@@ -62,6 +63,8 @@ website:
                text: ✅ Checklist
              - href: weeks/week02/lab.qmd
                text: 💻 Lab roadmap
+             - href: weeks/week02/lab_solutions.qmd
+               text: ✔️ Lab solutions
          - href: weeks/week03.qmd
            text: Week 03
            contents:
@@ -71,6 +74,8 @@ website:
                text: ✅ Checklist
              - href: weeks/week03/lab.qmd
                text: 💻 Lab roadmap
+             - href: weeks/week03/lab_solutions.qmd
+               text: ✔️ Lab solutions
          - href: weeks/week04.qmd
            text: Week 04
            contents:
@@ -79,6 +84,17 @@ website:
              - href: weeks/week04/checklist.qmd
                text: ✅ Checklist
              - href: weeks/week04/lab.qmd
+               text: 💻 Lab roadmap
+             - href: weeks/week04/lab_solutions.qmd
+               text: ✔️ Lab solutions
+         - href: weeks/week05.qmd
+           text: Week 05
+           contents:
+             - href: weeks/week05/lecture.qmd
+               text: 👨‍🏫 Lecture
+             - href: weeks/week05/checklist.qmd
+               text: ✅ Checklist
+             - href: weeks/week05/lab.qmd
                text: 💻 Lab roadmap
                  
   navbar:
