@@ -34,7 +34,7 @@ website:
       - href: index.qmd
         text: "🏠 Home"
       - href: main/syllabus.qmd
-        text: "📓 Syllabus  (🆕)"
+        text: "📓 Syllabus"
       - href: main/communication.qmd
         text: "📟 Communication"
       - href: main/assessments.qmd
@@ -63,6 +63,8 @@ website:
                text: ✅ Checklist
              - href: weeks/week02/lab.qmd
                text: 💻 Lab roadmap
+             - href: weeks/week02/lab_solutions.qmd
+               text: ✔️ Lab solutions
          - href: weeks/week03.qmd
            text: Week 03
            contents:
@@ -72,6 +74,8 @@ website:
                text: ✅ Checklist
              - href: weeks/week03/lab.qmd
                text: 💻 Lab roadmap
+             - href: weeks/week03/lab_solutions.qmd
+               text: ✔️ Lab solutions
          - href: weeks/week04.qmd
            text: Week 04
            contents:

@@ -1,5 +1,5 @@
 ---
-title: "💻 Week 03 - Lab Roadmap (90 min)"
+title: "✔️ Week 03 - Lab Solutions"
 author: Yijun Wang
 date: 19 September 2022
 date-meta: 19 September 2022

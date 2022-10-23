@@ -16,9 +16,7 @@ If you feel confident at the current stage, free to explore more on your own. We
 :::{.callout-important collapse="false"}
 ## Download .Rmd
 
-<mark class="todo"></mark>
-
-Download this roadmap as an .Rmd file <a href="" target="_blank">here</a>.
+Download this roadmap as an .Rmd file <a href="https://moodle.lse.ac.uk/pluginfile.php/2180431/mod_folder/content/0/DS202_2022MT_w05_lab_rmark.Rmd?forcedownload=1" target="_blank">here</a>.
 :::
 
 R packages you will need:
