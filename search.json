@@ -522,7 +522,7 @@
     "href": "weeks/week05/lab.html",
     "title": "💻 Week 05 - Lab Roadmap (90 min)",
     "section": "",
-    "text": "Last week we learnt how to do the Classification Methods in R. As data scientists, we need to know how to examine the results we generated and also to justify our results. So, we will focus on and practice the validation methods in the R language in this week’s lab.\nIf you feel confident at the current stage, free to explore more on your own. We have provided you with some supplementary online resources :\nR packages you will need:"
+    "text": "Last week we learned how to do the Classification Methods in R. As data scientists, we need to know how to examine the results we generated and also to justify our results. So, we will focus on and practice the validation methods in the R language in this week’s lab.\nIf you feel confident at the current stage, free to explore more on your own. We have provided you with some supplementary online resources :\nR packages you will need:"
   },
   {
     "objectID": "weeks/week05/lab.html#step-1-the-validation-set-approach",
@@ -900,7 +900,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  8.14\n2     9    12 10.6 \n3    12    15 16.5 \n4    15    18 14.5 \n5    18    21 19.8 \n6    21    24 24.2"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.53\n2     9    12 11.8 \n3    12    15 16.3 \n4    15    18 17.0 \n5    18    21 19.6 \n6    21    24 25.3"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -935,7 +935,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  8.14  0.863    0.863\n2     9    12 10.6   1.41     1.41 \n3    12    15 16.5  -1.55     1.55 \n4    15    18 14.5   3.50     3.50 \n5    18    21 19.8   1.20     1.20 \n6    21    24 24.2  -0.195    0.195\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.452126\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  9.53 -0.530    0.530\n2     9    12 11.8   0.215    0.215\n3    12    15 16.3  -1.28     1.28 \n4    15    18 17.0   0.998    0.998\n5    18    21 19.6   1.42     1.42 \n6    21    24 25.3  -1.27     1.27 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.9525898\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
