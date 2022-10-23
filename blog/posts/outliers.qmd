@@ -1,0 +1,121 @@
+---
+title: "Identifying outliers in linear model"
+subtitle: "DS202 Blog Post"
+date: 23 October 2022
+date-meta: 23 October 2022
+categories: [week03, linear regression, outliers]
+theme: lumen
+---
+
+::: callout-tip
+## TLDR
+
+Here you will find R code to single out points with high ["studentized" residuals](https://online.stat.psu.edu/stat462/node/247/)
+
+:::
+
+During [Week 03 lab](/weeks/week03/lab.html#step-3-some-potential-problems), we looked at diagnostic plots we can generate in R to obtain insights about the fit of a linear model. 
+
+
+**Import required libraries**
+
+```{r, message=FALSE, warning=FALSE}
+library(ISLR2)
+library(tidyverse)
+```
+
+**Fit a linear model then produce diagnostic plots**
+
+```{r}
+lm.fit <- lm(medv ~ lstat * age , data = ISLR2::Boston)
+
+par(mfrow=c(2,2))
+plot(lm.fit)
+
+```
+
+A frequent question we got in the labs was about the first of these plots, _"Residuals vs Fitted"_.
+
+## Residual vs Fitted plot
+
+Ideally, the residual plot, also called the null residual plot, should show a random scatter of points centered around 0 and forming an approximately constant width band.
+
+
+::: {.panel-tabset}
+
+## base `R`
+```{r}
+#| code-fold: true
+
+# Add dots
+plot(predict(lm.fit), rstudent(lm.fit), 
+     xlab="Fitted values",
+     ylab="Residuals",
+     main="Residuals vs Fitted")
+
+# Add lines
+abline(h = 3, lwd = 5,col = 'red')
+abline(h = 0, lwd = 5,col = 'yellow')
+```
+
+
+## tidyverse
+
+```{r}
+#| code-fold: true
+
+plot_df <- data.frame(fitted_vals=predict(lm.fit),
+                      residuals=rstudent(lm.fit))
+
+g <- ggplot(plot_df, aes(x=fitted_vals, y=residuals)) +
+
+    # Add dots
+     geom_point(alpha=0.4, size=3.5) +
+     xlab("Fitted values") +
+     ylab("Residuals") +
+     ggtitle("Residuals vs Fitted") +
+
+    # Add lines
+    geom_hline(yintercept=0, size=1.5, color='yellow') +
+    geom_hline(yintercept=3, size=1.5, color='red') +
+
+    # Customising the plot +
+     theme_bw()
+
+g
+```
+
+:::
+
+
+## Selecting outliers
+
+
+How do you identify the data points that have a high value of residuals (potential outliers)?
+
+
+To produce this plot, we used the function `rstudent()` to calculate the so-called ["studentized" residuals](https://online.stat.psu.edu/stat462/node/247/). This function returns a vector with the same length as the number of data points:
+
+```{r}
+studentized_residuals <- rstudent(lm.fit)
+length(studentized_residuals)
+```
+
+```{r}
+nrow(Boston)
+```
+
+We can use this information to filter and select those data points that produced a studentized-residual above 3:
+
+```{r}
+df_potential_outliers <- Boston[studentized_residuals > 3, ]
+df_potential_outliers
+```
+
+Data frame `df_potential_outliers` above contain all potential outliers according to this criteria. In a real-life setting, you would check the values of these data points in comparison with the rest of the dataset to understand what makes them different. 
+
+## What to do next?
+
+If the process that generated the dataset is indeed linear, it is possible that these are "true" outliers, rare cases that deviate from the norm. But often, this indicates that a linear model is not able to capture all the nuances present in the data. Maybe the data generating procedure is nonlinear? Or maybe it depends on other features that are not present in your dataset? 
+
+As for your next actions, it all depends on what you plan to do with this model or how much risk you can take by predicting data similar to these edge cases. If you do not want or cannot afford to ignore these errors, you can try to collect more data, fit more complex algorithms, or talk to domain experts to try to understand these cases a bit more.
