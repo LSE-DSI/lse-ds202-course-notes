@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
-<meta name="dcterms.date" content="21 October 2022">
+<meta name="dcterms.date" content="23 October 2022">
 
-<title>LSE DS202 2022/23 - ✔️ Week 04 - Lab Solutions</title>
+<title>LSE DS202 2022/23 - Identifying outliers in linear model</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -95,8 +95,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../weeks/week05.html" rel="next">
-<link href="../../weeks/week04/lab.html" rel="prev">
 <link href="../..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -157,7 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">✔️ Week 04 - Lab Solutions</h1>
+      <h1 class="quarto-secondary-nav-title">Identifying outliers in linear model</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -296,11 +294,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../weeks/week04.html" class="sidebar-item-text sidebar-link">Week 04</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../weeks/week04/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
@@ -318,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week04/lab_solutions.html" class="sidebar-item-text sidebar-link active">✔️ Lab solutions</a>
+  <a href="../../weeks/week04/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
   </div>
 </li>
       </ul>
@@ -361,7 +359,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#solutions-to-exercises" id="toc-solutions-to-exercises" class="nav-link active" data-scroll-target="#solutions-to-exercises">🔑 Solutions to exercises</a></li>
+  <li><a href="#residual-vs-fitted-plot" id="toc-residual-vs-fitted-plot" class="nav-link active" data-scroll-target="#residual-vs-fitted-plot">Residual vs Fitted plot</a></li>
+  <li><a href="#selecting-outliers" id="toc-selecting-outliers" class="nav-link" data-scroll-target="#selecting-outliers">Selecting outliers</a></li>
+  <li><a href="#what-to-do-next" id="toc-what-to-do-next" class="nav-link" data-scroll-target="#what-to-do-next">What to do next?</a></li>
   </ul>
 </nav>
     </div>
@@ -370,9 +370,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">✔️ Week 04 - Lab Solutions</h1>
-<p class="subtitle lead">DS202 - Data Science for Social Scientists</p>
-</div>
+<h1 class="title d-none d-lg-block">Identifying outliers in linear model</h1>
+<p class="subtitle lead">DS202 Blog Post</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">week03</div>
+    <div class="quarto-category">linear regression</div>
+    <div class="quarto-category">outliers</div>
+  </div>
+  </div>
 
 
 
@@ -381,14 +386,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Yijun Wang </p>
+             <p>Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a> </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">21 October 2022</p>
+      <p class="date">23 October 2022</p>
     </div>
   </div>
     
@@ -397,73 +402,132 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="solutions-to-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="solutions-to-exercises">🔑 Solutions to exercises</h2>
-<ol type="1">
-<li><p>Create a binary variable, <code>mpg01</code>, that contains a 1 if <code>mpg</code> contains a value above its median, and a 0 if <code>mpg</code> contains a value below its median. You can compute the median using the <code>median()</code> function. Note you may find it helpful to use the <code>data.frame()</code> function to create a single data set containing both <code>mpg01</code> and the other <code>Auto</code> variables.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Auto <span class="ot">=</span> <span class="fu">na.omit</span>(Auto)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>mpg01 <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">dim</span>(Auto)[<span class="dv">1</span>])</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mpg01[Auto<span class="sc">$</span>mpg <span class="sc">&gt;</span> <span class="fu">median</span>(Auto<span class="sc">$</span>mpg)] <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Auto <span class="ot">=</span> <span class="fu">data.frame</span>(Auto, mpg01)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>or a easier way by using <code>ifelse()</code> function:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR2)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Auto <span class="ot">=</span> <span class="fu">na.omit</span>(Auto)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Auto<span class="sc">$</span>mpg01 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(Auto<span class="sc">$</span>mpg <span class="sc">&gt;</span> <span class="fu">median</span>(Auto<span class="sc">$</span>mpg), <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Before we move to next step, we need to lable <code>mpg01</code> and <code>orgin</code> as <code>factor</code> so that R could recognized them as quanlitative variables instead of quantitative variables.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Auto<span class="sc">$</span>mpg01 <span class="ot">=</span> <span class="fu">as.factor</span>(Auto<span class="sc">$</span>mpg01)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Auto<span class="sc">$</span>origin <span class="ot">=</span> <span class="fu">as.factor</span>(Auto<span class="sc">$</span>origin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Explore the data graphically in order to investigate the association between <code>mpg01</code> and the other features. Which of the other features seem most likely to be useful in predicting <code>mpg01</code>? Scatterplots and boxplots may be useful tools to answer this question. Describe your findings.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Auto<span class="sc">$</span>mpg01, Auto<span class="sc">$</span>cylinders, <span class="at">xlab =</span> <span class="st">"mpg01"</span>, <span class="at">ylab =</span> <span class="st">"Number of engine cylinders"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Auto<span class="sc">$</span>mpg01, Auto<span class="sc">$</span>displacement, <span class="at">xlab =</span> <span class="st">"mpg01"</span>, <span class="at">ylab =</span> <span class="st">"Engine displacement (cubic inches)"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Auto<span class="sc">$</span>mpg01, Auto<span class="sc">$</span>horsepower, <span class="at">xlab =</span> <span class="st">"mpg01"</span>, <span class="at">ylab =</span> <span class="st">"Horsepower"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Auto<span class="sc">$</span>mpg01, Auto<span class="sc">$</span>weight, <span class="at">xlab =</span> <span class="st">"mpg01"</span>, <span class="at">ylab =</span> <span class="st">"Weight (pounds)"</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Auto<span class="sc">$</span>mpg01, Auto<span class="sc">$</span>acceleration, <span class="at">xlab =</span> <span class="st">"mpg01"</span>, <span class="at">ylab =</span> <span class="st">"Time to reach 60mpg (seconds)"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Auto<span class="sc">$</span>mpg01, Auto<span class="sc">$</span>year, <span class="at">xlab =</span> <span class="st">"mpg01"</span>, <span class="at">ylab =</span> <span class="st">"Manufacture year"</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"Boxplots for cars with above(1) and below(0) median mpg"</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">line =</span> <span class="sc">-</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Boxplots were plotted to compare the distributions for each of the quantitative variables between cars with above-median mpg and those with below median-mpg. If the distribution of a predictor significantly varies with the response variable, then it may contribute to the prediction of response variable. If the distribution of a predictor does not significantly differ between different values of the response variable, then it may not contribute to the prediction of response variable. The boxplots suggest that <code>cylinders</code>, <code>displacement</code>, <code>horsepower</code>, and <code>weight</code> might be the most useful in predicting <code>mpg01</code>. The function <code>par()</code> is used to change the layout of output plots.</p>
-<p>We could try to use <code>ggplot()</code> function to creat some fancy plots which is a combination of boxplot and scatterplot:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Auto, <span class="fu">aes</span>(acceleration, mpg01, <span class="at">colour =</span> mpg01, <span class="at">fill =</span> mpg01)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.125</span>) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">2</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To visualise the association between <code>mpg01</code> and <code>year</code>, scatterplot is used.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Auto<span class="sc">$</span>year, Auto<span class="sc">$</span>mpg)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">median</span>(Auto<span class="sc">$</span>mpg), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The above scatterplot of <code>mpg</code> vs <code>year</code> shows that the newer cars in the data set tend to be more fuel efficient. Therefore, while manufacture year might not be as useful as the other four quantitative variables, it still seems worth including.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Auto<span class="sc">$</span>origin, Auto<span class="sc">$</span>mpg, <span class="at">xlab =</span> <span class="st">"Origin"</span>, <span class="at">ylab =</span> <span class="st">"mpg"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">median</span>(Auto<span class="sc">$</span>mpg), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Lastly, when looking at a boxplot that compares the <code>mpg</code> values for each car, categorized by country of <code>origin</code>, we see that there is a clear difference between American cars, which tend to have below-median fuel efficiency, and European and Japanese cars, which tend to have above-median fuel efficiency. Thus, it seems that <code>origin</code> will also be useful in predicting <code>mpg01</code>.</p>
-<p>In conclusion, all of the predictors except for <code>acceleration</code> and <code>name</code> will be used in fitting this classification model for trying to predict <code>mpg01</code>. Also, <code>mpg</code> will be excluded because that was directly used to create the classification label.</p></li>
-<li><p>Split the data into a training set and a test set. Train set contains observations before 1979. Test set contains the rest of the observations.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(Auto)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> (year <span class="sc">&lt;</span> <span class="dv">79</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Auto_train <span class="ot">&lt;-</span> Auto[train , ]</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Auto_test <span class="ot">&lt;-</span> Auto[<span class="sc">!</span>train , ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Perform logistic regression on the training data in order to predict <code>mpg01</code> using the variables that seemed most associated with <code>mpg01</code> in question 2. What is the test error of the model obtained?</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>glm.fit <span class="ot">=</span> <span class="fu">glm</span>(mpg01 <span class="sc">~</span> cylinders <span class="sc">+</span> displacement <span class="sc">+</span> horsepower <span class="sc">+</span> weight <span class="sc">+</span> year <span class="sc">+</span> origin, <span class="at">data =</span> Auto, <span class="at">subset =</span> train, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm.fit)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>glm.probs <span class="ot">=</span> <span class="fu">predict</span>(glm.fit, Auto_test, <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>glm.pred <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">dim</span>(Auto_test)[<span class="dv">1</span>])</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>glm.pred[glm.probs <span class="sc">&gt;</span> <span class="fl">0.5</span>] <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(glm.pred, Auto_test<span class="sc">$</span>mpg01, <span class="at">dnn =</span> <span class="fu">c</span>(<span class="st">"Predicted"</span>, <span class="st">"Actual"</span>))</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(glm.pred <span class="sc">==</span> Auto_test<span class="sc">$</span>mpg01)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.877193</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>As is shown, the test error of the model ontained is (1-0.877193) = 0.122807.</p></li>
-<li><p>Perform naive Bayes on the training data in order to predict <code>mpg01</code> using the variables that seemed most associated with <code>mpg01</code> in question 2. What is the test error of the model obtained?</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (e1071)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nb.fit <span class="ot">=</span> <span class="fu">naiveBayes</span>(mpg01 <span class="sc">~</span> cylinders <span class="sc">+</span> displacement <span class="sc">+</span> horsepower <span class="sc">+</span> weight <span class="sc">+</span> year <span class="sc">+</span> origin, <span class="at">data =</span> Auto, <span class="at">subset =</span> train)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>nb.fit</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>nb.class <span class="ot">&lt;-</span> <span class="fu">predict</span>(nb.fit, Auto_test)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nb.class, Auto_test<span class="sc">$</span>mpg01, <span class="at">dnn =</span> <span class="fu">c</span>(<span class="st">"Predicted"</span>, <span class="st">"Actual"</span>))</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(nb.class <span class="sc">==</span> Auto_test<span class="sc">$</span>mpg01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>As is shown, the test error of the model ontained is (1-0.877193) = 0.122807.</p></li>
-<li><p>Which of these two methods appears to provide the best results on this data? Justify your choice.</p>
-<p>After comparing the test errors, these two classification models were equally good. To further compare the performance of these two model, we have to look at the confusion matrix and find these two classification models have identiical confusion matrix. It means that Precision, Recall, Accuracy and F-Score of these two models are all same. Therefore, we can conclude that these two classification models have equally good performace on this data set. One thing that should be cautious of is that the data set is imbalnced. Therefore, we cannot judge the performance of this data set based on test error. More detailed explaination about be found here: <a href="https://www.analyticsvidhya.com/blog/2021/06/5-techniques-to-handle-imbalanced-data-for-a-classification-problem/">https://www.analyticsvidhya.com/blog/2021/06/5-techniques-to-handle-imbalanced-data-for-a-classification-problem/</a>.</p></li>
-</ol>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+TLDR
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Here you will find R code to single out points with high <a href="https://online.stat.psu.edu/stat462/node/247/">“studentized” residuals</a></p>
+</div>
+</div>
+<p>During <a href="../../weeks/week03/lab.html#step-3-some-potential-problems">Week 03 lab</a>, we looked at diagnostic plots we can generate in R to obtain insights about the fit of a linear model.</p>
+<p><strong>Import required libraries</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Fit a linear model then produce diagnostic plots</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lm.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> lstat <span class="sc">*</span> age , <span class="at">data =</span> ISLR2<span class="sc">::</span>Boston)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="outliers_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>A frequent question we got in the labs was about the first of these plots, <em>“Residuals vs Fitted”</em>.</p>
+<section id="residual-vs-fitted-plot" class="level2">
+<h2 class="anchored" data-anchor-id="residual-vs-fitted-plot">Residual vs Fitted plot</h2>
+<p>Ideally, the residual plot, also called the null residual plot, should show a random scatter of points centered around 0 and forming an approximately constant width band.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">base <code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">tidyverse</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add dots</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">predict</span>(lm.fit), <span class="fu">rstudent</span>(lm.fit), </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Fitted values"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Residuals"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Residuals vs Fitted"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add lines</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">5</span>,<span class="at">col =</span> <span class="st">'red'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lwd =</span> <span class="dv">5</span>,<span class="at">col =</span> <span class="st">'yellow'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="outliers_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fitted_vals=</span><span class="fu">predict</span>(lm.fit),</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">residuals=</span><span class="fu">rstudent</span>(lm.fit))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x=</span>fitted_vals, <span class="at">y=</span>residuals)) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add dots</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>, <span class="at">size=</span><span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">"Residuals"</span>) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ggtitle</span>(<span class="st">"Residuals vs Fitted"</span>) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add lines</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">0</span>, <span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">'yellow'</span>) <span class="sc">+</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">3</span>, <span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">'red'</span>) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Customising the plot +</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_bw</span>()</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="outliers_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="selecting-outliers" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-outliers">Selecting outliers</h2>
+<p>How do you identify the data points that have a high value of residuals (potential outliers)?</p>
+<p>To produce this plot, we used the function <code>rstudent()</code> to calculate the so-called <a href="https://online.stat.psu.edu/stat462/node/247/">“studentized” residuals</a>. This function returns a vector with the same length as the number of data points:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>studentized_residuals <span class="ot">&lt;-</span> <span class="fu">rstudent</span>(lm.fit)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(studentized_residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 506</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 506</code></pre>
+</div>
+</div>
+<p>We can use this information to filter and select those data points that produced a studentized-residual above 3:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_potential_outliers <span class="ot">&lt;-</span> Boston[studentized_residuals <span class="sc">&gt;</span> <span class="dv">3</span>, ]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_potential_outliers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       crim zn indus chas   nox    rm   age    dis rad tax ptratio lstat medv
+187 0.05602  0  2.46    0 0.488 7.831  53.6 3.1992   3 193    17.8  4.45 50.0
+215 0.28955  0 10.59    0 0.489 5.412   9.8 3.5875   4 277    18.6 29.55 23.7
+226 0.52693  0  6.20    0 0.504 8.725  83.0 2.8944   8 307    17.4  4.63 50.0
+258 0.61154 20  3.97    0 0.647 8.704  86.9 1.8010   5 264    13.0  5.12 50.0
+263 0.52014 20  3.97    0 0.647 8.398  91.5 2.2885   5 264    13.0  5.91 48.8
+268 0.57834 20  3.97    0 0.575 8.297  67.0 2.4216   5 264    13.0  7.44 50.0
+372 9.23230  0 18.10    0 0.631 6.216 100.0 1.1691  24 666    20.2  9.53 50.0
+373 8.26725  0 18.10    1 0.668 5.875  89.6 1.1296  24 666    20.2  8.88 50.0</code></pre>
+</div>
+</div>
+<p>Data frame <code>df_potential_outliers</code> above contain all potential outliers according to this criteria. In a real-life setting, you would check the values of these data points in comparison with the rest of the dataset to understand what makes them different.</p>
+</section>
+<section id="what-to-do-next" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-do-next">What to do next?</h2>
+<p>If the process that generated the dataset is indeed linear, it is possible that these are “true” outliers, rare cases that deviate from the norm. But often, this indicates that a linear model is not able to capture all the nuances present in the data. Maybe the data generating procedure is nonlinear? Or maybe it depends on other features that are not present in your dataset?</p>
+<p>As for your next actions, it all depends on what you plan to do with this model or how much risk you can take by predicting data similar to these edge cases. If you do not want or cannot afford to ignore these errors, you can try to collect more data, fit more complex algorithms, or talk to domain experts to try to understand these cases a bit more.</p>
 
 
 </section>
@@ -696,18 +760,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../weeks/week04/lab.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">💻 Lab roadmap</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../weeks/week05.html" class="pagination-link">
-        <span class="nav-page-text">Week 05</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
