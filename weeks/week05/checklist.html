@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
-<meta name="dcterms.date" content="10 October 2022">
+<meta name="dcterms.date" content="21 October 2022">
 
-<title>LSE DS202 2022/23 - What happens to R-squared when we add more predictors?</title>
+<title>LSE DS202 2022/23 - ✅ Week 05 - Checklist</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,25 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 
@@ -51,6 +32,8 @@ div.csl-indent {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../weeks/week05/lab.html" rel="next">
+<link href="../../weeks/week05/lecture.html" rel="prev">
 <link href="../..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -83,7 +66,6 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../css/custom_style.css">
 </head>
@@ -112,7 +94,7 @@ div.csl-indent {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">What happens to R-squared when we add more predictors?</h1>
+      <h1 class="quarto-secondary-nav-title">✅ Week 05 - Checklist</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -271,11 +253,11 @@ div.csl-indent {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../weeks/week05.html" class="sidebar-item-text sidebar-link">Week 05</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../weeks/week05/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
@@ -283,7 +265,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week05/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../../weeks/week05/checklist.html" class="sidebar-item-text sidebar-link active">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -302,31 +284,16 @@ div.csl-indent {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
 <p><img src="../../figures/logos/LSE Data Science Institute.png" class="img-fluid"></p>
 </div></div>
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#about-r2" id="toc-about-r2" class="nav-link active" data-scroll-target="#about-r2">About <span class="math inline">\(R^2\)</span></a></li>
-  <li><a href="#data-and-variables" id="toc-data-and-variables" class="nav-link" data-scroll-target="#data-and-variables">Data and Variables</a></li>
-  <li><a href="#simple-linear-regression-in-matrix-format" id="toc-simple-linear-regression-in-matrix-format" class="nav-link" data-scroll-target="#simple-linear-regression-in-matrix-format">Simple Linear Regression in matrix format</a></li>
-  <li><a href="#what-if-i-add-another-feature" id="toc-what-if-i-add-another-feature" class="nav-link" data-scroll-target="#what-if-i-add-another-feature">What if I add another feature?</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">What happens to R-squared when we add more predictors?</h1>
-<p class="subtitle lead">DS202 Blog Post</p>
-  <div class="quarto-categories">
-    <div class="quarto-category">week02</div>
-    <div class="quarto-category">R-squared</div>
-    <div class="quarto-category">equations</div>
-  </div>
-  </div>
+<h1 class="title d-none d-lg-block">✅ Week 05 - Checklist</h1>
+<p class="subtitle lead">DS202 - Data Science for Social Scientists</p>
+</div>
 
 
 
@@ -342,7 +309,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">10 October 2022</p>
+      <p class="date">21 October 2022</p>
     </div>
   </div>
     
@@ -351,165 +318,11 @@ div.csl-indent {
 
 </header>
 
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-TLDR
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>When using <a href="../../slides/week02_slides_part1.html#/ordinary-least-squares">OLS</a>, <span class="math inline">\(R^2\)</span> will always stay the same or increase you add more features to a linear regression, even if those features are “useless”.</p>
-</div>
-</div>
-<section id="about-r2" class="level2">
-<h2 class="anchored" data-anchor-id="about-r2">About <span class="math inline">\(R^2\)</span></h2>
-<p>As we saw briefly on <a href="../../weeks/week02/lecture.html">Week 02</a> and as defined in Chapter 3 of the textbook <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021</a>)</span>, <span class="math inline">\(R^2\)</span> represents the proportion of variability in the response variable that can be explained using the dependent variables (features). More specifically:</p>
-<p><span class="math display">\[
-R^2 = 1 - \frac{\operatorname{RSS}}{\operatorname{TSS}}
-\]</span></p>
-<p>where <span class="math inline">\(\operatorname{TSS}\)</span> represents the <mark>Total Sum of Squares</mark>:</p>
-<p><span class="math display">\[
-\operatorname{TSS} =  \sum_i^n{\left(y_i - \bar{y}\right)^2},
-\]</span></p>
-<p>and <span class="math inline">\(\bar{y}\)</span> is the mean of <span class="math inline">\(\mathbf{y}\)</span>.</p>
-<p>As for the <span class="math inline">\(\operatorname{RSS}\)</span>, it represents the <mark>Residual Sum of Squares</mark>.</p>
-<p>To understand why <span class="math inline">\(R^2\)</span> can never decrease if we add more features, I think it is useful to visualise linear regression in matrix format.</p>
-</section>
-<section id="data-and-variables" class="level2">
-<h2 class="anchored" data-anchor-id="data-and-variables">Data and Variables</h2>
-<p>Suppose you have the following data:</p>
-<p><span class="math display">\[
-\mathbf{X} = \left[
-\begin{array}{cc}
-x_{11}\\
-x_{21}\\
-\vdots\\
-x_{n1}
-\end{array}\right],
-\]</span></p>
-<p>that is, there i only <span class="math inline">\(p=1\)</span> feature for the <span class="math inline">\(n\)</span> observations of data, and you want to fit a linear regression to attempt to predict the <span class="math inline">\(\mathbf{y}\)</span> column below:</p>
-<p><span class="math display">\[
-\mathbf{y} = \left[
-\begin{array}{c}
-y_{1}\\
-y_2\\
-\vdots\\
-y_n
-\end{array}\right].
-\]</span></p>
-</section>
-<section id="simple-linear-regression-in-matrix-format" class="level2">
-<h2 class="anchored" data-anchor-id="simple-linear-regression-in-matrix-format">Simple Linear Regression in matrix format</h2>
-<p>We can also represent the regression coefficients obtained by <mark>Ordinary Least Squares</mark> (<a href="../../slides/week02_slides_part1.html#/ordinary-least-squares">OLS</a>) in matrix format.<br> <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> is a <span class="math inline">\(1 \times (p+1)\)</span> matrix:</p>
-<p><span class="math display">\[
-\hat{\boldsymbol{\beta}} = \left[
-\begin{array}{c}
-\hat{\beta}_{0}\\
-\hat{\beta}_1
-\end{array}\right].
-\]</span></p>
-<p>When thinking about regression this way, it is often useful to add an additional column of 1s to <span class="math inline">\(\mathbf{X}\)</span>:</p>
-<p><span class="math display">\[
-\mathbf{X} = \left[
-\begin{array}{cc}
-1 &amp; x_{11}\\
-1 &amp; x_{21}\\
-1 &amp; \vdots\\
-1 &amp; x_{n1}
-\end{array}\right],
-\]</span></p>
-<p>so that:</p>
-<p><span class="math display">\[
-\hat{\boldsymbol{\beta}}\mathbf{X} =\left[
-\begin{array}{c}
-\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{11} \\
-\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{21} \\
-\vdots  \\
-\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{n1}\\
-\end{array}\right] = \hat{\mathbf{y}}
-\]</span></p>
-<p>represents the estimated values <span class="math inline">\(\hat{\mathbf{y}}\)</span>.</p>
-<p>Residuals can then be represented as <span class="math inline">\(\mathbf{e} = (\mathbf{y} - \hat{\mathbf{y}})\)</span>, or</p>
-<p><span class="math display">\[
-\mathbf{e} =\left[
-\begin{array}{c}
-y_{1} - (\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{11}) \\
-y_{2} - (\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{21} )\\
-\vdots  \\
-y_{n} - (\hat{\beta}_{0} \times 1 + \hat{\beta}_1 \times x_{n1})\\
-\end{array}\right]
-\]</span></p>
-<p>OLS provides an optimal way to find coefficients <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> that minimizes <span class="math inline">\(\operatorname{RSS}\)</span>.</p>
-<p>In matrix format, the <span class="math inline">\(\operatorname{RSS}\)</span> can be represented as:</p>
-<p><span class="math display">\[
-\operatorname{RSS} = \mathbf{e}^T\mathbf{e}.
-\]</span></p>
-<p>OLS will find an optimal solution to <span class="math inline">\(\text{minimise } \operatorname{RSS}\)</span>. Let’s call it <span class="math inline">\(\operatorname{RSS}_{(p=1)}\)</span>.</p>
-</section>
-<section id="what-if-i-add-another-feature" class="level2">
-<h2 class="anchored" data-anchor-id="what-if-i-add-another-feature">What if I add another feature?</h2>
-<p>💡 <strong>What would happen if I added a second feature and ran a regression with <span class="math inline">\(p=2\)</span>?</strong></p>
-<p>Think of the implications this has for the matrix of coefficients <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> and matrix of residuals <span class="math inline">\(\mathbf{e}\)</span> if I decided to add a second column of data to <span class="math inline">\(\mathbf{X}\)</span>.</p>
-<p>The new extended feature matrix, let’s call it <span class="math inline">\(\mathbf{X}'\)</span>, would look like the following:</p>
-<p><span class="math display">\[
-\mathbf{X} = \left[
-\begin{array}{ccc}
-1 &amp; x_{11}&amp;x_{12}\\
-1 &amp; x_{21}&amp;x_{22}\\
-1 &amp; \vdots&amp;\vdots\\
-1 &amp; x_{n1}&amp;x_{n2}
-\end{array}\right],
-\]</span></p>
-<p>OLS would find new coefficients, let’s call them <span class="math inline">\(\hat{\boldsymbol{\beta}}'\)</span>:</p>
-<p><span class="math display">\[
-\hat{\boldsymbol{\beta}} = \left[
-\begin{array}{c}
-\hat{\beta}'_{0}\\
-\hat{\beta}'_1\\
-\hat{\beta}'_2
-\end{array}\right].
-\]</span></p>
-<p>Similarly, the new <span class="math inline">\(\mathbf{e}'\)</span> could be represented as:</p>
-<p><span class="math display">\[
-\mathbf{e}' =\left[
-\begin{array}{c}
-y_{1} - (\hat{\beta}'_{0} \times 1 + \hat{\beta}'_1 \times x_{11} + \hat{\beta}'_2 \times x_{12})\\
-y_{2} - (\hat{\beta}'_{0} \times 1 + \hat{\beta}'_1 \times x_{21} + \hat{\beta}'_2 \times x_{22})\\
-\vdots  \\
-y_{n} - (\hat{\beta}'_{0} \times 1 + \hat{\beta}'_1 \times x_{n1} + \hat{\beta}'_2 \times x_{n2})\\
-\end{array}\right]
-\]</span></p>
-<p>Again, if we run OLS, the algorithm will find an optimal solution to the the residuals above, a minimum <span class="math inline">\(\operatorname{RSS}_{(p=2)}\)</span>. What can we expect of <span class="math inline">\(\operatorname{RSS}_{(p=2)}\)</span> in relation to <span class="math inline">\(\operatorname{RSS}_{(p=1)}\)</span>? Let’s think through some scenarios:</p>
-<p>If it turned out that <span class="math inline">\(\hat{\beta}'_0 = \hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}'_1 = \hat{\beta}_1\)</span>:</p>
-<ul>
-<li>If <span class="math inline">\(\hat{\beta}'_2 = 0\)</span>, then we could conclude that <span class="math inline">\(\mathbf{e}' = \mathbf{e}\)</span> and <span class="math inline">\(\operatorname{RSS}_{(p=2)} = \operatorname{RSS}_{(p=1)}\)</span>. That is, by minimising the sum of squares, OLS cannot find a better solution that involves <span class="math inline">\(\hat{\beta}'_2\)</span>.</li>
-<li>If <span class="math inline">\(\hat{\beta}'_2 \neq 0\)</span> then notice that the new residuals are related to the previous ones: <span class="math inline">\({e_i}' = (e_i - \hat{\beta}'_2x_{i2}) ~~\forall i\)</span>. <br>That means <span class="math inline">\(({e_i}')^2 \geq e_i^2~~\forall i\)</span> and therefore <span class="math inline">\(\operatorname{RSS}_{(p=2)} \geq \operatorname{RSS}_{(p=1)}\)</span>.</li>
-</ul>
-<p>A similar logic applies to the case where <span class="math inline">\(\hat{\beta}'_0 \neq \hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}'_1 \neq \hat{\beta}_1\)</span> — check <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> for a more formal proof.</p>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>By adding a new feature, given the fact that OLS uses <strong>squares of errors</strong>, it is inevitable that <span class="math inline">\(({e_i}')^2 \geq e_i^2~~\forall i\)</span>. OLS will always find an equivalent or a lower <span class="math inline">\(\operatorname{RSS}\)</span> value. If you check the <span class="math inline">\(R^2\)</span> definition once again, you will realise that <span class="math inline">\(\operatorname{TSS}\)</span> will never change — as it is not related to <span class="math inline">\(\mathbf{X}\)</span>, only to <span class="math inline">\(\mathbf{y}\)</span> — only <span class="math inline">\(\operatorname{RSS}\)</span> can vary when you add new features. Since <span class="math inline">\(\operatorname{RSS}\)</span> can only decrease or stay the same, <span class="math inline">\(R^2\)</span> will always increase or stay the same, never decrease, if you add more features.</p>
-<p>To correct this misleading tendency of R-squared, an adjusted index has been proposed. The <a href="https://www.wikiwand.com/en/Coefficient_of_determination#/Adjusted_R2">ajusted R-squared</a> takes the number of features into account and it is what you should rely on when assessing the goodness-of-fit of a linear regression.</p>
+<p><mark class="todo"></mark></p>
 
 
 
-</section>
-
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-james_introduction_2021" class="csl-entry" role="doc-biblioentry">
-James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: With Applications in <span>R</span></em>. Second edition. Springer Texts in Statistics. New York NY: Springer. <a href="https://www.statlearning.com/">https://www.statlearning.com/</a>.
-</div>
-</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p><a href="https://math.stackexchange.com/a/1976916/261792">Math Exchange - Prove that <span class="math inline">\(R^2\)</span> cannot decrease when adding a variable</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -737,6 +550,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../weeks/week05/lecture.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">👨‍🏫 Lecture</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../weeks/week05/lab.html" class="pagination-link">
+        <span class="nav-page-text">💻 Lab roadmap</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
