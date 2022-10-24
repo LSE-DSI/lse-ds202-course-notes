@@ -1,8 +1,64 @@
 ---
 title: "✅ Week 05 - Checklist"
-date: 21 October 2022
-date-meta: 21 October 2022
+date: 24 October 2022
+date-meta: 24 October 2022
 from: markdown+emoji
 ---
 
-<mark class="todo"></mark>
+::: {.callout-important collapse="false"}
+Keep in mind that after the lecture at the end of this week, on Friday 28 October 2022, we will release the **Summative Problem Set 01**. This is the first summative assessment of this course and it is worth **20% of your final grade**. You will have until **9 November 2022** — Wednesday of Week 07 — to submit your solutions via Moodle.
+
+:::
+
+Here is a suggestion of how to program your week in relation to this course:
+
+<details>
+
+<summary>If your lab is on Monday
+</summary>
+
+## If your lab is on Monday:
+
+- 📥 **Download**: Before or once you arrive at the classroom, download the [DS202_2022MT_w05_lab_rmark.Rmd](https://moodle.lse.ac.uk/mod/folder/view.php?id=1129420) file that contains the lab roadmap (under 🗓️ Week 05 - Non-linear algorithms/W04 Lab Files section on Moodle). Or browse the webpage version [here](/weeks/week05/lab.html).
+
+- 💻 **Participate**: Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Work with others whenever possible and take notes of theoretical concepts or practical coding skill you might want to revisit later in the week.
+
+- 📙 **Read**: Find some time to read [@james_introduction_2021, chapter 5] and reinforce your theoretical understanding of resampling methods; the textbook is available online for free.
+    - In the lecture/workshop last week, we only explored training/test splits and the idea of cross-validation; in the lab, you will have a chance to explore another technique called the bootstrap.
+    - As you go through the text, try to connect what you read to the things you heard about in the lecture/workshop or the examples you explored in the lab. 
+
+- ✍️ **Solve**: There is still time to submit your solutions to the [Formative Problem Set 01](https://moodle.lse.ac.uk/mod/coursework/view.php?id=1127006), the deadline is Tuesday 25 October 23:59 UK time.
+
+- 🏫 **Attend the lecture**: This week, you will learn of two new algorithms: Support Vector Machine and Decision Tree. You will need to use these algorithms in the first summative that will be released on Friday.
+
+</details>
+
+<details>
+
+<summary>If your lab is on Friday
+</summary>
+
+## If your lab is on Friday:
+
+- ✍️ **Solve**: There is still time to submit your solutions to the [Formative Problem Set 01](https://moodle.lse.ac.uk/mod/coursework/view.php?id=1127006), the deadline is Tuesday 25 October 23:59 UK time.
+
+- 📙 **Read**: Find some time to read [@james_introduction_2021, chapter 5] and reinforce your theoretical understanding of resampling methods; the textbook is available online for free.
+    - In the lecture/workshop last week, we only explored training/test splits and the idea of cross-validation; in the lab, you will have a chance to explore another technique called the bootstrap.
+    - As you go through the text, try to connect what you read to the things you heard about in the lecture/workshop or the examples you explored in the lab. 
+
+
+- 📥 **Download**: Before or once you arrive at the classroom, download the [DS202_2022MT_w05_lab_rmark.Rmd](https://moodle.lse.ac.uk/mod/folder/view.php?id=1129420) file that contains the lab roadmap (under 🗓️ Week 05 - Non-linear algorithms/W04 Lab Files section on Moodle). Or browse the webpage version [here](/weeks/week05/lab.html).
+
+- 💻 **Participate**: Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Work with others whenever possible and take notes of theoretical concepts or practical coding skill you might want to revisit later in the week.
+
+
+- 🏫 **Attend the lecture**: This week, you will learn of two new algorithms: Support Vector Machine and Decision Tree. You will need to use these algorithms in the first summative that will be released on Friday.
+
+</details>
+
+**Extra:**
+
+- 📟 Struggling with something? Don’t know what a particular R command do? Share your questions on the `#week05` channel in our Slack.
+    -  I'm gathering the most frequently asked questions and adding blog entries about them to [our website](/blog/main.html). 
+
+- 👂Want to talk to someone else about this course? Try reaching out to your course representatives, `@Zhang Ruishan (Yoyo)` or `@Rachitha Raghuram`.

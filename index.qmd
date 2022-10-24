@@ -54,34 +54,39 @@ Office Hours:
 
 ![](/figures/people/stuart.jpg){fig-align="left" fig-alt="Photo of Stuart Bramwell" width="5em"}  
 **Dr. [Stuart Bramwell](https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell)** <br/>
-ESRC Postdoctoral Fellow <br> 
-Department of Methodology<br>
-PhD in Politics (Oxford)
+ESRC Postdoctoral Fellow <br/> 
+Department of Methodology<br/>
+PhD in Politics (Oxford)<br/>
+📧 [s.bramwell@lse.ac.uk](mailto:s.bramwell@lse.ac.uk)
 
 ![](/figures/people/Yijun.jpg){fig-align="left" fig-alt="Photo of Yijun Wang" width="5em"}  
 **[Yijun Wang](https://www.kcl.ac.uk/people/yijun-wang)** <br/>
 Guest Teacher at the [LSE Data Science Institute](https://lse.ac.uk/dsi)<br/> 
 PhD candidate in Health Informatics (KCL) <br/>
-MSc in Data Science (KCL)
+MSc in Data Science (KCL) <br/>
+📧 [y.wang508@lse.ac.uk](mailto:y.wang508@lse.ac.uk)
 
 ![](/figures/people/mustafa.jfif){fig-align="left" fig-alt="Photo of Mustafa Can Ozkan" width="5em"}  
 **Mustafa Can Ozkan** <br/>
 Guest Teacher at the [LSE Data Science Institute](https://lse.ac.uk/dsi)<br> 
 PhD candidate in the Spacetime Lab (UCL) <br> 
-MSc in Transport (Imperial/UCL)
+MSc in Transport (Imperial/UCL) <br/>
+📧 [M.C.Ozkan@lse.ac.uk](mailto:M.C.Ozkan@lse.ac.uk)
 
 
 ![](/figures/people/Xiaowei.png){fig-align="left" fig-alt="Photo of Xiaowei Gao" width="5em"}  
 **[Xiaowei Gao](https://github.com/UCLWilson)** <br/>
 Guest Teacher at the [LSE Data Science Institute](https://lse.ac.uk/dsi)<br> 
-PhD candidate in the Spacetime Lab (UCL) <br> 
-MSc in Data Science (KCL)
+PhD candidate in the Spacetime Lab (UCL) <br/> 
+MSc in Data Science (KCL) <br/>
+📧 [X.Gao23@lse.ac.uk](mailto:X.Gao23@lse.ac.uk)
 
 ![](/figures/people/Anton.jpg){fig-align="left" fig-alt="Photo of Anton Boichenko" width="5em"}  
 **[Anton Boichenko](http://boychenko.pro/)** <br/>
 Guest Teacher at the [LSE Data Science Institute](https://lse.ac.uk/dsi)<br> 
 Product Developer at [Decoded](https://decoded.com/) <br> 
-MSc in Applied Social Data Science (LSE)
+MSc in Applied Social Data Science (LSE) <br/>
+📧 [A.Boichenko@lse.ac.uk](mailto:A.Boichenko@lse.ac.uk)
 
 ## Students
 
