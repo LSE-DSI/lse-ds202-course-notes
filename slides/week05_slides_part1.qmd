@@ -1,0 +1,410 @@
+---
+subtitle: ""
+title: "🗓️ Week 05:<br/> Non-linear algorithms (Decision Trees)"
+author: Dr. [Jon Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva) and Dr. [Stuart Bramwell](https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell)
+institute: '[\@LSEDataScience](https://twitter.com/lsedatascience)'
+date: 28 October 2022
+date-meta: 28 October 2022
+toc: true
+toc-depth: 1
+toc-title: "What we will cover today"
+center-title-slide: false
+from: markdown+emoji
+server: shiny
+format:
+  revealjs: 
+    pdf-separate-fragments: true
+    code-fold: false
+    theme: simple
+    slide-number: true
+    mouse-wheel: true
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    logo: /figures/logos/LSE Data Science Institute.png
+    css: /css/styles_slides.css
+    footer: 'DS202 - Data Science for Social Scientists :robot: :juggling_person:'
+---
+
+## The limits of classic regression models 
+
+Linear and logistic regression are a good first shot for building ML models
+
+::: incremental
+- Easy-to-interpret coefficients
+- Intuitive (ish) ways to assess variable importance
+- Often good out-of-the-box predictions
+:::
+
+## However...
+
+::: incremental
+- Assumption that the predictors are linearly related to the outcome is restrictive
+- We have seen, for instance, that accounting for higher order polynomial relationships can produce better model fit 
+  - think of the relationship between `lstat` and `medv` in `Boston` ([💻 Week 05 Lab](/weeks/week05/lab.html#step-1.3-does-it-get-better-if-i-modify-the-features-using-polynomial-terms))
+:::
+
+## Enter non-linear methods
+
+<mark class="todo"></mark>
+
+## Decision Tree for a Regression task {.smaller}
+
+Using the `Auto` dataset, predict `mpg` with a <mark>tree-based model</mark> using `weight` and `year` as features.
+
+::: {style="margin-top:-1em"}
+```{r fig.dpi=300}
+#| echo: false
+#| code-fold: show
+
+library(ISLR2)
+library(tidyverse)
+library(rpart)
+library(rpart.plot)
+
+tree.reg <- rpart(mpg ~ weight + year, data = Auto, control = list(maxdepth = 2))
+
+rpart.plot(tree.reg, ycompact=FALSE)
+```
+:::
+
+----
+
+### Source Code {.smaller}
+
+::: {.callout-tip}
+- Use the code below to replicate the plot from the previous slide. 
+- Found a bug? Report it on Slack.
+- 💡 Check out [this tutorial](http://www.milbo.org/rpart-plot/prp.pdf) of `rpart.plot`.
+:::
+
+```r
+library(ISLR2)      # to load Boston data
+library(tidyverse)  # to use things like the pipe (%>%), mutate and if_else
+
+library(rpart)      # a library that contains decision tree models
+library(rpart.plot) # a library that plots rpart models 
+
+# The function rpart below fits a decision tree to the data
+# You can control various aspects of the rpart fit with the parameter `control`
+# Type ?rpart.control in the R console to see what else you can change in the algorithm
+
+tree.reg <- rpart(mpg ~ weight + year, data = Auto, control = list(maxdepth = 2))
+
+rpart.plot(tree.reg)
+```
+
+
+## Decision Tree for a Classification task {.smaller}
+
+Using the `Boston` dataset, predict whether `medv` is above the median using `crim` and `tax`:
+
+::: {style="margin-top:-1em"}
+```{r fig.dpi=300}
+#| echo: false
+#| code-fold: show
+
+Boston <- Boston %>%
+    mutate(medv_gtmed = if_else(medv > median(medv), TRUE, FALSE))
+
+tree.class <- rpart(medv_gtmed ~ lstat + tax, data = Boston, control = list(maxdepth = 2))
+
+rpart.plot(tree.class)
+
+```
+:::
+
+---
+
+### Source Code 
+
+::: {.callout-tip}
+- Use the code below to replicate the plot from the previous slide. 
+- Found a bug? Report it on Slack.
+- 💡 Check out [this tutorial](http://www.milbo.org/rpart-plot/prp.pdf) of `rpart.plot`.
+:::
+
+```r
+library(ISLR2)      # to load Boston data
+library(tidyverse)  # to use things like the pipe (%>%), mutate and if_else
+
+library(rpart)      # a library that contains decision tree models
+library(rpart.plot) # a library that plots rpart models 
+
+# Add a column named `medv_gtmed` to indicate whether tax rate is above median
+Boston <- Boston %>% mutate(medv_gtmed = if_else(medv > median(medv), TRUE, FALSE))
+
+# The function rpart below fits a decision tree to the data
+# You can control various aspects of the rpart fit with the parameter `control`
+# Type ?rpart.control in the R console to see what else you can change in the algorithm
+
+tree.class <- rpart(medv_gtmed ~ lstat + tax, data = Boston, control = list(maxdepth = 2))
+
+rpart.plot(tree.class)
+```
+
+
+## What's going on behind the scenes?
+
+How decision trees work:
+
+::: incremental
+- Divide the predictor space into $\mathbf{J}$ distinct regions $R_1$, $R_2$,...,$R_j$.
+- Take the mean of the response values in each region
+
+:::
+
+::: {.fragment}
+Here's how the regions were created in our regression/classification examples ⏭️
+:::
+
+----
+
+### Alternative representation of decision tree (Regression)
+
+```{r}
+library(parttree)
+library(scales)
+
+set.seed(123)
+
+Auto %>%
+   ggplot(aes(x = weight, y = year)) +
+   geom_jitter(size = 3, alpha = 0.25) +
+   geom_parttree(data = tree.reg, aes(fill = mpg), alpha = 0.2) +
+   theme_minimal() +
+   theme(panel.grid = element_blank(), legend.position = 'bottom') +
+   scale_x_continuous(labels = comma) +
+   scale_fill_steps2() +
+   labs(x = 'Weight (lbs)', y = 'Year', fill = 'Miles per gallon')
+```
+
+----
+
+### Alternative representation of decision tree (Classification)
+
+```{r}
+set.seed(123)
+
+Boston %>%
+   ggplot(aes(x = lstat, y = tax)) +
+   geom_jitter(size = 3, alpha = 0.25) +
+   geom_parttree(data = tree.class, aes(fill = medv_gtmed), alpha = 0.2) +
+   theme_minimal() +
+   theme(panel.grid = element_blank(), legend.position = 'bottom') +
+   scale_x_continuous(labels = percent_format(scale = 1)) +
+   scale_y_continuous(labels = dollar) +
+   scale_fill_steps2() +
+   labs(x = 'Proportion lower status', y = 'Tax rate per $10,000', fill = 'Probability above median')
+
+```
+
+----
+
+#### Source code
+
+::: {.callout-tip}
+- Use the code in the following slides to replicate the plot from those two plots. 
+- Found a bug? Report it on Slack.
+- 💡Check out the [`parttree` documentation](http://grantmcdermott.com/parttree/) for how to customize your plot
+- 💡Learn more about data visualisation with ggplot2 on [R for Data Science - Chapter 3](https://r4ds.had.co.nz/data-visualisation.html)
+:::
+
+----
+
+#### Source Code (regression)
+
+First, you will have to install the `parttree` package:
+
+```r
+# Follow the instructions by the developers of the package
+# (https://github.com/grantmcdermott/parttree)
+
+install.packages("remotes")
+remotes::install_github("grantmcdermott/parttree", force = TRUE)
+```
+
+Then:
+
+```r
+library(ISLR2)      # to load Boston data
+library(tidyverse)  # to use things like the pipe (%>%), mutate and if_else
+
+library(rpart)      # a library that contains decision tree models
+library(parttree)   # R package for plotting simple decision tree partitions
+
+# The function rpart below fits a decision tree to the data
+# You can control various aspects of the rpart fit with the parameter `control`
+# Type ?rpart.control in the R console to see what else you can change in the algorithm
+
+tree.reg <- rpart(mpg ~ weight + year, data = Auto, control = list(maxdepth = 2))
+
+Auto %>%
+   ggplot(aes(x = weight, y = year)) +
+   geom_jitter(size = 3, alpha = 0.25) +
+   geom_parttree(data = tree.reg, aes(fill = mpg), alpha = 0.2) +
+   theme_minimal() +
+   theme(panel.grid = element_blank(), legend.position = 'bottom') +
+   scale_x_continuous(labels = scales::comma) +
+   scale_fill_steps2() +
+   labs(x = 'Weight (lbs)', y = 'Year', fill = 'Miles per gallon')
+```
+
+---
+
+#### Source Code (classification)
+
+First, you will have to install the `parttree` package:
+
+```r
+# Follow the instructions by the developers of the package
+# (https://github.com/grantmcdermott/parttree)
+
+install.packages("remotes")
+remotes::install_github("grantmcdermott/parttree", force = TRUE)
+```
+
+Then:
+
+```r
+library(ISLR2)      # to load Boston data
+library(tidyverse)  # to use things like the pipe (%>%), mutate and if_else
+
+library(rpart)      # a library that contains decision tree models
+library(parttree)   # R package for plotting simple decision tree partitions
+
+# Add a column named `medv_gtmed` to indicate whether tax rate is above median
+Boston <- Boston %>% mutate(medv_gtmed = if_else(medv > median(medv), TRUE, FALSE))
+
+# The function rpart below fits a decision tree to the data
+# You can control various aspects of the rpart fit with the parameter `control`
+# Type ?rpart.control in the R console to see what else you can change in the algorithm
+
+tree.class <- rpart(medv_gtmed ~ lstat + tax, data = Boston, control = list(maxdepth = 2))
+
+Boston %>%
+   ggplot(aes(x = lstat, y = tax)) +
+   geom_jitter(size = 3, alpha = 0.25) +
+   geom_parttree(data = tree.class, aes(fill = medv_gtmed), alpha = 0.2) +
+   theme_minimal() +
+   theme(panel.grid = element_blank(), legend.position = 'bottom') +
+   scale_x_continuous(labels = scales::percent_format(scale = 1)) +
+   scale_y_continuous(labels = dollar) +
+   scale_fill_steps2() +
+   labs(x = 'Proportion lower status', y = 'Tax rate per $10,000', fill = 'Probability above median')
+```
+
+
+## How are regions created? {.smaller}
+
+Recursive binary splitting
+
+::: columns
+::: {.column style="width: 41%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:0.5%;padding:1%;"}
+### Top down {style="margin: 0em;"}
+
+- Start from the top of the tree
+- Then perform splits at a current level of depth 
+:::
+
+::: {.column style="width: 41%;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:0.5%;padding:1%;"}
+### Greedy {style="margin: 0em;"}
+
+- Splits are "local" not global
+- Only cares about data in the current branch
+
+:::
+:::
+
+----
+
+### For regression...
+
+::: {.fragment}
+- The tree selects a predictor $X_j$ and a cutpoint $s$ that minimises the residual sum of squares.
+:::
+
+:::{.fragment}
+- We define two half planes $R_1(j,s) = \left\{X|X_j < s\right\}$ and $R_2(j,s) = \left\{X|X_j \geq s\right\}$ and find $j$ and $s$ by minimising.
+
+$$
+\sum_{i: x_i \in R_1(j,s)} (y_i - \hat{y}_{R_1})^2 + \sum_{i: x_i \in R_2(j,s)} (y_i - \hat{y}_{R_2})^2 
+$$
+:::
+
+----
+
+### For classification...
+
+::: incremental
+- The tree selects a predictor $X_j$ and a cutpoint $s$ that maximises <mark>node purity</mark>.
+- Gini index: $G = \sum_{k = 1}^{K} \hat{p}_{mk}(1 - \hat{p}_{mk})$ 
+- Entropy: $D = - \sum_{k = 1}^{K} \hat{p}_{mk}\log \hat{p}_{mk}$
+:::
+
+## When trees run amock
+
+::: incremental
+- Trees can become too complex if we are not careful
+- It can lead to something called <mark>overfitting</mark>
+- High training set predictive power - low test set predictive power
+- Let's see one example ⏭️
+:::
+
+-----
+
+### The following tree is TOO specialised
+
+```{r}
+
+auto_tbl <-
+  Auto %>%
+  as_tibble() %>%
+  select(-name) %>%
+  mutate(origin = as.factor(origin))
+
+tree.unpruned <-rpart(mpg ~ weight + year, data = auto_tbl, control = list(cp = 0.00001))
+
+rpart.plot(tree.unpruned)
+```
+
+-----
+
+#### Partition visualisation of the same tree
+
+```{r}
+auto_tbl %>%
+   ggplot(aes(x = weight, y = year)) +
+   geom_jitter(size = 3, alpha = 0.25) +
+   geom_parttree(data = tree.unpruned, aes(fill = mpg), alpha = 0.2) +
+   theme_minimal() +
+   theme(panel.grid = element_blank(), legend.position = 'bottom') +
+   scale_x_continuous(labels = scales::comma) +
+   scale_fill_steps2() +
+   labs(x = 'Weight (lbs)', y = 'Year', fill = 'Miles per gallon')
+```
+
+## Pruning the tree
+
+::: incremental
+- <mark>Hyperparameters</mark> are model-specific dials that can tuned to produce gains in model fit. 
+- As with model selection, there is no one one-size-fits-all approach to hyperparameter tuning. 
+- Instead, we experiment with <mark>k-fold cross-validation</mark>.
+:::
+
+## Cost Complexity {.smaller}
+
+- We apply $\alpha$ which is a non-negative value to prune the tree. 
+- For example, when $\alpha = 0.02$ we can create a less complex tree.
+
+::: {style="margin-top:-1em"}
+
+```{r}
+
+tree.pruned <- rpart(mpg ~ ., data = auto_tbl, control = list(cp = 0.02))
+
+rpart.plot(tree.pruned)
+
+```
+
+:::

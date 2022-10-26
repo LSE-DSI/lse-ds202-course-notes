@@ -39,8 +39,13 @@ jobs:
         run: install.packages("ISLR2")
         shell: Rscript {0}
 
-      - name: Install packages for labs
-        run: install.packages("pROC");install.packages("e1071");install.packages("ggcorrplot");install.packages("car");install.packages("rsample")
+      - name: Install packages used throughout Quarto markdown files
+        run: install.packages(c("pROC", "ISLR2", "e1071", "ggcorrplot", "car", "rsample", "rpart", "rpart.plot"))
+        shell: Rscript {0}
+
+
+      - name: Install 
+        run: install.packages("remotes"); remotes::install_github("grantmcdermott/parttree")
         shell: Rscript {0}
 
       - name: Set up Quarto

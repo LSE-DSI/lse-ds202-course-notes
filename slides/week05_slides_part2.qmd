@@ -1,6 +1,6 @@
 ---
-subtitle: "DS202 Data Science for Social Scientists"
-title: "🗓️ Week 05:<br/>Non-Linear Algorithms - Part II"
+subtitle: ""
+title: "🗓️ Week 05:<br/>Non-linear algorithms (Support Vector Machines)"
 author: Dr. [Jon Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva) and Dr. [Stuart Bramwell](https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell)
 institute: '[\@LSEDataScience](https://twitter.com/lsedatascience)'
 date: 14 October 2022
@@ -167,7 +167,7 @@ Suppose we have a case that is not linearly separable like this. We have two cla
 
 ```{r}
 
-set.seed (1)
+set.seed(1)
 x <- matrix(rnorm (200 * 2), ncol = 2)
 x[1:100, ] <- x[1:100, ] + 2
 x[101:150, ] <- x[101:150, ] - 2
@@ -177,8 +177,8 @@ sim.train <- data.frame(x1 = x[,1], x2 = x[,2], y = as.factor(y))
 sim.train %>%   
   ggplot() +
   geom_point(aes(x1, x2, colour = y), size = 3) +
-  ggsci::scale_colour_lancet() +
-  ggsci::scale_fill_lancet() +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
   theme_minimal() +
   theme(panel.grid = element_blank(),
         legend.position = 'bottom',
@@ -288,7 +288,7 @@ Look what happens when I set a different seed (nothing else changes) to construc
 
 ```{r}
 
-set.seed (2)
+set.seed(2)
 x <- matrix(rnorm (200 * 2), ncol = 2)
 x[1:100, ] <- x[1:100, ] + 2
 x[101:150, ] <- x[101:150, ] - 2
