@@ -35,6 +35,8 @@ library(tidyverse)
 
 ```
 
+# Support Vector Machines
+
 ## Support Vector Machines for Classification
 
 - Considered one of the best out-of-the-box classifiers (ISLR)
@@ -193,9 +195,7 @@ sim.train %>%
 Let's start with a (linear) support vector classifier function
 
 $$
-
 f(x) = \beta_0 + \sum_{i\in\mathcal{S}}^{} \alpha_i\left\langle x_i, x_{i'} \right\rangle
-
 $$
 
 A couple of points:
@@ -211,6 +211,8 @@ We can replace $\left\langle x_i, x_{i'} \right\rangle$ with a \textit{generalis
 - Two well-known kernels
 - Polynomial $K(x_i, x_{i'}) = (1 + \sum_{j = 1}^{p} x_{ij}x_{i'j})^d $ where $d > 1$
 - Radial or "Gaussian" $K(x_i, x_{i'}) = \text{exp}(-\gamma\sum_{j=1}^{p}(x_{ij}-x_{i'j})^2)$ where $\gamma$ is a positive constant.
+
+# Overfitting
 
 ## Overfitting illustrated
 
@@ -346,3 +348,13 @@ sim.test %>%
        title = paste('Testing accuracy =', mean(sim.test$correct.complex)))
 
 ```
+
+# Cross-validation (yes, again)
+
+<mark class="todo"></mark>
+
+# Tips for Summative Problem Set 01
+
+# Recommended reading
+
+# Thank you!

@@ -26,6 +26,8 @@ format:
     footer: 'DS202 - Data Science for Social Scientists :robot: :juggling_person:'
 ---
 
+# The limits of classic regression models 
+
 ## The limits of classic regression models 
 
 Linear and logistic regression are a good first shot for building ML models
@@ -47,6 +49,8 @@ Linear and logistic regression are a good first shot for building ML models
 ## Enter non-linear methods
 
 <mark class="todo"></mark>
+
+# The Decision Tree
 
 ## Decision Tree for a Regression task {.smaller}
 
@@ -143,6 +147,7 @@ tree.class <- rpart(medv_gtmed ~ lstat + tax, data = Boston, control = list(maxd
 rpart.plot(tree.class)
 ```
 
+# How does it work?
 
 ## What's going on behind the scenes?
 
@@ -342,6 +347,8 @@ $$
 - Entropy: $D = - \sum_{k = 1}^{K} \hat{p}_{mk}\log \hat{p}_{mk}$
 :::
 
+# What can go wrong
+
 ## When trees run amock
 
 ::: incremental
@@ -384,6 +391,8 @@ auto_tbl %>%
    labs(x = 'Weight (lbs)', y = 'Year', fill = 'Miles per gallon')
 ```
 
+# How to fix it
+
 ## Pruning the tree
 
 ::: incremental
@@ -408,3 +417,11 @@ rpart.plot(tree.pruned)
 ```
 
 :::
+
+# What's Next
+
+After our 10-min break ☕:
+
+- SVM, another nonlinear algorithm
+- Review of k-fold cross-validation
+- Tips for the **Summative Problem Set 01**
