@@ -28,10 +28,8 @@ There are no slides this week! Instead, you will form groups (of five people) an
 
 :::
 
-<details>
-<summary>**The Setup**: Click here to understand how I created the datasets used in this lecture</summary>
 
-### The cross-validation setup
+## The cross-validation setup
 
 How did I create the datasets you are using in this lecture?
 
@@ -203,7 +201,6 @@ Test
 
 Each group will be working on a separate split of this data. You will train your models on 80% of the data, evaluate the goodness-of-fit in the training data, then assess the performance in the test data. Once you find a model that has a good performance, balanced in training vs test data, then we will see how well your model performs in the **external data set**.
 
-</details>
 
 
 The action points below will be updated during the lecture:
