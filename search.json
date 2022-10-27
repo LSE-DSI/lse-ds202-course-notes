@@ -100,21 +100,21 @@
   {
     "objectID": "main/assessments.html",
     "href": "main/assessments.html",
-    "title": "Assessments",
+    "title": "✍️ Assessments",
     "section": "",
-    "text": "Click on the assignments below to go to the Moodle page and submit your responses:\n\n✍️ Formative Problem Set (01): Moodle link & associated RMarkdown file."
+    "text": "Click on the assignments below to go to the Moodle page and submit your responses:\n\n✍️ Formative Problem Set (01) | W03-W05: Moodle link & associated RMarkdown file.\n✍️ Summmative Problem Set (01) | W05-W07 🆕: Moodle link & associated webpage."
   },
   {
     "objectID": "main/assessments.html#problem-sets-60",
     "href": "main/assessments.html#problem-sets-60",
-    "title": "Assessments",
+    "title": "✍️ Assessments",
     "section": "📝 Problem Sets (60%)",
     "text": "📝 Problem Sets (60%)\n\nSummative problem sets released on Weeks 5, 8 & 11.\nThese will have a similar style to the formative problem sets, a mix of R tasks and your written interpretation of the analyses.\nTypically, you will have 4-6 days to submit your solutions.\nEach of the three summative problem sets is worth 20% of the final mark, and will be graded on a 100 point scale."
   },
   {
     "objectID": "main/assessments.html#exam-40",
     "href": "main/assessments.html#exam-40",
-    "title": "Assessments",
+    "title": "✍️ Assessments",
     "section": "✍️ Exam (40%)",
     "text": "✍️ Exam (40%)\n\nAn open-book take-home exam, taken during the January exams period.\nExam questions will be comparable in style to the problem sets.\nThe exam questions will be released on Moodle\n\n\n\n\n\n\n\n⚠️ Import Update 11/10/2022\n\n\n\nLast year, DS202 exam was performed entirely online due to COVID-19 mitigation procedures. We want to run it online via our own Moodle page again this academic term, we just need to understand LSE regulations about exams for this year.\nWe will update you on this very soon (hopefully by the end of W04)."
   },
@@ -166,6 +166,160 @@
     "title": "LSE DS202",
     "section": "",
     "text": "References\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/.\n\n\nSumner, Chris, Alison Byers, Rachel Boochever, and Gregory J. Park. 2012. “Predicting Dark Triad Personality Traits from Twitter Usage and a Linguistic Analysis of Tweets.” In 2012 11th International Conference on Machine Learning and Applications, 2:386–93. https://doi.org/10.1109/ICMLA.2012.218."
+  },
+  {
+    "objectID": "assessments/summative1.html",
+    "href": "assessments/summative1.html",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "",
+    "text": "Welcome to the first Summative Problem Set of DS202 (2022/23)!\nThings to know before you start:"
+  },
+  {
+    "objectID": "assessments/summative1.html#how-to-get-help",
+    "href": "assessments/summative1.html#how-to-get-help",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "How to get help",
+    "text": "How to get help\n\nIt is okay to use whatever additional R packages you can find to help you explore the data and/or models better.\nIt is okay to team up with class colleagues to brainstorm ideas and these problems together.\n\nMost questions do not have a single objective response. It is unlikely that you will all write the exact same response so we will spot plagiarism and full copy-pastes very easily.\n\nIt is ok to use Slack or a shared Google Drive document to share links to useful content. For example, you can share things like:\n\n“Tip: I am using this package called tidymodels and it is much simpler than writing for loops!”\n‘I found this link useful: What is the difference between type=“class” and type=“response” in the predict function?’\nThis website has many examples of charts in R — and it has the source code!\n‘This R package called lubridate helped me work with dates a lot easier!’\n\nIt is ok ask clarification about questions of this problem set publicly on Slack. For example, you can ask questions like:\n\n“I am a little confused about Question X. Where it says ... does it mean ....? Am I getting this right?”\n\nIt is also ok to ask generic programming-related questions publicly on Slack. For example, you can ask questions like:\n\n“How do I get just the last 10 items of a list in R/tidyverse?” or\n“How do I sum the number of occurrences of a value in a column?”\n“Anyone else getting an unequal lengths error when creating a new vector? How do I solve this?”\n“I am having a hard time understanding the code below (from Week X lab):\nnew_list <- seq(length(dim(some_dataframe)[1]))\nWhy so many parentheses? Does anyone how to interpret this? #help” or even\n“How do I select specific columns of a dataframe by their names?” or maybe\n“The pairs plot is too messy, anyone knows of a better way to visualise pairs of variables?”\n\nWhat we CANNOT accept:\n\nsharing your entire script or RMarkdown with others. But it is ok to share snippets of code with best practices, or to ask for help, like the type of code people share on Stackoverflow\nasking others to do your work for you (LSE regulations on plagiarism applies to computer code too)\nWe will run TurnitIn on your submissions to help flag cases of plagiarism"
+  },
+  {
+    "objectID": "assessments/summative1.html#identification",
+    "href": "assessments/summative1.html#identification",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "🆔 Identification",
+    "text": "🆔 Identification\nTHIS IS AN ANONYMOUS SUBMISSION. DO NOT INCLUDE YOUR NAME NOR OTHER PERSONAL INFORMATION ANYWHERE IN THIS FILE OTHER THAN YOUR CANDIDATE NUMBER.\n# Complete the line below by filling it out with your LSE ID\n# If you do not add your LSE ID number, knitting will throw an error.\nLSE_ID <-"
+  },
+  {
+    "objectID": "assessments/summative1.html#setup",
+    "href": "assessments/summative1.html#setup",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "⚙️ Setup",
+    "text": "⚙️ Setup\nImport required libraries.No need to change if you are not planning to use other packages.\nlibrary(tidyverse)\nlibrary(tidymodels)\n\n# If you use other packages, add them here"
+  },
+  {
+    "objectID": "assessments/summative1.html#data-dictionary",
+    "href": "assessments/summative1.html#data-dictionary",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Data Dictionary",
+    "text": "Data Dictionary\nWe will use a dataset of Algerian forest fires used by Faroudja & Izeboudjen (2019) 2 and sourced from the UCI ML repository. It has observations on 244 days in Algeria from June to September 2012 in two regions:\n\nBejaia, and\nSidi Bel-abbes\n\nThe dataset contains the following variables:\n\nDate columns\n\n\n\nColumn\nDescription\n\n\n\n\nday\nday of monitoring\n\n\nmonth\nmonth of the monitoring (‘june’ to ‘september’)\n\n\nyear\nFixed: 2012\n\n\n\n\n\nColumns related to weather data observations\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nTemperature\ntemperature at noon (max temperature) in Celsius degrees\n\n\nRH\nRelative Humidity in %\n\n\nWs\nWind speed in km/h\n\n\nRain\ntotal day in mm\n\n\n\n\n\nColumns related to FWI components 3\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nFFMC\nFine Fuel Moisture Code index from the FWI system\n\n\nDMC\nDuff Moisture Code index from the FWI system\n\n\nDC\nDrought Code index from the FWI system\n\n\nISI\nInitial Spread Index index from the FWI system\n\n\nBUI\nBuildup Index index from the FWI system\n\n\nFWI\nFire Weather Index Index\n\n\n\n\n\nThe column we want to predict\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nClasses\ntwo classes representing the ocurrence of fire"
+  },
+  {
+    "objectID": "assessments/summative1.html#loading-the-data",
+    "href": "assessments/summative1.html#loading-the-data",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Loading the data",
+    "text": "Loading the data\nUse the code below to load the two datasets used in this first problem set.\nIMPORTANT: Ensure all the dataset files are in the exact same directory as this RMarkdown.\n# read_csv is a function of the tidyverse package\n\ndf_forest_fires_bejaia <- read_csv(\"./Algeria_Forest_Fires_Bejaia_Region_Dataset.csv\")\n\ndf_forest_fires_sidi   <- read_csv(\"./Algeria_Forest_Fires_Sidi_Bel_Abbes_Region_Dataset.csv\")\n\n\nTake a look at the data\n# Look at the first few lines of the dataframe\ndf_forest_fires_bejaia %>% head()\n# Look at the first few lines of the dataframe\ndf_forest_fires_sidi %>% head()\n# What are the dimensions of the dataframes?\n\ndf_forest_fires_bejaia %>% dim()\n# What are the dimensions of the dataframes?\n\ndf_forest_fires_sidi %>% dim()"
+  },
+  {
+    "objectID": "assessments/summative1.html#what-we-want-from-you",
+    "href": "assessments/summative1.html#what-we-want-from-you",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "What we want from you",
+    "text": "What we want from you\nYou main goal will be to predict the occurrence of fires and understand what this ocurrence is associated with.\nNext, you will go through a sequence of tasks. For each of them you are given a code cell where you are supposed to write solutions to the tasks."
+  },
+  {
+    "objectID": "assessments/summative1.html#q1.-fire-days",
+    "href": "assessments/summative1.html#q1.-fire-days",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q1. Fire days",
+    "text": "Q1. Fire days\nUsing R, count the number of fire days observed in the two regions. (2 points)\n\nBejaia region\n\n# Replace this by your code\n\nSidi Bel-abbes region\n\n# Replace this by your code"
+  },
+  {
+    "objectID": "assessments/summative1.html#q2.-fire-days-in-common",
+    "href": "assessments/summative1.html#q2.-fire-days-in-common",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q2. Fire days in common",
+    "text": "Q2. Fire days in common\nUsing R, calculate how many days of fire the two regions had in common, and explain how you calculated it. (3 points)\n# Replace this by your code\nExplain what you did in the code above:\n\nReplace this with your text. Use multiple lines if needed."
+  },
+  {
+    "objectID": "assessments/summative1.html#q3.-exploratory-data-analysis---part-i",
+    "href": "assessments/summative1.html#q3.-exploratory-data-analysis---part-i",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q3. Exploratory Data Analysis - Part I",
+    "text": "Q3. Exploratory Data Analysis - Part I\nRun the code below to look at the plot it produces. In your own words, explain what you see: what dataset was used in the plot, what are the variables in the X and Y axis and what do the colours mean? (2 points)\ng <-\n    (ggplot(df_forest_fires_bejaia,\n            aes(x = Temperature, y = RH, colour = Classes))\n        + geom_point(size = 3, alpha = 0.6)\n\n        # OPTIONAL: Customising the plot.\n        # You can delete these lines below if you don't like the theme\n        # Or you can choose other themes from\n        # https://ggplot2.tidyverse.org/reference/ggtheme.html\n        + theme_bw()\n    )\ng\n\nYour text goes here"
+  },
+  {
+    "objectID": "assessments/summative1.html#q4.-exploratory-data-analysis---part-ii",
+    "href": "assessments/summative1.html#q4.-exploratory-data-analysis---part-ii",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q4. Exploratory Data Analysis - Part II",
+    "text": "Q4. Exploratory Data Analysis - Part II\nNow, create a scatterplot using any two predictors from the Sidi Bel-abbes region data. Colour the dots according to their Classes (3 points)\nYou can use either base R or ggplot. 4\n# Your code here"
+  },
+  {
+    "objectID": "assessments/summative1.html#q5.-exploratory-data-analysis---part-iii",
+    "href": "assessments/summative1.html#q5.-exploratory-data-analysis---part-iii",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q5. Exploratory Data Analysis - Part III",
+    "text": "Q5. Exploratory Data Analysis - Part III\nCan you spot differences in the distributions of predictors between the two regions (Sidi Bel-abbes vs Bejaia)? Describe the differences for at least one variable. Write your response and provide evidence using R code. You could use, for example, cross-tabulation, descriptive statistics or visualisations to support your point. (8 points)\n\nReplace this with your text. Use multiple lines if needed.\n\n# Your code here"
+  },
+  {
+    "objectID": "assessments/summative1.html#q6.-logistic-regression-model",
+    "href": "assessments/summative1.html#q6.-logistic-regression-model",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q6. Logistic Regression Model",
+    "text": "Q6. Logistic Regression Model\nBuild a logistic regression model for the Bejaia dataset using THREE predictors to predict the ocurrence of fire (the Classes variable). You can also add interaction effects amongst these three predictors if you wish. Save it as a variable named model and use R to print its summary. (7 points)\n💡 Tip: you might need to convert Classes to a factor.\n💡 If you have questions about R programming or conceptual questions about logistic regression, it’s ok to ask questions to teachers and colleagues. What you are not allowed to ask: things like “is my solution correct?” or “which variables did you use?”, etc..\nYou can choose to print the summary using base R or any of the functions from the broom package (part of tidymodels).\n# Your code here\n\n# If you won't answer this question, erase or comment out the line of code below. Otherwise, you will get an error when knitting this notebook.\nmodel <-"
+  },
+  {
+    "objectID": "assessments/summative1.html#q7.-logistic-regression-model---justification",
+    "href": "assessments/summative1.html#q7.-logistic-regression-model---justification",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q7. Logistic Regression Model - Justification",
+    "text": "Q7. Logistic Regression Model - Justification\nProvide a reasonable explanation for your choice of the three predictors in Q6. Why did you chose those variables? (10 points)\n(Optional: add additional R code/visualisations that you feel might help support your answer)\n\nReplace this with your text. Use multiple lines if needed."
+  },
+  {
+    "objectID": "assessments/summative1.html#q8.-logistic-regression-model---diagnostics",
+    "href": "assessments/summative1.html#q8.-logistic-regression-model---diagnostics",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q8. Logistic Regression Model - Diagnostics",
+    "text": "Q8. Logistic Regression Model - Diagnostics\nRun the code below to look at the plot it produces. In your own words, explain what you see and what this plot tells you about your model. (8 points)\n⚠️ If you didn’t build a model in Q6, erase or comment out the block of code below. Otherwise, you will get an error when knitting this notebook.\n\ntrain_classes     <- df_forest_fires_bejaia$Classes\ntrain_predictions <- predict(model, df_forest_fires_bejaia, type = \"response\")\n\nplot_df <- data.frame(train_classes     = train_classes,\n                      train_predictions = train_predictions)\n\ng <-\n    (ggplot(plot_df, aes(x = train_predictions, fill = train_classes))\n        + geom_histogram(alpha = 0.8, binwidth = 0.05, position = \"stack\")\n\n        # OPTIONAL: Customising the plot.\n        # You can delete these lines below if you don't like the theme\n        # Or you can choose other themes from\n        # https://ggplot2.tidyverse.org/reference/ggtheme.html\n        + theme_bw()\n        + labs(x = \"Predictions on the training set\",\n               y = \"Count\")\n        + scale_fill_brewer(name = \"Target\", type = \"qual\", palette = 2)\n        + scale_x_continuous(labels = scales::percent, breaks = seq(0, 1, 0.1))\n        + ggtitle(\"Histogram of probability distributions fitted to the data\")\n    )\ng\n\nYour text goes here"
+  },
+  {
+    "objectID": "assessments/summative1.html#q9.-logistic-regression-model---confusion-matrix",
+    "href": "assessments/summative1.html#q9.-logistic-regression-model---confusion-matrix",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q9. Logistic Regression Model - Confusion Matrix",
+    "text": "Q9. Logistic Regression Model - Confusion Matrix\nRun the code below to look at the table it produces. What does this table show and what does it tell you about your model? (3 points)\ntrain_classes           <- df_forest_fires_bejaia$Classes\ntrain_class_predictions <- apply_threshold(model, df_forest_fires_bejaia, threshold=0.50)\n\nconfusion_matrix <- table(train_classes, train_class_predictions)\nprint(confusion_matrix)"
+  },
+  {
+    "objectID": "assessments/summative1.html#q10.-logistic-regression-model---classification-metrics",
+    "href": "assessments/summative1.html#q10.-logistic-regression-model---classification-metrics",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q10. Logistic Regression Model - Classification metrics",
+    "text": "Q10. Logistic Regression Model - Classification metrics\nNow, consider three other options of threshold: \\(t \\in \\{0.20, 0.40, 0.60\\}\\). Which of these three options lead to the best f1-score for your model? Write the R code for this and justify your answer. (7 points)\n# Your code here\n\nReplace this with your text. Use multiple lines if needed."
+  },
+  {
+    "objectID": "assessments/summative1.html#q11.-logistic-regression-model---optimal-threshold-challenging",
+    "href": "assessments/summative1.html#q11.-logistic-regression-model---optimal-threshold-challenging",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q11. Logistic Regression Model - Optimal Threshold (Challenging)",
+    "text": "Q11. Logistic Regression Model - Optimal Threshold (Challenging)\nNow, consider another set of possible thresholds, \\(t \\in \\{0.00, 0.01, 0.02, \\ldots, 0.98, 0.99, 1.00\\}\\). Find the optimal threshold \\(t^*\\), the one that leads to the best f1-score. Write the R code for this and justify your answer. (12 points)\n# Your code here\n\nReplace this with your text. Use multiple lines if needed."
+  },
+  {
+    "objectID": "assessments/summative1.html#q12.-test-set-predictions",
+    "href": "assessments/summative1.html#q12.-test-set-predictions",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q12. Test set predictions",
+    "text": "Q12. Test set predictions\nFollow the instructions below to apply the model you trained in Q6 to predict the probability of forest fires in the Sidi Bel-abbes dataset and produce a plot similar to that of Q8. (7 points)\n\nCreate a vector named test_classes that contains the true observed data (fire vs not fire) of Sidi Bel-abbes (You might need to convert it to factor)\nCreate a vector named test_predictions that contains the predict probability of forest fires in the Sidi Bel-abbes region\nIf the plot is produced and correct, you will get full marks. No need to justify the response.\n\n⚠️ If you don’t want to answer this question, erase or comment out the block of code below. Otherwise, you will get an error when knitting this notebook.\n# Your code here\n\ntest_classes <- \ntest_predictions <- \n\nplot_df <- data.frame(test_classes     = test_classes,\n                      test_predictions = test_predictions)\n\ng <-\n    (ggplot(plot_df, aes(x = test_predictions, fill = test_classes))\n        + geom_histogram(alpha = 0.8, binwidth = 0.05, position = \"stack\")\n\n        # OPTIONAL: Customising the plot.\n        # You can delete these lines below if you don't like the theme\n        # Or you can choose other themes from\n        # https://ggplot2.tidyverse.org/reference/ggtheme.html\n        + theme_bw()\n        + labs(x = \"Predictions on the test set\",\n               y = \"Count\")\n        + scale_fill_brewer(name = \"Target\", type = \"qual\", palette = 2)\n        + scale_x_continuous(labels = scales::percent, breaks = seq(0, 1, 0.1))\n        + ggtitle(\"Histogram of probability distributions when applied to Sidi Bel-abbes data\")\n    )\ng"
+  },
+  {
+    "objectID": "assessments/summative1.html#q13.-diagnostics",
+    "href": "assessments/summative1.html#q13.-diagnostics",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q13. Diagnostics",
+    "text": "Q13. Diagnostics\nUsing the best threshold you found in either Q10 or Q11, write R code to produce a confusion matrix for the test set (Sidi Bel-abbes dataset). What is the True Positive Rate and True Negative Rate of your model in the test set? Did your model generalise well from the training to test set? (8 points)\n# Your code here\n\n\nReplace this with your text. Use multiple lines if needed."
+  },
+  {
+    "objectID": "assessments/summative1.html#q14.-alternative-models-challenging",
+    "href": "assessments/summative1.html#q14.-alternative-models-challenging",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Q14. Alternative Models (Challenging)",
+    "text": "Q14. Alternative Models (Challenging)\nFollow the instructions below to build and explore an alternative classification model. Add as many chunks of code, text and equations as you prefer. (20 points)\n\nChose another algorithm (either Naive Bayes, Decision Tree or Support Vector Machine) to build a new classification model.\nUse the same training data you used to build your logistic regression in Q6 (same predictors)\nIf the algorithm requires a threshold, chose one that maximises the F1-score using the same logic as in Q10 or Q11.\nUse the same test data you used to validate your logistic regression as in Q12\nIf the algorithm does not require a threshold, try to tweak the parameters of the algorithm so as to avoid overfitting the model.\nUse whatever means you find appropriate (for example metrics, matrices, tables, plots) to compare your new model to the logistic model you built in the rest of this notebook.\nWrite about what you think makes your alternative model better/worse.\nProvide the full R code you used to build and test your alternative model\n\n\n💡 TIPS\n\nUse what you have learned about up until Week 05 (lecture)\nRefer to your readings of the textbook if you want to understand more about how the alternative algorithms work. You can find links to the appropriate chapters here.\n\n\n# Your code here. Copy this chunk of code if you need.\n\n\nReplace this with your text. Use multiple lines if needed."
+  },
+  {
+    "objectID": "assessments/summative1.html#decompress",
+    "href": "assessments/summative1.html#decompress",
+    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "section": "Decompress",
+    "text": "Decompress\nHow do you plan to reward yourself for completing this problem set?\n\n<replace this text with your reward. A cookie? take X days off? etc.>"
   },
   {
     "objectID": "weeks/week01.html",
@@ -949,7 +1103,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  6.64\n2     9    12 11.6 \n3    12    15 12.9 \n4    15    18 19.1 \n5    18    21 19.5 \n6    21    24 26.0"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  11.1\n2     9    12  12.6\n3    12    15  13.7\n4    15    18  16.9\n5    18    21  20.2\n6    21    24  23.3"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -984,7 +1138,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  6.64  2.36     2.36 \n2     9    12 11.6   0.383    0.383\n3    12    15 12.9   2.13     2.13 \n4    15    18 19.1  -1.06     1.06 \n5    18    21 19.5   1.48     1.48 \n6    21    24 26.0  -2.04     2.04 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.575477\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  11.1 -2.09     2.09 \n2     9    12  12.6 -0.635    0.635\n3    12    15  13.7  1.34     1.34 \n4    15    18  16.9  1.15     1.15 \n5    18    21  20.2  0.802    0.802\n6    21    24  23.3  0.650    0.650\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.111263\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
