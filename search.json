@@ -949,7 +949,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  8.67\n2     9    12 10.6 \n3    12    15 18.9 \n4    15    18 15.1 \n5    18    21 21.2 \n6    21    24 21.6"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  6.64\n2     9    12 11.6 \n3    12    15 12.9 \n4    15    18 19.1 \n5    18    21 19.5 \n6    21    24 26.0"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -984,7 +984,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  8.67  0.333    0.333\n2     9    12 10.6   1.38     1.38 \n3    12    15 18.9  -3.93     3.93 \n4    15    18 15.1   2.86     2.86 \n5    18    21 21.2  -0.213    0.213\n6    21    24 21.6   2.41     2.41 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.855464\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  6.64  2.36     2.36 \n2     9    12 11.6   0.383    0.383\n3    12    15 12.9   2.13     2.13 \n4    15    18 19.1  -1.06     1.06 \n5    18    21 19.5   1.48     1.48 \n6    21    24 26.0  -2.04     2.04 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.575477\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
