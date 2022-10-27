@@ -1,0 +1,580 @@
+---
+title: "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07"
+author: "DS202 2022MT Teaching Group"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+Welcome to the first Summative Problem Set of DS202 (2022/23)!
+
+**Things to know before you start:**
+
+1. **Deadline**: you have until **9 November 2022, 23:59 UK time** (Week 07) to complete your solutions and submit [via Moodle](https://moodle.lse.ac.uk/mod/coursework/view.php?id=1131232&forceview=1).
+2. You will be granted a maximum of 100 points for the whole assignment. You will see how much each task is right next to the tasks' names. 
+3. This assessment is worth **30%** of your final grade.
+4. Read the instructions carefully and make sure you follow them.
+
+::: {.callout-important}
+
+Your feedback on the formative problem set was very important! We heard that many of you are still learning — and struggling with — R, and this can get in the way of learning about Machine Learning.
+
+So, for this summative, we will not be relying too much on pure R skills. We provide most of the code that you will need, and we explicitly encourage you to publicly ask questions about programming. You can read our comprehensive list of tips [below](/assessments/summative1.html#how-to-get-help).
+
+:::
+
+
+# 📒 Instructions
+
+**Read carefully**
+
+**1.** Download this page as an `.Rmd` file, as well as the two accompanying CSV files from Moodle (follow [this link](https://moodle.lse.ac.uk/mod/folder/view.php?id=1131557)). Ensure all files are saved in the same directory. Open the RMarkdown file in RStudio. 
+
+**2.** Work on your solutions and fill the allocated spaces with your answers. Each question has one or more empty spaces for you to fill out.
+
+  Text answers are identified as:
+  
+  > Your text goes here
+  
+  R code answers are identified as:
+  
+```r
+# Replace this by your code
+
+# REMEMBER TO REMOVE ALL HASH SIGNS OR YOUR CODE WILL NOT RUN!!!
+# YOU WILL MARKED AS 0 IN A QUESTION IF YOUR CODE DOES NOT PRODUCE 
+# ANY OUTPUT WHEN IT WOULD HAVE BEEN EXPECTED.
+```
+  
+  Equation answers are identified as:
+  
+  $$Your~equation~goes~here$$
+  
+  You can add more code R code, plots, text or equations to complement your responses if you want to. For extra tips on formatting equations see ^[https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference].
+
+**3.** After you answer all the questions, you should press the Knit button, and knit the file to HTML. If you cannot find this button in RStudio, check out [this tutorial](https://www.youtube.com/watch?v=8eBBPVMwTLo). 
+
+**4.** An HTML file will appear in your files. This is what you must submit to Moodle.
+
+**5.** Open [Moodle](https://moodle.lse.ac.uk/mod/coursework/view.php?id=1131232&forceview=1) and submit your HTML file.
+
+<div style="display:inline-block;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa">
+⚠️ **IMPORTANT**:
+
+-  _If your code has any errors, you might not be able to knit the document. You must fix those errors first._
+- _If you do not know how to answer a solution, leave it empty. Do not add incomplete R scripts as it will lead to knitting errors._
+- _Most questions do not have a **single** objective response. You are expected to justify your choices of algorithms, parameters and validation metrics from your experiences in the lectures, labs and your readings of the textbook._
+</div>
+
+<br/>
+
+<details> <summary>💡**Click here to learn how to get help**</summary>
+<br/>
+
+## How to get help
+
+- It is okay to use whatever additional R packages you can find to help you explore the data and/or models better.
+
+- It is okay to team up with class colleagues to brainstorm ideas and these problems together.
+    - Most questions do not have a _single_ objective response. It is unlikely that you will all write the exact same response so we will spot plagiarism and full copy-pastes very easily.
+
+- It is ok to use Slack or a shared Google Drive document to share links to useful content. For example, you can share things like:
+
+  - "Tip: I am using this package called [tidymodels](https://www.tidymodels.org/start/resampling/) and it is much simpler than writing `for` loops!"
+
+  - 'I found this link useful: [What is the difference between type="class" and type="response" in the predict function?](https://stackoverflow.com/questions/23085096/type-parameter-of-the-predict-function)'
+
+  - [This website](https://r-graph-gallery.com/) has many examples of charts in R — and it has the source code!
+
+  - 'This R package called [lubridate](https://lubridate.tidyverse.org/) helped me work with dates a lot easier!'
+
+- It is ok ask clarification about questions of this problem set publicly on Slack. For example, you can ask questions like:
+
+    - "I am a little confused about Question X. Where it says `...` does it mean `....`? Am I getting this right?"
+
+- It is also ok to ask generic programming-related questions publicly on Slack. For example, you can ask questions like:
+
+    - "How do I get just the last 10 items of a list in R/tidyverse?" or
+
+    - "How do I sum the number of occurrences of a value in a column?"
+
+    - "Anyone else getting an `unequal lengths error` when creating a new vector? How do I solve this?"
+
+    - "I am having a hard time understanding the code below (from Week X lab):
+
+        ```r
+        new_list <- seq(length(dim(some_dataframe)[1]))
+        ```
+        
+        Why so many parentheses? Does anyone how to interpret this? #help" or even
+
+    - "How do I select _specific_ columns of a dataframe by their names?" or maybe
+
+    - "The `pairs` plot is too messy, anyone knows of a better way to visualise pairs of variables?"
+
+- What we CANNOT accept:
+
+    - sharing your entire script or RMarkdown with others. But it is ok to share _snippets_ of code with best practices, or to ask for help, like the type of code people share on [Stackoverflow](https://stackoverflow.com/questions/tagged/r?tab=Frequent)
+
+    - asking others to do your work for you ([LSE regulations on plagiarism](https://www.lse.ac.uk/health-policy/student-life/plagiarism) applies to computer code too)
+    
+    - We will run TurnitIn on your submissions to help flag cases of plagiarism
+</details>
+
+<br/>
+
+## 🆔 Identification
+
+THIS IS AN ANONYMOUS SUBMISSION. DO NOT INCLUDE YOUR NAME NOR OTHER PERSONAL INFORMATION ANYWHERE IN THIS FILE OTHER THAN YOUR CANDIDATE NUMBER.
+
+```r
+# Complete the line below by filling it out with your LSE ID
+# If you do not add your LSE ID number, knitting will throw an error.
+LSE_ID <- 
+```
+
+## ⚙️ Setup
+
+Import required libraries.No need to change if you are not planning to use other packages.
+
+```r
+library(tidyverse)
+library(tidymodels)
+
+# If you use other packages, add them here
+```
+
+# The Data: Algerian forest fires 
+
+This problem set is a chance for you to explore the true power of machine learning and build a model that will predict the occurrence of forest fires. Forest fires are a huge problem for many countries and a significant sustainability issue. By solving this task, you are expected to build a predictive model but also to try and diagnose which predictors are more predictive of fires. 
+
+> ⚠️ _Remember once again: most questions do not have a **single** objective response. You are expected to justify your choices of algorithms, parameters and validation metrics based on your experiences in the lectures and labs and of the readings of the textbook or other recommended reading resources._
+
+How you will be assessed:
+
+| **Question** | **Marks** | **Level**   | **Total** |
+|:------------:|:---------:|:------------|:---------:|
+| Q1           | 2         | Easy        | 2         |
+| Q2           | 3         | Easy        | 5         |
+| Q3           | 2         | Easy        | 7         |
+| Q4           | 3         | Easy        | 10        |
+| Q5           | 8         | Medium-Hard | 18        |
+| Q6           | 7         | Easy-Medium | 25        |
+| Q7           | 10        | Medium      | 35        |
+| Q8           | 8         | Medium      | 43        |
+| Q9           | 3         | Easy        | 46        |
+| Q10          | 7         | Medium      | 53        |
+| Q11          | 12        | Hard        | 65        |
+| Q12          | 7         | Easy-Medium | 72        |
+| Q13          | 8         | Medium-Hard | 80        |
+| Q14          | 20        | Hard        | 100       |
+
+
+
+## Data Dictionary
+
+We will use a dataset of Algerian forest fires used by Faroudja & Izeboudjen (2019) [^forest_fire_paper] and sourced from the [UCI ML repository](https://archive.ics.uci.edu/ml/datasets/Algerian+Forest+Fires+Dataset++). It has observations on 244 days in Algeria from June to September 2012 in **two regions**: 
+
+- Bejaia, and 
+- Sidi Bel-abbes 
+
+The dataset contains the following variables: 
+
+### Date columns
+
+| Column    |  Description                                    |
+|:----------|:------------------------------------------------|
+| `day`     | day of monitoring                               |
+| `month`   | month of the monitoring ('june' to 'september') |
+| `year`    | Fixed: 2012                                     | 
+
+
+### Columns related to weather data observations
+
+| Column        |  Description                                             |
+|:--------------|:---------------------------------------------------------|
+| `Temperature` | temperature at noon (max temperature) in Celsius degrees |
+| `RH`          | Relative Humidity in %                                   |
+| `Ws`          | Wind speed in km/h                                       |
+| `Rain`        | total day in mm                                          |
+
+
+### Columns related to FWI components [^fwi_wiki]
+
+| Column        |  Description                                             |
+|:--------------|:---------------------------------------------------------|
+| `FFMC`        | Fine Fuel Moisture Code index from the FWI system        |
+| `DMC`         | Duff Moisture Code index from the FWI system             |
+| `DC`          | Drought Code index from the FWI system                   |
+| `ISI`         | Initial Spread Index index from the FWI system           |
+| `BUI`         | Buildup Index index from the FWI system                  |
+| `FWI`         | Fire Weather Index Index                                 |
+
+### The column we want to predict
+
+| Column        |  Description                                             |
+|:--------------|:---------------------------------------------------------|
+| `Classes`     | two classes representing the ocurrence of fire           |
+
+## Loading the data
+
+Use the code below to load the two datasets used in this first problem set. 
+
+IMPORTANT: Ensure all the dataset files are in the exact same directory as this RMarkdown.
+
+```r
+# read_csv is a function of the tidyverse package
+
+df_forest_fires_bejaia <- read_csv("./Algeria_Forest_Fires_Bejaia_Region_Dataset.csv")
+
+df_forest_fires_sidi   <- read_csv("./Algeria_Forest_Fires_Sidi_Bel_Abbes_Region_Dataset.csv")
+
+
+```
+
+### Take a look at the data
+
+```r
+# Look at the first few lines of the dataframe
+df_forest_fires_bejaia %>% head()
+```
+
+```r
+# Look at the first few lines of the dataframe
+df_forest_fires_sidi %>% head()
+```
+
+```r
+# What are the dimensions of the dataframes?
+
+df_forest_fires_bejaia %>% dim()
+```
+
+
+```r
+# What are the dimensions of the dataframes?
+
+df_forest_fires_sidi %>% dim()
+```
+
+## What we want from you
+
+You **main goal** will be to predict the occurrence of fires and understand what this ocurrence is associated with. 
+
+Next, you will go through a sequence of tasks. For each of them you are given a code cell where you are supposed to write solutions to the tasks.
+
+
+# 🎯 Questions - Part I
+
+## Q1. Fire days
+
+**Using R, count the number of fire days observed in the two regions.** (2 points)
+
+- Bejaia region
+
+```r
+# Replace this by your code
+
+```
+
+- Sidi Bel-abbes region
+
+```r
+# Replace this by your code
+
+```
+
+## Q2. Fire days in common
+
+**Using R, calculate how many days of fire the two regions had in common, and explain how you calculated it.** (3 points)
+
+```r
+# Replace this by your code
+
+```
+
+Explain what you did in the code above:
+
+> Replace this with your text. Use multiple lines if needed.
+> 
+> 
+
+
+## Q3. Exploratory Data Analysis - Part I
+
+**Run the code below to look at the plot it produces. In your own words, explain what you see: what dataset was used in the plot, what are the variables in the X and Y axis and what do the colours mean?** (2 points)
+
+```r
+g <-
+    (ggplot(df_forest_fires_bejaia,
+            aes(x = Temperature, y = RH, colour = Classes))
+        + geom_point(size = 3, alpha = 0.6)
+
+        # OPTIONAL: Customising the plot.
+        # You can delete these lines below if you don't like the theme
+        # Or you can choose other themes from
+        # https://ggplot2.tidyverse.org/reference/ggtheme.html
+        + theme_bw()
+    )
+g
+```
+
+> Your text goes here
+
+## Q4. Exploratory Data Analysis - Part II
+
+**Now, create a scatterplot using any two predictors from the _Sidi Bel-abbes_ region data. Colour the dots according to their `Classes`** (3 points)
+
+You can use either base R or ggplot. [^dataviz]
+
+```r
+# Your code here
+
+```
+
+## Q5. Exploratory Data Analysis - Part III
+
+**Can you spot differences in the distributions of predictors between the two regions (_Sidi Bel-abbes_ vs _Bejaia_)? Describe the differences for at least one variable. Write your response and provide evidence using R code. You could use, for example, cross-tabulation, descriptive statistics or visualisations to support your point.** (8 points)
+
+> Replace this with your text. Use multiple lines if needed.
+> 
+> 
+
+```r
+# Your code here
+
+```
+
+# 🎯 Questions - Part II
+
+## Q6. Logistic Regression Model
+
+**Build a logistic regression model for the _Bejaia_ dataset using THREE predictors to predict the ocurrence of fire (the `Classes` variable). You can also add interaction effects amongst these three predictors if you wish. Save it as a variable named `model` and use R to print its summary.** (7 points)
+
+💡 Tip: you might need to convert `Classes` to a [factor](https://r4ds.had.co.nz/factors.html).
+
+💡 If you have questions about R programming or conceptual questions about logistic regression, it's ok to ask questions to teachers and colleagues.  What you are not allowed to ask: things like "is my solution correct?" or "which variables did you use?", etc..
+
+You can choose to print the summary using base R or any of the functions from the [`broom` package](https://broom.tidymodels.org/) (part of `tidymodels`).
+
+```r
+# Your code here
+
+# If you won't answer this question, erase or comment out the line of code below. Otherwise, you will get an error when knitting this notebook.
+model <- 
+```
+
+## Q7. Logistic Regression Model - Justification
+
+**Provide a reasonable explanation for your choice of the three predictors in Q6. Why did you chose those variables?** (10 points)
+
+(Optional: add additional R code/visualisations that you feel might help support your answer)
+
+> Replace this with your text. Use multiple lines if needed.
+> 
+> 
+
+## Q8. Logistic Regression Model - Diagnostics
+
+**Run the code below to look at the plot it produces. In your own words, explain what you see and what this plot tells you about your model.** (8 points)
+
+_⚠️ If you didn't build a model in Q6, erase or comment out the block of code below. Otherwise, you will get an error when knitting this notebook._
+
+```r
+
+train_classes     <- df_forest_fires_bejaia$Classes
+train_predictions <- predict(model, df_forest_fires_bejaia, type = "response")
+
+plot_df <- data.frame(train_classes     = train_classes,
+                      train_predictions = train_predictions)
+
+g <-
+    (ggplot(plot_df, aes(x = train_predictions, fill = train_classes))
+        + geom_histogram(alpha = 0.8, binwidth = 0.05, position = "stack")
+
+        # OPTIONAL: Customising the plot.
+        # You can delete these lines below if you don't like the theme
+        # Or you can choose other themes from
+        # https://ggplot2.tidyverse.org/reference/ggtheme.html
+        + theme_bw()
+        + labs(x = "Predictions on the training set",
+               y = "Count")
+        + scale_fill_brewer(name = "Target", type = "qual", palette = 2)
+        + scale_x_continuous(labels = scales::percent, breaks = seq(0, 1, 0.1))
+        + ggtitle("Histogram of probability distributions fitted to the data")
+    )
+g
+```
+
+> Your text goes here
+
+# 🎯 Questions - Part III
+
+**Here we will ask you to reflect on the threshold of your classification model.**
+
+<div style="display:inline-block;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa">
+💡 **TIPS**
+
+- You might want to reuse the code of the notebook used in [Week 04's workshop](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lecture.html#how-this-is-going-to-work) to calculate classification metrics for this question.
+- If you have questions about the code itself or conceptual questions about thresholds & confusion matrices, it's ok to ask questions to teachers and colleagues.
+- What you are not allowed to ask: things like "is my solution correct?" or "what do you think of my solution?" or "which variables did you use?", etc..
+- For a more visual analysis of confusion matrix, you can alternatively use the function `plot_confusion_matrix` from package `cvms`. You can adapt the code from the notebook used in [Week 04's workshop](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lecture.html#the-cross-validation-setup).
+- Take a look at Chapter 21 of the [R for Data Science](https://r4ds.had.co.nz/iteration.html) book to learn how to write `loops` (such as `for` loops, `seq`, `seq_along`). 
+</div>
+
+**First, take a look at the function below that will help you select a good threshold for your model.**
+
+The function `apply_threshold` receives three arguments (`model`, `df` & `threshold`) and returns a vector of predicted classes with the same length as there are observations in the dataframe `df`. 
+
+```r
+
+apply_threshold <- function(model, df, threshold) {
+
+    pred_probs <- predict(model, df, type = "response")
+
+    pred_classes <- factor(ifelse(pred_probs < threshold, "not fire", "fire"),
+                           levels = c("not fire", "fire"),
+                           ordered = TRUE)
+
+    return(pred_classes)
+}
+```
+
+## Q9. Logistic Regression Model - Confusion Matrix
+
+**Run the code below to look at the table it produces. What does this table show and what does it tell you about your model?** (3 points)
+
+```r
+train_classes           <- df_forest_fires_bejaia$Classes
+train_class_predictions <- apply_threshold(model, df_forest_fires_bejaia, threshold=0.50)
+
+confusion_matrix <- table(train_classes, train_class_predictions)
+print(confusion_matrix)
+```
+
+## Q10. Logistic Regression Model - Classification metrics
+
+**Now, consider three other options of threshold: $t \in \{0.20, 0.40, 0.60\}$. Which of these three options lead to the _best_ f1-score for your model? Write the R code for this and justify your answer.** (7 points)
+
+```r
+# Your code here
+
+```
+
+> Replace this with your text. Use multiple lines if needed.
+> 
+> 
+
+
+## Q11. Logistic Regression Model - Optimal Threshold (Challenging)
+
+**Now, consider another set of possible thresholds, $t \in \{0.00, 0.01, 0.02, \ldots, 0.98, 0.99, 1.00\}$. Find the optimal threshold $t^*$, the one that leads to the best f1-score. Write the R code for this and justify your answer.** (12 points)
+
+```r
+# Your code here
+
+```
+
+> Replace this with your text. Use multiple lines if needed.
+> 
+> 
+
+# 🎯 Questions - Part IV
+
+## Q12. Test set predictions
+
+**Follow the instructions below to apply the model you trained in Q6 to predict the probability of forest fires in the _Sidi Bel-abbes_ dataset and produce a plot similar to that of Q8.** (7 points) 
+
+- Create a vector named `test_classes` that contains the true observed data (fire vs not fire) of _Sidi Bel-abbes_ (You might need to convert it to `factor`)
+- Create a vector named `test_predictions` that contains the predict probability of forest fires in the _Sidi Bel-abbes_ region
+- If the plot is produced and correct, you will get full marks. No need to justify the response.
+
+_⚠️ If you don't want to answer this question, erase or comment out the block of code below. Otherwise, you will get an error when knitting this notebook._
+
+```r
+# Your code here
+
+test_classes <- 
+test_predictions <- 
+
+plot_df <- data.frame(test_classes     = test_classes,
+                      test_predictions = test_predictions)
+
+g <-
+    (ggplot(plot_df, aes(x = test_predictions, fill = test_classes))
+        + geom_histogram(alpha = 0.8, binwidth = 0.05, position = "stack")
+
+        # OPTIONAL: Customising the plot.
+        # You can delete these lines below if you don't like the theme
+        # Or you can choose other themes from
+        # https://ggplot2.tidyverse.org/reference/ggtheme.html
+        + theme_bw()
+        + labs(x = "Predictions on the test set",
+               y = "Count")
+        + scale_fill_brewer(name = "Target", type = "qual", palette = 2)
+        + scale_x_continuous(labels = scales::percent, breaks = seq(0, 1, 0.1))
+        + ggtitle("Histogram of probability distributions when applied to Sidi Bel-abbes data")
+    )
+g
+```
+
+## Q13. Diagnostics
+
+**Using the best threshold you found in either Q10 or Q11, write R code to produce a confusion matrix for the test set (_Sidi Bel-abbes_ dataset). What is the True Positive Rate and True Negative Rate of your model in the test set? Did your model generalise well from the training to test set?** (8 points)
+
+```r
+# Your code here
+
+
+```
+
+> Replace this with your text. Use multiple lines if needed.
+> 
+> 
+
+# 🎯 Questions - Part V
+
+**Here we will ask you to build an alternative classification model, using an algorithm other than logistic regression.**
+
+## Q14. Alternative Models (Challenging)
+
+**Follow the instructions below to build and explore an alternative classification model. Add as many chunks of code, text and equations as you prefer.** (20 points)
+
+1. Chose another algorithm (either [Naive Bayes](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lab.html#step-3-naive-bayes), [Decision Tree](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lecture.html) or [Support Vector Machine](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lecture.html)) to build a new classification model. 
+2. Use the same training data you used to build your logistic regression in Q6 (**same predictors**)
+3. If the algorithm requires a threshold, chose one that maximises the F1-score using the same logic as in Q10 or Q11.
+4. Use the same test data you used to validate your logistic regression as in Q12
+5. If the algorithm does not require a threshold, try to tweak the parameters of the algorithm so as to avoid [_overfitting_](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lecture.html) the model.
+6. Use whatever means you find appropriate (for example metrics, matrices, tables, plots) to compare your new model to the logistic model you built in the rest of this notebook.
+7. Write about what you think makes your alternative model better/worse.
+7. Provide the full R code you used to build and test your alternative model
+
+<div style="display:inline-block;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa">
+💡 **TIPS**
+
+- Use what you have learned about up until Week 05 (lecture)
+- Refer to your readings of the textbook if you want to understand more about how the alternative algorithms work. You can find links to the appropriate chapters [here](https://lse-dsi.github.io/lse-ds202-course-notes/main/syllabus.html).
+</div>
+
+```r
+# Your code here. Copy this chunk of code if you need.
+
+
+```
+
+> Replace this with your text. Use multiple lines if needed.
+> 
+> 
+
+
+## Decompress
+
+How do you plan to reward yourself for completing this problem set? 
+
+> <_replace this text with your reward. A cookie? take X days off? etc._>
+
+[^forest_fire_paper]: Abid, Faroudja, and Nouma Izeboudjen. "Predicting forest fire in algeria using data mining techniques: Case study of the decision tree algorithm." International Conference on Advanced Intelligent Systems for Sustainable Development. Springer, Cham, 2019.
+
+[^fwi_wiki]: Read more about Forest Fire Weather Index (FWI): https://www.wikiwand.com/en/Forest_fire_weather_index
+[^dataviz]: Check out Chapter 3 of [R for Data Science](https://r4ds.had.co.nz/data-visualisation.html) book (available online for free)
+[^reference_1]: Road Safety Data: https://www.data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data
+[^reference_2]: The English Indices of Deprivation 2019: https://www.arcgis.com/home/item.html?id=4ad3e5a10872455eaa67ce4e663d0d01 
