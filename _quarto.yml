@@ -7,6 +7,7 @@ project:
     - "blog/*.qmd"
     - "blog/posts/*.qmd"
     - "main/*.qmd"
+    - "assessments/*.qmd"
     - "weeks/*.qmd"
     - "weeks/week01/*.qmd"
     - "weeks/week02/*.qmd"
@@ -38,7 +39,7 @@ website:
       - href: main/communication.qmd
         text: "📟 Communication"
       - href: main/assessments.qmd
-        text: "✍️ Assessments"
+        text: "✍️ Assessments (🆕)"
       - href: main/courserep.qmd
         text: "🗳️ Course Rep"
       - href: blog/main.qmd
