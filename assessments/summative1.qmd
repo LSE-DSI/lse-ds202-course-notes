@@ -1,5 +1,5 @@
 ---
-title: "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07"
+title: "Summative Problem Set 01 | W05-W07"
 author: "DS202 2022MT Teaching Group"
 date: "`r Sys.Date()`"
 output: html_document

@@ -1,6 +1,6 @@
 ---
-subtitle: ""
-title: "🗓️ Week 05:<br/> Non-linear algorithms (Decision Trees)"
+subtitle: "Non-linear algorithms"
+title: "🗓️ Week 05:<br/> Decision Trees"
 author: Dr. [Jon Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva) and Dr. [Stuart Bramwell](https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell)
 institute: '[\@LSEDataScience](https://twitter.com/lsedatascience)'
 date: 28 October 2022
@@ -43,14 +43,44 @@ Linear and logistic regression are a good first shot for building ML models
 ::: incremental
 - Assumption that the predictors are linearly related to the outcome is restrictive
 - We have seen, for instance, that accounting for higher order polynomial relationships can produce better model fit 
-  - think of the relationship between `lstat` and `medv` in `Boston` ([💻 Week 05 Lab](/weeks/week05/lab.html#step-1.3-does-it-get-better-if-i-modify-the-features-using-polynomial-terms))
 :::
+
+----
+
+
+### Example
+
+- Think of the relationship between `lstat` and `medv` in `Boston` ([💻 Week 05 Lab](/weeks/week05/lab.html#step-1.3-does-it-get-better-if-i-modify-the-features-using-polynomial-terms))
+
+
+```{r}
+library(tidyverse)
+
+lm.fit2 <- lm(mpg ~ poly(horsepower, 2), data = ISLR2::Auto)
+sim.data <- data.frame(horsepower = 46:230)
+
+sim.pred <- predict(lm.fit2, sim.data, interval = 'confidence') 
+
+sim.data <- cbind(sim.data, sim.pred)
+
+ggplot(data = sim.data, aes(x = horsepower, y = fit)) +
+   geom_point(data = ISLR2::Auto, aes(x = horsepower, y = mpg)) +
+   geom_line() +
+   geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.125, fill = 'blue') +
+   theme_minimal() +
+   labs(x = 'Horsepower', y = 'MPG')
+```
 
 ## Enter non-linear methods
 
-<mark class="todo"></mark>
+::: incremental
+- These algorithms do not make (strong) statistical assumptions about the data
+- The focus is more on predictive rather than explanatory power
+:::
 
 # The Decision Tree
+
+<iframe id="reddit-embed" src="https://www.redditmedia.com/r/funny/comments/1j4gf7/cats_decision_tree/?ref_source=embed&amp;ref=share&amp;embed=true&amp;" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" height="527" width="640" scrolling="no"></iframe>
 
 ## Decision Tree for a Regression task {.smaller}
 
@@ -354,7 +384,8 @@ $$
 ::: incremental
 - Trees can become too complex if we are not careful
 - It can lead to something called <mark>overfitting</mark>
-- High training set predictive power - low test set predictive power
+   - High training set predictive power
+   - Low test set predictive power
 - Let's see one example ⏭️
 :::
 
@@ -393,12 +424,27 @@ auto_tbl %>%
 
 # How to fix it
 
-## Pruning the tree
+## Pruning the tree {.smaller}
 
 ::: incremental
-- <mark>Hyperparameters</mark> are model-specific dials that can tuned to produce gains in model fit. 
+- <mark>Hyperparameters</mark> are model-specific dials that we can tune
+   - Things like `max tree depth`, or `min samples per leaf`
 - As with model selection, there is no one one-size-fits-all approach to hyperparameter tuning. 
-- Instead, we experiment with <mark>k-fold cross-validation</mark>.
+- Instead, we experiment with resampling
+   - Most frequently, <mark>k-fold cross-validation</mark>
+:::
+
+::: {.fragment}
+
+::: {.callout-note}
+## k-fold cross-validation
+
+- We experimented with k-fold CV in [🗓️ Week 04's lecture/workshop](/weeks/week04/lecture.html#the-cross-validation-setup)
+- We will revisit this topic in [🗓️ Week 07's lab](/main/syllabus.html)
+- Not compulsory for [✍️ Summmative Problem Set (01) | W05-W07](https://lse-dsi.github.io/lse-ds202-course-notes/assessments/summative1.html)
+
+:::
+
 :::
 
 ## Cost Complexity {.smaller}
@@ -422,6 +468,5 @@ rpart.plot(tree.pruned)
 
 After our 10-min break ☕:
 
-- SVM, another nonlinear algorithm
-- Review of k-fold cross-validation
+- Support Vector Machine
 - Tips for the **Summative Problem Set 01**
