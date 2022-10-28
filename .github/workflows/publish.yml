@@ -40,7 +40,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Install packages used throughout Quarto markdown files
-        run: install.packages(c("pROC", "ISLR2", "e1071", "ggcorrplot", "car", "rsample", "rpart", "rpart.plot"))
+        run: install.packages(c("pROC", "ISLR2", "e1071", "ggcorrplot", "car", "rsample"))
         shell: Rscript {0}
 
       
