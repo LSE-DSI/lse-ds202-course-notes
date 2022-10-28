@@ -182,13 +182,6 @@
     "text": "How to get help\n\nIt is okay to use whatever additional R packages you can find to help you explore the data and/or models better.\nIt is okay to team up with class colleagues to brainstorm ideas and these problems together.\n\nMost questions do not have a single objective response. It is unlikely that you will all write the exact same response so we will spot plagiarism and full copy-pastes very easily.\n\nIt is ok to use Slack or a shared Google Drive document to share links to useful content. For example, you can share things like:\n\n“Tip: I am using this package called tidymodels and it is much simpler than writing for loops!”\n‘I found this link useful: What is the difference between type=“class” and type=“response” in the predict function?’\nThis website has many examples of charts in R — and it has the source code!\n‘This R package called lubridate helped me work with dates a lot easier!’\n\nIt is ok ask clarification about questions of this problem set publicly on Slack. For example, you can ask questions like:\n\n“I am a little confused about Question X. Where it says ... does it mean ....? Am I getting this right?”\n\nIt is also ok to ask generic programming-related questions publicly on Slack. For example, you can ask questions like:\n\n“How do I get just the last 10 items of a list in R/tidyverse?” or\n“How do I sum the number of occurrences of a value in a column?”\n“Anyone else getting an unequal lengths error when creating a new vector? How do I solve this?”\n“I am having a hard time understanding the code below (from Week X lab):\nnew_list <- seq(length(dim(some_dataframe)[1]))\nWhy so many parentheses? Does anyone how to interpret this? #help” or even\n“How do I select specific columns of a dataframe by their names?” or maybe\n“The pairs plot is too messy, anyone knows of a better way to visualise pairs of variables?”\n\nWhat we CANNOT accept:\n\nsharing your entire script or RMarkdown with others. But it is ok to share snippets of code with best practices, or to ask for help, like the type of code people share on Stackoverflow\nasking others to do your work for you (LSE regulations on plagiarism applies to computer code too)\nWe will run TurnitIn on your submissions to help flag cases of plagiarism"
   },
   {
-    "objectID": "assessments/summative1.html#identification",
-    "href": "assessments/summative1.html#identification",
-    "title": "Summative Problem Set 01 | W05-W07",
-    "section": "🆔 Identification",
-    "text": "🆔 Identification\nTHIS IS AN ANONYMOUS SUBMISSION. DO NOT INCLUDE YOUR NAME NOR OTHER PERSONAL INFORMATION ANYWHERE IN THIS FILE OTHER THAN YOUR CANDIDATE NUMBER.\n# Complete the line below by filling it out with your LSE ID\n# If you do not add your LSE ID number, knitting will throw an error.\nLSE_ID <-"
-  },
-  {
     "objectID": "assessments/summative1.html#setup",
     "href": "assessments/summative1.html#setup",
     "title": "Summative Problem Set 01 | W05-W07",
@@ -1131,7 +1124,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.21\n2     9    12 12.2 \n3    12    15 14.8 \n4    15    18 16.1 \n5    18    21 18.0 \n6    21    24 24.1"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  10.1\n2     9    12  11.5\n3    12    15  15.6\n4    15    18  19.9\n5    18    21  20.6\n6    21    24  25.4"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -1166,7 +1159,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY   error absError\n  <int> <int> <dbl>   <dbl>    <dbl>\n1     6     9  9.21 -0.207    0.207 \n2     9    12 12.2  -0.186    0.186 \n3    12    15 14.8   0.157    0.157 \n4    15    18 16.1   1.92     1.92  \n5    18    21 18.0   2.95     2.95  \n6    21    24 24.1  -0.0570   0.0570\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.9127125\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  10.1 -1.07     1.07 \n2     9    12  11.5  0.524    0.524\n3    12    15  15.6 -0.642    0.642\n4    15    18  19.9 -1.89     1.89 \n5    18    21  20.6  0.369    0.369\n6    21    24  25.4 -1.39     1.39 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.9822327\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
