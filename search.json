@@ -170,154 +170,154 @@
   {
     "objectID": "assessments/summative1.html",
     "href": "assessments/summative1.html",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "",
     "text": "Welcome to the first Summative Problem Set of DS202 (2022/23)!\nThings to know before you start:"
   },
   {
     "objectID": "assessments/summative1.html#how-to-get-help",
     "href": "assessments/summative1.html#how-to-get-help",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "How to get help",
     "text": "How to get help\n\nIt is okay to use whatever additional R packages you can find to help you explore the data and/or models better.\nIt is okay to team up with class colleagues to brainstorm ideas and these problems together.\n\nMost questions do not have a single objective response. It is unlikely that you will all write the exact same response so we will spot plagiarism and full copy-pastes very easily.\n\nIt is ok to use Slack or a shared Google Drive document to share links to useful content. For example, you can share things like:\n\n“Tip: I am using this package called tidymodels and it is much simpler than writing for loops!”\n‘I found this link useful: What is the difference between type=“class” and type=“response” in the predict function?’\nThis website has many examples of charts in R — and it has the source code!\n‘This R package called lubridate helped me work with dates a lot easier!’\n\nIt is ok ask clarification about questions of this problem set publicly on Slack. For example, you can ask questions like:\n\n“I am a little confused about Question X. Where it says ... does it mean ....? Am I getting this right?”\n\nIt is also ok to ask generic programming-related questions publicly on Slack. For example, you can ask questions like:\n\n“How do I get just the last 10 items of a list in R/tidyverse?” or\n“How do I sum the number of occurrences of a value in a column?”\n“Anyone else getting an unequal lengths error when creating a new vector? How do I solve this?”\n“I am having a hard time understanding the code below (from Week X lab):\nnew_list <- seq(length(dim(some_dataframe)[1]))\nWhy so many parentheses? Does anyone how to interpret this? #help” or even\n“How do I select specific columns of a dataframe by their names?” or maybe\n“The pairs plot is too messy, anyone knows of a better way to visualise pairs of variables?”\n\nWhat we CANNOT accept:\n\nsharing your entire script or RMarkdown with others. But it is ok to share snippets of code with best practices, or to ask for help, like the type of code people share on Stackoverflow\nasking others to do your work for you (LSE regulations on plagiarism applies to computer code too)\nWe will run TurnitIn on your submissions to help flag cases of plagiarism"
   },
   {
     "objectID": "assessments/summative1.html#identification",
     "href": "assessments/summative1.html#identification",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "🆔 Identification",
     "text": "🆔 Identification\nTHIS IS AN ANONYMOUS SUBMISSION. DO NOT INCLUDE YOUR NAME NOR OTHER PERSONAL INFORMATION ANYWHERE IN THIS FILE OTHER THAN YOUR CANDIDATE NUMBER.\n# Complete the line below by filling it out with your LSE ID\n# If you do not add your LSE ID number, knitting will throw an error.\nLSE_ID <-"
   },
   {
     "objectID": "assessments/summative1.html#setup",
     "href": "assessments/summative1.html#setup",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "⚙️ Setup",
     "text": "⚙️ Setup\nImport required libraries.No need to change if you are not planning to use other packages.\nlibrary(tidyverse)\nlibrary(tidymodels)\n\n# If you use other packages, add them here"
   },
   {
     "objectID": "assessments/summative1.html#data-dictionary",
     "href": "assessments/summative1.html#data-dictionary",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Data Dictionary",
     "text": "Data Dictionary\nWe will use a dataset of Algerian forest fires used by Faroudja & Izeboudjen (2019) 2 and sourced from the UCI ML repository. It has observations on 244 days in Algeria from June to September 2012 in two regions:\n\nBejaia, and\nSidi Bel-abbes\n\nThe dataset contains the following variables:\n\nDate columns\n\n\n\nColumn\nDescription\n\n\n\n\nday\nday of monitoring\n\n\nmonth\nmonth of the monitoring (‘june’ to ‘september’)\n\n\nyear\nFixed: 2012\n\n\n\n\n\nColumns related to weather data observations\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nTemperature\ntemperature at noon (max temperature) in Celsius degrees\n\n\nRH\nRelative Humidity in %\n\n\nWs\nWind speed in km/h\n\n\nRain\ntotal day in mm\n\n\n\n\n\nColumns related to FWI components 3\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nFFMC\nFine Fuel Moisture Code index from the FWI system\n\n\nDMC\nDuff Moisture Code index from the FWI system\n\n\nDC\nDrought Code index from the FWI system\n\n\nISI\nInitial Spread Index index from the FWI system\n\n\nBUI\nBuildup Index index from the FWI system\n\n\nFWI\nFire Weather Index Index\n\n\n\n\n\nThe column we want to predict\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nClasses\ntwo classes representing the ocurrence of fire"
   },
   {
     "objectID": "assessments/summative1.html#loading-the-data",
     "href": "assessments/summative1.html#loading-the-data",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Loading the data",
     "text": "Loading the data\nUse the code below to load the two datasets used in this first problem set.\nIMPORTANT: Ensure all the dataset files are in the exact same directory as this RMarkdown.\n# read_csv is a function of the tidyverse package\n\ndf_forest_fires_bejaia <- read_csv(\"./Algeria_Forest_Fires_Bejaia_Region_Dataset.csv\")\n\ndf_forest_fires_sidi   <- read_csv(\"./Algeria_Forest_Fires_Sidi_Bel_Abbes_Region_Dataset.csv\")\n\n\nTake a look at the data\n# Look at the first few lines of the dataframe\ndf_forest_fires_bejaia %>% head()\n# Look at the first few lines of the dataframe\ndf_forest_fires_sidi %>% head()\n# What are the dimensions of the dataframes?\n\ndf_forest_fires_bejaia %>% dim()\n# What are the dimensions of the dataframes?\n\ndf_forest_fires_sidi %>% dim()"
   },
   {
     "objectID": "assessments/summative1.html#what-we-want-from-you",
     "href": "assessments/summative1.html#what-we-want-from-you",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "What we want from you",
     "text": "What we want from you\nYou main goal will be to predict the occurrence of fires and understand what this ocurrence is associated with.\nNext, you will go through a sequence of tasks. For each of them you are given a code cell where you are supposed to write solutions to the tasks."
   },
   {
     "objectID": "assessments/summative1.html#q1.-fire-days",
     "href": "assessments/summative1.html#q1.-fire-days",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q1. Fire days",
     "text": "Q1. Fire days\nUsing R, count the number of fire days observed in the two regions. (2 points)\n\nBejaia region\n\n# Replace this by your code\n\nSidi Bel-abbes region\n\n# Replace this by your code"
   },
   {
     "objectID": "assessments/summative1.html#q2.-fire-days-in-common",
     "href": "assessments/summative1.html#q2.-fire-days-in-common",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q2. Fire days in common",
     "text": "Q2. Fire days in common\nUsing R, calculate how many days of fire the two regions had in common, and explain how you calculated it. (3 points)\n# Replace this by your code\nExplain what you did in the code above:\n\nReplace this with your text. Use multiple lines if needed."
   },
   {
     "objectID": "assessments/summative1.html#q3.-exploratory-data-analysis---part-i",
     "href": "assessments/summative1.html#q3.-exploratory-data-analysis---part-i",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q3. Exploratory Data Analysis - Part I",
     "text": "Q3. Exploratory Data Analysis - Part I\nRun the code below to look at the plot it produces. In your own words, explain what you see: what dataset was used in the plot, what are the variables in the X and Y axis and what do the colours mean? (2 points)\ng <-\n    (ggplot(df_forest_fires_bejaia,\n            aes(x = Temperature, y = RH, colour = Classes))\n        + geom_point(size = 3, alpha = 0.6)\n\n        # OPTIONAL: Customising the plot.\n        # You can delete these lines below if you don't like the theme\n        # Or you can choose other themes from\n        # https://ggplot2.tidyverse.org/reference/ggtheme.html\n        + theme_bw()\n    )\ng\n\nYour text goes here"
   },
   {
     "objectID": "assessments/summative1.html#q4.-exploratory-data-analysis---part-ii",
     "href": "assessments/summative1.html#q4.-exploratory-data-analysis---part-ii",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q4. Exploratory Data Analysis - Part II",
     "text": "Q4. Exploratory Data Analysis - Part II\nNow, create a scatterplot using any two predictors from the Sidi Bel-abbes region data. Colour the dots according to their Classes (3 points)\nYou can use either base R or ggplot. 4\n# Your code here"
   },
   {
     "objectID": "assessments/summative1.html#q5.-exploratory-data-analysis---part-iii",
     "href": "assessments/summative1.html#q5.-exploratory-data-analysis---part-iii",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q5. Exploratory Data Analysis - Part III",
     "text": "Q5. Exploratory Data Analysis - Part III\nCan you spot differences in the distributions of predictors between the two regions (Sidi Bel-abbes vs Bejaia)? Describe the differences for at least one variable. Write your response and provide evidence using R code. You could use, for example, cross-tabulation, descriptive statistics or visualisations to support your point. (8 points)\n\nReplace this with your text. Use multiple lines if needed.\n\n# Your code here"
   },
   {
     "objectID": "assessments/summative1.html#q6.-logistic-regression-model",
     "href": "assessments/summative1.html#q6.-logistic-regression-model",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q6. Logistic Regression Model",
     "text": "Q6. Logistic Regression Model\nBuild a logistic regression model for the Bejaia dataset using THREE predictors to predict the ocurrence of fire (the Classes variable). You can also add interaction effects amongst these three predictors if you wish. Save it as a variable named model and use R to print its summary. (7 points)\n💡 Tip: you might need to convert Classes to a factor.\n💡 If you have questions about R programming or conceptual questions about logistic regression, it’s ok to ask questions to teachers and colleagues. What you are not allowed to ask: things like “is my solution correct?” or “which variables did you use?”, etc..\nYou can choose to print the summary using base R or any of the functions from the broom package (part of tidymodels).\n# Your code here\n\n# If you won't answer this question, erase or comment out the line of code below. Otherwise, you will get an error when knitting this notebook.\nmodel <-"
   },
   {
     "objectID": "assessments/summative1.html#q7.-logistic-regression-model---justification",
     "href": "assessments/summative1.html#q7.-logistic-regression-model---justification",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q7. Logistic Regression Model - Justification",
     "text": "Q7. Logistic Regression Model - Justification\nProvide a reasonable explanation for your choice of the three predictors in Q6. Why did you chose those variables? (10 points)\n(Optional: add additional R code/visualisations that you feel might help support your answer)\n\nReplace this with your text. Use multiple lines if needed."
   },
   {
     "objectID": "assessments/summative1.html#q8.-logistic-regression-model---diagnostics",
     "href": "assessments/summative1.html#q8.-logistic-regression-model---diagnostics",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q8. Logistic Regression Model - Diagnostics",
     "text": "Q8. Logistic Regression Model - Diagnostics\nRun the code below to look at the plot it produces. In your own words, explain what you see and what this plot tells you about your model. (8 points)\n⚠️ If you didn’t build a model in Q6, erase or comment out the block of code below. Otherwise, you will get an error when knitting this notebook.\n\ntrain_classes     <- df_forest_fires_bejaia$Classes\ntrain_predictions <- predict(model, df_forest_fires_bejaia, type = \"response\")\n\nplot_df <- data.frame(train_classes     = train_classes,\n                      train_predictions = train_predictions)\n\ng <-\n    (ggplot(plot_df, aes(x = train_predictions, fill = train_classes))\n        + geom_histogram(alpha = 0.8, binwidth = 0.05, position = \"stack\")\n\n        # OPTIONAL: Customising the plot.\n        # You can delete these lines below if you don't like the theme\n        # Or you can choose other themes from\n        # https://ggplot2.tidyverse.org/reference/ggtheme.html\n        + theme_bw()\n        + labs(x = \"Predictions on the training set\",\n               y = \"Count\")\n        + scale_fill_brewer(name = \"Target\", type = \"qual\", palette = 2)\n        + scale_x_continuous(labels = scales::percent, breaks = seq(0, 1, 0.1))\n        + ggtitle(\"Histogram of probability distributions fitted to the data\")\n    )\ng\n\nYour text goes here"
   },
   {
     "objectID": "assessments/summative1.html#q9.-logistic-regression-model---confusion-matrix",
     "href": "assessments/summative1.html#q9.-logistic-regression-model---confusion-matrix",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q9. Logistic Regression Model - Confusion Matrix",
     "text": "Q9. Logistic Regression Model - Confusion Matrix\nRun the code below to look at the table it produces. What does this table show and what does it tell you about your model? (3 points)\ntrain_classes           <- df_forest_fires_bejaia$Classes\ntrain_class_predictions <- apply_threshold(model, df_forest_fires_bejaia, threshold=0.50)\n\nconfusion_matrix <- table(train_classes, train_class_predictions)\nprint(confusion_matrix)"
   },
   {
     "objectID": "assessments/summative1.html#q10.-logistic-regression-model---classification-metrics",
     "href": "assessments/summative1.html#q10.-logistic-regression-model---classification-metrics",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q10. Logistic Regression Model - Classification metrics",
     "text": "Q10. Logistic Regression Model - Classification metrics\nNow, consider three other options of threshold: \\(t \\in \\{0.20, 0.40, 0.60\\}\\). Which of these three options lead to the best f1-score for your model? Write the R code for this and justify your answer. (7 points)\n# Your code here\n\nReplace this with your text. Use multiple lines if needed."
   },
   {
     "objectID": "assessments/summative1.html#q11.-logistic-regression-model---optimal-threshold-challenging",
     "href": "assessments/summative1.html#q11.-logistic-regression-model---optimal-threshold-challenging",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q11. Logistic Regression Model - Optimal Threshold (Challenging)",
     "text": "Q11. Logistic Regression Model - Optimal Threshold (Challenging)\nNow, consider another set of possible thresholds, \\(t \\in \\{0.00, 0.01, 0.02, \\ldots, 0.98, 0.99, 1.00\\}\\). Find the optimal threshold \\(t^*\\), the one that leads to the best f1-score. Write the R code for this and justify your answer. (12 points)\n# Your code here\n\nReplace this with your text. Use multiple lines if needed."
   },
   {
     "objectID": "assessments/summative1.html#q12.-test-set-predictions",
     "href": "assessments/summative1.html#q12.-test-set-predictions",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q12. Test set predictions",
     "text": "Q12. Test set predictions\nFollow the instructions below to apply the model you trained in Q6 to predict the probability of forest fires in the Sidi Bel-abbes dataset and produce a plot similar to that of Q8. (7 points)\n\nCreate a vector named test_classes that contains the true observed data (fire vs not fire) of Sidi Bel-abbes (You might need to convert it to factor)\nCreate a vector named test_predictions that contains the predict probability of forest fires in the Sidi Bel-abbes region\nIf the plot is produced and correct, you will get full marks. No need to justify the response.\n\n⚠️ If you don’t want to answer this question, erase or comment out the block of code below. Otherwise, you will get an error when knitting this notebook.\n# Your code here\n\ntest_classes <- \ntest_predictions <- \n\nplot_df <- data.frame(test_classes     = test_classes,\n                      test_predictions = test_predictions)\n\ng <-\n    (ggplot(plot_df, aes(x = test_predictions, fill = test_classes))\n        + geom_histogram(alpha = 0.8, binwidth = 0.05, position = \"stack\")\n\n        # OPTIONAL: Customising the plot.\n        # You can delete these lines below if you don't like the theme\n        # Or you can choose other themes from\n        # https://ggplot2.tidyverse.org/reference/ggtheme.html\n        + theme_bw()\n        + labs(x = \"Predictions on the test set\",\n               y = \"Count\")\n        + scale_fill_brewer(name = \"Target\", type = \"qual\", palette = 2)\n        + scale_x_continuous(labels = scales::percent, breaks = seq(0, 1, 0.1))\n        + ggtitle(\"Histogram of probability distributions when applied to Sidi Bel-abbes data\")\n    )\ng"
   },
   {
     "objectID": "assessments/summative1.html#q13.-diagnostics",
     "href": "assessments/summative1.html#q13.-diagnostics",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q13. Diagnostics",
     "text": "Q13. Diagnostics\nUsing the best threshold you found in either Q10 or Q11, write R code to produce a confusion matrix for the test set (Sidi Bel-abbes dataset). What is the True Positive Rate and True Negative Rate of your model in the test set? Did your model generalise well from the training to test set? (8 points)\n# Your code here\n\n\nReplace this with your text. Use multiple lines if needed."
   },
   {
     "objectID": "assessments/summative1.html#q14.-alternative-models-challenging",
     "href": "assessments/summative1.html#q14.-alternative-models-challenging",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Q14. Alternative Models (Challenging)",
     "text": "Q14. Alternative Models (Challenging)\nFollow the instructions below to build and explore an alternative classification model. Add as many chunks of code, text and equations as you prefer. (20 points)\n\nChose another algorithm (either Naive Bayes, Decision Tree or Support Vector Machine) to build a new classification model.\nUse the same training data you used to build your logistic regression in Q6 (same predictors)\nIf the algorithm requires a threshold, chose one that maximises the F1-score using the same logic as in Q10 or Q11.\nUse the same test data you used to validate your logistic regression as in Q12\nIf the algorithm does not require a threshold, try to tweak the parameters of the algorithm so as to avoid overfitting the model.\nUse whatever means you find appropriate (for example metrics, matrices, tables, plots) to compare your new model to the logistic model you built in the rest of this notebook.\nWrite about what you think makes your alternative model better/worse.\nProvide the full R code you used to build and test your alternative model\n\n\n💡 TIPS\n\nUse what you have learned about up until Week 05 (lecture)\nRefer to your readings of the textbook if you want to understand more about how the alternative algorithms work. You can find links to the appropriate chapters here.\n\n\n# Your code here. Copy this chunk of code if you need.\n\n\nReplace this with your text. Use multiple lines if needed."
   },
   {
     "objectID": "assessments/summative1.html#decompress",
     "href": "assessments/summative1.html#decompress",
-    "title": "✍️ DS202 2022 MT - Summative Problem Set 01 | W05-W07",
+    "title": "Summative Problem Set 01 | W05-W07",
     "section": "Decompress",
     "text": "Decompress\nHow do you plan to reward yourself for completing this problem set?\n\n<replace this text with your reward. A cookie? take X days off? etc.>"
   },
@@ -382,7 +382,14 @@
     "href": "weeks/week05.html",
     "title": "🗓️ Week 05 - Non-linear algorithms",
     "section": "",
-    "text": "👨‍🏫 Lecture\n✅ Take a look at this week’s checklist\n💻 This week’s lab"
+    "text": "Welcome to Week 05 of DS202!\nIn the labs, you will practice training/test splits, cross-validation and you will learn about the bootstrap. Check Chapter 5 of our textbook to reinforce these concepts during the week.\nAt the end of the week, we will explore two new algorithms: Support Vector Machine and Decision Trees.\nStarting this week, our lecture will take place in a new classroom. Join us this Friday, 28 October 2022 from 2 p.m. to 4 p.m. at NAB.LG.08."
+  },
+  {
+    "objectID": "weeks/week05.html#links",
+    "href": "weeks/week05.html#links",
+    "title": "🗓️ Week 05 - Non-linear algorithms",
+    "section": "Links",
+    "text": "Links\n\n👨‍🏫 Lecture\n✅ Take a look at this week’s checklist\n💻 This week’s lab\n✍️ First Summative W05-W07 🆕"
   },
   {
     "objectID": "weeks/week06.html",
@@ -606,14 +613,7 @@
     "href": "weeks/week03/lecture.html",
     "title": "👨‍🏫 Week 03 - Slides",
     "section": "",
-    "text": "Tip\n\n\n\nFeel free to browse the slides before the lecture, but it is probably safer to wait until the time of the lecture to download/save them, as we might make small changes to slides before then."
-  },
-  {
-    "objectID": "weeks/week03/lecture.html#part-i---classifiers-logistic-regression-45-50-min",
-    "href": "weeks/week03/lecture.html#part-i---classifiers-logistic-regression-45-50-min",
-    "title": "👨‍🏫 Week 03 - Slides",
-    "section": "Part I - Classifiers (Logistic Regression) (45-50 min)",
-    "text": "Part I - Classifiers (Logistic Regression) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides. For a PDF copy, check Moodle."
+    "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides. For a PDF copy, check Moodle."
   },
   {
     "objectID": "weeks/week03/lecture.html#coffee-break-10-min",
@@ -761,6 +761,34 @@
     "title": "💻 Week 05 - Lab Roadmap (90 min)",
     "section": "",
     "text": "Step 5: Exercise (35mins)\n\n Since then, we have known and implemented the coding with Cross-validation and Bootstrap. In this practical case, we will use the new dataset Default and also Weekly from the ISRL package. Do not forget to set a random seed before beginning your analysis.\nSome questions are listed below. You are required to try to answer these questions in pairs using R commands. We will go over the solutions once everyone has finished these questions\n🎯 Questions\n\nFor the Default dataset, please Split the sample set into a training set and a validation set, then fit a logistic regression model that uses income and balance to predict default. As following,\n\nUse three different splits of the observations into a training set and a validation set. \n\n> train.1 = sample(dim(Default)[1], 0.70*dim(Default)[1])\n> train.2 = sample(dim(Default)[1], 0.70*dim(Default)[1])\n> train.3 = sample(dim(Default)[1], 0.70*dim(Default)[1])\n\nFit three multiple logistic regression models using only the training observations. \n\n#just give one sample here with train.1\n> glm.fit.1 = glm(default ~ income + balance, data = Default, subset = train.1, family = \"binomial\")\n\nBased on the three models,obtain a prediction of default status for each individual in the validation set by computing the posterior probability of default for that individual, and classifying the individual to the default category if the posterior probability is greater than 0.5. \n\n#just give one sample here with train.1\n> glm.probs = predict(glm.fit.1, Default[-train.1, ], type = \"response\")\n> glm.preds = rep(\"No\", dim(Default)[1])\n> glm.preds[glm.probs > 0.5] = \"Yes\"\n\nBased on the three models, compute the validation set error, which is the fraction of the observations in the validation set that are misclassified.\n\n#just give one sample here\n> mean(glm.preds != Default[-train, \"default\"])\nFor the Default dataset, We continue to consider the use of a logistic regression model to predict the probability of default using income and balance on the Default data set. In particular, we will now compute estimates for the standard errors of the income and balance logistic regression coefficients in two different ways:\n2.1. Using the bootstrap.\n2.2. Using the standard formula for computing the standard errors in the glm() function.\nAs following,\n\nUsing the summary() and glm() functions, determine the estimated standard errors for the coefficients associated with income and balance in a multiple logistic regression model that uses both predictors. \n> log_def <- glm(default ~ income + balance, data = Default, family = \"binomial\")\n> summary(log_def)$coefficients[, 2]\n[1]  (Intercept)       income      balance \n    4.347564e-01 4.985167e-06 2.273731e-04 \nWrite a function,boot.fn(),that takes as input the Default data set as well as an index of the observations, and that outputs the coefficient estimates for income and balance in the multiple logistic regression model. \n    > boot.fn <- function(data, index = 1:nrow(data)) {\n    +   coef(glm(default ~ income + balance, data = data, subset = index, family = \"binomial\"))[-1]\n    + }\n    > boot.fn(Default)\n   [1]  income      balance \n    2.080898e-05 5.647103e-03 \nUse the boot() function together with your boot.fn() function to estimate the standard errors of the logistic regression coefficients for income and balance. Then, Create a histogram of the bootstrap parameter estimates with ggplot2, and also set the bins=20, title as 1,000 Bootstrap Parameter Estimates - 'balance' & 'income. \n\n ```r\n > set.seed(101)\n > boot_results <- boot(data = Default, statistic = boot.fn, R = 1000)\n\n > as.data.frame(boot_results$t) %>%\n     rename(income = V1, balance = V2) %>%\n     gather(key = \"variable\", value = \"estimate\") %>%\n     ggplot(aes(x = estimate, fill = factor(variable))) + \n     geom_histogram(bins = 20) + \n     facet_wrap(~ variable, scales = \"free_x\") + \n     labs(title = \"1,000 Bootstrap Parameter Estimates - 'balance' & 'income'\", \n         subtitle = paste0(\"SE(balance) = \", formatC(sd(boot_results$t[ ,2]), format = \"e\", digits = 6), \n                             \", SE(income) = \", formatC(sd(boot_results$t[ ,1]), format = \"e\", digits = 6)), \n         x = \"Parameter Estimate\", \n         y = \"Count\") + \n     theme(legend.position = \"none\")\n ```\nWe saw that the cv.glm() function can be used in order to compute the LOOCV test error estimate. However, one could compute those quantities using just the glm() and predict.glm() functions, and a for loop. You will now take this approach in order to compute the LOOCV error for a simple logistic regression model on the Weekly data set. As following,\n\nLogistic Regression- Fit a logistic regression model that predicts Direction using Lag1 and Lag2. \n\n    > log_dir <- glm(Direction ~ Lag1 + Lag2, data = Weekly, family = \"binomial\")\n    > summary(log_dir)\n\nOmitting One Observation from Training- Fit a logistic regression model that predicts Direction using Lag1 and Lag2 using all but the first observation . \n\n    > log_dir_2 <- glm(Direction ~ Lag1 + Lag2, data = Weekly[-1, ], family = \"binomial\")\n    > summary(log_dir_2)\n\nPredicting the Omitted Observation- Use the model from ii. to predict the direction of the first observation. You can do this by predicting that the first observation will go up if \\(P(\\text { Direction }=' U p ' \\mid \\operatorname{Lag} 1, \\text { Lag2 })>0.5\\). Was this observation correctly classified? \n\n    # methods 1\n    > predict(log_dir_2, Weekly[1, ])\n    > Weekly[1, ]\n\n    # methods 2\n    > ifelse(predict(log_dir_2, newdata = Weekly[1, ], type = \"response\") > 0.5, \"Up\", \"Down\")\n\nWriting a LOOCV Loop- Write a for loop from i = 1 to i = n, where n is the number of observations in the data set, that performs each of the following steps:\n\nFit a logistic regression model using all but the ith observation to predict Direction using Lag1 and Lag2.\nCompute the posterior probability of the market moving up for the i th observation.\nUse the posterior probability for the i th observation in order to predict whether or not the market moves up.\nDetermine whether or not an error was made in predicting the direction for the i th observation. If an error was made, then indicate this as a 1 , and otherwise indicate it as a 0 . \n\n\n    # method 1\n    > error <- c()\n    > for (i in 1:nrow(Weekly)) {\n    log_dir <- glm(Direction ~ Lag1 + Lag2, data = Weekly[-i, ], family = \"binomial\") # 1.\n    prediction <- ifelse(predict(log_dir, newdata = Weekly[i, ], type = \"response\") > 0.5, \"Up\", \"Down\") # 2. & 3.\n    error[i] <- as.numeric(prediction != Weekly[i, \"Direction\"]) # 4.\n    }\n    > head(error)\n    > error[1:10]\n    [1]  1 1 0 1 0 1 0 0 0 1\n\n    #method 2\n    > n <- dim(Weekly)[1]\n    > errors <- rep(0, n)\n    > for (i in 1:n){\n        glm.fit.loo <- glm(Direction ~ Lag1 + Lag2, data = Weekly, family = \"binomial\", subset <- c(-i))\n        pred = \"Down\"\n        if (predict(glm.fit.loo, Weekly[i, ], type = \"response\") > 0.5){\n            pred = \"Up\"\n        }\n        if (pred != Weekly[i, \"Direction\"]){\n            errors[i] <- 1\n        }\n    }\n    > head(errors)\n    > errors[1:10]\n    [1]  1 1 0 1 0 1 0 0 0 1\n\nThe LOOCV Estimate for the Test Error- Take the average of the n numbers obtained in (iv)-4. in order to obtain the LOOCV estimate for the test error. Comment on the results.\n\n\n#method 1\n> mean(error)\n[1] 0.4499541\n> prop.table(table(Weekly$Direction))\n\n    Down        Up \n0.4444444 0.5555556\n\n#method 2\n> mean(errors)\n[1] 0.4499541\n> mean(Weekly[\"Direction\"] != \"Up\")\n[1] 0.4444444\n> mean(Weekly[\"Direction\"] == \"Up\")\n[1] 0.5555556"
+  },
+  {
+    "objectID": "weeks/week05/lecture.html",
+    "href": "weeks/week05/lecture.html",
+    "title": "👨‍🏫 Week 05 - Lecture",
+    "section": "",
+    "text": "Tip\n\n\n\nFeel free to browse the slides before the lecture, but it is probably safer to wait until the time of the lecture to download/save them, as we might make small changes to slides before then."
+  },
+  {
+    "objectID": "weeks/week05/lecture.html#part-i---non-linear-algorithms-decision-tree-45-50-min",
+    "href": "weeks/week05/lecture.html#part-i---non-linear-algorithms-decision-tree-45-50-min",
+    "title": "👨‍🏫 Week 05 - Lecture",
+    "section": "Part I - Non-linear algorithms (Decision Tree) (45-50 min)",
+    "text": "Part I - Non-linear algorithms (Decision Tree) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides. For a PDF copy, check Moodle."
+  },
+  {
+    "objectID": "weeks/week05/lecture.html#coffee-break-10-min",
+    "href": "weeks/week05/lecture.html#coffee-break-10-min",
+    "title": "👨‍🏫 Week 05 - Lecture",
+    "section": "☕ Coffee Break (10 min)",
+    "text": "☕ Coffee Break (10 min)\nUse this time to chat, stretch, drink some coffee or just relax for a bit by yourself."
+  },
+  {
+    "objectID": "weeks/week05/lecture.html#part-ii---non-linear-algorithms-support-vector-machines-45-50-min",
+    "href": "weeks/week05/lecture.html#part-ii---non-linear-algorithms-support-vector-machines-45-50-min",
+    "title": "👨‍🏫 Week 05 - Lecture",
+    "section": "Part II - Non-linear algorithms (Support Vector Machines) (45-50 min)",
+    "text": "Part II - Non-linear algorithms (Support Vector Machines) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides. For a PDF copy, check Moodle."
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-data-science-institute",
@@ -1103,7 +1131,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  11.1\n2     9    12  12.6\n3    12    15  13.7\n4    15    18  16.9\n5    18    21  20.2\n6    21    24  23.3"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.21\n2     9    12 12.2 \n3    12    15 14.8 \n4    15    18 16.1 \n5    18    21 18.0 \n6    21    24 24.1"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -1138,7 +1166,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  11.1 -2.09     2.09 \n2     9    12  12.6 -0.635    0.635\n3    12    15  13.7  1.34     1.34 \n4    15    18  16.9  1.15     1.15 \n5    18    21  20.2  0.802    0.802\n6    21    24  23.3  0.650    0.650\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.111263\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY   error absError\n  <int> <int> <dbl>   <dbl>    <dbl>\n1     6     9  9.21 -0.207    0.207 \n2     9    12 12.2  -0.186    0.186 \n3    12    15 14.8   0.157    0.157 \n4    15    18 16.1   1.92     1.92  \n5    18    21 18.0   2.95     2.95  \n6    21    24 24.1  -0.0570   0.0570\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.9127125\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
@@ -1692,5 +1720,194 @@
     "title": "🗓️ Week 03:Classifiers - Part II",
     "section": "References",
     "text": "References\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/.\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
+  },
+  {
+    "objectID": "slides/week05_slides_part1.html#the-limits-of-classic-regression-models-1",
+    "href": "slides/week05_slides_part1.html#the-limits-of-classic-regression-models-1",
+    "title": "🗓️ Week 05: Decision Trees",
+    "section": "The limits of classic regression models",
+    "text": "The limits of classic regression models\nLinear and logistic regression are a good first shot for building ML models\n\n\nEasy-to-interpret coefficients\nIntuitive (ish) ways to assess variable importance\nOften good out-of-the-box predictions"
+  },
+  {
+    "objectID": "slides/week05_slides_part1.html#however",
+    "href": "slides/week05_slides_part1.html#however",
+    "title": "🗓️ Week 05: Decision Trees",
+    "section": "However…",
+    "text": "However…\n\n\nAssumption that the predictors are linearly related to the outcome is restrictive\nWe have seen, for instance, that accounting for higher order polynomial relationships can produce better model fit"
+  },
+  {
+    "objectID": "slides/week05_slides_part1.html#enter-non-linear-methods",
+    "href": "slides/week05_slides_part1.html#enter-non-linear-methods",
+    "title": "🗓️ Week 05: Decision Trees",
+    "section": "Enter non-linear methods",
+    "text": "Enter non-linear methods\n\n\nThese algorithms do not make (strong) statistical assumptions about the data\nThe focus is more on predictive rather than explanatory power"
+  },
+  {
+    "objectID": "slides/week05_slides_part1.html#decision-tree-for-a-regression-task",
+    "href": "slides/week05_slides_part1.html#decision-tree-for-a-regression-task",
+    "title": "🗓️ Week 05: Decision Trees",
+    "section": "Decision Tree for a Regression task",
+    "text": "Decision Tree for a Regression task\nUsing the Auto dataset, predict mpg with a tree-based model using weight and year as features."
+  },
+  {
+    "objectID": "slides/week05_slides_part1.html#decision-tree-for-a-classification-task",
+    "href": "slides/week05_slides_part1.html#decision-tree-for-a-classification-task",
+    "title": "🗓️ Week 05: Decision Trees",
+    "section": "Decision Tree for a Classification task",
+    "text": "Decision Tree for a Classification task\nUsing the Boston dataset, predict whether medv is above the median using crim and tax:"
+  },
+  {
+    "objectID": "slides/week05_slides_part1.html#whats-going-on-behind-the-scenes",
+    "href": "slides/week05_slides_part1.html#whats-going-on-behind-the-scenes",
+    "title": "🗓️ Week 05: Decision Trees",
+    "section": "What’s going on behind the scenes?",
+    "text": "What’s going on behind the scenes?\nHow decision trees work:\n\n\nDivide the predictor space into \\(\\mathbf{J}\\) distinct regions \\(R_1\\), \\(R_2\\),…,\\(R_j\\).\nTake the mean of the response values in each region\n\n\n\nHere’s how the regions were created in our regression/classification examples ⏭️"
+  },
+  {
+    "objectID": "slides/week05_slides_part1.html#how-are-regions-created",
+    "href": "slides/week05_slides_part1.html#how-are-regions-created",
+    "title": "🗓️ Week 05: Decision Trees",
+    "section": "How are regions created?",
+    "text": "How are regions created?\nRecursive binary splitting\n\n\nTop down\n\nStart from the top of the tree\nThen perform splits at a current level of depth\n\n\nGreedy\n\nSplits are “local” not global\nOnly cares about data in the current branch"
+  },
+  {
+    "objectID": "slides/week05_slides_part1.html#when-trees-run-amock",
+    "href": "slides/week05_slides_part1.html#when-trees-run-amock",
+    "title": "🗓️ Week 05: Decision Trees",
+    "section": "When trees run amock",
+    "text": "When trees run amock\n\n\nTrees can become too complex if we are not careful\nIt can lead to something called overfitting\n\nHigh training set predictive power\nLow test set predictive power\n\nLet’s see one example ⏭️"
+  },
+  {
+    "objectID": "slides/week05_slides_part1.html#pruning-the-tree",
+    "href": "slides/week05_slides_part1.html#pruning-the-tree",
+    "title": "🗓️ Week 05: Decision Trees",
+    "section": "Pruning the tree",
+    "text": "Pruning the tree\n\n\nHyperparameters are model-specific dials that we can tune\n\nThings like max tree depth, or min samples per leaf\n\nAs with model selection, there is no one one-size-fits-all approach to hyperparameter tuning.\nInstead, we experiment with resampling\n\nMost frequently, k-fold cross-validation\n\n\n\n\n\n\n\n\n\n\nk-fold cross-validation\n\n\n\nWe experimented with k-fold CV in 🗓️ Week 04’s lecture/workshop\nWe will revisit this topic in 🗓️ Week 07’s lab\nNot compulsory for ✍️ Summmative Problem Set (01) | W05-W07"
+  },
+  {
+    "objectID": "slides/week05_slides_part1.html#cost-complexity",
+    "href": "slides/week05_slides_part1.html#cost-complexity",
+    "title": "🗓️ Week 05: Decision Trees",
+    "section": "Cost Complexity",
+    "text": "Cost Complexity\n\nWe apply \\(\\alpha\\) which is a non-negative value to prune the tree.\nFor example, when \\(\\alpha = 0.02\\) we can create a less complex tree."
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#support-vector-machines-for-classification",
+    "href": "slides/week05_slides_part2.html#support-vector-machines-for-classification",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Support Vector Machines for Classification",
+    "text": "Support Vector Machines for Classification\n\nConsidered one of the best out-of-the-box classifiers (ISLR)\nAble to accommodate non-linear decision boundaries"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#building-intuition-the-hyperplane",
+    "href": "slides/week05_slides_part2.html#building-intuition-the-hyperplane",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Building Intuition: the Hyperplane",
+    "text": "Building Intuition: the Hyperplane"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#building-intuition-the-hyperplane-cont.",
+    "href": "slides/week05_slides_part2.html#building-intuition-the-hyperplane-cont.",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Building Intuition: the Hyperplane (cont.)",
+    "text": "Building Intuition: the Hyperplane (cont.)\nWhen \\(1 + 2x_1 + 3x_2 < 0\\)"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#building-intuition-the-hyperplane-cont.-1",
+    "href": "slides/week05_slides_part2.html#building-intuition-the-hyperplane-cont.-1",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Building Intuition: the Hyperplane (cont.)",
+    "text": "Building Intuition: the Hyperplane (cont.)\nWhen \\(1 + 2x_1 + 3x_2 > 0\\)"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#building-intuition-the-hyperplane-cont.-2",
+    "href": "slides/week05_slides_part2.html#building-intuition-the-hyperplane-cont.-2",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Building Intuition: the Hyperplane (cont.)",
+    "text": "Building Intuition: the Hyperplane (cont.)\nWhen \\(1 + 2x_1 + 3x_2 = 0\\)"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#the-maximal-marginal-classifier",
+    "href": "slides/week05_slides_part2.html#the-maximal-marginal-classifier",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "The Maximal Marginal Classifier",
+    "text": "The Maximal Marginal Classifier\nThe linearly separable case:"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#identifying-support-vectors",
+    "href": "slides/week05_slides_part2.html#identifying-support-vectors",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Identifying support vectors",
+    "text": "Identifying support vectors\nThe SV’s represent the so-called support vectors:"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#when-data-is-not-linearly-separable",
+    "href": "slides/week05_slides_part2.html#when-data-is-not-linearly-separable",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "When data is not linearly separable",
+    "text": "When data is not linearly separable\nSuppose we have a case that is not linearly separable like this. We have two classes but class 1 is “sandwiched” in between class 2."
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#enter-support-vector-machines",
+    "href": "slides/week05_slides_part2.html#enter-support-vector-machines",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Enter support vector machines",
+    "text": "Enter support vector machines\nLet’s start with a (linear) support vector classifier function\n\\[\nf(x) = \\beta_0 + \\sum_{i\\in\\mathcal{S}}^{} \\alpha_i\\left\\langle x_i, x_{i'} \\right\\rangle\n\\]\nA couple of points:\n\n\\(\\left\\langle x_i, x_{i'} \\right\\rangle\\) is the inner product 1 of two observations\n\\(\\alpha_i\\) is a parameter fitted for all pairs of training observations\n\\(i\\in\\mathcal{S}\\) indicates observations that are support vectors (all other observations are ignored by setting all \\(\\alpha_i \\notin \\mathcal{S}\\) to zero.)\n\nRead about inner products]"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#enter-support-vector-machines-cont.",
+    "href": "slides/week05_slides_part2.html#enter-support-vector-machines-cont.",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Enter support vector machines (cont.)",
+    "text": "Enter support vector machines (cont.)\n\n\nWe can replace \\(\\left\\langle x_i, x_{i'} \\right\\rangle\\) with a of the form \\(K(x_i, x_{i'})\\) where \\(K\\) is a kernel.\nTwo well-known kernels: - Polynomial \\(K(x_i, x_{i'}) = (1 + \\sum_{j = 1}^{p} x_{ij}x_{i'j})^d\\) where \\(d > 1\\) - Radial or “Gaussian” \\(K(x_i, x_{i'}) = \\text{exp}(-\\gamma\\sum_{j=1}^{p}(x_{ij}-x_{i'j})^2)\\) where \\(\\gamma\\) is a positive constant."
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#overfitting-illustrated",
+    "href": "slides/week05_slides_part2.html#overfitting-illustrated",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Overfitting illustrated",
+    "text": "Overfitting illustrated\nSimple models can sometimes be better than complex models."
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#simple-model-on-training-set",
+    "href": "slides/week05_slides_part2.html#simple-model-on-training-set",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Simple model on training set",
+    "text": "Simple model on training set"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#complex-model-on-training-set",
+    "href": "slides/week05_slides_part2.html#complex-model-on-training-set",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Complex model on training set",
+    "text": "Complex model on training set"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#now-lets-create-some-testing-data",
+    "href": "slides/week05_slides_part2.html#now-lets-create-some-testing-data",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Now let’s create some testing data",
+    "text": "Now let’s create some testing data\nLook what happens when I set a different seed (nothing else changes) to construct a test set."
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#simple-model-on-test-set",
+    "href": "slides/week05_slides_part2.html#simple-model-on-test-set",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Simple model on test set",
+    "text": "Simple model on test set"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#complex-model-on-test-set",
+    "href": "slides/week05_slides_part2.html#complex-model-on-test-set",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Complex model on test set",
+    "text": "Complex model on test set"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#example",
+    "href": "slides/week05_slides_part2.html#example",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Example",
+    "text": "Example\n\nA 5-fold cross-validation:\n\n\n\nSplit 1:\n\n\nTest\n\n\nTrain\n\n\nTrain\n\n\nTrain\n\n\nTrain\n\n\n\n\nSplit 2:\n\n\nTrain\n\n\nTest\n\n\nTrain\n\n\nTrain\n\n\nTrain\n\n\n\n\nSplit 3:\n\n\nTrain\n\n\nTrain\n\n\nTest\n\n\nTrain\n\n\nTrain\n\n\n\n\nSplit 4:\n\n\nTrain\n\n\nTrain\n\n\nTrain\n\n\nTest\n\n\nTrain\n\n\n\n\nSplit 5:\n\n\nTrain\n\n\nTrain\n\n\nTrain\n\n\nTrain\n\n\nTest\n\n\n\nWe experimented with k-fold CV in 🗓️ Week 04’s lecture/workshop"
   }
 ]
