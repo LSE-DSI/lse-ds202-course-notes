@@ -3,8 +3,8 @@ subtitle: "Non-linear algorithms"
 title: "🗓️ Week 05:<br/>Support Vector Machines (SVM)"
 author: Dr. [Jon Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva) and Dr. [Stuart Bramwell](https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell)
 institute: '[\@LSEDataScience](https://twitter.com/lsedatascience)'
-date: 14 October 2022
-date-meta: 14 October 2022
+date: 28 October 2022
+date-meta: 28 October 2022
 toc: true
 toc-depth: 1
 toc-title: "What we will cover today"
