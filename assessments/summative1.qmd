@@ -122,14 +122,12 @@ So, for this summative, we will not be relying too much on pure R skills. We pro
 
 <br/>
 
-## 🆔 Identification
-
-THIS IS AN ANONYMOUS SUBMISSION. DO NOT INCLUDE YOUR NAME NOR OTHER PERSONAL INFORMATION ANYWHERE IN THIS FILE OTHER THAN YOUR CANDIDATE NUMBER.
+THIS IS AN ANONYMOUS SUBMISSION. DO NOT INCLUDE YOUR NAME NOR OTHER PERSONAL INFORMATION ANYWHERE IN THIS FILE OTHER THAN YOUR LSE ID NUMBER.
 
 ```r
 # Complete the line below by filling it out with your LSE ID
 # If you do not add your LSE ID number, knitting will throw an error.
-LSE_ID <- 
+LSE_ID <- ## This is a number that starts with the year you joined LSE, like 202208....
 ```
 
 ## ⚙️ Setup
