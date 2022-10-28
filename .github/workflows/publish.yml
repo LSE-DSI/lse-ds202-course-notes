@@ -51,6 +51,8 @@ jobs:
       - name: Install 
         run: install.packages("remotes"); remotes::install_github("grantmcdermott/parttree", force=TRUE)
         shell: Rscript {0}
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
