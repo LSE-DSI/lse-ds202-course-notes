@@ -44,6 +44,10 @@ jobs:
         run: install.packages(c("pROC", "ISLR2", "e1071", "ggcorrplot", "car", "rsample", "rpart", "rpart.plot"))
         shell: Rscript {0}
 
+      
+      - name: Install rpart packages
+        run: devtools::install_version("rpart", version = "4.1.16", repos = "http://cran.us.r-project.org");install.packages(c("rpart.plot"))
+        shell: Rscript {0}
 
       - name: Install 
         run: install.packages("remotes"); remotes::install_github("grantmcdermott/parttree")
