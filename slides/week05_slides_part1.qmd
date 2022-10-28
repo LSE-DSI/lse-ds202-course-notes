@@ -26,7 +26,15 @@ format:
     footer: 'DS202 - Data Science for Social Scientists :robot: :juggling_person:'
 ---
 
+## Regression analysis in real life {.smaller}
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Following current trends, the next PM will be in office for approximately minus 200 days <a href="https://t.co/avLQE9i1yy">pic.twitter.com/avLQE9i1yy</a></p>&mdash; Rob Sansom (\@Sansom_Rob) <a href="https://twitter.com/Sansom_Rob/status/1583156024621805568?ref_src=twsrc%5Etfw">October 20, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+----
+
 # The limits of classic regression models 
+
 
 ## The limits of classic regression models 
 

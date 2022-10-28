@@ -11,6 +11,7 @@ toc-title: "What we will cover today"
 center-title-slide: false
 tbl-cap-location: bottom
 from: markdown+emoji
+server: shiny
 format:
   revealjs: 
     html-q-tag: true
@@ -27,7 +28,7 @@ format:
     footer: 'DS202 - Data Science for Social Scientists :robot: :juggling_person:'
 ---
 
-```{r}
+```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 
 library(e1071)
 library(ggsci)
@@ -204,16 +205,181 @@ A couple of points:
 - $\alpha_i$ is a parameter fitted for all pairs of training observations
 - $i\in\mathcal{S}$ indicates observations that are support vectors (all other observations are ignored by setting all $\alpha_i \notin \mathcal{S}$ to zero.)
 
-[^1]: Read about [inner products](https://mathworld.wolfram.com/InnerProduct.html)]
+[^1]: Read about [inner products](https://mathworld.wolfram.com/InnerProduct.html)
 
-## Enter support vector machines (cont.)
+## Enter support vector machines (cont.) {.smaller}
 
-::: incremental
+::: {.fragment}
 - We can replace $\left\langle x_i, x_{i'} \right\rangle$ with a \textit{generalisation} of the form $K(x_i, x_{i'})$ where $K$ is a kernel.
-- Two well-known kernels:
-      - Polynomial $K(x_i, x_{i'}) = (1 + \sum_{j = 1}^{p} x_{ij}x_{i'j})^d$ where $d > 1$
-      - Radial or "Gaussian" $K(x_i, x_{i'}) = \text{exp}(-\gamma\sum_{j=1}^{p}(x_{ij}-x_{i'j})^2)$ where $\gamma$ is a positive constant.
 :::
+
+::: {.fragment}
+**Two well-known kernels:**
+
+- Polynomial $K(x_i, x_{i'}) = (1 + \sum_{j = 1}^{p} x_{ij}x_{i'j})^d$ where $d > 1$.
+- Radial or "Gaussian" $K(x_i, x_{i'}) = \text{exp}(-\gamma\sum_{j=1}^{p}(x_{ij}-x_{i'j})^2)$ where $\gamma$ is a positive constant.
+:::
+
+# Example: `Iris` data
+
+```{r}
+#| code-fold: true
+
+library(datasets)
+head(iris)
+```
+
+## SVM with Linear Kernel {.smaller}
+
+```{r, dpi=300}
+data(iris)          # load the dataset `iris`
+
+model <- svm(Species ~ Sepal.Length + Sepal.Width, data = iris, kernel = 'linear')
+
+kernel.points <-
+  crossing(Sepal.Length = seq(4, 8, 0.1),
+           Sepal.Width = seq(2, 5, 0.1)) %>% 
+  mutate(pred = predict(model, .))
+
+plot_df <- iris %>%
+      mutate(pred=predict(model, iris),
+             correct = if_else(pred == Species, TRUE, FALSE))
+
+plot_df %>%   
+  ggplot() +
+  geom_tile(data = kernel.points, aes(x=Sepal.Length, y=Sepal.Width, fill = pred), alpha = 0.25) +
+  geom_point(aes(x=Sepal.Length, y=Sepal.Width, colour = Species, shape = correct), size = 4) +
+  scale_shape_manual(values = c(4, 1)) +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'Sepal.Length', y = 'Sepal.Width',
+       fill = 'Species', colour = 'Species',
+       shape = 'Correct prediction?',
+       title = sprintf('Overall Training Accuracy = %.2f %%', 100*(sum(plot_df$correct)/nrow(plot_df))))
+```
+
+## SVM with Polynomial Kernel {.smaller}
+
+```{r, dpi=300}
+data(iris)          # load the dataset `iris`
+
+model <- svm(Species ~ Sepal.Length + Sepal.Width, data = iris, kernel = 'polynomial')
+
+kernel.points <-
+  crossing(Sepal.Length = seq(4, 8, 0.1),
+           Sepal.Width = seq(2, 5, 0.1)) %>% 
+  mutate(pred = predict(model, .))
+
+plot_df <- iris %>% mutate(pred=predict(model, iris), correct = if_else(pred == Species, TRUE, FALSE))
+
+plot_df %>%   
+  ggplot() +
+  geom_tile(data = kernel.points, aes(x=Sepal.Length, y=Sepal.Width, fill = pred), alpha = 0.25) +
+  geom_point(aes(x=Sepal.Length, y=Sepal.Width, colour = Species, shape = correct), size = 4) +
+  scale_shape_manual(values = c(4, 1)) +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  theme_minimal() +
+  theme(panel.grid = element_blank(), legend.position = 'bottom', plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'Sepal.Length', y = 'Sepal.Width', fill = 'Species', colour = 'Species', shape = 'Correct prediction?', 
+       title = sprintf('Overall Training Accuracy = %.2f %%', 100*(sum(plot_df$correct)/nrow(plot_df))))
+```
+
+## SVM with Sigmoid Kernel {.smaller}
+
+```{r, dpi=300}
+data(iris)          # load the dataset `iris`
+
+model <- svm(Species ~ Sepal.Length + Sepal.Width, data = iris, kernel = 'sigmoid')
+
+kernel.points <-
+  crossing(Sepal.Length = seq(4, 8, 0.1),
+           Sepal.Width = seq(2, 5, 0.1)) %>% 
+  mutate(pred = predict(model, .))
+
+plot_df <- iris %>% mutate(pred=predict(model, iris), correct = if_else(pred == Species, TRUE, FALSE))
+
+plot_df %>%   
+  ggplot() +
+  geom_tile(data = kernel.points, aes(x=Sepal.Length, y=Sepal.Width, fill = pred), alpha = 0.25) +
+  geom_point(aes(x=Sepal.Length, y=Sepal.Width, colour = Species, shape = correct), size = 4) +
+  scale_shape_manual(values = c(4, 1)) +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  theme_minimal() +
+  theme(panel.grid = element_blank(), legend.position = 'bottom', plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'Sepal.Length', y = 'Sepal.Width', fill = 'Species', colour = 'Species', shape = 'Correct prediction?', 
+       title = sprintf('Overall Training Accuracy = %.2f %%', 100*(sum(plot_df$correct)/nrow(plot_df))))
+```
+
+
+## SVM with Radial Kernel {.smaller}
+
+```{r, dpi=300}
+data(iris)          # load the dataset `iris`
+
+model <- svm(Species ~ Sepal.Length + Sepal.Width, data = iris, kernel = 'radial')
+
+kernel.points <-
+  crossing(Sepal.Length = seq(4, 8, 0.1),
+           Sepal.Width = seq(2, 5, 0.1)) %>% 
+  mutate(pred = predict(model, .))
+
+plot_df <- iris %>% mutate(pred=predict(model, iris), correct = if_else(pred == Species, TRUE, FALSE))
+
+plot_df %>%   
+  ggplot() +
+  geom_tile(data = kernel.points, aes(x=Sepal.Length, y=Sepal.Width, fill = pred), alpha = 0.25) +
+  geom_point(aes(x=Sepal.Length, y=Sepal.Width, colour = Species, shape = correct), size = 4) +
+  scale_shape_manual(values = c(4, 1)) +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  theme_minimal() +
+  theme(panel.grid = element_blank(), legend.position = 'bottom', plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'Sepal.Length', y = 'Sepal.Width', fill = 'Species', colour = 'Species', shape = 'Correct prediction?', 
+       title = sprintf('Overall Training Accuracy = %.2f %%', 100*(sum(plot_df$correct)/nrow(plot_df))))
+```
+
+## Source Code {.smaller}
+
+::: {.callout-tip}
+- Use the code below to replicate the plot from the previous slide. 
+- Found a bug? Report it on Slack.
+:::
+
+```r
+library(datasets)   # to load the iris  data
+library(tidyverse)  # to use things like the pipe (%>%), mutate and if_else
+library(ggsci)      # just for pretty colours! It enables functions scale_fill_lancet() and scale_colour_lancet().
+library(e1071)      # to load the SVM algorithm
+data(iris)          # load the dataset `iris`
+
+# Train the model! change the parameter `kernel`. It accepts 'linear', 'polynomial', 'radial' and 'sigmoid'
+model <- svm(Species ~ Sepal.Length + Sepal.Width, data = iris, kernel = 'linear')
+
+# Generate all possible combinations of Sepal.Length and Sepal.Width
+kernel.points <- crossing(Sepal.Length = seq(4, 8, 0.1), Sepal.Width = seq(2, 5, 0.1)) %>%  mutate(pred = predict(model, .))
+
+# Create a dataframe just for plotting (with predictions)
+plot_df <- iris %>% mutate(pred=predict(model, iris), correct = if_else(pred == Species, TRUE, FALSE))
+
+plot_df %>%   
+  ggplot() +
+  geom_tile(data = kernel.points, aes(x=Sepal.Length, y=Sepal.Width, fill = pred), alpha = 0.25) +
+  geom_point(aes(x=Sepal.Length, y=Sepal.Width, colour = Species, shape = correct), size = 4) +
+  scale_shape_manual(values = c(4, 1)) +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  theme_minimal() +
+  theme(panel.grid = element_blank(), legend.position = 'bottom', plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'Sepal.Length', y = 'Sepal.Width', fill = 'Species', colour = 'Species', shape = 'Correct prediction?',
+       title = sprintf('Overall Training Accuracy = %.2f %%', 100*(sum(plot_df$correct)/nrow(plot_df))))
+```
+
 
 # Overfitting
 
@@ -352,6 +518,72 @@ sim.test %>%
 
 ```
 
+## Back to `iris` {.smaller}
+
+**SVM with Radial Kernel but <mark>tweaking parameters</mark>, namely `cost` and `gamma`:**
+
+```{r, dpi=300}
+data(iris)          # load the dataset `iris`
+
+model <- svm(Species ~ Sepal.Length + Sepal.Width, data = iris, kernel = 'radial', 
+             gamma = 10^2,
+             cost = 10^4)
+
+kernel.points <-
+  crossing(Sepal.Length = seq(4, 8, 0.1),
+           Sepal.Width = seq(2, 5, 0.1)) %>% 
+  mutate(pred = predict(model, .))
+
+plot_df <- iris %>% mutate(pred=predict(model, iris), correct = if_else(pred == Species, TRUE, FALSE))
+
+plot_df %>%   
+  ggplot() +
+  geom_tile(data = kernel.points, aes(x=Sepal.Length, y=Sepal.Width, fill = pred), alpha = 0.25) +
+  geom_point(aes(x=Sepal.Length, y=Sepal.Width, colour = Species, shape = correct), size = 4) +
+  scale_shape_manual(values = c(4, 1)) +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  theme_minimal() +
+  theme(panel.grid = element_blank(), legend.position = 'bottom', plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'Sepal.Length', y = 'Sepal.Width', fill = 'Species', colour = 'Species', shape = 'Correct prediction?', 
+       title = sprintf('Overall Training Accuracy = %.2f %%', 100*(sum(plot_df$correct)/nrow(plot_df))))
+```
+
+## Source Code {.smaller}
+
+::: {.callout-tip}
+- The only difference is that we added `gamma` and `cost`:
+:::
+
+```r
+library(datasets)   # to load the iris  data
+library(tidyverse)  # to use things like the pipe (%>%), mutate and if_else
+library(ggsci)      # just for pretty colours! It enables functions scale_fill_lancet() and scale_colour_lancet().
+library(e1071)      # to load the SVM algorithm
+data(iris)          # load the dataset `iris`
+
+# Train the model! change the parameter `kernel`. It accepts 'linear', 'polynomial', 'radial' and 'sigmoid'
+model <- svm(Species ~ Sepal.Length + Sepal.Width, data = iris, kernel = 'radial', gamma = 10^2, cost = 10^4)
+
+# Generate all possible combinations of Sepal.Length and Sepal.Width
+kernel.points <- crossing(Sepal.Length = seq(4, 8, 0.1), Sepal.Width = seq(2, 5, 0.1)) %>%  mutate(pred = predict(model, .))
+
+# Create a dataframe just for plotting (with predictions)
+plot_df <- iris %>% mutate(pred=predict(model, iris), correct = if_else(pred == Species, TRUE, FALSE))
+
+plot_df %>%   
+  ggplot() +
+  geom_tile(data = kernel.points, aes(x=Sepal.Length, y=Sepal.Width, fill = pred), alpha = 0.25) +
+  geom_point(aes(x=Sepal.Length, y=Sepal.Width, colour = Species, shape = correct), size = 4) +
+  scale_shape_manual(values = c(4, 1)) +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  theme_minimal() +
+  theme(panel.grid = element_blank(), legend.position = 'bottom', plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'Sepal.Length', y = 'Sepal.Width', fill = 'Species', colour = 'Species', shape = 'Correct prediction?',
+       title = sprintf('Overall Training Accuracy = %.2f %%', 100*(sum(plot_df$correct)/nrow(plot_df))))
+```
+
 # Cross-validation* for the rescue!
 
 ::: {.aside}
@@ -482,6 +714,17 @@ Test
 ::: footer
 We experimented with k-fold CV in [🗓️ Week 04's lecture/workshop](/weeks/week04/lecture.html#the-cross-validation-setup)
 :::
+
+## Recommendations
+
+- Readings
+      - Decision Trees: [@james_introduction_2021, Section 8.1] (ignore section 8.2)
+      - SVMs: [@james_introduction_2021, Chapter 9]
+            - Read it all once just to retain <mark>main concepts</mark>
+            - Focus your attention on the concepts on the margins of the book
+- Practice the code that is contained in these slides! Several times!
+      - There are many datasets in the `ISLR2` package ([link](https://cran.rstudio.com/web/packages/ISLR2/ISLR2.pdf))
+      - Load any dataset and explore it with these new algorithms
 
 # Tips for Summative Problem Set 01
 
