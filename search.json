@@ -697,7 +697,7 @@
     "href": "weeks/week05/checklist.html",
     "title": "✅ Week 05 - Checklist",
     "section": "",
-    "text": "Important\n\n\n\n\n\nKeep in mind that after the lecture at the end of this week, on Friday 28 October 2022, we will release the Summative Problem Set 01. This is the first summative assessment of this course and it is worth 20% of your final grade. You will have until 9 November 2022 — Wednesday of Week 07 — to submit your solutions via Moodle.\nHere is a suggestion of how to program your week in relation to this course:\nExtra:"
+    "text": "Important\n\n\n\n\n\nKeep in mind that after the lecture at the end of this week, on Friday 28 October 2022, we will release the Summative Problem Set 01. This is the first summative assessment of this course and it is worth 30% of your final grade. You will have until 9 November 2022 — Wednesday of Week 07 — to submit your solutions via Moodle.\nHere is a suggestion of how to program your week in relation to this course:\nExtra:"
   },
   {
     "objectID": "weeks/week05/checklist.html#if-your-lab-is-on-monday",
@@ -1124,7 +1124,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  10.1\n2     9    12  11.5\n3    12    15  15.6\n4    15    18  19.9\n5    18    21  20.6\n6    21    24  25.4"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.22\n2     9    12 10.1 \n3    12    15 16.2 \n4    15    18 18.1 \n5    18    21 19.5 \n6    21    24 24.8"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -1159,7 +1159,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  10.1 -1.07     1.07 \n2     9    12  11.5  0.524    0.524\n3    12    15  15.6 -0.642    0.642\n4    15    18  19.9 -1.89     1.89 \n5    18    21  20.6  0.369    0.369\n6    21    24  25.4 -1.39     1.39 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.9822327\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY   error absError\n  <int> <int> <dbl>   <dbl>    <dbl>\n1     6     9  9.22 -0.224    0.224 \n2     9    12 10.1   1.87     1.87  \n3    12    15 16.2  -1.25     1.25  \n4    15    18 18.1  -0.0774   0.0774\n5    18    21 19.5   1.52     1.52  \n6    21    24 24.8  -0.775    0.775 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.9525553\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
