@@ -1124,7 +1124,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.22\n2     9    12 10.1 \n3    12    15 16.2 \n4    15    18 18.1 \n5    18    21 19.5 \n6    21    24 24.8"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  7.25\n2     9    12 13.5 \n3    12    15 13.7 \n4    15    18 20.9 \n5    18    21 21.3 \n6    21    24 22.3"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -1159,7 +1159,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY   error absError\n  <int> <int> <dbl>   <dbl>    <dbl>\n1     6     9  9.22 -0.224    0.224 \n2     9    12 10.1   1.87     1.87  \n3    12    15 16.2  -1.25     1.25  \n4    15    18 18.1  -0.0774   0.0774\n5    18    21 19.5   1.52     1.52  \n6    21    24 24.8  -0.775    0.775 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.9525553\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  7.25  1.75     1.75 \n2     9    12 13.5  -1.47     1.47 \n3    12    15 13.7   1.29     1.29 \n4    15    18 20.9  -2.90     2.90 \n5    18    21 21.3  -0.313    0.313\n6    21    24 22.3   1.74     1.74 \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.576338\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
@@ -1715,6 +1715,13 @@
     "text": "References\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/.\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
   },
   {
+    "objectID": "slides/week05_slides_part1.html#regression-analysis-in-real-life",
+    "href": "slides/week05_slides_part1.html#regression-analysis-in-real-life",
+    "title": "🗓️ Week 05: Decision Trees",
+    "section": "Regression analysis in real life",
+    "text": "Regression analysis in real life\n\n\nFollowing current trends, the next PM will be in office for approximately minus 200 days pic.twitter.com/avLQE9i1yy\n\n— Rob Sansom (@Sansom_Rob) October 20, 2022"
+  },
+  {
     "objectID": "slides/week05_slides_part1.html#the-limits-of-classic-regression-models-1",
     "href": "slides/week05_slides_part1.html#the-limits-of-classic-regression-models-1",
     "title": "🗓️ Week 05: Decision Trees",
@@ -1845,14 +1852,49 @@
     "href": "slides/week05_slides_part2.html#enter-support-vector-machines",
     "title": "🗓️ Week 05:Support Vector Machines (SVM)",
     "section": "Enter support vector machines",
-    "text": "Enter support vector machines\nLet’s start with a (linear) support vector classifier function\n\\[\nf(x) = \\beta_0 + \\sum_{i\\in\\mathcal{S}}^{} \\alpha_i\\left\\langle x_i, x_{i'} \\right\\rangle\n\\]\nA couple of points:\n\n\\(\\left\\langle x_i, x_{i'} \\right\\rangle\\) is the inner product 1 of two observations\n\\(\\alpha_i\\) is a parameter fitted for all pairs of training observations\n\\(i\\in\\mathcal{S}\\) indicates observations that are support vectors (all other observations are ignored by setting all \\(\\alpha_i \\notin \\mathcal{S}\\) to zero.)\n\nRead about inner products]"
+    "text": "Enter support vector machines\nLet’s start with a (linear) support vector classifier function\n\\[\nf(x) = \\beta_0 + \\sum_{i\\in\\mathcal{S}}^{} \\alpha_i\\left\\langle x_i, x_{i'} \\right\\rangle\n\\]\nA couple of points:\n\n\\(\\left\\langle x_i, x_{i'} \\right\\rangle\\) is the inner product 1 of two observations\n\\(\\alpha_i\\) is a parameter fitted for all pairs of training observations\n\\(i\\in\\mathcal{S}\\) indicates observations that are support vectors (all other observations are ignored by setting all \\(\\alpha_i \\notin \\mathcal{S}\\) to zero.)\n\nRead about inner products"
   },
   {
     "objectID": "slides/week05_slides_part2.html#enter-support-vector-machines-cont.",
     "href": "slides/week05_slides_part2.html#enter-support-vector-machines-cont.",
     "title": "🗓️ Week 05:Support Vector Machines (SVM)",
     "section": "Enter support vector machines (cont.)",
-    "text": "Enter support vector machines (cont.)\n\n\nWe can replace \\(\\left\\langle x_i, x_{i'} \\right\\rangle\\) with a of the form \\(K(x_i, x_{i'})\\) where \\(K\\) is a kernel.\nTwo well-known kernels: - Polynomial \\(K(x_i, x_{i'}) = (1 + \\sum_{j = 1}^{p} x_{ij}x_{i'j})^d\\) where \\(d > 1\\) - Radial or “Gaussian” \\(K(x_i, x_{i'}) = \\text{exp}(-\\gamma\\sum_{j=1}^{p}(x_{ij}-x_{i'j})^2)\\) where \\(\\gamma\\) is a positive constant."
+    "text": "Enter support vector machines (cont.)\n\n\nWe can replace \\(\\left\\langle x_i, x_{i'} \\right\\rangle\\) with a of the form \\(K(x_i, x_{i'})\\) where \\(K\\) is a kernel.\n\n\n\nTwo well-known kernels:\n\nPolynomial \\(K(x_i, x_{i'}) = (1 + \\sum_{j = 1}^{p} x_{ij}x_{i'j})^d\\) where \\(d > 1\\).\nRadial or “Gaussian” \\(K(x_i, x_{i'}) = \\text{exp}(-\\gamma\\sum_{j=1}^{p}(x_{ij}-x_{i'j})^2)\\) where \\(\\gamma\\) is a positive constant."
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#svm-with-linear-kernel",
+    "href": "slides/week05_slides_part2.html#svm-with-linear-kernel",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "SVM with Linear Kernel",
+    "text": "SVM with Linear Kernel"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#svm-with-polynomial-kernel",
+    "href": "slides/week05_slides_part2.html#svm-with-polynomial-kernel",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "SVM with Polynomial Kernel",
+    "text": "SVM with Polynomial Kernel"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#svm-with-sigmoid-kernel",
+    "href": "slides/week05_slides_part2.html#svm-with-sigmoid-kernel",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "SVM with Sigmoid Kernel",
+    "text": "SVM with Sigmoid Kernel"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#svm-with-radial-kernel",
+    "href": "slides/week05_slides_part2.html#svm-with-radial-kernel",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "SVM with Radial Kernel",
+    "text": "SVM with Radial Kernel"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#source-code",
+    "href": "slides/week05_slides_part2.html#source-code",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Source Code",
+    "text": "Source Code\n\n\n\n\n\n\nTip\n\n\n\nUse the code below to replicate the plot from the previous slide.\nFound a bug? Report it on Slack.\n\n\n\n\nlibrary(datasets)   # to load the iris  data\nlibrary(tidyverse)  # to use things like the pipe (%>%), mutate and if_else\nlibrary(ggsci)      # just for pretty colours! It enables functions scale_fill_lancet() and scale_colour_lancet().\nlibrary(e1071)      # to load the SVM algorithm\ndata(iris)          # load the dataset `iris`\n\n# Train the model! change the parameter `kernel`. It accepts 'linear', 'polynomial', 'radial' and 'sigmoid'\nmodel <- svm(Species ~ Sepal.Length + Sepal.Width, data = iris, kernel = 'linear')\n\n# Generate all possible combinations of Sepal.Length and Sepal.Width\nkernel.points <- crossing(Sepal.Length = seq(4, 8, 0.1), Sepal.Width = seq(2, 5, 0.1)) %>%  mutate(pred = predict(model, .))\n\n# Create a dataframe just for plotting (with predictions)\nplot_df <- iris %>% mutate(pred=predict(model, iris), correct = if_else(pred == Species, TRUE, FALSE))\n\nplot_df %>%   \n  ggplot() +\n  geom_tile(data = kernel.points, aes(x=Sepal.Length, y=Sepal.Width, fill = pred), alpha = 0.25) +\n  geom_point(aes(x=Sepal.Length, y=Sepal.Width, colour = Species, shape = correct), size = 4) +\n  scale_shape_manual(values = c(4, 1)) +\n  scale_colour_lancet() +\n  scale_fill_lancet() +\n  theme_minimal() +\n  theme(panel.grid = element_blank(), legend.position = 'bottom', plot.title = element_text(hjust = 0.5)) +\n  labs(x = 'Sepal.Length', y = 'Sepal.Width', fill = 'Species', colour = 'Species', shape = 'Correct prediction?',\n       title = sprintf('Overall Training Accuracy = %.2f %%', 100*(sum(plot_df$correct)/nrow(plot_df))))"
   },
   {
     "objectID": "slides/week05_slides_part2.html#overfitting-illustrated",
@@ -1897,10 +1939,31 @@
     "text": "Complex model on test set"
   },
   {
+    "objectID": "slides/week05_slides_part2.html#back-to-iris",
+    "href": "slides/week05_slides_part2.html#back-to-iris",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Back to iris",
+    "text": "Back to iris\nSVM with Radial Kernel but tweaking parameters, namely cost and gamma:"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#source-code-1",
+    "href": "slides/week05_slides_part2.html#source-code-1",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Source Code",
+    "text": "Source Code\n\n\n\n\n\n\nTip\n\n\n\nThe only difference is that we added gamma and cost:\n\n\n\n\nlibrary(datasets)   # to load the iris  data\nlibrary(tidyverse)  # to use things like the pipe (%>%), mutate and if_else\nlibrary(ggsci)      # just for pretty colours! It enables functions scale_fill_lancet() and scale_colour_lancet().\nlibrary(e1071)      # to load the SVM algorithm\ndata(iris)          # load the dataset `iris`\n\n# Train the model! change the parameter `kernel`. It accepts 'linear', 'polynomial', 'radial' and 'sigmoid'\nmodel <- svm(Species ~ Sepal.Length + Sepal.Width, data = iris, kernel = 'radial', gamma = 10^2, cost = 10^4)\n\n# Generate all possible combinations of Sepal.Length and Sepal.Width\nkernel.points <- crossing(Sepal.Length = seq(4, 8, 0.1), Sepal.Width = seq(2, 5, 0.1)) %>%  mutate(pred = predict(model, .))\n\n# Create a dataframe just for plotting (with predictions)\nplot_df <- iris %>% mutate(pred=predict(model, iris), correct = if_else(pred == Species, TRUE, FALSE))\n\nplot_df %>%   \n  ggplot() +\n  geom_tile(data = kernel.points, aes(x=Sepal.Length, y=Sepal.Width, fill = pred), alpha = 0.25) +\n  geom_point(aes(x=Sepal.Length, y=Sepal.Width, colour = Species, shape = correct), size = 4) +\n  scale_shape_manual(values = c(4, 1)) +\n  scale_colour_lancet() +\n  scale_fill_lancet() +\n  theme_minimal() +\n  theme(panel.grid = element_blank(), legend.position = 'bottom', plot.title = element_text(hjust = 0.5)) +\n  labs(x = 'Sepal.Length', y = 'Sepal.Width', fill = 'Species', colour = 'Species', shape = 'Correct prediction?',\n       title = sprintf('Overall Training Accuracy = %.2f %%', 100*(sum(plot_df$correct)/nrow(plot_df))))"
+  },
+  {
     "objectID": "slides/week05_slides_part2.html#example",
     "href": "slides/week05_slides_part2.html#example",
     "title": "🗓️ Week 05:Support Vector Machines (SVM)",
     "section": "Example",
     "text": "Example\n\nA 5-fold cross-validation:\n\n\n\nSplit 1:\n\n\nTest\n\n\nTrain\n\n\nTrain\n\n\nTrain\n\n\nTrain\n\n\n\n\nSplit 2:\n\n\nTrain\n\n\nTest\n\n\nTrain\n\n\nTrain\n\n\nTrain\n\n\n\n\nSplit 3:\n\n\nTrain\n\n\nTrain\n\n\nTest\n\n\nTrain\n\n\nTrain\n\n\n\n\nSplit 4:\n\n\nTrain\n\n\nTrain\n\n\nTrain\n\n\nTest\n\n\nTrain\n\n\n\n\nSplit 5:\n\n\nTrain\n\n\nTrain\n\n\nTrain\n\n\nTrain\n\n\nTest\n\n\n\nWe experimented with k-fold CV in 🗓️ Week 04’s lecture/workshop"
+  },
+  {
+    "objectID": "slides/week05_slides_part2.html#recommendations",
+    "href": "slides/week05_slides_part2.html#recommendations",
+    "title": "🗓️ Week 05:Support Vector Machines (SVM)",
+    "section": "Recommendations",
+    "text": "Recommendations\n\nReadings - Decision Trees: (James et al. 2021, sec. 8.1) (ignore section 8.2) - SVMs: (James et al. 2021, chap. 9) - Read it all once just to retain main concepts - Focus your attention on the concepts on the margins of the book\nPractice the code that is contained in these slides! Several times! - There are many datasets in the ISLR2 package (link) - Load any dataset and explore it with these new algorithms"
   }
 ]
