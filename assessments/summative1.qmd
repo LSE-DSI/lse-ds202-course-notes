@@ -11,7 +11,7 @@ Welcome to the first Summative Problem Set of DS202 (2022/23)!
 
 1. **Deadline**: you have until **9 November 2022, 23:59 UK time** (Week 07) to complete your solutions and submit [via Moodle](https://moodle.lse.ac.uk/mod/coursework/view.php?id=1131232&forceview=1).
 2. You will be granted a maximum of 100 points for the whole assignment. You will see how much each task is right next to the tasks' names. 
-3. This assessment is worth **30%** of your final grade.
+3. This assessment is worth **20%** of your final grade.
 4. Read the instructions carefully and make sure you follow them.
 
 ::: {.callout-important}
