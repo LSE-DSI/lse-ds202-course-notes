@@ -17,3 +17,5 @@ Join the lecture 14 October 2022 2pm at NAB LG.01 (Wolfson Theatre).
 - ✅ [Take a look at this week's checklist](/weeks/week03/checklist.qmd)
 
 - 💻 [This week's lab](/weeks/week03/lab.qmd)
+
+- ✔️ [Lab Solutions](/weeks/week03/lab_solutions.qmd)

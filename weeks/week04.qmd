@@ -19,3 +19,5 @@ The structure of the lecture will also be a bit different, it will resemble a wo
 - ✅ [Take a look at this week's checklist](/weeks/week04/checklist.qmd)
 
 - 💻 [This week's lab](/weeks/week04/lab.qmd)
+
+- ✔️ [Lab Solutions](/weeks/week04/lab_solutions.qmd)

@@ -5,9 +5,14 @@ date: 23 October 2022
 date-meta: 23 October 2022
 ---
 
-::: callout-important
+::: callout-tip
 
-**New assessment:**
+**Pages recently updated:**
+
+- [✔️ W05 Lab Solutions](/weeks/week05/lab_solutions.html) is now available
+- [✅ Week 06 - Checklist](/weeks/week06/checklist.qmd): time management tips
+
+**Reminder of current assignment:**
 
 - [**✍️ Summmative Problem Set (01) | W05-W07**](/assessments/summative1.qmd)
 

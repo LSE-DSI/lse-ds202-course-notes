@@ -20,4 +20,7 @@ Starting this week, our lecture will take place in a new classroom. Join us this
 
 - 💻 [This week's lab](/weeks/week05/lab.qmd)
 
-- ✍️ [First Summative W05-W07](/assessments/summative1.qmd) 🆕
+- ✔️ [Lab Solutions](/weeks/week05/lab_solutions.qmd)
+
+- ✍️ [First Summative W05-W07](/assessments/summative1.qmd)
+
