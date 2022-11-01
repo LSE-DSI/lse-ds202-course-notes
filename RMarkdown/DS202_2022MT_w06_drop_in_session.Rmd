@@ -1,0 +1,437 @@
+---
+title: "DS202 2022MT W06 Drop In session"
+author: "Jon"
+date: "01/11/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Drop-In Session
+
+**OBJECTIVE:** Support with R programming skills
+
+DS202: [We will update this notebook together and I'll share it with everyone later.]{style="color:red"}
+
+# Factors (Categorical Variables)
+
+```{r}
+# Say we have a vector of categorical strings
+
+sample_vector <- c("blue", "green", "blue", "red")
+typeof(sample_vector)
+```
+
+```{r}
+# Factor is a bult-in R feature
+# This is best way of representing categorical variables
+factor(sample_vector)
+```
+
+```{r}
+as.integer(factor(sample_vector))
+```
+
+You can force an order:
+
+```{r}
+factor(sample_vector, levels=c("red", "green", "blue"))
+```
+
+```{r}
+as.integer(factor(sample_vector, levels=c("red", "green", "blue")))
+```
+
+### Say I want to count the number of "blues"
+
+```{r}
+categorical_vector <- factor(sample_vector, levels=c("red", "green", "blue"))
+sum(categorical_vector == "blue")
+```
+
+## Comparing vectors
+
+### Say I have two string vectors:
+
+-   They have the same length
+
+-   Elements in the same index represents the same "day"
+
+```{r}
+vector1 <- c("blue", "red", "green", "green", "blue", "red")
+vector2 <- c("red",  "red", "blue", "blue", "blue", "green")
+```
+
+### How many blues do they have in common?
+
+```{r}
+vector1 == vector2
+```
+
+```{r}
+vector1 == "blue"
+```
+
+Now, put it all together:
+
+```{r}
+output <- vector1 == "blue" & vector2 == "blue"
+output
+```
+
+**Keyword: Logical Operators**
+
+& stands for an AND operation
+
+\| stands for an OR operation
+
+! stands for a NOT operation
+
+Read more about it [here](https://r4ds.had.co.nz/transform.html?q=logical#logical-operators)
+
+```{r}
+sum(output) # Count all occurences of TRUE in the vector
+```
+
+If I wanted to do it all in a single line:
+
+```{r}
+sum(vector1 == "blue" & vector2 == "blue")
+```
+
+## Doing the same with dataframes
+
+If I have the same info but now represented as a data frame, how would I count the number of blues in common?
+
+```{r}
+# A random dataframe
+df <- data.frame(colourA=c("blue", "red", "green", "green", "blue", "red"),
+                 colourB=c("red",  "red", "blue", "blue", "blue", "green"))
+df
+
+```
+
+You can access each column by using the `$`:
+
+```{r}
+df$colourA
+```
+
+```{r}
+sum(df$colourA == "blue" & df$colourB == "blue")
+```
+
+## Now let's imagine we have two dataframes
+
+ 
+
+```{r}
+# A random dataframe
+df1 <- data.frame(observation=c(1, 2, 3, 4, 5, 6),
+                  colour=c("blue", "red", "green", "green", "blue", "red"))
+df1
+```
+
+```{r}
+# A random dataframe
+df2 <- data.frame(observation=c(1, 2, 3, 4, 5, 5,  6),
+                  colour=c("red",  "red", "blue", "blue", "red", "blue", "green"))
+df2
+```
+
+First, let's calculate whether there was at least one "blue" in each observation.
+
+```{r}
+library(tidyverse)
+
+select(df2, observation)
+```
+
+**The pipe**
+
+I could do exactly the same thing using the pipe `%>%`
+
+```{r}
+df2 %>% select(observation) # no need to pass `df2` to function select
+```
+
+```{r}
+tail(select(df2,observation),n=1)
+
+
+tail(
+  select(
+      df2, 
+      observation), 
+  n=1)
+
+
+df2 %>% select(observation) %>% tail(n=1)
+```
+
+## Summarise duplicated groupings
+
+Check the idea of `group_by` (a tidyverse feature)
+
+`summarise` and `n()` only works with groupings (`group_by`).
+
+```{r}
+# How many colours are there, per observation?
+df2 %>% group_by(observation) %>% summarise(count=n())
+```
+
+### How many observations of `df2` have at least one colour "blue"?
+
+```{r}
+# How many colours are there, per observation?
+df2 %>% group_by(observation) %>% summarise(has_blue=any(colour == "blue"))
+```
+
+### How many observations of `df1` have at least one colour "blue"?
+
+```{r}
+# How many colours are there, per observation?
+df1 %>% group_by(observation) %>% summarise(has_blue=any(colour == "blue"))
+```
+
+### How do I compare these two new dataframes?
+
+```{r}
+# Store those results into variables
+df1_summary <- 
+    df1 %>% group_by(observation) %>% summarise(has_blue=any(colour == "blue"))
+
+df2_summary <- 
+    df2 %>% group_by(observation) %>% summarise(has_blue=any(colour == "blue"))
+```
+
+Both dataframes now have the same number of rows, representing the same "observations" and both have a column called `has_blue`. I can compare both like this:
+
+```{r}
+sum(df1_summary$has_blue & df2_summary$has_blue)
+```
+
+**Keyword: Logical Operators**
+
+& stands for an AND operation
+
+\| stands for an OR operation
+
+! stands for a NOT operation
+
+Read more about it [here](https://r4ds.had.co.nz/transform.html?q=logical#logical-operators)
+
+### Another way to compare two dataframes
+
+Useful if the two dataframes are not aligned
+
+```{r}
+output <- merge(df1, df2, by=c("observation", "colour"))
+output
+```
+
+```{r}
+sum(output$colour == "blue")
+```
+
+## Remember to save your `mutate`s!
+
+```{r}
+# mutate adds a new column to a dataframe
+df2 %>% mutate(is_blue=colour == "blue")
+```
+
+Note: `mutate` will add a new column but it will NOT update the dataframe. If you want to re-use the new column, you have to save the new dataframe:
+
+```{r}
+# df2 does not have a `is_blue` column
+df2
+```
+
+If I want to updated it to the SAME dataframe, I have to reassign it (using `<-`)
+
+```{r}
+df2 <- df2 %>% mutate(is_blue=colour=="blue")
+df2
+```
+
+## General comparison of dataframes
+
+By manual inspection:
+
+```{r}
+table(df1$colour) 
+```
+
+```{r}
+table(df2$colour)
+```
+
+## ggplot2
+
+### - Colour histograms according to a category
+
+I will use `iris` as an example:
+
+```{r}
+library(datasets)
+data(iris)
+iris
+```
+
+Generate a histogram of `Petal.Length`:
+
+```{r}
+g <- (
+  ggplot(iris, aes(x=Petal.Length))
+  
+  + geom_histogram()
+  
+  # Customize
+  + theme_minimal()
+)
+
+g
+```
+
+How do I colour the histogram according to the `Species`?
+
+```{r}
+g <- (
+  ggplot(iris, aes(x=Petal.Length, fill=Species))
+  
+  + geom_histogram()
+  
+  # Customize
+  + theme_minimal()
+)
+
+g
+```
+
+Each `geom_` "listens" to a different set of **aesthetics**. (Check [Chapter 3 of R for Data Science](https://r4ds.had.co.nz/data-visualisation.html) for more info)
+
+For example, `geom_point` does not understand the `fill` :
+
+```{r}
+g <- (
+  ggplot(iris, aes(x=Petal.Length, y=Petal.Width, fill=Species))
+  
+  + geom_point()
+  
+  # Customize
+  + theme_minimal()
+)
+
+g
+```
+
+```{r}
+g <- (
+  ggplot(iris, aes(x=Petal.Length, y=Petal.Width, colour=Species))
+  
+  + geom_point()
+  
+  # Customize
+  + theme_minimal()
+)
+
+g
+```
+
+### Customizing the colours
+
+#### Manually 
+
+```{r}
+my_favourite_colours = c("#5bc0de", "#d9534f",  "#ffbf00")
+```
+
+Places to find colours: https://www.color-hex.com/color-palettes/popular.php
+
+```{r}
+g <- (
+  ggplot(iris, aes(x=Petal.Length, y=Petal.Width, colour=Species))
+  
+  + geom_point()
+
+  
+  # Customize
+  + theme_minimal()
+  
+  + scale_colour_manual(values=my_favourite_colours) # this is where you customize it
+)
+
+g
+```
+
+#### Built-in palettes
+
+You can use built-in palettes, you just need to know their names/numbers.
+
+-   Check the documentation https://ggplot2.tidyverse.org/reference/scale_brewer.html -\> for the different settings
+
+-   To understand which colour palettes are available, check: https://colorbrewer2.org/
+
+```{r}
+g <- (
+  ggplot(iris, aes(x=Petal.Length, y=Petal.Width, colour=Species))
+  
+  + geom_point()
+
+  
+  # Customize
+  + theme_minimal()
+  
+  + scale_colour_brewer(type="qual", palette=2) # Bult-in palette of colours for the aesthetic `colour`, as given by the Colour Brewer
+)
+
+g
+```
+
+```{r}
+df1$source <- "df1"
+df2$source <- "df2"
+```
+
+```{r}
+ggplot(bind_rows(df1, df2), aes(x=colour)) +
+  geom_bar() + facet_wrap(~ source)
+```
+
+## Faceting
+
+Useful when you want to plot two charts in the same image.
+
+Observation: you might need to combine (append) the two dataframes first. Use the tidyverse function `bind_rows` (same as `rbind`)
+
+```{r}
+g <- (
+  ggplot(iris, aes(x=Petal.Length, fill=Species))
+  
+  + geom_histogram()
+
+  
+  # Customize
+  + theme_bw()
+  
+  + scale_colour_manual(values=my_favourite_colours) 
+  
+  + facet_grid(Species ~ .) #This is what does it
+)
+
+g
+```
+
+## About `tidyverse`
+
+`tidyverse` is a set of R packages that have several functions and facilities for working with data. I find `tidyverse` more intuitive than base R, and there's an entire book available for free online ([R for Data Science](https://r4ds.had.co.nz/index.html)) that contains a lot of helpful tutorials about tidyverse. Let me point to a few specific chapters:
+
+-   You might need or want to transform data when working on your problem sets. Check out [Chapter 5 of R for Data Science](https://r4ds.had.co.nz/transform.html) online book.
+-   Data visualization is another helpful skill. You can learn a bit more about ggplot --- the tidyverse way of making plots --- in [Chapter 3 of R for Data Science](https://r4ds.had.co.nz/data-visualisation.html) online book.
+-   What should you be looking for when working with data? Check [Chapter 7](https://r4ds.had.co.nz/exploratory-data-analysis.html) to learn the basics of exploratory data analysis.
+-   Do you get confused about R Markdown, the idea of "knitting" a file? Then read [Chapter 27](https://r4ds.had.co.nz/r-markdown.html).
+-   (More advanced) Do you want to learn how to reshape data or deal with more complex data manipulation? Then have a look at [Chapter 12 - Tidy data](https://r4ds.had.co.nz/tidy-data.html) and [Chapter 13 - Iteration](https://r4ds.had.co.nz/iteration.html).
+-   Are you already familiar with tidyverse, but you constantly need to Google how to do things? Save these [cheatsheets](https://www.rstudio.com/resources/cheatsheets/) to your computer.
