@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
-<meta name="dcterms.date" content="06 October 2022">
+<meta name="dcterms.date" content="1 November 2022">
 
-<title>LSE DS202 2022/23 - 💻 Week 05 - Lab Roadmap (90 min)</title>
+<title>LSE DS202 2022/23 - ✔️ Week 05 - Lab Solutions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,7 +156,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">💻 Week 05 - Lab Roadmap (90 min)</h1>
+      <h1 class="quarto-secondary-nav-title">✔️ Week 05 - Lab Solutions</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -186,7 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../main/assessments.html" class="sidebar-item-text sidebar-link">✍️ Assessments (🆕)</a>
+  <a href="../../main/assessments.html" class="sidebar-item-text sidebar-link">✍️ Assessments</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -347,6 +347,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week06.html" class="sidebar-item-text sidebar-link">Week 06</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week06/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week06/drop_in_jon.html" class="sidebar-item-text sidebar-link">💻 Drop-in Session 01</a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -356,14 +376,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
 <p><img src="../../figures/logos/LSE Data Science Institute.png" class="img-fluid"></p>
 </div></div>
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#solutions-to-exercises" id="toc-solutions-to-exercises" class="nav-link active" data-scroll-target="#solutions-to-exercises">🔑 Solutions to exercises</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">💻 Week 05 - Lab Roadmap (90 min)</h1>
+<h1 class="title d-none d-lg-block">✔️ Week 05 - Lab Solutions</h1>
 <p class="subtitle lead">DS202 - Data Science for Social Scientists</p>
 </div>
 
@@ -374,14 +400,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Xiaowei Gao </p>
+             <p>Xiaowei Gao/Mustafa Can Ozkan </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">06 October 2022</p>
+      <p class="date">01 November 2022</p>
     </div>
   </div>
     
@@ -390,13 +416,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<details>
-<summary>
-Step 5: Exercise (35mins)
-</summary>
-<p><br> Since then, we have known and implemented the coding with Cross-validation and Bootstrap. In this practical case, we will use the new dataset <code>Default</code> and also <code>Weekly</code> from the <code>ISRL</code> package. <strong>Do not forget to set a random seed before beginning your analysis.</strong></p>
-<p>Some questions are listed below. You are required to try to answer these questions in pairs using R commands. We will go over the solutions once everyone has finished these questions</p>
-<p>🎯 <strong>Questions</strong></p>
+<section id="solutions-to-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="solutions-to-exercises">🔑 Solutions to exercises</h2>
 <ol type="1">
 <li><p>For the <code>Default</code> dataset, please Split the sample set into a training set and a validation set, then fit a logistic regression model that uses <code>income</code> and <code>balance</code> to predict <code>default</code>. As following,</p>
 <ol type="i">
@@ -534,9 +555,10 @@ Step 5: Exercise (35mins)
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(Weekly[<span class="st">"Direction"</span>] <span class="sc">==</span> <span class="st">"Up"</span>)</span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.5555556</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
-</details>
 
 
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
