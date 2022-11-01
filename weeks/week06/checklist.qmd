@@ -1,0 +1,50 @@
+---
+title: "✅ Week 06 - Checklist"
+date: 1 November 2022
+date-meta: 1 November 2022
+from: markdown+emoji
+---
+
+Here is a suggestion of how to program your week in relation to this course:
+
+- Revisit the code in [💻 Week 04 - Lab Roadmap](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lab.html) & [✔️ Week 04 - Lab Solutions](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lab_solutions.html) to reinforce your understanding of **logistic regression** and that of **training/test split**.
+
+    - In there, you will also find code to run an alternative classifier: **Naive Bayes**
+
+- Read the text on the [👨‍🏫 Week 04 - Lecture page](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lecture.html#how-this-is-going-to-work) to understand more about different **training/test splits** and also of **k-fold cross validation**.
+
+- The RMarkdown used in this lecture/workshop can be found on Moodle, under [📥W04 Lecture Files](https://moodle.lse.ac.uk/mod/folder/view.php?id=1129071)
+
+- Bookmark the page with [👨‍🏫 Week 05 - Lecture slides](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lecture.html) or [📥 download the PDFs](https://moodle.lse.ac.uk/mod/page/view.php?id=1129422)
+
+    - In there, you will find code to run alternative algorithms: **Decision Tree** and **Support Vector Machine** (SVM)
+
+- Try to solve the [✍️ Summmative Problem Set (01) | W05-W07](https://lse-dsi.github.io/lse-ds202-course-notes/main/assessments.html) by yourself.
+
+- Read the useful links about tidyverse (below)
+
+- Questions? Attend one of the drop-in sessions (below) or ask questions on #week06 channel on Slack
+
+|Day            | Time	            |Classroom  |Teacher                       |
+|:--------------|:-----------------:|:---------:|:-----------------------------|
+|Tue 1 Nov 2022	|10 a.m. - 12 p.m.	|FAW 3.02	|Jon (Focus on R programming)  |
+|Wed 2 Nov 2022	|10 a.m. - 12 p.m.	|FAW 3.02	|Mustafa                       |
+|Fri 4 Nov 2022	|10 a.m. - 12 p.m.	|FAW 1.02	|Yijun                         |
+
+
+## Useful Links about tidyverse
+
+`tidyverse` is a set of R packages that have several functions and facilities for working with data. I find `tidyverse` more intuitive than base R, and there's an entire book available for free online ([R for Data Science](https://r4ds.had.co.nz/index.html)) that contains a lot of helpful tutorials about tidyverse. Let me point to a few specific chapters:
+
+- You might need or want to **transform data** when working on your problem sets. Check out [Chapter 5 of R for Data Science](https://r4ds.had.co.nz/transform.html) online book.
+
+- **Data visualization** is another helpful skill. You can learn a bit more about ggplot, the tidyverse way of making plots, in [Chapter 3 of R for Data Science](https://r4ds.had.co.nz/data-visualisation.html) online book.
+
+- What should you be looking for when working with data? Check [Chapter 7](https://r4ds.had.co.nz/exploratory-data-analysis.html) to learn the basics of **exploratory data analysis**.
+
+- Do you get confused about **R Markdown**, the idea of "knitting" a file? Then read [Chapter 27](https://r4ds.had.co.nz/r-markdown.html).
+
+- (More advanced) Do you want to learn how to reshape data or deal with more complex data manipulation? Then have a look at [Chapter 12 - Tidy data](https://r4ds.had.co.nz/tidy-data.html) and [Chapter 13 - Iteration](https://r4ds.had.co.nz/iteration.html).
+
+- Are you already familiar with tidyverse, but you constantly need to Google how to do things? Save [these cheatsheets](https://www.rstudio.com/resources/cheatsheets/) to your computer.
+

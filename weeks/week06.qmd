@@ -2,12 +2,20 @@
 title: "🗓️ Week 06 - Reading Week"
 ---
 
-![](/figures/lse-student-blogs-overstudy.png)
+We know many of you will be using the Reading Week to work on your summative assessments (deadline: 9 Nov).
 
-Check out this [blog post](https://blogs.lse.ac.uk/studentsatlse/2022/02/14/resisting-the-urge-to-overstudy-as-an-lse-student/) from Students@LSE blog.
+To support you with your problem sets, we have three drop-in sessions this week:
 
-I would definitely recommend you take a break during Week 06. After all, rest and [sleep can help you consolidate memories](https://healthysleep.med.harvard.edu/healthy/matters/benefits-of-sleep/learning-memory) and improve your learning process.
+|Day            | Time	            |Classroom  |Teacher                       |
+|:--------------|:-----------------:|:---------:|:-----------------------------|
+|Tue 1 Nov 2022	|10 a.m. - 12 p.m.	|FAW 3.02	|Jon (Focus on R programming)  |
+|Wed 2 Nov 2022	|10 a.m. - 12 p.m.	|FAW 3.02	|Mustafa                       |
+|Fri 4 Nov 2022	|10 a.m. - 12 p.m.	|FAW 1.02	|Yijun                         |
 
-However, if you feel like revisiting concepts you have learned so far, check out the Recommended Learning sections present in each week's sections here on our Moodle Page.
+You don't need to book, just show up. But if you want to have the session on your calendar, you can book your visit via Student Hub.
 
-We will return with our lectures and classes on Week 07.
+## Links
+
+- ✅ [Take a look at this week's checklist](/weeks/week06/checklist.qmd)
+
+- 💻 [RNotebook created during Drop-In Session (Jon)](/weeks/week06/drop_in_jon.qmd)

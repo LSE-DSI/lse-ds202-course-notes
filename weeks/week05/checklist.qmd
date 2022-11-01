@@ -6,7 +6,7 @@ from: markdown+emoji
 ---
 
 ::: {.callout-important collapse="false"}
-Keep in mind that after the lecture at the end of this week, on Friday 28 October 2022, we will release the **Summative Problem Set 01**. This is the first summative assessment of this course and it is worth **30% of your final grade**. You will have until **9 November 2022** — Wednesday of Week 07 — to submit your solutions via Moodle.
+Keep in mind that after the lecture at the end of this week, on Friday 28 October 2022, we will release the **Summative Problem Set 01**. This is the first summative assessment of this course and it is worth **20% of your final grade**. You will have until **9 November 2022** — Wednesday of Week 07 — to submit your solutions via Moodle.
 
 :::
 

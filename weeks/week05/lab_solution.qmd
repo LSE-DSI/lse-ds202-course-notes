@@ -1,18 +1,12 @@
 ---
-title: "💻 Week 05 - Lab Roadmap (90 min)"
-date: 06 October 2022
-date-meta: 06 October 2022
+title: "✔️ Week 05 - Lab Solutions"
+date: 1 November 2022
+date-meta: 1 November 2022
 from: markdown+emoji
-author: Xiaowei Gao
+author: Xiaowei Gao/Mustafa Can Ozkan
 ---
 
-<details><summary> Step 5: Exercise (35mins)</summary>
-<br>
-Since then, we have known and implemented the coding with Cross-validation and Bootstrap.  In this practical case, we will use the new dataset `Default`  and also `Weekly` from the `ISRL` package. **Do not forget to set a random seed before beginning your analysis.**
-
-Some questions are listed below. You are required to try to answer these questions in pairs using R commands. We will go over the solutions once everyone has finished these questions
-
-🎯 **Questions** 
+## 🔑 Solutions to exercises
 
 1. For the `Default` dataset, please Split the sample set into a training set and a validation set, then fit a logistic regression model that uses `income` and `balance` to predict `default`. As following,
 
