@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="DS202 2022MT Teaching Group">
+<meta name="dcterms.date" content="2022-11-02">
+
+<title>DS202 2022 MT - Formative Problem Set 01</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="DS202 2022 MT - Formative Assignment W03-W04 solutions_files/libs/clipboard/clipboard.min.js"></script>
+<script src="DS202 2022 MT - Formative Assignment W03-W04 solutions_files/libs/quarto-html/quarto.js"></script>
+<script src="DS202 2022 MT - Formative Assignment W03-W04 solutions_files/libs/quarto-html/popper.min.js"></script>
+<script src="DS202 2022 MT - Formative Assignment W03-W04 solutions_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="DS202 2022 MT - Formative Assignment W03-W04 solutions_files/libs/quarto-html/anchor.min.js"></script>
+<link href="DS202 2022 MT - Formative Assignment W03-W04 solutions_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="DS202 2022 MT - Formative Assignment W03-W04 solutions_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="DS202 2022 MT - Formative Assignment W03-W04 solutions_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="DS202 2022 MT - Formative Assignment W03-W04 solutions_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="DS202 2022 MT - Formative Assignment W03-W04 solutions_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">DS202 2022 MT - Formative Problem Set 01</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>DS202 2022MT Teaching Group </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 2, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<p>This is a formative assessment.Formative assessment does not count towards your overall degree classification but is designed to prepare you for the summative (assessed) work that you will complete later in the course.</p>
+<p>Although this formative is not graded, we will give you feedback using a “mock mark” (0-100 scale) just so you know how you will be assessed in the next summative assessment, which will be released at the end of Week 05.</p>
+<p><strong>Deadline</strong>: 25 October 2022</p>
+<p><strong>Submit via Moodle</strong>: <a href="https://moodle.lse.ac.uk/mod/coursework/view.php?id=1127006">DS202 2022 MT - Formative Problem Set 01 link</a></p>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">📒 Instructions</h2>
+<p><strong>Read carefully</strong></p>
+<p><strong>1.</strong> Open this <code>.Rmd</code> file using RStudio. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p><strong>2.</strong> Work on your solutions and fill the allocated spaces with your answers. Each question has one or more empty spaces marked with the text <code>Your answer goes here</code>.</p>
+<p>Text answers are identified as:</p>
+<blockquote class="blockquote">
+<p>Your text goes here</p>
+</blockquote>
+<p>R code answers are identified as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Equation answers are identified as:</p>
+<p><span class="math display">\[Your~equation~goes~here\]</span></p>
+<p>You can add more code R code, plots, text or equations to complement your responses if you want to. For extra tips on formatting equations see <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p><strong>3.</strong> After you answer all the questions, you should press the Knit button, and knit the file to HTML. If you cannot find this button in RStudio, check out <a href="https://www.youtube.com/watch?v=8eBBPVMwTLo">this tutorial</a>.</p>
+<p><strong>4.</strong> An HTML file will appear in your files. This is what you must submit to Moodle.</p>
+<p><strong>5.</strong> Open <a href="https://moodle.lse.ac.uk/mod/coursework/view.php?id=1127006">Moodle</a> and submit your HTML file.</p>
+<p>⚠️ <em>If your code has any errors, you might not be able to knit the document. You must fix those errors first.</em></p>
+<p>⚠️ <em>If you do not know how to answer a solution, leave it empty. Do not add incomplete R scripts as it will lead to knitting errors.</em></p>
+</section>
+<section id="identification" class="level2">
+<h2 class="anchored" data-anchor-id="identification">🆔 Identification</h2>
+<p>THIS IS AN ANONYMOUS SUBMISSION. DO NOT INCLUDE YOUR NAME NOR OTHER PERSONAL INFORMATION ANYWHERE IN THIS FILE OTHER THAN YOUR CANDIDATE NUMBER.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete the line below by filling it out with your candidate number. </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If you do not add your candidate number, Knit will throw an error.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_number &lt;- </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">⚙️ Setup</h2>
+<p>Import required libraries.No need to change if you are not planning to use other packages.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR2)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># If you use other packages, add them here</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggcorrplot)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels) <span class="do">## to use the tidy() function to extract data from lm models</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">🎯 Questions</h2>
+<p>Use the <code>Carseats</code> data set in the <code>ISLR2</code> package to answer the following questions:</p>
+<section id="q1.-variables" class="level3">
+<h3 class="anchored" data-anchor-id="q1.-variables">Q1. Variables</h3>
+<p><strong>List the names of the variables in this dataset and whether they are quantitative or qualitative.</strong> (Worth 1/100 mock marks)</p>
+<blockquote class="blockquote">
+<p><strong>Quantitative</strong>:</p>
+<ul>
+<li><p><code>Sales</code></p></li>
+<li><p><code>CompPrice</code></p></li>
+<li><p><code>Income</code></p></li>
+<li><p><code>Advertising</code></p></li>
+<li><p><code>Population</code></p></li>
+<li><p><code>Price</code></p></li>
+<li><p><code>Age</code></p></li>
+<li><p><code>Education</code></p></li>
+</ul>
+<p><strong>Qualitative</strong>:</p>
+<ul>
+<li><p><code>ShelveLoc</code></p></li>
+<li><p><code>Urban</code></p></li>
+<li><p><code>US</code></p></li>
+</ul>
+</blockquote>
+</section>
+<section id="q2.-dimension" class="level3">
+<h3 class="anchored" data-anchor-id="q2.-dimension">Q2. Dimension</h3>
+<p><strong>Use R to list the number of rows in the dataset.</strong> (Worth 1/100 mock marks)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(Carseats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 400</code></pre>
+</div>
+</div>
+</section>
+<section id="q3.-visual" class="level3">
+<h3 class="anchored" data-anchor-id="q3.-visual">Q3. Visual</h3>
+<p><strong>Selecting only the quantitative variables, plot the correlation between variables</strong> (Worth 5/100 mock marks)</p>
+<p><em>Tip: If you want to use other R packages, add them to the list of libraries at the top.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Carseats_quant <span class="ot">&lt;-</span> Carseats <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(ShelveLoc, Urban, US))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>corr_Carseats <span class="ot">&lt;-</span> <span class="fu">cor</span>(Carseats_quant)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcorrplot</span>(corr_Carseats, <span class="at">lab=</span><span class="cn">TRUE</span>, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">lab_size=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DS202-2022-MT---Formative-Assignment-W03-W04-solutions_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="q4.-initial-variable-identification" class="level3">
+<h3 class="anchored" data-anchor-id="q4.-initial-variable-identification">Q4. Initial Variable Identification</h3>
+<p><strong>Based on just an initial inspection of the data, which variables would you select to train an algorithm to predict <code>Sales</code>? Why?</strong> (Worth 7/100 mock marks)</p>
+<blockquote class="blockquote">
+<p><code>Price</code> is clearly the best first candidate. It is the variable most highly correlated with the dependent variable (<code>Sales</code>) in absolute terms. The correlation between <code>Price</code> and <code>Sales</code> is <code>-0.44</code>. As price increases, sales decreases in an approximately linear fashion.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> (</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(Carseats, <span class="fu">aes</span>(<span class="at">x=</span>Price, <span class="at">y=</span>Sales))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>, <span class="at">alpha=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DS202-2022-MT---Formative-Assignment-W03-W04-solutions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>If we want to add more variables, the next candidates would be <code>Age</code> and <code>Advertising</code>, as these variables also exhibit a correlation with <code>Sales</code> that is not too close from zero, in absolute terms. Another interesting point about these two variables is the fact that they are not correlated to each other; that is, correlation <code>Age</code> vs <code>Advertising</code> and <code>Age</code> vs <code>Price</code> and <code>Price</code> vs <code>Advertising</code> is close to zero.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> (</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(Carseats, <span class="fu">aes</span>(<span class="at">x=</span>Age, <span class="at">y=</span>Sales))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>, <span class="at">alpha=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DS202-2022-MT---Formative-Assignment-W03-W04-solutions_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> (</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(Carseats, <span class="fu">aes</span>(<span class="at">x=</span>Advertising, <span class="at">y=</span>Sales))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>, <span class="at">alpha=</span><span class="fl">0.5</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DS202-2022-MT---Formative-Assignment-W03-W04-solutions_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="q5.-simple-linear-regression" class="level3">
+<h3 class="anchored" data-anchor-id="q5.-simple-linear-regression">Q5. Simple Linear Regression</h3>
+<p><strong>Chose ONE SINGLE variable – any variable – and fit a linear regression to predict <code>Sales</code>. Show the summary of this linear model.</strong> (Worth 3/100 mock marks)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>simple_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price, <span class="at">data=</span>Carseats)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(simple_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Sales ~ Price, data = Carseats)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.5224 -1.8442 -0.1459  1.6503  7.5108 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 13.641915   0.632812  21.558   &lt;2e-16 ***
+Price       -0.053073   0.005354  -9.912   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.532 on 398 degrees of freedom
+Multiple R-squared:  0.198, Adjusted R-squared:  0.196 
+F-statistic: 98.25 on 1 and 398 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="q6.-simple-linear-regression---interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="q6.-simple-linear-regression---interpretation">Q6. Simple Linear Regression - Interpretation</h3>
+<p><strong>Provide an interpretation of each coefficient in the model, stating their values, whether they are significant and what they represent. Be careful—some of the variables in the model are qualitative!</strong> (Worth 10/100 mock marks)</p>
+<blockquote class="blockquote">
+<p>When <code>Price = 0</code>, the model predicts <code>Sales = 13.64</code>.<br>
+<br>
+For every $100 increase in <code>Price</code>, <code>Sales</code> decrease by approximately <code>5.3</code> units.<br>
+<br>
+Both the intercept and the regression coefficient for Price are statistically significant, their p-values are close to zero.</p>
+</blockquote>
+</section>
+<section id="q7.-simple-linear-regression---formula" class="level3">
+<h3 class="anchored" data-anchor-id="q7.-simple-linear-regression---formula">Q7. Simple Linear Regression - Formula</h3>
+<p><strong>Write the model in equation form, carefully handling the qualitative variables properly.</strong> (Worth 5/100 mock marks)</p>
+<p><span class="math display">\[Sales = - 0.053073 \times Price + 13.641915 + \epsilon\]</span></p>
+</section>
+<section id="q8.-multiple-linear-regression" class="level3">
+<h3 class="anchored" data-anchor-id="q8.-multiple-linear-regression">Q8. Multiple Linear Regression</h3>
+<p><strong>Chose ONLY THREE variables and fit a linear regression to predict <code>Sales</code>. Show the summary of this linear model.</strong> (Worth 3/100 mock marks)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>multiple_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">+</span> Age <span class="sc">+</span> Advertising, <span class="at">data=</span>Carseats)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(multiple_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Sales ~ Price + Age + Advertising, data = Carseats)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.6247 -1.5288  0.0148  1.5220  6.2925 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 16.003472   0.718754  22.266  &lt; 2e-16 ***
+Price       -0.058028   0.004827 -12.022  &lt; 2e-16 ***
+Age         -0.048846   0.007047  -6.931 1.70e-11 ***
+Advertising  0.123106   0.017095   7.201 3.02e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.269 on 396 degrees of freedom
+Multiple R-squared:  0.3595,    Adjusted R-squared:  0.3547 
+F-statistic:  74.1 on 3 and 396 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="q9.-multiple-linear-regression---interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="q9.-multiple-linear-regression---interpretation">Q9. Multiple Linear Regression - Interpretation</h3>
+<p><strong>Provide an interpretation of each coefficient in the model, stating their values, whether they are significant and what they represent. Be careful—some of the variables in the model are qualitative!</strong> (Worth 10/100 mock marks)</p>
+<blockquote class="blockquote">
+<p>This multiple regression model is statistically significant (p-value associated with the F-statistic is very small). In addition, all regression coefficients were also found to be statistically significant (p-value close to zero).</p>
+<p>In the hypothetical scenario in which <span class="math inline">\(Price = 0\)</span> and <span class="math inline">\(Age = 0\)</span> and <span class="math inline">\(Advertising = 0\)</span> , the multiple regression model predicts <span class="math inline">\(Sales \approx 16\)</span> units.</p>
+<ul>
+<li><p>For every fixed combination of <code>Age</code> and <code>Advertising</code>, an increase in <span class="math inline">\(100\)</span> dollars in <code>Price</code> is associated with a <code>Sales</code> decrease by approximately <code>5.8</code> units.</p></li>
+<li><p>If <code>Price</code> and <code>Advertising</code> are fixed, the <code>Age</code> of a car impacts negatively the number of sales. The regression coefficient is <span class="math inline">\(-0.048846\)</span> , which means we would expect <code>Sales</code> to decrease by <span class="math inline">\(1\)</span> unit for every <span class="math inline">\(\approx 20\)</span> years of age of the Car (since <span class="math inline">\(\frac{1}{0.048846} \approx 20\)</span> ) .</p></li>
+<li><p><code>Advertising</code>, on the other hand, is associated with an increase in the number of <code>Sales</code>. If <code>Price</code> and <code>Age</code> are fixed, the model predicts that 12 more items of <code>Sales</code> for each increase in <span class="math inline">\(100\)</span> <code>Advertising</code> units (dollars?)</p></li>
+</ul>
+</blockquote>
+</section>
+<section id="q10.-multiple-linear-regression---formula" class="level3">
+<h3 class="anchored" data-anchor-id="q10.-multiple-linear-regression---formula">Q10. Multiple Linear Regression - Formula</h3>
+<p><strong>Write the model in equation form, carefully handling the qualitative variables properly.</strong> (Worth 5/100 mock marks)</p>
+<p><span class="math display">\[Sales = 16.003472 - 0.058028 \times Price - 0.048846 \times Age + 0.123106 \times Advertising + \epsilon\]</span></p>
+</section>
+<section id="q11.-model-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="q11.-model-comparison">Q11. Model comparison</h3>
+<p><strong>Which of the two models you created, in questions Q5 and Q8 provide a better fit?</strong> (Worth 10/100 mock marks)</p>
+<blockquote class="blockquote">
+<p>The multiple model in Q8 fitted the <code>Sales</code> data better.<br>
+<br>
+The adjusted R-squared is higher in the Q8 versus the Q5 model, that is, adding <code>Age</code> and <code>Advertising</code> explains more of the variance in <code>Sales</code> than the model with just <code>Price</code>.</p>
+<p>We also see a reduction in the <strong>R</strong>esidual <strong>S</strong>tandard <strong>E</strong>rror.</p>
+<p>This is also somewhat apparent from the diagnostic plot of <a href="https://lse-dsi.github.io/lse-ds202-course-notes/blog/posts/outliers.html">residual vs fitted</a> (shown below). The standardized residuals look more concentrated around zero, on the multiple model.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fitted_vals=</span><span class="fu">predict</span>(simple_model),</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">residuals=</span><span class="fu">rstudent</span>(simple_model))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> (</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x=</span>fitted_vals, <span class="at">y=</span>residuals))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add dots</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>, <span class="at">size=</span><span class="fl">3.5</span>) </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Residuals"</span>) </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>))</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Residuals vs Fitted (Simple Model)"</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add lines</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">0</span>, <span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">'yellow'</span>) </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">3</span>, <span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">'red'</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Customising the plot +</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DS202-2022-MT---Formative-Assignment-W03-W04-solutions_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fitted_vals=</span><span class="fu">predict</span>(multiple_model),</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">residuals=</span><span class="fu">rstudent</span>(multiple_model))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> (</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x=</span>fitted_vals, <span class="at">y=</span>residuals))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add dots</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>, <span class="at">size=</span><span class="fl">3.5</span>) </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Residuals"</span>) </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>))</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Residuals vs Fitted (Multiple Model)"</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add lines</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">0</span>, <span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">'yellow'</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">3</span>, <span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">'red'</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Customising the plot +</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DS202-2022-MT---Formative-Assignment-W03-W04-solutions_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="q12.-collinearity" class="level3">
+<h3 class="anchored" data-anchor-id="q12.-collinearity">Q12. Collinearity</h3>
+<p><strong>What is the Variance Inflation Factor (VIF) of each variable?</strong> (Worth 3/100 mock marks)</p>
+<p>Considering only the model built on Q8:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(multiple_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Price         Age Advertising 
+   1.012538    1.010550    1.001987 </code></pre>
+</div>
+</div>
+<p>Alternatively, if you interpreted the question to refer to all variables, the following would also be accepted:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(<span class="fu">lm</span>(Sales <span class="sc">~</span> ., <span class="at">data=</span>Carseats))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                GVIF Df GVIF^(1/(2*Df))
+CompPrice   1.554618  1        1.246843
+Income      1.024731  1        1.012290
+Advertising 2.103136  1        1.450219
+Population  1.145534  1        1.070296
+Price       1.537068  1        1.239785
+ShelveLoc   1.033891  2        1.008367
+Age         1.021051  1        1.010471
+Education   1.026342  1        1.013086
+Urban       1.022705  1        1.011289
+US          1.980720  1        1.407380</code></pre>
+</div>
+</div>
+</section>
+<section id="q13.-collinearity-cont." class="level3">
+<h3 class="anchored" data-anchor-id="q13.-collinearity-cont.">Q13. Collinearity (cont.)</h3>
+<p><strong>Based on your responses to Q3 and the output of Q12, would you consider ignoring any variables when building a linear model? Why/Why not?</strong> (Worth 7/100 mock marks)</p>
+<blockquote class="blockquote">
+<p>In terms of <code>vif</code> – which measures the linear dependency of each predictor to ALL the other predictors – there are no “problematic variables”. If there were, we would find variables with <code>vif</code> above 5 or 10.</p>
+<p>In terms of <strong>pairwise collinearity</strong> (plot in Q3), we also don’t find any problematic colinearities.</p>
+</blockquote>
+</section>
+<section id="q14.-modelling" class="level3">
+<h3 class="anchored" data-anchor-id="q14.-modelling">Q14. Modelling</h3>
+<p><strong>Considering ALL possible combinations of TWO variables in this dataset, find the one linear model that has the smallest Residual Standard Error. Explain how you reached that conclusion, show us the summary of that model and write the model in equation form.</strong> (Worth 15/100 mock marks)</p>
+<blockquote class="blockquote">
+<p><em><strong>💡Tip:</strong> Here I show an “elegant” way of solving this question by selecting variables by their names and by using dataframes, the pipe and other R functions. There are simpler ways to solve this question, the simplest perhaps would be to solve it by iterating over the column <strong>indices</strong> instead of column names. If you did it like that, your answer will be accepted, if done correctly.</em></p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select all columns in the dataset, except Sales and get a list of their names</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>all_predictors <span class="ot">&lt;-</span> Carseats <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>Sales) <span class="sc">%&gt;%</span> <span class="fu">names</span>()</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>all_predictors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "CompPrice"   "Income"      "Advertising" "Population"  "Price"      
+ [6] "ShelveLoc"   "Age"         "Education"   "Urban"       "US"         </code></pre>
+</div>
+</div>
+<p>Use the function combn to produce a list of all possible combination of pairs of predictors. In addition to that, let’s reshape the data and transform it to a nicely formatted dataframe with two columns. Since these columns do not have names, the function <code>as.data.frame()</code> automatically name them <code>V1</code> and <code>V2</code>.</p>
+<p>💡 Tip: type <code>?combn</code> and hit ENTER in the R console to read more about the <code>combn</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>all_combn_predictors <span class="ot">&lt;-</span> <span class="fu">combn</span>(all_predictors, <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>all_combn_predictors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            V1          V2
+1    CompPrice      Income
+2    CompPrice Advertising
+3    CompPrice  Population
+4    CompPrice       Price
+5    CompPrice   ShelveLoc
+6    CompPrice         Age
+7    CompPrice   Education
+8    CompPrice       Urban
+9    CompPrice          US
+10      Income Advertising
+11      Income  Population
+12      Income       Price
+13      Income   ShelveLoc
+14      Income         Age
+15      Income   Education
+16      Income       Urban
+17      Income          US
+18 Advertising  Population
+19 Advertising       Price
+20 Advertising   ShelveLoc
+21 Advertising         Age
+22 Advertising   Education
+23 Advertising       Urban
+24 Advertising          US
+25  Population       Price
+26  Population   ShelveLoc
+27  Population         Age
+28  Population   Education
+29  Population       Urban
+30  Population          US
+31       Price   ShelveLoc
+32       Price         Age
+33       Price   Education
+34       Price       Urban
+35       Price          US
+36   ShelveLoc         Age
+37   ShelveLoc   Education
+38   ShelveLoc       Urban
+39   ShelveLoc          US
+40         Age   Education
+41         Age       Urban
+42         Age          US
+43   Education       Urban
+44   Education          US
+45       Urban          US</code></pre>
+</div>
+</div>
+<p>So, there are a total of 45 combinations of pairs of features. Now, we need to fit linear regression models for all combinations and compute the Residual Standard Error of each.</p>
+<p>How do we get the Residual Standard Error of a model? The R documentation says I can do it with the <code>sigma()</code> function. Read more about it <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/sigma.html">here</a> (or just type <code>?sigma</code> in the R console and hit ENTER):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sigma</span>(simple_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.532326</code></pre>
+</div>
+</div>
+<p>How do we create these 45 models ? We can <a href="https://r4ds.had.co.nz/iteration.html">iterate</a> over each line of the <code>all_combn_predictors</code> using a <code>for loop</code>, grab the names of the variables and create a linear model with them.</p>
+<p>Linear models in R are typically defined as a <a href="https://www.datacamp.com/tutorial/r-formula-tutorial#what-is-a-formula-in-r?">formula</a>, but how do I build a formula without typing the name of the variables manually? We can do it by using the <code>as.formula</code> as illustrated in <a href="https://stackoverflow.com/a/4951536/843365">this Stackoverflow</a> response.</p>
+<p>First, let me show you how the as.formula combined with <code>paste</code> works. Look at all the formulas produced in this loop:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(all_combn_predictors)){</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>   <span class="co"># get the i-th row of the dataframe</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  selected_vars <span class="ot">&lt;-</span> all_combn_predictors[i,]</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># build the formula</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  model_formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">"Sales ~"</span>, <span class="fu">paste</span>(selected_vars, <span class="at">collapse=</span><span class="st">"+"</span>)))</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(model_formula)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sales ~ CompPrice + Income
+Sales ~ CompPrice + Advertising
+Sales ~ CompPrice + Population
+Sales ~ CompPrice + Price
+Sales ~ CompPrice + ShelveLoc
+Sales ~ CompPrice + Age
+Sales ~ CompPrice + Education
+Sales ~ CompPrice + Urban
+Sales ~ CompPrice + US
+Sales ~ Income + Advertising
+Sales ~ Income + Population
+Sales ~ Income + Price
+Sales ~ Income + ShelveLoc
+Sales ~ Income + Age
+Sales ~ Income + Education
+Sales ~ Income + Urban
+Sales ~ Income + US
+Sales ~ Advertising + Population
+Sales ~ Advertising + Price
+Sales ~ Advertising + ShelveLoc
+Sales ~ Advertising + Age
+Sales ~ Advertising + Education
+Sales ~ Advertising + Urban
+Sales ~ Advertising + US
+Sales ~ Population + Price
+Sales ~ Population + ShelveLoc
+Sales ~ Population + Age
+Sales ~ Population + Education
+Sales ~ Population + Urban
+Sales ~ Population + US
+Sales ~ Price + ShelveLoc
+Sales ~ Price + Age
+Sales ~ Price + Education
+Sales ~ Price + Urban
+Sales ~ Price + US
+Sales ~ ShelveLoc + Age
+Sales ~ ShelveLoc + Education
+Sales ~ ShelveLoc + Urban
+Sales ~ ShelveLoc + US
+Sales ~ Age + Education
+Sales ~ Age + Urban
+Sales ~ Age + US
+Sales ~ Education + Urban
+Sales ~ Education + US
+Sales ~ Urban + US</code></pre>
+</div>
+</div>
+<p>Now, let’s actually create the linear models and identify the one with the smallest RSE:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>best_RSE        <span class="ot">&lt;-</span> <span class="cn">Inf</span>   <span class="co"># we don't know yet </span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>best_predictors <span class="ot">&lt;-</span> <span class="fu">c</span>()   <span class="co"># start empty, fill later</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>best_model      <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># we don't know yet</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(all_combn_predictors)){</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>   <span class="co"># get the i-th row of the dataframe</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  selected_vars <span class="ot">&lt;-</span> all_combn_predictors[i,]</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># build the formula</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  model_formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">"Sales ~"</span>, <span class="fu">paste</span>(selected_vars, <span class="at">collapse=</span><span class="st">"+"</span>)))</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  fitted_model      <span class="ot">&lt;-</span> <span class="fu">lm</span>(model_formula, <span class="at">data=</span>Carseats)</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  current_model_RSE <span class="ot">&lt;-</span> <span class="fu">sigma</span>(fitted_model)</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(current_model_RSE <span class="sc">&lt;</span> best_RSE){</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    best_RSE <span class="ot">&lt;-</span> current_model_RSE</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    best_predictors <span class="ot">&lt;-</span> selected_vars</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>    best_model <span class="ot">&lt;-</span> fitted_model</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Found a better model!</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"  Vars: ["</span>, <span class="fu">paste</span>(selected_vars, <span class="at">collapse=</span><span class="st">","</span>), <span class="st">"]</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"  RSE:"</span>, best_RSE, <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>))</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Found a better model!
+  Vars: [CompPrice,Income]
+  RSE:2.7899309103294
+
+Found a better model!
+  Vars: [CompPrice,Advertising]
+  RSE:2.71911905676241
+
+Found a better model!
+  Vars: [CompPrice,Price]
+  RSE:2.26880676843526
+
+Found a better model!
+  Vars: [Advertising,ShelveLoc]
+  RSE:2.24418017219941
+
+Found a better model!
+  Vars: [Price,ShelveLoc]
+  RSE:1.91725333683979</code></pre>
+</div>
+</div>
+<p>As we can see from above, the best model – if we consider only the minimum RSE – is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(best_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = model_formula, data = Carseats)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.8229 -1.3930 -0.0179  1.3868  5.0780 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)     12.001802   0.503447  23.839  &lt; 2e-16 ***
+Price           -0.056698   0.004059 -13.967  &lt; 2e-16 ***
+ShelveLocGood    4.895848   0.285921  17.123  &lt; 2e-16 ***
+ShelveLocMedium  1.862022   0.234748   7.932 2.23e-14 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.917 on 396 degrees of freedom
+Multiple R-squared:  0.5426,    Adjusted R-squared:  0.5391 
+F-statistic: 156.6 on 3 and 396 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p><span class="math display">\[Sales = 12.001802 - 0.056698\times Price + 4.895848 \times ShelveLoc[Good] + 1.862022 \times ShelveLoc[Medium] + \epsilon\]</span></p>
+<p>Teeechnically, the model above has more than just two variables, it uses three variables (two combinations of <code>ShelveLoc</code>. This is because R converts categorical variables to independent binary variables automatically. Since we didn’t distinguish this case in the question, this is an acceptable response.</p>
+</section>
+<section id="q15.-interaction-effects" class="level3">
+<h3 class="anchored" data-anchor-id="q15.-interaction-effects">Q15. Interaction Effects</h3>
+<p><strong>Use the <code>*</code> and <code>:</code> symbols to fit linear regression models with interaction effects. Could you find any model with interactions that fit better than the models you built in Questions Q5 &amp; Q8 &amp; Q14? Feel free to use as many interactions and variables as you prefer. Justify your answer. Explain how you reached that conclusion, show us the summary of that model and write the model in equation form.</strong> (Worth 15/100 mock marks)</p>
+<blockquote class="blockquote">
+<p><em>💡 Here, you were not expected to test ALL combinations. You could solve this by trial and error, combining multiple combinations of variables until you reached a model with better RSE, R-squared or other metric.</em></p>
+<p>For didactic purposes, I will re-use the solution from Q14 and test all possible linear models with only <strong>two variables</strong>, this time considering <code>*</code> and <code>:</code> operator instead of the <code>+</code> operator.</p>
+<p>I will look for the model that optimizes for RSE.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the tidyverse function crossing</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>new_combn_predictors <span class="ot">&lt;-</span> <span class="fu">crossing</span>(all_combn_predictors, <span class="fu">tibble</span>(<span class="at">interaction_type=</span><span class="fu">c</span>(<span class="st">"*"</span>, <span class="st">":"</span>)))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>new_combn_predictors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 90 × 3
+   V1          V2         interaction_type
+   &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;           
+ 1 Advertising Age        *               
+ 2 Advertising Age        :               
+ 3 Advertising Education  *               
+ 4 Advertising Education  :               
+ 5 Advertising Population *               
+ 6 Advertising Population :               
+ 7 Advertising Price      *               
+ 8 Advertising Price      :               
+ 9 Advertising ShelveLoc  *               
+10 Advertising ShelveLoc  :               
+# … with 80 more rows</code></pre>
+</div>
+</div>
+<p>This time there are 90 possible combinations:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(new_combn_predictors)){</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>   <span class="co"># get the i-th row of the dataframe</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  selected_vars <span class="ot">&lt;-</span> new_combn_predictors[i,<span class="fu">c</span>(<span class="st">"V1"</span>, <span class="st">"V2"</span>)]</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># build the formula</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Notice that this time I will use whatever is in the column `interaction_type`</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  model_formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">"Sales ~"</span>, <span class="fu">paste</span>(selected_vars, <span class="at">collapse=</span>new_combn_predictors[i, ]<span class="sc">$</span>interaction_type)))</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(model_formula)</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sales ~ Advertising * Age
+Sales ~ Advertising:Age
+Sales ~ Advertising * Education
+Sales ~ Advertising:Education
+Sales ~ Advertising * Population
+Sales ~ Advertising:Population
+Sales ~ Advertising * Price
+Sales ~ Advertising:Price
+Sales ~ Advertising * ShelveLoc
+Sales ~ Advertising:ShelveLoc
+Sales ~ Advertising * Urban
+Sales ~ Advertising:Urban
+Sales ~ Advertising * US
+Sales ~ Advertising:US
+Sales ~ Age * Education
+Sales ~ Age:Education
+Sales ~ Age * Urban
+Sales ~ Age:Urban
+Sales ~ Age * US
+Sales ~ Age:US
+Sales ~ CompPrice * Advertising
+Sales ~ CompPrice:Advertising
+Sales ~ CompPrice * Age
+Sales ~ CompPrice:Age
+Sales ~ CompPrice * Education
+Sales ~ CompPrice:Education
+Sales ~ CompPrice * Income
+Sales ~ CompPrice:Income
+Sales ~ CompPrice * Population
+Sales ~ CompPrice:Population
+Sales ~ CompPrice * Price
+Sales ~ CompPrice:Price
+Sales ~ CompPrice * ShelveLoc
+Sales ~ CompPrice:ShelveLoc
+Sales ~ CompPrice * Urban
+Sales ~ CompPrice:Urban
+Sales ~ CompPrice * US
+Sales ~ CompPrice:US
+Sales ~ Education * Urban
+Sales ~ Education:Urban
+Sales ~ Education * US
+Sales ~ Education:US
+Sales ~ Income * Advertising
+Sales ~ Income:Advertising
+Sales ~ Income * Age
+Sales ~ Income:Age
+Sales ~ Income * Education
+Sales ~ Income:Education
+Sales ~ Income * Population
+Sales ~ Income:Population
+Sales ~ Income * Price
+Sales ~ Income:Price
+Sales ~ Income * ShelveLoc
+Sales ~ Income:ShelveLoc
+Sales ~ Income * Urban
+Sales ~ Income:Urban
+Sales ~ Income * US
+Sales ~ Income:US
+Sales ~ Population * Age
+Sales ~ Population:Age
+Sales ~ Population * Education
+Sales ~ Population:Education
+Sales ~ Population * Price
+Sales ~ Population:Price
+Sales ~ Population * ShelveLoc
+Sales ~ Population:ShelveLoc
+Sales ~ Population * Urban
+Sales ~ Population:Urban
+Sales ~ Population * US
+Sales ~ Population:US
+Sales ~ Price * Age
+Sales ~ Price:Age
+Sales ~ Price * Education
+Sales ~ Price:Education
+Sales ~ Price * ShelveLoc
+Sales ~ Price:ShelveLoc
+Sales ~ Price * Urban
+Sales ~ Price:Urban
+Sales ~ Price * US
+Sales ~ Price:US
+Sales ~ ShelveLoc * Age
+Sales ~ ShelveLoc:Age
+Sales ~ ShelveLoc * Education
+Sales ~ ShelveLoc:Education
+Sales ~ ShelveLoc * Urban
+Sales ~ ShelveLoc:Urban
+Sales ~ ShelveLoc * US
+Sales ~ ShelveLoc:US
+Sales ~ Urban * US
+Sales ~ Urban:US</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>best_RSE        <span class="ot">&lt;-</span> <span class="cn">Inf</span>   <span class="co"># we don't know yet </span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>best_predictors <span class="ot">&lt;-</span> <span class="fu">c</span>()   <span class="co"># start empty, fill later</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>best_model      <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># we don't know yet</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(new_combn_predictors)){</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>   <span class="co"># get the i-th row of the dataframe</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  selected_vars <span class="ot">&lt;-</span> new_combn_predictors[i,<span class="fu">c</span>(<span class="st">"V1"</span>, <span class="st">"V2"</span>)]</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># build the formula</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Notice that this time I will use whatever is in the column `interaction_type`</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  model_formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">"Sales ~"</span>, <span class="fu">paste</span>(selected_vars, <span class="at">collapse=</span>new_combn_predictors[i, ]<span class="sc">$</span>interaction_type)))</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  fitted_model      <span class="ot">&lt;-</span> <span class="fu">lm</span>(model_formula, <span class="at">data=</span>Carseats)</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>  current_model_RSE <span class="ot">&lt;-</span> <span class="fu">sigma</span>(fitted_model)</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(current_model_RSE <span class="sc">&lt;</span> best_RSE){</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>    best_RSE <span class="ot">&lt;-</span> current_model_RSE</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>    best_predictors <span class="ot">&lt;-</span> selected_vars</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>    best_model <span class="ot">&lt;-</span> fitted_model</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Found a better model!</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste0</span>(model_formula, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"  RSE:"</span>, best_RSE, <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>))</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Found a better model!
+~
+ Sales
+ Advertising * Age
+  RSE:2.65041673414083
+
+Found a better model!
+~
+ Sales
+ Advertising * Price
+  RSE:2.40120656790555
+
+Found a better model!
+~
+ Sales
+ Advertising * ShelveLoc
+  RSE:2.24885583915041
+
+Found a better model!
+~
+ Sales
+ Price * ShelveLoc
+  RSE:1.91821983511205</code></pre>
+</div>
+</div>
+<p>We didn’t find a <strong>better</strong> model, but we found a model that leads to almost the same RSE as the one in Q14:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(best_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = model_formula, data = Carseats)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.9037 -1.3461 -0.0595  1.3679  4.9037 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           11.832984   0.965788  12.252  &lt; 2e-16 ***
+Price                 -0.055220   0.008276  -6.672 8.57e-11 ***
+ShelveLocGood          6.135880   1.392844   4.405 1.36e-05 ***
+ShelveLocMedium        1.630481   1.171616   1.392    0.165    
+Price:ShelveLocGood   -0.010564   0.011742  -0.900    0.369    
+Price:ShelveLocMedium  0.001984   0.010007   0.198    0.843    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.918 on 394 degrees of freedom
+Multiple R-squared:  0.5444,    Adjusted R-squared:  0.5386 
+F-statistic: 94.17 on 5 and 394 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p><span class="math display">\[
+\begin{eqnarray}
+Sales &amp;=&amp; 11.832984 - 0.055220 \times Price \\
+&amp;&amp;+ 6.135880 \times ShelveLoc[Good] \\ &amp;&amp;+1.630481 \times ShelveLoc[Medium] \\
+&amp;&amp;-0.010564 \times (Price \times ShelveLoc[Good] ) \\
+&amp;&amp;+0.001984 \times (Price \times ShelveLoc[Medium] )
+\end{eqnarray}
+\]</span></p>
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1" role="doc-endnote"><p>You can read more about RMarkdown files <a href="https://rmarkdown.rstudio.com/">here</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

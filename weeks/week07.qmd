@@ -1,0 +1,28 @@
+---
+title: "🗓️ Week 07 - Recap of tidyverse + Clustering Algorithms"
+date: 04 November 2022
+date-meta: 04 November 2022
+---
+
+Welcome to Week 07 of DS202!
+
+In the labs, you will practice training/test splits, cross-validation and you will learn about the bootstrap. Check Chapter 5 of our textbook to reinforce these concepts during the week.
+
+At the end of the week, we will explore two new algorithms: Support Vector Machine and Decision Trees. 
+
+Starting this week, our lecture will take place in a new classroom. Join us on Friday, 11 November 2022 from 2 p.m. to 4 p.m. at **NAB.LG.08**.
+
+## Links
+
+- ✍️ [First Summative W05-W07](/assessments/summative1.qmd), worth 20%, deadline: 9 November 2022.
+
+- 💻 [This week's lab](/weeks/week07/lab.qmd)
+
+- 👨‍🏫 [Lecture](/weeks/week07/lecture.qmd)
+
+- ✅ [Take a look at this week's checklist](/weeks/week07/checklist.qmd)
+
+<!-- - ✔️ [Lab Solutions](/weeks/week05/lab_solutions.qmd) -->
+
+
+

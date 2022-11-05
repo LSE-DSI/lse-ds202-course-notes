@@ -343,7 +343,7 @@ g
 
 ### Customizing the colours
 
-#### Manually 
+#### Manually
 
 ```{r}
 my_favourite_colours = c("#5bc0de", "#d9534f",  "#ffbf00")

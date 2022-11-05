@@ -1,0 +1,158 @@
+---
+title: "💻 Week 07 - Lab Roadmap (90 min)"
+date: 5 November 2022
+date-meta: 5 November 2022
+from: markdown+emoji
+author: Dr. Stuart Bramwell/Dr. Jon Cardoso-Silva
+---
+
+
+R packages you will need:
+
+```r
+library('e1071')
+library('ggsci')
+library('ISLR2')
+library('palmerpenguins')
+library('parttree')
+library('rpart')
+library('rpart.plot')
+library('tidyverse')
+```
+
+You might have already installed some of these packages. Some were used in [🗓️ Week 05 slides](/weeks/week05/lecture.qmd), others in previous labs. If you see an error like "package not found", then install the package using `install.packages("<package name>")`.
+
+:::{.callout-important collapse="false"}
+## Installation instructions for `parttree`
+
+The package parttree cannot be installed by install.packages. Instead, we have to follow the instructions set by the [developers of the package](https://github.com/grantmcdermott/parttree):
+
+```r
+install.packages("remotes")
+remotes::install_github("grantmcdermott/parttree", force = TRUE)
+```
+:::
+
+<details><summary> Step 1: A `tidyverse` recap (25 mins) </summary>
+
+## Step 1: A `tidyverse` recap
+
+### Step 1.1: The tibble (5 min)
+
+So far, we have been working with data frames. We will introduce you to a different kind of data frame called a tibble. Tibbles are like data frames, only they have a more descriptive print function, and you can perform more advanced tasks like looping over lists (without needing to specify a for loop). 
+
+Let's start by converting our now familiar `Boston` data to a tibble using `as_tibble`:
+
+```r
+boston <- as_tibble(Boston)
+boston
+```
+
+Instead of printing a lot of rows, we only get to see the first ten rows. 
+
+We can also see the dimensions of the data `506 x 13` and the class of each variable. 
+
+So with one command, we can get a lot more **useful** information on our data without the need for multiple commands.
+
+### Step 1.2: Basic `dplyr` verbs (10 minutes)
+
+In previous labs, we have been using base R to subset data based on the rows and columns, to create new variables, and to create summary statistics.  However, there is a more verbal way of performing these tasks using the `tidyverse`. We will introduce you to several key verbs, namely `filter`, `select`, `mutate` and `summarise`.
+
+**`Auto` cylinders**
+
+Suppose we wanted to select only the rows of the `Auto` data for cars with 4 cylinders. We can achieve this using the following base R command:
+
+```r
+Auto[Auto$cylinders == 4, ]
+```
+
+Now here is the `tidyverse` solution using `filter`.
+
+```r
+
+filter(Auto, cylinders == 4)
+
+```
+
+**`Boston` columns**
+
+Next, let's only include `lstat` and `medv` from `Boston`:
+
+```r
+
+Boston[, c('medv','lstat')]
+
+```
+
+Now here is the `tidyverse` solution using `select`:
+
+```r
+
+select(Boston, medv, lstat)
+
+```
+
+**`Carseats` median sales**
+
+Now that we can subset variables, let's create some new ones. Let's create a dummy variable `SalesGTMedian` for each car seat in `Carseats`:
+
+```r
+
+Carseats$SalesGTMedian <- if_else(Carseats$Sales > median(Carseats$Sales), TRUE, FALSE)
+
+```
+
+Now here is the `tidyverse` solution using `mutate`:
+
+```r
+
+mutate(Carseats, SalesGTMedian = if_else(Sales > median(Sales), TRUE, FALSE))
+
+```
+
+**Missing data in the `Hitters` dataset**
+
+Finally, suppose we wanted to find the average `Salary` in `Hitters`. We specify `na.rm = TRUE` to get R to ignore all the missing values.
+
+```r
+
+mean(Hitters$Salary, na.rm = TRUE)
+
+```
+
+Now here is the `tidyverse` solution using `summarise`.
+
+```r
+
+summarise(Hitters, mean_salary = mean(Salary, na.rm = TRUE))
+
+```
+
+**Categorical variables in `Default` dataset**
+
+Some of our variables will be categories, so let's find out the distribution of defaults in `Default`:
+
+```r
+
+table(Default$default)
+
+```
+
+Now here is the `tidyverse` solution using `count`:
+
+```r
+count(Default, default)
+```
+
+💡 **REFLECTION TIME**
+
+Let's pause for a minute to see the advantages of these commands:
+
+1. the commands themselves give a better indication of what it is we are trying to do. This is highly advantageous when it comes to communicating our code with others. 
+
+2. when working with variables in data frames, we do not need to use `$`. Instead, we can just reference the variable on its own, provided we pass the command the data frame. 
+
+3. **every time we use these <mark>verbs</mark>, a new data frame is created** - meaning we can use the output to create ggplots!
+
+
+</details>

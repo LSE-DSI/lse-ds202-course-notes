@@ -1,0 +1,292 @@
+---
+title: "Week 5 - Non-Linear Algorithms"
+author: "Stuart Bramwell"
+format: html
+editor: visual
+---
+
+```{r}
+
+library('e1071')
+library('ggsci')
+library('ISLR2')
+library('palmerpenguins')
+library('parttree')
+library('rpart')
+library('rpart.plot')
+library('tidyverse')
+
+```
+
+## Step 1.1: The tibble (5 minutes)
+
+So far, we have been working with data frames. We will introduce you to a new kind of data frame called a tibble. Tibbles are like data frames, only they have a more descriptive print function, and you can perform more advanced tasks like looping over lists (without needing to specify a for loop). For now, let's convert `Boston` to a tibble using `as_tibble`.
+
+```{r}
+
+boston <- as_tibble(Boston)
+
+boston
+
+```
+
+Instead of printing the a lot of rows, we get the first ten rows. We can also see the dimensions of the data `506 x 13` and the class of each variable. So with one command, we can get a lot of information on our data without the need for multiple commands.
+
+## Step 1.2: Basic `dplyr` verbs (10 minutes)
+
+We have learned how to subset data based on rows and columns, create new variables, and create summary statistics using base R. However, there is a more verbal way of performing these tasks using the `tidyverse`. We will introduce you to several key verbs, namely `filter`, `select`, `mutate` and `summarise`.
+
+Suppose we wanted to select only the rows of `Auto` for cars with 4 cylinders. We can achieve this using the following command.
+
+```{r}
+
+Auto[Auto$cylinders == 4, ]
+
+```
+
+Now here is the `tidyverse` solution using `filter`.
+
+```{r}
+
+filter(Auto, cylinders == 4)
+
+```
+
+Next, let's only include `lstat` and `medv` from `Boston`.
+
+```{r}
+
+Boston[, c('medv','lstat')]
+
+```
+
+Now here is the `tidyverse` solution using `select`.
+
+```{r}
+
+select(Boston, medv, lstat)
+
+```
+
+Now we can subset variables, let's create some new ones. Let's create a dummy variable `SalesGTMedian` for each car seat in `Carseats`.
+
+```{r}
+
+Carseats$SalesGTMedian <- if_else(Carseats$Sales > median(Carseats$Sales), TRUE, FALSE)
+
+```
+
+Now here is the `tidyverse` solution using `mutate`.
+
+```{r}
+
+mutate(Carseats, SalesGTMedian = if_else(Sales > median(Sales), TRUE, FALSE))
+
+```
+
+Finally, suppose we wanted to find the average `Salary` in `Hitters`. We specify `na.rm = TRUE` to get R to ignore all the missing values.
+
+```{r}
+
+mean(Hitters$Salary, na.rm = TRUE)
+
+```
+
+Now here is the `tidyverse` solution using `summarise`.
+
+```{r}
+
+summarise(Hitters, mean_salary = mean(Salary, na.rm = TRUE))
+
+```
+
+Some of our variables will be categories, so let's find out the distribution of defaults in `Default`.
+
+```{r}
+
+table(Default$default)
+
+```
+
+Now here is the `tidyverse` solution using `count`.
+
+```{r}
+
+count(Default, default)
+
+```
+
+Let's pause for a minute to see the advantages of these commands. First, the commands themselves give a better indication of what it is we are trying to do. This is highly advantageous when it comes to communicating our code with others. Second, when working with variables in data frames, we do not need to use `$`. Instead, we can just reference the variable on its own, provided we pass the command the data frame. Third, every time we use these verbs, a new data frame is created - meaning we can use the output to create ggplots!
+
+## Step 1.3 The pipe (10 minutes)
+
+You may have seen `%>%` in some of our code. This is known as the pipe operator, and it enables us to chain together multiple verbs into one fluid sequence of steps. To get this quickly you can use ctrl+shift+m (for Windows users) or command+shift+m (for Mac users).
+
+Suppose we want to find out what proportion of American cars had `mpg` above the global average. We can find this out by using the following sequence of commands.
+
+```{r}
+
+Auto %>% 
+  as_tibble() %>% 
+  select(mpg, origin) %>% 
+  mutate(mpg_gt_gavg = if_else(mpg > mean(mpg), TRUE, FALSE)) %>% 
+  filter(origin == 1) %>% 
+  summarise(prop_mpg_gt_gavg = mean(mpg_gt_gavg))
+
+```
+
+Let's walk through what we just did. First, we converted `Auto` to a tibble. Second, we selected only the variables of interest `mpg` and `origin`. (If you are working with larger data sets, removing superfluous columns can be an advantage.) Third, we create a new variable `mpg_gt_gaverage` which finds out whether an automobile has an MPG greater than the global average. Fourth, we filter all rows to only include American cars. Finally, we calculate the summary statistic, and find that only 27 percent of American-made cars had MPGs greater than the global average.
+
+Let's look at how to recreate this using base R.
+
+```{r}
+
+Auto_cleaned <- Auto[,c('mpg','origin')]
+
+Auto_cleaned$mpg_gt_gavg <- if_else(Auto_cleaned$mpg > mean(Auto_cleaned$mpg), TRUE, FALSE) 
+
+Auto_cleaned <- Auto_cleaned[Auto_cleaned$origin == 1, ]
+
+data.frame(prop_mpg_gt_gavg = mean(Auto_cleaned$mpg_gt_gavg))
+
+```
+
+While this code is technically correct, notice a few things. We need to keep updating the same object to save our results. Our code is disjointed and difficult to understand. The final product is also less satisfactory: we needed to convert it from a vector to a data frame, which displays no information on the class of `prop_mpg_gt_gavg`.
+
+## Step 2.1: Applying `dplyr` verbs to Support Vector Machines (15 minutes)
+
+Now let's use some of these skills to classify Chinstrap penguins. We will use our verbs to create a new data set. First, we will filter for any observations with missing data. We can pipe `na.omit` into our sequence of commands to achieve this. Next, we will create a binary variable that identifies Chinstrap penguins. Finally, we will only include `chinstrap` (our outcome of interest) with bill length and bill depth.
+
+```{r}
+
+penguins_cleaned <-
+  penguins %>% 
+  na.omit() %>% 
+  mutate(chinstrap = if_else(species == 'Chinstrap', TRUE, FALSE)) %>% 
+  select(chinstrap, bill_length_mm, bill_depth_mm)
+
+```
+
+Let's create a ggplot!
+
+```{r}
+
+penguins_cleaned %>% 
+  ggplot(aes(bill_length_mm, bill_depth_mm, colour = chinstrap)) +
+  geom_point()
+
+```
+
+We can see that Chinstrap penguins tend to have above average bill length and depth whereas the other two species of penguins tend to either have shallow yet long or deep yet short bills.
+
+Note that this data is not linearly separable. A non-linear algorithm will thus be highly useful in this context. Let's estimate a Support Vector Machine, using a radial or Gaussian kernel. The `svm` command is largely similar to other commands such as `lm` and `glm` in that the first parameter is a formula and the second is the data set. There are a few other options, but we will focus on specifying a radial kernel using `kernel = 'radial'`. We also want to specify that we are performing a classification task, so we use the option `type = 'C-classification'`.
+
+```{r}
+
+svm.model <- svm(chinstrap ~ ., 
+                 data = penguins_cleaned,
+                 type = 'C-classification',
+                 kernel = 'linear')
+
+```
+
+Let's create a visualization that shows how well we can classify chinstrap penguins using SVM. We first need to create a simulated data set that takes all combinations of `bill_length_mm` and `bill_depth_mm`. We achieve this using `crossing` which is another `tidyverse` function. We feed crossing a sequence of numbers that roughly correspond to the minimal and maximal values of both variables that are incremented by 0.1. We then create a new variable `class_pred` which uses the SVM model object to predict whether a given row will be a Chinstrap penguin or not. Note that we say `newdata = .` to indicate that we simply want to use the data set created with `crossing` as our new data.
+
+```{r}
+
+sim.data <- 
+  crossing(bill_length_mm = seq(31,60,0.1),
+           bill_depth_mm = seq(13,22,0.1)) %>% 
+  mutate(class_pred = predict(svm.model, newdata = .))
+
+```
+
+Now let's create our ggplot! We use `geom_tile` to show the area the SVM model identifies as Chinstrap penguins. We then use `geom_point` to overlay the actual data. Red dots in blue areas and vice versa indicate cases where the SVM model makes errors.
+
+```{r}
+
+ggplot() +
+  geom_tile(data = sim.data, aes(bill_length_mm, bill_depth_mm, fill = class_pred), alpha = 0.25) +
+  geom_point(data = penguins_cleaned, 
+             aes(bill_length_mm, bill_depth_mm, colour = chinstrap)) +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        legend.position = 'bottom') +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  labs(x = 'Bill length (mm)', y = 'Bill depth (mm)', 
+       fill = 'Is actually Chinstrap?', colour = 'Is predicted Chinstrap?')
+
+```
+
+## Step 3.1 Tree-based models
+
+Lets use a tree based model to classify Chinstrap penguins. The `r[art` command is largely similar to other commands such as `lm` and `glm` in that the first parameter is a formula and the second is the data set. We add to this `method = class` to tell the algorithm that we are performing a classification task. We can plot the output of this model using a decision tree.
+
+```{r}
+
+tree.model <- rpart(chinstrap ~ ., data = penguins_cleaned, method = 'class')
+
+rpart.plot(tree.model)
+
+```
+
+As a final step, we will use the `parttree` package to show the splits the decision tree made in a different way.
+
+```{r}
+
+ggplot() +
+  geom_point(data = penguins_cleaned, 
+             aes(bill_length_mm, bill_depth_mm, colour = chinstrap)) +
+  geom_parttree(data = tree.model, aes(fill = as.factor(chinstrap == 2)), alpha = 0.25) +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        legend.position = 'bottom') +
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  labs(x = 'Bill length (mm)', y = 'Bill depth (mm)',
+       colour = 'Is actually chinstrap?', fill = 'Is predicted chinstrap?')
+
+```
+
+## Step 4.1: Exercises (remaining time)
+
+1.  
+
+```{=html}
+<!-- -->
+```
+a.  Replace `filter(origin == 1)` with `group_by(origin)` in Step 1.3. How have the results changed?
+b.  Using the `Bikeshare` data set
+c.  Subset the data to only include `mnth`, `holiday`, and `bikers` columns.
+
+```{=html}
+<!-- -->
+```
+ii. Calculate the average daily number of bikers in March.
+iii. Do people bike more during holiday seasons?
+
+```{=html}
+<!-- -->
+```
+2.  
+
+```{=html}
+<!-- -->
+```
+a.  Replace the radial kernel in step 2.1 with a linear kernel.
+b.  Replace the radial kernel in step 2.1 with a third order polynomial kernel.
+c.  Replace the radial kernel in step 2.1 with a sigmoid kernel.
+d.  Using the graphing technique, do you find that any of these kernels produce a better fit?
+
+```{=html}
+<!-- -->
+```
+3.  
+
+```{=html}
+<!-- -->
+```
+a.  Create a new penguins data set that predicts Chinstrap penguins. This will be similar to the one created in step 2.1, only this time, we will include the `chinstrap` outcome with all features apart from `island`, `year` and (obviously) `species`.
+b.  Estimate a decision tree model using this new data set and view the output as a decision tree.
+c.  Repeat step 3.b. only this time add a cost complexity parameter. i. Add `control = list(cp = 0.1)` to the specification. Does this increase or reduce the complexity of the tree? ii. Add `control = list(cp = 0.001)` to the specification. Does this increase or reduce the complexity of the tree?

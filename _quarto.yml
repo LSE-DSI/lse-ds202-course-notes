@@ -15,6 +15,7 @@ project:
     - "weeks/week04/*.qmd"
     - "weeks/week05/*.qmd"
     - "weeks/week06/*.qmd"
+    - "weeks/week07/*.qmd"
     - "slides/*.qmd"
 
 bibliography: references/references.bib
@@ -98,6 +99,8 @@ website:
                text: ✅ Checklist
              - href: weeks/week05/lab.qmd
                text: 💻 Lab roadmap
+             - href: weeks/week05/lab_solutions.qmd
+               text: ✔️ Lab solutions
          - href: weeks/week06.qmd
            text: Week 06
            contents:
@@ -105,6 +108,15 @@ website:
                text: ✅ Checklist
              - href: weeks/week06/drop_in_jon.qmd
                text: 💻 Drop-in Session 01
+         - href: weeks/week07.qmd
+           text: Week 07
+           contents:
+             - href: weeks/week07/lecture.qmd
+               text: 👨‍🏫 Lecture
+             - href: weeks/week07/checklist.qmd
+               text: ✅ Checklist
+             - href: weeks/week07/lab.qmd
+               text: 💻 Lab roadmap
 
                  
   navbar:
