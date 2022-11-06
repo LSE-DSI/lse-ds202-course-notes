@@ -6,11 +6,11 @@ date-meta: 04 November 2022
 
 Welcome to Week 07 of DS202!
 
-In the labs, you will practice training/test splits, cross-validation and you will learn about the bootstrap. Check Chapter 5 of our textbook to reinforce these concepts during the week.
+This week's lab draws on [🗓️ Week 05 lecture](/weeks/week05/lecture.qmd) content and on feedback given by the course representatives about the main struggles you are facing with R (tidyverse).
 
-At the end of the week, we will explore two new algorithms: Support Vector Machine and Decision Trees. 
+In the lecture, we will recap some tidyverse concepts -- things we wish we had taught you in the first weeks of this course! -- and then, on the second part, we will introduce the idea of unsupervised learning (clustering).
 
-Starting this week, our lecture will take place in a new classroom. Join us on Friday, 11 November 2022 from 2 p.m. to 4 p.m. at **NAB.LG.08**.
+Join us on Friday, 11 November 2022 from 2 p.m. to 4 p.m. at NAB.LG.08.
 
 ## Links
 
