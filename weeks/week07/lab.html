@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
+<meta name="dcterms.date" content="6 November 2022">
+
+<title>LSE DS202 2022/23 - 💻 Week 07 - Lab Roadmap (90 min)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../weeks/week07/checklist.html" rel="prev">
+<link href="../..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../css/custom_style.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">LSE DS202 2022/23</span>
+    </a>
+  </div>
+          <div class="quarto-toggle-container ms-auto">
+              <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+          </div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">💻 Week 07 - Lab Roadmap (90 min)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">🏠 Home</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../main/syllabus.html" class="sidebar-item-text sidebar-link">📓 Syllabus</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../main/communication.html" class="sidebar-item-text sidebar-link">📟 Communication</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../main/assessments.html" class="sidebar-item-text sidebar-link">✍️ Assessments</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../main/courserep.html" class="sidebar-item-text sidebar-link">🗳️ Course Rep</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../blog/main.html" class="sidebar-item-text sidebar-link">📚 Blog</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">🗓️ Weeks</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week01.html" class="sidebar-item-text sidebar-link">Week 01</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week01/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week01/prep.html" class="sidebar-item-text sidebar-link">📒 Prepare for next week’s lab</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week01/appendix.html" class="sidebar-item-text sidebar-link">🔖 Appendix</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week02.html" class="sidebar-item-text sidebar-link">Week 02</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week02/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week02/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week02/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week02/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week03.html" class="sidebar-item-text sidebar-link">Week 03</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week03/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week03/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week03/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week03/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week04.html" class="sidebar-item-text sidebar-link">Week 04</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week04/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week04/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week04/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week04/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week05.html" class="sidebar-item-text sidebar-link">Week 05</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week05/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week05/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week05/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week05/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week06.html" class="sidebar-item-text sidebar-link">Week 06</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week06/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week06/drop_in_jon.html" class="sidebar-item-text sidebar-link">💻 Drop-in Session 01</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week07.html" class="sidebar-item-text sidebar-link">Week 07</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week07/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week07/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week07/lab.html" class="sidebar-item-text sidebar-link active">💻 Lab roadmap</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="../../figures/logos/LSE Data Science Institute.png" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#step-1-a-tidyverse-recap-40-mins" id="toc-step-1-a-tidyverse-recap-40-mins" class="nav-link active" data-scroll-target="#step-1-a-tidyverse-recap-40-mins">Step 1: A <code>tidyverse</code> recap (40 mins)</a>
+  <ul class="collapse">
+  <li><a href="#step-1.1-the-tibble-5-min" id="toc-step-1.1-the-tibble-5-min" class="nav-link" data-scroll-target="#step-1.1-the-tibble-5-min">Step 1.1: The tibble (5 min)</a></li>
+  <li><a href="#step-1.2-basic-dplyr-verbs-10-minutes" id="toc-step-1.2-basic-dplyr-verbs-10-minutes" class="nav-link" data-scroll-target="#step-1.2-basic-dplyr-verbs-10-minutes">Step 1.2: Basic <code>dplyr</code> verbs (10 minutes)</a></li>
+  <li><a href="#step-1.3-the-pipe-10-minutes" id="toc-step-1.3-the-pipe-10-minutes" class="nav-link" data-scroll-target="#step-1.3-the-pipe-10-minutes">Step 1.3 The pipe (10 minutes)</a></li>
+  <li><a href="#step-1.4-practice-15-min" id="toc-step-1.4-practice-15-min" class="nav-link" data-scroll-target="#step-1.4-practice-15-min">Step 1.4 PRACTICE! (15 min)</a></li>
+  </ul></li>
+  <li><a href="#step-2-decision-tree-model-50-mins" id="toc-step-2-decision-tree-model-50-mins" class="nav-link" data-scroll-target="#step-2-decision-tree-model-50-mins">Step 2: Decision Tree model (50 mins)</a>
+  <ul class="collapse">
+  <li><a href="#step-2.1-train-and-visualise-a-decision-tree-10-mins" id="toc-step-2.1-train-and-visualise-a-decision-tree-10-mins" class="nav-link" data-scroll-target="#step-2.1-train-and-visualise-a-decision-tree-10-mins">Step 2.1: Train and visualise a Decision Tree (10 mins)</a></li>
+  <li><a href="#step-2.2-goodness-of-fit-of-the-decision-tree-10-mins" id="toc-step-2.2-goodness-of-fit-of-the-decision-tree-10-mins" class="nav-link" data-scroll-target="#step-2.2-goodness-of-fit-of-the-decision-tree-10-mins">Step 2.2: Goodness-of-Fit of the Decision Tree (10 mins)</a></li>
+  <li><a href="#step-2.3-control-the-parameters-15-min" id="toc-step-2.3-control-the-parameters-15-min" class="nav-link" data-scroll-target="#step-2.3-control-the-parameters-15-min">Step 2.3 Control the parameters! (15 min)</a></li>
+  <li><a href="#step-2.4-practice-15-min" id="toc-step-2.4-practice-15-min" class="nav-link" data-scroll-target="#step-2.4-practice-15-min">Step 2.4 PRACTICE! (15 min)</a></li>
+  </ul></li>
+  <li><a href="#take-home-exercises" id="toc-take-home-exercises" class="nav-link" data-scroll-target="#take-home-exercises">🏠 Take-home exercises</a>
+  <ul class="collapse">
+  <li><a href="#q1-selecting-columns" id="toc-q1-selecting-columns" class="nav-link" data-scroll-target="#q1-selecting-columns">Q1: Selecting columns</a></li>
+  <li><a href="#q2-a-new-tidyverse-verb" id="toc-q2-a-new-tidyverse-verb" class="nav-link" data-scroll-target="#q2-a-new-tidyverse-verb">Q2: A new tidyverse verb</a></li>
+  <li><a href="#q3-exploratory-data-analysis-part-i" id="toc-q3-exploratory-data-analysis-part-i" class="nav-link" data-scroll-target="#q3-exploratory-data-analysis-part-i">Q3: Exploratory Data Analysis (Part I)</a></li>
+  <li><a href="#q4-exploratory-data-analysis-part-ii0" id="toc-q4-exploratory-data-analysis-part-ii0" class="nav-link" data-scroll-target="#q4-exploratory-data-analysis-part-ii0">Q4: Exploratory Data Analysis (Part II0</a></li>
+  <li><a href="#q5-back-to-penguins" id="toc-q5-back-to-penguins" class="nav-link" data-scroll-target="#q5-back-to-penguins">Q5: Back to penguins…</a></li>
+  <li><a href="#q6.-predict-penguin-species" id="toc-q6.-predict-penguin-species" class="nav-link" data-scroll-target="#q6.-predict-penguin-species">Q6. Predict Penguin species</a></li>
+  <li><a href="#q7.-control-parameters" id="toc-q7.-control-parameters" class="nav-link" data-scroll-target="#q7.-control-parameters">Q7. Control parameters</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">💻 Week 07 - Lab Roadmap (90 min)</h1>
+<p class="subtitle lead">DS202 - Data Science for Social Scientists</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Stuart Bramwell/Dr.&nbsp;Jon Cardoso-Silva </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">06 November 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<p>This lab session draws on <a href="../../weeks/week05/lecture.html">🗓️ Week 05 lecture</a> content and on feedback given by the course representatives about the main struggles you are facing with R (tidyverse).</p>
+<p>If you are already very familiar with tidyverse, you can skip to Step 2.</p>
+<p><strong>R packages you will need:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'e1071'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'ggsci'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'ISLR2'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'palmerpenguins'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'parttree'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'rpart'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'rpart.plot'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'tidyverse'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You might have already installed some of these packages. Some were used in <a href="../../weeks/week05/lecture.html">🗓️ Week 05 slides</a>, others in previous labs. If you see an error like “package not found”, then install the package using <code>install.packages("&lt;package name&gt;")</code>.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Installation instructions for <code>parttree</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The package parttree cannot be installed by install.packages. Instead, we have to follow the instructions set by the <a href="https://github.com/grantmcdermott/parttree">developers of the package</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"grantmcdermott/parttree"</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<section id="step-1-a-tidyverse-recap-40-mins" class="level1">
+<h1>Step 1: A <code>tidyverse</code> recap (40 mins)</h1>
+<p><em>(the lab we wish we had run in the first weeks of this course!)</em></p>
+<section id="step-1.1-the-tibble-5-min" class="level2">
+<h2 class="anchored" data-anchor-id="step-1.1-the-tibble-5-min">Step 1.1: The tibble (5 min)</h2>
+<p>So far, we have been working with data frames. We will introduce you to a different kind of data frame called a tibble. Tibbles are like data frames, only they have a more descriptive print function, and you can perform more advanced tasks like looping over lists (without needing to specify a for loop).</p>
+<p>Let’s start by converting our now familiar <code>Boston</code> data to a tibble using <code>as_tibble</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>boston <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(Boston)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>boston</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Instead of printing a lot of rows, we only get to see the first ten rows.</p>
+<p>We can also see the dimensions of the data <code>506 x 13</code> and the class of each variable.</p>
+<p>So with one command, we can get a lot more <strong>useful</strong> information on our data without the need for multiple commands.</p>
+</section>
+<section id="step-1.2-basic-dplyr-verbs-10-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="step-1.2-basic-dplyr-verbs-10-minutes">Step 1.2: Basic <code>dplyr</code> verbs (10 minutes)</h2>
+<p>In previous labs, we have been using base R to subset data based on the rows and columns, to create new variables, and to create summary statistics. However, there is a more verbal way of performing these tasks using the <code>tidyverse</code>. We will introduce you to several key verbs, namely <code>filter</code>, <code>select</code>, <code>mutate</code> and <code>summarise</code>.</p>
+<p><strong><code>Auto</code> cylinders</strong></p>
+<p>Suppose we wanted to select only the rows of the <code>Auto</code> data for cars with 4 cylinders. We can achieve this using the following base R command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Auto[Auto<span class="sc">$</span>cylinders <span class="sc">==</span> <span class="dv">4</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now here is the <code>tidyverse</code> solution using <code>filter</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(Auto, cylinders <span class="sc">==</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong><code>Boston</code> columns</strong></p>
+<p>Next, let’s only include <code>lstat</code> and <code>medv</code> from <code>Boston</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Boston[, <span class="fu">c</span>(<span class="st">'medv'</span>,<span class="st">'lstat'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now here is the <code>tidyverse</code> solution using <code>select</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(Boston, medv, lstat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong><code>Carseats</code> median sales</strong></p>
+<p>Now that we can subset variables, let’s create some new ones. Let’s create a dummy variable <code>SalesGTMedian</code> for each car seat in <code>Carseats</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Carseats<span class="sc">$</span>SalesGTMedian <span class="ot">&lt;-</span> <span class="fu">if_else</span>(Carseats<span class="sc">$</span>Sales <span class="sc">&gt;</span> <span class="fu">median</span>(Carseats<span class="sc">$</span>Sales), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now here is the <code>tidyverse</code> solution using <code>mutate</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(Carseats, <span class="at">SalesGTMedian =</span> <span class="fu">if_else</span>(Sales <span class="sc">&gt;</span> <span class="fu">median</span>(Sales), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Missing data in the <code>Hitters</code> dataset</strong></p>
+<p>Finally, suppose we wanted to find the average <code>Salary</code> in <code>Hitters</code> (a basketball data set). We specify <code>na.rm = TRUE</code> to get R to ignore all the missing values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Hitters<span class="sc">$</span>Salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now here is the <code>tidyverse</code> solution using <code>summarise</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(Hitters, <span class="at">mean_salary =</span> <span class="fu">mean</span>(Salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Categorical variables in <code>Default</code> dataset</strong></p>
+<p>Some of our variables will be categories, so let’s find out the distribution of defaults in <code>Default</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Default<span class="sc">$</span>default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now here is the <code>tidyverse</code> solution using <code>count</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(Default, default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>💡 <strong>REFLECTION TIME</strong></p>
+<p>Let’s pause for a minute to see the advantages of these commands:</p>
+<ol type="1">
+<li><p>the commands themselves give a better indication of what it is we are trying to do. This is highly advantageous when it comes to communicating our code with others.</p></li>
+<li><p>when working with variables in data frames, we do not need to use <code>$</code>. Instead, we can just reference the variable on its own, provided we pass the command the data frame.</p></li>
+<li><p><strong>every time we use these <mark>verbs</mark>, a new data frame is created</strong> - meaning we can use the output to create ggplots!</p></li>
+</ol>
+</section>
+<section id="step-1.3-the-pipe-10-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="step-1.3-the-pipe-10-minutes">Step 1.3 The pipe (10 minutes)</h2>
+<p>You may have seen <code>%&gt;%</code> in some of our code. This is known as the <mark>pipe</mark> operator, and it enables us to chain together multiple verbs into one fluid sequence of steps. To get this quickly you can use <code>ctrl+shift+m</code> (for Windows users) or <code>command+shift+m</code> (for Mac users).</p>
+<p>Suppose we want to find out what proportion of American cars had <code>mpg</code> above the global average. We can find this out by using the following sequence of commands:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Auto <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, origin) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mpg_gt_gavg =</span> <span class="fu">if_else</span>(mpg <span class="sc">&gt;</span> <span class="fu">mean</span>(mpg), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(origin <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prop_mpg_gt_gavg =</span> <span class="fu">mean</span>(mpg_gt_gavg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  prop_mpg_gt_gavg
+             &lt;dbl&gt;
+1            0.269</code></pre>
+</div>
+</div>
+<p>Let’s walk through what we just did:</p>
+<ol type="1">
+<li>We converted <code>Auto</code> to a tibble.</li>
+<li>We selected only the variables of interest <code>mpg</code> and <code>origin</code>. (If you are working with larger data sets, removing superfluous columns can be an advantage.)</li>
+<li>We create a new variable <code>mpg_gt_gaverage</code> which finds out whether an automobile has an MPG greater than the global average.</li>
+<li>We filter all rows to only include American cars.</li>
+<li>We <mark>summarised</mark> the data calculate, which helped us find that only 27 percent of American-made cars had MPGs greater than the global average.</li>
+</ol>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Think of the pipe as “take this data and do something with it”</p>
+</div>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+How would I do this in base R?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Let’s look at how to recreate this using base R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Auto_cleaned <span class="ot">&lt;-</span> Auto[,<span class="fu">c</span>(<span class="st">'mpg'</span>,<span class="st">'origin'</span>)]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>Auto_cleaned<span class="sc">$</span>mpg_gt_gavg <span class="ot">&lt;-</span> <span class="fu">if_else</span>(Auto_cleaned<span class="sc">$</span>mpg <span class="sc">&gt;</span> <span class="fu">mean</span>(Auto_cleaned<span class="sc">$</span>mpg), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>) </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>Auto_cleaned <span class="ot">&lt;-</span> Auto_cleaned[Auto_cleaned<span class="sc">$</span>origin <span class="sc">==</span> <span class="dv">1</span>, ]</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">prop_mpg_gt_gavg =</span> <span class="fu">mean</span>(Auto_cleaned<span class="sc">$</span>mpg_gt_gavg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  prop_mpg_gt_gavg
+1        0.2693878</code></pre>
+</div>
+</div>
+<p>While this code is technically correct, notice a few things. We need to keep updating the same object to save our results. Our code is disjointed and difficult to understand. The final product is also less satisfactory: we needed to convert it from a vector to a data frame, which displays no information on the class of <code>prop_mpg_gt_gavg</code>. That is, perhaps, why R can appear so confusing for first-time learners.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="step-1.4-practice-15-min" class="level2">
+<h2 class="anchored" data-anchor-id="step-1.4-practice-15-min">Step 1.4 PRACTICE! (15 min)</h2>
+<p>Now let’s use some of these skills to classify <code>Chinstrap</code> penguins. This is data from the package <a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing this library will make `penguins` data available</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  species island    bill_length_mm bill_depth_mm flipper_l…¹ body_…² sex    year
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;       &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+1 Adelie  Torgersen           39.1          18.7         181    3750 male   2007
+2 Adelie  Torgersen           39.5          17.4         186    3800 fema…  2007
+3 Adelie  Torgersen           40.3          18           195    3250 fema…  2007
+4 Adelie  Torgersen           NA            NA            NA      NA &lt;NA&gt;   2007
+5 Adelie  Torgersen           36.7          19.3         193    3450 fema…  2007
+6 Adelie  Torgersen           39.3          20.6         190    3650 male   2007
+# … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g</code></pre>
+</div>
+</div>
+<p>🎯 <strong>ACTION POINTS</strong></p>
+<p>Use the <strong>verbs</strong> you learned above to modify the original data set and create a new one, call it <code>penguins_cleaned</code>, according to the following steps:</p>
+<ol type="1">
+<li>Remove any observations with missing data. 💡You can pipe <code>na.omit()</code> into you sequence of commands to achieve this.</li>
+<li>Next, create a binary variable, call it <code>chinstrap</code> that stores TRUE if the penguin is a <code>Chinstrap</code>, FALSE otherwise.</li>
+<li>Now, filter the dataset and keep only the following variables:
+<ul>
+<li><code>is_chinstrap</code> (our outcome of interest)</li>
+<li><code>bill_length_mm</code></li>
+<li><code>bill_depth_mm</code></li>
+</ul></li>
+</ol>
+<p>Can you do it without looking at the solution?</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Click here to view the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>penguins_cleaned <span class="ot">&lt;-</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_chinstrap =</span> <span class="fu">if_else</span>(species <span class="sc">==</span> <span class="st">'Chinstrap'</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(is_chinstrap, bill_length_mm, bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>If you did it right, you should be able to run the code blow and get same plot as shown here in the page:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>penguins_cleaned <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(bill_length_mm, bill_depth_mm, <span class="at">colour=</span>is_chinstrap)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">2.5</span>, <span class="at">stroke=</span><span class="fl">1.4</span>, <span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">shape=</span><span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (Optional) customizing the plot</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+<p>We can see that Chinstrap penguins tend to have above average bill length and depth whereas the other two species of penguins tend to either have shallow yet long or deep yet short bills.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<em>“What if I struggle to understand the pipe and these”verbs” above?“</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The R for Data Science book is a great resource to learn more about the tidyverse. For more guided tips related to our course, check section <a href="../../weeks/week06/checklist.html#useful-links-about-tidyverse">Useful Links about tidyverse</a> of the ✅ Week 06 - Checklist.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="step-2-decision-tree-model-50-mins" class="level1">
+<h1>Step 2: Decision Tree model (50 mins)</h1>
+<p>Note that the data exhibited in the plot above is not linearly separable. A non-linear algorithm will thus be highly useful in this context. This is what we will explore in this and in the next two sections.</p>
+<blockquote class="blockquote">
+<p>If you need to recap on non-linear algorithms, rewatch <a href="../../weeks/week05/lecture.html">👨‍🏫 Week 05 - Lecture</a> or check the slides online.</p>
+</blockquote>
+<section id="step-2.1-train-and-visualise-a-decision-tree-10-mins" class="level2">
+<h2 class="anchored" data-anchor-id="step-2.1-train-and-visualise-a-decision-tree-10-mins">Step 2.1: Train and visualise a Decision Tree (10 mins)</h2>
+<p>Since we know the data we are modelling has a nonlinear relationship, let’s train a <strong>Decision Tree</strong> to classify Chinstrap penguins. R does not come with Decision Trees installed, so we need to import it from a library. Here we will use the function <code>rpart</code> from the <a href="https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf"><code>rpart</code> package</a> and <code>rpart.plot</code> from the <a href="http://www.milbo.org/rpart-plot/index.html"><code>rpart.plot</code> package</a>.</p>
+<p>Here are a few things to know about the <code>rpart</code> function:</p>
+<ul>
+<li>The <code>rpart</code> command is largely similar to other commands such as <code>lm</code> and <code>glm</code> in that the first parameter is a formula and the second is the data set.</li>
+<li>We have to add <code>method = class</code> to tell the algorithm that we are performing a classification task.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tree.model <span class="ot">&lt;-</span> <span class="fu">rpart</span>(is_chinstrap <span class="sc">~</span> ., <span class="at">data =</span> penguins_cleaned, <span class="at">method =</span> <span class="st">'class'</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(tree.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+<p>🤝 <strong>WORKING TOGETHER</strong> In pairs, discuss what you see in the plot.</p>
+<ul>
+<li>What do each node represents?</li>
+<li>What are the numbers inside the nodes?</li>
+<li>What do the percentages represent?</li>
+</ul>
+<p><strong>Alternative visualisation with <code>parttree</code> package</strong></p>
+<p>Alternatively, you could visualise a decision tree as a partition tree plot. For this, you will need to have the <code>parttree</code> package installed (check instructions at the top of the page).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> penguins_cleaned, </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(bill_length_mm, bill_depth_mm, <span class="at">colour =</span> is_chinstrap)) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_parttree</span>(<span class="at">data =</span> tree.model, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">factor</span>(is_chinstrap)), <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">'bottom'</span>) <span class="sc">+</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_lancet</span>() <span class="sc">+</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_lancet</span>() <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Bill length (mm)'</span>, <span class="at">y =</span> <span class="st">'Bill depth (mm)'</span>,</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">'Is actually chinstrap?'</span>, </span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">'Is predicted chinstrap?'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="lab_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>Don’t understand what the code above does? You might want to read <a href="https://r4ds.had.co.nz/data-visualisation.html">Chapter 3 of R for Data Science</a> to review <code>ggplot</code>.</em></p>
+</section>
+<section id="step-2.2-goodness-of-fit-of-the-decision-tree-10-mins" class="level2">
+<h2 class="anchored" data-anchor-id="step-2.2-goodness-of-fit-of-the-decision-tree-10-mins">Step 2.2: Goodness-of-Fit of the Decision Tree (10 mins)</h2>
+<p>Let’s investigate how well our model fits the data. Let’s reuse the model we trained (<code>tree.model</code>) and predict the <em>same samples</em> we used to train it. To avoid modifying our original dataframe, let’s save the output of the prediction in an auxiliary df (<code>plot_df</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    penguins_cleaned <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">class_pred =</span> <span class="fu">predict</span>(tree.model, <span class="at">newdata =</span> ., <span class="at">type=</span><span class="st">"class"</span>),</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">correct    =</span> class_pred <span class="sc">==</span> is_chinstrap)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>plot_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>🤝 <strong>WORKING TOGETHER</strong> In pairs, discuss the following:</p>
+<ul>
+<li>Explain what you see in the output of the chunk of code above.</li>
+<li>What does the code above do?</li>
+</ul>
+<p>Simple confusion matrix:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>confusion_matrix <span class="ot">&lt;-</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">table</span>(<span class="at">expected=</span>plot_df<span class="sc">$</span>is_chinstrap, <span class="at">class_pred=</span>plot_df<span class="sc">$</span>class_pred)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(confusion_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nicer looking confusion matrix:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cvms)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_confusion_matrix</span>(<span class="fu">as_tibble</span>(confusion_matrix), </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">target_col =</span> <span class="st">"expected"</span>, </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">prediction_col =</span> <span class="st">"class_pred"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                      </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                      <span class="co"># Customizing the plot</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">add_normalized =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">add_col_percentages =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">add_row_percentages =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">counts_col =</span> <span class="st">"n"</span>,</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>                      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-2.3-control-the-parameters-15-min" class="level2">
+<h2 class="anchored" data-anchor-id="step-2.3-control-the-parameters-15-min">Step 2.3 Control the parameters! (15 min)</h2>
+<p>We can tweak how the tree is built by controlling for certain parameters of the algorithm. To take a look at all possible parameters you can control, open the R console, type the command below and hit ENTER:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>?rpart.control</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For example, let’s reduce the <code>minbucket</code> parameter:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tree.model <span class="ot">&lt;-</span> <span class="fu">rpart</span>(is_chinstrap <span class="sc">~</span> ., <span class="at">data =</span> penguins_cleaned, <span class="at">method =</span> <span class="st">'class'</span>, <span class="at">control=</span><span class="fu">list</span>(<span class="at">minbucket=</span><span class="dv">1</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(tree.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>🤝 <strong>WORKING TOGETHER</strong> In pairs, discuss the following:</p>
+<ul>
+<li>Explain what is different in this model.</li>
+<li>Visualize the new tree using the <code>parttree</code> package (reuse from Step 2.1)</li>
+</ul>
+</section>
+<section id="step-2.4-practice-15-min" class="level2">
+<h2 class="anchored" data-anchor-id="step-2.4-practice-15-min">Step 2.4 PRACTICE! (15 min)</h2>
+<p>🎯 <strong>ACTION POINTS</strong></p>
+<ul>
+<li>Build new tree models, this time trying out different control parameters.</li>
+<li>Which parameters led to different trees?</li>
+<li>Which parameters change the tree the most?</li>
+</ul>
+<hr>
+<p>🔜 Next week, we will continue our journey of supervised learning by exploring the Support Vector Machine algorithm. We will also visit once again the topic of resampling (cross-validation) to select the optimal parameters for classifiers and regressors.</p>
+</section>
+</section>
+<section id="take-home-exercises" class="level1">
+<h1>🏠 Take-home exercises</h1>
+<p>The following exercises were designed as natural extension of the concepts you learned about in this lab session. Reserve some time later to solve this at home, we will release solutions at the end of the week after everyone has had a chance to attend a lab session.</p>
+<section id="q1-selecting-columns" class="level2">
+<h2 class="anchored" data-anchor-id="q1-selecting-columns">Q1: Selecting columns</h2>
+<p><strong>Using the <code>Bikeshare</code> data set present in <code>ISLR2</code> subset the data to only include <code>mnth</code>, <code>holiday</code>, and <code>bikers</code> columns.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="q2-a-new-tidyverse-verb" class="level2">
+<h2 class="anchored" data-anchor-id="q2-a-new-tidyverse-verb">Q2: A new tidyverse verb</h2>
+<p><strong>Using the <code>Bikeshare</code> data set present in <code>ISLR2</code>, replicate Step 1.3, only this time replace <code>filter(origin == 1)</code> with <code>group_by(origin)</code>. How have the results changed?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>Your text goes here</p>
+</blockquote>
+</section>
+<section id="q3-exploratory-data-analysis-part-i" class="level2">
+<h2 class="anchored" data-anchor-id="q3-exploratory-data-analysis-part-i">Q3: Exploratory Data Analysis (Part I)</h2>
+<p><strong>Calculate the average daily number of bikers in March, in the <code>Bikeshare</code> data set.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="q4-exploratory-data-analysis-part-ii0" class="level2">
+<h2 class="anchored" data-anchor-id="q4-exploratory-data-analysis-part-ii0">Q4: Exploratory Data Analysis (Part II0</h2>
+<p><strong>Do people bike more during holiday seasons?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>Your text goes here</p>
+</blockquote>
+</section>
+<section id="q5-back-to-penguins" class="level2">
+<h2 class="anchored" data-anchor-id="q5-back-to-penguins">Q5: Back to penguins…</h2>
+<p><strong>Let’s go back to the <code>penguins</code> data set. Create a new dataframe that omits missing values (NAs), remove the <code>island</code> and <code>year</code> columns but keep the rest of the dataset intact (don’t create new columns).</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="q6.-predict-penguin-species" class="level2">
+<h2 class="anchored" data-anchor-id="q6.-predict-penguin-species">Q6. Predict Penguin species</h2>
+<p><strong>Build a Decision Tree model to predict the <code>species</code> of penguins. Note that the outcome will not be a binary variable this time.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="q7.-control-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="q7.-control-parameters">Q7. Control parameters</h2>
+<p><strong>The decision tree algorithm we are using sets the cost complexity parameter (<code>cp</code>) by default as <code>control = list(cp = 0.01)</code>. Build a new model with a smaller <code>cp</code> value, say <code>control = list(cp = 0.001)</code>. Does this increase or reduce the complexity of the tree?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>Your text goes here</p>
+</blockquote>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Data were collected and made available by <a href="https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php">Dr.&nbsp;Kristen Gorman</a> and the <a href="https://pallter.marine.rutgers.edu/">Palmer Station</a>, ]Antarctica LTER](https://pallter.marine.rutgers.edu/), a member of the <a href="https://lternet.edu/">Long Term Ecological Research Network</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp(/^(?:http:|https:)\/\/(?:lse-dsi\.github\.io\/|localhost)/);
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../weeks/week07/checklist.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">✅ Checklist</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, LSE Data Science Institute</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:DSI.Admin@lse.ac.uk">
+      <i class="bi bi-mailbox" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/lsedatascience">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
