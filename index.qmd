@@ -9,8 +9,7 @@ date-meta: 23 October 2022
 
 **Pages recently updated:**
 
-- [✔️ W05 Lab Solutions](/weeks/week05/lab_solutions.html) is now available
-- [✅ Week 06 - Checklist](/weeks/week06/checklist.qmd): time management tips
+- [💻 Week 07 - Lab Roadmap](/weeks/week07/lab.html) with a recap of tidyverse + the decision tree algorithm
 
 **Reminder of current assignment:**
 

@@ -1,0 +1,136 @@
+# Step 3: Support Vector Machines (SVM) (25 mins)
+
+## Step 3.1: Train a Support Vector Machine (SVM) (10 mins)
+
+Since we know the data we are modelling has a nonlinear relationship, let's train a **Support Vector Machine** (SVM) with a radial, or Gaussian, kernel. R does not come with SVM, so we need to import it from a library. Here we will use the function `svm` from the [`e1071` package](https://cran.r-project.org/web/packages/e1071/e1071.pdf).
+
+Here are a few things to know about the `svm` function:
+
+- The `svm` command is largely similar to other commands such as `lm` and `glm` in that the first parameter is a formula and the second is the data set. 
+- There are a few other options, but we will focus on specifying a radial kernel using `kernel = 'radial'`. 
+- We _need_ to specify the type of machine learning task we are performing. Since we are doing classification, we use the option `type = 'C-classification'`.
+
+```{r}
+library(e1071)
+
+svm.model <- svm(is_chinstrap ~ ., 
+                 data = penguins_cleaned,
+                 type = 'C-classification',
+                 kernel = 'radial')
+```
+
+Let's look at the summary of the svm model:
+
+```{r, output=FALSE}
+summary(svm.model)
+```
+
+🎯 **ACTION POINT**: What does the 'Number of Support Vectors' represent? 
+
+## Step 3.2: Goodness-of-Fit of the SVM (5 mins)
+
+Let's investigate how well our model fits the data. Let's reuse the model we trained (`svm.model`) and predict the _same samples_ we used to train it. To avoid modifying our original dataframe, let's save the output of the prediction in an auxiliary df (`plot_df`):
+
+```{r, output=FALSE}
+plot_df <- 
+    penguins_cleaned %>% 
+    mutate(class_pred = predict(svm.model, newdata = .),
+           correct    = class_pred == is_chinstrap)
+plot_df
+```
+
+Remember what we did in the Decision Tree example!
+
+
+Simple confusion matrix:
+
+```{r, output=FALSE}
+confusion_matrix <- 
+    table(expected=plot_df$is_chinstrap, class_pred=plot_df$class_pred)
+print(confusion_matrix)
+```
+
+Nicer looking confusion matrix:
+
+```{r, output=FALSE}
+library(cvms)
+
+plot_confusion_matrix(as_tibble(confusion_matrix), 
+                      target_col = "expected", 
+                      prediction_col = "class_pred",
+                      
+                      # Customizing the plot
+                      add_normalized = TRUE,
+                      add_col_percentages = FALSE,
+                      add_row_percentages = FALSE,
+                      counts_col = "n",
+                      )
+```
+
+## Step 3.3: Visualize the SVM decision space (10 mins)
+
+Here we will demonstrate how you could simulate some data to cover the entire feature space of the data we are modelling. What do we mean by that? By inspecting `bill_length_mm` and `bill_depth_mm`, we see the range values these variables can assume: 
+
+```{r}
+penguins_cleaned %>% 
+    select(c(bill_length_mm, bill_depth_mm)) %>%
+    summary()
+```
+
+💡 We can simulate data to account for all possible combinations of `bill_length_mm` and `bill_depth_mm`. We achieve this using `crossing`, another `tidyverse` function:
+
+- We feed `crossing` a sequence of numbers that range from the minimal and maximal values of both variables, incremented by 0.1 values.
+- We then create a new variable `class_pred` which uses the SVM model object to predict whether a given row will be a Chinstrap penguin or not.
+- Note that we say `newdata = .` to indicate that we simply want to use the data set created with `crossing` as our new data.
+
+```{r}
+sim.data <- 
+  crossing(bill_length_mm = seq(31,60,0.1),
+           bill_depth_mm = seq(13,22,0.1)) %>% 
+  mutate(class_pred = predict(svm.model, newdata = .))
+head(sim.data)
+```
+
+The data above is all synthetic ("fake")! But it is very useful to colour the background of our plot.
+
+We use `geom_tile` to show the area the SVM model identifies as Chinstrap penguins. We then use `geom_point` to overlay the actual data. Red dots in blue areas and vice versa indicate cases where the SVM model makes errors.
+
+```{r, dpi=300}
+library(ggsci) # Just to use fancy colours.
+
+plot_df %>%   
+  ggplot() +
+
+  # Tile the background of the plot with SVM predictions
+  geom_tile(data = sim.data, 
+    aes(x=bill_length_mm, y=bill_depth_mm, fill = class_pred), 
+        alpha = 0.25) +
+
+  # Actual data
+  geom_point(
+    aes(x=bill_length_mm, y=bill_depth_mm, colour = is_chinstrap, shape = correct), 
+    size=1.5, stroke=0.8, alpha=0.8) +
+
+  # Define X and Os
+  scale_shape_manual(values = c(4, 1)) +
+  
+  # (OPTIONAL) Customizing the colours and theme of the plot
+  scale_colour_lancet() +
+  scale_fill_lancet() +
+  theme_minimal() +
+  theme(panel.grid = element_blank(), 
+        legend.position = 'bottom', 
+        plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'Bill Length (mm)', y = 'Bill Depth (mm)', 
+       fill = 'Is Chinstrap?', colour = 'Is Chinstrap?', 
+       shape = 'Correct prediction?',
+       title = sprintf('Overall Training Accuracy = %.2f %%', 
+                       100*(sum(plot_df$correct)/nrow(plot_df))))
+```
+
+🤝 **WORKING TOGETHER** In pairs, discuss what you see in the plot:
+
+- What do the shape of dots represent? The `X` and `O`s?
+- What do the colours of the dots represent?
+- What do the background colour in the plot represent?
+- Can you point in the plot roughly which dots you would expect to be the support vectors?
