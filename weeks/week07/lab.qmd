@@ -6,6 +6,10 @@ from: markdown+emoji
 author: Dr. Stuart Bramwell/Dr. Jon Cardoso-Silva
 ---
 
+📥 Download the RMarkdown version of this roadmap [from Moodle](https://moodle.lse.ac.uk/mod/folder/view.php?id=1134401&forceview=1).
+
+-------------------
+
 This lab session draws on [🗓️ Week 05 lecture](/weeks/week05/lecture.qmd) content and on feedback given by the course representatives about the main struggles you are facing with R (tidyverse).
 
 If you are already very familiar with tidyverse, you can skip to Step 2.
@@ -228,7 +232,7 @@ penguins_cleaned <-
 
 :::
 
-If you did it right, you should be able to run the code blow and get same plot as shown here in the page:
+If you did it right, you should be able to run the code below and get same plot as shown here in the page:
 
 ```{r, dpi=300}
 
