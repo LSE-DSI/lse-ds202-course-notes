@@ -1,7 +1,7 @@
 ---
 title: "Summative Problem Set 01 | W05-W07"
 author: "DS202 2022MT Teaching Group"
-date: "`r Sys.Date()`"
+date: "25 October 2022"
 output: html_document
 ---
 

@@ -10,6 +10,7 @@ date-meta: 27 October 2022
 Click on the assignments below to go to the Moodle page and submit your responses:
 
 - **✍️ Formative Problem Set (01)  | W03-W05**: [Moodle link](https://moodle.lse.ac.uk/mod/coursework/view.php?id=1127006) & associated <a href="https://raw.githubusercontent.com/LSE-DSI/lse-ds202-course-notes/main/RMarkdown/DS202 2022 MT - Formative Assignment W03-W04.Rmd" download="DS202 2022 MT - Formative Assignment W03-W04.Rmd" target="_blank">RMarkdown file</a>.
+    - You can find model solutions [here](/assessments/formative1_solutions.qmd)
 - **✍️ Summmative Problem Set (01) | W05-W07**: [Moodle link](https://moodle.lse.ac.uk/mod/coursework/view.php?id=1131232&forceview=1) & associated [webpage](/assessments/summative1.qmd).
 
 # List of assessments

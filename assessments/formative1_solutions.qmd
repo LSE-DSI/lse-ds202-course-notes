@@ -1,0 +1,443 @@
+---
+title: "✔️ Formative Problem Set 01 | Solutions"
+author: "DS202 2022MT Teaching Group"
+date: "25 October 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## ⚙️ Setup
+
+Import required libraries.No need to change if you are not planning to use other packages.
+
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
+library(car)
+library(ISLR2)
+library(tidyverse)
+# If you use other packages, add them here
+
+library(ggcorrplot)
+library(tidymodels) ## to use the tidy() function to extract data from lm models
+```
+
+## 🎯 Questions
+
+Use the `Carseats` data set in the `ISLR2` package to answer the following questions:
+
+### Q1. Variables
+
+**List the names of the variables in this dataset and whether they are quantitative or qualitative.** (Worth 1/100 mock marks)
+
+> **Quantitative**:
+>
+> -   `Sales`
+>
+> -   `CompPrice`
+>
+> -   `Income`
+>
+> -   `Advertising`
+>
+> -   `Population`
+>
+> -   `Price`
+>
+> -   `Age`
+>
+> -   `Education`
+>
+> **Qualitative**:
+>
+> -   `ShelveLoc`
+>
+> -   `Urban`
+>
+> -   `US`
+
+### Q2. Dimension
+
+**Use R to list the number of rows in the dataset.** (Worth 1/100 mock marks)
+
+```{r}
+nrow(Carseats)
+```
+
+### Q3. Visual
+
+**Selecting only the quantitative variables, plot the correlation between variables** (Worth 5/100 mock marks)
+
+*Tip: If you want to use other R packages, add them to the list of libraries at the top.*
+
+```{r}
+Carseats_quant <- Carseats %>% select(-c(ShelveLoc, Urban, US))
+corr_Carseats <- cor(Carseats_quant)
+
+ggcorrplot(corr_Carseats, lab=TRUE, digits=2, lab_size=3)
+
+```
+
+### Q4. Initial Variable Identification
+
+**Based on just an initial inspection of the data, which variables would you select to train an algorithm to predict `Sales`? Why?** (Worth 7/100 mock marks)
+
+> `Price` is clearly the best first candidate. It is the variable most highly correlated with the dependent variable (`Sales`) in absolute terms. The correlation between `Price` and `Sales` is `-0.44`. As price increases, sales decreases in an approximately linear fashion.
+
+```{r}
+g <- (
+  ggplot(Carseats, aes(x=Price, y=Sales))
+  
+  + geom_point(size=3, alpha=0.5)
+  
+  + theme_bw()
+  
+  )
+
+g
+```
+
+> If we want to add more variables, the next candidates would be `Age` and `Advertising`, as these variables also exhibit a correlation with `Sales` that is not too close from zero, in absolute terms. Another interesting point about these two variables is the fact that they are not correlated to each other; that is, correlation `Age` vs `Advertising` and `Age` vs `Price` and `Price` vs `Advertising` is close to zero.
+
+```{r}
+g <- (
+  ggplot(Carseats, aes(x=Age, y=Sales))
+  
+  + geom_point(size=3, alpha=0.5)
+  
+  + theme_bw()
+  
+  )
+
+g
+```
+
+```{r}
+g <- (
+  ggplot(Carseats, aes(x=Advertising, y=Sales))
+  
+  + geom_point(size=3, alpha=0.5)
+  
+  + theme_bw()
+  
+  )
+
+g
+```
+
+### Q5. Simple Linear Regression
+
+**Chose ONE SINGLE variable -- any variable -- and fit a linear regression to predict `Sales`. Show the summary of this linear model.** (Worth 3/100 mock marks)
+
+```{r}
+simple_model <- lm(Sales ~ Price, data=Carseats)
+
+summary(simple_model)
+```
+
+### Q6. Simple Linear Regression - Interpretation
+
+**Provide an interpretation of each coefficient in the model, stating their values, whether they are significant and what they represent. Be careful---some of the variables in the model are qualitative!** (Worth 10/100 mock marks)
+
+> When `Price = 0`, the model predicts `Sales = 13.64`.\
+> \
+> For every \$100 increase in `Price`, `Sales` decrease by approximately `5.3` units.\
+> \
+> Both the intercept and the regression coefficient for Price are statistically significant, their p-values are close to zero.
+
+### Q7. Simple Linear Regression - Formula
+
+**Write the model in equation form, carefully handling the qualitative variables properly.** (Worth 5/100 mock marks)
+
+$$Sales = - 0.053073 \times Price + 13.641915 + \epsilon$$
+
+### Q8. Multiple Linear Regression
+
+**Chose ONLY THREE variables and fit a linear regression to predict `Sales`. Show the summary of this linear model.** (Worth 3/100 mock marks)
+
+```{r}
+multiple_model <- lm(Sales ~ Price + Age + Advertising, data=Carseats)
+
+summary(multiple_model)
+```
+
+### Q9. Multiple Linear Regression - Interpretation
+
+**Provide an interpretation of each coefficient in the model, stating their values, whether they are significant and what they represent. Be careful---some of the variables in the model are qualitative!** (Worth 10/100 mock marks)
+
+> This multiple regression model is statistically significant (p-value associated with the F-statistic is very small). In addition, all regression coefficients were also found to be statistically significant (p-value close to zero).
+>
+> In the hypothetical scenario in which $Price = 0$ and $Age = 0$ and $Advertising = 0$ , the multiple regression model predicts $Sales \approx 16$ units.
+>
+> -   For every fixed combination of `Age` and `Advertising`, an increase in $100$ dollars in `Price` is associated with a `Sales` decrease by approximately `5.8` units.
+>
+> -   If `Price` and `Advertising` are fixed, the `Age` of a car impacts negatively the number of sales. The regression coefficient is $-0.048846$ , which means we would expect `Sales` to decrease by $1$ unit for every $\approx 20$ years of age of the Car (since $\frac{1}{0.048846} \approx 20$ ) .
+>
+> -   `Advertising`, on the other hand, is associated with an increase in the number of `Sales`. If `Price` and `Age` are fixed, the model predicts that 12 more items of `Sales` for each increase in $100$ `Advertising` units (dollars?)
+
+### Q10. Multiple Linear Regression - Formula
+
+**Write the model in equation form, carefully handling the qualitative variables properly.** (Worth 5/100 mock marks)
+
+$$Sales = 16.003472 - 0.058028 \times Price - 0.048846 \times Age + 0.123106 \times Advertising + \epsilon$$
+
+### Q11. Model comparison
+
+**Which of the two models you created, in questions Q5 and Q8 provide a better fit?** (Worth 10/100 mock marks)
+
+> The multiple model in Q8 fitted the `Sales` data better.\
+> \
+> The adjusted R-squared is higher in the Q8 versus the Q5 model, that is, adding `Age` and `Advertising` explains more of the variance in `Sales` than the model with just `Price`.
+>
+> We also see a reduction in the **R**esidual **S**tandard **E**rror.
+>
+> This is also somewhat apparent from the diagnostic plot of [residual vs fitted](https://lse-dsi.github.io/lse-ds202-course-notes/blog/posts/outliers.html) (shown below). The standardized residuals look more concentrated around zero, on the multiple model.
+
+```{r}
+plot_df <- data.frame(fitted_vals=predict(simple_model),
+                      residuals=rstudent(simple_model))
+
+g <- (
+  ggplot(plot_df, aes(x=fitted_vals, y=residuals))
+
+  # Add dots
+  + geom_point(alpha=0.4, size=3.5) 
+  + xlab("Fitted values") 
+  + ylab("Residuals") 
+  + ylim(c(-4,4))
+  + ggtitle("Residuals vs Fitted (Simple Model)")
+
+  # Add lines
+  + geom_hline(yintercept=0, size=1.5, color='yellow') 
+  + geom_hline(yintercept=3, size=1.5, color='red')
+
+  # Customising the plot +
+  + theme_bw()
+)
+
+g
+
+```
+
+```{r}
+plot_df <- data.frame(fitted_vals=predict(multiple_model),
+                      residuals=rstudent(multiple_model))
+
+g <- (
+  ggplot(plot_df, aes(x=fitted_vals, y=residuals))
+
+  # Add dots
+  + geom_point(alpha=0.4, size=3.5) 
+  + xlab("Fitted values") 
+  + ylab("Residuals") 
+  + ylim(c(-4, 4))
+  + ggtitle("Residuals vs Fitted (Multiple Model)")
+
+  # Add lines
+  + geom_hline(yintercept=0, size=1.5, color='yellow')
+  + geom_hline(yintercept=3, size=1.5, color='red')
+
+  # Customising the plot +
+  + theme_bw()
+)
+
+g
+
+```
+
+### Q12. Collinearity
+
+**What is the Variance Inflation Factor (VIF) of each variable?** (Worth 3/100 mock marks)
+
+Considering only the model built on Q8:
+
+```{r}
+vif(multiple_model)
+```
+
+Alternatively, if you interpreted the question to refer to all variables, the following would also be accepted:
+
+```{r}
+vif(lm(Sales ~ ., data=Carseats))
+```
+
+### Q13. Collinearity (cont.)
+
+**Based on your responses to Q3 and the output of Q12, would you consider ignoring any variables when building a linear model? Why/Why not?** (Worth 7/100 mock marks)
+
+> In terms of `vif` -- which measures the linear dependency of each predictor to ALL the other predictors -- there are no "problematic variables". If there were, we would find variables with `vif` above 5 or 10.
+>
+> In terms of **pairwise collinearity** (plot in Q3), we also don't find any problematic colinearities.
+
+### Q14. Modelling
+
+**Considering ALL possible combinations of TWO variables in this dataset, find the one linear model that has the smallest Residual Standard Error. Explain how you reached that conclusion, show us the summary of that model and write the model in equation form.** (Worth 15/100 mock marks)
+
+> ***💡Tip:** Here I show an "elegant" way of solving this question by selecting variables by their names and by using dataframes, the pipe and other R functions. There are simpler ways to solve this question, the simplest perhaps would be to solve it by iterating over the column **indices** instead of column names. If you did it like that, your answer will be accepted, if done correctly.*
+
+```{r}
+# Select all columns in the dataset, except Sales and get a list of their names
+all_predictors <- Carseats %>% select(-Sales) %>% names()
+all_predictors
+```
+
+Use the function combn to produce a list of all possible combination of pairs of predictors. In addition to that, let's reshape the data and transform it to a nicely formatted dataframe with two columns. Since these columns do not have names, the function `as.data.frame()` automatically name them `V1` and `V2`.
+
+💡 Tip: type `?combn` and hit ENTER in the R console to read more about the `combn` function.
+
+```{r}
+all_combn_predictors <- combn(all_predictors, 2) %>% t() %>% as.data.frame() 
+
+all_combn_predictors
+```
+
+So, there are a total of 45 combinations of pairs of features. Now, we need to fit linear regression models for all combinations and compute the Residual Standard Error of each.
+
+How do we get the Residual Standard Error of a model? The R documentation says I can do it with the `sigma()` function. Read more about it [here](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/sigma.html) (or just type `?sigma` in the R console and hit ENTER):
+
+```{r}
+sigma(simple_model)
+```
+
+How do we create these 45 models ? We can [iterate](https://r4ds.had.co.nz/iteration.html) over each line of the `all_combn_predictors` using a `for loop`, grab the names of the variables and create a linear model with them.
+
+Linear models in R are typically defined as a [formula](https://www.datacamp.com/tutorial/r-formula-tutorial#what-is-a-formula-in-r?), but how do I build a formula without typing the name of the variables manually? We can do it by using the `as.formula` as illustrated in [this Stackoverflow](https://stackoverflow.com/a/4951536/843365) response.
+
+First, let me show you how the as.formula combined with `paste` works. Look at all the formulas produced in this loop:
+
+```{r}
+
+for(i in 1:nrow(all_combn_predictors)){
+  
+   # get the i-th row of the dataframe
+  selected_vars <- all_combn_predictors[i,]
+  
+  # build the formula
+  model_formula <- as.formula(paste("Sales ~", paste(selected_vars, collapse="+")))
+  print(model_formula)
+}
+
+
+```
+
+Now, let's actually create the linear models and identify the one with the smallest RSE:
+
+```{r}
+best_RSE        <- Inf   # we don't know yet 
+best_predictors <- c()   # start empty, fill later
+best_model      <- NULL  # we don't know yet
+
+for(i in 1:nrow(all_combn_predictors)){
+  
+   # get the i-th row of the dataframe
+  selected_vars <- all_combn_predictors[i,]
+  
+  # build the formula
+  model_formula <- as.formula(paste("Sales ~", paste(selected_vars, collapse="+")))
+  
+  fitted_model      <- lm(model_formula, data=Carseats)
+  current_model_RSE <- sigma(fitted_model)
+  
+  if(current_model_RSE < best_RSE){
+    best_RSE <- current_model_RSE
+    best_predictors <- selected_vars
+    best_model <- fitted_model
+    cat("Found a better model!\n")
+    cat(paste0("  Vars: [", paste(selected_vars, collapse=","), "]\n"))
+    cat(paste0("  RSE:", best_RSE, "\n\n"))
+  }
+  
+}
+
+```
+
+As we can see from above, the best model -- if we consider only the minimum RSE -- is:
+
+```{r}
+summary(best_model)
+```
+
+$$Sales = 12.001802 - 0.056698\times Price + 4.895848 \times ShelveLoc[Good] + 1.862022 \times ShelveLoc[Medium] + \epsilon$$
+
+Teeechnically, the model above has more than just two variables, it uses three variables (two combinations of `ShelveLoc`. This is because R converts categorical variables to independent binary variables automatically. Since we didn't distinguish this case in the question, this is an acceptable response.
+
+### Q15. Interaction Effects
+
+**Use the `*` and `:` symbols to fit linear regression models with interaction effects. Could you find any model with interactions that fit better than the models you built in Questions Q5 & Q8 & Q14? Feel free to use as many interactions and variables as you prefer. Justify your answer. Explain how you reached that conclusion, show us the summary of that model and write the model in equation form.** (Worth 15/100 mock marks)
+
+> *💡 Here, you were not expected to test ALL combinations. You could solve this by trial and error, combining multiple combinations of variables until you reached a model with better RSE, R-squared or other metric.*
+>
+> For didactic purposes, I will re-use the solution from Q14 and test all possible linear models with only **two variables**, this time considering `*` and `:` operator instead of the `+` operator.
+>
+> I will look for the model that optimizes for RSE.
+
+```{r}
+# Using the tidyverse function crossing
+new_combn_predictors <- crossing(all_combn_predictors, tibble(interaction_type=c("*", ":")))
+new_combn_predictors
+```
+
+This time there are 90 possible combinations:
+
+```{r}
+for(i in 1:nrow(new_combn_predictors)){
+  
+   # get the i-th row of the dataframe
+  selected_vars <- new_combn_predictors[i,c("V1", "V2")]
+  
+  # build the formula
+  # Notice that this time I will use whatever is in the column `interaction_type`
+  model_formula <- as.formula(paste("Sales ~", paste(selected_vars, collapse=new_combn_predictors[i, ]$interaction_type)))
+  
+  print(model_formula)
+  
+}
+
+```
+
+```{r}
+best_RSE        <- Inf   # we don't know yet 
+best_predictors <- c()   # start empty, fill later
+best_model      <- NULL  # we don't know yet
+
+for(i in 1:nrow(new_combn_predictors)){
+  
+   # get the i-th row of the dataframe
+  selected_vars <- new_combn_predictors[i,c("V1", "V2")]
+  
+  # build the formula
+  # Notice that this time I will use whatever is in the column `interaction_type`
+  model_formula <- as.formula(paste("Sales ~", paste(selected_vars, collapse=new_combn_predictors[i, ]$interaction_type)))
+  
+  fitted_model      <- lm(model_formula, data=Carseats)
+  current_model_RSE <- sigma(fitted_model)
+  
+  if(current_model_RSE < best_RSE){
+    best_RSE <- current_model_RSE
+    best_predictors <- selected_vars
+    best_model <- fitted_model
+    cat("Found a better model!\n")
+    cat(paste0(model_formula, "\n"))
+    cat(paste0("  RSE:", best_RSE, "\n\n"))
+  }
+  
+}
+
+
+```
+
+We didn't find a **better** model, but we found a model that leads to almost the same RSE as the one in Q14:
+
+```{r}
+summary(best_model)
+```
+
+$$
+\begin{eqnarray}
+Sales &=& 11.832984 - 0.055220 \times Price \\
+&&+ 6.135880 \times ShelveLoc[Good] \\ &&+1.630481 \times ShelveLoc[Medium] \\
+&&-0.010564 \times (Price \times ShelveLoc[Good] ) \\
+&&+0.001984 \times (Price \times ShelveLoc[Medium] )
+\end{eqnarray}
+$$
