@@ -1,0 +1,152 @@
+---
+title: "💻 Week 07 - Lab Roadmap (90 min)"
+date: 7 November 2022
+date-meta: 7 November 2022
+from: markdown+emoji
+author: Dr. Stuart Bramwell/Dr. Jon Cardoso-Silva
+editor: visual
+---
+
+This lab session draws on [:spiral_calendar: Week 05 lecture](/weeks/week05/lecture.qmd) content and on feedback given by the course representatives about the main struggles you are facing with R (tidyverse).
+
+If you are already very familiar with tidyverse, you can skip to Step 2.
+
+**R packages you will need:**
+
+```{r, message=FALSE, warning=FALSE}
+library('e1071')
+library('ggsci')
+library('ISLR2')
+library('palmerpenguins')
+library('parttree')
+library('rpart')
+library('rpart.plot')
+library('tidyverse')
+```
+
+You might have already installed some of these packages. Some were used in [:spiral_calendar: Week 05 slides](/weeks/week05/lecture.qmd), others in previous labs. If you see an error like "package not found", then install the package using `install.packages("<package name>")`.
+
+**Installation instructions for `parttree`**
+
+The package parttree cannot be installed by install.packages. Instead, we have to follow the instructions set by the [developers of the package](https://github.com/grantmcdermott/parttree):
+
+``` r
+install.packages("remotes")
+remotes::install_github("grantmcdermott/parttree", force = TRUE)
+```
+
+# :heavy_check_mark: Take-home exercises (Solutions)
+
+The following exercises were designed as natural extension of the concepts you learned about in this lab session. Reserve some time later to solve this at home, we will release solutions at the end of the week after everyone has had a chance to attend a lab session.
+
+## Q1: Selecting columns
+
+**Using the `Bikeshare` data set present in `ISLR2` subset the data to only include `mnth`, `holiday`, and `bikers` columns.**
+
+```{r}
+Bikeshare %>% select(mnth, holiday, bikers)
+```
+
+## Q2: A new tidyverse verb
+
+**Using the `Auto` data set present in `ISLR2`, replicate Step 1.3, only this time replace `filter(origin == 1)` with `group_by(origin)`. How have the results changed?**
+
+```{r}
+Auto %>% 
+  as_tibble() %>% 
+  select(mpg, origin) %>% 
+  mutate(mpg_gt_gavg = if_else(mpg > mean(mpg), TRUE, FALSE)) %>% 
+  group_by(origin) %>% 
+  summarise(prop_mpg_gt_gavg = mean(mpg_gt_gavg))
+```
+
+> A: Instead of looking just at the origin=1, we have now summarized the data and computed `prop_mpg_gt_gavg` (Proportion of samples for which `mpg` is greater than average) for each unique value of `origin`.
+
+## Q3: Exploratory Data Analysis (Part I)
+
+**Calculate the average daily number of bikers in March, in the `Bikeshare` data set.**
+
+```{r}
+Bikeshare %>% 
+  filter(mnth == "March") %>% 
+  group_by(day) %>% 
+  summarise(daily_bikers=n()) %>% 
+  summarise(avg_daily_bikers=mean(daily_bikers))
+```
+
+## Q4: Exploratory Data Analysis (Part II0
+
+**Do people bike more during holiday seasons?**
+
+```{r, message=FALSE}
+Bikeshare %>% 
+  group_by(holiday, day) %>% 
+  summarise(daily_bikers=n()) %>%
+  summarise(mean_daily_bikers=mean(daily_bikers),
+            std_daily_bikers=sd(daily_bikers))
+```
+
+> Just by summarising the data, it's not really possible to say. On average, the mean number of daily bikers seems to be about the same, just with a smaller standard deviation.
+
+## Q5: Back to penguins...
+
+**Let's go back to the `penguins` data set. Create a new dataframe that omits missing values (NAs), remove the `island` and `year` columns but keep the rest of the dataset intact (don't create new columns).**
+
+```{r}
+new_penguins <- 
+  penguins %>% 
+  select(-c(island, year))
+new_penguins
+```
+
+## Q6. Predict Penguin species
+
+**Build a Decision Tree model to predict the `species` of penguins. Note that the outcome will not be a binary variable this time.**
+
+```{r}
+set.seed(1)
+
+tree.model <- rpart(species ~ ., data = new_penguins, method = 'class')
+
+rpart.plot(tree.model)
+```
+
+> Note that we three different proportions in the middle of the nodes now (instead of just one). Each represent the proportion of penguins of a specific specie.
+>
+> For example, the left-most leaf node shows: 0.97 0.03 0.00. That means: 97% of the samples that fall into that part of the decision tree are of the `Adelie` species, 3% are of the `Chinstrap` species and 0% are of the `Gentoo` species.
+>
+> How do we know the order of the species represented by these numbers? Check the levels of the column `species` (which is a column of the type `factor`). For more on `factors` read: https://r4ds.had.co.nz/factors.html
+
+```{r}
+levels(new_penguins$species)
+```
+
+## Q7. Control parameters
+
+**The decision tree algorithm we are using sets the cost complexity parameter (`cp`) by default as `control = list(cp = 0.01)`. Build a new model with a smaller `cp` value, say `control = list(cp = 0.001)`. Does this increase or reduce the complexity of the tree?**
+
+> A smaller `cp` parameter would force the decision tree to try to find a more **complex model** (more branches) if that leads to a better overall model. (If you want to understand how the `rpart` method chooses to make the splits and branches of the tree, type `?rpart` in the console and read the section about `method`).\
+> \
+> It turns out that nothing will make this model more complex! Even if you set a very low `cp`, the tree stays the same:
+
+```{r}
+
+set.seed(1)
+
+tree.model <- rpart(species ~ ., data = new_penguins, method = 'class', control=list(cp=0.00000000000001))
+
+rpart.plot(tree.model)
+```
+
+> On the other hand, it is possible to simplify the tree (fewer branches) if we increase `cp` parameter:
+
+```{r}
+
+set.seed(1)
+
+tree.model <- rpart(species ~ ., data = new_penguins, method = 'class', control=list(cp=0.4))
+
+rpart.plot(tree.model)
+```
+
+> It all depends on what we care about and which metrics we will use to assess this model and we plan to use the model later on. But it looks like the above will **underfit** the data: one of the species is not even represented there.

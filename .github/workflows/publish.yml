@@ -40,7 +40,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Install packages used throughout Quarto markdown files
-        run: install.packages(c("pROC", "ISLR2", "e1071", "ggcorrplot", "car", "cvms", "rsample", "ggsci", "palmerpenguins"))
+        run: install.packages(c("pROC", "ISLR2", "e1071", "ggcorrplot", "car", "cvms", "rsample", "ggsci", "palmerpenguins", "GGally"))
         shell: Rscript {0}
 
       - name: Install tidymodels
