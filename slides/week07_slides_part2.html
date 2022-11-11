@@ -10,9 +10,9 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.1.251">
 
-  <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva and Dr.&nbsp;Stuart Bramwell">
-  <meta name="dcterms.date" content="28 October 2022">
-  <title>LSE DS202 2022/23 - 🗓️ Week 05: Decision Trees</title>
+  <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
+  <meta name="dcterms.date" content="11 November 2022">
+  <title>LSE DS202 2022/23 - 🗓️ Week 07:Unsupervised Learning</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -94,6 +94,25 @@
     code span.va { color: #111111; } /* Variable */
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link rel="stylesheet" href="../css/styles_slides.css">
@@ -393,434 +412,463 @@
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">🗓️ Week 05:<br> Decision Trees</h1>
-  <p class="subtitle">Non-linear algorithms</p>
-  <p class="author">Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a> and Dr.&nbsp;<a href="https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell">Stuart Bramwell</a></p>
+  <h1 class="title">🗓️ Week 07:<br>Unsupervised Learning</h1>
+  <p class="subtitle">Clustering</p>
+  <p class="author">Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a></p>
   <p class="institute"><a href="https://twitter.com/lsedatascience">@LSEDataScience</a></p>
-  <p class="date">28 October 2022</p>
+  <p class="date">11 November 2022</p>
 </section>
 <section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">What we will cover today</h2>
 <ul>
-<li><a href="#/the-limits-of-classic-regression-models" id="/toc-the-limits-of-classic-regression-models">The limits of classic regression models</a></li>
-<li><a href="#/the-decision-tree" id="/toc-the-decision-tree">The Decision Tree</a></li>
-<li><a href="#/how-does-it-work" id="/toc-how-does-it-work">How does it work?</a></li>
-<li><a href="#/what-can-go-wrong" id="/toc-what-can-go-wrong">What can go wrong</a></li>
-<li><a href="#/how-to-fix-it" id="/toc-how-to-fix-it">How to fix it</a></li>
-<li><a href="#/whats-next" id="/toc-whats-next">What’s Next</a></li>
+<li><a href="#/recall-the-supervised-learning-approach" id="/toc-recall-the-supervised-learning-approach">Recall the Supervised Learning approach</a></li>
+<li><a href="#/unsupervised-learning" id="/toc-unsupervised-learning">Unsupervised Learning</a></li>
+<li><a href="#/clustering" id="/toc-clustering">Clustering</a></li>
+<li><a href="#/an-example" id="/toc-an-example">An Example:</a></li>
+<li><a href="#/k-means-clustering" id="/toc-k-means-clustering">K-Means Clustering</a></li>
 </ul>
 </nav>
 </section>
 
-<section id="regression-analysis-in-real-life" class="slide level2 smaller">
-<h2>Regression analysis in real life</h2>
-<blockquote class="twitter-tweet">
-<p lang="en" dir="ltr">
-Following current trends, the next PM will be in office for approximately minus 200 days <a href="https://t.co/avLQE9i1yy">pic.twitter.com/avLQE9i1yy</a>
-</p>
-— Rob Sansom (@Sansom_Rob) <a href="https://twitter.com/Sansom_Rob/status/1583156024621805568?ref_src=twsrc%5Etfw">October 20, 2022</a>
-</blockquote>
-<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</section>
 <section class="slide level2">
 
-</section>
-<section>
-<section id="the-limits-of-classic-regression-models" class="title-slide slide level1">
-<h1>The limits of classic regression models</h1>
-
-</section>
-<section id="the-limits-of-classic-regression-models-1" class="slide level2">
-<h2>The limits of classic regression models</h2>
-<p>Linear and logistic regression are a good first shot for building ML models</p>
-<div>
-<ul>
-<li class="fragment">Easy-to-interpret coefficients</li>
-<li class="fragment">Intuitive (ish) ways to assess variable importance</li>
-<li class="fragment">Often good out-of-the-box predictions</li>
-</ul>
-</div>
-</section>
-<section id="however" class="slide level2">
-<h2>However…</h2>
-<div>
-<ul>
-<li class="fragment">Assumption that the predictors are linearly related to the outcome is restrictive</li>
-<li class="fragment">We have seen, for instance, that accounting for higher order polynomial relationships can produce better model fit</li>
-</ul>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="example">Example</h3>
-<ul>
-<li>Think of the relationship between <code>lstat</code> and <code>medv</code> in <code>Boston</code> (<a href="../weeks/week05/lab.html#step-1.3-does-it-get-better-if-i-modify-the-features-using-polynomial-terms">💻 Week 05 Lab</a>)</li>
-</ul>
-
-<img data-src="week05_slides_part1_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
-<section id="enter-non-linear-methods" class="slide level2">
-<h2>Enter non-linear methods</h2>
-<div>
-<ul>
-<li class="fragment">These algorithms do not make (strong) statistical assumptions about the data</li>
-<li class="fragment">The focus is more on predictive rather than explanatory power</li>
-</ul>
-</div>
-</section></section>
-<section>
-<section id="the-decision-tree" class="title-slide slide level1">
-<h1>The Decision Tree</h1>
-<iframe id="reddit-embed" src="https://www.redditmedia.com/r/funny/comments/1j4gf7/cats_decision_tree/?ref_source=embed&amp;ref=share&amp;embed=true&amp;" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" height="527" width="640" scrolling="no">
-</iframe>
-</section>
-<section id="decision-tree-for-a-regression-task" class="slide level2 smaller">
-<h2>Decision Tree for a Regression task</h2>
-<p>Using the <code>Auto</code> dataset, predict <code>mpg</code> with a <mark>tree-based model</mark> using <code>weight</code> and <code>year</code> as features.</p>
-<div style="margin-top:-1em">
-<div class="cell" data-fig.dpi="300">
-<div class="cell-output-display">
-<p><img data-src="week05_slides_part1_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 class="smaller" id="source-code">Source Code</h3>
-<div class="callout callout-tip callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li>Use the code below to replicate the plot from the previous slide.</li>
-<li>Found a bug? Report it on Slack.</li>
-<li>💡 Check out <a href="http://www.milbo.org/rpart-plot/prp.pdf">this tutorial</a> of <code>rpart.plot</code>.</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ISLR2)      <span class="co"># to load Boston data</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)  <span class="co"># to use things like the pipe (%&gt;%), mutate and if_else</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(rpart)      <span class="co"># a library that contains decision tree models</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(rpart.plot) <span class="co"># a library that plots rpart models </span></span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># The function rpart below fits a decision tree to the data</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># You can control various aspects of the rpart fit with the parameter `control`</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># Type ?rpart.control in the R console to see what else you can change in the algorithm</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a>tree.reg <span class="ot">&lt;-</span> <span class="fu">rpart</span>(mpg <span class="sc">~</span> weight <span class="sc">+</span> year, <span class="at">data =</span> Auto, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">maxdepth =</span> <span class="dv">2</span>))</span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="fu">rpart.plot</span>(tree.reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="decision-tree-for-a-classification-task" class="slide level2 smaller">
-<h2>Decision Tree for a Classification task</h2>
-<p>Using the <code>Boston</code> dataset, predict whether <code>medv</code> is above the median using <code>crim</code> and <code>tax</code>:</p>
-<div style="margin-top:-1em">
-<div class="cell" data-fig.dpi="300">
-<div class="cell-output-display">
-<p><img data-src="week05_slides_part1_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="source-code-1">Source Code</h3>
-<div class="callout callout-tip callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li>Use the code below to replicate the plot from the previous slide.</li>
-<li>Found a bug? Report it on Slack.</li>
-<li>💡 Check out <a href="http://www.milbo.org/rpart-plot/prp.pdf">this tutorial</a> of <code>rpart.plot</code>.</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(ISLR2)      <span class="co"># to load Boston data</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(tidyverse)  <span class="co"># to use things like the pipe (%&gt;%), mutate and if_else</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">library</span>(rpart)      <span class="co"># a library that contains decision tree models</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">library</span>(rpart.plot) <span class="co"># a library that plots rpart models </span></span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># Add a column named `medv_gtmed` to indicate whether tax rate is above median</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>Boston <span class="ot">&lt;-</span> Boston <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">medv_gtmed =</span> <span class="fu">if_else</span>(medv <span class="sc">&gt;</span> <span class="fu">median</span>(medv), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb2-9"><a href="#cb2-9"></a></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co"># The function rpart below fits a decision tree to the data</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># You can control various aspects of the rpart fit with the parameter `control`</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># Type ?rpart.control in the R console to see what else you can change in the algorithm</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a></span>
-<span id="cb2-14"><a href="#cb2-14"></a>tree.class <span class="ot">&lt;-</span> <span class="fu">rpart</span>(medv_gtmed <span class="sc">~</span> lstat <span class="sc">+</span> tax, <span class="at">data =</span> Boston, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">maxdepth =</span> <span class="dv">2</span>))</span>
-<span id="cb2-15"><a href="#cb2-15"></a></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="fu">rpart.plot</span>(tree.class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section>
-<section>
-<section id="how-does-it-work" class="title-slide slide level1">
-<h1>How does it work?</h1>
-
-</section>
-<section id="whats-going-on-behind-the-scenes" class="slide level2">
-<h2>What’s going on behind the scenes?</h2>
-<p>How decision trees work:</p>
-<div>
-<ul>
-<li class="fragment">Divide the predictor space into <span class="math inline">\(\mathbf{J}\)</span> distinct regions <span class="math inline">\(R_1\)</span>, <span class="math inline">\(R_2\)</span>,…,<span class="math inline">\(R_j\)</span>.</li>
-<li class="fragment">Take the mean of the response values in each region</li>
-</ul>
-</div>
-<div class="fragment">
-<p>Here’s how the regions were created in our regression/classification examples ⏭️</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="alternative-representation-of-decision-tree-regression">Alternative representation of decision tree (Regression)</h3>
-
-<img data-src="week05_slides_part1_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
-<section class="slide level2">
-
-<h3 id="alternative-representation-of-decision-tree-classification">Alternative representation of decision tree (Classification)</h3>
-
-<img data-src="week05_slides_part1_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
-<section class="slide level2">
-
-<h4 id="source-code-2">Source code</h4>
-<div class="callout callout-tip callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li>Use the code in the following slides to replicate the plot from those two plots.</li>
-<li>Found a bug? Report it on Slack.</li>
-<li>💡Check out the <a href="http://grantmcdermott.com/parttree/"><code>parttree</code> documentation</a> for how to customize your plot</li>
-<li>💡Learn more about data visualisation with ggplot2 on <a href="https://r4ds.had.co.nz/data-visualisation.html">R for Data Science - Chapter 3</a></li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<h4 id="source-code-regression">Source Code (regression)</h4>
-<p>First, you will have to install the <code>parttree</code> package:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Follow the instructions by the developers of the package</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># (https://github.com/grantmcdermott/parttree)</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"grantmcdermott/parttree"</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(ISLR2)      <span class="co"># to load Boston data</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">library</span>(tidyverse)  <span class="co"># to use things like the pipe (%&gt;%), mutate and if_else</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="fu">library</span>(rpart)      <span class="co"># a library that contains decision tree models</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="fu">library</span>(parttree)   <span class="co"># R package for plotting simple decision tree partitions</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># The function rpart below fits a decision tree to the data</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co"># You can control various aspects of the rpart fit with the parameter `control`</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co"># Type ?rpart.control in the R console to see what else you can change in the algorithm</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a></span>
-<span id="cb4-11"><a href="#cb4-11"></a>tree.reg <span class="ot">&lt;-</span> <span class="fu">rpart</span>(mpg <span class="sc">~</span> weight <span class="sc">+</span> year, <span class="at">data =</span> Auto, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">maxdepth =</span> <span class="dv">2</span>))</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a>Auto <span class="sc">%&gt;%</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> year)) <span class="sc">+</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a>   <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a>   <span class="fu">geom_parttree</span>(<span class="at">data =</span> tree.reg, <span class="fu">aes</span>(<span class="at">fill =</span> mpg), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a>   <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a>   <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">legend.position =</span> <span class="st">'bottom'</span>) <span class="sc">+</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a>   <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a>   <span class="fu">scale_fill_steps2</span>() <span class="sc">+</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a>   <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Weight (lbs)'</span>, <span class="at">y =</span> <span class="st">'Year'</span>, <span class="at">fill =</span> <span class="st">'Miles per gallon'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section class="slide level2">
-
-<h4 id="source-code-classification">Source Code (classification)</h4>
-<p>First, you will have to install the <code>parttree</code> package:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Follow the instructions by the developers of the package</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># (https://github.com/grantmcdermott/parttree)</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"grantmcdermott/parttree"</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(ISLR2)      <span class="co"># to load Boston data</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">library</span>(tidyverse)  <span class="co"># to use things like the pipe (%&gt;%), mutate and if_else</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="fu">library</span>(rpart)      <span class="co"># a library that contains decision tree models</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">library</span>(parttree)   <span class="co"># R package for plotting simple decision tree partitions</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co"># Add a column named `medv_gtmed` to indicate whether tax rate is above median</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>Boston <span class="ot">&lt;-</span> Boston <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">medv_gtmed =</span> <span class="fu">if_else</span>(medv <span class="sc">&gt;</span> <span class="fu">median</span>(medv), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb6-9"><a href="#cb6-9"></a></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co"># The function rpart below fits a decision tree to the data</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co"># You can control various aspects of the rpart fit with the parameter `control`</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co"># Type ?rpart.control in the R console to see what else you can change in the algorithm</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a></span>
-<span id="cb6-14"><a href="#cb6-14"></a>tree.class <span class="ot">&lt;-</span> <span class="fu">rpart</span>(medv_gtmed <span class="sc">~</span> lstat <span class="sc">+</span> tax, <span class="at">data =</span> Boston, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">maxdepth =</span> <span class="dv">2</span>))</span>
-<span id="cb6-15"><a href="#cb6-15"></a></span>
-<span id="cb6-16"><a href="#cb6-16"></a>Boston <span class="sc">%&gt;%</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lstat, <span class="at">y =</span> tax)) <span class="sc">+</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a>   <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a>   <span class="fu">geom_parttree</span>(<span class="at">data =</span> tree.class, <span class="fu">aes</span>(<span class="at">fill =</span> medv_gtmed), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a>   <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a>   <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">legend.position =</span> <span class="st">'bottom'</span>) <span class="sc">+</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a>   <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a>   <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> dollar) <span class="sc">+</span></span>
-<span id="cb6-24"><a href="#cb6-24"></a>   <span class="fu">scale_fill_steps2</span>() <span class="sc">+</span></span>
-<span id="cb6-25"><a href="#cb6-25"></a>   <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Proportion lower status'</span>, <span class="at">y =</span> <span class="st">'Tax rate per $10,000'</span>, <span class="at">fill =</span> <span class="st">'Probability above median'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="how-are-regions-created" class="slide level2 smaller">
-<h2>How are regions created?</h2>
-<p>Recursive binary splitting</p>
-<div class="columns">
-<div class="column" style="width: 41%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin-right:0.5%;padding:1%;">
-<h3 style="margin: 0em;" id="top-down">Top down</h3>
-<ul>
-<li>Start from the top of the tree</li>
-<li>Then perform splits at a current level of depth</li>
-</ul>
-</div><div class="column" style="width: 41%;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin-right:0.5%;padding:1%;">
-<h3 style="margin: 0em;" id="greedy">Greedy</h3>
-<ul>
-<li>Splits are “local” not global</li>
-<li>Only cares about data in the current branch</li>
-</ul>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="for-regression">For regression…</h3>
-<div class="fragment">
-<ul>
-<li>The tree selects a predictor <span class="math inline">\(X_j\)</span> and a cutpoint <span class="math inline">\(s\)</span> that minimises the residual sum of squares.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>We define two half planes <span class="math inline">\(R_1(j,s) = \left\{X|X_j &lt; s\right\}\)</span> and <span class="math inline">\(R_2(j,s) = \left\{X|X_j \geq s\right\}\)</span> and find <span class="math inline">\(j\)</span> and <span class="math inline">\(s\)</span> by minimising.</li>
-</ul>
-<p><span class="math display">\[
-\sum_{i: x_i \in R_1(j,s)} (y_i - \hat{y}_{R_1})^2 + \sum_{i: x_i \in R_2(j,s)} (y_i - \hat{y}_{R_2})^2
-\]</span></p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="for-classification">For classification…</h3>
-<div>
-<ul>
-<li class="fragment">The tree selects a predictor <span class="math inline">\(X_j\)</span> and a cutpoint <span class="math inline">\(s\)</span> that maximises <mark>node purity</mark>.</li>
-<li class="fragment">Gini index: <span class="math inline">\(G = \sum_{k = 1}^{K} \hat{p}_{mk}(1 - \hat{p}_{mk})\)</span></li>
-<li class="fragment">Entropy: <span class="math inline">\(D = - \sum_{k = 1}^{K} \hat{p}_{mk}\log \hat{p}_{mk}\)</span></li>
-</ul>
-</div>
-</section></section>
-<section>
-<section id="what-can-go-wrong" class="title-slide slide level1">
-<h1>What can go wrong</h1>
-
-</section>
-<section id="when-trees-run-amock" class="slide level2">
-<h2>When trees run amock</h2>
-<div>
-<ul>
-<li class="fragment">Trees can become too complex if we are not careful</li>
-<li class="fragment">It can lead to something called <mark>overfitting</mark>
-<ul>
-<li class="fragment">High training set predictive power</li>
-<li class="fragment">Low test set predictive power</li>
-</ul></li>
-<li class="fragment">Let’s see one example ⏭️</li>
-</ul>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="the-following-tree-is-too-specialised">The following tree is TOO specialised</h3>
-
-<img data-src="week05_slides_part1_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
-<section class="slide level2">
-
-<h4 id="partition-visualisation-of-the-same-tree">Partition visualisation of the same tree</h4>
-
-<img data-src="week05_slides_part1_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="how-to-fix-it" class="title-slide slide level1">
-<h1>How to fix it</h1>
-
-</section>
-<section id="pruning-the-tree" class="slide level2 smaller">
-<h2>Pruning the tree</h2>
-<div>
-<ul>
-<li class="fragment"><mark>Hyperparameters</mark> are model-specific dials that we can tune
-<ul>
-<li class="fragment">Things like <code>max tree depth</code>, or <code>min samples per leaf</code></li>
-</ul></li>
-<li class="fragment">As with model selection, there is no one one-size-fits-all approach to hyperparameter tuning.</li>
-<li class="fragment">Instead, we experiment with resampling
-<ul>
-<li class="fragment">Most frequently, <mark>k-fold cross-validation</mark></li>
-</ul></li>
-</ul>
-</div>
-<div class="fragment">
-<div class="callout callout-note callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>k-fold cross-validation</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li>We experimented with k-fold CV in <a href="../weeks/week04/lecture.html#the-cross-validation-setup">🗓️ Week 04’s lecture/workshop</a></li>
-<li>We will revisit this topic in <a href="../main/syllabus.html">🗓️ Week 07’s lab</a></li>
-<li>Not compulsory for <a href="https://lse-dsi.github.io/lse-ds202-course-notes/assessments/summative1.html">✍️ Summmative Problem Set (01) | W05-W07</a></li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="cost-complexity" class="slide level2 smaller">
-<h2>Cost Complexity</h2>
-<ul>
-<li>We apply <span class="math inline">\(\alpha\)</span> which is a non-negative value to prune the tree.</li>
-<li>For example, when <span class="math inline">\(\alpha = 0.02\)</span> we can create a less complex tree.</li>
-</ul>
-<div style="margin-top:-1em">
 <div class="cell">
-<div class="cell-output-display">
-<p><img data-src="week05_slides_part1_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+
+</div>
+</section>
+<section>
+<section id="recall-the-supervised-learning-approach" class="title-slide slide level1">
+<h1>Recall the Supervised Learning approach</h1>
+
+</section>
+<section id="example-of-supervised-models" class="slide level2 smaller">
+<h2>Example of Supervised Models</h2>
+<p>From <a href="https://lse-dsi.github.io/lse-ds202-course-notes/slides/week02_slides_part1.html#/the-basic-models">🗓️ Week 02</a>:</p>
+<div class="columns">
+<div class="column" style="width: 28%;margin-right:0.5%;padding:1%;">
+<h4 id="the-generic-supervised-model">The generic supervised model:</h4>
+<p><span class="math display">\[
+Y = \operatorname{f}(X) + \epsilon
+\]</span></p>
+<p>is defined more explicitly according to each algorithm ➡️</p>
+</div><div class="column" style="width: 31%;margin-right:0.5%;padding:1%;font-size:0.9em;">
+<div class="fragment" data-fragment-index="1">
+<!-- -->
+<h4 id="multiple-linear-regression">Multiple Linear Regression</h4>
+<p><span class="math display">\[
+\begin{align}
+Y = \beta_0 &amp;+ \beta_1 X_1 + \beta_2 X_2 \\
+   &amp;+ \dots \\
+   &amp;+ \beta_p X_p + \epsilon
+\end{align}
+\]</span></p>
+<p>when there are multiple predictors, <span class="math inline">\(X_p\)</span>.</p>
+</div>
+</div><div class="column" style="width: 32%;margin-right:0.5%;padding:1%;font-size:0.9em;">
+<div class="fragment" data-fragment-index="1">
+<!-- -->
+<h4 id="multiple-logistic-regression">Multiple Logistic Regression</h4>
+<p><span class="math display">\[
+\begin{align}
+Y \propto p(X) &amp;= \\
+               &amp;= \frac{e^{\beta_0 + \beta_1 X_1 + \ldots + \beta_p X_p}}{1 + e^{\beta_0 + \beta_1 X_1 + \ldots + \beta_p X_p}}
+\end{align}
+\]</span></p>
+<p>when there are multiple predictors, <span class="math inline">\(X_p\)</span>.</p>
 </div>
 </div>
 </div>
 </section></section>
-<section id="whats-next" class="title-slide slide level1">
-<h1>What’s Next</h1>
-<p>After our 10-min break ☕:</p>
+<section>
+<section id="unsupervised-learning" class="title-slide slide level1">
+<h1>Unsupervised Learning</h1>
+
+</section>
+<section id="how-is-it-different" class="slide level2">
+<h2>How is it different?</h2>
+<div class="columns">
+<div class="column" style="width:45%; border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin-right:0.5%;padding:1%;font-size:0.65em;">
+<h3 id="supervised-learning">Supervised Learning</h3>
+<div class="fragment" data-fragment-index="1">
 <ul>
-<li>Support Vector Machine</li>
-<li>Tips for the <strong>Summative Problem Set 01</strong> 
+<li>Our main goal is to predict future values of <span class="math inline">\(Y\)</span></li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2">
+<ul>
+<li>We have historic <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> data</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="3">
+<ul>
+<li>Algorithms fit the data and supervise themselves objectively (e.g.: residuals)</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="4">
+<ul>
+<li>We can validate how well the model fits training data and how it generalises beyond that.</li>
+</ul>
+</div>
+</div><div class="column" style="width:45%; border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin-right:0.5%;padding:1%;font-size:0.65em;">
+<h3 id="unsupervised-learning-1"><mark>Unsupervised Learning</mark></h3>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li>The main goal is to observe (dis-)similarities in <span class="math inline">\(X\)</span></li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2">
+<ul>
+<li>We only have <span class="math inline">\(X\)</span> data</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="3">
+<ul>
+<li>There is no <span class="math inline">\(Y\)</span> variable to “supervise” how models should fit the data</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="4">
+<ul>
+<li>Validation is a lot more subjective. There is no objective way to check our work.</li>
+</ul>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="clustering" class="title-slide slide level1">
+<h1>Clustering</h1>
+
+</section>
+<section id="why-clustering" class="slide level2">
+<h2>Why clustering?</h2>
+<div>
+<ul>
+<li class="fragment">Are there <mark>clusters</mark> (subgroups) in my data?</li>
+<li class="fragment">Which samples are most similar to each other?</li>
+<li class="fragment">Are there samples that do not fall in any subgroup?</li>
+</ul>
+</div>
+</section>
+<section id="each-algorithm-is-different" class="slide level2 smaller">
+<h2>Each algorithm is different</h2>
+
+<img data-src="../figures/generic/sphx_glr_plot_cluster_comparison_001.png" class="r-stretch"><div class="footer">
+<p>Source: <a href="https://scikit-learn.org/stable/auto_examples/cluster/plot_cluster_comparison.html">Scikit Learn | Comparing different clustering algorithms on toy datasets</a></p>
+</div>
+</section></section>
+<section>
+<section id="an-example" class="title-slide slide level1">
+<h1>An Example:</h1>
+<ul>
+<li>Let’s use the 🐧 penguins data to illustrate clustering</li>
+<li>Same data used in <a href="https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week07/lab.html">💻 Week 07 - Lab</a></li>
+</ul>
+</section>
+<section id="penguins-data" class="slide level2 smaller">
+<h2>🐧 penguins data</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>penguins_cleaned <span class="ot">&lt;-</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>  penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">select</span>(species, <span class="fu">where</span>(is.numeric), <span class="sc">-</span> year)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">head</span>(penguins_cleaned, <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 5
+   species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Adelie            39.1          18.7               181        3750
+ 2 Adelie            39.5          17.4               186        3800
+ 3 Adelie            40.3          18                 195        3250
+ 4 Adelie            36.7          19.3               193        3450
+ 5 Adelie            39.3          20.6               190        3650
+ 6 Adelie            38.9          17.8               181        3625
+ 7 Adelie            39.2          19.6               195        4675
+ 8 Adelie            41.1          17.6               182        3200
+ 9 Adelie            38.6          21.2               191        3800
+10 Adelie            34.6          21.1               198        4400
+11 Adelie            36.6          17.8               185        3700
+12 Adelie            38.7          19                 195        3450
+13 Adelie            42.5          20.7               197        4500
+14 Adelie            34.4          18.4               184        3325
+15 Adelie            46            21.5               194        4200</code></pre>
+</div>
+</div>
+
+<aside><div>
+<blockquote>
+<p>Data collected and made available by <a href="https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php">Dr.&nbsp;Kristen Gorman</a> and the <a href="https://pallter.marine.rutgers.edu/">Palmer Station</a>, <a href="https://pallter.marine.rutgers.edu/">Antarctica LTER</a>, a member of the <a href="https://lternet.edu/">Long Term Ecological Research Network</a>.</p>
+</blockquote>
+</div></aside></section>
+<section id="correlation-plot" class="slide level2 smaller">
+<h2>Correlation plot</h2>
+<p>It is easy to distinguish the species using colour because we have a <code>species</code> column:</p>
+
+<img data-src="week07_slides_part2_files/figure-revealjs/unnamed-chunk-3-1.png" width="3000" class="r-stretch"></section>
+<section id="source-code" class="slide level2 smaller">
+<h2>Source Code</h2>
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Use the code below to replicate the plot from the previous slide.</li>
+<li>Found a bug? Report it on Slack.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(GGally)         <span class="co"># pretty correlation plots</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(tidyverse)      <span class="co"># to use things like the pipe (%&gt;%), mutate and if_else</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">library</span>(palmerpenguins) <span class="co"># for penguin data </span></span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a>penguins_cleaned <span class="ot">&lt;-</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span>  </span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="fu">select</span>(species, <span class="fu">where</span>(is.numeric), <span class="sc">-</span> year) </span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co"># View(penguins_cleaned) or do head(penguins_cleaned)</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a>g <span class="ot">&lt;-</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="fu">ggpairs</span>(penguins_cleaned, </span>
+<span id="cb3-14"><a href="#cb3-14"></a>        <span class="fu">aes</span>(<span class="at">colour =</span> species, <span class="at">fill =</span> species, <span class="at">alpha =</span> <span class="fl">0.875</span>),</span>
+<span id="cb3-15"><a href="#cb3-15"></a>        <span class="at">columns =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>, </span>
+<span id="cb3-16"><a href="#cb3-16"></a>        <span class="at">upper =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="st">'blankDiag'</span>)) <span class="sc">+</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a>  <span class="fu">scale_colour_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a>  <span class="fu">scale_fill_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">'Species'</span>, <span class="at">fill =</span> <span class="st">'Species'</span>)</span>
+<span id="cb3-22"><a href="#cb3-22"></a></span>
+<span id="cb3-23"><a href="#cb3-23"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="penguins-data-without-the-species" class="slide level2">
+<h2>Penguins data without the <code>species</code></h2>
+<p>What if we did not have the <code>species</code> column?</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">select</span>(species, <span class="fu">where</span>(is.numeric), <span class="sc">-</span> year, <span class="sc">-</span>species) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">head</span>(<span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 4
+   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1           39.1          18.7               181        3750
+ 2           39.5          17.4               186        3800
+ 3           40.3          18                 195        3250
+ 4           36.7          19.3               193        3450
+ 5           39.3          20.6               190        3650
+ 6           38.9          17.8               181        3625
+ 7           39.2          19.6               195        4675
+ 8           41.1          17.6               182        3200
+ 9           38.6          21.2               191        3800
+10           34.6          21.1               198        4400
+11           36.6          17.8               185        3700
+12           38.7          19                 195        3450
+13           42.5          20.7               197        4500
+14           34.4          18.4               184        3325
+15           46            21.5               194        4200</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="k-means-clustering" class="title-slide slide level1">
+<h1>K-Means Clustering</h1>
+
+</section>
+<section id="objective-function" class="slide level2 smaller">
+<h2>Objective function:</h2>
+<p>Find a partition <span class="math inline">\(C_1 \cup C_2 \cup C_3 \cup \ldots \cup C_K = \{1, \ldots, n\}\)</span> for the data such that: <span class="math display">\[
+\text{minimize}_{C_1, \ldots, C_K} \left\{ \sum_{k=1}^{K}{\frac{1}{|C_k|} \sum_{i,i' \in C_k}{\sum_{j=1}^p{(x_{ij} - x_{i'j})^2}} }\right\}
+\]</span></p>
+</section>
+<section id="k-means-algorithm" class="slide level2 smaller">
+<h2>K-Means algorithm</h2>
+<p>Step by step of one clustering algorithm:</p>
+<div>
+<ol type="1">
+<li class="fragment">You have to inform <span class="math inline">\(K\)</span>, the number of clusters you wish to recover</li>
+<li class="fragment">The algorithm randomly assign each observation to a random cluster</li>
+<li class="fragment">Iterate until cluster assignments stop changing
+<ul>
+<li class="fragment">For each of the <span class="math inline">\(K\)</span> clusters, compute the cluster <mark>centroid</mark></li>
+<li class="fragment">Re-assign samples to their closest centroid (euclidean distance)</li>
+</ul></li>
+</ol>
+</div>
+
+<aside><div>
+<p>Indicative reading: <span class="citation" data-cites="james_introduction_2021">(<a href="#/references" role="doc-biblioref" onclick="">James et al. 2021, sec. 12.4.1</a>)</span></p>
+</div></aside></section>
+<section id="clustering-penguins" class="slide level2 smaller">
+<h2>Clustering Penguins</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a>K<span class="ot">=</span><span class="dv">3</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a>kmeans_model <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(penguins_cleaned <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>species), K)</span>
+<span id="cb6-6"><a href="#cb6-6"></a>kmeans_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>K-means clustering with 3 clusters of sizes 113, 80, 140
+
+Cluster means:
+  bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+1       44.24336      17.44779          201.5487    4310.619
+2       48.66250      15.39750          219.9875    5365.938
+3       41.12214      17.94643          189.6286    3461.250
+
+Clustering vector:
+  [1] 3 3 3 3 3 3 1 3 3 1 3 3 1 3 1 3 3 3 1 3 3 3 3 3 1 3 1 3 1 3 1 1 3 3 1 3 1
+ [38] 3 1 3 1 3 3 1 3 1 3 1 3 3 3 3 3 3 3 1 3 1 3 1 3 1 3 1 3 1 3 1 3 1 3 1 3 1
+ [75] 3 1 3 1 3 3 3 3 1 3 3 1 3 1 3 1 3 1 3 1 3 1 3 1 3 3 3 1 3 1 3 1 3 1 1 1 3
+[112] 3 3 3 3 3 3 3 3 1 3 1 3 1 3 3 3 1 3 1 3 1 3 1 3 3 3 3 3 3 1 3 3 3 3 1 1 2
+[149] 1 2 2 1 1 2 1 2 1 2 1 2 1 2 1 2 1 2 2 2 1 2 2 2 2 1 2 2 1 2 2 2 2 2 2 1 2
+[186] 1 2 1 1 2 2 1 2 2 2 2 2 1 2 2 2 1 2 1 2 1 2 1 2 1 2 2 1 2 1 2 2 2 1 2 1 2
+[223] 1 2 1 2 1 2 1 2 1 2 2 2 2 2 1 2 2 2 2 2 1 2 2 2 2 2 2 1 2 1 2 2 2 1 2 1 2
+[260] 2 2 2 2 2 2 3 1 3 3 3 1 3 3 1 3 3 3 3 1 3 1 3 3 3 1 3 3 3 3 3 1 3 3 3 1 3
+[297] 1 3 1 3 1 3 1 3 1 1 3 3 3 3 1 3 1 3 3 3 1 3 1 3 3 3 1 3 3 1 3 3 1 3 3 1 3
+
+Within cluster sum of squares by cluster:
+[1] 9318036 9718829 9724809
+ (between_SS / total_SS =  86.6 %)
+
+Available components:
+
+[1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+[6] "betweenss"    "size"         "iter"         "ifault"      </code></pre>
+</div>
+</div>
+</section>
+<section id="inspect-the-centroids" class="slide level2 smaller">
+<h2>Inspect the centroids</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(kmeans_model<span class="sc">$</span>centers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">bill_length_mm</th>
+<th style="text-align: right;">bill_depth_mm</th>
+<th style="text-align: right;">flipper_length_mm</th>
+<th style="text-align: right;">body_mass_g</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">44.24336</td>
+<td style="text-align: right;">17.44779</td>
+<td style="text-align: right;">201.5487</td>
+<td style="text-align: right;">4310.619</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">48.66250</td>
+<td style="text-align: right;">15.39750</td>
+<td style="text-align: right;">219.9875</td>
+<td style="text-align: right;">5365.938</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">41.12214</td>
+<td style="text-align: right;">17.94643</td>
+<td style="text-align: right;">189.6286</td>
+<td style="text-align: right;">3461.250</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="how-does-it-compare-to-the-real-one" class="slide level2 smaller">
+<h2>How does it compare to the real one?</h2>
+<p>We can cross-tabulate <code>species</code> and <code>cluster</code> membership:</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>plot_df <span class="ot">&lt;-</span> penguins_cleaned</span>
+<span id="cb9-2"><a href="#cb9-2"></a>plot_df<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="fu">factor</span>(kmeans_model<span class="sc">$</span>cluster)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">levels</span>(plot_df<span class="sc">$</span>cluster) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Cluster 1"</span>, <span class="st">"Cluster 2"</span>, <span class="st">"Cluster 3"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(plot_df<span class="sc">$</span>species, plot_df<span class="sc">$</span>cluster))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Cluster 1</th>
+<th style="text-align: right;">Cluster 2</th>
+<th style="text-align: right;">Cluster 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">94</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">46</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="visual-comparison" class="slide level2">
+<h2>Visual comparison</h2>
+
+<img data-src="week07_slides_part2_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<section id="visual-comparison-1" class="slide level2">
+<h2>Visual comparison</h2>
+
+<img data-src="week07_slides_part2_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<section id="whats-next" class="slide level2">
+<h2>What’s Next</h2>
+<ul>
+<li>Next week, Week 08, the labs will be about SVM &amp; cross-validation
+<ul>
+<li>Revisit <a href="https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05.html">🗓️ Week 05 lecture</a></li>
+<li>Read “The cross-validation setup” section in <a href="https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lecture.html#the-cross-validation-setup">Week 04 page</a></li>
+</ul></li>
+<li>You will explore k-means clustering in Week 09 labs</li>
+</ul>
+</section>
+<section id="references" class="slide level2 smaller scrollable" style="word-break:break-all;">
+<h2>References</h2>
+<div id="refs" class="r-fit-text references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-james_introduction_2021" class="csl-entry" role="doc-biblioentry">
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: With Applications in <span>R</span></em>. Second edition. Springer Texts in Statistics. New York NY: Springer. <a href="https://www.statlearning.com/">https://www.statlearning.com/</a>.
+</div>
+</div>
+<p>
 <script type="application/shiny-prerendered" data-context="server-extras">
 ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
   quos <- rlang::enquos(...)
@@ -847,8 +895,7 @@ ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
   invisible()
 }
 </script>
-</li>
-</ul>
+</p>
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="dependencies">
 {"type":"list","attributes":{},"value":[]}
@@ -857,7 +904,7 @@ ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
 <!--html_preserve-->
 
 <script type="application/shiny-prerendered" data-context="execution_dependencies">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","cellranger","cli","colorspace","compiler","crayon","data.table","datasets","DBI","dbplyr","digest","dplyr","ellipsis","evaluate","fansi","farver","fastmap","forcats","fs","gargle","generics","ggplot2","glue","googledrive","googlesheets4","graphics","grDevices","grid","gtable","haven","hms","htmltools","httpuv","httr","ISLR2","jsonlite","knitr","labeling","later","lifecycle","lubridate","magrittr","methods","mime","modelr","munsell","parttree","pillar","pkgconfig","promises","purrr","R6","Rcpp","readr","readxl","renv","reprex","rlang","rmarkdown","rpart","rpart.plot","rvest","scales","shiny","stats","stringi","stringr","tibble","tidyr","tidyselect","tidyverse","timechange","tools","tzdb","utf8","utils","vctrs","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.4.1","4.2.2","1.0.1","1.1.0","3.4.1","2.0-3","4.2.2","1.5.2","1.14.4","4.2.2","1.1.3","2.2.1","0.6.30","1.0.10","0.3.2","0.18","1.0.3","2.1.1","1.1.0","0.5.2","1.5.2","1.2.1","0.1.3","3.4.0","1.6.2","2.0.0","1.0.1","4.2.2","4.2.2","4.2.2","0.3.1","2.5.1","1.1.2","0.5.3","1.6.6","1.4.4","1.3-1","1.8.3","1.40","0.4.2","1.3.0","1.0.3","1.9.0","2.0.3","4.2.2","0.12","0.1.9","0.5.0","0.0.1.9000","1.8.1","2.0.3","1.2.0.1","0.3.5","2.5.1","1.0.9","2.1.3","1.4.1","0.16.0","2.0.2","1.0.6","2.17","4.1.16","3.1.1","1.0.3","1.2.1","1.7.3","4.2.2","1.7.8","1.4.1","3.1.8","1.2.1","1.2.0","1.3.2","0.1.1","4.2.2","0.3.0","1.2.2","4.2.2","0.5.0","2.5.0","0.34","1.3.3","1.8-4","2.3.6"]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","cellranger","cli","colorspace","compiler","crayon","datasets","DBI","dbplyr","digest","dplyr","ellipsis","evaluate","fansi","farver","fastmap","forcats","fs","gargle","generics","GGally","ggplot2","glue","googledrive","googlesheets4","graphics","grDevices","grid","gtable","haven","highr","hms","htmltools","httpuv","httr","jsonlite","knitr","labeling","later","lifecycle","lubridate","magrittr","methods","mime","modelr","munsell","palmerpenguins","pillar","pkgconfig","plyr","promises","purrr","R6","RColorBrewer","Rcpp","readr","readxl","renv","reprex","reshape","rlang","rmarkdown","rvest","scales","shiny","stats","stringi","stringr","tibble","tidyr","tidyselect","tidyverse","timechange","tools","tzdb","utf8","utils","vctrs","viridisLite","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.4.1","4.2.2","1.0.1","1.1.0","3.4.1","2.0-3","4.2.2","1.5.2","4.2.2","1.1.3","2.2.1","0.6.30","1.0.10","0.3.2","0.18","1.0.3","2.1.1","1.1.0","0.5.2","1.5.2","1.2.1","0.1.3","2.1.2","3.4.0","1.6.2","2.0.0","1.0.1","4.2.2","4.2.2","4.2.2","0.3.1","2.5.1","0.9","1.1.2","0.5.3","1.6.6","1.4.4","1.8.3","1.40","0.4.2","1.3.0","1.0.3","1.9.0","2.0.3","4.2.2","0.12","0.1.9","0.5.0","0.1.1","1.8.1","2.0.3","1.8.7","1.2.0.1","0.3.5","2.5.1","1.1-3","1.0.9","2.1.3","1.4.1","0.16.0","2.0.2","0.8.9","1.0.6","2.17","1.0.3","1.2.1","1.7.3","4.2.2","1.7.8","1.4.1","3.1.8","1.2.1","1.2.0","1.3.2","0.1.1","4.2.2","0.3.0","1.2.2","4.2.2","0.5.0","0.4.1","2.5.0","0.34","1.3.3","1.8-4","2.3.6"]}]}]}
 </script>
 <!--/html_preserve-->
 
@@ -865,7 +912,7 @@ ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
 <img src="../figures/logos/LSE Data Science Institute.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p>DS202 - Data Science for Social Scientists <span class="emoji" data-emoji="robot">🤖</span> <span class="emoji" data-emoji="juggling_person">🤹</span></p>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 

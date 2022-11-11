@@ -907,7 +907,7 @@
     "href": "weeks/week07/checklist.html",
     "title": "✅ Week 07 - Checklist",
     "section": "",
-    "text": "Time management tips & Comprehension checks"
+    "text": "Sadly, I didn’t have the time this week to suggest a checklist for you!"
   },
   {
     "objectID": "weeks/week07/lab.html",
@@ -1020,6 +1020,104 @@
     "title": "💻 Week 07 - Lab Roadmap (90 min)",
     "section": "Q7. Control parameters",
     "text": "Q7. Control parameters\nThe decision tree algorithm we are using sets the cost complexity parameter (cp) by default as control = list(cp = 0.01). Build a new model with a smaller cp value, say control = list(cp = 0.001). Does this increase or reduce the complexity of the tree?\n\n# Your code goes here\n\n\nYour text goes here"
+  },
+  {
+    "objectID": "weeks/week07/lecture.html",
+    "href": "weeks/week07/lecture.html",
+    "title": "👨‍🏫 Week 07 - Lecture",
+    "section": "",
+    "text": "Either click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides. For a PDF copy, check Moodle."
+  },
+  {
+    "objectID": "weeks/week07/lecture.html#coffee-break-10-min",
+    "href": "weeks/week07/lecture.html#coffee-break-10-min",
+    "title": "👨‍🏫 Week 07 - Lecture",
+    "section": "☕ Coffee Break (10 min)",
+    "text": "☕ Coffee Break (10 min)\nUse this time to chat, stretch, drink some coffee or just relax for a bit by yourself."
+  },
+  {
+    "objectID": "weeks/week07/lecture.html#part-ii---unsupervised-learning-clustering-45-50-min",
+    "href": "weeks/week07/lecture.html#part-ii---unsupervised-learning-clustering-45-50-min",
+    "title": "👨‍🏫 Week 07 - Lecture",
+    "section": "Part II - Unsupervised Learning (Clustering) (45-50 min)",
+    "text": "Part II - Unsupervised Learning (Clustering) (45-50 min)\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides. For a PDF copy, check Moodle."
+  },
+  {
+    "objectID": "weeks/week08/lab.html",
+    "href": "weeks/week08/lab.html",
+    "title": "💻 Week 08 - Lab Roadmap (90 min)",
+    "section": "",
+    "text": "Context\nThis lab session draws on 🗓️ Week 04 lecture/workshop and 🗓️ Week 05 lecture content.\nIt also reuses elements of tidymodels introduced in previous labs where we used functions from library(broom) or library(rsample). All these packages are part of tidymodels. For the record, tidymodel’s ‘Get Started’ tutorials are really good.\nTopics\nMore specifically, these are the things we will explore or revisit:"
+  },
+  {
+    "objectID": "weeks/week08/lab.html#setup",
+    "href": "weeks/week08/lab.html#setup",
+    "title": "💻 Week 08 - Lab Roadmap (90 min)",
+    "section": "Setup",
+    "text": "Setup\n\n💡 Some of you mentioned that your R version cannot handle tidymodels. We recommend you update R to version 4.2.0 or above.\n\nPackages you will need\n\nlibrary('ISLR2')       # for the data\nlibrary('tidyverse')   # to use things like the pipe (%>%)\nlibrary('e1071')       # for SVM model\nlibrary('tidymodels')  # for model tuning, cross-validation etc.\n\n# Vanity packages:\nlibrary('GGally')      # for pretty correlation plot\nlibrary('ggsci')       # for pretty plot colours\nlibrary('cvms')        # for pretty confusion matrix plots"
+  },
+  {
+    "objectID": "weeks/week08/lab.html#the-data",
+    "href": "weeks/week08/lab.html#the-data",
+    "title": "💻 Week 08 - Lab Roadmap (90 min)",
+    "section": "The Data",
+    "text": "The Data\n\n🍊Orange Juice\nThis week we will use a different ISLR2 dataset: OJ . We will perform a classification task with the goal to predict the Purchase column.\n\nThe data contains 1070 purchases where the customer either purchased Citrus Hill or Minute Maid Orange Juice. A number of characteristics of the customer and product are recorded.\n\n\nISLR2::OJ %>% head()\n\n  Purchase WeekofPurchase StoreID PriceCH PriceMM DiscCH DiscMM SpecialCH\n1       CH            237       1    1.75    1.99   0.00    0.0         0\n2       CH            239       1    1.75    1.99   0.00    0.3         0\n3       CH            245       1    1.86    2.09   0.17    0.0         0\n4       MM            227       1    1.69    1.69   0.00    0.0         0\n5       CH            228       7    1.69    1.69   0.00    0.0         0\n6       CH            230       7    1.69    1.99   0.00    0.0         0\n  SpecialMM  LoyalCH SalePriceMM SalePriceCH PriceDiff Store7 PctDiscMM\n1         0 0.500000        1.99        1.75      0.24     No  0.000000\n2         1 0.600000        1.69        1.75     -0.06     No  0.150754\n3         0 0.680000        2.09        1.69      0.40     No  0.000000\n4         0 0.400000        1.69        1.69      0.00     No  0.000000\n5         0 0.956535        1.69        1.69      0.00    Yes  0.000000\n6         1 0.965228        1.99        1.69      0.30    Yes  0.000000\n  PctDiscCH ListPriceDiff STORE\n1  0.000000          0.24     1\n2  0.000000          0.24     1\n3  0.091398          0.23     1\n4  0.000000          0.00     1\n5  0.000000          0.00     0\n6  0.000000          0.30     0\n\n\nTo understand what each variable represent, open the R Console, type the following and hit ENTER:\n?ISLR2::OJ\nWhich variables can help us distinguish the two different brands?\nTo simplify our plots later on, let’s focus on just two predictors:\n\nplot_df <- ISLR2::OJ %>% select(Purchase, LoyalCH, PriceDiff)\n\ng = (\n  ggpairs(plot_df, aes(colour=Purchase))\n  \n  # Customizing the plot\n  + scale_colour_startrek()\n  + scale_fill_startrek()\n  + theme_bw()\n)\ng"
+  },
+  {
+    "objectID": "weeks/week08/lab.html#stock-market",
+    "href": "weeks/week08/lab.html#stock-market",
+    "title": "💻 Week 08 - Lab Roadmap (90 min)",
+    "section": "📈 Stock Market",
+    "text": "📈 Stock Market\nWe will also use the Smarket dataset from the ISLR2 package. We will perform a regression task with the goal to predict the percentage of return of the S&P 500 stock index on any given day, as represented by the Today column.\n\nDaily percentage returns for the S&P 500 stock index between 2001 and 2005.\n\n\nISLR2::Smarket %>% head()\n\n  Year   Lag1   Lag2   Lag3   Lag4   Lag5 Volume  Today Direction\n1 2001  0.381 -0.192 -2.624 -1.055  5.010 1.1913  0.959        Up\n2 2001  0.959  0.381 -0.192 -2.624 -1.055 1.2965  1.032        Up\n3 2001  1.032  0.959  0.381 -0.192 -2.624 1.4112 -0.623      Down\n4 2001 -0.623  1.032  0.959  0.381 -0.192 1.2760  0.614        Up\n5 2001  0.614 -0.623  1.032  0.959  0.381 1.2057  0.213        Up\n6 2001  0.213  0.614 -0.623  1.032  0.959 1.3491  1.392        Up\n\n\n\nplot_df <- ISLR2::Smarket %>% select(Today, Volume, Lag1, Lag2)\n\ng = (\n  ggpairs(plot_df)\n  \n  # Customizing the plot\n  + scale_colour_startrek()\n  + scale_fill_startrek()\n  + theme_bw()\n)\ng \n\n\n\n\nTo understand what each variable represent, open the R Console, type the following and hit ENTER:\n?ISLR2::Smarket"
+  },
+  {
+    "objectID": "weeks/week08/lab.html#step-1-svm-models-for-classification-25-min",
+    "href": "weeks/week08/lab.html#step-1-svm-models-for-classification-25-min",
+    "title": "💻 Week 08 - Lab Roadmap (90 min)",
+    "section": "Step 1: SVM models for classification (25 min)",
+    "text": "Step 1: SVM models for classification (25 min)\nSVM stands for Support Vector Machines. Revisit 🗓️ Week 05 lecture or Chapter 9 of our textbook to understand more about this algorithm.\nR does not come with SVM, so we need to import it from a library. Let’s start with the function svm we used in the Week 05 lecture, imported from the e1071 package. Here are a few things to know about the svm function:\n\nThe svm command is largely similar to other commands such as lm and glm in that the first parameter is an R formula and the second is the data set.\nThere are a few other options, but we will focus on specifying a radial kernel using kernel = 'radial'.\nWe can specify the type of machine learning task we are performing. Since we are doing classification, we use the option type = 'C-classification'.\n\n\nStep 1.1: Training the SVM model\n\nfiltered_data <- ISLR2::OJ %>% select(Purchase, LoyalCH, PriceDiff)\n\norange_svm_model <- svm(Purchase ~ .,\n                        data=filtered_data,\n                        kernel='radial', \n                        type='C-classification')\norange_svm_model\n\n\nCall:\nsvm(formula = Purchase ~ ., data = filtered_data, kernel = \"radial\", \n    type = \"C-classification\")\n\n\nParameters:\n   SVM-Type:  C-classification \n SVM-Kernel:  radial \n       cost:  1 \n\nNumber of Support Vectors:  427\n\n\n🎯 ACTION POINT: What does the ‘Number of Support Vectors’ represent?\n\nyour text here\n\n🎯 ACTION POINT: What would happened if we changed kernel to kernel=\"linear\"?\n\nyour text here\n\n\n\nStep 1.2: Goodness-of-Fit of the SVM\nLet’s investigate how well our model fits the data. Let’s reuse the model we trained (orange_svm_model) and predict the same samples we used to train it. To avoid modifying our original dataframe, let’s save the output of the prediction in an auxiliary df (plot_df):\n\nplot_df <- \n    filtered_data %>% \n    mutate(class_pred = predict(orange_svm_model, newdata = .))\nhead(plot_df)\n\nAdd a is_correct column to indicate whether the prediction was correct or not:\n\nplot_df <- plot_df %>% mutate(is_correct = class_pred == Purchase)\nhead(plot_df)\n\n  Purchase  LoyalCH PriceDiff class_pred is_correct\n1       CH 0.500000      0.24         CH       TRUE\n2       CH 0.600000     -0.06         CH       TRUE\n3       CH 0.680000      0.40         CH       TRUE\n4       MM 0.400000      0.00         MM       TRUE\n5       CH 0.956535      0.00         CH       TRUE\n6       CH 0.965228      0.30         CH       TRUE\n\n\nRemember what we did in the Decision Tree example last week!\n\nSimple confusion matrix:\n\nconfusion_matrix <- \n    table(expected=plot_df$Purchase, class_pred=plot_df$class_pred)\nprint(confusion_matrix)\n\n\n\nNicer looking confusion matrix:\n\nplot_confusion_matrix(as_tibble(confusion_matrix), \n                      target_col = \"expected\", \n                      prediction_col = \"class_pred\",\n                      \n                      ## Customizing the plot\n                      add_normalized = TRUE,\n                      add_col_percentages = FALSE,\n                      add_row_percentages = FALSE,\n                      counts_col = \"n\",\n                      )\n\n🎯 ACTION POINT: How well does the model fit the data? What is your opinion?\n\n\nMeasure: Precision\nRemember from Week 04 Lecture/Workshop (notebook can be found under📥W04 Lecture Files on Moodle):\n\nPRECISION: Given all predictions for a specific class, how many were True Positives? In other words, Precision = True Positives/(True Positives + False Positives).\n\nLet’s calculate the score for the CH class. That is, as if CH=“Yes” and MM=“No”.\n\n## expected == CH & predicted == CH\ntotal_correct_CH   <- confusion_matrix[\"CH\", \"CH\"]  \n\n## sum of samples predicted == CH\ntotal_predicted_CH <- sum(confusion_matrix[, \"CH\"]) \n\nprecision          <- total_correct_CH/total_predicted_CH\ncat(sprintf(\"%.2f%%\", 100*precision))\n\n85.27%\n\n\n\n\nMeasure: Recall\n\nAlso called True Positive Rate = True Positive/(True Positives + False Negatives)\n\n\n## number of samples of brand CH\ntotal_real_CH      <- sum(confusion_matrix[\"CH\", ]) \n\nrecall <- total_correct_CH/total_real_CH\ncat(sprintf(\"%.2f%%\", 100*recall))\n\n87.75%\n\n\n\n\nMeasure: F1-SCORE\n\nF1-SCORE: A combination of Precision and Recall\n\\[\n\\operatorname{F1-score} = \\frac{2 \\times \\operatorname{Precision} \\times \\operatorname{Recall}}{(\\operatorname{Precision} + \\operatorname{Recall})}\n\\]\n\n\nf1_score <- (2*precision*recall)/(precision + recall)\n\ncat(f1_score)\n\n0.8649057\n\n\n\n\n\nStep 1.3: Visualize the SVM decision space\nHere we will demonstrate how you could simulate some data to cover the entire feature space of the data we are modelling. What do we mean by that? By inspecting LoyalCH and PriceDiff, we see the range values these variables can assume:\n\nfiltered_data %>% \n    select(c(LoyalCH, PriceDiff)) %>%\n    summary()\n\n    LoyalCH           PriceDiff      \n Min.   :0.000011   Min.   :-0.6700  \n 1st Qu.:0.325257   1st Qu.: 0.0000  \n Median :0.600000   Median : 0.2300  \n Mean   :0.565782   Mean   : 0.1465  \n 3rd Qu.:0.850873   3rd Qu.: 0.3200  \n Max.   :0.999947   Max.   : 0.6400  \n\n\n💡 We can simulate data to account for all possible combinations of LoyalCH and PriceDiff. We achieve this using crossing, another tidyverse function:\n\nWe feed crossing a sequence of numbers that range from the minimal and maximal values of both variables, incremented by 0.1 values.\nWe then create a new variable class_pred which uses the SVM model object to predict the brand of orange juice purchased by the customer\nNote that we say newdata = . to indicate that we simply want to use the data set created with crossing as our new data.\n\n\nsim.data <- \n  crossing(LoyalCH   = seq(0,1,0.05),\n           PriceDiff = seq(-1,1,0.1)) %>% \n  mutate(class_pred = predict(orange_svm_model, newdata = .))\nhead(sim.data)\n\n# A tibble: 6 × 3\n  LoyalCH PriceDiff class_pred\n    <dbl>     <dbl> <fct>     \n1       0      -1   MM        \n2       0      -0.9 MM        \n3       0      -0.8 MM        \n4       0      -0.7 MM        \n5       0      -0.6 MM        \n6       0      -0.5 MM        \n\n\nThe data above is all synthetic (“fake”)! But it is very useful to colour the background of our plot.\nWe use geom_tile to show the area the SVM model identifies as Chinstrap penguins. We then use geom_point to overlay the actual data. Red dots in blue areas and vice versa indicate cases where the SVM model makes errors.\n\ng <- (\n  plot_df %>%   \n    ggplot()\n  \n    ## Tile the background of the plot with SVM predictions\n    + geom_tile(data = sim.data, aes(x=LoyalCH, y=PriceDiff, fill = class_pred), alpha = 0.25)\n  \n    ## Actual data\n    + geom_point(aes(x=LoyalCH, y=PriceDiff, colour = Purchase, shape = is_correct), size=2.5, stroke=0.95, alpha=0.7)\n  \n    ## Define X and Os\n    + scale_shape_manual(values = c(4, 1))\n    \n    ## (OPTIONAL) Customizing the colours and theme of the plot\n    + scale_x_continuous(labels=scales::percent)\n    + scale_colour_startrek()\n    + scale_fill_startrek()\n    + theme_minimal()\n    + theme(panel.grid = element_blank(), legend.position = 'bottom', plot.title = element_text(hjust = 0.5))\n    + labs(x = 'Customer brand loyalty for CH', y = 'Sale price of MM less sale price of CH', fill = 'Brand', colour = 'Brand', shape = 'Correct prediction?', title = sprintf('Overall Training Accuracy = %.2f %%', 100*(sum(plot_df$correct)/nrow(plot_df))))\n)\n\ng\n\n\n\n\n🤝 WORKING TOGETHER In pairs, discuss what you see in the plot:\n\nWhat do the shape of dots represent? The X and Os?\n\n\nyour text here\n\n\nWhat do the colours of the dots represent?\n\n\nyour text here\n\n\nWhat do the background colour in the plot represent?\n\n\nyour text here\n\n\nCan you point in the plot roughly which dots you would expect to be the support vectors?"
+  },
+  {
+    "objectID": "weeks/week08/lab.html#step-2-doing-the-same-with-tidymodels-15-min",
+    "href": "weeks/week08/lab.html#step-2-doing-the-same-with-tidymodels-15-min",
+    "title": "💻 Week 08 - Lab Roadmap (90 min)",
+    "section": "Step 2: Doing the same with tidymodels (15 min)",
+    "text": "Step 2: Doing the same with tidymodels (15 min)\nThe function svm from library(e1071) package is not the only way to run SVM in R. The package parsnip also have its own SVM functions. The functionality is roughly the same but there are differences in how you write the code.\nparsnip already comes installed in tidymodels, so we do not need to import or install anything else.\n\nStep 2.1 Training the SVM model\nWe specify a radial basis function SVM (see the part about kernels in the 🗓️ Week 05 lecture) with the function svm_rbf.\nIn the spirit of tidyverse, we pipe the SVM algorithm into the fit function, where we can define the R formula like we have been doing with other algorithms:\n\norange_tidymodel <-\n  svm_rbf() %>% \n  set_mode('classification') %>% \n  fit(Purchase ~ ., data = filtered_data)\n\norange_tidymodel\n\nparsnip model object\n\nSupport Vector Machine object of class \"ksvm\" \n\nSV type: C-svc  (classification) \n parameter : cost C = 1 \n\nGaussian Radial Basis kernel function. \n Hyperparameter : sigma =  2.17466034458528 \n\nNumber of Support Vectors : 436 \n\nObjective Function Value : -384.3238 \nTraining error : 0.165421 \nProbability model included. \n\n\n🎯 ACTION POINT: Compare the output above to that of another colleague. Why don’t you get the exact same output?\n\nyour personal notes go here\n\n💡 If you want to try different kernels, you will need to replace svm_rbf() by svm_linear() or svm_poly().\n\n\nStep 2.2: Goodness-of-Fit of the SVM\nLet’s investigate how well our model fits the data. Let’s reuse the model we trained (orange_tidymodel) and predict the same samples we used to train it.\nFunction augment(<model>, <df>) of tidymodels applies a model to a dataframe and return the same data plus a few columns:\n\nplot_df <- augment(orange_tidymodel, filtered_data)\nhead(plot_df)\n\n🎯 ACTION POINT: How is the plot_df data frame above different to the first plot_df we created in Step 1.2?\n\nyour notes go here\n\nAdd a is_correct column to indicate whether the prediction was correct or not:\n\nplot_df <- plot_df %>% mutate(is_correct = .pred_class == Purchase)\nhead(plot_df)\n\n# A tibble: 6 × 7\n  Purchase LoyalCH PriceDiff .pred_class .pred_CH .pred_MM is_correct\n  <fct>      <dbl>     <dbl> <fct>          <dbl>    <dbl> <lgl>     \n1 CH         0.5        0.24 CH             0.869    0.131 TRUE      \n2 CH         0.6       -0.06 CH             0.746    0.254 TRUE      \n3 CH         0.68       0.4  CH             0.877    0.123 TRUE      \n4 MM         0.4        0    MM             0.183    0.817 TRUE      \n5 CH         0.957      0    CH             0.876    0.124 TRUE      \n6 CH         0.965      0.3  CH             0.870    0.130 TRUE      \n\n\n\nMeasure: Precision\nYou don’t need to calculate precision by hand, just use the precision() function from tidymodels:\n\nplot_df %>% precision(Purchase, .pred_class) %>% head()\n\n# A tibble: 1 × 3\n  .metric   .estimator .estimate\n  <chr>     <chr>          <dbl>\n1 precision binary         0.863\n\n\n\n\nMeasure: Recall\nYou don’t need to calculate recall by hand, just use the recall() function from tidymodels:\n\nplot_df %>% recall(Purchase, .pred_class) %>% head()\n\n# A tibble: 1 × 3\n  .metric .estimator .estimate\n  <chr>   <chr>          <dbl>\n1 recall  binary         0.867\n\n\n\n\nMeasure: F1-score\nYou don’t need to calculate F1-score by hand, just use the f_meas() function from tidymodels:\n\nplot_df %>% f_meas(Purchase, .pred_class) %>% head()\n\n# A tibble: 1 × 3\n  .metric .estimator .estimate\n  <chr>   <chr>          <dbl>\n1 f_meas  binary         0.865\n\n\n\n\n(Optional) ROC curve\nPlot the ROC curve for class Purchase==\"CH\" :\n\nplot_df %>% \n  roc_curve(Purchase, .pred_CH) %>% \n  autoplot\n\n\n\n\n\n\n🏠 Take-home exercise Q1:\nEdit the cell below modifying event_level from \"second\" to \"first\". Why do you get different results? What do you think is going on?\nplot_df %>% f_meas(Purchase, .pred_class, event_level=...)\n💡Tip: Read the documentation of f_meas to understand what event_level represents. (Type ?f_meas)\n💡 Gold Tip: note the Levels of the factor variable called Purchase:\nplot_df$Purchase\n\n\n🏠 Take-home exercise Q2:\nCreate a plot of the confusion matrix for the orange_tidymodel like we did in Step 1.\n\n## your code goes here\n\n\n\n🏠 Take-home exercise Q3:\nCreate a plot of SVM decision space for the orange_tidymodel like we did in Step 1.\n\n## your code goes here\n\n🎯 ACTION POINT: If you were to run the SVM algorithm by yourself in another dataset, which version would you prefer, the one in Step 1 or the one in Step 2?\n\nyour notes go here"
+  },
+  {
+    "objectID": "weeks/week08/lab.html#step-3.1-train-the-model",
+    "href": "weeks/week08/lab.html#step-3.1-train-the-model",
+    "title": "💻 Week 08 - Lab Roadmap (90 min)",
+    "section": "Step 3.1: Train the model",
+    "text": "Step 3.1: Train the model\nLet’s select just the predictors Volume and Lag1 and fit a regression model to predict Today:\n\n# Remove Direction, otherwise we would be \"cheating\" \nfiltered_data <- ISLR2::Smarket %>% select(Today, Volume, Lag1)\n\nsmarket_tidymodel <-\n  svm_rbf() %>% \n  set_mode('regression') %>% \n  fit(Today ~ ., data = filtered_data)\n\nsmarket_tidymodel\n\nparsnip model object\n\nSupport Vector Machine object of class \"ksvm\" \n\nSV type: eps-svr  (regression) \n parameter : epsilon = 0.1  cost C = 1 \n\nGaussian Radial Basis kernel function. \n Hyperparameter : sigma =  1.77529576439998 \n\nNumber of Support Vectors : 1116 \n\nObjective Function Value : -761.1017 \nTraining error : 0.927686"
+  },
+  {
+    "objectID": "weeks/week08/lab.html#step-3.2-goodness-of-fit-of-the-svm",
+    "href": "weeks/week08/lab.html#step-3.2-goodness-of-fit-of-the-svm",
+    "title": "💻 Week 08 - Lab Roadmap (90 min)",
+    "section": "Step 3.2: Goodness-of-Fit of the SVM",
+    "text": "Step 3.2: Goodness-of-Fit of the SVM\nSince the target variable is continuous, not discrete, we cannot plot confusion matrix nor anything like that. We will have to go back to the idea of residuals (🗓️ Week 02 Lecture & 💻 Week 03 - Lab).\n\nplot_df <- \n  augment(smarket_tidymodel, filtered_data) %>% \n  mutate(row_number=row_number()) # adding this here just to make our plot easier\nplot_df %>% head()\n\n# A tibble: 6 × 6\n   Today Volume   Lag1   .pred .resid row_number\n   <dbl>  <dbl>  <dbl>   <dbl>  <dbl>      <int>\n1  0.959   1.19  0.381 -0.0556  1.01           1\n2  1.03    1.30  0.959 -0.252   1.28           2\n3 -0.623   1.41  1.03  -0.260  -0.363          3\n4  0.614   1.28 -0.623  0.262   0.352          4\n5  0.213   1.21  0.614 -0.152   0.365          5\n6  1.39    1.35  0.213 -0.148   1.54           6\n\n\n🎯 ACTION POINT: What do the different columns mean?\n\nyour text go here\n\n\ng <- (\n  ggplot(plot_df, aes(x=row_number, y=.resid, colour=abs(.resid)))\n  + geom_point(alpha=0.6)\n  \n  + theme_bw()\n  + scale_colour_viridis_b(name=\"Absolute residual\")\n)\n\ng\n\n\n\n\n\nMeasure: Mean Absolute Error (MAE)\n\\[\nMAE = \\frac{\\sum_{i=1}^{n}{|y_i - \\hat{y}_i|}}{n}\n\\]\n\nplot_df %>% mae(Today, .pred)\n\n# A tibble: 1 × 3\n  .metric .estimator .estimate\n  <chr>   <chr>          <dbl>\n1 mae     standard       0.789\n\n\n\n\nMeasure: Root Mean Squared Error (RMSE)\n\\[\nRMSE = \\frac{\\sum_{i=1}^{n}{(y_i - \\hat{y}_i)^2}}{n}\n\\]\n\nplot_df %>% rmse(Today, .pred)\n\n# A tibble: 1 × 3\n  .metric .estimator .estimate\n  <chr>   <chr>          <dbl>\n1 rmse    standard        1.09\n\n\n🎯 ACTION POINT: Would a better model have a larger or smaller value of MAE/RMSE?\n\nyour text go here\n\n\n\n🏠 Take-home exercise Q4 (might be challenging):\nTry to replicate the visualization of the SVM Decision Space (Step 1.3) for the Smarket data.\n\n# your code goes here\n\n💡Tip: Remove the scale_… functions, otherwise it will throw an error.\n💡Tip: After constructing the graph for the first time, try adding scale_fill_viridis_c() and scale_colour_viridis_c() to visualize predictions."
+  },
+  {
+    "objectID": "weeks/week08/lab.html#step-4-k-fold-cross-validation-with-tidymodels-40-min",
+    "href": "weeks/week08/lab.html#step-4-k-fold-cross-validation-with-tidymodels-40-min",
+    "title": "💻 Week 08 - Lab Roadmap (90 min)",
+    "section": "Step 4: k-fold cross validation with tidymodels (40 min)",
+    "text": "Step 4: k-fold cross validation with tidymodels (40 min)\nHere we will replicate the cross-validation setup used to generate the structure 🗓️ Week 04 lecture/workshop.\n⏮️Recap:\n\nWe also explored training vs test splits, albeit in a different way, in Step 2.1 of 💻 Week 04 - Lab\nk-fold cross-validation was also present in Step 2 of 💻 Week 05 - Lab\nCross-validation was also mentioned in the 🗓️ Week 05 lecture, when you were introduced the problem of overfitting.\n\nBut how exactly can cross-validation help overcome overfitting? This is what we will explore in this section of the lab.\n\nStep 4.1: Create training / test split\nWe start by creating a training / test split using the functions initial_split packages for 📈 SMarket data.\n\nset.seed(123)\n\ndefault_split <- initial_split(filtered_data, prop = 0.75, strata = Today)\n\ninternal_validation_set <- training(default_split)\n\nexternal_validation_set <- testing(default_split)\n\nHow many samples are in the internal validation set?\n\nnrow(internal_validation_set)\n\n[1] 936\n\n\nHow many samples were left in the external validation set?\n\nnrow(external_validation_set)\n\n[1] 314\n\n\nThe external validation set will only be used at the end\n\n\nStep 4.2: Create resampling folds for cross validation\nNext, let’s create 10-fold cross-validation data using internal_validation_set. We can achieve this by using the vfold_cv command, specifying v = 10.\n\nk_folds <- vfold_cv(internal_validation_set, v = 10)\nk_folds\n\n#  10-fold cross-validation \n# A tibble: 10 × 2\n   splits           id    \n   <list>           <chr> \n 1 <split [842/94]> Fold01\n 2 <split [842/94]> Fold02\n 3 <split [842/94]> Fold03\n 4 <split [842/94]> Fold04\n 5 <split [842/94]> Fold05\n 6 <split [842/94]> Fold06\n 7 <split [843/93]> Fold07\n 8 <split [843/93]> Fold08\n 9 <split [843/93]> Fold09\n10 <split [843/93]> Fold10\n\n\nNotice anything odd? The output is a tibble but the first column splits is a series of lists. This is another thing that makes tibbles different to data frames - you can nest lists within tibbles but not data frames. We will use this more explicitly in the next lab when we build k-means clustering models.\n\n\nStep 4.3: 🍳Specifying a recipe\nThe next step is to create a recipe. Luckily, recipe function takes the same values as the lm model! We first create a formula default ~ . and then use data = internal_validation_set. Printing smarket_recipe, we have one outcome and three predictors.\n\nsmarket_recipe <- recipe(Today ~ ., data = internal_validation_set)\nsmarket_recipe\n\nRecipe\n\nInputs:\n\n      role #variables\n   outcome          1\n predictor          2\n\n\n\n\nStep 4.4: Specify a model\nNext, we will specify a support vector machine model. Here’s where things get a bit more involved.\nWe specify a radial basis function SVM. svm_rbf takes two hyperparameters: cost and rbf_sigma. Instead of specifying a single value for each, we will instead set them equal to tune(). This indicates that we want to try a range of different values.\n\nsvm_regressor <-\n  svm_rbf(cost = tune(), rbf_sigma = tune()) %>% \n  set_mode('regression') \n\n\n\nStep 4.5: Create a hyperparameter grid\nWhich values for cost and rbf_sigma should we choose? It is often hard to tell, so instead we can experiment with different values.\nWe can use grid_regular to create a tibble of different hyperparameter combinations. levels = 5 indicates that we want to try out five different values for each hyperparameter.\n\nset.seed(234)\n\nsvm_grid <- grid_regular(cost(), rbf_sigma(), levels = 5)\nsvm_grid\n\n# A tibble: 25 × 2\n        cost    rbf_sigma\n       <dbl>        <dbl>\n 1  0.000977 0.0000000001\n 2  0.0131   0.0000000001\n 3  0.177    0.0000000001\n 4  2.38     0.0000000001\n 5 32        0.0000000001\n 6  0.000977 0.0000000316\n 7  0.0131   0.0000000316\n 8  0.177    0.0000000316\n 9  2.38     0.0000000316\n10 32        0.0000000316\n# … with 15 more rows\n\n\n\n\nStep 4.6: Perform cross-validation\nWe now have all we need to run cross-validation, and the function tune_grid puts everything together. Let’s think intuitively what this command is doing.\n\nWe are telling tune_grid that we want to run a classification model on a recipe using different resampling folds.\nInstead of specifying hyperparameter values we want to run a combination of different values.\nAfter this, we want to choose a metric to evaluate different combinations.\nWe opt for rmse but we can specify several metrics however using the metric_set command.\n\n\ndefault_tuned <-\n  tune_grid(object = svm_regressor,\n            preprocessor = smarket_recipe,\n            resamples = k_folds,\n            grid = svm_grid,\n            metrics = metric_set(rmse),\n            control = control_grid(save_pred=TRUE))\n\n\nStep 4.7: Which combination of hyperparameters works best?\nNow we have tuned our models, let’s find out which combination of hyperparameters work best. We can create a ggplot easily using the autoplot command.\n\ndefault_tuned %>% \n  autoplot() +\n  theme_minimal() +\n  ggsci::scale_color_jco() +\n  labs(y = 'RMSE', colour = 'Sigma')\n🎯 ACTION POINT: Can you explain what we see in the plot above?\n\nyour text go here\n\nWe can use the function select_best to identify the hyperparameter combination that leads to the highest precision.\n\nselect_best(default_tuned)"
+  },
+  {
+    "objectID": "weeks/week08/lab.html#take-home-exercises",
+    "href": "weeks/week08/lab.html#take-home-exercises",
+    "title": "💻 Week 08 - Lab Roadmap (90 min)",
+    "section": "🏠 Take-home exercises",
+    "text": "🏠 Take-home exercises\nGet ready for the next summative problem set by answering the following questions:\n\nQ5: Re-run Step3 (Regression)\nBuild a standalone SVM model (tidymodels version) on the same data we used in Step 3, only this time set the parameters of the SVM to the optimal parameters identified in Step 4.\n\n## your code goes here\n\n\n\nQ6: Predict the external validation set\nUse the model you built in Q5 and make predictions on the external validation set. How does the RMSE of these predictions compare to the RMSE of the internal validation set?\n\n## your code goes here\n\n\n\nQ7: SVM Decision Space (Regression)\nDo the same thing you did to answer Q4, only this time using the model from Q5.\n\n## your code goes here\n\n\n\nQ8: Compare Q4 x Q7 plots\nExplain if and how the decision space you obtained in Q8 differs from the one in Q4.\n\nyour text goes here\n\n\n\nQ9: Grid search for Orange Juice (Classification)\n\nFor this task, you will use the Orange Juice data set (ISLR2::OJ) with ALL the predictors included\nReplicate the entire procedure of Step 4, making the necessary adjustments to predict Purchase\n\n💡You will have two tweak at least two main things: metric_set and set_mode\n\n## your code goes here\n\n\n\nQ10: Challenge\nReplicate the same steps above using different SVM kernels (linear, polynomial, etc.)\n\n# your code goes here"
+  },
+  {
+    "objectID": "weeks/week08/lab.html#final-step",
+    "href": "weeks/week08/lab.html#final-step",
+    "title": "💻 Week 08 - Lab Roadmap (90 min)",
+    "section": "Final step:",
+    "text": "Final step:\nYou don’t need to submit this file but practice knitting this RMarkdown as HTML. Received any error? Reach out to your colleagues either on Slack or on your student-led Whatsapp group chat."
   },
   {
     "objectID": "slides/week01_slides_part1.html#the-data-science-institute",
@@ -1362,7 +1460,7 @@
     "href": "slides/week01_slides_part2.html#adding-noise",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Adding noise",
-    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  10.6\n2     9    12  12.2\n3    12    15  14.5\n4    15    18  18.2\n5    18    21  22.1\n6    21    24  23.3"
+    "text": "Adding noise\nLet’s simulate the introduction of some random error:\n\n# Let's simulate some noise\ngaussian_noise = rnorm(n=nrow(df), mean=0, sd=1.5)\n\n# Call it \"observed Y\"\ndf$obsY = df$Y + gaussian_noise\nprint(df)\n\n\n\n# A tibble: 6 × 3\n      X     Y  obsY\n  <int> <int> <dbl>\n1     6     9  9.95\n2     9    12  8.82\n3    12    15 16.5 \n4    15    18 17.9 \n5    18    21 22.3 \n6    21    24 20.0"
   },
   {
     "objectID": "slides/week01_slides_part2.html#visualizing-the-data",
@@ -1397,7 +1495,7 @@
     "href": "slides/week01_slides_part2.html#assessing-error",
     "title": "🗓️ Week 01Overview of core concepts",
     "section": "Assessing error",
-    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY  error absError\n  <int> <int> <dbl>  <dbl>    <dbl>\n1     6     9  10.6 -1.60     1.60 \n2     9    12  12.2 -0.182    0.182\n3    12    15  14.5  0.467    0.467\n4    15    18  18.2 -0.196    0.196\n5    18    21  22.1 -1.10     1.10 \n6    21    24  23.3  0.665    0.665\n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 0.7005725\n\n\n\n\nThis measure is called the Mean Absolute Error."
+    "text": "Assessing error\nHow much error was introduced by \\(\\epsilon\\) per sample?\n\ndf$error    <- df$Y - df$obsY  # Calculate the error\ndf$absError <- abs(df$error)   # Ignore the sign of error\ndf\n\n\n\n# A tibble: 6 × 5\n      X     Y  obsY   error absError\n  <int> <int> <dbl>   <dbl>    <dbl>\n1     6     9  9.95 -0.954    0.954 \n2     9    12  8.82  3.18     3.18  \n3    12    15 16.5  -1.46     1.46  \n4    15    18 17.9   0.0790   0.0790\n5    18    21 22.3  -1.26     1.26  \n6    21    24 20.0   4.00     4.00  \n\n\n\nOn average, what is the error?\n\nmean(df$absError)\n\n[1] 1.821894\n\n\n\n\nThis measure is called the Mean Absolute Error."
   },
   {
     "objectID": "slides/week01_slides_part2.html#measures-of-error",
@@ -2203,5 +2301,166 @@
     "title": "🗓️ Week 05:Support Vector Machines (SVM)",
     "section": "Recommendations",
     "text": "Recommendations\n\nReadings - Decision Trees: (James et al. 2021, sec. 8.1) (ignore section 8.2) - SVMs: (James et al. 2021, chap. 9) - Read it all once just to retain main concepts - Focus your attention on the concepts on the margins of the book\nPractice the code that is contained in these slides! Several times! - There are many datasets in the ISLR2 package (link) - Load any dataset and explore it with these new algorithms"
+  },
+  {
+    "objectID": "slides/week07_slides_part1.html#the-rationale",
+    "href": "slides/week07_slides_part1.html#the-rationale",
+    "title": "🗓️ Week 07: Data Transformation & Iterations",
+    "section": "The rationale",
+    "text": "The rationale\nOur expectations for this problem set:\n\n\nwe knew it would require somewhat considerable time effort\nencourage people to collaborate and work together\nput what you learned from the R pre-sessionals to practice\nwe wanted to allow for some freedom"
+  },
+  {
+    "objectID": "slides/week07_slides_part1.html#the-r-pre-sessional-course",
+    "href": "slides/week07_slides_part1.html#the-r-pre-sessional-course",
+    "title": "🗓️ Week 07: Data Transformation & Iterations",
+    "section": "The R pre-sessional course",
+    "text": "The R pre-sessional course"
+  },
+  {
+    "objectID": "slides/week07_slides_part1.html#our-blind-spots",
+    "href": "slides/week07_slides_part1.html#our-blind-spots",
+    "title": "🗓️ Week 07: Data Transformation & Iterations",
+    "section": "Our blind spots",
+    "text": "Our blind spots\nWhat we could have done better:\n\n\nwe assumed the pre-sessional chapter above would have prepared you even for the challenging questions\n\ndata types & data frames\nif-else statements\nfor-loops\ncreation of functions\nvectorized functions like apply() and sapply\n\nwe could have provided a cheatsheet for common R tasks\nwe could have given better marking criteria for questions where more freedom was allowed"
+  },
+  {
+    "objectID": "slides/week07_slides_part1.html#next-summative",
+    "href": "slides/week07_slides_part1.html#next-summative",
+    "title": "🗓️ Week 07: Data Transformation & Iterations",
+    "section": "Next summative",
+    "text": "Next summative\nOperational changes we plan to introduce:\n\n\nLess code writing and more code reading\nReduce ambiguity.\n\nWhere freedom/creativity is allowed, explain if and how this is rewarded\n\nElements of randomness. Each student will be assigned a unique combination of:\n\nselected variables and\nselected metrics to consider"
+  },
+  {
+    "objectID": "slides/week07_slides_part1.html#next-summative-1",
+    "href": "slides/week07_slides_part1.html#next-summative-1",
+    "title": "🗓️ Week 07: Data Transformation & Iterations",
+    "section": "Next summative",
+    "text": "Next summative\nTopics of Summative W08-W10:\n\nRegression & Classification\nDecision Tree\nSupport Vector Machine\nk-fold Cross-Validation"
+  },
+  {
+    "objectID": "slides/week07_slides_part1.html#explore",
+    "href": "slides/week07_slides_part1.html#explore",
+    "title": "🗓️ Week 07: Data Transformation & Iterations",
+    "section": "Explore",
+    "text": "Explore\nLet’s explore together using content from two sources:\n\n\nR for Data Science Book\n\n\nTidy Data Tutor\n\n\n\n\n\nLinks:\n\nR for Data Science\nTidy Data Tutor"
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#example-of-supervised-models",
+    "href": "slides/week07_slides_part2.html#example-of-supervised-models",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "Example of Supervised Models",
+    "text": "Example of Supervised Models\nFrom 🗓️ Week 02:\n\n\nThe generic supervised model:\n\\[\nY = \\operatorname{f}(X) + \\epsilon\n\\]\nis defined more explicitly according to each algorithm ➡️\n\n\n\nMultiple Linear Regression\n\\[\n\\begin{align}\nY = \\beta_0 &+ \\beta_1 X_1 + \\beta_2 X_2 \\\\\n   &+ \\dots \\\\\n   &+ \\beta_p X_p + \\epsilon\n\\end{align}\n\\]\nwhen there are multiple predictors, \\(X_p\\).\n\n\n\n\nMultiple Logistic Regression\n\\[\n\\begin{align}\nY \\propto p(X) &= \\\\\n               &= \\frac{e^{\\beta_0 + \\beta_1 X_1 + \\ldots + \\beta_p X_p}}{1 + e^{\\beta_0 + \\beta_1 X_1 + \\ldots + \\beta_p X_p}}\n\\end{align}\n\\]\nwhen there are multiple predictors, \\(X_p\\)."
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#how-is-it-different",
+    "href": "slides/week07_slides_part2.html#how-is-it-different",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "How is it different?",
+    "text": "How is it different?\n\n\nSupervised Learning\n\n\nOur main goal is to predict future values of \\(Y\\)\n\n\n\n\nWe have historic \\(X\\) and \\(Y\\) data\n\n\n\n\nAlgorithms fit the data and supervise themselves objectively (e.g.: residuals)\n\n\n\n\nWe can validate how well the model fits training data and how it generalises beyond that.\n\n\n\nUnsupervised Learning\n\n\nThe main goal is to observe (dis-)similarities in \\(X\\)\n\n\n\n\nWe only have \\(X\\) data\n\n\n\n\nThere is no \\(Y\\) variable to “supervise” how models should fit the data\n\n\n\n\nValidation is a lot more subjective. There is no objective way to check our work."
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#why-clustering",
+    "href": "slides/week07_slides_part2.html#why-clustering",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "Why clustering?",
+    "text": "Why clustering?\n\n\nAre there clusters (subgroups) in my data?\nWhich samples are most similar to each other?\nAre there samples that do not fall in any subgroup?"
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#each-algorithm-is-different",
+    "href": "slides/week07_slides_part2.html#each-algorithm-is-different",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "Each algorithm is different",
+    "text": "Each algorithm is different\n\n\nSource: Scikit Learn | Comparing different clustering algorithms on toy datasets"
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#penguins-data",
+    "href": "slides/week07_slides_part2.html#penguins-data",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "🐧 penguins data",
+    "text": "🐧 penguins data\n\n\nCode\npenguins_cleaned <-\n  penguins %>% \n  na.omit() %>% \n  select(species, where(is.numeric), - year)\nhead(penguins_cleaned, 15)\n\n\n# A tibble: 15 × 5\n   species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   <fct>            <dbl>         <dbl>             <int>       <int>\n 1 Adelie            39.1          18.7               181        3750\n 2 Adelie            39.5          17.4               186        3800\n 3 Adelie            40.3          18                 195        3250\n 4 Adelie            36.7          19.3               193        3450\n 5 Adelie            39.3          20.6               190        3650\n 6 Adelie            38.9          17.8               181        3625\n 7 Adelie            39.2          19.6               195        4675\n 8 Adelie            41.1          17.6               182        3200\n 9 Adelie            38.6          21.2               191        3800\n10 Adelie            34.6          21.1               198        4400\n11 Adelie            36.6          17.8               185        3700\n12 Adelie            38.7          19                 195        3450\n13 Adelie            42.5          20.7               197        4500\n14 Adelie            34.4          18.4               184        3325\n15 Adelie            46            21.5               194        4200\n\n\n\n\n\nData collected and made available by Dr. Kristen Gorman and the Palmer Station, Antarctica LTER, a member of the Long Term Ecological Research Network."
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#correlation-plot",
+    "href": "slides/week07_slides_part2.html#correlation-plot",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "Correlation plot",
+    "text": "Correlation plot\nIt is easy to distinguish the species using colour because we have a species column:"
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#source-code",
+    "href": "slides/week07_slides_part2.html#source-code",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "Source Code",
+    "text": "Source Code\n\n\n\n\n\n\nTip\n\n\n\nUse the code below to replicate the plot from the previous slide.\nFound a bug? Report it on Slack.\n\n\n\n\nlibrary(GGally)         # pretty correlation plots\nlibrary(tidyverse)      # to use things like the pipe (%>%), mutate and if_else\nlibrary(palmerpenguins) # for penguin data \n\npenguins_cleaned <-\n  penguins %>% \n  na.omit() %>%  \n  select(species, where(is.numeric), - year) \n\n# View(penguins_cleaned) or do head(penguins_cleaned)\n\ng <-\n  ggpairs(penguins_cleaned, \n        aes(colour = species, fill = species, alpha = 0.875),\n        columns = 2:5, \n        upper = list(continuous = 'blankDiag')) +\n  theme_minimal() +\n  theme(panel.grid.minor = element_blank()) +\n  scale_colour_viridis_d() +\n  scale_fill_viridis_d() +\n  labs(colour = 'Species', fill = 'Species')\n\ng"
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#penguins-data-without-the-species",
+    "href": "slides/week07_slides_part2.html#penguins-data-without-the-species",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "Penguins data without the species",
+    "text": "Penguins data without the species\nWhat if we did not have the species column?\n\n\nCode\npenguins %>% \n  na.omit() %>% \n  select(species, where(is.numeric), - year, -species) %>%\n  head(15)\n\n\n# A tibble: 15 × 4\n   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n            <dbl>         <dbl>             <int>       <int>\n 1           39.1          18.7               181        3750\n 2           39.5          17.4               186        3800\n 3           40.3          18                 195        3250\n 4           36.7          19.3               193        3450\n 5           39.3          20.6               190        3650\n 6           38.9          17.8               181        3625\n 7           39.2          19.6               195        4675\n 8           41.1          17.6               182        3200\n 9           38.6          21.2               191        3800\n10           34.6          21.1               198        4400\n11           36.6          17.8               185        3700\n12           38.7          19                 195        3450\n13           42.5          20.7               197        4500\n14           34.4          18.4               184        3325\n15           46            21.5               194        4200"
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#objective-function",
+    "href": "slides/week07_slides_part2.html#objective-function",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "Objective function:",
+    "text": "Objective function:\nFind a partition \\(C_1 \\cup C_2 \\cup C_3 \\cup \\ldots \\cup C_K = \\{1, \\ldots, n\\}\\) for the data such that: \\[\n\\text{minimize}_{C_1, \\ldots, C_K} \\left\\{ \\sum_{k=1}^{K}{\\frac{1}{|C_k|} \\sum_{i,i' \\in C_k}{\\sum_{j=1}^p{(x_{ij} - x_{i'j})^2}} }\\right\\}\n\\]"
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#k-means-algorithm",
+    "href": "slides/week07_slides_part2.html#k-means-algorithm",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "K-Means algorithm",
+    "text": "K-Means algorithm\nStep by step of one clustering algorithm:\n\n\nYou have to inform \\(K\\), the number of clusters you wish to recover\nThe algorithm randomly assign each observation to a random cluster\nIterate until cluster assignments stop changing\n\nFor each of the \\(K\\) clusters, compute the cluster centroid\nRe-assign samples to their closest centroid (euclidean distance)\n\n\n\n\n\nIndicative reading: (James et al. 2021, sec. 12.4.1)"
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#clustering-penguins",
+    "href": "slides/week07_slides_part2.html#clustering-penguins",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "Clustering Penguins",
+    "text": "Clustering Penguins\n\n\nCode\nset.seed(1)\n\nK=3\n\nkmeans_model <- kmeans(penguins_cleaned %>% select(-species), K)\nkmeans_model\n\n\nK-means clustering with 3 clusters of sizes 113, 80, 140\n\nCluster means:\n  bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n1       44.24336      17.44779          201.5487    4310.619\n2       48.66250      15.39750          219.9875    5365.938\n3       41.12214      17.94643          189.6286    3461.250\n\nClustering vector:\n  [1] 3 3 3 3 3 3 1 3 3 1 3 3 1 3 1 3 3 3 1 3 3 3 3 3 1 3 1 3 1 3 1 1 3 3 1 3 1\n [38] 3 1 3 1 3 3 1 3 1 3 1 3 3 3 3 3 3 3 1 3 1 3 1 3 1 3 1 3 1 3 1 3 1 3 1 3 1\n [75] 3 1 3 1 3 3 3 3 1 3 3 1 3 1 3 1 3 1 3 1 3 1 3 1 3 3 3 1 3 1 3 1 3 1 1 1 3\n[112] 3 3 3 3 3 3 3 3 1 3 1 3 1 3 3 3 1 3 1 3 1 3 1 3 3 3 3 3 3 1 3 3 3 3 1 1 2\n[149] 1 2 2 1 1 2 1 2 1 2 1 2 1 2 1 2 1 2 2 2 1 2 2 2 2 1 2 2 1 2 2 2 2 2 2 1 2\n[186] 1 2 1 1 2 2 1 2 2 2 2 2 1 2 2 2 1 2 1 2 1 2 1 2 1 2 2 1 2 1 2 2 2 1 2 1 2\n[223] 1 2 1 2 1 2 1 2 1 2 2 2 2 2 1 2 2 2 2 2 1 2 2 2 2 2 2 1 2 1 2 2 2 1 2 1 2\n[260] 2 2 2 2 2 2 3 1 3 3 3 1 3 3 1 3 3 3 3 1 3 1 3 3 3 1 3 3 3 3 3 1 3 3 3 1 3\n[297] 1 3 1 3 1 3 1 3 1 1 3 3 3 3 1 3 1 3 3 3 1 3 1 3 3 3 1 3 3 1 3 3 1 3 3 1 3\n\nWithin cluster sum of squares by cluster:\n[1] 9318036 9718829 9724809\n (between_SS / total_SS =  86.6 %)\n\nAvailable components:\n\n[1] \"cluster\"      \"centers\"      \"totss\"        \"withinss\"     \"tot.withinss\"\n[6] \"betweenss\"    \"size\"         \"iter\"         \"ifault\""
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#inspect-the-centroids",
+    "href": "slides/week07_slides_part2.html#inspect-the-centroids",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "Inspect the centroids",
+    "text": "Inspect the centroids\n\n\nCode\nknitr::kable(kmeans_model$centers)\n\n\n\n\n\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\n\n\n\n\n44.24336\n17.44779\n201.5487\n4310.619\n\n\n48.66250\n15.39750\n219.9875\n5365.938\n\n\n41.12214\n17.94643\n189.6286\n3461.250"
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#how-does-it-compare-to-the-real-one",
+    "href": "slides/week07_slides_part2.html#how-does-it-compare-to-the-real-one",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "How does it compare to the real one?",
+    "text": "How does it compare to the real one?\nWe can cross-tabulate species and cluster membership:\n\n\nCode\nplot_df <- penguins_cleaned\nplot_df$cluster <- factor(kmeans_model$cluster)\nlevels(plot_df$cluster) <- c(\"Cluster 1\", \"Cluster 2\", \"Cluster 3\")\n\nknitr::kable(table(plot_df$species, plot_df$cluster))\n\n\n\n\n\n\nCluster 1\nCluster 2\nCluster 3\n\n\n\n\nAdelie\n52\n0\n94\n\n\nChinstrap\n22\n0\n46\n\n\nGentoo\n39\n80\n0"
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#visual-comparison",
+    "href": "slides/week07_slides_part2.html#visual-comparison",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "Visual comparison",
+    "text": "Visual comparison"
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#visual-comparison-1",
+    "href": "slides/week07_slides_part2.html#visual-comparison-1",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "Visual comparison",
+    "text": "Visual comparison"
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#whats-next",
+    "href": "slides/week07_slides_part2.html#whats-next",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "What’s Next",
+    "text": "What’s Next\n\nNext week, Week 08, the labs will be about SVM & cross-validation\n\nRevisit 🗓️ Week 05 lecture\nRead “The cross-validation setup” section in Week 04 page\n\nYou will explore k-means clustering in Week 09 labs"
+  },
+  {
+    "objectID": "slides/week07_slides_part2.html#references",
+    "href": "slides/week07_slides_part2.html#references",
+    "title": "🗓️ Week 07:Unsupervised Learning",
+    "section": "References",
+    "text": "References\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning: With Applications in R. Second edition. Springer Texts in Statistics. New York NY: Springer. https://www.statlearning.com/.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDS202 - Data Science for Social Scientists 🤖 🤹"
   }
 ]

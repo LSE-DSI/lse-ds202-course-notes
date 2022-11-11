@@ -8,7 +8,7 @@
 
 <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
 
-<title>LSE DS202 2022/23 - ✅ Week 07 - Checklist</title>
+<title>LSE DS202 2022/23 - 🗓️ Week 08 - Dimensionality Reduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,27 +24,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../weeks/week07/lab.html" rel="next">
-<link href="../../weeks/week07/lecture.html" rel="prev">
-<link href="../..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../../css/custom_style.css">
+<link rel="stylesheet" href="../css/custom_style.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -76,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">LSE DS202 2022/23</span>
     </a>
   </div>
@@ -93,7 +91,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">✅ Week 07 - Checklist</h1>
+      <h1 class="quarto-secondary-nav-title">🗓️ Week 08 - Dimensionality Reduction</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -108,22 +106,22 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">🏠 Home</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">🏠 Home</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../main/syllabus.html" class="sidebar-item-text sidebar-link">📓 Syllabus</a>
+  <a href="../main/syllabus.html" class="sidebar-item-text sidebar-link">📓 Syllabus</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../main/communication.html" class="sidebar-item-text sidebar-link">📟 Communication</a>
+  <a href="../main/communication.html" class="sidebar-item-text sidebar-link">📟 Communication</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../main/assessments.html" class="sidebar-item-text sidebar-link">✍️ Assessments</a>
+            <a href="../main/assessments.html" class="sidebar-item-text sidebar-link">✍️ Assessments</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -131,19 +129,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../assessments/formative1_solutions.html" class="sidebar-item-text sidebar-link">✔️ Formative 01</a>
+  <a href="../assessments/formative1_solutions.html" class="sidebar-item-text sidebar-link">✔️ Formative 01</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../main/courserep.html" class="sidebar-item-text sidebar-link">🗳️ Course Rep</a>
+  <a href="../main/courserep.html" class="sidebar-item-text sidebar-link">🗳️ Course Rep</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../blog/main.html" class="sidebar-item-text sidebar-link">📚 Blog</a>
+  <a href="../blog/main.html" class="sidebar-item-text sidebar-link">📚 Blog</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -156,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../weeks/week01.html" class="sidebar-item-text sidebar-link">Week 01</a>
+            <a href="../weeks/week01.html" class="sidebar-item-text sidebar-link">Week 01</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -164,24 +162,24 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week01/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  <a href="../weeks/week01/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week01/prep.html" class="sidebar-item-text sidebar-link">📒 Prepare for next week’s lab</a>
+  <a href="../weeks/week01/prep.html" class="sidebar-item-text sidebar-link">📒 Prepare for next week’s lab</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week01/appendix.html" class="sidebar-item-text sidebar-link">🔖 Appendix</a>
+  <a href="../weeks/week01/appendix.html" class="sidebar-item-text sidebar-link">🔖 Appendix</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../weeks/week02.html" class="sidebar-item-text sidebar-link">Week 02</a>
+            <a href="../weeks/week02.html" class="sidebar-item-text sidebar-link">Week 02</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -189,29 +187,29 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week02/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  <a href="../weeks/week02/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week02/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../weeks/week02/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week02/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../weeks/week02/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week02/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  <a href="../weeks/week02/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../weeks/week03.html" class="sidebar-item-text sidebar-link">Week 03</a>
+            <a href="../weeks/week03.html" class="sidebar-item-text sidebar-link">Week 03</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -219,29 +217,29 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week03/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  <a href="../weeks/week03/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week03/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../weeks/week03/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week03/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../weeks/week03/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week03/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  <a href="../weeks/week03/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../weeks/week04.html" class="sidebar-item-text sidebar-link">Week 04</a>
+            <a href="../weeks/week04.html" class="sidebar-item-text sidebar-link">Week 04</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -249,29 +247,29 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week04/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  <a href="../weeks/week04/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week04/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../weeks/week04/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week04/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../weeks/week04/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week04/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  <a href="../weeks/week04/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../weeks/week05.html" class="sidebar-item-text sidebar-link">Week 05</a>
+            <a href="../weeks/week05.html" class="sidebar-item-text sidebar-link">Week 05</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -279,29 +277,29 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week05/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  <a href="../weeks/week05/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week05/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../weeks/week05/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week05/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../weeks/week05/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week05/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  <a href="../weeks/week05/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../weeks/week06.html" class="sidebar-item-text sidebar-link">Week 06</a>
+            <a href="../weeks/week06.html" class="sidebar-item-text sidebar-link">Week 06</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -309,37 +307,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week06/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../weeks/week06/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week06/drop_in_jon.html" class="sidebar-item-text sidebar-link">💻 Drop-in Session 01</a>
+  <a href="../weeks/week06/drop_in_jon.html" class="sidebar-item-text sidebar-link">💻 Drop-in Session 01</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../weeks/week07.html" class="sidebar-item-text sidebar-link">Week 07</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+            <a href="../weeks/week07.html" class="sidebar-item-text sidebar-link">Week 07</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week07/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  <a href="../weeks/week07/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week07/checklist.html" class="sidebar-item-text sidebar-link active">✅ Checklist</a>
+  <a href="../weeks/week07/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week07/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../weeks/week07/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
       </ul>
@@ -351,7 +349,7 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
-<p><img src="../../figures/logos/LSE Data Science Institute.png" class="img-fluid"></p>
+<p><img src="../figures/logos/LSE Data Science Institute.png" class="img-fluid"></p>
 </div></div>
         
     </div>
@@ -360,7 +358,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">✅ Week 07 - Checklist</h1>
+<h1 class="title d-none d-lg-block">🗓️ Week 08 - Dimensionality Reduction</h1>
 <p class="subtitle lead">DS202 - Data Science for Social Scientists</p>
 </div>
 
@@ -381,7 +379,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Sadly, I didn’t have the time this week to suggest a checklist for you!</p>
+<p><mark class="todo"></mark></p>
 
 
 
@@ -613,18 +611,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../weeks/week07/lecture.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">👨‍🏫 Lecture</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../weeks/week07/lab.html" class="pagination-link">
-        <span class="nav-page-text">💻 Lab roadmap</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
