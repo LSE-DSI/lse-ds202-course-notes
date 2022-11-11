@@ -9,11 +9,9 @@ date-meta: 23 October 2022
 
 **Pages recently updated:**
 
-- [💻 Week 07 - Lab Roadmap](/weeks/week07/lab.html) with a recap of tidyverse + the decision tree algorithm
+- [✔️ Week 07 - Lab Solutions](/weeks/week07/lab_solutions.html)
+- [👨‍🏫 Week 07 - Slides](/weeks/week07/lecture.qmd)
 
-**Reminder of current assignment:**
-
-- [**✍️ Summmative Problem Set (01) | W05-W07**](/assessments/summative1.qmd)
 
 :::
 

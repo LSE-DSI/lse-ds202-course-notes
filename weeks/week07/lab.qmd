@@ -281,6 +281,10 @@ rpart.plot(tree.model)
 - What are the numbers inside the nodes?
 - What do the percentages represent?
 
+**The video below explains how to read the numbers inside the nodes of the decision tree**
+
+<div style="position: relative; padding-bottom: 47.708333333333336%; height: 0;"><iframe src="https://www.loom.com/embed/76d898bbb7e64d28a041497b47a14ea7" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
 **Alternative visualisation with `parttree` package**
 
 Alternatively, you could visualise a decision tree as a partition tree plot. For this, you will need to have the `parttree` package installed (check instructions at the top of the page).

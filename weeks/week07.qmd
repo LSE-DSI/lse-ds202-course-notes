@@ -22,7 +22,7 @@ Join us on Friday, 11 November 2022 from 2 p.m. to 4 p.m. at NAB.LG.08.
 
 - ✅ [Take a look at this week's checklist](/weeks/week07/checklist.qmd)
 
-<!-- - ✔️ [Lab Solutions](/weeks/week05/lab_solutions.qmd) -->
+- ✔️ [Lab Solutions](/weeks/week07/lab_solutions.qmd)
 
 
 

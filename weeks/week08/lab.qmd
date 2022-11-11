@@ -633,7 +633,7 @@ We now have all we need to run cross-validation, and the function `tune_grid` pu
 
 ```r
 
-default_tuned <-
+smarket_tuned <-
   tune_grid(object = svm_regressor,
             preprocessor = smarket_recipe,
             resamples = k_folds,
@@ -649,7 +649,7 @@ Now we have tuned our models, let's find out which combination of hyperparameter
 
 ```r
 
-default_tuned %>% 
+smarket_tuned %>% 
   autoplot() +
   theme_minimal() +
   ggsci::scale_color_jco() +
@@ -665,7 +665,7 @@ We can use the function `select_best` to identify the hyperparameter combination
 
 ```r
 
-select_best(default_tuned)
+select_best(smarket_tuned)
 
 ```
 
