@@ -1,0 +1,356 @@
+---
+subtitle: "Clustering"
+title: "🗓️ Week 07:<br/>Unsupervised Learning"
+author: Dr. [Jon Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva)
+institute: '[\@LSEDataScience](https://twitter.com/lsedatascience)'
+date: 11 November 2022
+date-meta: 11 November 2022
+toc: true
+toc-depth: 1
+toc-title: "What we will cover today"
+center-title-slide: false
+tbl-cap-location: bottom
+from: markdown+emoji
+server: shiny
+format:
+  revealjs: 
+    html-q-tag: true
+    pdf-separate-fragments: true
+    code-fold: false
+    theme: simple
+    slide-number: true
+    mouse-wheel: true
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    logo: /figures/logos/LSE Data Science Institute.png
+    css: /css/styles_slides.css
+    footer: 'DS202 - Data Science for Social Scientists :robot: :juggling_person:'
+---
+
+```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+library(GGally)         # pretty correlation plots
+library(tidyverse)      # to use things like the pipe (%>%), mutate and if_else
+library(palmerpenguins) # for penguin data 
+```
+
+# Recall the Supervised Learning approach
+
+## Example of Supervised Models {.smaller}
+
+From [🗓️ Week 02](https://lse-dsi.github.io/lse-ds202-course-notes/slides/week02_slides_part1.html#/the-basic-models):
+
+::: columns
+::: {.column style="width: 28%;margin-right:0.5%;padding:1%;"}
+#### The generic supervised model:
+
+$$
+Y = \operatorname{f}(X) + \epsilon
+$$
+
+is defined more explicitly according to each algorithm ➡️
+
+:::
+
+
+::: {.column style="width: 31%;margin-right:0.5%;padding:1%;font-size:0.9em;"}
+::: {.fragment fragment-index=1}
+#### Multiple Linear Regression
+
+$$ 
+\begin{align}
+Y = \beta_0 &+ \beta_1 X_1 + \beta_2 X_2 \\
+   &+ \dots \\
+   &+ \beta_p X_p + \epsilon
+\end{align}
+$$
+
+
+when there are multiple predictors, $X_p$.
+:::
+:::
+
+::: {.column style="width: 32%;margin-right:0.5%;padding:1%;font-size:0.9em;"}
+::: {.fragment fragment-index=1}
+#### Multiple Logistic Regression
+
+$$ 
+\begin{align}
+Y \propto p(X) &= \\
+               &= \frac{e^{\beta_0 + \beta_1 X_1 + \ldots + \beta_p X_p}}{1 + e^{\beta_0 + \beta_1 X_1 + \ldots + \beta_p X_p}}
+\end{align}
+$$
+
+when there are multiple predictors, $X_p$.
+
+:::
+:::
+
+:::
+
+
+# Unsupervised Learning
+
+## How is it different?
+
+::: columns
+
+::: {.column style="width:45%; border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:0.5%;padding:1%;font-size:0.65em;"}
+### Supervised Learning
+
+::: {.fragment fragment-index=1}
+- Our main goal is to predict future values of $Y$
+:::
+
+::: {.fragment fragment-index=2}
+- We have historic $X$ and $Y$ data
+:::
+
+::: {.fragment fragment-index=3}
+- Algorithms fit the data and supervise themselves objectively (e.g.: residuals)
+:::
+
+::: {.fragment fragment-index=4}
+- We can validate how well the model fits training data and how it generalises beyond that.
+:::
+
+:::
+
+::: {.column style="width:45%; border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:0.5%;padding:1%;font-size:0.65em;"}
+### <mark>Unsupervised Learning</mark>
+
+::: {.fragment fragment-index=1}
+- The main goal is to observe (dis-)similarities in $X$
+:::
+
+::: {.fragment fragment-index=2}
+- We only have $X$ data
+:::
+
+::: {.fragment fragment-index=3}
+- There is no $Y$ variable to "supervise" how models should fit the data
+:::
+
+::: {.fragment fragment-index=4}
+- Validation is a lot more subjective. There is no objective way to check our work.
+:::
+
+:::
+
+:::
+
+# Clustering
+
+## Why clustering?
+
+::: incremental
+- Are there <mark>clusters</mark> (subgroups) in my data?
+- Which samples are most similar to each other?
+- Are there samples that do not fall in any subgroup?
+:::
+
+## Each algorithm is different {.smaller}
+
+![](/figures/generic/sphx_glr_plot_cluster_comparison_001.png)
+
+::: footer
+
+Source: [Scikit Learn | Comparing different clustering algorithms on toy datasets](https://scikit-learn.org/stable/auto_examples/cluster/plot_cluster_comparison.html)
+
+:::
+
+# An Example: 
+
+- Let's use the 🐧 penguins data to illustrate clustering
+- Same data used in [💻 Week 07 - Lab](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week07/lab.html)
+
+
+## 🐧 penguins data {.smaller}
+
+```{r}
+#| code-fold: show
+#| echo: true
+penguins_cleaned <-
+  penguins %>% 
+  na.omit() %>% 
+  select(species, where(is.numeric), - year)
+head(penguins_cleaned, 15)
+```
+
+::: aside
+> Data collected and made available by [Dr. Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) and the [Palmer Station](https://pallter.marine.rutgers.edu/), [Antarctica LTER](https://pallter.marine.rutgers.edu/), a member of the [Long Term Ecological Research Network](https://lternet.edu/).
+:::
+
+
+## Correlation plot {.smaller}
+
+It is easy to distinguish the species using colour because we have a `species` column:
+
+```{r, dpi=300}
+g <-
+  ggpairs(penguins_cleaned, 
+        aes(colour = species, fill = species, alpha = 0.875),
+        columns = 2:5, 
+        upper = list(continuous = 'blankDiag')) +
+  theme_minimal() +
+  theme(panel.grid.minor = element_blank()) +
+  scale_colour_viridis_d() +
+  scale_fill_viridis_d() +
+  labs(colour = 'Species', fill = 'Species')
+g
+```
+
+## Source Code {.smaller}
+
+::: {.callout-tip}
+- Use the code below to replicate the plot from the previous slide. 
+- Found a bug? Report it on Slack.
+:::
+
+```r
+library(GGally)         # pretty correlation plots
+library(tidyverse)      # to use things like the pipe (%>%), mutate and if_else
+library(palmerpenguins) # for penguin data 
+
+penguins_cleaned <-
+  penguins %>% 
+  na.omit() %>%  
+  select(species, where(is.numeric), - year) 
+
+# View(penguins_cleaned) or do head(penguins_cleaned)
+
+g <-
+  ggpairs(penguins_cleaned, 
+        aes(colour = species, fill = species, alpha = 0.875),
+        columns = 2:5, 
+        upper = list(continuous = 'blankDiag')) +
+  theme_minimal() +
+  theme(panel.grid.minor = element_blank()) +
+  scale_colour_viridis_d() +
+  scale_fill_viridis_d() +
+  labs(colour = 'Species', fill = 'Species')
+
+g
+
+```
+
+## Penguins data without the `species`
+
+What if we did not have the `species` column? 
+
+```{r}
+#| code-fold: show
+#| echo: true
+penguins %>% 
+  na.omit() %>% 
+  select(species, where(is.numeric), - year, -species) %>%
+  head(15)
+```
+
+# K-Means Clustering
+
+## Objective function: {.smaller}
+
+Find a partition $C_1 \cup	C_2 \cup C_3 \cup \ldots \cup C_K = \{1, \ldots, n\}$ for the data such that:
+$$
+\text{minimize}_{C_1, \ldots, C_K} \left\{ \sum_{k=1}^{K}{\frac{1}{|C_k|} \sum_{i,i' \in C_k}{\sum_{j=1}^p{(x_{ij} - x_{i'j})^2}} }\right\}
+$$
+
+## K-Means algorithm {.smaller}
+
+Step by step of one clustering algorithm:
+
+::: incremental
+1. You have to inform $K$, the number of clusters you wish to recover
+2. The algorithm randomly assign each observation to a random cluster
+3. Iterate until cluster assignments stop changing
+    - For each of the $K$ clusters, compute the cluster <mark>centroid</mark>
+    - Re-assign samples to their closest centroid (euclidean distance)
+:::
+
+
+::: aside
+Indicative reading: [@james_introduction_2021, Section 12.4.1]
+:::
+
+## Clustering Penguins {.smaller}
+
+```{r}
+#| code-fold: show
+#| echo: true
+
+set.seed(1)
+
+K=3
+
+kmeans_model <- kmeans(penguins_cleaned %>% select(-species), K)
+kmeans_model
+```
+
+## Inspect the centroids {.smaller}
+
+```{r}
+#| code-fold: show
+#| echo: true
+knitr::kable(kmeans_model$centers)
+```
+
+## How does it compare to the real one? {.smaller}
+
+We can cross-tabulate `species` and `cluster` membership:
+
+```{r}
+#| code-fold: show
+#| echo: true
+plot_df <- penguins_cleaned
+plot_df$cluster <- factor(kmeans_model$cluster)
+levels(plot_df$cluster) <- c("Cluster 1", "Cluster 2", "Cluster 3")
+
+knitr::kable(table(plot_df$species, plot_df$cluster))
+```
+
+## Visual comparison
+
+```{r}
+
+plot_df %>%   
+  ggplot() +
+  geom_point(aes(x=bill_length_mm, y=flipper_length_mm, color = cluster, shape = species), size = 3, alpha=0.75) +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'Bill Length (mm)', y = 'Flipper Length (mm)',
+       fill = 'Cluster allocated', colour = 'Cluster allocated',
+       shape = 'Species')
+```
+
+## Visual comparison
+
+```{r}
+
+plot_df %>%   
+  ggplot() +
+  geom_point(aes(x=bill_length_mm, y=flipper_length_mm, color = cluster, shape = species), size = 3, alpha=0.75) +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) +
+  labs(x = 'Bill Length (mm)', y = 'Flipper Length (mm)',
+       fill = 'Cluster allocated', colour = 'Cluster allocated',
+       shape = 'Species') +
+  facet_grid(~ species)
+```
+
+## What's Next
+
+- Next week, Week 08, the labs will be about SVM & cross-validation
+  - Revisit [🗓️ Week 05 lecture](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05.html)
+  - Read "The cross-validation setup" section in [Week 04 page](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lecture.html#the-cross-validation-setup)
+- You will explore k-means clustering in Week 09 labs
+
+
+## References {style="word-break:break-all;"}
+
+::: {#refs .r-fit-text}
+:::

@@ -1,0 +1,139 @@
+---
+subtitle: "More advanced tidyverse"
+title: "🗓️ Week 07:<br/> Data Transformation & Iterations"
+author: Dr. [Jon Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva)
+institute: '[\@LSEDataScience](https://twitter.com/lsedatascience)'
+date: 11 November 2022
+date-meta: 11 November 2022
+toc: true
+toc-depth: 1
+toc-title: "What we will cover today"
+center-title-slide: false
+from: markdown+emoji
+server: shiny
+format:
+  revealjs: 
+    pdf-separate-fragments: true
+    code-fold: false
+    theme: simple
+    slide-number: true
+    mouse-wheel: true
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    logo: /figures/logos/LSE Data Science Institute.png
+    css: /css/styles_slides.css
+    footer: 'DS202 - Data Science for Social Scientists :robot: :juggling_person:'
+---
+
+# About the Summative 01
+
+Fill out the survey to help us understand how it was for you.
+
+![](/figures/generic/dalee_elephant_classroom_v2.png){.absolute width="45%" }
+
+![](/figures/generic/QRCode%20for%20DS202%20(2022MT).png){.absolute width="45%" right="0%"}
+
+
+::: footer
+[Image created with the [DALL·E](https://openai.com/blog/dall-e/) algorithm using the prompt: *'a huge elephant seated in a large auditorium'*
+:::
+
+## The rationale
+
+Our expectations for this problem set:
+
+::: incremental
+
+- we knew it would require somewhat considerable time effort
+- encourage people to collaborate and work together
+- put what you learned from the R pre-sessionals to practice
+- we wanted to allow for some freedom
+
+:::
+
+## The R pre-sessional course
+
+![](/figures/generic/pressessional_R.png){.absolute width="70%"}
+
+## Our blind spots {.smaller}
+
+What we could have done better:
+
+::: incremental
+- we assumed the pre-sessional chapter above would have prepared you even for the challenging questions
+   - data types & data frames
+   - `if`-`else` statements
+   - `for`-loops
+   - creation of `functions`
+   - vectorized functions like `apply()` and `sapply`
+- we could have provided a **cheatsheet** for common `R` tasks
+- we could have given better marking criteria for questions where more freedom was allowed
+
+:::
+
+## Next summative {.smaller}
+
+Operational changes we plan to introduce:
+
+::: incremental
+- Less code writing and more code **reading**
+- Reduce ambiguity. 
+   - Where freedom/creativity is allowed, explain if and how this is rewarded
+- Elements of randomness. Each student will be assigned a unique combination of:
+   - **selected variables** and 
+   - **selected metrics** to consider
+:::
+
+## Next summative {.smaller}
+
+**Topics of Summative W08-W10:**
+
+- Regression & Classification
+- Decision Tree
+- Support Vector Machine
+- k-fold Cross-Validation
+
+# Tidyverse tutorial
+
+- live demos
+- if studying from the slides, you will have to watch the lecture recording.
+
+## Explore {.smaller}
+
+Let's explore together using content from two sources:
+
+::: columns
+::: {.column style="width: 44%;margin-right:0.5%;padding:1%;"}
+#### R for Data Science Book
+
+![](/figures/generic/RforDS.jpg){.absolute width="20%"}
+
+
+
+:::
+
+
+::: {.column style="width: 44%;margin-right:0.5%;padding:1%;font-size:0.9em;"}
+#### Tidy Data Tutor
+
+![](/figures/generic/data_transformation.png){.absolute width="50%" left="47%"}
+
+:::
+
+:::
+
+::: aside
+Links:
+
+- [R for Data Science](https://r4ds.had.co.nz/index.html)
+- [Tidy Data Tutor](https://tidydatatutor.com/vis.html)
+
+:::
+
+# What's Next
+
+After our 10-min break ☕:
+
+- Unsupervised Learning
+- The k-means algorithm

@@ -138,7 +138,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Lab</td>
-            <td>Tree-based models & SVM [@james_introduction_2021, chapter 8-9]</td>
+            <td>Tree-based models [@james_introduction_2021, chapter 8]</td>
         </tr>
     </tbody>
 
@@ -152,7 +152,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Lab</td>
-            <td>Unsupervised Learning: Clustering [@james_introduction_2021, chapter 12]</td>
+            <td>Support Vector Machine + `tidymodels` + recap of cross-validation [@james_introduction_2021, chapter 5, 9]</td>
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Summative</td>
@@ -181,7 +181,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Lab</td>
-            <td>Unsupervised Learning: PCA [@james_introduction_2021, chapter 12]</td>
+            <td> Unsupervised Learning: Clustering [@james_introduction_2021, chapter 12]</td>
         </tr>
     </tbody>
 
