@@ -405,6 +405,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../weeks/week07/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week07/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -919,12 +924,12 @@ SV type: C-svc  (classification)
  parameter : cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  2.17466034458528 
+ Hyperparameter : sigma =  1.93350129000519 
 
-Number of Support Vectors : 436 
+Number of Support Vectors : 442 
 
-Objective Function Value : -384.3238 
-Training error : 0.165421 
+Objective Function Value : -385.3016 
+Training error : 0.171028 
 Probability model included. </code></pre>
 </div>
 </div>
@@ -954,12 +959,12 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 6 × 7
   Purchase LoyalCH PriceDiff .pred_class .pred_CH .pred_MM is_correct
   &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt;    &lt;dbl&gt; &lt;lgl&gt;     
-1 CH         0.5        0.24 CH             0.869    0.131 TRUE      
-2 CH         0.6       -0.06 CH             0.746    0.254 TRUE      
-3 CH         0.68       0.4  CH             0.877    0.123 TRUE      
-4 MM         0.4        0    MM             0.183    0.817 TRUE      
-5 CH         0.957      0    CH             0.876    0.124 TRUE      
-6 CH         0.965      0.3  CH             0.870    0.130 TRUE      </code></pre>
+1 CH         0.5        0.24 CH             0.876    0.124 TRUE      
+2 CH         0.6       -0.06 CH             0.737    0.263 TRUE      
+3 CH         0.68       0.4  CH             0.882    0.118 TRUE      
+4 MM         0.4        0    MM             0.174    0.826 TRUE      
+5 CH         0.957      0    CH             0.880    0.120 TRUE      
+6 CH         0.965      0.3  CH             0.877    0.123 TRUE      </code></pre>
 </div>
 </div>
 <section id="measure-precision-1" class="level4">
@@ -971,7 +976,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric   .estimator .estimate
   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-1 precision binary         0.863</code></pre>
+1 precision binary         0.855</code></pre>
 </div>
 </div>
 </section>
@@ -997,7 +1002,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 f_meas  binary         0.865</code></pre>
+1 f_meas  binary         0.861</code></pre>
 </div>
 </div>
 </section>
@@ -1068,12 +1073,12 @@ SV type: eps-svr  (regression)
  parameter : epsilon = 0.1  cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.77529576439998 
+ Hyperparameter : sigma =  1.36781917906716 
 
-Number of Support Vectors : 1116 
+Number of Support Vectors : 1123 
 
-Objective Function Value : -761.1017 
-Training error : 0.927686 </code></pre>
+Objective Function Value : -765.482 
+Training error : 0.940063 </code></pre>
 </div>
 </div>
 </section>
@@ -1089,12 +1094,12 @@ Training error : 0.927686 </code></pre>
 <pre><code># A tibble: 6 × 6
    Today Volume   Lag1   .pred .resid row_number
    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;int&gt;
-1  0.959   1.19  0.381 -0.0556  1.01           1
-2  1.03    1.30  0.959 -0.252   1.28           2
-3 -0.623   1.41  1.03  -0.260  -0.363          3
-4  0.614   1.28 -0.623  0.262   0.352          4
-5  0.213   1.21  0.614 -0.152   0.365          5
-6  1.39    1.35  0.213 -0.148   1.54           6</code></pre>
+1  0.959   1.19  0.381 -0.0319  0.991          1
+2  1.03    1.30  0.959 -0.225   1.26           2
+3 -0.623   1.41  1.03  -0.219  -0.404          3
+4  0.614   1.28 -0.623  0.229   0.385          4
+5  0.213   1.21  0.614 -0.142   0.355          5
+6  1.39    1.35  0.213 -0.169   1.56           6</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="dart">🎯</span> <strong>ACTION POINT</strong>: What do the different columns mean?</p>
@@ -1126,7 +1131,7 @@ MAE = \frac{\sum_{i=1}^{n}{|y_i - \hat{y}_i|}}{n}
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 mae     standard       0.789</code></pre>
+1 mae     standard       0.795</code></pre>
 </div>
 </div>
 </section>
@@ -1141,7 +1146,7 @@ RMSE = \frac{\sum_{i=1}^{n}{(y_i - \hat{y}_i)^2}}{n}
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 rmse    standard        1.09</code></pre>
+1 rmse    standard        1.10</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="dart">🎯</span> <strong>ACTION POINT</strong>: Would a better model have a larger or smaller value of MAE/RMSE?</p>
@@ -1291,7 +1296,7 @@ Inputs:
 <li><p>We opt for <code>rmse</code> but we can specify several metrics however using the <code>metric_set</code> command.</p></li>
 </ul>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>default_tuned <span class="ot">&lt;-</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>smarket_tuned <span class="ot">&lt;-</span></span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">object =</span> svm_regressor,</span>
 <span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">preprocessor =</span> smarket_recipe,</span>
 <span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">resamples =</span> k_folds,</span>
@@ -1303,7 +1308,7 @@ Inputs:
 <h3 class="anchored" data-anchor-id="step-4.7-which-combination-of-hyperparameters-works-best">Step 4.7: Which combination of hyperparameters works best?</h3>
 <p>Now we have tuned our models, let’s find out which combination of hyperparameters work best. We can create a ggplot easily using the <code>autoplot</code> command.</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>default_tuned <span class="sc">%&gt;%</span> </span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>smarket_tuned <span class="sc">%&gt;%</span> </span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span></span>
 <span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>  ggsci<span class="sc">::</span><span class="fu">scale_color_jco</span>() <span class="sc">+</span></span>
@@ -1314,7 +1319,7 @@ Inputs:
 </blockquote>
 <p>We can use the function <code>select_best</code> to identify the hyperparameter combination that leads to the highest precision.</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select_best</span>(default_tuned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select_best</span>(smarket_tuned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section></details>
 <details>
 <summary>

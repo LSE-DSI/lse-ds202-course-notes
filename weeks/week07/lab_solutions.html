@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
-<meta name="dcterms.date" content="07 October 2022">
+<meta name="dcterms.date" content="7 November 2022">
 
-<title>LSE DS202 2022/23 - ✔️ Week 02 - Lab Solutions</title>
+<title>LSE DS202 2022/23 - ✔️ Week 07 - Lab Solutions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -95,8 +95,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../weeks/week03.html" rel="next">
-<link href="../../weeks/week02/lab.html" rel="prev">
+<link href="../../weeks/week07/lab.html" rel="prev">
 <link href="../..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -157,7 +156,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">✔️ Week 02 - Lab Solutions</h1>
+      <h1 class="quarto-secondary-nav-title">✔️ Week 07 - Lab Solutions</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -246,11 +245,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../weeks/week02.html" class="sidebar-item-text sidebar-link">Week 02</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../weeks/week02/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
@@ -268,7 +267,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week02/lab_solutions.html" class="sidebar-item-text sidebar-link active">✔️ Lab solutions</a>
+  <a href="../../weeks/week02/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
   </div>
 </li>
       </ul>
@@ -386,11 +385,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../weeks/week07.html" class="sidebar-item-text sidebar-link">Week 07</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../weeks/week07/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
@@ -408,7 +407,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week07/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  <a href="../../weeks/week07/lab_solutions.html" class="sidebar-item-text sidebar-link active">✔️ Lab solutions</a>
   </div>
 </li>
       </ul>
@@ -426,7 +425,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#solutions-to-exercises" id="toc-solutions-to-exercises" class="nav-link active" data-scroll-target="#solutions-to-exercises">Solutions to exercises</a></li>
+  <li><a href="#take-home-exercises-solutions" id="toc-take-home-exercises-solutions" class="nav-link active" data-scroll-target="#take-home-exercises-solutions"><span class="emoji" data-emoji="heavy_check_mark">✔️</span> Take-home exercises (Solutions)</a>
+  <ul class="collapse">
+  <li><a href="#q1-selecting-columns" id="toc-q1-selecting-columns" class="nav-link" data-scroll-target="#q1-selecting-columns">Q1: Selecting columns</a></li>
+  <li><a href="#q2-a-new-tidyverse-verb" id="toc-q2-a-new-tidyverse-verb" class="nav-link" data-scroll-target="#q2-a-new-tidyverse-verb">Q2: A new tidyverse verb</a></li>
+  <li><a href="#q3-exploratory-data-analysis-part-i" id="toc-q3-exploratory-data-analysis-part-i" class="nav-link" data-scroll-target="#q3-exploratory-data-analysis-part-i">Q3: Exploratory Data Analysis (Part I)</a></li>
+  <li><a href="#q4-exploratory-data-analysis-part-ii0" id="toc-q4-exploratory-data-analysis-part-ii0" class="nav-link" data-scroll-target="#q4-exploratory-data-analysis-part-ii0">Q4: Exploratory Data Analysis (Part II0</a></li>
+  <li><a href="#q5-back-to-penguins" id="toc-q5-back-to-penguins" class="nav-link" data-scroll-target="#q5-back-to-penguins">Q5: Back to penguins…</a></li>
+  <li><a href="#q6.-predict-penguin-species" id="toc-q6.-predict-penguin-species" class="nav-link" data-scroll-target="#q6.-predict-penguin-species">Q6. Predict Penguin species</a></li>
+  <li><a href="#q7.-control-parameters" id="toc-q7.-control-parameters" class="nav-link" data-scroll-target="#q7.-control-parameters">Q7. Control parameters</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -435,7 +443,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">✔️ Week 02 - Lab Solutions</h1>
+<h1 class="title d-none d-lg-block">✔️ Week 07 - Lab Solutions</h1>
 <p class="subtitle lead">DS202 - Data Science for Social Scientists</p>
 </div>
 
@@ -446,14 +454,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Yijun Wang </p>
+             <p>Dr.&nbsp;Stuart Bramwell/Dr.&nbsp;Jon Cardoso-Silva </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">07 October 2022</p>
+      <p class="date">07 November 2022</p>
     </div>
   </div>
     
@@ -462,38 +470,197 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="solutions-to-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="solutions-to-exercises">Solutions to exercises</h2>
-<ol type="1">
-<li><p>Use the function <code>View()</code>to identify the type of a variable (quantitative or qualitative):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Variables mpg, cylinders, horsepower, weight, acceleration, year are quantitative variable. Variables origin, name are qualitative variable</p></li>
-<li><p>Use the function <code>range()</code> to check the range of each quantitative predictor:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(Auto<span class="sc">$</span>mpg)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="fl">9.0</span> <span class="fl">46.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To refer to a variable, we must type the data set and the variable name joined with a <code>$</code> symbol.</p></li>
-<li><p>Using <code>summary()</code> to have an overall look at all variables and statistical features (like mean and standard deviation) are included in the outputs:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>or</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Auto<span class="sc">$</span>mpg)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Auto<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Remove the 10th through 85th observations from the original data frame and store it as another new data frame:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Auto_tmp <span class="ot">=</span> Auto[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">85</span>), ]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Auto_tmp)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Auto_tmp<span class="sc">$</span>mpg)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Auto_tmp<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Create a scatterplot matrix using the function pairs():</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>( <span class="sc">~</span> mpg <span class="sc">+</span> displacement <span class="sc">+</span> horsepower <span class="sc">+</span> weight <span class="sc">+</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        acceleration <span class="sc">+</span> year <span class="sc">+</span> origin <span class="sc">+</span> cylinders, </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Notice the linear or non-linear trends in the scatterplots.Then create a histogram of the variable mpg:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span> (Auto<span class="sc">$</span>mpg , <span class="at">col =</span> <span class="dv">2</span>, <span class="at">breaks =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Use the <code>hist()</code> function to produce some histograms with differing numbers of bins for a few of the quantitative variables. You may find the command <code>par(mfrow = c(2, 2))</code> useful: it will divide the print window into four regions so that four plots can be made simultaneously. Modifying the arguments to this function will divide the screen in other ways.</p></li>
-<li><p>After observing the first row of the scatterplot matrix which indicates the relationship between gas mileage (<code>mpg</code>) and other variables, you will find evident linear or non-linear trends exist in the scatterplots with variables displacement, horsepower, weight, year and origin. Therefore, these varibles might be useful in predicting <code>mpg</code>.</p></li>
-</ol>
-<p>If you want to achieve ststistical robust when exploring the relationship between variables, you need to culculate some statistics (like the correlation using the function <code>cor()</code>) and conduct statistical tests. This will be further illustrated in <a href="../../weeks/week03">Week 03</a>.</p>
+<p>This lab session draws on <a href="../../weeks/week05/lecture.html"><span class="emoji" data-emoji="spiral_calendar">🗓️</span> Week 05 lecture</a> content and on feedback given by the course representatives about the main struggles you are facing with R (tidyverse).</p>
+<p>If you are already very familiar with tidyverse, you can skip to Step 2.</p>
+<p><strong>R packages you will need:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'e1071'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'ggsci'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'ISLR2'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'palmerpenguins'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'parttree'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'rpart'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'rpart.plot'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'tidyverse'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You might have already installed some of these packages. Some were used in <a href="../../weeks/week05/lecture.html"><span class="emoji" data-emoji="spiral_calendar">🗓️</span> Week 05 slides</a>, others in previous labs. If you see an error like “package not found”, then install the package using <code>install.packages("&lt;package name&gt;")</code>.</p>
+<p><strong>Installation instructions for <code>parttree</code></strong></p>
+<p>The package parttree cannot be installed by install.packages. Instead, we have to follow the instructions set by the <a href="https://github.com/grantmcdermott/parttree">developers of the package</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"grantmcdermott/parttree"</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="take-home-exercises-solutions" class="level1">
+<h1><span class="emoji" data-emoji="heavy_check_mark">✔️</span> Take-home exercises (Solutions)</h1>
+<p>The following exercises were designed as natural extension of the concepts you learned about in this lab session. Reserve some time later to solve this at home, we will release solutions at the end of the week after everyone has had a chance to attend a lab session.</p>
+<section id="q1-selecting-columns" class="level2">
+<h2 class="anchored" data-anchor-id="q1-selecting-columns">Q1: Selecting columns</h2>
+<p><strong>Using the <code>Bikeshare</code> data set present in <code>ISLR2</code> subset the data to only include <code>mnth</code>, <code>holiday</code>, and <code>bikers</code> columns.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Bikeshare <span class="sc">%&gt;%</span> <span class="fu">select</span>(mnth, holiday, bikers) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mnth holiday bikers
+1  Jan       0     16
+2  Jan       0     40
+3  Jan       0     32
+4  Jan       0     13
+5  Jan       0      1
+6  Jan       0      1</code></pre>
+</div>
+</div>
+</section>
+<section id="q2-a-new-tidyverse-verb" class="level2">
+<h2 class="anchored" data-anchor-id="q2-a-new-tidyverse-verb">Q2: A new tidyverse verb</h2>
+<p><strong>Using the <code>Auto</code> data set present in <code>ISLR2</code>, replicate Step 1.3, only this time replace <code>filter(origin == 1)</code> with <code>group_by(origin)</code>. How have the results changed?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Auto <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, origin) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mpg_gt_gavg =</span> <span class="fu">if_else</span>(mpg <span class="sc">&gt;</span> <span class="fu">mean</span>(mpg), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(origin) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prop_mpg_gt_gavg =</span> <span class="fu">mean</span>(mpg_gt_gavg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  origin prop_mpg_gt_gavg
+   &lt;int&gt;            &lt;dbl&gt;
+1      1            0.269
+2      2            0.75 
+3      3            0.873</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>A: Instead of looking just at the origin=1, we have now summarized the data and computed <code>prop_mpg_gt_gavg</code> (Proportion of samples for which <code>mpg</code> is greater than average) for each unique value of <code>origin</code>.</p>
+</blockquote>
+</section>
+<section id="q3-exploratory-data-analysis-part-i" class="level2">
+<h2 class="anchored" data-anchor-id="q3-exploratory-data-analysis-part-i">Q3: Exploratory Data Analysis (Part I)</h2>
+<p><strong>Calculate the average daily number of bikers in March, in the <code>Bikeshare</code> data set.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Bikeshare <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mnth <span class="sc">==</span> <span class="st">"March"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(day) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">daily_bikers=</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_daily_bikers=</span><span class="fu">mean</span>(daily_bikers))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  avg_daily_bikers
+             &lt;dbl&gt;
+1             23.5</code></pre>
+</div>
+</div>
+</section>
+<section id="q4-exploratory-data-analysis-part-ii0" class="level2">
+<h2 class="anchored" data-anchor-id="q4-exploratory-data-analysis-part-ii0">Q4: Exploratory Data Analysis (Part II0</h2>
+<p><strong>Do people bike more during holiday seasons?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Bikeshare <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(holiday, day) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">daily_bikers=</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_daily_bikers=</span><span class="fu">mean</span>(daily_bikers),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">std_daily_bikers=</span><span class="fu">sd</span>(daily_bikers))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  holiday mean_daily_bikers std_daily_bikers
+    &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;
+1       0              23.7            1.32 
+2       1              23.9            0.316</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Just by summarising the data, it’s not really possible to say. On average, the mean number of daily bikers seems to be about the same, just with a smaller standard deviation.</p>
+</blockquote>
+</section>
+<section id="q5-back-to-penguins" class="level2">
+<h2 class="anchored" data-anchor-id="q5-back-to-penguins">Q5: Back to penguins…</h2>
+<p><strong>Let’s go back to the <code>penguins</code> data set. Create a new dataframe that omits missing values (NAs), remove the <code>island</code> and <code>year</code> columns but keep the rest of the dataset intact (don’t create new columns).</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>new_penguins <span class="ot">&lt;-</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(island, year))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>new_penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 6
+   species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex   
+   &lt;fct&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt; 
+ 1 Adelie            39.1          18.7               181        3750 male  
+ 2 Adelie            39.5          17.4               186        3800 female
+ 3 Adelie            40.3          18                 195        3250 female
+ 4 Adelie            NA            NA                  NA          NA &lt;NA&gt;  
+ 5 Adelie            36.7          19.3               193        3450 female
+ 6 Adelie            39.3          20.6               190        3650 male  
+ 7 Adelie            38.9          17.8               181        3625 female
+ 8 Adelie            39.2          19.6               195        4675 male  
+ 9 Adelie            34.1          18.1               193        3475 &lt;NA&gt;  
+10 Adelie            42            20.2               190        4250 &lt;NA&gt;  
+# … with 334 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="q6.-predict-penguin-species" class="level2">
+<h2 class="anchored" data-anchor-id="q6.-predict-penguin-species">Q6. Predict Penguin species</h2>
+<p><strong>Build a Decision Tree model to predict the <code>species</code> of penguins. Note that the outcome will not be a binary variable this time.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>tree.model <span class="ot">&lt;-</span> <span class="fu">rpart</span>(species <span class="sc">~</span> ., <span class="at">data =</span> new_penguins, <span class="at">method =</span> <span class="st">'class'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(tree.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_solutions_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Note that we three different proportions in the middle of the nodes now (instead of just one). Each represent the proportion of penguins of a specific specie.</p>
+<p>For example, the left-most leaf node shows: 0.97 0.03 0.00. That means: 97% of the samples that fall into that part of the decision tree are of the <code>Adelie</code> species, 3% are of the <code>Chinstrap</code> species and 0% are of the <code>Gentoo</code> species.</p>
+<p>How do we know the order of the species represented by these numbers? Check the levels of the column <code>species</code> (which is a column of the type <code>factor</code>). For more on <code>factors</code> read: https://r4ds.had.co.nz/factors.html</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(new_penguins<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Adelie"    "Chinstrap" "Gentoo"   </code></pre>
+</div>
+</div>
+<p><strong>The video below explains how to read the numbers inside the nodes of the decision tree</strong></p>
+<div style="position: relative; padding-bottom: 47.708333333333336%; height: 0;">
+<iframe src="https://www.loom.com/embed/76d898bbb7e64d28a041497b47a14ea7" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+</iframe>
+</div>
+</section>
+<section id="q7.-control-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="q7.-control-parameters">Q7. Control parameters</h2>
+<p><strong>The decision tree algorithm we are using sets the cost complexity parameter (<code>cp</code>) by default as <code>control = list(cp = 0.01)</code>. Build a new model with a smaller <code>cp</code> value, say <code>control = list(cp = 0.001)</code>. Does this increase or reduce the complexity of the tree?</strong></p>
+<blockquote class="blockquote">
+<p>A smaller <code>cp</code> parameter would force the decision tree to try to find a more <strong>complex model</strong> (more branches) if that leads to a better overall model. (If you want to understand how the <code>rpart</code> method chooses to make the splits and branches of the tree, type <code>?rpart</code> in the console and read the section about <code>method</code>).<br>
+<br>
+It turns out that nothing will make this model more complex! Even if you set a very low <code>cp</code>, the tree stays the same:</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>tree.model <span class="ot">&lt;-</span> <span class="fu">rpart</span>(species <span class="sc">~</span> ., <span class="at">data =</span> new_penguins, <span class="at">method =</span> <span class="st">'class'</span>, <span class="at">control=</span><span class="fu">list</span>(<span class="at">cp=</span><span class="fl">0.00000000000001</span>))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(tree.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_solutions_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>On the other hand, it is possible to simplify the tree (fewer branches) if we increase <code>cp</code> parameter:</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>tree.model <span class="ot">&lt;-</span> <span class="fu">rpart</span>(species <span class="sc">~</span> ., <span class="at">data =</span> new_penguins, <span class="at">method =</span> <span class="st">'class'</span>, <span class="at">control=</span><span class="fu">list</span>(<span class="at">cp=</span><span class="fl">0.4</span>))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(tree.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab_solutions_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>It all depends on what we care about and which metrics we will use to assess this model and we plan to use the model later on. But it looks like the above will <strong>underfit</strong> the data: one of the species is not even represented there.</p>
+</blockquote>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -726,14 +893,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../weeks/week02/lab.html" class="pagination-link">
+      <a href="../../weeks/week07/lab.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">💻 Lab roadmap</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../weeks/week03.html" class="pagination-link">
-        <span class="nav-page-text">Week 03</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
