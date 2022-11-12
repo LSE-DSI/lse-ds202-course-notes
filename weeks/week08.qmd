@@ -1,7 +1,19 @@
 ---
 title: "🗓️ Week 08 - Dimensionality Reduction"
+date: 14 November 2022
+date-meta: 14 November 2022
 ---
 
-<mark class="todo"></mark>
+Welcome to Week 08 of DS202!
 
+## Links
 
+- 💻 [This week's lab](/weeks/week08/lab.qmd)
+
+- ✨ [This week's bonus lab (advanced)](/weeks/week08/lab_advanced.qmd)
+
+- 👨‍🏫 [Lecture]() 🔜 
+
+- ✅ [Take a look at this week's checklist]() 🔜
+
+- ✔️ [Lab Solutions]() 🔜

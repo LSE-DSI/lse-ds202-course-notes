@@ -123,15 +123,17 @@ website:
                text: 💻 Lab roadmap
              - href: weeks/week07/lab_solutions.qmd
                text: ✔️ Lab solutions
-        #  - href: weeks/week08.qmd
-        #    text: Week 08
-        #    contents:
-        #      - href: weeks/week08/lecture.qmd
-        #        text: 👨‍🏫 Lecture
-        #      - href: weeks/week08/checklist.qmd
-        #        text: ✅ Checklist
-        #      - href: weeks/week08/lab.qmd
-        #        text: 💻 Lab roadmap
+         - href: weeks/week08.qmd
+           text: Week 08
+           contents:
+             - href: weeks/week08/lecture.qmd
+               text: 👨‍🏫 Lecture
+             - href: weeks/week08/checklist.qmd
+               text: ✅ Checklist
+             - href: weeks/week08/lab.qmd
+               text: 💻 Lab roadmap
+             - href: weeks/week08/lab_advanced.qmd
+               text: ✨ Bonus Lab (Optional)
 
                  
   navbar:

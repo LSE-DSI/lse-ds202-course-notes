@@ -1,5 +1,5 @@
 ---
-title: "👨‍🏫 Week 07 - Lecture"
+title: "👨‍🏫 Week 08 - Lecture"
 ---
 
 <mark class="todo"></mark>

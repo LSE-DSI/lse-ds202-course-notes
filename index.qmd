@@ -9,6 +9,9 @@ date-meta: 23 October 2022
 
 **Pages recently updated:**
 
+- [💻 Week 08 - Lab Roadmap](/weeks/week08/lab.qmd)
+- [✨ Bonus Lab (Optional)](/weeks/week08/lab_advanced.qmd)
+
 - [✔️ Week 07 - Lab Solutions](/weeks/week07/lab_solutions.html)
 - [👨‍🏫 Week 07 - Slides](/weeks/week07/lecture.qmd)
 

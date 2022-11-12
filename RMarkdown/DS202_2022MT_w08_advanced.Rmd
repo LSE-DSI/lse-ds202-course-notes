@@ -1,0 +1,305 @@
+---
+title: "✨ Bonus Lab (Optional) - Cross-validation"
+author: "Jon Cardoso-Silva"
+date: "2022-11-14"
+output: html_document
+---
+
+# Context
+
+This page is an (optional) continuation to [💻 Week 08 lab](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week08/lab.qmd). Originally, we intended it to be part of W08 lab but decided against it as it would make the lab too cluttered.
+
+Although optional, we think the exercises in here might be a great way to solidify your knowledge of SVM and its parameters.
+
+## Topics
+
+Here we show an alternative way to perform [k-fold cross-validation](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lecture.html#the-cross-validation-setup) using `tidymodels` instead of the `cv.glm` we saw in W05 lab.
+
+
+# Setup
+
+:bulb: *Some of you have mentioned that your R version cannot handle tidymodels. We recommend you update R to version 4.2.0 or above.*
+
+## Packages you will need
+
+```{r, message=FALSE, warning=FALSE}
+library('ISLR2')       # for the data
+library('tidyverse')   # to use things like the pipe (%>%)
+library('e1071')       # for SVM model
+library('tidymodels')  # for model tuning, cross-validation etc.
+
+# Vanity packages:
+library('GGally')      # for pretty correlation plot
+library('ggsci')       # for pretty plot colours
+library('cvms')        # for pretty confusion matrix plots
+```
+
+# The Data
+
+## :tangerine:Orange Juice
+
+This week we will use a different ISLR2 dataset: `OJ` . We will perform a **classification** task with the goal to predict the `Purchase` column.
+
+> *The data contains 1070 **purchases** where the customer either purchased Citrus Hill or Minute Maid Orange Juice. A number of characteristics of the customer and product are recorded.*
+
+```{r}
+ISLR2::OJ %>% head()
+```
+
+To understand what each variable represent, open the R Console, type the following and hit ENTER:
+
+``` r
+?ISLR2::OJ
+```
+
+### Which variables can help us distinguish the two different brands?
+
+To simplify our plots later on, let's focus on just two predictors:
+
+```{r, message=FALSE, dpi=300}
+plot_df <- ISLR2::OJ %>% select(Purchase, LoyalCH, PriceDiff)
+
+g = (
+  ggpairs(plot_df, aes(colour=Purchase))
+  
+  # Customizing the plot
+  + scale_colour_startrek()
+  + scale_fill_startrek()
+  + theme_bw()
+)
+g 
+```
+
+## :chart_with_upwards_trend: Stock Market
+
+We will also use the `Smarket` dataset from the ISLR2 package. We will perform a **regression** task with the goal to predict the percentage of return of the S&P 500 stock index on any given day, as represented by the `Today` column.
+
+> *Daily percentage returns for the S&P 500 stock index between 2001 and 2005.*
+
+```{r}
+ISLR2::Smarket %>% head()
+```
+
+```{r, message=FALSE, dpi=300}
+plot_df <- ISLR2::Smarket %>% select(Today, Volume, Lag1, Lag2)
+
+g = (
+  ggpairs(plot_df)
+  
+  # Customizing the plot
+  + scale_colour_startrek()
+  + scale_fill_startrek()
+  + theme_bw()
+)
+g 
+```
+
+To understand what each variable represent, open the R Console, type the following and hit ENTER:
+
+``` r
+?ISLR2::Smarket
+```
+
+# Step 4: k-fold cross validation with `tidymodels`
+
+Here we will replicate the cross-validation setup used to generate the structure [:spiral_calendar: Week 04 lecture/workshop](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lecture.qmd).
+
+**:previous_track_button:Recap:**
+
+-   We also explored training vs test splits, albeit in a different way, in [Step 2.1](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lab.html#step-2.1-separate-some-data-just-for-training) of [:computer: Week 04 - Lab](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lab.html)
+
+-   k-fold cross-validation was also present in [Step 2](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lab.html#step-2-k-fold-cross-validation) of [:computer: Week 05 - Lab](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lab.html)
+
+-   Cross-validation was also mentioned in the [:spiral_calendar: Week 05 lecture](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lecture.qmd), when you were introduced the problem of **overfitting**.
+
+*But how exactly can cross-validation help overcome overfitting?* This is what we will explore in this section of the lab.
+
+## Step 4.1: Create training / test split
+
+We start by creating a training / test split using the functions `initial_split` packages for :chart_with_upwards_trend: `SMarket` data.
+
+```{r}
+
+set.seed(123)
+
+# Remove Direction, otherwise we would be "cheating" 
+filtered_data <- ISLR2::Smarket %>% select(Today, Volume, Lag1)
+
+default_split <- initial_split(filtered_data, prop = 0.75, strata = Today)
+
+internal_validation_set <- training(default_split)
+
+external_validation_set <- testing(default_split)
+
+```
+
+How many samples are in the `internal validation set`?
+
+```{r}
+nrow(internal_validation_set)
+```
+
+How many samples were left in the `external validation set`?
+
+```{r}
+nrow(external_validation_set)
+```
+
+The external validation set will only be used at the end
+
+## Step 4.2: Create resampling folds for cross validation
+
+Next, let's create **10-fold** cross-validation data using `internal_validation_set`. We can achieve this by using the `vfold_cv` command, specifying `v = 10`.
+
+```{r}
+k_folds <- vfold_cv(internal_validation_set, v = 10)
+k_folds
+
+```
+
+*Notice anything odd? The output is a tibble but the first column `splits` is a series of lists. This is another thing that makes tibbles different to data frames - you can nest lists within tibbles but not data frames. We will use this more explicitly in the next lab when we build k-means clustering models.*
+
+## Step 4.3: **:fried_egg:**Specifying a recipe
+
+The next step is to create a recipe. Luckily, `recipe` function takes the same values as the `lm` model! We first create a formula `default ~ .` and then use `data = internal_validation_set`. Printing `smarket_recipe`, we have one outcome and three predictors.
+
+```{r}
+
+smarket_recipe <- recipe(Today ~ ., data = internal_validation_set)
+smarket_recipe
+
+```
+
+## Step 4.4: Specify a model
+
+Next, we will specify a support vector machine model. Here's where things get a bit more involved.
+
+We specify a radial basis function SVM. `svm_rbf` takes two **hyperparameters**: `cost` and `rbf_sigma`. Instead of specifying a single value for each, we will instead set them equal to `tune()`. This indicates that we want to try a range of different values.
+
+```{r}
+svm_regressor <-
+  svm_rbf(cost = tune(), rbf_sigma = tune()) %>% 
+  set_mode('regression') 
+
+```
+
+## Step 4.5: Create a hyperparameter grid
+
+Which values for `cost` and `rbf_sigma` should we choose? It is often hard to tell, so instead we can experiment with different values.
+
+We can use `grid_regular` to create a tibble of different hyperparameter combinations. `levels = 5` indicates that we want to try out five different values for each hyperparameter.
+
+```{r}
+
+set.seed(234)
+
+svm_grid <- grid_regular(cost(), rbf_sigma(), levels = 5)
+svm_grid
+
+```
+
+## Step 4.6: Perform cross-validation
+
+We now have all we need to run cross-validation, and the function `tune_grid` puts everything together. Let's think intuitively what this command is doing.
+
+-   We are telling `tune_grid` that we want to run a classification model on a recipe using different **resampling** folds.
+
+-   Instead of specifying **hyperparameter** values we want to run a combination of different values.
+
+-   After this, we want to choose a metric to evaluate different combinations.
+
+-   We opt for `rmse` but we can specify several metrics however using the `metric_set` command.
+
+```{r}
+
+smarket_tuned <-
+  tune_grid(object = svm_regressor,
+            preprocessor = smarket_recipe,
+            resamples = k_folds,
+            grid = svm_grid,
+            metrics = metric_set(rmse),
+            control = control_grid(save_pred=TRUE))
+
+```
+
+## Step 4.7: Which combination of hyperparameters works best?
+
+Now we have tuned our models, let's find out which combination of **hyperparameters** work best. We can create a ggplot easily using the `autoplot` command.
+
+```{r}
+
+smarket_tuned %>% 
+  autoplot() +
+  theme_minimal() +
+  ggsci::scale_color_jco() +
+  labs(y = 'RMSE', colour = 'Sigma')
+
+```
+
+:dart: **ACTION POINT**: Can you explain what we see in the plot above?
+
+> your text go here
+
+We can use the function `select_best` to identify the hyperparameter combination that leads to the highest precision.
+
+```{r}
+
+select_best(smarket_tuned)
+
+```
+
+# :house: **Take-home exercises** (Advanced)
+
+_Don't worry, the next summative problem set will not require you to write code like asked in here._ 
+
+## Q5: Re-run Step3 (Regression)
+
+Build a standalone SVM model (`tidymodels` version) on the same data we used in Step 3 of W08 lab, only this time set the parameters of the SVM to the optimal parameters identified in Step 4.
+
+```{r}
+# your code goes here
+```
+
+## Q6: Predict the external validation set
+
+Use the model you built in Q5 and make predictions on the external validation set. How does the RMSE of these predictions compare to the RMSE of the internal validation set?
+
+```{r}
+# your code goes here
+```
+
+## Q7: SVM Decision Space (Regression)
+
+Replicate the plot from Step 3.3 of W08 lab roadmap, only this time using the model from Q5.
+
+```{r}
+# your code goes here
+```
+
+## Q8: Compare SVM Decision Space plots
+
+Explain if and how the decision space you obtained in Q8 differs from the one in Step 3.3.
+
+> your text goes here
+
+## Q9: Grid search for Orange Juice (Classification)
+
+-   For this task, you will use the Orange Juice data set (`ISLR2::OJ`) with ALL the predictors included
+
+-   Replicate the entire procedure of Step 4, making the necessary adjustments to predict `Purchase`
+
+- Use F1 score as the optimisation metric.
+
+:bulb:You will have two tweak at least two main things: `metric_set` and `set_mode`
+
+```{r}
+# your code goes here
+```
+
+## Q10: Challenge
+
+Replicate the same steps as in Q9 for different SVM kernels (linear, polynomial, etc.). Is it possible to fit a model that is better than the radial kernel,in terms of F1-score?
+
+```{r}
+# your code goes here
+```

@@ -9,7 +9,7 @@ editor: visual
 
 # Context
 
-This lab session draws on [:spiral_calendar: Week 04 lecture/workshop](/weeks/week04/lecture.qmd) and [:spiral_calendar: Week 05 lecture](/weeks/week05/lecture.qmd) content.
+This lab session draws on [:spiral_calendar: Week 04 lecture/workshop](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lecture.qmd) and [:spiral_calendar: Week 05 lecture](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lecture.qmd) content.
 
 It also reuses elements of **tidymodels** introduced in previous labs where we used functions from `library(broom)` or `library(rsample)`. These packages are part of `tidymodels`. For the record, tidymodel's ['Get Started' tutorials](https://www.tidymodels.org/start/) are really good.
 
@@ -17,7 +17,7 @@ It also reuses elements of **tidymodels** introduced in previous labs where we u
 
 More specifically, these are the things we will explore or revisit:
 
--   Difference between Classification vs Regression ([:spiral_calendar: Week 03 lecture](/weeks/week03/lecture.qmd))
+-   Difference between Classification vs Regression ([:spiral_calendar: Week 03 lecture](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week03/lecture.qmd))
 -   [k-fold cross-validation](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lecture.html#the-cross-validation-setup)
 -   [Support Vector Machine (SVM)](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lecture.html#part-ii---non-linear-algorithms-support-vector-machines-45-50-min)
 -   Overfitting
@@ -107,9 +107,9 @@ To understand what each variable represent, open the R Console, type the followi
 ?ISLR2::Smarket
 ```
 
-# Step 1: SVM models for classification (25 min)
+# Step 1: SVM models for classification (30 min)
 
-SVM stands for **S**upport **V**ector **M**achines. Revisit [:spiral_calendar: Week 05 lecture](/weeks/week05/lecture.qmd) or Chapter 9 of our textbook to understand more about this algorithm.
+SVM stands for **S**upport **V**ector **M**achines. Revisit [:spiral_calendar: Week 05 lecture](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lecture.qmd) or Chapter 9 of our textbook to understand more about this algorithm.
 
 R does not come with SVM, so we need to import it from a library. Let's start with the function `svm` we used in the Week 05 lecture, imported from the [`e1071` package](https://cran.r-project.org/web/packages/e1071/e1071.pdf). Here are a few things to know about the `svm` function:
 
@@ -298,7 +298,7 @@ g
 
 -   Can you point in the plot roughly which dots you would expect to be the support vectors?
 
-# Step 2: Doing the same with `tidymodels` (15 min)
+# Step 2: Doing the same with `tidymodels` (20 min)
 
 The function `svm` from `library(e1071)` package is not the only way to run SVM in R. The package `parsnip` also have its own SVM functions. The functionality is roughly the same but there are differences in how you write the code.
 
@@ -306,7 +306,7 @@ The function `svm` from `library(e1071)` package is not the only way to run SVM 
 
 ## Step 2.1 Training the SVM model
 
-We specify a **radial basis function** SVM (see the part about kernels in the [:spiral_calendar: Week 05 lecture](/weeks/week05/lecture.qmd)) with the function `svm_rbf`.
+We specify a **radial basis function** SVM (see the part about kernels in the [:spiral_calendar: Week 05 lecture](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lecture.qmd)) with the function `svm_rbf`.
 
 In the spirit of `tidyverse`, we pipe the SVM algorithm into the `fit` function, where we can define the R formula like we have been doing with other algorithms:
 
@@ -420,7 +420,7 @@ Create a plot of SVM decision space for the `orange_tidymodel` like we did in St
 
 > your notes go here
 
-# Step 3: What about regression? (10 min)
+# Step 3: What about regression? (30 min)
 
 Here we will be using the :chart_with_upwards_trend: `SMarket` data.
 
@@ -455,13 +455,16 @@ plot_df
 
 > your text go here
 
+Now, let's look at the distribution of residuals and let's mark the absolute residuals above 2 to flag the worst predictions (2 was an arbitrary choice, it all depends on the context):
+
 ```{r}
 g <- (
-  ggplot(plot_df, aes(x=row_number, y=.resid, colour=abs(.resid)))
+  ggplot(plot_df, aes(x=row_number, y=.resid))
   + geom_point(alpha=0.6)
   
   + theme_bw()
-  + scale_colour_viridis_b(name="Absolute residual")
+  + geom_hline(yintercept = c(-2,2), color="red", linetype="dashed")
+  + labs(title="Distribution of residuals (the closer to zero the better)")
 )
 
 g
@@ -489,219 +492,142 @@ plot_df %>% rmse(Today, .pred)
 
 :dart: **ACTION POINT**: Would a better model have a larger or smaller value of MAE/RMSE?
 
-> your text go here
+> your text goes here
 
-### :house: **Take-home exercise Q4 (might be challenging):**
 
-Try to replicate the visualization of the SVM Decision Space (Step 1.3) for the `Smarket` data.
+## Step 3.3 Visualize the SVM decision space (Regression)
 
-```{r}
-# your code goes here
-```
+Now, let's **replicate** what we did in Step 1.3 only this time for the `Smarket` data and using predictions from the `smarket_tidymodel`.
 
-:bulb:Tip: Remove the `scale_…` functions, otherwise it will throw an error.
-
-:bulb:Tip: After constructing the graph for the first time, try adding `scale_fill_viridis_c()` and `scale_colour_viridis_c()` to visualize predictions.
-
-# Step 4: k-fold cross validation with `tidymodels` (30 min)
-
-Here we will replicate the cross-validation setup used to generate the structure [:spiral_calendar: Week 04 lecture/workshop](/weeks/week04/lecture.qmd).
-
-**:previous_track_button:Recap:**
-
--   We also explored training vs test splits, albeit in a different way, in [Step 2.1](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lab.html#step-2.1-separate-some-data-just-for-training) of [:computer: Week 04 - Lab](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lab.html)
-
--   k-fold cross-validation was also present in [Step 2](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lab.html#step-2-k-fold-cross-validation) of [:computer: Week 05 - Lab](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lab.html)
-
--   Cross-validation was also mentioned in the [:spiral_calendar: Week 05 lecture](/weeks/week05/lecture.qmd), when you were introduced the problem of **overfitting**.
-
-*But how exactly can cross-validation help overcome overfitting?* This is what we will explore in this section of the lab.
-
-## Step 4.1: Create training / test split
-
-We start by creating a training / test split using the functions `initial_split` packages for :chart_with_upwards_trend: `SMarket` data.
+We start by summarising the data. We want to find out the minimum and maximal values that the columns `Volumn` and `Lag1` reach: 
 
 ```{r}
-
-set.seed(123)
-
-default_split <- initial_split(filtered_data, prop = 0.75, strata = Today)
-
-internal_validation_set <- training(default_split)
-
-external_validation_set <- testing(default_split)
-
+filtered_data %>% 
+    select(c(Volume, Lag1)) %>%
+    summary()
 ```
-
-How many samples are in the `internal validation set`?
+Then, we create a simulated dataset with combinations of the `Volume` and `Lag1` columns:
 
 ```{r}
-nrow(internal_validation_set)
+sim.data <- 
+  crossing(Volume   = seq(0,3.5,0.1),
+           Lag1 = seq(-5,6,0.2))
+sim.data <- augment(smarket_tidymodel, sim.data)
+head(sim.data)
 ```
+:bulb: Look at the entire dataset with `View(sim.data)` 
 
-How many samples were left in the `external validation set`?
+Looking back at the plot of residuals, let's flag the worst predictions, those with an absolute residual above `2`.
 
 ```{r}
-nrow(external_validation_set)
+plot_df$residual_above_2 <- (plot_df$.resid) > 2
 ```
 
-The external validation set will only be used at the end
-
-## Step 4.2: Create resampling folds for cross validation
-
-Next, let's create **10-fold** cross-validation data using `internal_validation_set`. We can achieve this by using the `vfold_cv` command, specifying `v = 10`.
 
 ```{r}
-k_folds <- vfold_cv(internal_validation_set, v = 10)
-k_folds
+g <- (
+  plot_df %>%   
+    ggplot()
+  
+    # Tile the background of the plot with SVM predictions
+    + geom_tile(data = sim.data, aes(x=Volume, y=Lag1, fill = .pred), alpha = 0.45)
+  
+    # Actual data
+    + geom_point(aes(x=Volume, y=Lag1, colour = residual_above_2, shape = residual_above_2, alpha=residual_above_2), size=2.5, stroke=0.95)
+  
+    # Define X and Os
+    + scale_shape_manual(values = c(4, 1))
+    + scale_fill_viridis_c()
+    + scale_color_manual(values=c("black", "red"))
+    + scale_alpha_manual(values=c(0.1, 0.7))
+    
+    # (OPTIONAL) Customizing the colours and theme of the plot
+    + theme_minimal()
+    + theme(panel.grid = element_blank(), legend.position = 'bottom', plot.title = element_text(hjust = 0.5))
+    + labs(x = 'Volume', y = 'Lag 1', fill = "Today's Prediction", colour = 'Residual above 2?', shape = 'Residual above 2?', alpha='Residual above 2?', title='Worst predictions are marked as red circles')
+)
 
+g
 ```
 
-*Notice anything odd? The output is a tibble but the first column `splits` is a series of lists. This is another thing that makes tibbles different to data frames - you can nest lists within tibbles but not data frames. We will use this more explicitly in the next lab when we build k-means clustering models.*
+:bulb: The plot above might not be as easy to understand as the one for classification. 
 
-## Step 4.3: **:fried_egg:**Specifying a recipe
+## Step 3.3: Understand the parameters of `svm_rbf`
 
-The next step is to create a recipe. Luckily, `recipe` function takes the same values as the `lm` model! We first create a formula `default ~ .` and then use `data = internal_validation_set`. Printing `smarket_recipe`, we have one outcome and three predictors.
+The `svm_rbf` function has three parameters you can tune: 
+- `cost`
+- `rbf_sigma`
+- `margin`
 
-```{r}
+:dart: **ACTION POINT**: Train your abilities to interact with code documentation. Type `?svm_rbf` and hit ENTER. What do these parameters represent?
 
-smarket_recipe <- recipe(Today ~ ., data = internal_validation_set)
-smarket_recipe
-
-```
-
-## Step 4.4: Specify a model
-
-Next, we will specify a support vector machine model. Here's where things get a bit more involved.
-
-We specify a radial basis function SVM. `svm_rbf` takes two **hyperparameters**: `cost` and `rbf_sigma`. Instead of specifying a single value for each, we will instead set them equal to `tune()`. This indicates that we want to try a range of different values.
-
-```{r}
-svm_regressor <-
-  svm_rbf(cost = tune(), rbf_sigma = tune()) %>% 
-  set_mode('regression') 
-
-```
-
-## Step 4.5: Create a hyperparameter grid
-
-Which values for `cost` and `rbf_sigma` should we choose? It is often hard to tell, so instead we can experiment with different values.
-
-We can use `grid_regular` to create a tibble of different hyperparameter combinations. `levels = 5` indicates that we want to try out five different values for each hyperparameter.
-
-```{r}
-
-set.seed(234)
-
-svm_grid <- grid_regular(cost(), rbf_sigma(), levels = 5)
-svm_grid
-
-```
-
-## Step 4.6: Perform cross-validation
-
-We now have all we need to run cross-validation, and the function `tune_grid` puts everything together. Let's think intuitively what this command is doing.
-
--   We are telling `tune_grid` that we want to run a classification model on a recipe using different **resampling** folds.
-
--   Instead of specifying **hyperparameter** values we want to run a combination of different values.
-
--   After this, we want to choose a metric to evaluate different combinations.
-
--   We opt for `rmse` but we can specify several metrics however using the `metric_set` command.
-
-```{r}
-
-default_tuned <-
-  tune_grid(object = svm_regressor,
-            preprocessor = smarket_recipe,
-            resamples = k_folds,
-            grid = svm_grid,
-            metrics = metric_set(rmse),
-            control = control_grid(save_pred=TRUE))
-
-```
-
-## Step 4.7: Which combination of hyperparameters works best?
-
-Now we have tuned our models, let's find out which combination of hyperparameters work best. We can create a ggplot easily using the `autoplot` command.
-
-```{r}
-
-default_tuned %>% 
-  autoplot() +
-  theme_minimal() +
-  ggsci::scale_color_jco() +
-  labs(y = 'RMSE', colour = 'Sigma')
-
-```
-
-:dart: **ACTION POINT**: Can you explain what we see in the plot above?
-
-> your text go here
-
-We can use the function `select_best` to identify the hyperparameter combination that leads to the highest precision.
-
-```{r}
-
-select_best(default_tuned)
-
-```
-
-# :house: **Take-home exercises**
-
-Get ready for the next summative problem set by answering the following questions:
-
-## Q5: Re-run Step3 (Regression)
-
-Build a standalone SVM model (`tidymodels` version) on the same data we used in Step 3, only this time set the parameters of the SVM to the optimal parameters identified in Step 4.
-
-```{r}
-# your code goes here
-```
-
-## Q6: Predict the external validation set
-
-Use the model you built in Q5 and make predictions on the external validation set. How does the RMSE of these predictions compare to the RMSE of the internal validation set?
-
-```{r}
-# your code goes here
-```
-
-## Q7: SVM Decision Space (Regression)
-
-Do the same thing you did to answer Q4, only this time using the model from Q5.
-
-```{r}
-# your code goes here
-```
-
-## Q8: Compare Q4 x Q7 plots
-
-Explain if and how the decision space you obtained in Q8 differs from the one in Q4.
+:bulb: Tip: At the bottom of the help page, you will find a link to `kernlab engine details` that has more useful info about SVM RBF.
 
 > your text goes here
 
-## Q9: Grid search for Orange Juice (Classification)
 
--   For this task, you will use the Orange Juice data set (`ISLR2::OJ`) with ALL the predictors included
+## Step 3.4: Tweak the parameters
 
--   Replicate the entire procedure of Step 4, making the necessary adjustments to predict `Purchase`
+:handshake: **WORKING TOGETHER** In pairs, change the values of `cost`, `rbf_sigma` and `margin` in the chunk below and run the other two chunks of code to look at the distribution of residuals and summary metrics. 
 
-:bulb:You will have two tweak at least two main things: `metric_set` and `set_mode`
+Discuss your findings. Can you find any combination of values that makes the model better? Or any that makes it worse?
+
+```{r}
+alternative_smarket_model <-
+  svm_rbf(cost=1, rbf_sigma=10, margin=0.9) %>% 
+  set_mode('regression') %>% 
+  fit(Today ~ ., data = filtered_data)
+
+alternative_smarket_model
+```
+**Residuals plot**
+
+```{r}
+plot_df <- 
+  augment(alternative_smarket_model, filtered_data) %>% 
+  mutate(row_number=row_number()) # adding this here just to make our plot easier
+
+g <- (
+  ggplot(plot_df, aes(x=row_number, y=.resid))
+  + geom_point(alpha=0.6)
+  
+  + theme_bw()
+  + geom_hline(yintercept = c(-2,2), color="red")
+)
+
+g
+```
+
+**Metrics**
+
+```{r}
+# Use the vectorized version of MAE and RMSE functions
+plot_df %>% summarise(mae=mae_vec(Today, .pred),
+                      rmse=rmse_vec(Today, .pred))
+```
+
+
+### :house: **Take-home exercise Q4:**
+
+- Retrain the model in Step 3 for `Smarket`, this time using `svm_linear` instead of `svm_rbf`. 
+- Reuse the code in Step 3.4 to replicate the plots and metric calculations for this new model.
+- Which model fits the target variable (`Today`) better?
 
 ```{r}
 # your code goes here
 ```
 
-## Q10: Challenge
+> your text goes here
 
-Replicate the same steps above using different SVM kernels (linear, polynomial, etc.)
 
-```{r}
-# your code goes here
-```
+## Want to take it to next level? (Optional)
+
+In a separate, more advanced roadmap, we show how to perform [k-fold cross-validation](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lecture.html#the-cross-validation-setup) using `tidymodels` to tune the parameters of SVM automatically.
+
+Although optional, we think it might be a great way to solidify your knowledge of SVM and its parameters.
 
 ## Final step:
 
 *You don't need to submit this file but practice **knitting this RMarkdown as HTML**. Received any error? Reach out to your colleagues either on Slack or on your student-led Whatsapp group chat.*
+
+
