@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
-<meta name="dcterms.date" content="23 October 2022">
+<meta name="dcterms.date" content="2022-11-14">
 
-<title>LSE DS202 2022/23 - Identifying outliers in linear model</title>
+<title>LSE DS202 2022/23 - ✨ Bonus Lab (Optional) - Cross-validation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -95,6 +95,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../weeks/week08/lab.html" rel="prev">
 <link href="../..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -155,7 +156,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Identifying outliers in linear model</h1>
+      <h1 class="quarto-secondary-nav-title">✨ Bonus Lab (Optional) - Cross-validation</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -414,11 +415,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../weeks/week08.html" class="sidebar-item-text sidebar-link">Week 08</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../weeks/week08/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
@@ -436,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week08/lab_advanced.html" class="sidebar-item-text sidebar-link">✨ Bonus Lab (Optional)</a>
+  <a href="../../weeks/week08/lab_advanced.html" class="sidebar-item-text sidebar-link active">✨ Bonus Lab (Optional)</a>
   </div>
 </li>
       </ul>
@@ -454,9 +455,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#residual-vs-fitted-plot" id="toc-residual-vs-fitted-plot" class="nav-link active" data-scroll-target="#residual-vs-fitted-plot">Residual vs Fitted plot</a></li>
-  <li><a href="#selecting-outliers" id="toc-selecting-outliers" class="nav-link" data-scroll-target="#selecting-outliers">Selecting outliers</a></li>
-  <li><a href="#what-to-do-next" id="toc-what-to-do-next" class="nav-link" data-scroll-target="#what-to-do-next">What to do next?</a></li>
+  <li><a href="#context" id="toc-context" class="nav-link active" data-scroll-target="#context">Context</a>
+  <ul class="collapse">
+  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
+  </ul></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
+  <ul class="collapse">
+  <li><a href="#packages-you-will-need" id="toc-packages-you-will-need" class="nav-link" data-scroll-target="#packages-you-will-need">Packages you will need</a></li>
+  </ul></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The Data</a>
+  <ul class="collapse">
+  <li><a href="#orange-juice" id="toc-orange-juice" class="nav-link" data-scroll-target="#orange-juice"><span class="emoji" data-emoji="tangerine">🍊</span>Orange Juice</a>
+  <ul class="collapse">
+  <li><a href="#which-variables-can-help-us-distinguish-the-two-different-brands" id="toc-which-variables-can-help-us-distinguish-the-two-different-brands" class="nav-link" data-scroll-target="#which-variables-can-help-us-distinguish-the-two-different-brands">Which variables can help us distinguish the two different brands?</a></li>
+  </ul></li>
+  <li><a href="#stock-market" id="toc-stock-market" class="nav-link" data-scroll-target="#stock-market"><span class="emoji" data-emoji="chart_with_upwards_trend">📈</span> Stock Market</a></li>
+  </ul></li>
+  <li><a href="#step-4-k-fold-cross-validation-with-tidymodels" id="toc-step-4-k-fold-cross-validation-with-tidymodels" class="nav-link" data-scroll-target="#step-4-k-fold-cross-validation-with-tidymodels">Step 4: k-fold cross validation with <code>tidymodels</code></a>
+  <ul class="collapse">
+  <li><a href="#step-4.1-create-training-test-split" id="toc-step-4.1-create-training-test-split" class="nav-link" data-scroll-target="#step-4.1-create-training-test-split">Step 4.1: Create training / test split</a></li>
+  <li><a href="#step-4.2-create-resampling-folds-for-cross-validation" id="toc-step-4.2-create-resampling-folds-for-cross-validation" class="nav-link" data-scroll-target="#step-4.2-create-resampling-folds-for-cross-validation">Step 4.2: Create resampling folds for cross validation</a></li>
+  <li><a href="#step-4.3-specifying-a-recipe" id="toc-step-4.3-specifying-a-recipe" class="nav-link" data-scroll-target="#step-4.3-specifying-a-recipe">Step 4.3: <strong><span class="emoji" data-emoji="fried_egg">🍳</span></strong>Specifying a recipe</a></li>
+  <li><a href="#step-4.4-specify-a-model" id="toc-step-4.4-specify-a-model" class="nav-link" data-scroll-target="#step-4.4-specify-a-model">Step 4.4: Specify a model</a></li>
+  <li><a href="#step-4.5-create-a-hyperparameter-grid" id="toc-step-4.5-create-a-hyperparameter-grid" class="nav-link" data-scroll-target="#step-4.5-create-a-hyperparameter-grid">Step 4.5: Create a hyperparameter grid</a></li>
+  <li><a href="#step-4.6-perform-cross-validation" id="toc-step-4.6-perform-cross-validation" class="nav-link" data-scroll-target="#step-4.6-perform-cross-validation">Step 4.6: Perform cross-validation</a></li>
+  <li><a href="#step-4.7-which-combination-of-hyperparameters-works-best" id="toc-step-4.7-which-combination-of-hyperparameters-works-best" class="nav-link" data-scroll-target="#step-4.7-which-combination-of-hyperparameters-works-best">Step 4.7: Which combination of hyperparameters works best?</a></li>
+  </ul></li>
+  <li><a href="#take-home-exercises-advanced" id="toc-take-home-exercises-advanced" class="nav-link" data-scroll-target="#take-home-exercises-advanced"><span class="emoji" data-emoji="house">🏠</span> <strong>Take-home exercises</strong> (Advanced)</a>
+  <ul class="collapse">
+  <li><a href="#q5-re-run-step3-regression" id="toc-q5-re-run-step3-regression" class="nav-link" data-scroll-target="#q5-re-run-step3-regression">Q5: Re-run Step3 (Regression)</a></li>
+  <li><a href="#q6-predict-the-external-validation-set" id="toc-q6-predict-the-external-validation-set" class="nav-link" data-scroll-target="#q6-predict-the-external-validation-set">Q6: Predict the external validation set</a></li>
+  <li><a href="#q7-svm-decision-space-regression" id="toc-q7-svm-decision-space-regression" class="nav-link" data-scroll-target="#q7-svm-decision-space-regression">Q7: SVM Decision Space (Regression)</a></li>
+  <li><a href="#q8-compare-svm-decision-space-plots" id="toc-q8-compare-svm-decision-space-plots" class="nav-link" data-scroll-target="#q8-compare-svm-decision-space-plots">Q8: Compare SVM Decision Space plots</a></li>
+  <li><a href="#q9-grid-search-for-orange-juice-classification" id="toc-q9-grid-search-for-orange-juice-classification" class="nav-link" data-scroll-target="#q9-grid-search-for-orange-juice-classification">Q9: Grid search for Orange Juice (Classification)</a></li>
+  <li><a href="#q10-challenge" id="toc-q10-challenge" class="nav-link" data-scroll-target="#q10-challenge">Q10: Challenge</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -465,14 +498,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Identifying outliers in linear model</h1>
-<p class="subtitle lead">DS202 Blog Post</p>
-  <div class="quarto-categories">
-    <div class="quarto-category">week03</div>
-    <div class="quarto-category">linear regression</div>
-    <div class="quarto-category">outliers</div>
-  </div>
-  </div>
+<h1 class="title d-none d-lg-block">✨ Bonus Lab (Optional) - Cross-validation</h1>
+<p class="subtitle lead">DS202 - Data Science for Social Scientists</p>
+</div>
 
 
 
@@ -481,14 +509,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a> </p>
+             <p>Jon Cardoso-Silva </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">23 October 2022</p>
+      <p class="date">14 November 2022</p>
     </div>
   </div>
     
@@ -497,140 +525,322 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-TLDR
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Here you will find R code to single out points with high <a href="https://online.stat.psu.edu/stat462/node/247/">“studentized” residuals</a></p>
-</div>
-</div>
-<p>During <a href="../../weeks/week03/lab.html#step-3-some-potential-problems">Week 03 lab</a>, we looked at diagnostic plots we can generate in R to obtain insights about the fit of a linear model.</p>
-<p><strong>Import required libraries</strong></p>
+<section id="context" class="level1">
+<h1>Context</h1>
+<p>Originally, we intended it to be part of <a href="../../weeks/week08/lab.html">W08 lab</a> but decided against it as it would make the lab too cluttered.</p>
+<p>Although optional, we think the exercises in here might be a great way to solidify your knowledge of SVM and its parameters.</p>
+<section id="topics" class="level2">
+<h2 class="anchored" data-anchor-id="topics">Topics</h2>
+<p>Here we show an alternative way to perform <a href="../../weeks/week04/lecture.html#the-cross-validation-setup">k-fold cross-validation</a> using <code>tidymodels</code> instead of the <code>cv.glm</code> we saw in W05 lab.</p>
+</section>
+</section>
+<section id="setup" class="level1">
+<h1>Setup</h1>
+<p><span class="emoji" data-emoji="bulb">💡</span> <em>Some of you have mentioned that your R version cannot handle tidymodels. We recommend you update R to version 4.2.0 or above.</em></p>
+<section id="packages-you-will-need" class="level2">
+<h2 class="anchored" data-anchor-id="packages-you-will-need">Packages you will need</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-<p><strong>Fit a linear model then produce diagnostic plots</strong></p>
+</section>
+</section>
+<section id="the-data" class="level1">
+<h1>The Data</h1>
+<section id="orange-juice" class="level2">
+<h2 class="anchored" data-anchor-id="orange-juice"><span class="emoji" data-emoji="tangerine">🍊</span>Orange Juice</h2>
+<p>This week we will use a different ISLR2 dataset: <code>OJ</code> . We will perform a <strong>classification</strong> task with the goal to predict the <code>Purchase</code> column.</p>
+<blockquote class="blockquote">
+<p><em>The data contains 1070 <strong>purchases</strong> where the customer either purchased Citrus Hill or Minute Maid Orange Juice. A number of characteristics of the customer and product are recorded.</em></p>
+</blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lm.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> lstat <span class="sc">*</span> age , <span class="at">data =</span> ISLR2<span class="sc">::</span>Boston)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Purchase WeekofPurchase StoreID PriceCH PriceMM DiscCH DiscMM SpecialCH
+1       CH            237       1    1.75    1.99   0.00    0.0         0
+2       CH            239       1    1.75    1.99   0.00    0.3         0
+3       CH            245       1    1.86    2.09   0.17    0.0         0
+4       MM            227       1    1.69    1.69   0.00    0.0         0
+5       CH            228       7    1.69    1.69   0.00    0.0         0
+6       CH            230       7    1.69    1.99   0.00    0.0         0
+  SpecialMM  LoyalCH SalePriceMM SalePriceCH PriceDiff Store7 PctDiscMM
+1         0 0.500000        1.99        1.75      0.24     No  0.000000
+2         1 0.600000        1.69        1.75     -0.06     No  0.150754
+3         0 0.680000        2.09        1.69      0.40     No  0.000000
+4         0 0.400000        1.69        1.69      0.00     No  0.000000
+5         0 0.956535        1.69        1.69      0.00    Yes  0.000000
+6         1 0.965228        1.99        1.69      0.30    Yes  0.000000
+  PctDiscCH ListPriceDiff STORE
+1  0.000000          0.24     1
+2  0.000000          0.24     1
+3  0.091398          0.23     1
+4  0.000000          0.00     1
+5  0.000000          0.00     0
+6  0.000000          0.30     0</code></pre>
+</div>
+</div>
+<p>To understand what each variable represent, open the R Console, type the following and hit ENTER:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>?ISLR2<span class="sc">::</span>OJ</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="which-variables-can-help-us-distinguish-the-two-different-brands" class="level3">
+<h3 class="anchored" data-anchor-id="which-variables-can-help-us-distinguish-the-two-different-brands">Which variables can help us distinguish the two different brands?</h3>
+<p>To simplify our plots later on, let’s focus on just two predictors:</p>
+<div class="cell">
 <div class="cell-output-display">
-<p><img src="outliers_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>A frequent question we got in the labs was about the first of these plots, <em>“Residuals vs Fitted”</em>.</p>
-<section id="residual-vs-fitted-plot" class="level2">
-<h2 class="anchored" data-anchor-id="residual-vs-fitted-plot">Residual vs Fitted plot</h2>
-<p>Ideally, the residual plot, also called the null residual plot, should show a random scatter of points centered around 0 and forming an approximately constant width band.</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">base <code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">tidyverse</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add dots</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">predict</span>(lm.fit), <span class="fu">rstudent</span>(lm.fit), </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Fitted values"</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Residuals"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Residuals vs Fitted"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add lines</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">5</span>,<span class="at">col =</span> <span class="st">'red'</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lwd =</span> <span class="dv">5</span>,<span class="at">col =</span> <span class="st">'yellow'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<p><img src="outliers_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fitted_vals=</span><span class="fu">predict</span>(lm.fit),</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">residuals=</span><span class="fu">rstudent</span>(lm.fit))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x=</span>fitted_vals, <span class="at">y=</span>residuals)) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add dots</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>, <span class="at">size=</span><span class="fl">3.5</span>) <span class="sc">+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">"Residuals"</span>) <span class="sc">+</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ggtitle</span>(<span class="st">"Residuals vs Fitted"</span>) <span class="sc">+</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add lines</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">0</span>, <span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">'yellow'</span>) <span class="sc">+</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">3</span>, <span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">'red'</span>) <span class="sc">+</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Customising the plot +</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<p><img src="outliers_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</div>
+<p><img src="lab_advanced_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
-<section id="selecting-outliers" class="level2">
-<h2 class="anchored" data-anchor-id="selecting-outliers">Selecting outliers</h2>
-<p>How do you identify the data points that have a high value of residuals (potential outliers)?</p>
-<p>To produce this plot, we used the function <code>rstudent()</code> to calculate the so-called <a href="https://online.stat.psu.edu/stat462/node/247/">“studentized” residuals</a>. This function returns a vector with the same length as the number of data points:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>studentized_residuals <span class="ot">&lt;-</span> <span class="fu">rstudent</span>(lm.fit)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(studentized_residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 506</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 506</code></pre>
-</div>
-</div>
-<p>We can use this information to filter and select those data points that produced a studentized-residual above 3:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_potential_outliers <span class="ot">&lt;-</span> Boston[studentized_residuals <span class="sc">&gt;</span> <span class="dv">3</span>, ]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_potential_outliers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       crim zn indus chas   nox    rm   age    dis rad tax ptratio lstat medv
-187 0.05602  0  2.46    0 0.488 7.831  53.6 3.1992   3 193    17.8  4.45 50.0
-215 0.28955  0 10.59    0 0.489 5.412   9.8 3.5875   4 277    18.6 29.55 23.7
-226 0.52693  0  6.20    0 0.504 8.725  83.0 2.8944   8 307    17.4  4.63 50.0
-258 0.61154 20  3.97    0 0.647 8.704  86.9 1.8010   5 264    13.0  5.12 50.0
-263 0.52014 20  3.97    0 0.647 8.398  91.5 2.2885   5 264    13.0  5.91 48.8
-268 0.57834 20  3.97    0 0.575 8.297  67.0 2.4216   5 264    13.0  7.44 50.0
-372 9.23230  0 18.10    0 0.631 6.216 100.0 1.1691  24 666    20.2  9.53 50.0
-373 8.26725  0 18.10    1 0.668 5.875  89.6 1.1296  24 666    20.2  8.88 50.0</code></pre>
-</div>
-</div>
-<p>Data frame <code>df_potential_outliers</code> above contain all potential outliers according to this criteria. In a real-life setting, you would check the values of these data points in comparison with the rest of the dataset to understand what makes them different.</p>
 </section>
-<section id="what-to-do-next" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-do-next">What to do next?</h2>
-<p>If the process that generated the dataset is indeed linear, it is possible that these are “true” outliers, rare cases that deviate from the norm. But often, this indicates that a linear model is not able to capture all the nuances present in the data. Maybe the data generating procedure is nonlinear? Or maybe it depends on other features that are not present in your dataset?</p>
-<p>As for your next actions, it all depends on what you plan to do with this model or how much risk you can take by predicting data similar to these edge cases. If you do not want or cannot afford to ignore these errors, you can try to collect more data, fit more complex algorithms, or talk to domain experts to try to understand these cases a bit more.</p>
+<section id="stock-market" class="level2">
+<h2 class="anchored" data-anchor-id="stock-market"><span class="emoji" data-emoji="chart_with_upwards_trend">📈</span> Stock Market</h2>
+<p>We will also use the <code>Smarket</code> dataset from the ISLR2 package. We will perform a <strong>regression</strong> task with the goal to predict the percentage of return of the S&amp;P 500 stock index on any given day, as represented by the <code>Today</code> column.</p>
+<blockquote class="blockquote">
+<p><em>Daily percentage returns for the S&amp;P 500 stock index between 2001 and 2005.</em></p>
+</blockquote>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  Year   Lag1   Lag2   Lag3   Lag4   Lag5 Volume  Today Direction
+1 2001  0.381 -0.192 -2.624 -1.055  5.010 1.1913  0.959        Up
+2 2001  0.959  0.381 -0.192 -2.624 -1.055 1.2965  1.032        Up
+3 2001  1.032  0.959  0.381 -0.192 -2.624 1.4112 -0.623      Down
+4 2001 -0.623  1.032  0.959  0.381 -0.192 1.2760  0.614        Up
+5 2001  0.614 -0.623  1.032  0.959  0.381 1.2057  0.213        Up
+6 2001  0.213  0.614 -0.623  1.032  0.959 1.3491  1.392        Up</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="lab_advanced_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+<p>To understand what each variable represent, open the R Console, type the following and hit ENTER:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?ISLR2<span class="sc">::</span>Smarket</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="step-4-k-fold-cross-validation-with-tidymodels" class="level1">
+<h1>Step 4: k-fold cross validation with <code>tidymodels</code></h1>
+<p>Here we will replicate the cross-validation setup used to generate the structure <a href="../../weeks/week04/lecture.html"><span class="emoji" data-emoji="spiral_calendar">🗓️</span> Week 04 lecture/workshop</a>.</p>
+<p><strong><span class="emoji" data-emoji="previous_track_button">⏮️</span>Recap:</strong></p>
+<ul>
+<li><p>We also explored training vs test splits, albeit in a different way, in <a href="../../weeks/week04/lab.html#step-2.1-separate-some-data-just-for-training">Step 2.1</a> of <a href="../../weeks/week04/lab.html"><span class="emoji" data-emoji="computer">💻</span> Week 04 - Lab</a></p></li>
+<li><p>k-fold cross-validation was also present in <a href="../../weeks/week05/lab.html#step-2-k-fold-cross-validation">Step 2</a> of <a href="../../weeks/week05/lab.html"><span class="emoji" data-emoji="computer">💻</span> Week 05 - Lab</a></p></li>
+<li><p>Cross-validation was also mentioned in the <a href="../../weeks/week05/lecture.html"><span class="emoji" data-emoji="spiral_calendar">🗓️</span> Week 05 lecture</a>, when you were introduced the problem of <strong>overfitting</strong>.</p></li>
+</ul>
+<p><em>But how exactly can cross-validation help overcome overfitting?</em> This is what we will explore in this section of the lab.</p>
+<section id="step-4.1-create-training-test-split" class="level2">
+<h2 class="anchored" data-anchor-id="step-4.1-create-training-test-split">Step 4.1: Create training / test split</h2>
+<p>We start by creating a training / test split using the functions <code>initial_split</code> packages for <span class="emoji" data-emoji="chart_with_upwards_trend">📈</span> <code>SMarket</code> data.</p>
+<div class="cell">
+
+</div>
+<p>How many samples are in the <code>internal validation set</code>?</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 936</code></pre>
+</div>
+</div>
+<p>How many samples were left in the <code>external validation set</code>?</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 314</code></pre>
+</div>
+</div>
+<p>The external validation set will only be used at the end</p>
+</section>
+<section id="step-4.2-create-resampling-folds-for-cross-validation" class="level2">
+<h2 class="anchored" data-anchor-id="step-4.2-create-resampling-folds-for-cross-validation">Step 4.2: Create resampling folds for cross validation</h2>
+<p>Next, let’s create <strong>10-fold</strong> cross-validation data using <code>internal_validation_set</code>. We can achieve this by using the <code>vfold_cv</code> command, specifying <code>v = 10</code>.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>#  10-fold cross-validation 
+# A tibble: 10 × 2
+   splits           id    
+   &lt;list&gt;           &lt;chr&gt; 
+ 1 &lt;split [842/94]&gt; Fold01
+ 2 &lt;split [842/94]&gt; Fold02
+ 3 &lt;split [842/94]&gt; Fold03
+ 4 &lt;split [842/94]&gt; Fold04
+ 5 &lt;split [842/94]&gt; Fold05
+ 6 &lt;split [842/94]&gt; Fold06
+ 7 &lt;split [843/93]&gt; Fold07
+ 8 &lt;split [843/93]&gt; Fold08
+ 9 &lt;split [843/93]&gt; Fold09
+10 &lt;split [843/93]&gt; Fold10</code></pre>
+</div>
+</div>
+<p><em>Notice anything odd? The output is a tibble but the first column <code>splits</code> is a series of lists. This is another thing that makes tibbles different to data frames - you can nest lists within tibbles but not data frames. We will use this more explicitly in the next lab when we build k-means clustering models.</em></p>
+</section>
+<section id="step-4.3-specifying-a-recipe" class="level2">
+<h2 class="anchored" data-anchor-id="step-4.3-specifying-a-recipe">Step 4.3: <strong><span class="emoji" data-emoji="fried_egg">🍳</span></strong>Specifying a recipe</h2>
+<p>The next step is to create a recipe. Luckily, <code>recipe</code> function takes the same values as the <code>lm</code> model! We first create a formula <code>default ~ .</code> and then use <code>data = internal_validation_set</code>. Printing <code>smarket_recipe</code>, we have one outcome and three predictors.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Recipe
+
+Inputs:
+
+      role #variables
+   outcome          1
+ predictor          2</code></pre>
+</div>
+</div>
+</section>
+<section id="step-4.4-specify-a-model" class="level2">
+<h2 class="anchored" data-anchor-id="step-4.4-specify-a-model">Step 4.4: Specify a model</h2>
+<p>Next, we will specify a support vector machine model. Here’s where things get a bit more involved.</p>
+<p>We specify a radial basis function SVM. <code>svm_rbf</code> takes two <strong>hyperparameters</strong>: <code>cost</code> and <code>rbf_sigma</code>. Instead of specifying a single value for each, we will instead set them equal to <code>tune()</code>. This indicates that we want to try a range of different values.</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="step-4.5-create-a-hyperparameter-grid" class="level2">
+<h2 class="anchored" data-anchor-id="step-4.5-create-a-hyperparameter-grid">Step 4.5: Create a hyperparameter grid</h2>
+<p>Which values for <code>cost</code> and <code>rbf_sigma</code> should we choose? It is often hard to tell, so instead we can experiment with different values.</p>
+<p>We can use <code>grid_regular</code> to create a tibble of different hyperparameter combinations. <code>levels = 5</code> indicates that we want to try out five different values for each hyperparameter.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 25 × 2
+        cost    rbf_sigma
+       &lt;dbl&gt;        &lt;dbl&gt;
+ 1  0.000977 0.0000000001
+ 2  0.0131   0.0000000001
+ 3  0.177    0.0000000001
+ 4  2.38     0.0000000001
+ 5 32        0.0000000001
+ 6  0.000977 0.0000000316
+ 7  0.0131   0.0000000316
+ 8  0.177    0.0000000316
+ 9  2.38     0.0000000316
+10 32        0.0000000316
+# … with 15 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="step-4.6-perform-cross-validation" class="level2">
+<h2 class="anchored" data-anchor-id="step-4.6-perform-cross-validation">Step 4.6: Perform cross-validation</h2>
+<p>We now have all we need to run cross-validation, and the function <code>tune_grid</code> puts everything together. Let’s think intuitively what this command is doing.</p>
+<ul>
+<li><p>We are telling <code>tune_grid</code> that we want to run a classification model on a recipe using different <strong>resampling</strong> folds.</p></li>
+<li><p>Instead of specifying <strong>hyperparameter</strong> values we want to run a combination of different values.</p></li>
+<li><p>After this, we want to choose a metric to evaluate different combinations.</p></li>
+<li><p>We opt for <code>rmse</code> but we can specify several metrics however using the <code>metric_set</code> command.</p></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>smarket_tuned <span class="ot">&lt;-</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">object =</span> svm_regressor,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">preprocessor =</span> smarket_recipe,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">resamples =</span> k_folds,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">grid =</span> svm_grid,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">control =</span> <span class="fu">control_grid</span>(<span class="at">save_pred=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-4.7-which-combination-of-hyperparameters-works-best" class="level2">
+<h2 class="anchored" data-anchor-id="step-4.7-which-combination-of-hyperparameters-works-best">Step 4.7: Which combination of hyperparameters works best?</h2>
+<p>Now we have tuned our models, let’s find out which combination of <strong>hyperparameters</strong> work best. We can create a ggplot easily using the <code>autoplot</code> command.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>smarket_tuned <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  ggsci<span class="sc">::</span><span class="fu">scale_color_jco</span>() <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">'RMSE'</span>, <span class="at">colour =</span> <span class="st">'Sigma'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="emoji" data-emoji="dart">🎯</span> <strong>ACTION POINT</strong>: Can you explain what we see in the plot above?</p>
+<blockquote class="blockquote">
+<p>your text go here</p>
+</blockquote>
+<p>We can use the function <code>select_best</code> to identify the hyperparameter combination that leads to the highest precision.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select_best</span>(smarket_tuned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="take-home-exercises-advanced" class="level1">
+<h1><span class="emoji" data-emoji="house">🏠</span> <strong>Take-home exercises</strong> (Advanced)</h1>
+<p><em>Don’t worry, the next summative problem set will not require you to write code like asked in here.</em></p>
+<section id="q5-re-run-step3-regression" class="level2">
+<h2 class="anchored" data-anchor-id="q5-re-run-step3-regression">Q5: Re-run Step3 (Regression)</h2>
+<p>Build a standalone SVM model (<code>tidymodels</code> version) on the same data we used in Step 3 of W08 lab, only this time set the parameters of the SVM to the optimal parameters identified in Step 4.</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="q6-predict-the-external-validation-set" class="level2">
+<h2 class="anchored" data-anchor-id="q6-predict-the-external-validation-set">Q6: Predict the external validation set</h2>
+<p>Use the model you built in Q5 and make predictions on the external validation set. How does the RMSE of these predictions compare to the RMSE of the internal validation set?</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="q7-svm-decision-space-regression" class="level2">
+<h2 class="anchored" data-anchor-id="q7-svm-decision-space-regression">Q7: SVM Decision Space (Regression)</h2>
+<p>Replicate the plot from Step 3.3 of W08 lab roadmap, only this time using the model from Q5.</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="q8-compare-svm-decision-space-plots" class="level2">
+<h2 class="anchored" data-anchor-id="q8-compare-svm-decision-space-plots">Q8: Compare SVM Decision Space plots</h2>
+<p>Explain if and how the decision space you obtained in Q8 differs from the one in Step 3.3.</p>
+<blockquote class="blockquote">
+<p>your text goes here</p>
+</blockquote>
+</section>
+<section id="q9-grid-search-for-orange-juice-classification" class="level2">
+<h2 class="anchored" data-anchor-id="q9-grid-search-for-orange-juice-classification">Q9: Grid search for Orange Juice (Classification)</h2>
+<ul>
+<li><p>For this task, you will use the Orange Juice data set (<code>ISLR2::OJ</code>) with ALL the predictors included</p></li>
+<li><p>Replicate the entire procedure of Step 4, making the necessary adjustments to predict <code>Purchase</code></p></li>
+<li><p>Use F1 score as the optimisation metric.</p></li>
+</ul>
+<p><span class="emoji" data-emoji="bulb">💡</span>You will have two tweak at least two main things: <code>metric_set</code> and <code>set_mode</code></p>
+<div class="cell">
+
+</div>
+</section>
+<section id="q10-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="q10-challenge">Q10: Challenge</h2>
+<p>Replicate the same steps as in Q9 for different SVM kernels (linear, polynomial, etc.). Is it possible to fit a model that is better than the radial kernel,in terms of F1-score?</p>
+<div class="cell">
+
+</div>
+<p>
+<script type="application/shiny-prerendered" data-context="server-extras">
+ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
+  quos <- rlang::enquos(...)
+  vars <- rlang::list2(...)
+  nm <- names(vars)
+  if (is.null(nm)) {
+    nm <- rep_len("", length(vars))
+  }
+  mapply(function(q, nm, val) {
+    # Infer name, if possible
+    if (nm == "") {
+      tryCatch({
+        nm <- rlang::as_name(q)
+      }, error = function(e) {
+        code <- paste(collapse = "\n", deparse(rlang::f_rhs(q)))
+        stop("ojs_define() could not create a name for the argument: ", code)
+      })
+    }
+    .session$output[[nm]] <- val
+    outputOptions(.session$output, nm, suspendWhenHidden = FALSE)
+    .session$sendCustomMessage("ojs-export", list(name = nm))
+    NULL
+  }, quos, nm, vars, SIMPLIFY = FALSE, USE.NAMES = FALSE)
+  invisible()
+}
+</script>
+</p>
+<!--html_preserve-->
+<script type="application/shiny-prerendered" data-context="dependencies">
+{"type":"list","attributes":{},"value":[]}
+</script>
+<!--/html_preserve-->
+<!--html_preserve-->
+
+<script type="application/shiny-prerendered" data-context="execution_dependencies">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","cellranger","class","cli","codetools","colorspace","compiler","crayon","cvms","data.table","datasets","DBI","dbplyr","dials","DiceDesign","digest","dplyr","e1071","ellipsis","evaluate","fansi","farver","fastmap","forcats","foreach","fs","furrr","future","future.apply","gargle","generics","GGally","ggplot2","ggsci","globals","glue","googledrive","googlesheets4","gower","GPfit","graphics","grDevices","grid","gtable","hardhat","haven","hms","htmltools","htmlwidgets","httpuv","httr","infer","ipred","ISLR2","iterators","jsonlite","knitr","labeling","later","lattice","lava","lhs","lifecycle","listenv","lubridate","magrittr","MASS","Matrix","methods","mime","modeldata","modelr","munsell","nnet","parallel","parallelly","parsnip","pillar","pkgconfig","plyr","prodlim","promises","proxy","purrr","R6","RColorBrewer","Rcpp","readr","readxl","recipes","renv","reprex","reshape","rlang","rmarkdown","rpart","rsample","rstudioapi","rvest","scales","shiny","splines","stats","stringi","stringr","survival","tibble","tidymodels","tidyr","tidyselect","tidyverse","timechange","timeDate","tools","tune","tzdb","utf8","utils","vctrs","withr","workflows","workflowsets","xfun","xml2","xtable","yaml","yardstick"]},{"type":"character","attributes":{},"value":["0.2.1","1.4.1","4.2.2","1.0.1","1.1.0","7.3-20","3.4.1","0.2-18","2.0-3","4.2.2","1.5.2","1.3.6","1.14.4","4.2.2","1.1.3","2.2.1","1.1.0","1.9","0.6.30","1.0.10","1.7-12","0.3.2","0.18","1.0.3","2.1.1","1.1.0","0.5.2","1.5.2","1.5.2","0.3.1","1.29.0","1.10.0","1.2.1","0.1.3","2.1.2","3.4.0","2.9","0.16.1","1.6.2","2.0.0","1.0.1","1.0.0","1.0-8","4.2.2","4.2.2","4.2.2","0.3.1","1.2.0","2.5.1","1.1.2","0.5.3","1.5.4","1.6.6","1.4.4","1.0.3","0.9-13","1.3-1","1.0.14","1.8.3","1.40","0.4.2","1.3.0","0.20-45","1.7.0","1.1.5","1.0.3","0.8.0","1.9.0","2.0.3","7.3-58.1","1.5-1","4.2.2","0.12","1.0.1","0.1.9","0.5.0","7.3-18","4.2.2","1.32.1","1.0.2","1.8.1","2.0.3","1.8.7","2019.11.13","1.2.0.1","0.4-27","0.3.5","2.5.1","1.1-3","1.0.9","2.1.3","1.4.1","1.0.3","0.16.0","2.0.2","0.8.9","1.0.6","2.18","4.1.16","1.1.0","0.14","1.0.3","1.2.1","1.7.3","4.2.2","4.2.2","1.7.8","1.4.1","3.4-0","3.1.8","1.0.0","1.2.1","1.2.0","1.3.2","0.1.1","4021.106","4.2.2","1.0.1","0.3.0","1.2.2","4.2.2","0.5.0","2.5.0","1.1.0","1.0.0","0.34","1.3.3","1.8-4","2.3.6","1.1.0"]}]}]}
+</script>
+<!--/html_preserve-->
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -861,6 +1071,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../weeks/week08/lab.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">💻 Lab roadmap</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
