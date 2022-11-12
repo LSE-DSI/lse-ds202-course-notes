@@ -482,7 +482,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#step-3.3-understand-the-parameters-of-svm_rbf" id="toc-step-3.3-understand-the-parameters-of-svm_rbf" class="nav-link" data-scroll-target="#step-3.3-understand-the-parameters-of-svm_rbf">Step 3.3: Understand the parameters of <code>svm_rbf</code></a></li>
   <li><a href="#step-3.4-tweak-the-parameters" id="toc-step-3.4-tweak-the-parameters" class="nav-link" data-scroll-target="#step-3.4-tweak-the-parameters">Step 3.4: Tweak the parameters</a></li>
   </ul></li>
-  <li><a href="#want-to-take-it-to-next-level-optional" id="toc-want-to-take-it-to-next-level-optional" class="nav-link" data-scroll-target="#want-to-take-it-to-next-level-optional">Want to take it to next level? (Optional)</a></li>
+  <li><a href="#want-to-take-it-to-the-next-level-optional" id="toc-want-to-take-it-to-the-next-level-optional" class="nav-link" data-scroll-target="#want-to-take-it-to-the-next-level-optional">Want to take it to the next level? (Optional)</a></li>
   </ul>
 </nav>
     </div>
@@ -935,12 +935,12 @@ SV type: C-svc  (classification)
  parameter : cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.69158164951656 
+ Hyperparameter : sigma =  1.54329144733426 
 
-Number of Support Vectors : 434 
+Number of Support Vectors : 430 
 
-Objective Function Value : -386.6126 
-Training error : 0.170093 
+Objective Function Value : -387.5754 
+Training error : 0.169159 
 Probability model included. </code></pre>
 </div>
 </div>
@@ -970,10 +970,10 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 6 × 7
   Purchase LoyalCH PriceDiff .pred_class .pred_CH .pred_MM is_correct
   &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt;    &lt;dbl&gt; &lt;lgl&gt;     
-1 CH         0.5        0.24 CH             0.859    0.141 TRUE      
-2 CH         0.6       -0.06 CH             0.715    0.285 TRUE      
-3 CH         0.68       0.4  CH             0.872    0.128 TRUE      
-4 MM         0.4        0    MM             0.175    0.825 TRUE      
+1 CH         0.5        0.24 CH             0.852    0.148 TRUE      
+2 CH         0.6       -0.06 CH             0.710    0.290 TRUE      
+3 CH         0.68       0.4  CH             0.874    0.126 TRUE      
+4 MM         0.4        0    MM             0.171    0.829 TRUE      
 5 CH         0.957      0    CH             0.875    0.125 TRUE      
 6 CH         0.965      0.3  CH             0.872    0.128 TRUE      </code></pre>
 </div>
@@ -987,7 +987,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric   .estimator .estimate
   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-1 precision binary         0.856</code></pre>
+1 precision binary         0.858</code></pre>
 </div>
 </div>
 </section>
@@ -1013,7 +1013,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 f_meas  binary         0.861</code></pre>
+1 f_meas  binary         0.862</code></pre>
 </div>
 </div>
 </section>
@@ -1087,12 +1087,12 @@ SV type: eps-svr  (regression)
  parameter : epsilon = 0.1  cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.60989422870261 
+ Hyperparameter : sigma =  1.72671170391469 
 
-Number of Support Vectors : 1119 
+Number of Support Vectors : 1118 
 
-Objective Function Value : -762.849 
-Training error : 0.931991 </code></pre>
+Objective Function Value : -761.6132 
+Training error : 0.928994 </code></pre>
 </div>
 </div>
 </section>
@@ -1108,12 +1108,12 @@ Training error : 0.931991 </code></pre>
 <pre><code># A tibble: 6 × 6
    Today Volume   Lag1   .pred .resid row_number
    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;int&gt;
-1  0.959   1.19  0.381 -0.0467  1.01           1
-2  1.03    1.30  0.959 -0.239   1.27           2
-3 -0.623   1.41  1.03  -0.251  -0.372          3
-4  0.614   1.28 -0.623  0.238   0.376          4
-5  0.213   1.21  0.614 -0.146   0.359          5
-6  1.39    1.35  0.213 -0.155   1.55           6</code></pre>
+1  0.959   1.19  0.381 -0.0536  1.01           1
+2  1.03    1.30  0.959 -0.243   1.28           2
+3 -0.623   1.41  1.03  -0.255  -0.368          3
+4  0.614   1.28 -0.623  0.259   0.355          4
+5  0.213   1.21  0.614 -0.150   0.363          5
+6  1.39    1.35  0.213 -0.150   1.54           6</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="dart">🎯</span> <strong>ACTION POINT</strong>: What do the different columns mean?</p>
@@ -1147,7 +1147,7 @@ MAE = \frac{\sum_{i=1}^{n}{|y_i - \hat{y}_i|}}{n}
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 mae     standard       0.791</code></pre>
+1 mae     standard       0.790</code></pre>
 </div>
 </div>
 </section>
@@ -1200,12 +1200,12 @@ RMSE = \frac{\sum_{i=1}^{n}{(y_i - \hat{y}_i)^2}}{n}
 <pre><code># A tibble: 6 × 3
   Volume  Lag1   .pred
    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1      0  -5   -0.0135
-2      0  -4.8 -0.0135
-3      0  -4.6 -0.0135
-4      0  -4.4 -0.0135
-5      0  -4.2 -0.0135
-6      0  -4   -0.0135</code></pre>
+1      0  -5   -0.0116
+2      0  -4.8 -0.0116
+3      0  -4.6 -0.0116
+4      0  -4.4 -0.0116
+5      0  -4.2 -0.0116
+6      0  -4   -0.0116</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="bulb">💡</span> Look at the entire dataset with <code>View(sim.data)</code></p>
@@ -1245,7 +1245,12 @@ RMSE = \frac{\sum_{i=1}^{n}{(y_i - \hat{y}_i)^2}}{n}
 </section>
 <section id="step-3.3-understand-the-parameters-of-svm_rbf" class="level3">
 <h3 class="anchored" data-anchor-id="step-3.3-understand-the-parameters-of-svm_rbf">Step 3.3: Understand the parameters of <code>svm_rbf</code></h3>
-<p>The <code>svm_rbf</code> function has three parameters you can tune: - <code>cost</code> - <code>rbf_sigma</code> - <code>margin</code></p>
+<p>The <code>svm_rbf</code> function has three parameters you can tune:</p>
+<ul>
+<li><code>cost</code></li>
+<li><code>rbf_sigma</code></li>
+<li><code>margin</code></li>
+</ul>
 <p><span class="emoji" data-emoji="dart">🎯</span> <strong>ACTION POINT</strong>: Train your abilities to interact with code documentation. Type <code>?svm_rbf</code> and hit ENTER. What do these parameters represent?</p>
 <p><span class="emoji" data-emoji="bulb">💡</span> Tip: At the bottom of the help page, you will find a link to <code>kernlab engine details</code> that has more useful info about SVM RBF.</p>
 <blockquote class="blockquote">
@@ -1327,13 +1332,13 @@ Training error : 0.832623 </code></pre>
 </section></section></section></details>
 <details>
 <summary>
-<strong>Want to take it to next level? (Optional)</strong>
+<strong>Want to take it to the next level? (Optional)</strong>
 </summary>
 
 
 
-<section id="want-to-take-it-to-next-level-optional" class="level2">
-<h2 class="anchored" data-anchor-id="want-to-take-it-to-next-level-optional">Want to take it to next level? (Optional)</h2>
+<section id="want-to-take-it-to-the-next-level-optional" class="level2">
+<h2 class="anchored" data-anchor-id="want-to-take-it-to-the-next-level-optional">Want to take it to the next level? (Optional)</h2>
 <p>In a separate, more advanced, <a href="../../weeks/week08/lab_advanced.html">bonus lab roadmap</a> we show how to perform <a href="../../weeks/week04/lecture.html#the-cross-validation-setup">k-fold cross-validation</a> using <code>tidymodels</code> to tune the parameters of SVM automatically.</p>
 <p>It is optional, you don’t need to read it, but it might be the best way to solidify your knowledge of SVM and its parameters.</p>
 </section></details>
