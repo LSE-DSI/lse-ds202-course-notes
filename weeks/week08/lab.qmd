@@ -574,6 +574,7 @@ g
 ### Step 3.3: Understand the parameters of `svm_rbf`
 
 The `svm_rbf` function has three parameters you can tune: 
+
 - `cost`
 - `rbf_sigma`
 - `margin`
@@ -640,9 +641,9 @@ plot_df %>% summarise(mae=mae_vec(Today, .pred),
 
 
 </details>
-<details><summary>**Want to take it to next level? (Optional)**</summary>
+<details><summary>**Want to take it to the next level? (Optional)**</summary>
 
-## Want to take it to next level? (Optional)
+## Want to take it to the next level? (Optional)
 
 In a separate, more advanced, [bonus lab roadmap](/weeks/week08/lab_advanced.qmd) we show how to perform [k-fold cross-validation](/weeks/week04/lecture.html#the-cross-validation-setup) using `tidymodels` to tune the parameters of SVM automatically.
 
