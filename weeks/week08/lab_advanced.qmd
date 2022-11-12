@@ -3,7 +3,6 @@ title: "✨ Bonus Lab (Optional) - Cross-validation"
 author: "Jon Cardoso-Silva"
 date: "2022-11-14"
 from: markdown+emoji
-server: shiny
 output: html_document
 ---
 

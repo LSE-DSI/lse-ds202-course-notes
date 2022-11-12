@@ -3,7 +3,6 @@ title: "💻 Week 08 - Lab Roadmap (90 min)"
 date: 14 November 2022
 date-meta: 14 November 2022
 from: markdown+emoji
-server: shiny
 author: Dr. Stuart Bramwell/Dr. Jon Cardoso-Silva
 ---
 
