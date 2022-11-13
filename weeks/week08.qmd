@@ -8,12 +8,12 @@ Welcome to Week 08 of DS202!
 
 ## Links
 
+- ✅ [Take a look at this week's checklist](/weeks/week08/checklist.qmd)
+
 - 💻 [This week's lab](/weeks/week08/lab.qmd)
 
 - ✨ [This week's bonus lab (advanced)](/weeks/week08/lab_advanced.qmd)
 
-- 👨‍🏫 [Lecture]() 🔜 
-
-- ✅ [Take a look at this week's checklist]() 🔜
+- 👨‍🏫 [Lecture]() 🔜  
 
 - ✔️ [Lab Solutions]() 🔜

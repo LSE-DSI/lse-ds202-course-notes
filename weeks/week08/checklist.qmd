@@ -1,6 +1,96 @@
 ---
 title: "✅ Week 08 - Checklist"
+date: 14 November 2022
+date-meta: 14 November 2022
 from: markdown+emoji
 ---
 
-<mark class="todo"></mark>
+::: {.callout-important collapse="false"}
+Keep in mind that after the lecture at the end of this week, on Friday 18 November 2022, we will release the **Summative Problem Set 02**. This is the second summative assessment of this course and it is worth **20% of your final grade**. You will have until **29 November 2022** (11 days) to submit your solutions via Moodle.
+
+In line with [your feedback](https://forms.office.com/r/6CwLfsF5CV) and the adjustments announced last week [in the lecture](/weeks/week07/lecture.qmd), this problem set will require less writing and more reading of R code.
+:::
+
+**Comprehension Check**
+
+Get ready for the Summative Problem Set 02. By the end of the week, you should be able to:
+
+- [ ] Run a Decision Tree algorithm to predict a target variable (regression or classification) 
+- [ ] Explain all the visual elements present in the diagram of a Decision Tree (regression or classification) 
+- [ ] Run a SVM algorithm to predict a target variable (regression or classification)
+- [ ] Explain what is a "support vector" in the SVM algorithm
+- [ ] Consult the documentation of the packages in R in case you need to understand or tweak the different parameters of the Decision Tree or SVM.
+- [ ] Identify the signs of overfitting in Decision Tree diagrams and 2D SVM models. 
+- [ ] Explain training and test splits, as well as understand the importance of k-fold cross-validation and bootstrap.
+
+**Time Management Tips**
+
+Here is a suggestion of how to program your week in relation to this course:
+
+<details><summary>If your lab is on Monday
+</summary>
+
+## If your lab is on Monday:
+
+**On Monday**:
+
+- 📥 **Download**: Before or once you arrive at the classroom, download the [DS202_2022MT_w08_lab_rmark.Rmd](https://moodle.lse.ac.uk/mod/folder/view.php?id=1136800) file that contains the lab roadmap (under 🗓️ Week 08 section on Moodle). Or browse the webpage version [here](/weeks/week08/lab.html).
+
+- 💻 **Participate**: Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Work with others whenever possible and take notes of theoretical concepts or practical coding skill you might want to revisit later in the week.
+
+**Tuesday to Thursday**
+
+- 🏠 **Solve the take-home exercises**: There are four take-home exercises in the W08 lab. Try to solve them before the lecture.
+
+- 📙 **Read**: Find some time to read [@james_introduction_2021, chapter 9] and reinforce your theoretical understanding of _Support Vector Machines_; the textbook is available online for free.
+    - As you go through the text, try to connect what you read to the things you heard about in the W05 lecture or the examples you explored in the lab. 
+
+- 🏅 **Can you solve the exercises in the [Bonus lab roadmap](/weeks/week08/lab_advanced.qmd)?** (Optional)
+
+**Friday**
+
+- 🏫 **Attend the lecture**: This week, you will learn about Dimensionality Reduction, another Unsupervised Learning technique. This will be useful for Summative Problem Set 03 in a few weeks. 
+
+**Any time**
+
+- 📟 You know the drill. Share your questions on the `#week08` channel in our Slack group.
+
+- 👂Want to talk to someone else about this course? Try reaching out to your course representatives, `@Zhang Ruishan (Yoyo)` or `@Rachitha Raghuram`.
+
+</details>
+
+<details>
+
+<summary>If your lab is on Friday
+</summary>
+
+## If your lab is on Friday:
+
+**Monday - Wednesday**:
+
+- 📙 **Read**: Find some time to read [@james_introduction_2021, chapter 9] and reinforce your theoretical understanding of _Support Vector Machines_; the textbook is available online for free.
+    - As you go through the text, try to connect what you read to the things you heard about in the W05 lecture. 
+
+**Thursday**
+
+- 📥 **Download**: Have a look at the [DS202_2022MT_w08_lab_rmark.Rmd](https://moodle.lse.ac.uk/mod/folder/view.php?id=1136800) file that contains the lab roadmap (under 🗓️ Week 08 section on Moodle). Or browse the webpage version [here](/weeks/week08/lab.html).
+
+**Friday**
+
+- 🏫 **Attend the lecture**: This week, you will learn about Dimensionality Reduction, another Unsupervised Learning technique. This will be useful for Summative Problem Set 03 in a few weeks. 
+
+- 💻 **Participate**: Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Work with others whenever possible and take notes of theoretical concepts or practical coding skill you might want to revisit later in the week.
+
+**Early next week**
+
+- 🏠 **Solve the take-home exercises**: There are four take-home exercises in the W08 lab. They make help you solve you the summative problem set 02.
+
+- 🏅 **Can you solve the exercises in the [Bonus lab roadmap](/weeks/week08/lab_advanced.qmd)?** (Optional)
+
+**Any time**
+
+- 📟 You know the drill. Share your questions on the `#week08` channel in our Slack group.
+
+- 👂Want to talk to someone else about this course? Try reaching out to your course representatives, `@Zhang Ruishan (Yoyo)` or `@Rachitha Raghuram`.
+
+</details>

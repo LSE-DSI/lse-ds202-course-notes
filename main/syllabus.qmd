@@ -1,21 +1,13 @@
 ---
 title: "LSE DS202"
 subtitle: "Data Science for Social Scientists"
-date: 05 September 2022
-date-meta: 05 September 2022
+date: 13 November 2022
+date-meta: 13 November 2022
 ---
 
 # 📓 Syllabus
 
 A list of what happens every week.
-
-::: {.callout-important collapse="false"}
-
-Updates (20 October 2022) :
-
-- Added deadlines of assessments
-- Added relevant chapters of textbook for lectures and labs
-:::
 
 Click on each Week's link for more information (slides, lab instructions, recommended resources, etc.).
 
@@ -32,7 +24,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <tbody>
         <tr class="even">
             <td rowspan=2></td>
-            <td rowspan=2>🗓️ <a href="/weeks/week01.qmd">Week 01</a></td>
+            <td rowspan=2>🗓️ <a href="/weeks/week01.qmd">W01</a></td>
             <td style="font-weight:bold;">Lecture</td>
             <td>Introduction, Context & Key Concepts <br/> [@james_introduction_2021, chapter 2]</td>
         </tr>
@@ -50,7 +42,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <tbody>
         <tr class="even">
            <td rowspan=2></td>
-           <td rowspan=2>🗓️ <a href="/weeks/week02.qmd">Week 02</a></td>
+           <td rowspan=2>🗓️ <a href="/weeks/week02.qmd">W02</a></td>
            <td style="font-weight:bold;">Lecture</td>
            <td>Simple and Multiple Linear Regression <br/> [@james_introduction_2021, chapter 3]</td>
        </tr>
@@ -64,7 +56,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <tbody>
     <tr class="even">
         <td rowspan=3></td>
-        <td rowspan=3>🗓️ <a href="/weeks/week03.qmd">Week 03</a></td>
+        <td rowspan=3>🗓️ <a href="/weeks/week03.qmd">W03</a></td>
         <td style="font-weight:bold;">Lecture</td>
         <td>Classifiers (Logistic Regression & Naive Bayes) <br/> [@james_introduction_2021, chapter 4]</td>
     </tr>
@@ -89,7 +81,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <tbody>
         <tr class="even">
             <td rowspan=2></td>
-            <td rowspan=2>🗓️ <a href="/weeks/week04.qmd">Week 04</a></td>
+            <td rowspan=2>🗓️ <a href="/weeks/week04.qmd">W04</a></td>
             <td style="font-weight:bold;">Lecture</td>
             <td>Resampling methods <br/> [@james_introduction_2021, chapter 5]</td>
         </tr>
@@ -103,7 +95,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <tbody>
         <tr class="even">
             <td rowspan=3></td>
-            <td rowspan=3>🗓️ <a href="">Week 05</a></td>
+            <td rowspan=3>🗓️ <a href="/weeks/week05.qmd">W05</a></td>
             <td style="font-weight:bold;">Lecture</td>
             <td>Non-linear algorithms (SVM & tree-based models) <br/> [@james_introduction_2021, chapter 8-9]</td>
         </tr>
@@ -132,7 +124,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <tbody>
         <tr class="even">
             <td rowspan=2></td>
-            <td rowspan=2>🗓️ <a href="">Week 07</a></td>
+            <td rowspan=2>🗓️ <a href="/weeks/week07.qmd">W07</a></td>
             <td style="font-weight:bold;">Lecture</td>
             <td>Unsupervised Learning: Clustering <br/> [@james_introduction_2021, chapter 12]</td>
         </tr>
@@ -146,7 +138,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <tbody>
         <tr class="even">
             <td rowspan=3></td>
-            <td rowspan=3>🗓️ <a href="">Week 08</a></td>
+            <td rowspan=3>🗓️ <a href="/weeks/week08.qmd">W08</a></td>
             <td style="font-weight:bold;">Lecture</td>
             <td>Unsupervised Learning: Dimensionality Reduction <br/> [@james_introduction_2021, chapter 12]</td>
         </tr>
@@ -175,7 +167,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <tbody>
         <tr class="even">
             <td rowspan=2></td>
-            <td rowspan=2>🗓️ <a href="">Week 09</a></td>
+            <td rowspan=2>🗓️ <a href="">W09</a></td>
             <td style="font-weight:bold;">Lecture</td>
             <td>Applications: Predictive Modelling on Tabular Data</td>
         </tr>
@@ -189,7 +181,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <tbody>
         <tr class="even">
             <td rowspan=3></td>
-            <td rowspan=3>🗓️ <a href="">Week 10</a></td>
+            <td rowspan=3>🗓️ <a href="">W10</a></td>
             <td style="font-weight:bold;">Lecture</td>
             <td>Applications: Text as Data & Topic Modelling (with guest speakers)</td>
         </tr>
@@ -214,7 +206,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <tbody>
         <tr class="even">
             <td rowspan=2></td>
-            <td rowspan=2>🗓️ <a href="">Week 11</a></td>
+            <td rowspan=2>🗓️ <a href="">W11</a></td>
             <td style="font-weight:bold;">Lecture</td>
             <td>Applications: Social Media Data (with guest speakers)</td>
         </tr>
@@ -227,7 +219,7 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <tbody>
         <tr class="even">
             <td rowspan=2></td>
-            <td rowspan=2></td>
+            <td rowspan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td style="font-weight:bold;"></td>
             <td></td>
         </tr>
@@ -240,13 +232,15 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <tbody>
         <tr class="even">
             <td rowspan=2></td>
-            <td rowspan=2>🗓️ <a href="">January</a></td>
+            <td rowspan=2>🗓️ <a href="">Jan/23</a></td>
             <td style="font-weight:bold;">Exam</td>
             <td>
                 <ul>
                     <li>Worth: 40% of final marks</li>
                     <li>Problem set about supervised + unsupervised learning + applications</li>
-                    <li>**Date:** To be confirmed by LSE</li>
+                    <li>3 hours + 1 hour for submission</li>
+                    <li>Online exam via Moodle</li>
+                    <li>**Date:** Sometime during the [Exam Period](https://info.lse.ac.uk/current-students/services/assessment-and-results/exams/exam-timetable). Exact timeslot has not yet been confirmed by LSE Exams team.</li>
                 </ul>
             </td>
         </tr>
