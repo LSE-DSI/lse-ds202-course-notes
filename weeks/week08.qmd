@@ -14,6 +14,6 @@ Welcome to Week 08 of DS202!
 
 - ✨ [This week's bonus lab (advanced)](/weeks/week08/lab_advanced.qmd)
 
-- 👨‍🏫 [Lecture](/weeks/week08/lecture.qmd) 
+- 👨‍🏫 [Lecture](/weeks/week08/lecture.qmd)
 
 - ✔️ [Lab Solutions]() 🔜

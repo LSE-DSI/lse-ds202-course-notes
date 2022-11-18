@@ -1,17 +1,14 @@
 ---
 title: "LSE DS202 (2022/2023)"
 subtitle: "Data Science for Social Scientists"
-date: 23 October 2022
-date-meta: 23 October 2022
 ---
 
-::: callout-tip
+::: callout-important
 
 **Pages recently updated:**
 
-- [✅ Week 08 - Checklist](/weeks/week08/checklist.qmd)
-- [💻 Week 08 - Lab Roadmap](/weeks/week08/lab.qmd)
-- [✨ Bonus Lab (Optional)](/weeks/week08/lab_advanced.qmd)
+(18/11/2022)
+- [✍️ Summmative Problem Set (02) | W08-W10](/assessments/summative2.qmd)
 
 
 :::

@@ -43,9 +43,6 @@ website:
         text: "📟 Communication"
       - href: main/assessments.qmd
         text: "✍️ Assessments"
-        contents:
-          - href: assessments/formative1_solutions.qmd
-            text: ✔️ Formative 01
       - href: main/courserep.qmd
         text: "🗳️ Course Rep"
       - href: blog/main.qmd

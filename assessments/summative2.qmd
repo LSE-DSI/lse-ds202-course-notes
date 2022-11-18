@@ -1,0 +1,181 @@
+---
+title: "Summative Problem Set 02 | W08-W10"
+author: "Dr. Jon Cardoso-Silva"
+date: "18 November 2022"
+output: html_document
+---
+
+
+Welcome to the second Summative Problem Set of DS202 (2022/23)!
+
+**Things to know before you start:**
+
+1.  **Deadline**: you have until **29 November 2022, 23:59 UK time** (Week 10) to complete your solutions and submit via the [DS202 Moodle](https://moodle.lse.ac.uk/course/view.php?id=7737) (under **✍️ Assessment** section).
+2.  You will be granted a maximum of 100 points for the whole assignment. You will see how much each task is right next to the tasks' names.
+3.  This assessment is worth **20%** of your final grade.
+4.  Read the instructions carefully and make sure you follow them.
+
+# 📒 Instructions
+
+**Read carefully**
+
+**1.** Follow the link available on Moodle to open the spreadsheet named `DS202_2022MT_Summative02_candidate_allocation`. This spreadsheet contains information about your **unique assignment details**.
+
+**2.** This webpage only contains the instructions. You still have to download the `.Rmd` that contains the exercise and open that `.Rmd` file using RStudio. [^1]
+
+[^1]: You can read more about RMarkdown files on <https://rmarkdown.rstudio.com/>
+
+**3.** Work on your solutions and fill the allocated spaces with your answers. Each question has one or more empty spaces for you to fill out.
+
+Text answers are identified as:
+
+> Your text goes here
+
+R code answers are identified as:
+
+```{r}
+# Replace this by your code
+
+# REMEMBER TO REMOVE ALL HASH SIGNS OR YOUR CODE WILL NOT RUN!!!
+# YOU WILL MARKED AS 0 IN A QUESTION IF YOUR CODE DOES NOT PRODUCE 
+# ANY OUTPUT WHEN IT WOULD HAVE BEEN EXPECTED.
+```
+
+Equation answers are identified as:
+
+$$Your~equation~goes~here$$
+
+You can add more code R code, plots, text or equations to complement your responses if you want to. For extra tips on formatting equations see [^2]
+
+[^2]: <https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference>
+
+**4.** After you answer all the questions, you should press the Knit button, and knit the file to HTML. If you cannot find this button in RStudio, check out [this tutorial](https://www.youtube.com/watch?v=8eBBPVMwTLo).
+
+**5.** After knitting, an HTML file will appear in your files. This is what you must submit to Moodle.
+
+**6.** Open [DS202 Moodle](https://moodle.lse.ac.uk/course/view.php?id=7737), open the **✍️ Assessment** section, click on the **✍️ Summative Problem Set (02) \| W08-W10** to submit your HTML file.
+
+**7.** You are encouraged to work together with your colleagues. We randomized the questions so you could collaborate more freely without fear of being flagged for plagiarism. Still, there are a few things you are not allowed to do: share your R markdown with others, copy-paste solutions from others verbatim or ask others to do your work for you.
+
+::: {style="display:inline-block;border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin:1%;padding:1.5%;background-color:#fafafa"}
+⚠️ **IMPORTANT**:
+
+-   *If your code has any errors, you might not be able to knit the document. You must fix those errors first.*
+-   *If you do not know how to answer a solution, leave it empty. Do not add incomplete R scripts as it will lead to knitting errors.*
+-   *Some questions might not have a **single** objective response. When this is the case, you are expected to justify your choices of algorithms, parameters and validation metrics from your experiences in the lectures, labs and your readings of the textbook.*
+:::
+
+------------------------------------------------------------------------
+
+# The DATA
+
+## 🚴 Cycling in London: How dangerous is it?
+
+In this problem set, we will explore a real-world dataset recording the Greater London's cycling-involved incidents from 2017 to 2020. We obtained data from two different sources:
+
+-   Road Safety Data from the Department for Transport, UK [^3]
+-   Indices of Multiple Deprivation (IMD) 2019, published by the Ministry of Housing, Communities and Local Government, UK [^4]
+
+[^3]: Road Safety Data: <https://www.data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data>
+
+[^4]: <https://www.arcgis.com/home/item.html?id=4ad3e5a10872455eaa67ce4e663d0d01>
+
+Trivia: According to the Evening Standard, during the pandemic the risk of being killed or seriously injured (KSI) fell from 1.2 to 0.9 incidents per million kilometres cycled [^5]. Note that our data only contains data cycling-related accidents, we do not have data about all the cycle routes people take that do not lead to accidents.
+
+[^5]: <https://www.standard.co.uk/news/london/london-cyclist-deaths-increase-during-covid-pandemic-b942378.html>
+
+*(Click on the links in the footnotes if you want to read more about the data)*
+
+## Your Unique Assignment
+
+Your goal is to build a model to predict the severity of traffic accidents. But there is a twist: **your summative is customised just for you!**
+
+This RMarkdown is common to everyone, the data is also the same, but each one of you are allocated to a unique combination of variables, metrics and parameters you MUST use when completing your assignment. This combination was randomly allocated to your candidate number (we will share the R Script that we used to generate these conditions, in case you are curious about it).
+
+[Before you continue to read the instructions, open the spreadsheet `DS202_2022MT_Summative02_candidate_allocation` (link available on Moodle) and identify the line that contains your **candidate_number**.]{style="color:red"}
+
+In there, you will find the following information about your assignment that is unique to you:
+
+-   `target_variable`
+
+-   `task_type`
+
+-   `metric`
+
+-   predictors identified by columns: `predictor1`, `predictor2` & `predictor3` as well as the `formula_str`
+
+-   `cp`: a parameter of the Decision Tree algorithm
+
+Below, you find a description of the elements of this assignment that vary from person to person.
+
+### Element 01: Target Variable
+
+Each one of you will be allocated a specific target variable and you can find it in the column `target_variable` of the spreadsheet. This is either:
+
+-   `accident_severity`, a number that ranges from 1 to 3; OR,
+-   `is_grave_accident`, a "Yes" vs "No" categorical variable.
+
+If your target variable is `accident_severity`, you are asked to perform **Regression**; on the other hand, if your target variable is `is_grave_accident`, you are asked to perform a **Classification** task.
+
+### Element 02: Goodness-of-Fit Metric
+
+You are also asked to use a specific metric to assess the goodness-of-fit of your models. **This metric will also be unique to you and you can find it in the column `metric` of the spreadsheet.**
+
+If you were allocated a Regression task, you might asked to use either the Mean Absolute Error (MAE) or the Adjusted R-square (adj-R2). On the other hand, if your task is Classification, you might asked to use either F1-score or Recall.
+
+### Element 03: Selected Variables
+
+The dataset contain many variables; but for this assignment, you are asked to use only THREE predictors. **You must use the three predictors that are uniquely allocated to you**. Your unique predictors are identified by the three columns below:
+
+-   `predictor1`
+-   `predictor2`
+-   `predictor3`
+
+or, simpler, check the column `formula`.
+
+For example, if the row relative to your candidate number contains the following formula:
+
+`accident_severity ~ light_conditions + road_surface_conditions + season`
+
+This means you are **only allowed** to use the predictors `light_conditions`, `road_surface_conditions` and `season` to build your models.
+
+### Element 04: Decision Tree's `cp` parameter
+
+Finally, another element that is unique to you is the parameter `cp` used to control how the Decision Tree is built. **You must use the `cp` that is associated to your candidate number in the spreadsheet**.
+
+# More info about the variables in the dataset
+
+Here you find a list of all the variables in our data set:
+
+1.  [accident_year]{style="color:blue"}: year of the incident that happened, namely 2017, 2018, 2019, 2020.
+2.  [accident_severity]{style="color:blue"}: 1-Slight 2-Serious, 3-Fatal. (We modified the order from the original dataset to make the numbers more intuitive)
+3.  [is_grave_accident]{style="color:blue"}: "No" if `accident_severity == 1`, "Yes" otherwise.
+4.  [number_of_vehicles]{style="color:blue"}: the number of vehicles involved in this incident.
+5.  [number_of_casualties]{style="color:blue"}: the number of casualties involved in this incident.
+6.  [day_of_week]{style="color:blue"}: 1- Sunday, 2-Monday, 3-Tuesday, 4-Wednesday, 5-Thursday, 6-Friday, 7- Saturday.
+7.  [road_type]{style="color:blue"}: 1-Roundabout, 2-One way street, 3-Dual carriageway, 6-Single carriageway, 7-Slip road, 9-Unknown,12-One way street/Slip road, -1-Data missing or out of range
+8.  [speed_limit]{style="color:blue"}: the speed limit on the road, but when the value is -1, meaning Data missing or out of range; 99 means unknown (self-reported)
+9.  [light_conditions]{style="color:blue"}: the light conditions when the incident happened. 1-Daylight, 4-Darkness - lights lit, 5-Darkness - lights unlit, 6-Darkness - no lighting, 7-Darkness - lighting unknown, -1-Data missing or out of range
+10. [weather_conditions]{style="color:blue"}: the weather conditions when the incident happened. 1-Fine no high winds, 2-Raining no high winds, 3-Snowing no high winds, 4-Fine + high winds, 5-Raining + high winds, 6-Snowing + high winds, 7-Fog or mist, 8-Other, 9-Unknown, -1-Data missing or out of range
+11. [road_surface_conditions]{style="color:blue"}: the road surface conditions when the incident happened. 1-Dry, 2-Wet or damp, 3-Snow, 4-Frost or ice, 5-Flood over 3cm. deep, 6-Oil or diesel, 7-Mud, -1-Data missing or out of range, 9-unknown (self-reported)
+12. [urban_or_rural_area]{style="color:blue"}: the location of the incident. 1-Urban, 2-Rural,3-Unallocated, -1- Data missing or out of range.
+13. [daytime]{style="color:blue"}: four-time period intra-day
+14. [month]{style="color:blue"}: twelve-month information
+15. [season]{style="color:blue"}: four-season information
+
+*We also aggregated the geoinformation of the incident point, providing several variables as follows.*
+
+15. [IMD_Decile]{style="color:blue"}: the Index of Multiple Deprivation Decile, where 1 means the most deprived and 10 represents the least deprived. This is an overall measure of multiple deprivations experienced by people living in an area and is calculated for every Lower layer Super Output Area (LSOA) in England.
+16. [IncScore]{style="color:blue"}: Income Score (rate)
+17. [EmpScore]{style="color:blue"}: Employment Score (rate)
+18. [HDDScore]{style="color:blue"}: Health Deprivation and Disability Score
+19. [EduScore]{style="color:blue"}: Education, Skills and Training Score
+20. [CriScore]{style="color:blue"}: Crime Score
+21. [EnvScore]{style="color:blue"}: Living Environment Score
+
+------------------------------------------------------------------------
+
+# What's next?
+
+-   Locate the `.Rmd` to fill out your solutions.
+-   Keep this webpage at hand and consult it whenever you need.
