@@ -186,21 +186,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../main/communication.html" class="sidebar-item-text sidebar-link">📟 Communication</a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../main/assessments.html" class="sidebar-item-text sidebar-link">✍️ Assessments</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../assessments/formative1_solutions.html" class="sidebar-item-text sidebar-link">✔️ Formative 01</a>
+  <a href="../../main/assessments.html" class="sidebar-item-text sidebar-link">✍️ Assessments</a>
   </div>
 </li>
-      </ul>
-  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../main/courserep.html" class="sidebar-item-text sidebar-link">🗳️ Course Rep</a>
@@ -936,12 +926,12 @@ SV type: C-svc  (classification)
  parameter : cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.60803092091672 
+ Hyperparameter : sigma =  1.76419512159088 
 
-Number of Support Vectors : 428 
+Number of Support Vectors : 437 
 
-Objective Function Value : -387.1423 
-Training error : 0.170093 
+Objective Function Value : -386.1781 
+Training error : 0.169159 
 Probability model included. </code></pre>
 </div>
 </div>
@@ -971,12 +961,12 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 6 × 7
   Purchase LoyalCH PriceDiff .pred_class .pred_CH .pred_MM is_correct
   &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt;    &lt;dbl&gt; &lt;lgl&gt;     
-1 CH         0.5        0.24 CH             0.855    0.145 TRUE      
-2 CH         0.6       -0.06 CH             0.712    0.288 TRUE      
-3 CH         0.68       0.4  CH             0.872    0.128 TRUE      
-4 MM         0.4        0    MM             0.171    0.829 TRUE      
-5 CH         0.957      0    CH             0.874    0.126 TRUE      
-6 CH         0.965      0.3  CH             0.872    0.128 TRUE      </code></pre>
+1 CH         0.5        0.24 CH             0.863    0.137 TRUE      
+2 CH         0.6       -0.06 CH             0.718    0.282 TRUE      
+3 CH         0.68       0.4  CH             0.876    0.124 TRUE      
+4 MM         0.4        0    MM             0.167    0.833 TRUE      
+5 CH         0.957      0    CH             0.878    0.122 TRUE      
+6 CH         0.965      0.3  CH             0.875    0.125 TRUE      </code></pre>
 </div>
 </div>
 <section id="measure-precision-1" class="level4">
@@ -988,7 +978,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric   .estimator .estimate
   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-1 precision binary         0.856</code></pre>
+1 precision binary         0.858</code></pre>
 </div>
 </div>
 </section>
@@ -1014,7 +1004,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 f_meas  binary         0.861</code></pre>
+1 f_meas  binary         0.862</code></pre>
 </div>
 </div>
 </section>
@@ -1088,12 +1078,12 @@ SV type: eps-svr  (regression)
  parameter : epsilon = 0.1  cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.46881822935531 
+ Hyperparameter : sigma =  1.76894301236347 
 
-Number of Support Vectors : 1125 
+Number of Support Vectors : 1116 
 
-Objective Function Value : -764.3619 
-Training error : 0.936229 </code></pre>
+Objective Function Value : -761.1687 
+Training error : 0.92784 </code></pre>
 </div>
 </div>
 </section>
@@ -1109,12 +1099,12 @@ Training error : 0.936229 </code></pre>
 <pre><code># A tibble: 6 × 6
    Today Volume   Lag1   .pred .resid row_number
    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;int&gt;
-1  0.959   1.19  0.381 -0.0391  0.998          1
-2  1.03    1.30  0.959 -0.225   1.26           2
-3 -0.623   1.41  1.03  -0.234  -0.389          3
-4  0.614   1.28 -0.623  0.226   0.388          4
-5  0.213   1.21  0.614 -0.142   0.355          5
-6  1.39    1.35  0.213 -0.163   1.55           6</code></pre>
+1  0.959   1.19  0.381 -0.0550  1.01           1
+2  1.03    1.30  0.959 -0.251   1.28           2
+3 -0.623   1.41  1.03  -0.260  -0.363          3
+4  0.614   1.28 -0.623  0.262   0.352          4
+5  0.213   1.21  0.614 -0.151   0.364          5
+6  1.39    1.35  0.213 -0.148   1.54           6</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="dart">🎯</span> <strong>ACTION POINT</strong>: What do the different columns mean?</p>
@@ -1148,7 +1138,7 @@ MAE = \frac{\sum_{i=1}^{n}{|y_i - \hat{y}_i|}}{n}
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 mae     standard       0.794</code></pre>
+1 mae     standard       0.789</code></pre>
 </div>
 </div>
 </section>
@@ -1163,7 +1153,7 @@ RMSE = \frac{\sum_{i=1}^{n}{(y_i - \hat{y}_i)^2}}{n}
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 rmse    standard        1.10</code></pre>
+1 rmse    standard        1.09</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="dart">🎯</span> <strong>ACTION POINT</strong>: Would a better model have a larger or smaller value of MAE/RMSE?</p>
@@ -1201,12 +1191,12 @@ RMSE = \frac{\sum_{i=1}^{n}{(y_i - \hat{y}_i)^2}}{n}
 <pre><code># A tibble: 6 × 3
   Volume  Lag1   .pred
    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1      0  -5   -0.0170
-2      0  -4.8 -0.0170
-3      0  -4.6 -0.0170
-4      0  -4.4 -0.0170
-5      0  -4.2 -0.0170
-6      0  -4   -0.0170</code></pre>
+1      0  -5   -0.0105
+2      0  -4.8 -0.0105
+3      0  -4.6 -0.0105
+4      0  -4.4 -0.0105
+5      0  -4.2 -0.0105
+6      0  -4   -0.0105</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="bulb">💡</span> Look at the entire dataset with <code>View(sim.data)</code></p>

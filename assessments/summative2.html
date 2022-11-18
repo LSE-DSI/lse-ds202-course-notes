@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
-<meta name="dcterms.date" content="15 September 2022">
+<meta name="dcterms.date" content="2022-11-18">
 
-<title>LSE DS202 2022/23 - 🗓️ Week 02 - Simple and Multiple Linear Regression</title>
+<title>LSE DS202 2022/23 - Summative Problem Set 02 | W08-W10</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -32,8 +95,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../weeks/week02/lecture.html" rel="next">
-<link href="../weeks/week01/appendix.html" rel="prev">
 <link href="..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -66,6 +127,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../css/custom_style.css">
 </head>
@@ -94,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">🗓️ Week 02 - Simple and Multiple Linear Regression</h1>
+      <h1 class="quarto-secondary-nav-title">Summative Problem Set 02 | W08-W10</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -172,12 +234,12 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week02.html" class="sidebar-item-text sidebar-link active">Week 02</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+            <a href="../weeks/week02.html" class="sidebar-item-text sidebar-link">Week 02</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../weeks/week02/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
@@ -383,7 +445,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#links" id="toc-links" class="nav-link active" data-scroll-target="#links">Links</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">📒 Instructions</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The DATA</a>
+  <ul class="collapse">
+  <li><a href="#cycling-in-london-how-dangerous-is-it" id="toc-cycling-in-london-how-dangerous-is-it" class="nav-link" data-scroll-target="#cycling-in-london-how-dangerous-is-it">🚴 Cycling in London: How dangerous is it?</a></li>
+  <li><a href="#your-unique-assignment" id="toc-your-unique-assignment" class="nav-link" data-scroll-target="#your-unique-assignment">Your Unique Assignment</a>
+  <ul class="collapse">
+  <li><a href="#element-01-target-variable" id="toc-element-01-target-variable" class="nav-link" data-scroll-target="#element-01-target-variable">Element 01: Target Variable</a></li>
+  <li><a href="#element-02-goodness-of-fit-metric" id="toc-element-02-goodness-of-fit-metric" class="nav-link" data-scroll-target="#element-02-goodness-of-fit-metric">Element 02: Goodness-of-Fit Metric</a></li>
+  <li><a href="#element-03-selected-variables" id="toc-element-03-selected-variables" class="nav-link" data-scroll-target="#element-03-selected-variables">Element 03: Selected Variables</a></li>
+  <li><a href="#element-04-decision-trees-cp-parameter" id="toc-element-04-decision-trees-cp-parameter" class="nav-link" data-scroll-target="#element-04-decision-trees-cp-parameter">Element 04: Decision Tree’s <code>cp</code> parameter</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#more-info-about-the-variables-in-the-dataset" id="toc-more-info-about-the-variables-in-the-dataset" class="nav-link" data-scroll-target="#more-info-about-the-variables-in-the-dataset">More info about the variables in the dataset</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next">What’s next?</a></li>
   </ul>
 </nav>
     </div>
@@ -392,7 +467,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">🗓️ Week 02 - Simple and Multiple Linear Regression</h1>
+<h1 class="title d-none d-lg-block">Summative Problem Set 02 | W08-W10</h1>
 <p class="subtitle lead">DS202 - Data Science for Social Scientists</p>
 </div>
 
@@ -403,14 +478,14 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a> </p>
+             <p>Dr.&nbsp;Jon Cardoso-Silva </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">15 September 2022</p>
+      <p class="date">18 November 2022</p>
     </div>
   </div>
   
@@ -420,22 +495,161 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>If you have already taken stats level at university, it is likely that you have met the linear regression method.</p>
-<p>It is the most fundamental algorithm for regression and if you truly master it, you will be way ahead of the curve when it comes to the most advanced Machine Learning algorithms.</p>
-<p>Join the lecture 7 October 2022 2pm at <strong>NAB LG.01 (Wolfson Theatre)</strong>..</p>
-<section id="links" class="level2">
-<h2 class="anchored" data-anchor-id="links">Links</h2>
+<p>Welcome to the second Summative Problem Set of DS202 (2022/23)!</p>
+<p><strong>Things to know before you start:</strong></p>
+<ol type="1">
+<li><strong>Deadline</strong>: you have until <strong>29 November 2022, 23:59 UK time</strong> (Week 10) to complete your solutions and submit via the <a href="https://moodle.lse.ac.uk/course/view.php?id=7737">DS202 Moodle</a> (under <strong>✍️ Assessment</strong> section).</li>
+<li>You will be granted a maximum of 100 points for the whole assignment. You will see how much each task is right next to the tasks’ names.</li>
+<li>This assessment is worth <strong>20%</strong> of your final grade.</li>
+<li>Read the instructions carefully and make sure you follow them.</li>
+</ol>
+<section id="instructions" class="level1">
+<h1>📒 Instructions</h1>
+<p><strong>Read carefully</strong></p>
+<p><strong>1.</strong> Follow the link available on Moodle to open the spreadsheet named <code>DS202_2022MT_Summative02_candidate_allocation</code>. This spreadsheet contains information about your <strong>unique assignment details</strong>.</p>
+<p><strong>2.</strong> This webpage only contains the instructions. You still have to download the <code>.Rmd</code> that contains the exercise and open that <code>.Rmd</code> file using RStudio. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p><strong>3.</strong> Work on your solutions and fill the allocated spaces with your answers. Each question has one or more empty spaces for you to fill out.</p>
+<p>Text answers are identified as:</p>
+<blockquote class="blockquote">
+<p>Your text goes here</p>
+</blockquote>
+<p>R code answers are identified as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace this by your code</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># REMEMBER TO REMOVE ALL HASH SIGNS OR YOUR CODE WILL NOT RUN!!!</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># YOU WILL MARKED AS 0 IN A QUESTION IF YOUR CODE DOES NOT PRODUCE </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ANY OUTPUT WHEN IT WOULD HAVE BEEN EXPECTED.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Equation answers are identified as:</p>
+<p><span class="math display">\[Your~equation~goes~here\]</span></p>
+<p>You can add more code R code, plots, text or equations to complement your responses if you want to. For extra tips on formatting equations see <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p><strong>4.</strong> After you answer all the questions, you should press the Knit button, and knit the file to HTML. If you cannot find this button in RStudio, check out <a href="https://www.youtube.com/watch?v=8eBBPVMwTLo">this tutorial</a>.</p>
+<p><strong>5.</strong> After knitting, an HTML file will appear in your files. This is what you must submit to Moodle.</p>
+<p><strong>6.</strong> Open <a href="https://moodle.lse.ac.uk/course/view.php?id=7737">DS202 Moodle</a>, open the <strong>✍️ Assessment</strong> section, click on the <strong>✍️ Summative Problem Set (02) | W08-W10</strong> to submit your HTML file.</p>
+<p><strong>7.</strong> You are encouraged to work together with your colleagues. We randomized the questions so you could collaborate more freely without fear of being flagged for plagiarism. Still, there are a few things you are not allowed to do: share your R markdown with others, copy-paste solutions from others verbatim or ask others to do your work for you.</p>
+<div style="display:inline-block;border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin:1%;padding:1.5%;background-color:#fafafa">
+<p>⚠️ <strong>IMPORTANT</strong>:</p>
 <ul>
-<li><p>👨‍🏫 <a href="../weeks/week02/lecture.html">Lecture slides</a></p></li>
-<li><p>✅ <a href="../weeks/week02/checklist.html">Take a look at this week’s checklist</a></p></li>
-<li><p>💻 <a href="../weeks/week02/lab.html">This week’s lab</a></p></li>
-<li><p>✔️ <a href="../weeks/week02/lab_solutions.html">Lab Solutions</a></p></li>
+<li><em>If your code has any errors, you might not be able to knit the document. You must fix those errors first.</em></li>
+<li><em>If you do not know how to answer a solution, leave it empty. Do not add incomplete R scripts as it will lead to knitting errors.</em></li>
+<li><em>Some questions might not have a <strong>single</strong> objective response. When this is the case, you are expected to justify your choices of algorithms, parameters and validation metrics from your experiences in the lectures, labs and your readings of the textbook.</em></li>
+</ul>
+</div>
+<hr>
+</section>
+<section id="the-data" class="level1">
+<h1>The DATA</h1>
+<section id="cycling-in-london-how-dangerous-is-it" class="level2">
+<h2 class="anchored" data-anchor-id="cycling-in-london-how-dangerous-is-it">🚴 Cycling in London: How dangerous is it?</h2>
+<p>In this problem set, we will explore a real-world dataset recording the Greater London’s cycling-involved incidents from 2017 to 2020. We obtained data from two different sources:</p>
+<ul>
+<li>Road Safety Data from the Department for Transport, UK <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li>Indices of Multiple Deprivation (IMD) 2019, published by the Ministry of Housing, Communities and Local Government, UK <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+</ul>
+<p>Trivia: According to the Evening Standard, during the pandemic the risk of being killed or seriously injured (KSI) fell from 1.2 to 0.9 incidents per million kilometres cycled <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. Note that our data only contains data cycling-related accidents, we do not have data about all the cycle routes people take that do not lead to accidents.</p>
+<p><em>(Click on the links in the footnotes if you want to read more about the data)</em></p>
+</section>
+<section id="your-unique-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="your-unique-assignment">Your Unique Assignment</h2>
+<p>Your goal is to build a model to predict the severity of traffic accidents. But there is a twist: <strong>your summative is customised just for you!</strong></p>
+<p>This RMarkdown is common to everyone, the data is also the same, but each one of you are allocated to a unique combination of variables, metrics and parameters you MUST use when completing your assignment. This combination was randomly allocated to your candidate number (we will share the R Script that we used to generate these conditions, in case you are curious about it).</p>
+<p><span style="color:red">Before you continue to read the instructions, open the spreadsheet <code>DS202_2022MT_Summative02_candidate_allocation</code> (link available on Moodle) and identify the line that contains your <strong>candidate_number</strong>.</span></p>
+<p>In there, you will find the following information about your assignment that is unique to you:</p>
+<ul>
+<li><p><code>target_variable</code></p></li>
+<li><p><code>task_type</code></p></li>
+<li><p><code>metric</code></p></li>
+<li><p>predictors identified by columns: <code>predictor1</code>, <code>predictor2</code> &amp; <code>predictor3</code> as well as the <code>formula_str</code></p></li>
+<li><p><code>cp</code>: a parameter of the Decision Tree algorithm</p></li>
+</ul>
+<p>Below, you find a description of the elements of this assignment that vary from person to person.</p>
+<section id="element-01-target-variable" class="level3">
+<h3 class="anchored" data-anchor-id="element-01-target-variable">Element 01: Target Variable</h3>
+<p>Each one of you will be allocated a specific target variable and you can find it in the column <code>target_variable</code> of the spreadsheet. This is either:</p>
+<ul>
+<li><code>accident_severity</code>, a number that ranges from 1 to 3; OR,</li>
+<li><code>is_grave_accident</code>, a “Yes” vs “No” categorical variable.</li>
+</ul>
+<p>If your target variable is <code>accident_severity</code>, you are asked to perform <strong>Regression</strong>; on the other hand, if your target variable is <code>is_grave_accident</code>, you are asked to perform a <strong>Classification</strong> task.</p>
+</section>
+<section id="element-02-goodness-of-fit-metric" class="level3">
+<h3 class="anchored" data-anchor-id="element-02-goodness-of-fit-metric">Element 02: Goodness-of-Fit Metric</h3>
+<p>You are also asked to use a specific metric to assess the goodness-of-fit of your models. <strong>This metric will also be unique to you and you can find it in the column <code>metric</code> of the spreadsheet.</strong></p>
+<p>If you were allocated a Regression task, you might asked to use either the Mean Absolute Error (MAE) or the Adjusted R-square (adj-R2). On the other hand, if your task is Classification, you might asked to use either F1-score or Recall.</p>
+</section>
+<section id="element-03-selected-variables" class="level3">
+<h3 class="anchored" data-anchor-id="element-03-selected-variables">Element 03: Selected Variables</h3>
+<p>The dataset contain many variables; but for this assignment, you are asked to use only THREE predictors. <strong>You must use the three predictors that are uniquely allocated to you</strong>. Your unique predictors are identified by the three columns below:</p>
+<ul>
+<li><code>predictor1</code></li>
+<li><code>predictor2</code></li>
+<li><code>predictor3</code></li>
+</ul>
+<p>or, simpler, check the column <code>formula</code>.</p>
+<p>For example, if the row relative to your candidate number contains the following formula:</p>
+<p><code>accident_severity ~ light_conditions + road_surface_conditions + season</code></p>
+<p>This means you are <strong>only allowed</strong> to use the predictors <code>light_conditions</code>, <code>road_surface_conditions</code> and <code>season</code> to build your models.</p>
+</section>
+<section id="element-04-decision-trees-cp-parameter" class="level3">
+<h3 class="anchored" data-anchor-id="element-04-decision-trees-cp-parameter">Element 04: Decision Tree’s <code>cp</code> parameter</h3>
+<p>Finally, another element that is unique to you is the parameter <code>cp</code> used to control how the Decision Tree is built. <strong>You must use the <code>cp</code> that is associated to your candidate number in the spreadsheet</strong>.</p>
+</section>
+</section>
+</section>
+<section id="more-info-about-the-variables-in-the-dataset" class="level1">
+<h1>More info about the variables in the dataset</h1>
+<p>Here you find a list of all the variables in our data set:</p>
+<ol type="1">
+<li><span style="color:blue">accident_year</span>: year of the incident that happened, namely 2017, 2018, 2019, 2020.</li>
+<li><span style="color:blue">accident_severity</span>: 1-Slight 2-Serious, 3-Fatal. (We modified the order from the original dataset to make the numbers more intuitive)</li>
+<li><span style="color:blue">is_grave_accident</span>: “No” if <code>accident_severity == 1</code>, “Yes” otherwise.</li>
+<li><span style="color:blue">number_of_vehicles</span>: the number of vehicles involved in this incident.</li>
+<li><span style="color:blue">number_of_casualties</span>: the number of casualties involved in this incident.</li>
+<li><span style="color:blue">day_of_week</span>: 1- Sunday, 2-Monday, 3-Tuesday, 4-Wednesday, 5-Thursday, 6-Friday, 7- Saturday.</li>
+<li><span style="color:blue">road_type</span>: 1-Roundabout, 2-One way street, 3-Dual carriageway, 6-Single carriageway, 7-Slip road, 9-Unknown,12-One way street/Slip road, -1-Data missing or out of range</li>
+<li><span style="color:blue">speed_limit</span>: the speed limit on the road, but when the value is -1, meaning Data missing or out of range; 99 means unknown (self-reported)</li>
+<li><span style="color:blue">light_conditions</span>: the light conditions when the incident happened. 1-Daylight, 4-Darkness - lights lit, 5-Darkness - lights unlit, 6-Darkness - no lighting, 7-Darkness - lighting unknown, -1-Data missing or out of range</li>
+<li><span style="color:blue">weather_conditions</span>: the weather conditions when the incident happened. 1-Fine no high winds, 2-Raining no high winds, 3-Snowing no high winds, 4-Fine + high winds, 5-Raining + high winds, 6-Snowing + high winds, 7-Fog or mist, 8-Other, 9-Unknown, -1-Data missing or out of range</li>
+<li><span style="color:blue">road_surface_conditions</span>: the road surface conditions when the incident happened. 1-Dry, 2-Wet or damp, 3-Snow, 4-Frost or ice, 5-Flood over 3cm. deep, 6-Oil or diesel, 7-Mud, -1-Data missing or out of range, 9-unknown (self-reported)</li>
+<li><span style="color:blue">urban_or_rural_area</span>: the location of the incident. 1-Urban, 2-Rural,3-Unallocated, -1- Data missing or out of range.</li>
+<li><span style="color:blue">daytime</span>: four-time period intra-day</li>
+<li><span style="color:blue">month</span>: twelve-month information</li>
+<li><span style="color:blue">season</span>: four-season information</li>
+</ol>
+<p><em>We also aggregated the geoinformation of the incident point, providing several variables as follows.</em></p>
+<ol start="15" type="1">
+<li><span style="color:blue">IMD_Decile</span>: the Index of Multiple Deprivation Decile, where 1 means the most deprived and 10 represents the least deprived. This is an overall measure of multiple deprivations experienced by people living in an area and is calculated for every Lower layer Super Output Area (LSOA) in England.</li>
+<li><span style="color:blue">IncScore</span>: Income Score (rate)</li>
+<li><span style="color:blue">EmpScore</span>: Employment Score (rate)</li>
+<li><span style="color:blue">HDDScore</span>: Health Deprivation and Disability Score</li>
+<li><span style="color:blue">EduScore</span>: Education, Skills and Training Score</li>
+<li><span style="color:blue">CriScore</span>: Crime Score</li>
+<li><span style="color:blue">EnvScore</span>: Living Environment Score</li>
+</ol>
+<hr>
+</section>
+<section id="whats-next" class="level1">
+<h1>What’s next?</h1>
+<ul>
+<li>Locate the <code>.Rmd</code> to fill out your solutions.</li>
+<li>Keep this webpage at hand and consult it whenever you need.</li>
 </ul>
 
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>You can read more about RMarkdown files on <a href="https://rmarkdown.rstudio.com/" class="uri">https://rmarkdown.rstudio.com/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" class="uri">https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Road Safety Data: <a href="https://www.data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data" class="uri">https://www.data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://www.arcgis.com/home/item.html?id=4ad3e5a10872455eaa67ce4e663d0d01" class="uri">https://www.arcgis.com/home/item.html?id=4ad3e5a10872455eaa67ce4e663d0d01</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://www.standard.co.uk/news/london/london-cyclist-deaths-increase-during-covid-pandemic-b942378.html" class="uri">https://www.standard.co.uk/news/london/london-cyclist-deaths-increase-during-covid-pandemic-b942378.html</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -700,18 +914,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../weeks/week01/appendix.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">🔖 Appendix</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../weeks/week02/lecture.html" class="pagination-link">
-        <span class="nav-page-text">👨‍🏫 Lecture Slides</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
