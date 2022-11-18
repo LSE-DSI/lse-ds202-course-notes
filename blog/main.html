@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -442,6 +442,7 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
+  
     
   </div>
   
@@ -476,7 +477,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
 </div>
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="week03,linear regression,outliers" data-listing-date-sort="1666483200000" data-listing-file-modified-sort="1668379218829" data-listing-reading-time-sort="2.48">
+<div class="g-col-1" data-index="0" data-categories="week03,linear regression,outliers" data-listing-date-sort="1666483200000" data-listing-file-modified-sort="1668775506611" data-listing-reading-time-sort="2.48">
 <a href="../blog/posts/outliers.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -509,7 +510,7 @@ Here you will find R code to single out points with high “studentized” resid
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="week04,p-values" data-listing-date-sort="1666137600000" data-listing-file-modified-sort="1668379218829" data-listing-reading-time-sort="1.345">
+<div class="g-col-1" data-index="1" data-categories="week04,p-values" data-listing-date-sort="1666137600000" data-listing-file-modified-sort="1668775506611" data-listing-reading-time-sort="1.345">
 <a href="../blog/posts/p-values.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -539,7 +540,7 @@ There are dangers in relying too much on p-values.
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="week03,bayesian statistics,equations" data-listing-date-sort="1665964800000" data-listing-file-modified-sort="1668379218829" data-listing-reading-time-sort="0.395">
+<div class="g-col-1" data-index="2" data-categories="week03,bayesian statistics,equations" data-listing-date-sort="1665964800000" data-listing-file-modified-sort="1668775506611" data-listing-reading-time-sort="0.395">
 <a href="../blog/posts/bayes-theorem.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -572,7 +573,7 @@ This video will help you grasp the intuition behind Bayes’ Theorem.
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="week02,R-squared,equations" data-listing-date-sort="1665360000000" data-listing-file-modified-sort="1668379218829" data-listing-reading-time-sort="3.715">
+<div class="g-col-1" data-index="3" data-categories="week02,R-squared,equations" data-listing-date-sort="1665360000000" data-listing-file-modified-sort="1668775506611" data-listing-reading-time-sort="3.715">
 <a href="../blog/posts/r-squared.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -742,7 +743,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -764,7 +767,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -800,24 +820,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var filterRegex = new RegExp(/^(?:http:|https:)\/\/(?:lse-dsi\.github\.io\/|localhost)/);
@@ -825,7 +863,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

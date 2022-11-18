@@ -10,9 +10,9 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.269">
 
-  <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva and Dr.&nbsp;Stuart Bramwell">
-  <meta name="dcterms.date" content="28 October 2022">
-  <title>LSE DS202 2022/23 - 🗓️ Week 05:Support Vector Machines (SVM)</title>
+  <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
+  <meta name="dcterms.date" content="18 November 2022">
+  <title>LSE DS202 2022/23 - 🗓️ Week 08: Principal Component Analysis</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -94,25 +94,6 @@
     code span.va { color: #111111; } /* Variable */
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-    }
-    .hanging div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link rel="stylesheet" href="../css/styles_slides.css">
@@ -412,13 +393,13 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block">
-  <h1 class="title">🗓️ Week 05:<br>Support Vector Machines (SVM)</h1>
-  <p class="subtitle">Non-linear algorithms</p>
+  <h1 class="title">🗓️ Week 08:<br> Principal Component Analysis</h1>
+  <p class="subtitle">PCA</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a> and Dr.&nbsp;<a href="https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell">Stuart Bramwell</a> 
+Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a> 
 </div>
         <p class="quarto-title-affiliation">
             <a href="https://twitter.com/lsedatascience">@LSEDataScience</a>
@@ -426,442 +407,820 @@ Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon C
     </div>
 </div>
 
-  <p class="date">10/28/22</p>
+  <p class="date">11/18/22</p>
 </section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">What we will cover today</h2>
 <ul>
-<li><a href="#/support-vector-machines" id="/toc-support-vector-machines">Support Vector Machines</a></li>
-<li><a href="#/example-iris-data" id="/toc-example-iris-data">Example: <code>Iris</code> data</a></li>
-<li><a href="#/overfitting" id="/toc-overfitting">Overfitting</a></li>
-<li><a href="#/cross-validation-for-the-rescue" id="/toc-cross-validation-for-the-rescue">Cross-validation* for the rescue!</a></li>
-<li><a href="#/tips-for-summative-problem-set-01" id="/toc-tips-for-summative-problem-set-01">Tips for Summative Problem Set 01</a></li>
-<li><a href="#/thank-you" id="/toc-thank-you">Thank you!</a></li>
+<li><a href="#/unsupervised-learning" id="/toc-unsupervised-learning">Unsupervised Learning</a></li>
+<li><a href="#/example-usarrests" id="/toc-example-usarrests">Example: <code>USArrests</code></a></li>
+<li><a href="#/pca" id="/toc-pca">PCA</a></li>
 </ul>
 </nav>
 </section>
+<section>
+<section id="unsupervised-learning" class="title-slide slide level1">
+<h1>Unsupervised Learning</h1>
+<p>(Quick recap)</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="comparison" class="slide level2">
+<h2>Comparison</h2>
+<div class="columns">
+<div class="column fragment fade-in-then-semi-out" style="width:45%; border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin-right:0.5%;padding:1%;font-size:0.65em;">
+<!-- -->
+<h3 id="supervised-learning">Supervised Learning</h3>
+<ul>
+<li>We want to predict <span class="math inline">\(Y\)</span></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">X1</th>
+<th style="text-align: right;">X2</th>
+<th style="text-align: right;">X3</th>
+<th style="text-align: right;">X4</th>
+<th style="text-align: right;">X5</th>
+<th style="text-align: left;">Y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">6.68</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2.30</td>
+<td style="text-align: left;">C</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">3.08</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.45</td>
+<td style="text-align: left;">A</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">1.21</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.51</td>
+<td style="text-align: left;">A</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">1.30</td>
+<td style="text-align: right;">1.40</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">3.86</td>
+<td style="text-align: left;">C</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">7.16</td>
+<td style="text-align: right;">1.12</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.07</td>
+<td style="text-align: left;">C</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2.04</td>
+<td style="text-align: left;">C</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.63</td>
+<td style="text-align: right;">4.87</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: left;">C</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.83</td>
+<td style="text-align: right;">8.32</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.34</td>
+<td style="text-align: left;">C</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.43</td>
+<td style="text-align: right;">5.59</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">2.43</td>
+<td style="text-align: left;">A</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column fragment fade-in" style="width:45%; border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin-right:0.5%;padding:1%;font-size:0.65em;">
+<!-- -->
+<h3 id="unsupervised-learning-1">Unsupervised Learning</h3>
+<ul>
+<li>We work with <span class="math inline">\(X\)</span> only</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">X1</th>
+<th style="text-align: right;">X2</th>
+<th style="text-align: right;">X3</th>
+<th style="text-align: right;">X4</th>
+<th style="text-align: right;">X5</th>
+<th style="text-align: left;">Y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">6.68</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2.30</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">3.08</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.45</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">1.21</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.51</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">1.30</td>
+<td style="text-align: right;">1.40</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">3.86</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">7.16</td>
+<td style="text-align: right;">1.12</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.07</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2.04</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.63</td>
+<td style="text-align: right;">4.87</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.83</td>
+<td style="text-align: right;">8.32</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.34</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.43</td>
+<td style="text-align: right;">5.59</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">2.43</td>
+<td style="text-align: left;">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="how-is-it-different" class="slide level2">
+<h2>How is it different?</h2>
+<div class="columns">
+<div class="column" style="width:45%; border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin-right:0.5%;padding:1%;font-size:0.65em;">
+<h3 id="supervised-learning-1">Supervised Learning</h3>
+<ul>
+<li><p>We have historic <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> data</p></li>
+<li><p>Our main goal is to predict future values of <span class="math inline">\(Y\)</span></p></li>
+<li><p>Algorithms fit the data and supervise themselves objectively (e.g.: residuals)</p></li>
+<li><p>We can validate how well the model fits training data and how it generalises beyond that.</p></li>
+</ul>
+</div><div class="column" style="width:45%; border-style: dotted;border-width: 1px;border-color: &quot;#fefefe&quot;; margin-right:0.5%;padding:1%;font-size:0.65em;">
+<h3 id="unsupervised-learning-2"><mark>Unsupervised Learning</mark></h3>
+<ul>
+<li><p>We only have <span class="math inline">\(X\)</span> data</p></li>
+<li><p>The main goal is to observe (dis-)similarities in <span class="math inline">\(X\)</span></p></li>
+<li><p>There is no <span class="math inline">\(Y\)</span> variable to “supervise” how models should fit the data</p></li>
+<li><p>Validation is a lot more subjective. There is no objective way to check our work.</p></li>
+</ul>
+</div>
+</div>
+</section></section>
+<section>
+<section id="example-usarrests" class="title-slide slide level1">
+<h1>Example: <code>USArrests</code></h1>
+
+</section>
+<section id="what-the-data-looks-like" class="slide level2 smaller scrollable">
+<h2>What the data looks like</h2>
+<ul>
+<li>How to visualise this data?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(USArrests)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Murder</th>
+<th style="text-align: right;">Assault</th>
+<th style="text-align: right;">UrbanPop</th>
+<th style="text-align: right;">Rape</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Alabama</td>
+<td style="text-align: right;">13.2</td>
+<td style="text-align: right;">236</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">21.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alaska</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">263</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">44.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Arizona</td>
+<td style="text-align: right;">8.1</td>
+<td style="text-align: right;">294</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">31.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Arkansas</td>
+<td style="text-align: right;">8.8</td>
+<td style="text-align: right;">190</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">19.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">California</td>
+<td style="text-align: right;">9.0</td>
+<td style="text-align: right;">276</td>
+<td style="text-align: right;">91</td>
+<td style="text-align: right;">40.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Colorado</td>
+<td style="text-align: right;">7.9</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">38.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Connecticut</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">11.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Delaware</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">238</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">15.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Florida</td>
+<td style="text-align: right;">15.4</td>
+<td style="text-align: right;">335</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">31.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Georgia</td>
+<td style="text-align: right;">17.4</td>
+<td style="text-align: right;">211</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">25.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hawaii</td>
+<td style="text-align: right;">5.3</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">20.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Idaho</td>
+<td style="text-align: right;">2.6</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">14.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Illinois</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">249</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">24.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Indiana</td>
+<td style="text-align: right;">7.2</td>
+<td style="text-align: right;">113</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">21.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Iowa</td>
+<td style="text-align: right;">2.2</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">11.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kansas</td>
+<td style="text-align: right;">6.0</td>
+<td style="text-align: right;">115</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">18.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kentucky</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">109</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">16.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Louisiana</td>
+<td style="text-align: right;">15.4</td>
+<td style="text-align: right;">249</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">22.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maine</td>
+<td style="text-align: right;">2.1</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">7.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Maryland</td>
+<td style="text-align: right;">11.3</td>
+<td style="text-align: right;">300</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: right;">27.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Massachusetts</td>
+<td style="text-align: right;">4.4</td>
+<td style="text-align: right;">149</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">16.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Michigan</td>
+<td style="text-align: right;">12.1</td>
+<td style="text-align: right;">255</td>
+<td style="text-align: right;">74</td>
+<td style="text-align: right;">35.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Minnesota</td>
+<td style="text-align: right;">2.7</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">14.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mississippi</td>
+<td style="text-align: right;">16.1</td>
+<td style="text-align: right;">259</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">17.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Missouri</td>
+<td style="text-align: right;">9.0</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">28.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Montana</td>
+<td style="text-align: right;">6.0</td>
+<td style="text-align: right;">109</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">16.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nebraska</td>
+<td style="text-align: right;">4.3</td>
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">16.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nevada</td>
+<td style="text-align: right;">12.2</td>
+<td style="text-align: right;">252</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">46.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New Hampshire</td>
+<td style="text-align: right;">2.1</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">9.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New Jersey</td>
+<td style="text-align: right;">7.4</td>
+<td style="text-align: right;">159</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">18.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New Mexico</td>
+<td style="text-align: right;">11.4</td>
+<td style="text-align: right;">285</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">32.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New York</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">254</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">26.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">North Carolina</td>
+<td style="text-align: right;">13.0</td>
+<td style="text-align: right;">337</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">16.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">North Dakota</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">7.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ohio</td>
+<td style="text-align: right;">7.3</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">21.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Oklahoma</td>
+<td style="text-align: right;">6.6</td>
+<td style="text-align: right;">151</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">20.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Oregon</td>
+<td style="text-align: right;">4.9</td>
+<td style="text-align: right;">159</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: right;">29.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pennsylvania</td>
+<td style="text-align: right;">6.3</td>
+<td style="text-align: right;">106</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">14.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rhode Island</td>
+<td style="text-align: right;">3.4</td>
+<td style="text-align: right;">174</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">8.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">South Carolina</td>
+<td style="text-align: right;">14.4</td>
+<td style="text-align: right;">279</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">22.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">South Dakota</td>
+<td style="text-align: right;">3.8</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">12.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tennessee</td>
+<td style="text-align: right;">13.2</td>
+<td style="text-align: right;">188</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">26.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Texas</td>
+<td style="text-align: right;">12.7</td>
+<td style="text-align: right;">201</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">25.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Utah</td>
+<td style="text-align: right;">3.2</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">22.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Vermont</td>
+<td style="text-align: right;">2.2</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">11.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Virginia</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: right;">156</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">20.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Washington</td>
+<td style="text-align: right;">4.0</td>
+<td style="text-align: right;">145</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">26.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">West Virginia</td>
+<td style="text-align: right;">5.7</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">9.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wisconsin</td>
+<td style="text-align: right;">2.6</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">10.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Wyoming</td>
+<td style="text-align: right;">6.8</td>
+<td style="text-align: right;">161</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">15.6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>This data set contains statistics, in arrests per 100,000 residents for assault, murder, and rape in each of the 50 US states in 1973. Also given is the percent of the population living in urban areas.</li>
+<li>A data frame with 50 observations on 4 variables. [,1] Murder numeric Murder arrests (per 100,000) [,2] Assault numeric Assault arrests (per 100,000) [,3] UrbanPop numeric Percent urban population [,4] Rape numeric Rape arrests (per 100,000)</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="eda-with-our-friend-the-ggpairs-plot" class="slide level2">
+<h2>EDA with our friend the <code>ggpairs</code> plot</h2>
+
+<img data-src="week08_slides_part1_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
 <section class="slide level2">
 
-<div class="cell">
+<h3 id="when-you-have-too-many-features">When you have too many features…</h3>
 
+<img data-src="../figures/week08/example_ggpairs_plot.png" class="r-stretch"><div class="footer">
+<p>🚴 data from a cycling accident dataset we have compiled</p>
+</div>
+<aside class="notes">
+<ul>
+<li>It might be difficult to visualize and compare all features</li>
+<li>Recap this plot</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="when-ggpairs-becomes-impractical" class="slide level2">
+<h2>When ggpairs becomes impractical</h2>
+<div>
+<ul>
+<li class="fragment">If we have <span class="math inline">\(p\)</span> features, there will be <span class="math inline">\(\frac{p \times (p - 1)}{2}\)</span> different pair plots!</li>
+<li class="fragment">Think about it:
+<ul>
+<li class="fragment">10 features -&gt; 45 pair plots</li>
+<li class="fragment">100 features -&gt; 4950 pair plots</li>
+<li class="fragment">1000 features -&gt; 499500 pair plots <br>(nearly 500k combinations!)</li>
+</ul></li>
+</ul>
 </div>
 </section>
+<section id="when-you-have-too-many-features-1" class="slide level2 smaller">
+<h2>When you have too many features…</h2>
+<p>… you might want to <mark>reduce the dimensionality</mark> of your dataset</p>
+<div class="columns">
+<div class="column fragment" style="&quot;width:30%;">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>What if I told you you can reduce a matrix of <strong>10</strong> features into just <strong>2</strong>?</p>
+</div>
+</div>
+</div>
+</div><div class="column">
+
+</div>
+</div>
+</section></section>
 <section>
-<section id="support-vector-machines" class="title-slide slide level1">
-<h1>Support Vector Machines</h1>
-
+<section id="pca" class="title-slide slide level1">
+<h1>PCA</h1>
+<p>Principal Component Analysis</p>
 </section>
-<section id="support-vector-machines-for-classification" class="slide level2">
-<h2>Support Vector Machines for Classification</h2>
+<section id="what-is-pca" class="slide level2 smaller">
+<h2>What is PCA?</h2>
+<p>Let’s start with terminology:</p>
+<div>
 <ul>
-<li>Considered one of the best out-of-the-box classifiers (ISLR)</li>
-<li>Able to accommodate non-linear decision boundaries</li>
+<li class="fragment">Principal Component Analysis (PCA) recombines the matrix of features <span class="math inline">\(\mathbf{X}\)</span></li>
+<li class="fragment">If <span class="math inline">\(\mathbf{X}\)</span> has <span class="math inline">\(n\)</span> observations and <span class="math inline">\(p\)</span> features (<span class="math inline">\(n \times p\)</span>), PCA will produce a new <span class="math inline">\(n \times p\)</span> matrix <span class="math inline">\(\mathbf{Z}\)</span>
+<ul>
+<li class="fragment">Instead of “features” or “predictors”, we call these new columns <mark>principal components</mark></li>
+</ul></li>
+<li class="fragment">You might be thinking: 🤔 “wait, didn’t you just say that PCA would help to <em>reduce</em> the number of features?!”</li>
+<li class="fragment">The thing is: because of the way this matrix is constructed, it is often enough to just use the first few columns of <span class="math inline">\(\mathbf{Z}\)</span>.</li>
 </ul>
+</div>
 </section>
-<section id="building-intuition-the-hyperplane" class="slide level2">
-<h2>Building Intuition: the Hyperplane</h2>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-2-1.png" width="3000" class="r-stretch"></section>
-<section id="building-intuition-the-hyperplane-cont." class="slide level2">
-<h2>Building Intuition: the Hyperplane (cont.)</h2>
-<p>When <span class="math inline">\(1 + 2x_1 + 3x_2 &lt; 0\)</span></p>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-3-1.png" width="3000" class="r-stretch"></section>
-<section id="building-intuition-the-hyperplane-cont.-1" class="slide level2">
-<h2>Building Intuition: the Hyperplane (cont.)</h2>
-<p>When <span class="math inline">\(1 + 2x_1 + 3x_2 &gt; 0\)</span></p>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-4-1.png" width="3000" class="r-stretch"></section>
-<section id="building-intuition-the-hyperplane-cont.-2" class="slide level2">
-<h2>Building Intuition: the Hyperplane (cont.)</h2>
-<p>When <span class="math inline">\(1 + 2x_1 + 3x_2 = 0\)</span></p>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-5-1.png" width="3000" class="r-stretch"></section>
-<section id="the-maximal-marginal-classifier" class="slide level2 smaller">
-<h2>The Maximal Marginal Classifier</h2>
-<p>The linearly separable case:</p>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-6-1.png" width="3000" class="r-stretch"></section>
-<section id="identifying-support-vectors" class="slide level2 smaller">
-<h2>Identifying support vectors</h2>
-<p>The <code>SV</code>’s represent the so-called support vectors:</p>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-7-1.png" width="3000" class="r-stretch"></section>
-<section id="when-data-is-not-linearly-separable" class="slide level2 smaller">
-<h2>When data is not linearly separable</h2>
-<p>Suppose we have a case that is not linearly separable like this. We have two classes but class 1 is “sandwiched” in between class 2.</p>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-8-1.png" width="3000" class="r-stretch"></section>
-<section id="enter-support-vector-machines" class="slide level2 smaller">
-<h2>Enter support vector machines</h2>
-<p>Let’s start with a (linear) support vector classifier function</p>
+<section id="the-first-principal-component" class="slide level2 smaller">
+<h2>The <em>first</em> principal component</h2>
+<ul>
+<li>The first column of <span class="math inline">\(\mathbf{Z}\)</span> is a linear combination of the <span class="math inline">\(p\)</span> features of <span class="math inline">\(\mathbf{X}\)</span>:</li>
+</ul>
 <p><span class="math display">\[
-f(x) = \beta_0 + \sum_{i\in\mathcal{S}}^{} \alpha_i\left\langle x_i, x_{i'} \right\rangle
+Z_1 = \phi_{11}X_1 + \phi_{21}X2 + \ldots + \phi_{p1}X_p
 \]</span></p>
-<p>A couple of points:</p>
+<p>subject to:</p>
+<p><span class="math display">\[
+\sum_{j=1}^p \phi_{j1}^2 = 1
+\]</span></p>
+<div>
 <ul>
-<li><span class="math inline">\(\left\langle x_i, x_{i'} \right\rangle\)</span> is the inner product <sup>1</sup> of two observations</li>
-<li><span class="math inline">\(\alpha_i\)</span> is a parameter fitted for all pairs of training observations</li>
-<li><span class="math inline">\(i\in\mathcal{S}\)</span> indicates observations that are support vectors (all other observations are ignored by setting all <span class="math inline">\(\alpha_i \notin \mathcal{S}\)</span> to zero.)</li>
+<li class="fragment">We refer to the elements <span class="math inline">\(\phi_{11}, \phi_{21}, \ldots, \phi_{p1}\)</span> as the <mark>loadings</mark> of the first principal component.</li>
+<li class="fragment">We can also refer to them collective, as the <mark>loading vector</mark> <span class="math inline">\(\phi_1 = (\phi_{11}, \phi_{21}, \ldots, \phi_{p1})\)</span>.</li>
+<li class="fragment">Each one of the new elements, say <span class="math inline">\(z_{11}\)</span> are referred to as <mark>scores</mark></li>
 </ul>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Read about <a href="https://mathworld.wolfram.com/InnerProduct.html">inner products</a></p></li></ol></aside></section>
-<section id="enter-support-vector-machines-cont." class="slide level2 smaller">
-<h2>Enter support vector machines (cont.)</h2>
+</div>
+</section>
+<section id="a-closer-look-at-the-optimisation-task" class="slide level2 smaller">
+<h2>A closer look at the optimisation task:</h2>
+<p><span class="math display">\[
+\begin{eqnarray}
+&amp;\operatorname{maximize}_{\phi_{11}, \ldots, \phi_{p1}}&amp;\left\{\frac{1}{n}\sum_i^{n}\left(\sum_i^p{\phi_{j1}x_{ij}}\right)\right\}
+\\
+&amp;\text{subject to} &amp;\\
+&amp;&amp;\sum_{j=1}^p \phi_{j1}^2 = 1
+\end{eqnarray}
+\]</span></p>
+<ul>
+<li>In practice, this maximizes the <em>sample variance</em> of the <span class="math inline">\(n\)</span> values of <span class="math inline">\(z_{i1}\)</span></li>
+<li>Collective, the loading vector <span class="math inline">\(\phi_1\)</span> points to the direction of largest variance in the data
+<ul>
+<li>We will see an example soon!</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-second-principal-component" class="slide level2 smaller">
+<h2>The <em>second</em> principal component</h2>
 <div class="fragment">
 <ul>
-<li>We can replace <span class="math inline">\(\left\langle x_i, x_{i'} \right\rangle\)</span> with a of the form <span class="math inline">\(K(x_i, x_{i'})\)</span> where <span class="math inline">\(K\)</span> is a kernel.</li>
+<li>As I said, <span class="math inline">\(\mathbf{Z}\)</span> has <span class="math inline">\(p\)</span> dimensions. We only talked about the first one.</li>
 </ul>
 </div>
 <div class="fragment">
-<p><strong>Two well-known kernels:</strong></p>
 <ul>
-<li>Polynomial <span class="math inline">\(K(x_i, x_{i'}) = (1 + \sum_{j = 1}^{p} x_{ij}x_{i'j})^d\)</span> where <span class="math inline">\(d &gt; 1\)</span>.</li>
-<li>Radial or “Gaussian” <span class="math inline">\(K(x_i, x_{i'}) = \text{exp}(-\gamma\sum_{j=1}^{p}(x_{ij}-x_{i'j})^2)\)</span> where <span class="math inline">\(\gamma\)</span> is a positive constant.</li>
+<li>The second column of <span class="math inline">\(\mathbf{Z}\)</span> is <strong>also</strong> linear combination of the <span class="math inline">\(p\)</span> features of <span class="math inline">\(\mathbf{X}\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+Z_2 = \phi_{12}X_1 + \phi_{22}X2 + \ldots + \phi_{p2}X_p
+\]</span></p>
+<p>subject to:</p>
+<p><span class="math display">\[
+\sum_{j=1}^p \phi_{j2}^2 = 1
+\]</span></p>
+<p>but also:</p>
+<ul>
+<li><mark><span class="math inline">\(\phi_2\)</span> should be orthogonal to <span class="math inline">\(\phi_1\)</span></mark></li>
 </ul>
 </div>
-</section></section>
-<section>
-<section id="example-iris-data" class="title-slide slide level1">
-<h1>Example: <code>Iris</code> data</h1>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-1          5.1         3.5          1.4         0.2  setosa
-2          4.9         3.0          1.4         0.2  setosa
-3          4.7         3.2          1.3         0.2  setosa
-4          4.6         3.1          1.5         0.2  setosa
-5          5.0         3.6          1.4         0.2  setosa
-6          5.4         3.9          1.7         0.4  setosa</code></pre>
-</div>
-</div>
 </section>
-<section id="svm-with-linear-kernel" class="slide level2 smaller">
-<h2>SVM with Linear Kernel</h2>
+<section id="example-of-two-pcs" class="slide level2">
+<h2>Example of two PCs</h2>
 
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-10-1.png" width="3000" class="r-stretch"></section>
-<section id="svm-with-polynomial-kernel" class="slide level2 smaller">
-<h2>SVM with Polynomial Kernel</h2>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-11-1.png" width="3000" class="r-stretch"></section>
-<section id="svm-with-sigmoid-kernel" class="slide level2 smaller">
-<h2>SVM with Sigmoid Kernel</h2>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-12-1.png" width="3000" class="r-stretch"></section>
-<section id="svm-with-radial-kernel" class="slide level2 smaller">
-<h2>SVM with Radial Kernel</h2>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-13-1.png" width="3000" class="r-stretch"></section>
-<section id="source-code" class="slide level2 smaller">
-<h2>Source Code</h2>
-<div class="callout callout-tip callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
+<img data-src="../figures/week08/Fig6_14.png" class="r-stretch"><div class="footer">
 <ul>
-<li>Use the code below to replicate the plot from the previous slide.</li>
-<li>Found a bug? Report it on Slack.</li>
+<li>You will find this as Figure 6.14 of our Textbook</li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(datasets)   <span class="co"># to load the iris  data</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(tidyverse)  <span class="co"># to use things like the pipe (%&gt;%), mutate and if_else</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">library</span>(ggsci)      <span class="co"># just for pretty colours! It enables functions scale_fill_lancet() and scale_colour_lancet().</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">library</span>(e1071)      <span class="co"># to load the SVM algorithm</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">data</span>(iris)          <span class="co"># load the dataset `iris`</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># Train the model! change the parameter `kernel`. It accepts 'linear', 'polynomial', 'radial' and 'sigmoid'</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>model <span class="ot">&lt;-</span> <span class="fu">svm</span>(Species <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Sepal.Width, <span class="at">data =</span> iris, <span class="at">kernel =</span> <span class="st">'linear'</span>)</span>
-<span id="cb2-9"><a href="#cb2-9"></a></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co"># Generate all possible combinations of Sepal.Length and Sepal.Width</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>kernel.points <span class="ot">&lt;-</span> <span class="fu">crossing</span>(<span class="at">Sepal.Length =</span> <span class="fu">seq</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="fl">0.1</span>), <span class="at">Sepal.Width =</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="fl">0.1</span>)) <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(<span class="at">pred =</span> <span class="fu">predict</span>(model, .))</span>
-<span id="cb2-12"><a href="#cb2-12"></a></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co"># Create a dataframe just for plotting (with predictions)</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>plot_df <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">pred=</span><span class="fu">predict</span>(model, iris), <span class="at">correct =</span> <span class="fu">if_else</span>(pred <span class="sc">==</span> Species, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb2-15"><a href="#cb2-15"></a></span>
-<span id="cb2-16"><a href="#cb2-16"></a>plot_df <span class="sc">%&gt;%</span>   </span>
-<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a>  <span class="fu">geom_tile</span>(<span class="at">data =</span> kernel.points, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width, <span class="at">fill =</span> pred), <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width, <span class="at">colour =</span> Species, <span class="at">shape =</span> correct), <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>  <span class="fu">scale_colour_lancet</span>() <span class="sc">+</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a>  <span class="fu">scale_fill_lancet</span>() <span class="sc">+</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">legend.position =</span> <span class="st">'bottom'</span>, <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Sepal.Length'</span>, <span class="at">y =</span> <span class="st">'Sepal.Width'</span>, <span class="at">fill =</span> <span class="st">'Species'</span>, <span class="at">colour =</span> <span class="st">'Species'</span>, <span class="at">shape =</span> <span class="st">'Correct prediction?'</span>,</span>
-<span id="cb2-26"><a href="#cb2-26"></a>       <span class="at">title =</span> <span class="fu">sprintf</span>(<span class="st">'Overall Training Accuracy = %.2f %%'</span>, <span class="dv">100</span><span class="sc">*</span>(<span class="fu">sum</span>(plot_df<span class="sc">$</span>correct)<span class="sc">/</span><span class="fu">nrow</span>(plot_df))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section>
-<section>
-<section id="overfitting" class="title-slide slide level1">
-<h1>Overfitting</h1>
-
 </section>
-<section id="overfitting-illustrated" class="slide level2">
-<h2>Overfitting illustrated</h2>
-<p>Simple models can sometimes be better than complex models.</p>
-<div class="cell">
+<section id="example-usarrests-1" class="slide level2">
+<h2>Example: USArrests</h2>
 
-</div>
-</section>
-<section id="simple-model-on-training-set" class="slide level2">
-<h2>Simple model on training set</h2>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
-<section id="complex-model-on-training-set" class="slide level2">
-<h2>Complex model on training set</h2>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
-<section id="now-lets-create-some-testing-data" class="slide level2">
-<h2>Now let’s create some testing data</h2>
-<p>Look what happens when I set a different seed (nothing else changes) to construct a test set.</p>
-<div class="cell">
-
-</div>
-</section>
-<section id="simple-model-on-test-set" class="slide level2">
-<h2>Simple model on test set</h2>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
-<section id="complex-model-on-test-set" class="slide level2">
-<h2>Complex model on test set</h2>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
-<section id="back-to-iris" class="slide level2 smaller">
-<h2>Back to <code>iris</code></h2>
-<p><strong>SVM with Radial Kernel but <mark>tweaking parameters</mark>, namely <code>cost</code> and <code>gamma</code>:</strong></p>
-
-<img data-src="week05_slides_part2_files/figure-revealjs/unnamed-chunk-20-1.png" width="3000" class="r-stretch"></section>
-<section id="source-code-1" class="slide level2 smaller">
-<h2>Source Code</h2>
-<div class="callout callout-tip callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
+<img data-src="../figures/week08/PCA_USArrest.png" class="r-stretch"></section>
+<section id="youtube-recommendation" class="slide level2 smaller">
+<h2>📹 YouTube Recommendation</h2>
 <ul>
-<li>The only difference is that we added <code>gamma</code> and <code>cost</code>:</li>
+<li><a href="https://www.youtube.com/@3blue1brown">3Blue1Brown</a> is fantastic! Do check it out.</li>
+<li>The video below helps to visualize how linear matrix transformations work</li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(datasets)   <span class="co"># to load the iris  data</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(tidyverse)  <span class="co"># to use things like the pipe (%&gt;%), mutate and if_else</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">library</span>(ggsci)      <span class="co"># just for pretty colours! It enables functions scale_fill_lancet() and scale_colour_lancet().</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">library</span>(e1071)      <span class="co"># to load the SVM algorithm</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">data</span>(iris)          <span class="co"># load the dataset `iris`</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># Train the model! change the parameter `kernel`. It accepts 'linear', 'polynomial', 'radial' and 'sigmoid'</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>model <span class="ot">&lt;-</span> <span class="fu">svm</span>(Species <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Sepal.Width, <span class="at">data =</span> iris, <span class="at">kernel =</span> <span class="st">'radial'</span>, <span class="at">gamma =</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">2</span>, <span class="at">cost =</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">4</span>)</span>
-<span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co"># Generate all possible combinations of Sepal.Length and Sepal.Width</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>kernel.points <span class="ot">&lt;-</span> <span class="fu">crossing</span>(<span class="at">Sepal.Length =</span> <span class="fu">seq</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="fl">0.1</span>), <span class="at">Sepal.Width =</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="fl">0.1</span>)) <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(<span class="at">pred =</span> <span class="fu">predict</span>(model, .))</span>
-<span id="cb3-12"><a href="#cb3-12"></a></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co"># Create a dataframe just for plotting (with predictions)</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a>plot_df <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">pred=</span><span class="fu">predict</span>(model, iris), <span class="at">correct =</span> <span class="fu">if_else</span>(pred <span class="sc">==</span> Species, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb3-15"><a href="#cb3-15"></a></span>
-<span id="cb3-16"><a href="#cb3-16"></a>plot_df <span class="sc">%&gt;%</span>   </span>
-<span id="cb3-17"><a href="#cb3-17"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a>  <span class="fu">geom_tile</span>(<span class="at">data =</span> kernel.points, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width, <span class="at">fill =</span> pred), <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width, <span class="at">colour =</span> Species, <span class="at">shape =</span> correct), <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a>  <span class="fu">scale_colour_lancet</span>() <span class="sc">+</span></span>
-<span id="cb3-22"><a href="#cb3-22"></a>  <span class="fu">scale_fill_lancet</span>() <span class="sc">+</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">legend.position =</span> <span class="st">'bottom'</span>, <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb3-25"><a href="#cb3-25"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Sepal.Length'</span>, <span class="at">y =</span> <span class="st">'Sepal.Width'</span>, <span class="at">fill =</span> <span class="st">'Species'</span>, <span class="at">colour =</span> <span class="st">'Species'</span>, <span class="at">shape =</span> <span class="st">'Correct prediction?'</span>,</span>
-<span id="cb3-26"><a href="#cb3-26"></a>       <span class="at">title =</span> <span class="fu">sprintf</span>(<span class="st">'Overall Training Accuracy = %.2f %%'</span>, <span class="dv">100</span><span class="sc">*</span>(<span class="fu">sum</span>(plot_df<span class="sc">$</span>correct)<span class="sc">/</span><span class="fu">nrow</span>(plot_df))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section>
-<section>
-<section id="cross-validation-for-the-rescue" class="title-slide slide level1">
-<h1>Cross-validation* for the rescue!</h1>
-
-<aside><div>
-<p>* Yes, again!</p>
-</div></aside></section>
-<section id="example" class="slide level2 smaller">
-<h2>Example</h2>
-<ul>
-<li>A <mark>5-fold cross-validation</mark>:</li>
-</ul>
-<p><span></span></p>
-<div style="display:inline-block;width: 10%;height=7.5%;border-style: none;color:#212121;margin:1%;">
-<p><strong>Split 1:</strong></p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;border-width: 1px;color:#ffffff;border-color:#fefefe; margin:1%;text-align:center;background-color:#fb6341">
-<p>Test</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<p></p>
-<p><span></span></p>
-<div style="display:inline-block;width: 10%;height=7.5%;border-style: none;color:#212121;margin:1%;">
-<p><strong>Split 2:</strong></p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;border-width: 1px;color:#ffffff;border-color:#fefefe; margin:1%;text-align:center;background-color:#fb6341">
-<p>Test</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<p></p>
-<p><span></span></p>
-<div style="display:inline-block;width: 10%;height=7.5%;border-style: none;color:#212121;margin:1%;">
-<p><strong>Split 3:</strong></p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;border-width: 1px;color:#ffffff;border-color:#fefefe; margin:1%;text-align:center;background-color:#fb6341">
-<p>Test</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<p></p>
-<p><span></span></p>
-<div style="display:inline-block;width: 10%;height=7.5%;border-style: none;color:#212121;margin:1%;">
-<p><strong>Split 4:</strong></p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;border-width: 1px;color:#ffffff;border-color:#fefefe; margin:1%;text-align:center;background-color:#fb6341">
-<p>Test</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<p></p>
-<p><span></span></p>
-<div style="display:inline-block;width: 10%;height=7.5%;border-style: none;color:#212121;margin:1%;">
-<p><strong>Split 5:</strong></p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;color:#fdd0c6;border-width: 1px;border-color:#fefefe;margin:1%;background-color:#fdd0c6">
-<p>Train</p>
-</div>
-<div style="display:inline-block;width: 7.5%;height=7.5%;border-style: dotted;border-width: 1px;color:#ffffff;border-color:#fefefe; margin:1%;text-align:center;background-color:#fb6341">
-<p>Test</p>
-</div>
-<p></p>
-<div class="footer">
-<p>We experimented with k-fold CV in <a href="../weeks/week04/lecture.html#the-cross-validation-setup">🗓️ Week 04’s lecture/workshop</a></p>
-</div>
+<iframe width="860" height="480" src="https://www.youtube.com/embed/kYB8IZa5AuE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
 </section>
-<section id="recommendations" class="slide level2">
-<h2>Recommendations</h2>
+<section id="whats-next" class="slide level2">
+<h2>What’s Next</h2>
 <ul>
-<li>Readings - Decision Trees: <span class="citation" data-cites="james_introduction_2021">(<a href="#/thank-you" role="doc-biblioref" onclick="">James et al. 2021, sec. 8.1</a>)</span> (ignore section 8.2) - SVMs: <span class="citation" data-cites="james_introduction_2021">(<a href="#/thank-you" role="doc-biblioref" onclick="">James et al. 2021, chap. 9</a>)</span> - Read it all once just to retain <mark>main concepts</mark> - Focus your attention on the concepts on the margins of the book</li>
-<li>Practice the code that is contained in these slides! Several times! - There are many datasets in the <code>ISLR2</code> package (<a href="https://cran.rstudio.com/web/packages/ISLR2/ISLR2.pdf">link</a>) - Load any dataset and explore it with these new algorithms</li>
+<li>I will show you your Summative 02!</li>
 </ul>
-</section></section>
-<section id="tips-for-summative-problem-set-01" class="title-slide slide level1">
-<h1>Tips for Summative Problem Set 01</h1>
-
-</section>
-
-<section id="thank-you" class="title-slide slide level1 smaller scrollable">
-<h1>Thank you!</h1>
-<p>
-<script type="application/shiny-prerendered" data-context="server-extras">
-ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
-  quos <- rlang::enquos(...)
-  vars <- rlang::list2(...)
-  nm <- names(vars)
-  if (is.null(nm)) {
-    nm <- rep_len("", length(vars))
-  }
-  mapply(function(q, nm, val) {
-    # Infer name, if possible
-    if (nm == "") {
-      tryCatch({
-        nm <- rlang::as_name(q)
-      }, error = function(e) {
-        code <- paste(collapse = "\n", deparse(rlang::f_rhs(q)))
-        stop("ojs_define() could not create a name for the argument: ", code)
-      })
-    }
-    .session$output[[nm]] <- val
-    outputOptions(.session$output, nm, suspendWhenHidden = FALSE)
-    .session$sendCustomMessage("ojs-export", list(name = nm))
-    NULL
-  }, quos, nm, vars, SIMPLIFY = FALSE, USE.NAMES = FALSE)
-  invisible()
-}
-</script>
-</p>
-<!--html_preserve-->
-<script type="application/shiny-prerendered" data-context="dependencies">
-{"type":"list","attributes":{},"value":[]}
-</script>
-<!--/html_preserve-->
-<!--html_preserve-->
-
-<script type="application/shiny-prerendered" data-context="execution_dependencies">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","cellranger","class","cli","colorspace","compiler","crayon","datasets","DBI","dbplyr","digest","dplyr","e1071","ellipsis","evaluate","fansi","farver","fastmap","forcats","fs","gargle","generics","ggplot2","ggsci","glue","googledrive","googlesheets4","graphics","grDevices","grid","gtable","haven","hms","htmltools","httpuv","httr","jsonlite","knitr","labeling","later","lifecycle","lubridate","magrittr","methods","mime","modelr","munsell","pillar","pkgconfig","promises","proxy","purrr","R6","Rcpp","readr","readxl","renv","reprex","rlang","rmarkdown","rvest","scales","shiny","stats","stringi","stringr","tibble","tidyr","tidyselect","tidyverse","timechange","tools","tzdb","utf8","utils","vctrs","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.4.1","4.2.2","1.0.1","1.1.0","7.3-20","3.4.1","2.0-3","4.2.2","1.5.2","4.2.2","1.1.3","2.2.1","0.6.30","1.0.10","1.7-12","0.3.2","0.18","1.0.3","2.1.1","1.1.0","0.5.2","1.5.2","1.2.1","0.1.3","3.4.0","2.9","1.6.2","2.0.0","1.0.1","4.2.2","4.2.2","4.2.2","0.3.1","2.5.1","1.1.2","0.5.3","1.6.6","1.4.4","1.8.3","1.40","0.4.2","1.3.0","1.0.3","1.9.0","2.0.3","4.2.2","0.12","0.1.10","0.5.0","1.8.1","2.0.3","1.2.0.1","0.4-27","0.3.5","2.5.1","1.0.9","2.1.3","1.4.1","0.16.0","2.0.2","1.0.6","2.18","1.0.3","1.2.1","1.7.3","4.2.2","1.7.8","1.4.1","3.1.8","1.2.1","1.2.0","1.3.2","0.1.1","4.2.2","0.3.0","1.2.2","4.2.2","0.5.1","2.5.0","0.35","1.3.3","1.8-4","2.3.6"]}]}]}
-</script>
-<!--/html_preserve-->
 
 
 <img src="../figures/logos/LSE Data Science Institute.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p>DS202 - Data Science for Social Scientists <span class="emoji" data-emoji="robot">🤖</span> <span class="emoji" data-emoji="juggling_person">🤹</span></p>
 </div>
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-james_introduction_2021" class="csl-entry" role="doc-biblioentry">
-James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: With Applications in <span>R</span></em>. Second edition. Springer Texts in Statistics. New York NY: Springer. <a href="https://www.statlearning.com/">https://www.statlearning.com/</a>.
-</div>
-</div>
-</section>
-
-
+</section></section>
     </div>
   </div>
 

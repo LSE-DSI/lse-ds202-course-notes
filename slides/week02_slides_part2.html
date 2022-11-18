@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.251">
+  <meta name="generator" content="quarto-1.2.269">
 
   <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
   <meta name="dcterms.date" content="07 October 2022">
@@ -411,14 +411,23 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide">
+<section id="title-slide" class="quarto-title-block">
   <h1 class="title">🗓️ Week 02:<br>Multiple Linear Regression</h1>
   <p class="subtitle">DS202 Data Science for Social Scientists</p>
-  <p class="author">Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a></p>
-  <p class="institute"><a href="https://twitter.com/lsedatascience">@LSEDataScience</a></p>
-  <p class="date">07 October 2022</p>
-</section>
-<section id="TOC">
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a> 
+</div>
+        <p class="quarto-title-affiliation">
+            <a href="https://twitter.com/lsedatascience">@LSEDataScience</a>
+          </p>
+    </div>
+</div>
+
+  <p class="date">10/7/22</p>
+</section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">What we will cover today</h2>
 <ul>
@@ -430,7 +439,6 @@
 </ul>
 </nav>
 </section>
-
 <section>
 <section id="assessing-goodness-of-fit" class="title-slide slide level1">
 <h1>Assessing goodness-of-fit</h1>
@@ -502,9 +510,11 @@
 <ul>
 <li><strong>TV</strong> 📺</li>
 </ul>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>out <span class="ot">&lt;-</span> <span class="fu">capture.output</span>(<span class="fu">summary</span>(tv_model))</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">cat</span>(<span class="fu">paste</span>(out[<span class="dv">16</span><span class="sc">:</span><span class="dv">16</span>]), <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>Residual standard error: 3.259 on 198 degrees of freedom</code></pre>
 </div>
@@ -512,9 +522,11 @@
 <ul>
 <li><strong>Radio</strong> 📻</li>
 </ul>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>out <span class="ot">&lt;-</span> <span class="fu">capture.output</span>(<span class="fu">summary</span>(radio_model))</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="fu">cat</span>(<span class="fu">paste</span>(out[<span class="dv">16</span><span class="sc">:</span><span class="dv">16</span>]), <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>Residual standard error: 4.275 on 198 degrees of freedom</code></pre>
 </div>
@@ -523,9 +535,11 @@
 <ul>
 <li><strong>Newspaper</strong> 📰</li>
 </ul>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>out <span class="ot">&lt;-</span> <span class="fu">capture.output</span>(<span class="fu">summary</span>(newspaper_model))</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="fu">cat</span>(<span class="fu">paste</span>(out[<span class="dv">16</span><span class="sc">:</span><span class="dv">16</span>]), <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>Residual standard error: 5.092 on 198 degrees of freedom</code></pre>
 </div>
@@ -625,9 +639,11 @@ F = \frac{(TSS - RSS) / p}{RSS/(n - p - 1)} \sim F_{p, n-p-1}
 <ul>
 <li><strong>TV</strong> 📺</li>
 </ul>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>out <span class="ot">&lt;-</span> <span class="fu">capture.output</span>(<span class="fu">summary</span>(tv_model))</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="fu">cat</span>(<span class="fu">paste</span>(out[<span class="dv">17</span><span class="sc">:</span><span class="dv">18</span>]), <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>Multiple R-squared:  0.6119,    Adjusted R-squared:  0.6099 
 F-statistic: 312.1 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
@@ -636,9 +652,11 @@ F-statistic: 312.1 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ul>
 <li><strong>Radio</strong> 📻</li>
 </ul>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>out <span class="ot">&lt;-</span> <span class="fu">capture.output</span>(<span class="fu">summary</span>(radio_model))</span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="fu">cat</span>(<span class="fu">paste</span>(out[<span class="dv">17</span><span class="sc">:</span><span class="dv">18</span>]), <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>Multiple R-squared:  0.332, Adjusted R-squared:  0.3287 
 F-statistic: 98.42 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
@@ -648,9 +666,11 @@ F-statistic: 98.42 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ul>
 <li><strong>Newspaper</strong> 📰</li>
 </ul>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>out <span class="ot">&lt;-</span> <span class="fu">capture.output</span>(<span class="fu">summary</span>(newspaper_model))</span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="fu">cat</span>(<span class="fu">paste</span>(out[<span class="dv">17</span><span class="sc">:</span><span class="dv">18</span>]), <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>Multiple R-squared:  0.05212,   Adjusted R-squared:  0.04733 
 F-statistic: 10.89 on 1 and 198 DF,  p-value: 0.001148</code></pre>
@@ -689,9 +709,11 @@ F-statistic: 10.89 on 1 and 198 DF,  p-value: 0.001148</code></pre>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>TV</strong> 📺 + <strong>Radio</strong> 📻 + <strong>Newspaper</strong> 📰</p>
-<div class="cell" data-output-location="column-fragment">
+<div class="cell columns column-output-location">
+<div class="column">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>full_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales <span class="sc">~</span> ., <span class="at">data=</span>advertising)</span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="fu">summary</span>(full_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -715,16 +737,20 @@ Multiple R-squared:  0.8972,    Adjusted R-squared:  0.8956
 F-statistic: 570.3 on 3 and 196 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
+</div>
 </div><div class="column" style="width:50%;">
 <p><strong>Confidence Intervals</strong></p>
-<div class="cell" data-output-location="column-fragment">
+<div class="cell columns column-output-location">
+<div class="column">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">confint</span>(full_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>                  2.5 %     97.5 %
 (Intercept)  2.32376228 3.55401646
 TV           0.04301371 0.04851558
 radio        0.17154745 0.20551259
 newspaper   -0.01261595 0.01054097</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1052,12 +1078,15 @@ James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>A
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
       (function () {
-        function fireSlideChanged(previousSlide, currentSlide) {
-
-          // dispatch for htmlwidgets
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
           const event = window.document.createEvent("Event");
           event.initEvent("slideenter", true, true);
           window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
 
           // dispatch for shiny
           if (window.jQuery) {
@@ -1068,13 +1097,6 @@ James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>A
               window.jQuery(currentSlide).trigger("shown");
             }
           }
-        }
-
-        // hookup for reveal
-        if (window.Reveal) {
-          window.Reveal.addEventListener("slidechanged", function(event) {
-            fireSlideChanged(event.previousSlide, event.currentSlide);
-          });
         }
 
         // hookup for slidy
@@ -1126,7 +1148,24 @@ James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>A
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -1164,24 +1203,42 @@ James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>A
           return note.innerHTML;
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>

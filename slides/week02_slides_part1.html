@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.251">
+  <meta name="generator" content="quarto-1.2.269">
 
   <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
   <meta name="dcterms.date" content="07 October 2022">
@@ -411,14 +411,23 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide">
+<section id="title-slide" class="quarto-title-block">
   <h1 class="title">🗓️ Week 02:<br>Linear Regression</h1>
   <p class="subtitle">DS202 Data Science for Social Scientists</p>
-  <p class="author">Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a></p>
-  <p class="institute"><a href="https://twitter.com/lsedatascience">@LSEDataScience</a></p>
-  <p class="date">07 October 2022</p>
-</section>
-<section id="TOC">
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a> 
+</div>
+        <p class="quarto-title-affiliation">
+            <a href="https://twitter.com/lsedatascience">@LSEDataScience</a>
+          </p>
+    </div>
+</div>
+
+  <p class="date">10/7/22</p>
+</section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">What we will cover today</h2>
 <ul>
@@ -432,7 +441,6 @@
 </ul>
 </nav>
 </section>
-
 <section>
 <section id="what-is-linear-regression" class="title-slide slide level1">
 <h1>What is Linear Regression</h1>
@@ -897,12 +905,14 @@ n\hat{\beta}_0 &amp;= \sum_i^n{y_i} - \hat{\beta}_1\sum_i^n{ x_i} &amp; (\text{i
 <div class="columns">
 <div class="column" style="width:45%;">
 <p>A sample of the data:</p>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3"></a>file <span class="ot">=</span> <span class="st">"https://www.statlearning.com/s/Advertising.csv"</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a>advertising <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(file) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>)</span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="fu">head</span>(advertising, <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 11 × 4
       TV radio newspaper sales
@@ -922,29 +932,37 @@ n\hat{\beta}_0 &amp;= \sum_i^n{y_i} - \hat{\beta}_1\sum_i^n{ x_i} &amp; (\text{i
 </div>
 </div><div class="column" style="width:50%;margin-left:5%;">
 <p>How the data is spread:</p>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">summary</span>(advertising<span class="sc">$</span>TV)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    0.70   74.38  149.75  147.04  218.82  296.40 </code></pre>
 </div>
 </div>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">summary</span>(advertising<span class="sc">$</span>radio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   0.000   9.975  22.900  23.264  36.525  49.600 </code></pre>
 </div>
 </div>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">summary</span>(advertising<span class="sc">$</span>newspaper)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    0.30   12.75   25.75   30.55   45.10  114.00 </code></pre>
 </div>
 </div>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">summary</span>(advertising<span class="sc">$</span>sales)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    1.60   10.38   12.90   14.02   17.40   27.00 </code></pre>
@@ -1174,8 +1192,10 @@ n\hat{\beta}_0 &amp;= \sum_i^n{y_i} - \hat{\beta}_1\sum_i^n{ x_i} &amp; (\text{i
 <ul>
 <li><strong>TV</strong> 📺</li>
 </ul>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">confint</span>(tv_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>                 2.5 %     97.5 %
 (Intercept) 6.12971927 7.93546783
@@ -1185,8 +1205,10 @@ TV          0.04223072 0.05284256</code></pre>
 <ul>
 <li><strong>Radio</strong> 📻</li>
 </ul>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">confint</span>(radio_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>                2.5 %     97.5 %
 (Intercept) 8.2015885 10.4216877
@@ -1197,8 +1219,10 @@ radio       0.1622443  0.2427472</code></pre>
 <ul>
 <li><strong>Newspaper</strong> 📰</li>
 </ul>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">confint</span>(newspaper_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>                  2.5 %      97.5 %
 (Intercept) 11.12595560 13.57685854
@@ -1275,9 +1299,11 @@ t = \frac{\hat{\beta}_1 - 0}{\mathrm{SE}(\hat{\beta}_1)},
 <ul>
 <li><strong>TV</strong> 📺</li>
 </ul>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>out <span class="ot">&lt;-</span> <span class="fu">capture.output</span>(<span class="fu">summary</span>(tv_model))</span>
 <span id="cb23-2"><a href="#cb23-2"></a><span class="fu">cat</span>(<span class="fu">paste</span>(out[<span class="dv">9</span><span class="sc">:</span><span class="dv">15</span>]), <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
@@ -1290,9 +1316,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <ul>
 <li><strong>Radio</strong> 📻</li>
 </ul>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>out <span class="ot">&lt;-</span> <span class="fu">capture.output</span>(<span class="fu">summary</span>(radio_model))</span>
 <span id="cb25-2"><a href="#cb25-2"></a><span class="fu">cat</span>(<span class="fu">paste</span>(out[<span class="dv">9</span><span class="sc">:</span><span class="dv">15</span>]), <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
@@ -1306,9 +1334,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <ul>
 <li><strong>Newspaper</strong> 📰</li>
 </ul>
-<div class="cell" data-output-location="fragment">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>out <span class="ot">&lt;-</span> <span class="fu">capture.output</span>(<span class="fu">summary</span>(newspaper_model))</span>
 <span id="cb27-2"><a href="#cb27-2"></a><span class="fu">cat</span>(<span class="fu">paste</span>(out[<span class="dv">9</span><span class="sc">:</span><span class="dv">15</span>]), <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
@@ -1589,12 +1619,15 @@ Karafiath, Imre. 2009. <span>“Is There a Viable Alternative to Ordinary Least 
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
       (function () {
-        function fireSlideChanged(previousSlide, currentSlide) {
-
-          // dispatch for htmlwidgets
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
           const event = window.document.createEvent("Event");
           event.initEvent("slideenter", true, true);
           window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
 
           // dispatch for shiny
           if (window.jQuery) {
@@ -1605,13 +1638,6 @@ Karafiath, Imre. 2009. <span>“Is There a Viable Alternative to Ordinary Least 
               window.jQuery(currentSlide).trigger("shown");
             }
           }
-        }
-
-        // hookup for reveal
-        if (window.Reveal) {
-          window.Reveal.addEventListener("slidechanged", function(event) {
-            fireSlideChanged(event.previousSlide, event.currentSlide);
-          });
         }
 
         // hookup for slidy
@@ -1663,7 +1689,24 @@ Karafiath, Imre. 2009. <span>“Is There a Viable Alternative to Ordinary Least 
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -1701,24 +1744,42 @@ Karafiath, Imre. 2009. <span>“Is There a Viable Alternative to Ordinary Least 
           return note.innerHTML;
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>

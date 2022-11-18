@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -512,6 +512,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <p class="date">14 November 2022</p>
     </div>
   </div>
+  
     
   </div>
   
@@ -935,12 +936,12 @@ SV type: C-svc  (classification)
  parameter : cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.56283109277119 
+ Hyperparameter : sigma =  1.60803092091672 
 
-Number of Support Vectors : 432 
+Number of Support Vectors : 428 
 
-Objective Function Value : -387.4421 
-Training error : 0.169159 
+Objective Function Value : -387.1423 
+Training error : 0.170093 
 Probability model included. </code></pre>
 </div>
 </div>
@@ -970,10 +971,10 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 6 × 7
   Purchase LoyalCH PriceDiff .pred_class .pred_CH .pred_MM is_correct
   &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt;    &lt;dbl&gt; &lt;lgl&gt;     
-1 CH         0.5        0.24 CH             0.852    0.148 TRUE      
-2 CH         0.6       -0.06 CH             0.715    0.285 TRUE      
-3 CH         0.68       0.4  CH             0.873    0.127 TRUE      
-4 MM         0.4        0    MM             0.181    0.819 TRUE      
+1 CH         0.5        0.24 CH             0.855    0.145 TRUE      
+2 CH         0.6       -0.06 CH             0.712    0.288 TRUE      
+3 CH         0.68       0.4  CH             0.872    0.128 TRUE      
+4 MM         0.4        0    MM             0.171    0.829 TRUE      
 5 CH         0.957      0    CH             0.874    0.126 TRUE      
 6 CH         0.965      0.3  CH             0.872    0.128 TRUE      </code></pre>
 </div>
@@ -987,7 +988,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric   .estimator .estimate
   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-1 precision binary         0.858</code></pre>
+1 precision binary         0.856</code></pre>
 </div>
 </div>
 </section>
@@ -1013,7 +1014,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 f_meas  binary         0.862</code></pre>
+1 f_meas  binary         0.861</code></pre>
 </div>
 </div>
 </section>
@@ -1087,12 +1088,12 @@ SV type: eps-svr  (regression)
  parameter : epsilon = 0.1  cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.60488408230262 
+ Hyperparameter : sigma =  1.46881822935531 
 
-Number of Support Vectors : 1119 
+Number of Support Vectors : 1125 
 
-Objective Function Value : -762.9024 
-Training error : 0.932105 </code></pre>
+Objective Function Value : -764.3619 
+Training error : 0.936229 </code></pre>
 </div>
 </div>
 </section>
@@ -1108,12 +1109,12 @@ Training error : 0.932105 </code></pre>
 <pre><code># A tibble: 6 × 6
    Today Volume   Lag1   .pred .resid row_number
    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;int&gt;
-1  0.959   1.19  0.381 -0.0470  1.01           1
-2  1.03    1.30  0.959 -0.239   1.27           2
-3 -0.623   1.41  1.03  -0.249  -0.374          3
-4  0.614   1.28 -0.623  0.236   0.378          4
-5  0.213   1.21  0.614 -0.146   0.359          5
-6  1.39    1.35  0.213 -0.155   1.55           6</code></pre>
+1  0.959   1.19  0.381 -0.0391  0.998          1
+2  1.03    1.30  0.959 -0.225   1.26           2
+3 -0.623   1.41  1.03  -0.234  -0.389          3
+4  0.614   1.28 -0.623  0.226   0.388          4
+5  0.213   1.21  0.614 -0.142   0.355          5
+6  1.39    1.35  0.213 -0.163   1.55           6</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="dart">🎯</span> <strong>ACTION POINT</strong>: What do the different columns mean?</p>
@@ -1147,7 +1148,7 @@ MAE = \frac{\sum_{i=1}^{n}{|y_i - \hat{y}_i|}}{n}
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 mae     standard       0.792</code></pre>
+1 mae     standard       0.794</code></pre>
 </div>
 </div>
 </section>
@@ -1200,12 +1201,12 @@ RMSE = \frac{\sum_{i=1}^{n}{(y_i - \hat{y}_i)^2}}{n}
 <pre><code># A tibble: 6 × 3
   Volume  Lag1   .pred
    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1      0  -5   -0.0137
-2      0  -4.8 -0.0137
-3      0  -4.6 -0.0137
-4      0  -4.4 -0.0137
-5      0  -4.2 -0.0137
-6      0  -4   -0.0137</code></pre>
+1      0  -5   -0.0170
+2      0  -4.8 -0.0170
+3      0  -4.6 -0.0170
+4      0  -4.4 -0.0170
+5      0  -4.2 -0.0170
+6      0  -4   -0.0170</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="bulb">💡</span> Look at the entire dataset with <code>View(sim.data)</code></p>
@@ -1479,7 +1480,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -1501,7 +1504,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1537,24 +1557,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var filterRegex = new RegExp(/^(?:http:|https:)\/\/(?:lse-dsi\.github\.io\/|localhost)/);
@@ -1562,7 +1600,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
