@@ -1,0 +1,205 @@
+---
+subtitle: "PCA"
+title: "🗓️ Week 08:<br/> Principal Component Analysis"
+author: Dr. [Jon Cardoso-Silva](https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva)
+institute: '[\@LSEDataScience](https://twitter.com/lsedatascience)'
+date: 18 November 2022
+date-meta: 18 November 2022
+toc: true
+toc-depth: 1
+toc-title: "What we will cover today"
+center-title-slide: false
+from: markdown+emoji
+server: shiny
+format:
+  revealjs: 
+    pdf-separate-fragments: true
+    code-fold: false
+    theme: simple
+    slide-number: true
+    mouse-wheel: true
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    logo: /figures/logos/LSE Data Science Institute.png
+    css: /css/styles_slides.css
+    footer: 'DS202 - Data Science for Social Scientists :robot: :juggling_person:'
+---
+
+# Unsupervised Learning
+
+(Quick recap)
+
+```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)      # to use things like the pipe (%>%), mutate and if_else
+```
+
+## Comparison
+
+::: columns
+
+::: {.column .fragment .fade-in-then-semi-out style="width:45%; border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:0.5%;padding:1%;font-size:0.65em;"}
+### Supervised Learning
+
+- We want to predict $Y$
+
+```{r, warning=FALSE}
+#| echo: false
+df <- tibble(
+   X1=runif(9),
+   X2=runif(9)*10,
+   X3=runif(9)*1.2+0.5,
+   X4=runif(9)*0.01,
+   X5=runif(9)*5,
+   Y=sample(c("A", "B", "C"), 9, replace=TRUE)
+)
+
+knitr::kable(df, digits=2)
+```
+
+
+:::
+
+::: {.column .fragment .fade-in style="width:45%; border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:0.5%;padding:1%;font-size:0.65em;"}
+### Unsupervised Learning
+
+- We work with $X$ only
+
+```{r, warning=FALSE}
+#| echo: false
+df$Y <- "-"
+knitr::kable(df, digits=2)
+```
+
+:::
+
+:::
+
+## How is it different?
+
+::: columns
+
+::: {.column style="width:45%; border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:0.5%;padding:1%;font-size:0.65em;"}
+### Supervised Learning
+
+- We have historic $X$ and $Y$ data
+
+- Our main goal is to predict future values of $Y$
+
+- Algorithms fit the data and supervise themselves objectively (e.g.: residuals)
+
+- We can validate how well the model fits training data and how it generalises beyond that.
+
+:::
+
+::: {.column style="width:45%; border-style: dotted;border-width: 1px;border-color: \"#fefefe\"; margin-right:0.5%;padding:1%;font-size:0.65em;"}
+### <mark>Unsupervised Learning</mark>
+
+- We only have $X$ data
+
+- The main goal is to observe (dis-)similarities in $X$
+
+- There is no $Y$ variable to "supervise" how models should fit the data
+
+- Validation is a lot more subjective. There is no objective way to check our work.
+
+:::
+
+:::
+
+
+## When you have too many features...
+
+![](/figures/week08/example_ggpairs_plot.png)
+
+::: notes
+- It might be difficult to visualize and compare all features
+- Recap this plot
+
+:::
+
+## When you have too many features... {.smaller}
+
+... you might want to <mark>reduce the dimensionality</mark> of your dataset
+
+::: columns
+
+::: {.column .fragment style="width:30%; }
+
+::: {.callout-tip }
+
+What if I told you you can reduce these **10** features into just **2**? 
+:::
+
+:::
+
+::: {.column}
+
+:::
+
+:::
+
+# PCA
+
+Principal Component Analysis
+
+## What is PCA? {.smaller}
+
+::: incremental
+- Principal Component Analysis (PCA) recombines the matrix of features $\mathbf{X}$
+- If $\mathbf{X}$ has $n$ observations and $p$ features ($n \times p$), PCA will produce a new $n \times p$ matrix  $\mathbf{Z}$ 
+   - Instead of "features" or "predictors", we call these new columns <mark>principal components</mark>
+- You might be thinking: 🤔 "wait, didn't you just say that PCA would help to _reduce_ the number of features?!"
+- The thing is: because of the way this matrix is constructed, it is often enough to just use the first few columns of $\mathbf{Z}$.
+:::
+
+## The _first_ principal component {.smaller}
+
+- The first column of $\mathbf{Z}$ is a linear combination of the $p$ features of $\mathbf{X}$:
+
+$$
+Z_1 = \phi_{11}X_1 + \phi_{12}X2 + \ldots + \phi_{p1}X_p
+$$
+
+subject to:
+
+$$
+\sum_{j=1}^p \phi_{j1}^2 = 1
+$$
+
+::: {.fragment}
+- We refer to the elements $\phi_{11}, \phi_{21}, \ldots, \phi_{p1}$ as the <mark>loadings</mark> of the first principal component.
+- We can also refer to them collective, as the <mark>loading vector</mark> $\phi_1 = (\phi_{11}, \phi_{21}, \ldots, \phi_{p1})$.
+
+:::
+
+## Example {.smaller}
+
+```{r}
+df_sample <-
+   structure(list(X1 = c(0.339379989526745, 2.01913415414661, 3.55947644872003, 
+   1.29447250197838, 1.21455725249407, 3.71212556643237, 0.66147723290107, 
+   1.43609127750663, 4.66523844027343, 3.44710775554619, 2.1604308036102, 
+   2.97938501436407), X2 = c(1.02846258921993, 0.986842997069429, 
+   1.10950078259065, 1.01129632139944, 0.969397083223136, 0.915634566391856, 
+   0.845226086689993, 0.875792674453772, 0.916548462688552, 1.07651901492731, 
+   1.11014769226385, 0.971634443779406), X3 = c(3.57244513726225, 
+   2.94198832126928, 3.29990461126991, 2.46627138840222, 2.5973082857303, 
+   2.64687036295592, 2.50661722854251, 2.86961640074929, 3.2084370930372, 
+   3.04573160351345, 3.48293871685616, 3.24667972135103), X4 = c(3.89330044988438, 
+   5.01532126271146, 6.19145588662807, 3.73198652642596, 3.88976073629037, 
+   7.07457150278592, 3.43252795656736, 4.74193360504412, 8.76188853435751, 
+   6.020214314067, 5.23592630014314, 6.40256222259994), X5 = c(0.00229900690072775, 
+   0.0212204210643162, 0.000222089488586011, 0.0182428034576179, 
+   0.0652148039509181, 0.445443917547168, 9.11164272600023, 1.52988514916275, 
+   0.199244214479014, 0.00087998201248091, 0.000175343653558843, 
+   0.0246399964848319), X6 = c(0.105865197269639, 4.2398386568724, 
+   9.27501859499169, 1.6173143511762, 1.61708700673806, 17.9249376537972, 
+   0.722696390834413, 3.06730441246553, 28.2566230830346, 9.5214139805172, 
+   3.41104454032613, 9.67431138288462), X7 = c(0.0458364436560911, 
+   0.106219065766503, 0.0800429201773454, 0.167535245001132, 0.142545829288227, 
+   0.198061470324743, 0.150442956836269, 0.112247769993169, 0.112961864011663, 
+   0.105352926778536, 0.0592483993604849, 0.0868431168732136)), row.names = c(NA, 
+   -12L), class = c("tbl_df", "tbl", "data.frame"))
+knitr::kable(df_sample %>% head(10), digits=3)
+```

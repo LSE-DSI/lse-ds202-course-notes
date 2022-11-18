@@ -1,5 +1,28 @@
 ---
 title: "👨‍🏫 Week 08 - Lecture"
+date: 18 November 2022
+date-meta: 18 November 2022
 ---
 
-<mark class="todo"></mark>
+## Part I - Principal Component Analysis (45-50 min)
+
+
+Either click on the slide area below or click [here](/slides/week08_slides_part1.qmd) to view it in fullscreen.
+Use your keypad to navigate the slides. **For a PDF copy, check Moodle.**
+
+<div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
+<iframe src="/slides/week08_slides_part1.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;"></iframe>
+</div>
+
+## ☕ Coffee Break  (10 min)
+
+Use this time to chat, stretch, drink some coffee or just relax for a bit by yourself.
+
+## Part II - Principal Component Analysis (Applications) (45-50 min)
+
+Either click on the slide area below or click [here](/slides/week08_slides_part2.qmd) to view it in fullscreen.
+Use your keypad to navigate the slides. **For a PDF copy, check Moodle.**
+
+<div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
+<iframe src="/slides/week08_slides_part2.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;"></iframe>
+</div>
