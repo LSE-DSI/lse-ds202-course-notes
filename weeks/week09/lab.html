@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
+<meta name="dcterms.date" content="20 November 2022">
+
+<title>LSE DS202 2022/23 - 💻 Week 09 - Lab Roadmap (90 min)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../weeks/week09/checklist.html" rel="prev">
+<link href="../..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../css/custom_style.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">LSE DS202 2022/23</span>
+    </a>
+  </div>
+          <div class="quarto-toggle-container ms-auto">
+              <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+          </div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">💻 Week 09 - Lab Roadmap (90 min)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">🏠 Home</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../main/syllabus.html" class="sidebar-item-text sidebar-link">📓 Syllabus</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../main/communication.html" class="sidebar-item-text sidebar-link">📟 Communication</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../main/assessments.html" class="sidebar-item-text sidebar-link">✍️ Assessments</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../main/courserep.html" class="sidebar-item-text sidebar-link">🗳️ Course Rep</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../blog/main.html" class="sidebar-item-text sidebar-link">📚 Blog</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">🗓️ Weeks</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week01.html" class="sidebar-item-text sidebar-link">Week 01</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week01/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week01/prep.html" class="sidebar-item-text sidebar-link">📒 Prepare for next week’s lab</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week01/appendix.html" class="sidebar-item-text sidebar-link">🔖 Appendix</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week02.html" class="sidebar-item-text sidebar-link">Week 02</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week02/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week02/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week02/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week02/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week03.html" class="sidebar-item-text sidebar-link">Week 03</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week03/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week03/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week03/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week03/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week04.html" class="sidebar-item-text sidebar-link">Week 04</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week04/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week04/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week04/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week04/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week05.html" class="sidebar-item-text sidebar-link">Week 05</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week05/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week05/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week05/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week05/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week06.html" class="sidebar-item-text sidebar-link">Week 06</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week06/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week06/drop_in_jon.html" class="sidebar-item-text sidebar-link">💻 Drop-in Session 01</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week07.html" class="sidebar-item-text sidebar-link">Week 07</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week07/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week07/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week07/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week07/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week08.html" class="sidebar-item-text sidebar-link">Week 08</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week08/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week08/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week08/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week08/lab_advanced.html" class="sidebar-item-text sidebar-link">✨ Bonus Lab (Optional)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../weeks/week09.html" class="sidebar-item-text sidebar-link">Week 09</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week09/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week09/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week09/lab.html" class="sidebar-item-text sidebar-link active">💻 Lab roadmap</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="../../figures/logos/LSE Data Science Institute.png" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a>
+  <ul class="collapse">
+  <li><a href="#packages-you-will-need" id="toc-packages-you-will-need" class="nav-link" data-scroll-target="#packages-you-will-need">Packages you will need</a></li>
+  </ul></li>
+  <li><a href="#step-1-the-data-50-min" id="toc-step-1-the-data-50-min" class="nav-link" data-scroll-target="#step-1-the-data-50-min">Step 1: The Data (50 min)</a>
+  <ul class="collapse">
+  <li><a href="#step-1.1.-explore-the-data" id="toc-step-1.1.-explore-the-data" class="nav-link" data-scroll-target="#step-1.1.-explore-the-data">Step 1.1. Explore the data</a>
+  <ul class="collapse">
+  <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the Data</a></li>
+  <li><a href="#how-many-rows-and-columns-are-there-in-the-dataset" id="toc-how-many-rows-and-columns-are-there-in-the-dataset" class="nav-link" data-scroll-target="#how-many-rows-and-columns-are-there-in-the-dataset">How many rows and columns are there in the dataset?</a></li>
+  <li><a href="#what-are-the-columns" id="toc-what-are-the-columns" class="nav-link" data-scroll-target="#what-are-the-columns">What are the columns?</a></li>
+  <li><a href="#select-columns-of-interest" id="toc-select-columns-of-interest" class="nav-link" data-scroll-target="#select-columns-of-interest">Select columns of interest</a></li>
+  </ul></li>
+  <li><a href="#step-1.2.-lets-create-ggpairs-plots" id="toc-step-1.2.-lets-create-ggpairs-plots" class="nav-link" data-scroll-target="#step-1.2.-lets-create-ggpairs-plots">Step 1.2. Let’s create <code>ggpairs</code> plots</a></li>
+  <li><a href="#step-1.3.-plot-year_indep-x-year_colonized" id="toc-step-1.3.-plot-year_indep-x-year_colonized" class="nav-link" data-scroll-target="#step-1.3.-plot-year_indep-x-year_colonized">Step 1.3. Plot <code>year_indep</code> x <code>year_colonized</code></a></li>
+  <li><a href="#step-1.4.-find-your-own-clusters" id="toc-step-1.4.-find-your-own-clusters" class="nav-link" data-scroll-target="#step-1.4.-find-your-own-clusters">Step 1.4. Find your own clusters!</a></li>
+  </ul></li>
+  <li><a href="#step-2.-k-means-clustering-40-min" id="toc-step-2.-k-means-clustering-40-min" class="nav-link" data-scroll-target="#step-2.-k-means-clustering-40-min">Step 2. K-Means Clustering (40 min)</a>
+  <ul class="collapse">
+  <li><a href="#step-2.1.-initial-k-centroids" id="toc-step-2.1.-initial-k-centroids" class="nav-link" data-scroll-target="#step-2.1.-initial-k-centroids">Step 2.1. Initial k centroids</a></li>
+  <li><a href="#step-2.2-colour-data-points-according-to-their-clusters" id="toc-step-2.2-colour-data-points-according-to-their-clusters" class="nav-link" data-scroll-target="#step-2.2-colour-data-points-according-to-their-clusters">Step 2.2 Colour data points according to their clusters</a></li>
+  <li><a href="#step-2.3.-run-k-means-fully" id="toc-step-2.3.-run-k-means-fully" class="nav-link" data-scroll-target="#step-2.3.-run-k-means-fully">Step 2.3. Run K-Means fully</a></li>
+  <li><a href="#step-2.4-what-is-the-best-number-of-clusters" id="toc-step-2.4-what-is-the-best-number-of-clusters" class="nav-link" data-scroll-target="#step-2.4-what-is-the-best-number-of-clusters">Step 2.4 What is the best number of clusters?</a>
+  <ul class="collapse">
+  <li><a href="#create-an-elbow-plot" id="toc-create-an-elbow-plot" class="nav-link" data-scroll-target="#create-an-elbow-plot">Create an elbow plot</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#take-home-exercises" id="toc-take-home-exercises" class="nav-link" data-scroll-target="#take-home-exercises">🏠 Take-home exercises</a>
+  <ul class="collapse">
+  <li><a href="#q1-cluster-of-penguins" id="toc-q1-cluster-of-penguins" class="nav-link" data-scroll-target="#q1-cluster-of-penguins">Q1: Cluster of penguins</a></li>
+  <li><a href="#q2-elbow-plot" id="toc-q2-elbow-plot" class="nav-link" data-scroll-target="#q2-elbow-plot">Q2: Elbow plot</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">💻 Week 09 - Lab Roadmap (90 min)</h1>
+<p class="subtitle lead">DS202 - Data Science for Social Scientists</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Jon Cardoso-Silva </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">20 November 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="setup" class="level1">
+<h1>Setup</h1>
+<p><span class="emoji" data-emoji="bulb">💡</span> <em>Some of you have mentioned that your R version cannot handle tidymodels. We recommend you update R to version 4.2.0 or above.</em></p>
+<section id="packages-you-will-need" class="level2">
+<h2 class="anchored" data-anchor-id="packages-you-will-need">Packages you will need</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'tidyverse'</span>)   <span class="co"># to use things like the pipe (%&gt;%)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'tidymodels'</span>)  <span class="co"># for model tuning, cross-validation etc.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Vanity packages:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'GGally'</span>)      <span class="co"># for pretty correlation plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="step-1-the-data-50-min" class="level1">
+<h1>Step 1: The Data (50 min)</h1>
+<p>In this lab we will use the following dataset:</p>
+<blockquote class="blockquote">
+<p>Paine, Jack, 2019, “Replication Data for: Democratic Contradictions in European Settler Colonies”, <a href="https://doi.org/10.7910/DVN/LU8IDT" class="uri">https://doi.org/10.7910/DVN/LU8IDT</a>, Harvard Dataverse, V1, UNF:6:d6rzxrgBZEM6Sv5y7PIHpg== [fileUNF]</p>
+</blockquote>
+<p>From the academic article:</p>
+<blockquote class="blockquote">
+<p>Paine, Jack. <strong>“Democratic Contradictions in European Settler Colonies.”</strong> World Politics 71, no. 3 (2019): 542–85. <a href="https://doi.org/10.1017/S0043887119000029">doi:10.1017/S0043887119000029</a>.</p>
+</blockquote>
+<p>This panel data shows the evolution of the independence and democracy in European colonies from the year 1600 to 2000.</p>
+<section id="step-1.1.-explore-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="step-1.1.-explore-the-data">Step 1.1. Explore the data</h2>
+<section id="load-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-data">Load the Data</h3>
+<p>Download the dataset from Moodle and place it in the same directory of this RMarkdown file. Run the cell below to read it as a data frame:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"colonial_panel.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="how-many-rows-and-columns-are-there-in-the-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="how-many-rows-and-columns-are-there-in-the-dataset">How many rows and columns are there in the dataset?</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="what-are-the-columns" class="level3">
+<h3 class="anchored" data-anchor-id="what-are-the-columns">What are the columns?</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="select-columns-of-interest" class="level3">
+<h3 class="anchored" data-anchor-id="select-columns-of-interest">Select columns of interest</h3>
+<p>We will focus on a few columns and use <code>distinct()</code> to drop duplicated rows:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="ot">&lt;-</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cname, year_colonized, year_indep, first_elect_year) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(cname, year_colonized, year_indep, first_elect_year, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="emoji" data-emoji="bulb">💡</span>: The column <code>first_elect_year</code> represents the first elected representative body in British territories colonized before 1800.</p>
+<p><span class="emoji" data-emoji="dart">🎯</span>: <strong>ACTION POINT</strong>: Type <code>View(df_filtered)</code> in the R Console to visualize our data of interest. Locate the <strong>missing values</strong> present in this data frame. What do they mean? How would deal with those?</p>
+<blockquote class="blockquote">
+<p>your text here</p>
+</blockquote>
+</section>
+</section>
+<section id="step-1.2.-lets-create-ggpairs-plots" class="level2">
+<h2 class="anchored" data-anchor-id="step-1.2.-lets-create-ggpairs-plots">Step 1.2. Let’s create <code>ggpairs</code> plots</h2>
+<p><span class="emoji" data-emoji="handshake">🤝</span> <strong>WORKING TOGETHER.</strong> We will split the class into three groups. Each group will have to explain one row of the pairs plot.</p>
+<ul>
+<li>Group 01: Describe the first row</li>
+<li>Group 02: Describe the second row</li>
+<li>Group 03: Describe the third row</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(df_filtered <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>cname), <span class="at">progress=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>your text here</p>
+</blockquote>
+<p><span class="emoji" data-emoji="speaking_head">🗣️</span>: <strong>CLASSROOM DISCUSSIONS</strong>:</p>
+<ul>
+<li><p>What are our key takeaways of the plot above?</p></li>
+<li><p>When we run the code above, we see a few messages about <em>warnings</em>. What do they tell us?</p></li>
+</ul>
+<blockquote class="blockquote">
+<p>your text here</p>
+</blockquote>
+</section>
+<section id="step-1.3.-plot-year_indep-x-year_colonized" class="level2">
+<h2 class="anchored" data-anchor-id="step-1.3.-plot-year_indep-x-year_colonized">Step 1.3. Plot <code>year_indep</code> x <code>year_colonized</code></h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> df_filtered <span class="sc">%&gt;%</span> <span class="fu">select</span>(cname, year_indep, year_colonized) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> (</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x=</span>year_indep, <span class="at">y=</span>year_colonized)) </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>, <span class="at">size=</span><span class="dv">3</span>) </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Year of independence"</span>, <span class="at">y=</span><span class="st">"Year colonized"</span>, </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">title=</span><span class="st">"Do you spot any clusters?"</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Let’s highlight an area of the chart</strong></p>
+<p>We use the <a href="https://ggplot2.tidyverse.org/reference/annotate.html">function annotate</a> from ggplot and define the boundaries (xmin, xmax, ymin, ymax) on top of the plot we created above</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">alpha=</span><span class="fl">0.1</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">color=</span><span class="st">"red"</span>, <span class="at">fill=</span><span class="st">"red"</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">xmin=</span><span class="dv">1930</span>, <span class="at">xmax=</span><span class="dv">2000</span>, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">ymin=</span><span class="dv">1600</span>, <span class="at">ymax=</span><span class="dv">1700</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>In case you want to ZOOM IN <span class="emoji" data-emoji="mag_right">🔎</span>…</strong></p>
+<p>You can use <code>limits=...</code> of the <code>scale_x_continuous</code> and <code>scale_y_continuous</code> to control the limits of the X &amp; Y axis of the plot, plus <code>geom_text</code> to plot the name of the countries instead of the circles:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> (</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(df_filtered, <span class="fu">aes</span>(<span class="at">x=</span>year_indep, <span class="at">y=</span>year_colonized, <span class="at">label=</span>cname)) </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_label</span>(<span class="at">size=</span><span class="dv">3</span>) </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Year of independence"</span>, <span class="at">y=</span><span class="st">"Year colonized"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">1600</span>, <span class="dv">1680</span>, <span class="dv">10</span>), <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">1600</span>, <span class="dv">1680</span>))</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">1930</span>, <span class="dv">2000</span>, <span class="dv">5</span>), <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">1930</span>, <span class="dv">2000</span>))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">color=</span><span class="st">"red"</span>, <span class="at">alpha=</span><span class="dv">0</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">xmin=</span><span class="dv">1930</span>, <span class="at">xmax=</span><span class="dv">2000</span>, <span class="at">ymin=</span><span class="dv">1600</span>, <span class="at">ymax=</span><span class="dv">1680</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>g2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="emoji" data-emoji="dart">🎯</span>: <strong>ACTION POINT</strong>: Reading the plot. When was Bahamas colonized and when did it get independent?</p>
+<blockquote class="blockquote">
+<p>your text here</p>
+</blockquote>
+</section>
+<section id="step-1.4.-find-your-own-clusters" class="level2">
+<h2 class="anchored" data-anchor-id="step-1.4.-find-your-own-clusters">Step 1.4. Find your own clusters!</h2>
+<p><span class="emoji" data-emoji="handshake">🤝</span> <strong>WORKING TOGETHER.</strong> In groups or in pairs, you are now asked to manually cluster the data in the original graph <code>g</code>. Use what you just learned above about <code>annotate</code> and add <strong>several rectangles</strong> to the graph <code>g</code>. Give each rectangle a unique colour<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is just a template of three rectangles</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>(g </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"rect"</span>, <span class="at">alpha=</span><span class="fl">0.1</span>, <span class="at">fill=</span><span class="st">"..."</span>, <span class="at">colour=</span><span class="st">"..."</span>, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">xmin=</span>..., <span class="at">xmax=</span>..., <span class="at">ymin=</span>..., <span class="at">ymax=</span>...)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"rect"</span>, <span class="at">alpha=</span><span class="fl">0.1</span>, <span class="at">fill=</span><span class="st">"..."</span>, <span class="at">colour=</span><span class="st">"..."</span>, </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">xmin=</span>..., <span class="at">xmax=</span>..., <span class="at">ymin=</span>..., <span class="at">ymax=</span>...)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"rect"</span>, <span class="at">alpha=</span><span class="fl">0.1</span>, <span class="at">fill=</span><span class="st">"..."</span>, <span class="at">colour=</span><span class="st">"..."</span>, </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">xmin=</span>..., <span class="at">xmax=</span>..., <span class="at">ymin=</span>..., <span class="at">ymax=</span>...)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="emoji" data-emoji="speaking_head">🗣️</span>: <strong>CLASSROOM DISCUSSIONS</strong>:</p>
+<ul>
+<li><p>Compare how many rectangles other people used in their own plots.</p></li>
+<li><p>How are your rectangles/clusters different to others?</p></li>
+</ul>
+</section>
+</section>
+<section id="step-2.-k-means-clustering-40-min" class="level1">
+<h1>Step 2. K-Means Clustering (40 min)</h1>
+<p>As we learned in <a href="https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week07/lecture.html#part-ii---unsupervised-learning-clustering-45-50-min"><span class="emoji" data-emoji="spiral_calendar">🗓️</span> Week 07</a>, K-means is a technique that identifies clusters automatically. You have to inform how many clusters you want it to find (<span class="math inline">\(k\)</span> clusters) and then the algorithm will do the following:</p>
+<ol type="1">
+<li><p>Initialize <span class="math inline">\(k\)</span> random <strong>centroids</strong>, then proceed to to step 2 below.</p></li>
+<li><p>Go over each data point and identify the <em>nearest</em> centroid. All points associated with a centroid are said to belong to the same cluster. Proceed to step 3 below.</p></li>
+<li><p>Now, for each cluster, ignore the centroid and calculate the point that corresponds to the <strong>mean</strong> value of each dimension of the data. Think of it as the “centre of gravity” of the cluster. This point is now the new centroid of the cluster. Proceed to step 4 below.</p></li>
+<li><p>Go over each data point again, and identify the <em>nearest</em> centroid. If <strong>all</strong> data points still belong to the same cluster, stop. Otherwise, go back to step 3 above.</p></li>
+</ol>
+<p><em>The algorithm can also stop if you loop over Steps 3 and 4 too many times. There is a parameter that controls the maximum number of iterations called <strong>iter.max</strong></em>.</p>
+<p>It is easy to visualize the trajectory of the centroids If we only have two dimensions. This is what we will do here.</p>
+<section id="step-2.1.-initial-k-centroids" class="level2">
+<h2 class="anchored" data-anchor-id="step-2.1.-initial-k-centroids">Step 2.1. Initial k centroids</h2>
+<p>Let’s run the k-means but only for <strong>ONE</strong> iteration. That is, after k-means adjusted the random centroids for the first time.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Say we believe there are three clusters</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(plot_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(year_indep, year_colonized), </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">centers=</span>k, </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">iter.max=</span><span class="dv">1</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="emoji" data-emoji="dart">🎯</span>: <strong>ACTION POINT</strong>: Run the chunk of code below. What do you think each row represents?</p>
+<blockquote class="blockquote">
+<p>your text here</p>
+</blockquote>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>model<span class="sc">$</span>centers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Visualize the centroids</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_centroids <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(model<span class="sc">$</span>centers)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_centroids<span class="sc">$</span>cluster_id <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(df_centroids)))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> (</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x=</span>year_indep, <span class="at">y=</span>year_colonized))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>cname), <span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">size=</span><span class="dv">3</span>) </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data=</span>df_centroids, <span class="fu">aes</span>(<span class="at">color=</span>cluster_id), <span class="at">size=</span><span class="dv">4</span>, <span class="at">shape=</span><span class="st">"X"</span>) </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Year of independence"</span>, <span class="at">y=</span><span class="st">"Year colonized"</span>, </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">title=</span><span class="st">"Visualize the k initial centroids"</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>g3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="emoji" data-emoji="speaking_head">🗣️</span>: <strong>CLASSROOM DISCUSSIONS</strong>:</p>
+<ul>
+<li>Locate India, Cuba and Egypt in the plot above. Considering the centroids, which clusters do you expect will belong to?</li>
+</ul>
+</section>
+<section id="step-2.2-colour-data-points-according-to-their-clusters" class="level2">
+<h2 class="anchored" data-anchor-id="step-2.2-colour-data-points-according-to-their-clusters">Step 2.2 Colour data points according to their clusters</h2>
+<p>Using tidymodels, we can include the clusters in our data frame by augmenting it:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">augment</span>(model, plot_df)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(plot_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And we can use the new column <code>.cluster</code> to colour the dots:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>g4 <span class="ot">&lt;-</span> (</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x=</span>year_indep, <span class="at">y=</span>year_colonized, <span class="at">colour=</span>.cluster)) </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.1</span>, <span class="at">size=</span><span class="dv">3</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Or use geom_text</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#+ geom_text(aes(label=cname), alpha=0.25, size=3) </span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data=</span>df_centroids, <span class="fu">aes</span>(<span class="at">color=</span>cluster_id), <span class="at">size=</span><span class="dv">4</span>, <span class="at">shape=</span><span class="st">"X"</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Year of independence"</span>, <span class="at">y=</span><span class="st">"Year colonized"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>g4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-2.3.-run-k-means-fully" class="level2">
+<h2 class="anchored" data-anchor-id="step-2.3.-run-k-means-fully">Step 2.3. Run K-Means fully</h2>
+<p>Now, let’s allow k-means to run fully, not just for one single iteration.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>model_full <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(plot_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(year_indep, year_colonized), </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">centers=</span>k, <span class="at">trace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">augment</span>(model_full, plot_df)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>df_centroids <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(model_full<span class="sc">$</span>centers)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>df_centroids<span class="sc">$</span>cluster_id <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(df_centroids)))</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>g5 <span class="ot">&lt;-</span> (</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x=</span>year_indep, <span class="at">y=</span>year_colonized, <span class="at">colour=</span>.cluster)) </span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.1</span>, <span class="at">size=</span><span class="dv">3</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Or use geom_text</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#+ geom_text(aes(label=cname), alpha=0.25, size=3) </span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data=</span>df_centroids, <span class="fu">aes</span>(<span class="at">color=</span>cluster_id), <span class="at">size=</span><span class="dv">4</span>, <span class="at">shape=</span><span class="st">"X"</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Year of independence"</span>, <span class="at">y=</span><span class="st">"Year colonized"</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>g5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="emoji" data-emoji="dart">🎯</span>: <strong>ACTION POINT</strong>: We set the <code>trace=TRUE</code> parameter to see what the algorithm is doing. That is why, in addition to the plot, you also got a few messages printed out. What do you think this printed messages tell us?</p>
+<blockquote class="blockquote">
+<p>your text here</p>
+</blockquote>
+<p><strong>Now, look at the centroids of this last model</strong>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model_full<span class="sc">$</span>centers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="emoji" data-emoji="dart">🎯</span>: <strong>ACTION POINT</strong>: Compare the centroids above to the ones you got in Step 2.1. How are they similar/different?</p>
+<blockquote class="blockquote">
+<p>your text here</p>
+</blockquote>
+</section>
+<section id="step-2.4-what-is-the-best-number-of-clusters" class="level2">
+<h2 class="anchored" data-anchor-id="step-2.4-what-is-the-best-number-of-clusters">Step 2.4 What is the best number of clusters?</h2>
+<p>Is it k=3, k=10, k=20??? Unfortunately, there is no absolute final objective solution to this question. It usually depends on what you want to do with this data. Do you <em>want</em> to investigate and compare the characteristics of a large number of groups or just a few?</p>
+<p>But here we will show you one possible strategy to automate the process of finding an “optimal” number of clusters based on the total <strong>within-cluster sum of squares</strong>, which we are going to refer to as <code>$tot.withinss</code>.</p>
+<p>(<em>Your class teacher might need to use the blackboard here</em>)</p>
+<p><strong>How?</strong></p>
+<p>The code below is a bit tricky so let’s go through it step-by-step.</p>
+<ul>
+<li>We subset the data using <code>select</code> and we get rid of the NAs</li>
+<li>We then create a <strong>list column</strong> called <code>data</code>.
+<ul>
+<li>Tibbles are different from data frames as you can nest an entire object (whether a data frame, model object etc.) into a single cell.</li>
+<li>While it may seem like an odd thing to do, look at the next step.</li>
+</ul></li>
+<li>Remember <code>crossing</code>? We use <code>crossing</code> to come up with a new tibble of all possible combinations between <code>n.clust</code> which goes from 1 to 20 and <code>data</code>.</li>
+<li>Because of the above, we now have the ability to run 20 k-means clustering models using one tibble, and we did not need to write a single for loop!</li>
+<li>Because we are looping over a list column, we use different varieties of the <code>map</code> function (which is part of the <code>tidyverse</code> ecosystem).
+<ul>
+<li>The map which applies a function over the list column, and returns back an object of the same length.</li>
+<li>We use <code>map2</code> as we want to loop over <code>data</code> and <code>n.clust</code>.</li>
+</ul></li>
+<li>The <code>kmeans</code> function takes two parameters to run, the first of which specifies the data, while the second specifies the number of clusters or <code>centers</code> to include in the model.</li>
+<li>Finally, we want to find the total within-cluster sum of squares <code>tot.withinss</code>. - We do this by using <code>map_dbl</code> on the <code>k.means</code> list column which returns a vector of doubles.</li>
+<li>To access <code>tot.withinss</code>, we use <code>glance</code> on <code>k.means</code> and include <code>$tot.withinss</code>.</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>km.models <span class="ot">&lt;-</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  df_filtered <span class="sc">%&gt;%</span> <span class="fu">select</span>(year_colonized, year_indep) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">crossing</span>(<span class="at">n.clust =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">k.means =</span> <span class="fu">map2</span>(<span class="at">.x =</span> data,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">.y =</span> n.clust, </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">.f =</span> <span class="sc">~</span> <span class="fu">kmeans</span>(.x, <span class="at">centers =</span> .y)),</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">tot.withinss =</span> <span class="fu">map_dbl</span>(<span class="at">.x =</span> k.means, <span class="at">.f =</span> <span class="sc">~</span> <span class="fu">glance</span>(.x)<span class="sc">$</span>tot.withinss)) </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>km.models</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="create-an-elbow-plot" class="level3">
+<h3 class="anchored" data-anchor-id="create-an-elbow-plot">Create an elbow plot</h3>
+<p>Let’s create an <a href="https://www.wikiwand.com/en/Elbow_method_(clustering)">elbow plot</a> to evaluate what number of clusters is most appropriate.</p>
+<p>Generally, we are looking to identify significant elbow points beyond which no significant decreases in TWCSS occur.</p>
+<p>For our data, k=6 or k=10 are probably among the most appropriate. <em>But do you see how that is a little bit subjective?</em></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>km.models <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n.clust, tot.withinss)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="st">'dashed'</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> comma) <span class="sc">+</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Number of clusters'</span>, <span class="at">y =</span> <span class="st">'Total within cluster sum of squares'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="take-home-exercises" class="level1">
+<h1>🏠 Take-home exercises</h1>
+<section id="q1-cluster-of-penguins" class="level2">
+<h2 class="anchored" data-anchor-id="q1-cluster-of-penguins">Q1: Cluster of penguins</h2>
+<p>Load the <code>palmerpenguins</code> dataset and filter the data to omit missing values. Ignoring the columns <code>species</code> and <code>year</code>, run k-means on this data with <span class="math inline">\(k=3\)</span>.</p>
+<p>How do the clusters identified by k-means compare to the <code>species</code> of penguins?</p>
+</section>
+<section id="q2-elbow-plot" class="level2">
+<h2 class="anchored" data-anchor-id="q2-elbow-plot">Q2: Elbow plot</h2>
+<p>Run k-means on the same data, but this time vary k from <span class="math inline">\(\{1, 2, \ldots, 19, 20\}\)</span> and generate an elbow plot. According to the plot, what is a “good” number of clusters, k.</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Take a look at the following website for more creative colours: https://www.color-hex.com/<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp(/^(?:http:|https:)\/\/(?:lse-dsi\.github\.io\/|localhost)/);
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../weeks/week09/checklist.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">✅ Checklist</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, LSE Data Science Institute</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:DSI.Admin@lse.ac.uk">
+      <i class="bi bi-mailbox" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/lsedatascience">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
