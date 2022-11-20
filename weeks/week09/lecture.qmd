@@ -1,0 +1,20 @@
+---
+title: "👨‍🏫 Week 09 - Lecture"
+date: 25 November 2022
+date-meta: 25 November 2022
+---
+
+This week, Prof. Ken Benoit will deliver a talk about **Applications: Text as Data & Topic Modelling**. 
+
+When and where: 25 November 2022 from 2 p.m. to 4 p.m. at NAB.LG.08.
+
+::: {.panel-tabset}
+## Speaker
+![](/figures/people/ken.jpg){fig-align="left" fig-alt="Photo of Professor Ken Benoit" width="5em"}  
+**Prof. [Ken Benoit](https://kenbenoit.net/)** <br/>
+_Director of the Data Science Institute_ <br/>
+_Professor of Computational Social Science in the Department of Methodology_
+[LSE Data Science Institute](https://lse.ac.uk/dsi)</a><br/>
+
+
+:::

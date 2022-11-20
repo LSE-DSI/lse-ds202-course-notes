@@ -494,18 +494,18 @@ plot_df %>% rmse(Today, .pred)
 
 > your text goes here
 
-
 ## Step 3.3 Visualize the SVM decision space (Regression)
 
 Now, let's **replicate** what we did in Step 1.3 only this time for the `Smarket` data and using predictions from the `smarket_tidymodel`.
 
-We start by summarising the data. We want to find out the minimum and maximal values that the columns `Volumn` and `Lag1` reach: 
+We start by summarising the data. We want to find out the minimum and maximal values that the columns `Volumn` and `Lag1` reach:
 
 ```{r}
 filtered_data %>% 
     select(c(Volume, Lag1)) %>%
     summary()
 ```
+
 Then, we create a simulated dataset with combinations of the `Volume` and `Lag1` columns:
 
 ```{r}
@@ -515,14 +515,14 @@ sim.data <-
 sim.data <- augment(smarket_tidymodel, sim.data)
 head(sim.data)
 ```
-:bulb: Look at the entire dataset with `View(sim.data)` 
+
+:bulb: Look at the entire dataset with `View(sim.data)`
 
 Looking back at the plot of residuals, let's flag the worst predictions, those with an absolute residual above `2`.
 
 ```{r}
 plot_df$residual_above_2 <- (plot_df$.resid) > 2
 ```
-
 
 ```{r}
 g <- (
@@ -550,14 +550,11 @@ g <- (
 g
 ```
 
-:bulb: The plot above might not be as easy to understand as the one for classification. 
+:bulb: The plot above might not be as easy to understand as the one for classification.
 
 ## Step 3.3: Understand the parameters of `svm_rbf`
 
-The `svm_rbf` function has three parameters you can tune: 
-- `cost`
-- `rbf_sigma`
-- `margin`
+The `svm_rbf` function has three parameters you can tune: - `cost` - `rbf_sigma` - `margin`
 
 :dart: **ACTION POINT**: Train your abilities to interact with code documentation. Type `?svm_rbf` and hit ENTER. What do these parameters represent?
 
@@ -565,10 +562,9 @@ The `svm_rbf` function has three parameters you can tune:
 
 > your text goes here
 
-
 ## Step 3.4: Tweak the parameters
 
-:handshake: **WORKING TOGETHER** In pairs, change the values of `cost`, `rbf_sigma` and `margin` in the chunk below and run the other two chunks of code to look at the distribution of residuals and summary metrics. 
+:handshake: **WORKING TOGETHER** In pairs, change the values of `cost`, `rbf_sigma` and `margin` in the chunk below and run the other two chunks of code to look at the distribution of residuals and summary metrics.
 
 Discuss your findings. Can you find any combination of values that makes the model better? Or any that makes it worse?
 
@@ -580,6 +576,7 @@ alternative_smarket_model <-
 
 alternative_smarket_model
 ```
+
 **Residuals plot**
 
 ```{r}
@@ -606,19 +603,17 @@ plot_df %>% summarise(mae=mae_vec(Today, .pred),
                       rmse=rmse_vec(Today, .pred))
 ```
 
-
 ### :house: **Take-home exercise Q4:**
 
-- Retrain the model in Step 3 for `Smarket`, this time using `svm_linear` instead of `svm_rbf`. 
-- Reuse the code in Step 3.4 to replicate the plots and metric calculations for this new model.
-- Which model fits the target variable (`Today`) better?
+-   Retrain the model in Step 3 for `Smarket`, this time using `svm_linear` instead of `svm_rbf`.
+-   Reuse the code in Step 3.4 to replicate the plots and metric calculations for this new model.
+-   Which model fits the target variable (`Today`) better?
 
 ```{r}
 # your code goes here
 ```
 
 > your text goes here
-
 
 ## Want to take it to next level? (Optional)
 
@@ -629,5 +624,3 @@ Although optional, we think it might be a great way to solidify your knowledge o
 ## Final step:
 
 *You don't need to submit this file but practice **knitting this RMarkdown as HTML**. Received any error? Reach out to your colleagues either on Slack or on your student-led Whatsapp group chat.*
-
-

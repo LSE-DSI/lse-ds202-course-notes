@@ -166,10 +166,14 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <!-- WEEK 09 -->
     <tbody>
         <tr class="even">
-            <td rowspan=2></td>
-            <td rowspan=2>🗓️ <a href="">W09</a></td>
+            <td rowspan=3></td>
+            <td rowspan=3>🗓️ <a href="">W09</a></td>
             <td style="font-weight:bold;">Lecture</td>
-            <td>Applications: Predictive Modelling on Tabular Data</td>
+            <td>Applications: Text as Data & Topic Modelling </td>
+        </tr>
+        <tr class="even">
+            <td style="font-weight:bold">Guest:</td>
+            <td>Prof. [Ken Benoit](https://kenbenoit.net/)</td>
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Lab</td>
@@ -183,11 +187,11 @@ Click on each Week's link for more information (slides, lab instructions, recomm
             <td rowspan=3></td>
             <td rowspan=3>🗓️ <a href="">W10</a></td>
             <td style="font-weight:bold;">Lecture</td>
-            <td>Applications: Text as Data & Topic Modelling (with guest speakers)</td>
+            <td>Applications: Predictive Modelling on Tabular Data</td>
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Lab</td>
-            <td>We will explore unsupervised models using a couple of text datasets</td>
+            <td>Unsupervised Learning: Principal Component Analysis [@james_introduction_2021, chapter 12]</td>
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Summative</td>
@@ -205,14 +209,18 @@ Click on each Week's link for more information (slides, lab instructions, recomm
     <!-- WEEK 11 -->
     <tbody>
         <tr class="even">
-            <td rowspan=2></td>
-            <td rowspan=2>🗓️ <a href="">W11</a></td>
+            <td rowspan=3></td>
+            <td rowspan=3>🗓️ <a href="">W11</a></td>
             <td style="font-weight:bold;">Lecture</td>
-            <td>Applications: Social Media Data (with guest speakers)</td>
+            <td>Applications: Social Media Data</td>
+        </tr>
+        <tr class="even">
+            <td style="font-weight:bold">Guest:</td>
+            <td>[Sara Luxmoore](https://www.linkedin.com/in/sara-luxmoore/), MSc in Applied Social Data Science (LSE)</td>
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Lab</td>
-            <td>We will create ML models using the data provided by [@sumner_predicting_2012] <br/>followed by a discussion on explainability and potential ethical issues</td>
+            <td>We will explore unsupervised models using a couple of text datasets</td>
         </tr>
     </tbody>
 
