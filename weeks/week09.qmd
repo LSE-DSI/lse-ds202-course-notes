@@ -6,7 +6,7 @@ date-meta: 21 November 2022
 
 Welcome to Week 09 of DS202!
 
-This week, Prof. [Ken Benoit](https://kenbenoit.net/) is confirmed to come and deliver a talk about applications of Machine Learning techniques to text data. You will have the chance to practice with text data in the Week 11 labs.
+This week, Prof. [Ken Benoit](https://kenbenoit.net/) is confirmed to come and deliver a talk **Applications: Text as Data & Topic Modelling**, about applications of Machine Learning techniques to text data. You will have the chance to practice with text data in the Week 11 labs.
 
 This talk was initially planned for Week 10 but it got moved to Week 09 due to a calendar clash. Syllabus page have been updated to reflect this change.
 

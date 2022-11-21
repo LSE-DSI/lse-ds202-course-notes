@@ -5,11 +5,17 @@ subtitle: "Data Science for Social Scientists"
 
 ::: callout-important
 
-**Pages recently updated:**
+**Recently updated pages:**
+
+
+(21/11/2022)
+
+- [✅ Week 09 - Checklist](/weeks/week09/checklist.qmd)
+- [👨‍🏫 Week 09 - Lecture](/weeks/week09/lecture.qmd)
 
 (18/11/2022)
-- [✍️ Summmative Problem Set (02) | W08-W10](/assessments/summative2.qmd)
 
+- [✍️ Summmative Problem Set (02) | W08-W10](/assessments/summative2.qmd)
 
 :::
 

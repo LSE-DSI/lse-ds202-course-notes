@@ -2,7 +2,102 @@
 title: "✅ Week 09 - Checklist"
 date: 21 November 2022
 date-meta: 21 November 2022
+author: Dr. Jon Cardoso-Silva
 from: markdown+emoji
 ---
 
-<mark class="todo"></mark>
+::: {.callout-important collapse="false"}
+🗣️ Your feedback: you can access a summary of the survey we ran about the Summative 01 on [this link](https://forms.office.com/Pages/AnalysisPage.aspx?AnalyzerToken=hPPKFBKF0FlWC0zOghQd7KnfnUbBMoYP&id=_epnVXfnpUKRu5RA_UO4k7yfsfIoG6xNvKQTFbsgTQVUQ0JFTlBWRzY1UlNSUDBBMUdZSE9CWksyNC4u).
+
+Thanks for sharing your thoughts, worries and ideas. I took care to consider your concerns prior to the release of the Summative 02.
+:::
+
+**Comprehension Check**
+
+By the end of the week, you should be able to:
+
+- [ ] Explain the difference between supervised vs unsupervised learning
+- [ ] Explain how K-Means works
+- [ ] Run K-means clustering on a dataset
+- [ ] Produce an "elbow plot", and explain how some people use it to justify the choice of the number of clusters for k-means
+
+**Time Management Tips**
+
+Here is a suggestion of how to program your week in relation to this course:
+
+<details><summary>If your lab is on Monday
+</summary>
+
+## If your lab is on Monday:
+
+**On Monday**:
+
+- 📥 **Download**: Before or once you arrive at the classroom, download the [DS202_2022MT_w09_lab_rmark.Rmd](https://moodle.lse.ac.uk/mod/folder/view.php?id=1139686) file that contains the lab roadmap (under **🗓️ Week 09** section on Moodle). Or browse the webpage version [here](/weeks/week09/lab.html).
+
+- 💻 **Participate**: Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Work with others whenever possible and take notes of theoretical concepts or practical coding skill you might want to revisit later in the week.
+
+- 📙 **Read**: Find some time to read [@james_introduction_2021, section 12.4.1] and reinforce your theoretical understanding of _K-Means Clustering_; it is a very short section.
+    - As you go through the text, try to connect what you read to the things you heard about in the W05 lecture or the examples you explored in the lab. 
+
+**Tuesday to Thursday**
+
+- ✍️ **Solve**: the Summative Problem Set 02. 
+
+    - The deadline is **Tuesday, 29 November 2022, 11:59 PM** but better not to leave it to the last minute!
+
+    - If you finish sooner, you will have more time to ask questions and you will have more _"mental bandwidth"_ to learn about [text mining applications](/weeks/week09.qmd) later this week. 
+
+- 📟 **Study group**: Talk to your colleagues on Slack or whatsapp and try to join or organize a study group to work on the summative problem set together.
+
+**Friday**
+
+- 🏫 **Attend the lecture**: This week, Prof. [Ken Benoit](https://kenbenoit.net/) is confirmed to come and deliver a talk **Applications: Text as Data & Topic Modelling**.
+
+- 🏠 **Solve the take-home exercises**: There are four take-home exercises in the W09 lab.
+
+**Any time**
+
+- 📟 You know the drill. Share your questions on the `#week09` channel in our Slack group.
+
+- 👂Want to talk to someone else about this course? Try reaching out to your course representatives, `@Zhang Ruishan (Yoyo)` or `@Rachitha Raghuram`.
+
+</details>
+
+<details>
+
+<summary>If your lab is on Friday
+</summary>
+
+## If your lab is on Friday:
+
+**Monday - Thursday**:
+
+- ✍️ **Solve**: the Summative Problem Set 02.
+
+    - The deadline is **Tuesday, 29 November 2022, 11:59 PM** but better not to leave it to the last minute!
+
+    - If you finish sooner, you will have more time to ask questions and you will have more _"mental bandwidth"_ to learn about [text mining applications](/weeks/week09.qmd) later this week. 
+
+- 📟 **Study group**: Talk to your colleagues on Slack or whatsapp and try to join or organize a study group to work on the summative problem set together.
+
+
+**Friday**
+
+- 📥 **Download**: Before or once you arrive at the classroom, download the [DS202_2022MT_w09_lab_rmark.Rmd](https://moodle.lse.ac.uk/mod/folder/view.php?id=1139686) file that contains the lab roadmap (under **🗓️ Week 09** section on Moodle). Or browse the webpage version [here](/weeks/week09/lab.html).
+
+- 💻 **Participate**: Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Work with others whenever possible and take notes of theoretical concepts or practical coding skill you might want to revisit later in the week.
+
+- 🏫 **Attend the lecture**: This week, Prof. [Ken Benoit](https://kenbenoit.net/) is confirmed to come and deliver a talk **Applications: Text as Data & Topic Modelling**.
+
+- 📙 **Read**: Find some time to read [@james_introduction_2021, section 12.4.1] and reinforce your theoretical understanding of _K-Means Clustering_; it is a very short section.
+    - As you go through the text, try to connect what you read to the things you heard about in the W05 lecture or the examples you explored in the lab. 
+
+- 🏠 **Solve the take-home exercises**: There are four take-home exercises in the W09 lab.
+
+**Any time**
+
+- 📟 You know the drill. Share your questions on the `#week08` channel in our Slack group.
+
+- 👂Want to talk to someone else about this course? Try reaching out to your course representatives, `@Zhang Ruishan (Yoyo)` or `@Rachitha Raghuram`.
+
+</details>
