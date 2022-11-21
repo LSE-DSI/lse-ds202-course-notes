@@ -3,6 +3,7 @@ title: "💻 Week 09 - Lab Roadmap (90 min)"
 date: 20 November 2022
 date-meta: 20 November 2022
 output: html_document
+from: markdown+emoji
 author: Dr. Jon Cardoso-Silva
 ---
 
@@ -194,7 +195,7 @@ Let's run the k-means but only for **ONE** iteration. That is, after k-means adj
 
 ```{r warning=FALSE}
 # Say we believe there are three clusters
-k <- 10
+k <- 4
 set.seed(10)
 
 model <- kmeans(plot_df %>% select(year_indep, year_colonized), 
@@ -220,7 +221,7 @@ df_centroids$cluster_id <- factor(seq(1, nrow(df_centroids)))
 g3 <- (
   ggplot(plot_df, aes(x=year_indep, y=year_colonized))
   
-  + geom_text(aes(label=cname), alpha=0.2, size=3) 
+  + geom_point(aes(label=cname), alpha=0.2, size=3) 
   
   + geom_point(data=df_centroids, aes(color=cluster_id), size=4, shape="X") 
   
@@ -251,11 +252,13 @@ And we can use the new column `.cluster` to colour the dots:
 g4 <- (
   ggplot(plot_df, aes(x=year_indep, y=year_colonized, colour=.cluster)) 
   
-  + geom_point(alpha=0.1, size=3)
+  + geom_point(alpha=0.2, size=3)
   # Or use geom_text
   #+ geom_text(aes(label=cname), alpha=0.25, size=3) 
   
   + geom_point(data=df_centroids, aes(color=cluster_id), size=4, shape="X")
+  
+  + xlim(1500, 2000) + ylim(1500, 2000)
   
   + theme_bw()
   + labs(x="Year of independence", y="Year colonized")
@@ -311,29 +314,28 @@ model_full$centers
 
 ## Step 2.4 What is the best number of clusters?
 
-Is it k=3, k=10, k=20??? Unfortunately, there is no absolute final objective solution to this question. It usually depends on what you want to do with this data. Do you _want_ to investigate and compare the characteristics of a large number of groups or just a few?
+Is it k=3, k=10, k=20??? Unfortunately, there is no absolute final objective solution to this question. It usually depends on what you want to do with this data. Do you *want* to investigate and compare the characteristics of a large number of groups or just a few?
 
 But here we will show you one possible strategy to automate the process of finding an "optimal" number of clusters based on the total **within-cluster sum of squares**, which we are going to refer to as `$tot.withinss`.
 
-(_Your class teacher might need to use the blackboard here_)
+(*Your class teacher might need to use the blackboard here*)
 
 **How?**
 
-The code below is a bit tricky so let's go through it step-by-step. 
+The code below is a bit tricky so let's go through it step-by-step.
 
-- We subset the data using `select` and we get rid of the NAs
-- We then create a **list column** called `data`. 
-  - Tibbles are different from data frames as you can nest an entire object (whether a data frame, model object etc.) into a single cell. 
-  - While it may seem like an odd thing to do, look at the next step. 
-- Remember `crossing`? We use `crossing` to come up with a new tibble of all possible combinations between `n.clust` which goes from 1 to 20 and `data`.
-- Because of the above, we now have the ability to run 20 k-means clustering models using one tibble, and we did not need to write a single for loop! 
-- Because we are looping over a list column, we use different varieties of the `map` function (which is part of the `tidyverse` ecosystem).
-  - The map which applies a function over the list column, and returns back an object of the same length. 
-  - We use `map2` as we want to loop over `data` and `n.clust`. 
-- The `kmeans` function takes two parameters to run, the first of which specifies the data, while the second specifies the number of clusters or `centers` to include in the model. 
-- Finally, we want to find the total within-cluster sum of squares `tot.withinss`.     - We do this by using `map_dbl` on the `k.means` list column which returns a vector of doubles. 
-- To access `tot.withinss`, we use `glance` on `k.means` and include `$tot.withinss`.
-
+-   We subset the data using `select` and we get rid of the NAs
+-   We then create a **list column** called `data`.
+    -   Tibbles are different from data frames as you can nest an entire object (whether a data frame, model object etc.) into a single cell.
+    -   While it may seem like an odd thing to do, look at the next step.
+-   Remember `crossing`? We use `crossing` to come up with a new tibble of all possible combinations between `n.clust` which goes from 1 to 20 and `data`.
+-   Because of the above, we now have the ability to run 20 k-means clustering models using one tibble, and we did not need to write a single for loop!
+-   Because we are looping over a list column, we use different varieties of the `map` function (which is part of the `tidyverse` ecosystem).
+    -   The map which applies a function over the list column, and returns back an object of the same length.
+    -   We use `map2` as we want to loop over `data` and `n.clust`.
+-   The `kmeans` function takes two parameters to run, the first of which specifies the data, while the second specifies the number of clusters or `centers` to include in the model.
+-   Finally, we want to find the total within-cluster sum of squares `tot.withinss`. - We do this by using `map_dbl` on the `k.means` list column which returns a vector of doubles.
+-   To access `tot.withinss`, we use `glance` on `k.means` and include `$tot.withinss`.
 
 ```{r}
 km.models <-
@@ -346,13 +348,14 @@ km.models <-
          tot.withinss = map_dbl(.x = k.means, .f = ~ glance(.x)$tot.withinss)) 
 km.models
 ```
+
 ### Create an elbow plot
 
-Let's create an [elbow plot](https://www.wikiwand.com/en/Elbow_method_(clustering)) to evaluate what number of clusters is most appropriate. 
+Let's create an [elbow plot](https://www.wikiwand.com/en/Elbow_method_(clustering)) to evaluate what number of clusters is most appropriate.
 
-Generally, we are looking to identify significant elbow points beyond which no significant decreases in TWCSS occur. 
+Generally, we are looking to identify significant elbow points beyond which no significant decreases in TWCSS occur.
 
-For our data, k=6 or k=10 are probably among the most appropriate. _But do you see how that is a little bit subjective?_
+For our data, k=6 or k=10 are probably among the most appropriate. *But do you see how that is a little bit subjective?*
 
 ```{r}
 km.models %>% 
@@ -366,7 +369,7 @@ km.models %>%
   labs(x = 'Number of clusters', y = 'Total within cluster sum of squares')
 ```
 
-# 🏠 Take-home exercises
+# :house: Take-home exercises
 
 ## Q1: Cluster of penguins
 
@@ -387,6 +390,3 @@ Run k-means on the same data, but this time vary k from $\{1, 2, \ldots, 19, 20\
 ```{r}
 # your code here
 ```
-
-
-
