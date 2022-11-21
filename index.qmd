@@ -12,6 +12,7 @@ subtitle: "Data Science for Social Scientists"
 
 - [✅ Week 09 - Checklist](/weeks/week09/checklist.qmd)
 - [👨‍🏫 Week 09 - Lecture](/weeks/week09/lecture.qmd)
+- [✔️ Week 08 - Lab Solutions](/weeks/week08/lab_solutions.qmd)
 
 (18/11/2022)
 

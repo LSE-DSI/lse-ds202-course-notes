@@ -66,12 +66,14 @@ Auto %>%
 
 **Calculate the average daily number of bikers in March, in the `Bikeshare` data set.**
 
+_Thanks to `@Zoé Vanhersecke` for spotting a bug in an earlier version of this solution_
+
 ```{r}
-Bikeshare %>% 
-  filter(mnth == "March") %>% 
-  group_by(day) %>% 
-  summarise(daily_bikers=n()) %>% 
-  summarise(avg_daily_bikers=mean(daily_bikers))
+Bikeshare %>%
+  filter(mnth == "March") %>%
+  group_by(day) %>%
+  summarize(mean_bikers = mean(bikers)) %>%
+  summarize(mean_daily_bikers = mean(mean_bikers))
 ```
 
 ## Q4: Exploratory Data Analysis (Part II0

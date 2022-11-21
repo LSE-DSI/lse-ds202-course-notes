@@ -1,0 +1,201 @@
+---
+title: "✔️ Week 08 - Lab Solutions"
+from: markdown+emoji
+author: Dr. Jon Cardoso-Silva
+editor: visual
+---
+
+This notebook contain solutions to Take-home exercises in [Week 08 Lab](/weeks/week08/lab.qmd).
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library('ISLR2')       # for the data
+library('tidyverse')   # to use things like the pipe (%>%)
+library('e1071')       # for SVM model
+library('tidymodels')  # for model tuning, cross-validation etc.
+
+# Vanity packages:
+library('ggsci')       # for pretty plot colours
+library('cvms')        # for pretty confusion matrix plots
+
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+filtered_data <- ISLR2::OJ %>% select(Purchase, LoyalCH, PriceDiff)
+
+orange_tidymodel <-
+  svm_rbf() %>% 
+  set_mode('classification') %>% 
+  fit(Purchase ~ ., data = filtered_data)
+
+plot_df <- augment(orange_tidymodel, filtered_data)
+plot_df <- plot_df %>% mutate(is_correct = .pred_class == Purchase)
+```
+
+## :house: **Take-home exercise Q1:**
+
+Edit the cell below modifying `event_level` from `"second"` to `"first"`. Why do you get different results? What do you think is going on?\
+\
+:bulb:Tip: Read the documentation of `f_meas` to understand what `event_level` represents. (Type `?f_meas`)
+
+:bulb: **Gold** **Tip**: note the **Levels** of the `factor` variable called `Purchase`:
+
+``` r
+plot_df$Purchase
+```
+
+### Solution:
+
+> *The parameter `event_level` refers to the levels of the target variable:*
+
+```{r}
+levels(plot_df$Purchase)
+```
+
+> *From the above, we see that `CH` is the first level, and `MM` is the second level. Don't know what a level is? Take a look at [Chapter 15 of R for Data Science](https://r4ds.had.co.nz/factors.html "R for Data Science - 15 Factors") to revisit the concept of factors (categorical variables).*
+>
+> *F1-score is always calculated in reference to one level. So, if we want to get the F1-score for the `"CH"`* class, we use `event_level="first"`:
+
+```{r}
+plot_df %>% f_meas(Purchase, .pred_class, event_level="first")
+```
+
+> *Similarly, if we want to calculate the F1-score for the `"MM"` class, we have to look at `event_level="second"`:*
+
+```{r}
+plot_df %>% f_meas(Purchase, .pred_class, event_level="second")
+```
+
+## :house: **Take-home exercise Q2:**
+
+Create a plot of the confusion matrix for the `orange_tidymodel` like we did in Step 1
+
+### Q2. Solution
+
+```{r}
+#| code-fold: true
+
+# It's almost the same thing; only this time let's use the `.pred_class` column that was created when we augmented our data frame.
+confusion_matrix <- table(expected=plot_df$Purchase, class_pred=plot_df$.pred_class)
+
+
+plot_confusion_matrix(as_tibble(confusion_matrix), 
+                      target_col = "expected", 
+                      prediction_col = "class_pred",
+                      
+                      # Customizing the plot
+                      add_normalized = TRUE,
+                      add_col_percentages = FALSE,
+                      add_row_percentages = FALSE,
+                      counts_col = "n",
+                      )
+```
+
+## :house: **Take-home exercise Q3:**
+
+Create a plot of SVM decision space for the `orange_tidymodel` like we did in Step 1.
+
+### Q3. Solution
+
+> *It's almost the same thing; only this time we use the `augment()`* function and refer to `.pred_class` when creating the plot.
+
+```{r}
+#| code-fold: true
+
+sim.data <- crossing(LoyalCH   = seq(0,1,0.05), PriceDiff = seq(-1,1,0.1))
+sim.data <- augment(orange_tidymodel, sim.data)
+
+
+g <- (
+  plot_df %>%   
+    ggplot()
+  
+    # Tile the background of the plot with SVM predictions
+    + geom_tile(data = sim.data, aes(x=LoyalCH, y=PriceDiff, fill = .pred_class), alpha = 0.25)
+  
+    # Actual data
+    + geom_point(aes(x=LoyalCH, y=PriceDiff, colour = Purchase, shape = is_correct), size=2.5, stroke=0.95, alpha=0.7)
+  
+    # Define X and Os
+    + scale_shape_manual(values = c(4, 1))
+    
+    # (OPTIONAL) Customizing the colours and theme of the plot
+    + scale_x_continuous(labels=scales::percent)
+    + scale_colour_startrek()
+    + scale_fill_startrek()
+    + theme_minimal()
+    + theme(panel.grid = element_blank(), legend.position = 'bottom', plot.title = element_text(hjust = 0.5))
+    + labs(x = 'Customer brand loyalty for CH', y = 'Sale price of MM less sale price of CH', fill = 'Brand', colour = 'Brand', shape = 'Correct prediction?', title = sprintf('Overall Training Accuracy = %.2f %%', 100*(sum(plot_df$is_correct)/nrow(plot_df))))
+)
+
+g
+```
+
+## :house: **Take-home exercise Q4:**
+
+-   Retrain the model in Step 3 for `Smarket`, this time using `svm_linear` instead of `svm_rbf`.
+-   Reuse the code in Step 3.4 to replicate the plots and metric calculations for this new model.
+-   Which model fits the target variable (`Today`) better?
+
+### Q4. Solution
+
+> *Train the model*
+
+```{r}
+#| code-fold: true
+
+# Remove Direction, otherwise we would be "cheating" 
+filtered_data <- ISLR2::Smarket %>% select(Today, Volume, Lag1)
+
+alternative_svm <-
+  svm_linear() %>% 
+  set_mode('regression') %>% 
+  fit(Today ~ ., data = filtered_data)
+
+alternative_svm
+```
+
+> *Create a `plot_df`* data frame to use when plotting residuals.
+
+```{r}
+#| code-fold: true
+
+plot_df <- 
+  augment(alternative_svm, filtered_data) %>% 
+  mutate(row_number=row_number()) # adding this here just to make our plot easier
+plot_df
+```
+
+> *Plot the residuals:*
+
+```{r}
+#| code-fold: true
+#| 
+g <- (
+  ggplot(plot_df, aes(x=row_number, y=.resid))
+  + geom_point(alpha=0.6)
+  
+  + theme_bw()
+  + geom_hline(yintercept = c(-2,2), color="red", linetype="dashed")
+  + labs(title="Distribution of residuals (the closer to zero the better)")
+)
+
+g
+```
+
+> *Is this model better? It's not easy to say from the residuals plot alone, so let's calculate the metrics:*
+
+```{r}
+plot_df %>% mae(Today, .pred)
+```
+
+```{r}
+plot_df %>% rmse(Today, .pred)
+```
+
+> *The linear SVM had a slightly worse fit than the SVM with Radial Basis Function (Gaussian) we ran earlier. Both MAE and RMSE were smaller in the svm_rbf results:*
+
+|              | MAE      | RMSE     |
+|--------------|----------|----------|
+| `svm_rbf`    | 0.789891 | 1.09561  |
+| `svm_linear` | 0.82845  | 1.135357 |
