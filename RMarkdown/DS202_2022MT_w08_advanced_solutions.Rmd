@@ -6,15 +6,6 @@ from: markdown+emoji
 output: html_document
 ---
 
-::: {.callout-important}
-## Update 22/11/2022
-
-This notebook has been modified. It now contains model solutions too.
-
-I show the code only, no plots, otherwise it would make building this website too slow!
-
-:::
-
 # Context
 
 This page is an (optional) continuation to [:computer: Week 08 lab](https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week08/lab.qmd). Originally, we intended it to be part of W08 lab but decided against it as it would make the lab too cluttered.
@@ -31,7 +22,7 @@ Here we show an alternative way to perform [k-fold cross-validation](https://lse
 
 ## Packages you will need
 
-```r
+```{r, message=FALSE, warning=FALSE}
 library('ISLR2')       # for the data
 library('tidyverse')   # to use things like the pipe (%>%)
 library('e1071')       # for SVM model
@@ -51,7 +42,7 @@ This week we will use a different ISLR2 dataset: `OJ` . We will perform a **clas
 
 > *The data contains 1070 **purchases** where the customer either purchased Citrus Hill or Minute Maid Orange Juice. A number of characteristics of the customer and product are recorded.*
 
-```r
+```{r}
 ISLR2::OJ %>% head()
 ```
 
@@ -65,7 +56,7 @@ To understand what each variable represent, open the R Console, type the followi
 
 To simplify our plots later on, let's focus on just two predictors:
 
-```r
+```{r, message=FALSE, dpi=300}
 plot_df <- ISLR2::OJ %>% select(Purchase, LoyalCH, PriceDiff)
 
 g = (
@@ -85,11 +76,11 @@ We will also use the `Smarket` dataset from the ISLR2 package. We will perform a
 
 > *Daily percentage returns for the S&P 500 stock index between 2001 and 2005.*
 
-```r
+```{r}
 ISLR2::Smarket %>% head()
 ```
 
-```r
+```{r, message=FALSE, dpi=300}
 plot_df <- ISLR2::Smarket %>% select(Today, Volume, Lag1, Lag2)
 
 g = (
@@ -127,7 +118,7 @@ Here we will replicate the cross-validation setup used to generate the structure
 
 We start by creating a training / test split using the functions `initial_split` packages for :chart_with_upwards_trend: `SMarket` data.
 
-```r
+```{r}
 
 set.seed(123)
 
@@ -144,13 +135,13 @@ external_validation_set <- testing(default_split)
 
 How many samples are in the `internal validation set`?
 
-```r
+```{r}
 nrow(internal_validation_set)
 ```
 
 How many samples were left in the `external validation set`?
 
-```r
+```{r}
 nrow(external_validation_set)
 ```
 
@@ -160,7 +151,7 @@ The external validation set will only be used at the end
 
 Next, let's create **10-fold** cross-validation data using `internal_validation_set`. We can achieve this by using the `vfold_cv` command, specifying `v = 10`.
 
-```r
+```{r}
 k_folds <- vfold_cv(internal_validation_set, v = 10)
 k_folds
 
@@ -172,7 +163,7 @@ k_folds
 
 The next step is to create a recipe. Luckily, `recipe` function takes the same values as the `lm` model! We first create a formula `default ~ .` and then use `data = internal_validation_set`. Printing `smarket_recipe`, we have one outcome and three predictors.
 
-```r
+```{r}
 
 smarket_recipe <- recipe(Today ~ ., data = internal_validation_set)
 smarket_recipe
@@ -185,7 +176,7 @@ Next, we will specify a support vector machine model. Here's where things get a 
 
 We specify a radial basis function SVM. `svm_rbf` takes two **hyperparameters**: `cost` and `rbf_sigma`. Instead of specifying a single value for each, we will instead set them equal to `tune()`. This indicates that we want to try a range of different values.
 
-```r
+```{r}
 
 svm_regressor <-
   svm_rbf(cost = tune(), rbf_sigma = tune()) %>% 
@@ -199,7 +190,7 @@ Which values for `cost` and `rbf_sigma` should we choose? It is often hard to te
 
 We can use `grid_regular` to create a tibble of different hyperparameter combinations. `levels = 5` indicates that we want to try out five different values for each hyperparameter.
 
-```r
+```{r}
 
 set.seed(234)
 
@@ -234,12 +225,17 @@ smarket_tuned <-
 
 ```
 
+```{r, echo=FALSE}
+smarket_tuned <- readRDS("smarket_tuned.Rds")
+
+
+```
 
 ## Step 4.7: Which combination of hyperparameters works best?
 
 Now we have tuned our models, let's find out which combination of **hyperparameters** work best. We can create a ggplot easily using the `autoplot` command.
 
-```r
+```{r}
 
 smarket_tuned %>% 
   autoplot() +
@@ -265,13 +261,13 @@ _On a personal note, I do not really love this plot. `autoplot` tries to guess t
 
 _First, collect the metrics as a single dataframe:_
 
-```r
+```{r}
 plot_df <- collect_metrics(smarket_tuned)
 head(plot_df)
 ```
 _Then take care of making the X and Y labels easier to read:_
 
-```r
+```{r, dpi=150}
 plot_df$rbf_sigma <- factor(plot_df$rbf_sigma)
 plot_df$cost <- factor(plot_df$cost)
 
@@ -296,7 +292,7 @@ g
 
 _Well, if we truly care about representing things accurately in the plot, the X and Y axes should be put in the right scale:_
 
-```r
+```{r}
 # This time I won't convert cost and sigma to factors
 plot_df <- collect_metrics(smarket_tuned)
 
@@ -325,7 +321,7 @@ g
 
 We can use the function `select_best` to identify the hyperparameter combination that leads to the highest precision.
 
-```r
+```{r}
 select_best(smarket_tuned)
 
 ```
@@ -342,7 +338,7 @@ Build a standalone SVM model (`tidymodels` version) on the same data we used in 
 
 <summary>See a model solution</summary>
 
-```r
+```{r}
 filtered_data <- ISLR2::Smarket %>% select(Today, Volume, Lag1)
 
 alternative_svm_model <-
@@ -363,7 +359,7 @@ Use the model you built in Q5 and make predictions on the external validation se
 
 <summary>See a model solution</summary>
 
-```r
+```{r}
 augment(alternative_svm_model, external_validation_set) %>% 
   rmse(Today, .pred)
 ```
@@ -384,7 +380,7 @@ Replicate the plot from Step 3.3 of W08 lab roadmap, only this time using the mo
 
 > When using real data, I will focus on the external validation set. There are fewer samples, so the plot will not look as polluted.
 
-```r
+```{r, dpi=300}
 ## Simulated data
 sim.data <- 
   crossing(Volume   = seq(0,3.5,0.1),
@@ -441,7 +437,7 @@ _If you are not convinced, take a look at the colour legend at the bottom of the
 
 _This is more apparent when we re-do the plot in Q7 overriding the colour range to be the same as before:_
 
-```r
+```{r, warning=FALSE, message=FALSE}
 g + scale_fill_viridis_c(limits=c(-1, 1.5))
 ```
 
@@ -463,7 +459,7 @@ Not a lot of variance...
 
 <summary>See a model solution</summary>
 
-```r
+```{r}
 
 ### Set aside some data for external validation
 set.seed(123)
@@ -487,15 +483,19 @@ orange_tuned <-
 
 ```
 
+```{r, echo=FALSE}
+orange_tuned <- readRDS("orange_tuned.Rds")
+```
 
-```r
+
+```{r}
 plot_df <- collect_metrics(orange_tuned)
 plot_df$rbf_sigma <- factor(plot_df$rbf_sigma)
 plot_df$cost <- factor(plot_df$cost)
 
 plot_df$mean %>% summary()
 ```
-```r
+```{r}
 g <-
   (ggplot(plot_df, 
           aes(x=cost, y=rbf_sigma, size=mean, color=mean)) 
@@ -516,12 +516,12 @@ g
 ```
 _Get the best configuration of parameters:_
  
-```r
+```{r}
 select_best(orange_tuned)
 ```
 _Now, I am curious about the external validation set:_
 
-```r
+```{r}
 oj_model2 <-
   svm_rbf(cost=2.378414, rbf_sigma=0.003162278) %>% 
   set_mode('classification') %>% 
@@ -534,7 +534,7 @@ _Good enough! F1-score ~ 0.86 is not bad and it's closer to what we expected fro
 
 _Also, the ROC curve applied to the external validation set doesn't look too bad!_
 
-```r
+```{r}
 augment(oj_model2, external_validation_set) %>% 
   roc_curve(Purchase, .pred_CH) %>% 
   autoplot()
@@ -568,13 +568,13 @@ orange_linear_tuned <-
             control = control_grid(save_pred=TRUE))
 ```
 
-```r
-orange_linear_tuned <- readRDS("RMarkdown/orange_linear_tuned.Rds")
+```{r, echo=FALSE}
+orange_linear_tuned <- readRDS("orange_linear_tuned.Rds")
 ```
 
 _Results do not vary too much from `svm_rbf`. As we long as `cost` is sufficiently high, F1-scores are pretty decent._
 
-```r
+```{r}
 plot_df <- collect_metrics(orange_linear_tuned)
 plot_df$cost <- factor(plot_df$cost)
 
@@ -598,11 +598,14 @@ orange_polynomial_tuned <-
             control = control_grid(save_pred=TRUE))
 ```
 
+```{r, echo=FALSE}
+orange_polynomial_tuned <- readRDS("orange_polynomial_tuned.Rds")
+```
 
 
 _Results do not vary too much here either, but there is a "sweet spot": if _
 
-```r
+```{r, dpi=300}
 plot_df <- collect_metrics(orange_polynomial_tuned)
 plot_df$degree <- factor(plot_df$degree)
 plot_df$cost <- factor(plot_df$cost)

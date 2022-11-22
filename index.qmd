@@ -7,6 +7,9 @@ subtitle: "Data Science for Social Scientists"
 
 **Recently updated pages:**
 
+(22/12/2022)
+
+- [✨ Week 08 Bonus Lab Advanced (Optional)](/weeks/week08/lab_advanced.qmd)
 
 (21/11/2022)
 

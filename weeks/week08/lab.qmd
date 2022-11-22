@@ -71,7 +71,7 @@ To understand what each variable represent, open the R Console, type the followi
 
 To simplify our plots later on, let's focus on just two predictors:
 
-```{r, message=FALSE, dpi=300}
+```{r, message=FALSE, dpi=100}
 plot_df <- ISLR2::OJ %>% select(Purchase, LoyalCH, PriceDiff)
 
 g = (
@@ -95,7 +95,7 @@ We will also use the `Smarket` dataset from the ISLR2 package. We will perform a
 ISLR2::Smarket %>% head()
 ```
 
-```{r, message=FALSE, dpi=300}
+```{r, message=FALSE, dpi=100}
 plot_df <- ISLR2::Smarket %>% select(Today, Volume, Lag1, Lag2)
 
 g = (
@@ -266,7 +266,7 @@ The data above is all synthetic ("fake")! But it is very useful to colour the ba
 
 We use `geom_tile` to show the area the SVM model identifies as Chinstrap penguins. We then use `geom_point` to overlay the actual data. Red dots in blue areas and vice versa indicate cases where the SVM model makes errors.
 
-```{r, dpi=300}
+```{r, dpi=100}
 
 g <- (
   plot_df %>%   
@@ -543,7 +543,7 @@ plot_df$residual_above_2 <- (plot_df$.resid) > 2
 ```
 
 
-```{r, dpi=300}
+```{r, dpi=100}
 g <- (
   plot_df %>%   
     ggplot()
@@ -602,7 +602,7 @@ alternative_smarket_model
 ```
 **Residuals plot**
 
-```{r, dpi=300}
+```{r, dpi=100}
 plot_df <- 
   augment(alternative_smarket_model, filtered_data) %>% 
   mutate(row_number=row_number()) ## adding this here just to make our plot easier
