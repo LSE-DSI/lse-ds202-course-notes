@@ -129,6 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../css/custom_style.css">
 </head>
@@ -504,7 +505,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#q7-svm-decision-space-regression" id="toc-q7-svm-decision-space-regression" class="nav-link" data-scroll-target="#q7-svm-decision-space-regression">Q7: SVM Decision Space (Regression)</a></li>
   <li><a href="#q8-compare-svm-decision-space-plots" id="toc-q8-compare-svm-decision-space-plots" class="nav-link" data-scroll-target="#q8-compare-svm-decision-space-plots">Q8: Compare SVM Decision Space plots</a></li>
   <li><a href="#q9-grid-search-for-orange-juice-classification" id="toc-q9-grid-search-for-orange-juice-classification" class="nav-link" data-scroll-target="#q9-grid-search-for-orange-juice-classification">Q9: Grid search for Orange Juice (Classification)</a></li>
-  <li><a href="#q10-challenge" id="toc-q10-challenge" class="nav-link" data-scroll-target="#q10-challenge">Q10: Challenge</a></li>
+  <li><a href="#q10-challenge" id="toc-q10-challenge" class="nav-link" data-scroll-target="#q10-challenge">Q10: Challenge</a>
+  <ul class="collapse">
+  <li><a href="#linear" id="toc-linear" class="nav-link" data-scroll-target="#linear">Linear</a></li>
+  <li><a href="#polynomial" id="toc-polynomial" class="nav-link" data-scroll-target="#polynomial">Polynomial</a></li>
+  <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra">Extra</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -542,13 +548,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Update 22/11/2022
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This notebook has been modified. It now contains model solutions too.</p>
+<p>I show the code only, no plots, otherwise it would make building this website too slow!</p>
+</div>
+</div>
 <section id="context" class="level1">
 <h1>Context</h1>
-<p>Originally, we intended it to be part of <a href="../../weeks/week08/lab.html">W08 lab</a> but decided against it as it would make the lab too cluttered.</p>
+<p>This page is an (optional) continuation to <a href="https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week08/lab.qmd"><span class="emoji" data-emoji="computer">💻</span> Week 08 lab</a>. Originally, we intended it to be part of W08 lab but decided against it as it would make the lab too cluttered.</p>
 <p>Although optional, we think the exercises in here might be a great way to solidify your knowledge of SVM and its parameters.</p>
 <section id="topics" class="level2">
 <h2 class="anchored" data-anchor-id="topics">Topics</h2>
-<p>Here we show an alternative way to perform <a href="../../weeks/week04/lecture.html#the-cross-validation-setup">k-fold cross-validation</a> using <code>tidymodels</code> instead of the <code>cv.glm</code> we saw in W05 lab.</p>
+<p>Here we show an alternative way to perform <a href="https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lecture.html#the-cross-validation-setup">k-fold cross-validation</a> using <code>tidymodels</code> instead of the <code>cv.glm</code> we saw in W05 lab.</p>
 </section>
 </section>
 <section id="setup" class="level1">
@@ -556,8 +576,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="emoji" data-emoji="bulb">💡</span> <em>Some of you have mentioned that your R version cannot handle tidymodels. We recommend you update R to version 4.2.0 or above.</em></p>
 <section id="packages-you-will-need" class="level2">
 <h2 class="anchored" data-anchor-id="packages-you-will-need">Packages you will need</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'ISLR2'</span>)       <span class="co"># for the data</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'ISLR2'</span>)       <span class="co"># for the data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'tidyverse'</span>)   <span class="co"># to use things like the pipe (%&gt;%)</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'e1071'</span>)       <span class="co"># for SVM model</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'tidymodels'</span>)  <span class="co"># for model tuning, cross-validation etc.</span></span>
@@ -566,7 +585,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'GGally'</span>)      <span class="co"># for pretty correlation plot</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'ggsci'</span>)       <span class="co"># for pretty plot colours</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'cvms'</span>)        <span class="co"># for pretty confusion matrix plots</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 </section>
 <section id="the-data" class="level1">
@@ -577,53 +595,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote class="blockquote">
 <p><em>The data contains 1070 <strong>purchases</strong> where the customer either purchased Citrus Hill or Minute Maid Orange Juice. A number of characteristics of the customer and product are recorded.</em></p>
 </blockquote>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ISLR2<span class="sc">::</span>OJ <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Purchase WeekofPurchase StoreID PriceCH PriceMM DiscCH DiscMM SpecialCH
-1       CH            237       1    1.75    1.99   0.00    0.0         0
-2       CH            239       1    1.75    1.99   0.00    0.3         0
-3       CH            245       1    1.86    2.09   0.17    0.0         0
-4       MM            227       1    1.69    1.69   0.00    0.0         0
-5       CH            228       7    1.69    1.69   0.00    0.0         0
-6       CH            230       7    1.69    1.99   0.00    0.0         0
-  SpecialMM  LoyalCH SalePriceMM SalePriceCH PriceDiff Store7 PctDiscMM
-1         0 0.500000        1.99        1.75      0.24     No  0.000000
-2         1 0.600000        1.69        1.75     -0.06     No  0.150754
-3         0 0.680000        2.09        1.69      0.40     No  0.000000
-4         0 0.400000        1.69        1.69      0.00     No  0.000000
-5         0 0.956535        1.69        1.69      0.00    Yes  0.000000
-6         1 0.965228        1.99        1.69      0.30    Yes  0.000000
-  PctDiscCH ListPriceDiff STORE
-1  0.000000          0.24     1
-2  0.000000          0.24     1
-3  0.091398          0.23     1
-4  0.000000          0.00     1
-5  0.000000          0.00     0
-6  0.000000          0.30     0</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ISLR2<span class="sc">::</span>OJ <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To understand what each variable represent, open the R Console, type the following and hit ENTER:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?ISLR2<span class="sc">::</span>OJ</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>?ISLR2<span class="sc">::</span>OJ</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="which-variables-can-help-us-distinguish-the-two-different-brands" class="level3">
 <h3 class="anchored" data-anchor-id="which-variables-can-help-us-distinguish-the-two-different-brands">Which variables can help us distinguish the two different brands?</h3>
 <p>To simplify our plots later on, let’s focus on just two predictors:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> ISLR2<span class="sc">::</span>OJ <span class="sc">%&gt;%</span> <span class="fu">select</span>(Purchase, LoyalCH, PriceDiff)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> (</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpairs</span>(plot_df, <span class="fu">aes</span>(<span class="at">colour=</span>Purchase))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Customizing the plot</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">scale_colour_startrek</span>()</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">scale_fill_startrek</span>()</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>g </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="lab_advanced_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="2100"></p>
-</div>
-</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> ISLR2<span class="sc">::</span>OJ <span class="sc">%&gt;%</span> <span class="fu">select</span>(Purchase, LoyalCH, PriceDiff)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> (</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpairs</span>(plot_df, <span class="fu">aes</span>(<span class="at">colour=</span>Purchase))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Customizing the plot</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">scale_colour_startrek</span>()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">scale_fill_startrek</span>()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>g </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="stock-market" class="level2">
@@ -632,157 +620,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote class="blockquote">
 <p><em>Daily percentage returns for the S&amp;P 500 stock index between 2001 and 2005.</em></p>
 </blockquote>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ISLR2<span class="sc">::</span>Smarket <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Year   Lag1   Lag2   Lag3   Lag4   Lag5 Volume  Today Direction
-1 2001  0.381 -0.192 -2.624 -1.055  5.010 1.1913  0.959        Up
-2 2001  0.959  0.381 -0.192 -2.624 -1.055 1.2965  1.032        Up
-3 2001  1.032  0.959  0.381 -0.192 -2.624 1.4112 -0.623      Down
-4 2001 -0.623  1.032  0.959  0.381 -0.192 1.2760  0.614        Up
-5 2001  0.614 -0.623  1.032  0.959  0.381 1.2057  0.213        Up
-6 2001  0.213  0.614 -0.623  1.032  0.959 1.3491  1.392        Up</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> ISLR2<span class="sc">::</span>Smarket <span class="sc">%&gt;%</span> <span class="fu">select</span>(Today, Volume, Lag1, Lag2)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> (</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpairs</span>(plot_df)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Customizing the plot</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">scale_colour_startrek</span>()</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">scale_fill_startrek</span>()</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>g </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="lab_advanced_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="2100"></p>
-</div>
-</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ISLR2<span class="sc">::</span>Smarket <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> ISLR2<span class="sc">::</span>Smarket <span class="sc">%&gt;%</span> <span class="fu">select</span>(Today, Volume, Lag1, Lag2)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> (</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpairs</span>(plot_df)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Customizing the plot</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">scale_colour_startrek</span>()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">scale_fill_startrek</span>()</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>g </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To understand what each variable represent, open the R Console, type the following and hit ENTER:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>?ISLR2<span class="sc">::</span>Smarket</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>?ISLR2<span class="sc">::</span>Smarket</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="step-4-k-fold-cross-validation-with-tidymodels" class="level1">
 <h1>Step 4: k-fold cross validation with <code>tidymodels</code></h1>
-<p>Here we will replicate the cross-validation setup used to generate the structure <a href="../../weeks/week04/lecture.html"><span class="emoji" data-emoji="spiral_calendar">🗓️</span> Week 04 lecture/workshop</a>.</p>
+<p>Here we will replicate the cross-validation setup used to generate the structure <a href="https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lecture.qmd"><span class="emoji" data-emoji="spiral_calendar">🗓️</span> Week 04 lecture/workshop</a>.</p>
 <p><strong><span class="emoji" data-emoji="previous_track_button">⏮️</span>Recap:</strong></p>
 <ul>
-<li><p>We also explored training vs test splits, albeit in a different way, in <a href="../../weeks/week04/lab.html#step-2.1-separate-some-data-just-for-training">Step 2.1</a> of <a href="../../weeks/week04/lab.html"><span class="emoji" data-emoji="computer">💻</span> Week 04 - Lab</a></p></li>
-<li><p>k-fold cross-validation was also present in <a href="../../weeks/week05/lab.html#step-2-k-fold-cross-validation">Step 2</a> of <a href="../../weeks/week05/lab.html"><span class="emoji" data-emoji="computer">💻</span> Week 05 - Lab</a></p></li>
-<li><p>Cross-validation was also mentioned in the <a href="../../weeks/week05/lecture.html"><span class="emoji" data-emoji="spiral_calendar">🗓️</span> Week 05 lecture</a>, when you were introduced the problem of <strong>overfitting</strong>.</p></li>
+<li><p>We also explored training vs test splits, albeit in a different way, in <a href="https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lab.html#step-2.1-separate-some-data-just-for-training">Step 2.1</a> of <a href="https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week04/lab.html"><span class="emoji" data-emoji="computer">💻</span> Week 04 - Lab</a></p></li>
+<li><p>k-fold cross-validation was also present in <a href="https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lab.html#step-2-k-fold-cross-validation">Step 2</a> of <a href="https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lab.html"><span class="emoji" data-emoji="computer">💻</span> Week 05 - Lab</a></p></li>
+<li><p>Cross-validation was also mentioned in the <a href="https://lse-dsi.github.io/lse-ds202-course-notes/weeks/week05/lecture.qmd"><span class="emoji" data-emoji="spiral_calendar">🗓️</span> Week 05 lecture</a>, when you were introduced the problem of <strong>overfitting</strong>.</p></li>
 </ul>
 <p><em>But how exactly can cross-validation help overcome overfitting?</em> This is what we will explore in this section of the lab.</p>
 <section id="step-4.1-create-training-test-split" class="level2">
 <h2 class="anchored" data-anchor-id="step-4.1-create-training-test-split">Step 4.1: Create training / test split</h2>
 <p>We start by creating a training / test split using the functions <code>initial_split</code> packages for <span class="emoji" data-emoji="chart_with_upwards_trend">📈</span> <code>SMarket</code> data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove Direction, otherwise we would be "cheating" </span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> ISLR2<span class="sc">::</span>Smarket <span class="sc">%&gt;%</span> <span class="fu">select</span>(Today, Volume, Lag1)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>default_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(filtered_data, <span class="at">prop =</span> <span class="fl">0.75</span>, <span class="at">strata =</span> Today)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>internal_validation_set <span class="ot">&lt;-</span> <span class="fu">training</span>(default_split)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>external_validation_set <span class="ot">&lt;-</span> <span class="fu">testing</span>(default_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove Direction, otherwise we would be "cheating" </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> ISLR2<span class="sc">::</span>Smarket <span class="sc">%&gt;%</span> <span class="fu">select</span>(Today, Volume, Lag1)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>default_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(filtered_data, <span class="at">prop =</span> <span class="fl">0.75</span>, <span class="at">strata =</span> Today)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>internal_validation_set <span class="ot">&lt;-</span> <span class="fu">training</span>(default_split)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>external_validation_set <span class="ot">&lt;-</span> <span class="fu">testing</span>(default_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>How many samples are in the <code>internal validation set</code>?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(internal_validation_set)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 936</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(internal_validation_set)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>How many samples were left in the <code>external validation set</code>?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(external_validation_set)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 314</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(external_validation_set)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The external validation set will only be used at the end</p>
 </section>
 <section id="step-4.2-create-resampling-folds-for-cross-validation" class="level2">
 <h2 class="anchored" data-anchor-id="step-4.2-create-resampling-folds-for-cross-validation">Step 4.2: Create resampling folds for cross validation</h2>
 <p>Next, let’s create <strong>10-fold</strong> cross-validation data using <code>internal_validation_set</code>. We can achieve this by using the <code>vfold_cv</code> command, specifying <code>v = 10</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>k_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(internal_validation_set, <span class="at">v =</span> <span class="dv">10</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>k_folds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#  10-fold cross-validation 
-# A tibble: 10 × 2
-   splits           id    
-   &lt;list&gt;           &lt;chr&gt; 
- 1 &lt;split [842/94]&gt; Fold01
- 2 &lt;split [842/94]&gt; Fold02
- 3 &lt;split [842/94]&gt; Fold03
- 4 &lt;split [842/94]&gt; Fold04
- 5 &lt;split [842/94]&gt; Fold05
- 6 &lt;split [842/94]&gt; Fold06
- 7 &lt;split [843/93]&gt; Fold07
- 8 &lt;split [843/93]&gt; Fold08
- 9 &lt;split [843/93]&gt; Fold09
-10 &lt;split [843/93]&gt; Fold10</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>k_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(internal_validation_set, <span class="at">v =</span> <span class="dv">10</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>k_folds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Notice anything odd? The output is a tibble but the first column <code>splits</code> is a series of lists. This is another thing that makes tibbles different to data frames - you can nest lists within tibbles but not data frames. We will use this more explicitly in the next lab when we build k-means clustering models.</em></p>
 </section>
 <section id="step-4.3-specifying-a-recipe" class="level2">
 <h2 class="anchored" data-anchor-id="step-4.3-specifying-a-recipe">Step 4.3: <strong><span class="emoji" data-emoji="fried_egg">🍳</span></strong>Specifying a recipe</h2>
 <p>The next step is to create a recipe. Luckily, <code>recipe</code> function takes the same values as the <code>lm</code> model! We first create a formula <code>default ~ .</code> and then use <code>data = internal_validation_set</code>. Printing <code>smarket_recipe</code>, we have one outcome and three predictors.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>smarket_recipe <span class="ot">&lt;-</span> <span class="fu">recipe</span>(Today <span class="sc">~</span> ., <span class="at">data =</span> internal_validation_set)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>smarket_recipe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Recipe
-
-Inputs:
-
-      role #variables
-   outcome          1
- predictor          2</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>smarket_recipe <span class="ot">&lt;-</span> <span class="fu">recipe</span>(Today <span class="sc">~</span> ., <span class="at">data =</span> internal_validation_set)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>smarket_recipe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="step-4.4-specify-a-model" class="level2">
 <h2 class="anchored" data-anchor-id="step-4.4-specify-a-model">Step 4.4: Specify a model</h2>
 <p>Next, we will specify a support vector machine model. Here’s where things get a bit more involved.</p>
 <p>We specify a radial basis function SVM. <code>svm_rbf</code> takes two <strong>hyperparameters</strong>: <code>cost</code> and <code>rbf_sigma</code>. Instead of specifying a single value for each, we will instead set them equal to <code>tune()</code>. This indicates that we want to try a range of different values.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>svm_regressor <span class="ot">&lt;-</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svm_rbf</span>(<span class="at">cost =</span> <span class="fu">tune</span>(), <span class="at">rbf_sigma =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">'regression'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>svm_regressor <span class="ot">&lt;-</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svm_rbf</span>(<span class="at">cost =</span> <span class="fu">tune</span>(), <span class="at">rbf_sigma =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">'regression'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="step-4.5-create-a-hyperparameter-grid" class="level2">
 <h2 class="anchored" data-anchor-id="step-4.5-create-a-hyperparameter-grid">Step 4.5: Create a hyperparameter grid</h2>
 <p>Which values for <code>cost</code> and <code>rbf_sigma</code> should we choose? It is often hard to tell, so instead we can experiment with different values.</p>
 <p>We can use <code>grid_regular</code> to create a tibble of different hyperparameter combinations. <code>levels = 5</code> indicates that we want to try out five different values for each hyperparameter.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">234</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>svm_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(<span class="fu">cost</span>(), <span class="fu">rbf_sigma</span>(), <span class="at">levels =</span> <span class="dv">5</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>svm_grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 25 × 2
-        cost    rbf_sigma
-       &lt;dbl&gt;        &lt;dbl&gt;
- 1  0.000977 0.0000000001
- 2  0.0131   0.0000000001
- 3  0.177    0.0000000001
- 4  2.38     0.0000000001
- 5 32        0.0000000001
- 6  0.000977 0.0000000316
- 7  0.0131   0.0000000316
- 8  0.177    0.0000000316
- 9  2.38     0.0000000316
-10 32        0.0000000316
-# … with 15 more rows</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">234</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>svm_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(<span class="fu">cost</span>(), <span class="fu">rbf_sigma</span>(), <span class="at">levels =</span> <span class="dv">5</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>svm_grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="step-4.6-perform-cross-validation" class="level2">
 <h2 class="anchored" data-anchor-id="step-4.6-perform-cross-validation">Step 4.6: Perform cross-validation</h2>
@@ -793,31 +708,84 @@ Inputs:
 <li><p>After this, we want to choose a metric to evaluate different combinations.</p></li>
 <li><p>We opt for <code>rmse</code> but we can specify several metrics however using the <code>metric_set</code> command.</p></li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>smarket_tuned <span class="ot">&lt;-</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">object =</span> svm_regressor,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">preprocessor =</span> smarket_recipe,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">resamples =</span> k_folds,</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">grid =</span> svm_grid,</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse),</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">control =</span> <span class="fu">control_grid</span>(<span class="at">save_pred=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em><span class="emoji" data-emoji="warning">⚠️</span> As you can probably notice, the code below takes quite some time to run. This is expected; after all, we are training A LOT of models to tune the parameters.</em></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>smarket_tuned <span class="ot">&lt;-</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">object =</span> svm_regressor,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">preprocessor =</span> smarket_recipe,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">resamples =</span> k_folds,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">grid =</span> svm_grid,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">control =</span> <span class="fu">control_grid</span>(<span class="at">save_pred=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="step-4.7-which-combination-of-hyperparameters-works-best" class="level2">
 <h2 class="anchored" data-anchor-id="step-4.7-which-combination-of-hyperparameters-works-best">Step 4.7: Which combination of hyperparameters works best?</h2>
 <p>Now we have tuned our models, let’s find out which combination of <strong>hyperparameters</strong> work best. We can create a ggplot easily using the <code>autoplot</code> command.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>smarket_tuned <span class="sc">%&gt;%</span> </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  ggsci<span class="sc">::</span><span class="fu">scale_color_jco</span>() <span class="sc">+</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">'RMSE'</span>, <span class="at">colour =</span> <span class="st">'Sigma'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>smarket_tuned <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  ggsci<span class="sc">::</span><span class="fu">scale_color_jco</span>() <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">'RMSE'</span>, <span class="at">colour =</span> <span class="st">'Sigma'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span class="emoji" data-emoji="dart">🎯</span> <strong>ACTION POINT</strong>: Can you explain what we see in the plot above?</p>
+<details>
+<summary>
+See a model solution
+</summary>
 <blockquote class="blockquote">
-<p>your text go here</p>
+<p>The plot above shows the performance of each variation of the SVM algorithm, in terms of the RMSE metric (Y-axis). Two parameters vary: <code>Cost</code> (X-axis) and <code>Sigma</code> (Colour of the lines).</p>
+<p>From the plot, we can observe that lower values of <code>Sigma</code> (<span class="math inline">\(\le 1e-4\)</span>) lead to smaller RMSE regardless of <code>Cost</code>.</p>
 </blockquote>
+<p><em>On a personal note, I do not really love this plot. <code>autoplot</code> tries to guess the best plot for the dataframe, but I don’t think it communicates truthfully. Here is how I would re-do this plot from scratch using ggplot2:</em></p>
+<p><em>First, collect the metrics as a single dataframe:</em></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">collect_metrics</span>(smarket_tuned)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(plot_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Then take care of making the X and Y labels easier to read:</em></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plot_df<span class="sc">$</span>rbf_sigma <span class="ot">&lt;-</span> <span class="fu">factor</span>(plot_df<span class="sc">$</span>rbf_sigma)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plot_df<span class="sc">$</span>cost <span class="ot">&lt;-</span> <span class="fu">factor</span>(plot_df<span class="sc">$</span>cost)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">ggplot</span>(plot_df, </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>          <span class="fu">aes</span>(<span class="at">x=</span>cost, <span class="at">y=</span>rbf_sigma, <span class="at">size=</span>mean, <span class="at">color=</span>mean)) </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_size_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">1.1</span>, <span class="fl">1.25</span>))</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_colour_viridis_c</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">1.1</span>,<span class="fl">1.25</span>))</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">format</span>(<span class="fu">as.numeric</span>(x), <span class="at">digits=</span><span class="dv">2</span>, <span class="at">scientific=</span><span class="cn">TRUE</span>))</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_y_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">format</span>(<span class="fu">as.numeric</span>(x), <span class="at">digits=</span><span class="dv">2</span>, <span class="at">scientific=</span><span class="cn">TRUE</span>))</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>),</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.direction =</span><span class="st">"horizontal"</span>)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Cost"</span>, <span class="at">y=</span><span class="st">"RBF Sigma"</span>, <span class="at">title=</span><span class="st">"Results are similar"</span>, <span class="at">subtitle=</span><span class="st">"But we get better results for lower Cost and lower Sigma"</span>)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>   )</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Well, if we truly care about representing things accurately in the plot, the X and Y axes should be put in the right scale:</em></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This time I won't convert cost and sigma to factors</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">collect_metrics</span>(smarket_tuned)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># In the plot, scale_x_discrete has to be replaced by scale_x_continuous:</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">ggplot</span>(plot_df, </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>          <span class="fu">aes</span>(<span class="at">x=</span>cost, <span class="at">y=</span>rbf_sigma, <span class="at">size=</span>mean, <span class="at">color=</span>mean)) </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.3</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_size_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">1.1</span>, <span class="fl">1.25</span>))</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_colour_viridis_c</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">1.1</span>,<span class="fl">1.25</span>))</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">format</span>(<span class="fu">as.numeric</span>(x), <span class="at">digits=</span><span class="dv">2</span>, <span class="at">scientific=</span><span class="cn">TRUE</span>))</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">format</span>(<span class="fu">as.numeric</span>(x), <span class="at">digits=</span><span class="dv">2</span>, <span class="at">scientific=</span><span class="cn">TRUE</span>))</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>),</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.direction =</span><span class="st">"horizontal"</span>)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Cost"</span>, <span class="at">y=</span><span class="st">"RBF Sigma"</span>, <span class="at">title=</span><span class="st">"Results are similar"</span>, <span class="at">subtitle=</span><span class="st">"But we get better results for lower Cost and lower Sigma"</span>)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>   )</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <p>We can use the function <code>select_best</code> to identify the hyperparameter combination that leads to the highest precision.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select_best</span>(smarket_tuned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select_best</span>(smarket_tuned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="take-home-exercises-advanced" class="level1">
@@ -826,30 +794,99 @@ Inputs:
 <section id="q5-re-run-step3-regression" class="level2">
 <h2 class="anchored" data-anchor-id="q5-re-run-step3-regression">Q5: Re-run Step3 (Regression)</h2>
 <p>Build a standalone SVM model (<code>tidymodels</code> version) on the same data we used in Step 3 of W08 lab, only this time set the parameters of the SVM to the optimal parameters identified in Step 4.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<details>
+<summary>
+See a model solution
+</summary>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> ISLR2<span class="sc">::</span>Smarket <span class="sc">%&gt;%</span> <span class="fu">select</span>(Today, Volume, Lag1)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>alternative_svm_model <span class="ot">&lt;-</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svm_rbf</span>(<span class="at">cost=</span><span class="fl">0.0009765625</span>, <span class="at">rbf_sigma=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">'regression'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(Today <span class="sc">~</span> ., <span class="at">data =</span> filtered_data)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>alternative_svm_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </section>
 <section id="q6-predict-the-external-validation-set" class="level2">
 <h2 class="anchored" data-anchor-id="q6-predict-the-external-validation-set">Q6: Predict the external validation set</h2>
 <p>Use the model you built in Q5 and make predictions on the external validation set. How does the RMSE of these predictions compare to the RMSE of the internal validation set?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<details>
+<summary>
+See a model solution
+</summary>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(alternative_svm_model, external_validation_set) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rmse</span>(Today, .pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>RMSE in the external validation set is comparable to that of the mean RMSE in the internal validation set (close to RMSE=1.1)!</p>
+<p>That is what is good about cross-validation. The internal cross-validation error tells us about by how much we can expect to err, on average.</p>
+</blockquote>
+</details>
 </section>
 <section id="q7-svm-decision-space-regression" class="level2">
 <h2 class="anchored" data-anchor-id="q7-svm-decision-space-regression">Q7: SVM Decision Space (Regression)</h2>
 <p>Replicate the plot from Step 3.3 of W08 lab roadmap, only this time using the model from Q5.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<details>
+<summary>
+See a model solution
+</summary>
+<blockquote class="blockquote">
+<p>When using real data, I will focus on the external validation set. There are fewer samples, so the plot will not look as polluted.</p>
+</blockquote>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Simulated data</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>sim.data <span class="ot">&lt;-</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">crossing</span>(<span class="at">Volume   =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fl">3.5</span>,<span class="fl">0.1</span>),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">Lag1 =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">6</span>,<span class="fl">0.2</span>))</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>sim.data <span class="ot">&lt;-</span> <span class="fu">augment</span>(smarket_tidymodel, sim.data)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Real Data</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>(alternative_svm_model, external_validation_set) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">row_number=</span><span class="fu">row_number</span>())</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>plot_df<span class="sc">$</span>residual_above_2 <span class="ot">&lt;-</span> (plot_df<span class="sc">$</span>.resid) <span class="sc">&gt;</span> <span class="dv">2</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> (</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  plot_df <span class="sc">%&gt;%</span>   </span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>()</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tile the background of the plot with SVM predictions</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">geom_tile</span>(<span class="at">data =</span> sim.data, <span class="fu">aes</span>(<span class="at">x=</span>Volume, <span class="at">y=</span>Lag1, <span class="at">fill =</span> .pred), <span class="at">alpha =</span> <span class="fl">0.45</span>)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actual data</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Volume, <span class="at">y=</span>Lag1, <span class="at">colour =</span> residual_above_2, <span class="at">shape =</span> residual_above_2, <span class="at">alpha=</span>residual_above_2), <span class="at">size=</span><span class="fl">2.5</span>, <span class="at">stroke=</span><span class="fl">0.95</span>)</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define X and Os</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">1</span>))</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">scale_fill_viridis_c</span>()</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>))</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">scale_alpha_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.7</span>))</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (OPTIONAL) Customizing the colours and theme of the plot</span></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">legend.position =</span> <span class="st">'bottom'</span>)</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Volume'</span>, <span class="at">y =</span> <span class="st">'Lag 1'</span>, <span class="at">fill =</span> <span class="st">"Today's Prediction"</span>, <span class="at">colour =</span> <span class="st">'Residual above 2?'</span>, <span class="at">shape =</span> <span class="st">'Residual above 2?'</span>, <span class="at">alpha=</span><span class="st">'Residual above 2?'</span>, <span class="at">title=</span><span class="st">'Worst predictions are marked as red circles'</span>, <span class="at">subtitle=</span><span class="st">"(showing external validation set only)"</span>)</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </section>
 <section id="q8-compare-svm-decision-space-plots" class="level2">
 <h2 class="anchored" data-anchor-id="q8-compare-svm-decision-space-plots">Q8: Compare SVM Decision Space plots</h2>
 <p>Explain if and how the decision space you obtained in Q8 differs from the one in Step 3.3.</p>
+<details>
+<summary>
+See a model solution
+</summary>
 <blockquote class="blockquote">
-<p>your text goes here</p>
+<p>The decision space in Q7 is a lot simpler than the one in Step 3.3 of W08 lab; predictions made by this SVM are very similar to each other, regardless of the value of <code>Lag1</code> and <code>Volume</code>.</p>
 </blockquote>
+<p><em>If you are not convinced, take a look at the colour legend at the bottom of the plot. Note that the range goes from 0.01 to 0.05 whereas in the first plot, colours represented a range from -1.0 to 1.5.</em></p>
+<p><em>This is more apparent when we re-do the plot in Q7 overriding the colour range to be the same as before:</em></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">scale_fill_viridis_c</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="fl">1.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Not a lot of variance…</p>
+</details>
 </section>
 <section id="q9-grid-search-for-orange-juice-classification" class="level2">
 <h2 class="anchored" data-anchor-id="q9-grid-search-for-orange-juice-classification">Q9: Grid search for Orange Juice (Classification)</h2>
@@ -859,20 +896,143 @@ Inputs:
 <li><p>Use F1 score as the optimisation metric.</p></li>
 </ul>
 <p><span class="emoji" data-emoji="bulb">💡</span>You will have two tweak at least two main things: <code>metric_set</code> and <code>set_mode</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<details>
+<summary>
+See a model solution
+</summary>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="do">### Set aside some data for external validation</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>default_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(ISLR2<span class="sc">::</span>OJ , <span class="at">prop =</span> <span class="fl">0.75</span>, <span class="at">strata =</span> Purchase)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>internal_validation_set <span class="ot">&lt;-</span> <span class="fu">training</span>(default_split)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>external_validation_set <span class="ot">&lt;-</span> <span class="fu">testing</span>(default_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>orange_tuned <span class="ot">&lt;-</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">object =</span> <span class="fu">svm_rbf</span>(<span class="at">cost =</span> <span class="fu">tune</span>(), <span class="at">rbf_sigma =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> <span class="fu">set_mode</span>(<span class="st">'classification'</span>),</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">preprocessor =</span> <span class="fu">recipe</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> internal_validation_set),</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">resamples =</span> <span class="fu">vfold_cv</span>(internal_validation_set, <span class="at">v =</span> <span class="dv">10</span>),</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">grid =</span> <span class="fu">grid_regular</span>(<span class="fu">cost</span>(), <span class="fu">rbf_sigma</span>(), <span class="at">levels =</span> <span class="dv">5</span>),</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">metrics =</span> <span class="fu">metric_set</span>(f_meas),</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">control =</span> <span class="fu">control_grid</span>(<span class="at">save_pred=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">collect_metrics</span>(orange_tuned)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>plot_df<span class="sc">$</span>rbf_sigma <span class="ot">&lt;-</span> <span class="fu">factor</span>(plot_df<span class="sc">$</span>rbf_sigma)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>plot_df<span class="sc">$</span>cost <span class="ot">&lt;-</span> <span class="fu">factor</span>(plot_df<span class="sc">$</span>cost)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>plot_df<span class="sc">$</span>mean <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">ggplot</span>(plot_df, </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">aes</span>(<span class="at">x=</span>cost, <span class="at">y=</span>rbf_sigma, <span class="at">size=</span>mean, <span class="at">color=</span>mean)) </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_size_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.9</span>))</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_colour_viridis_c</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.9</span>))</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">format</span>(<span class="fu">as.numeric</span>(x), <span class="at">digits=</span><span class="dv">2</span>, <span class="at">scientific=</span><span class="cn">TRUE</span>))</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_y_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">format</span>(<span class="fu">as.numeric</span>(x), <span class="at">digits=</span><span class="dv">2</span>, <span class="at">scientific=</span><span class="cn">TRUE</span>))</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>),</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.direction =</span><span class="st">"horizontal"</span>)</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Cost"</span>, <span class="at">y=</span><span class="st">"RBF Sigma"</span>, <span class="at">title=</span><span class="st">"Results are similar"</span>, <span class="at">subtitle=</span><span class="st">"But we get better (larger) F1-scores when sigma is closer to 3.2e-3"</span>)</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>   )</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Get the best configuration of parameters:</em></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select_best</span>(orange_tuned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Now, I am curious about the external validation set:</em></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>oj_model2 <span class="ot">&lt;-</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svm_rbf</span>(<span class="at">cost=</span><span class="fl">2.378414</span>, <span class="at">rbf_sigma=</span><span class="fl">0.003162278</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">'classification'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> external_validation_set)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(oj_model2, external_validation_set) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f_meas</span>(Purchase, .pred_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Good enough! F1-score ~ 0.86 is not bad and it’s closer to what we expected from the cross-validation</em></p>
+<p><em>Also, the ROC curve applied to the external validation set doesn’t look too bad!</em></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(oj_model2, external_validation_set) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_curve</span>(Purchase, .pred_CH) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </section>
 <section id="q10-challenge" class="level2">
 <h2 class="anchored" data-anchor-id="q10-challenge">Q10: Challenge</h2>
 <p>Replicate the same steps as in Q9 for different SVM kernels (linear, polynomial, etc.). Is it possible to fit a model that is better than the radial kernel,in terms of F1-score?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<details>
+<summary>
+See a model solution
+</summary>
+<section id="linear" class="level3">
+<h3 class="anchored" data-anchor-id="linear">Linear</h3>
+<p>A few things are different:</p>
+<ul>
+<li>The only parameter we can change is <code>cost</code></li>
+<li>The algorithm only works if we explicitly tell <code>tidymodels</code> that this SVM kernel can be found in the “kernlab” package, hence the <code>%&gt;% set_engine("kernlab")</code> added to the model specification.</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>orange_linear_tuned <span class="ot">&lt;-</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">object =</span> <span class="fu">svm_linear</span>(<span class="at">cost =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> <span class="fu">set_mode</span>(<span class="st">'classification'</span>) <span class="sc">%&gt;%</span> <span class="fu">set_engine</span>(<span class="st">"kernlab"</span>) ,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">preprocessor =</span> <span class="fu">recipe</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> internal_validation_set),</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">resamples =</span> <span class="fu">vfold_cv</span>(internal_validation_set, <span class="at">v =</span> <span class="dv">10</span>),</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">grid =</span> <span class="fu">grid_regular</span>(<span class="fu">cost</span>(), <span class="at">levels =</span> <span class="dv">5</span>),</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">metrics =</span> <span class="fu">metric_set</span>(f_meas),</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">control =</span> <span class="fu">control_grid</span>(<span class="at">save_pred=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>orange_linear_tuned <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"RMarkdown/orange_linear_tuned.Rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Results do not vary too much from <code>svm_rbf</code>. As we long as <code>cost</code> is sufficiently high, F1-scores are pretty decent.</em></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">collect_metrics</span>(orange_linear_tuned)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>plot_df<span class="sc">$</span>cost <span class="ot">&lt;-</span> <span class="fu">factor</span>(plot_df<span class="sc">$</span>cost)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>plot_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="polynomial" class="level3">
+<h3 class="anchored" data-anchor-id="polynomial">Polynomial</h3>
+<p>A few things are different:</p>
+<ul>
+<li>We have to tune <code>cost</code>, <code>degree</code> and <code>scale_factor</code>.</li>
+<li>Some combinations of parameters do not yield valid solutions. You might see a few errors in your console.</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>orange_polynomial_tuned <span class="ot">&lt;-</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">object =</span> <span class="fu">svm_poly</span>(<span class="at">cost =</span> <span class="fu">tune</span>(), <span class="at">degree=</span><span class="fu">tune</span>(), <span class="at">scale_factor=</span><span class="fu">tune</span>()) <span class="sc">%&gt;%</span> <span class="fu">set_mode</span>(<span class="st">'classification'</span>) ,</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">preprocessor =</span> <span class="fu">recipe</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> internal_validation_set),</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">resamples =</span> <span class="fu">vfold_cv</span>(internal_validation_set, <span class="at">v =</span> <span class="dv">10</span>),</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">grid =</span> <span class="fu">grid_regular</span>(<span class="fu">cost</span>(), <span class="fu">degree</span>(), <span class="fu">scale_factor</span>(), <span class="at">levels =</span> <span class="dv">5</span>),</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">metrics =</span> <span class="fu">metric_set</span>(f_meas),</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">control =</span> <span class="fu">control_grid</span>(<span class="at">save_pred=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Results do not vary too much here either, but there is a “sweet spot”: if </em></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">collect_metrics</span>(orange_polynomial_tuned)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>plot_df<span class="sc">$</span>degree <span class="ot">&lt;-</span> <span class="fu">factor</span>(plot_df<span class="sc">$</span>degree)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>plot_df<span class="sc">$</span>cost <span class="ot">&lt;-</span> <span class="fu">factor</span>(plot_df<span class="sc">$</span>cost)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>plot_df<span class="sc">$</span>scale_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(plot_df<span class="sc">$</span>scale_factor)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">ggplot</span>(plot_df, </span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>          <span class="fu">aes</span>(<span class="at">x=</span>cost, <span class="at">y=</span>scale_factor, <span class="at">size=</span>mean, <span class="at">color=</span>mean)) </span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_radius</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.9</span>), <span class="at">range=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>))</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_colour_viridis_c</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.9</span>))</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">format</span>(<span class="fu">as.numeric</span>(x), <span class="at">digits=</span><span class="dv">2</span>, <span class="at">scientific=</span><span class="cn">TRUE</span>))</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">scale_y_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">format</span>(<span class="fu">as.numeric</span>(x), <span class="at">digits=</span><span class="dv">2</span>, <span class="at">scientific=</span><span class="cn">TRUE</span>))</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>),</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.direction =</span><span class="st">"horizontal"</span>)</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Cost"</span>, <span class="at">y=</span><span class="st">"Scale Factor"</span>, <span class="at">title=</span><span class="st">"Results are similar to svm_rbf"</span>, <span class="at">subtitle=</span><span class="st">"But we get better (larger) F1-scores when Scale Factor is large enough"</span>)</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>   <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="sc">~</span> degree, <span class="at">labeller =</span> label_both)</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>   )</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="extra" class="level3">
+<h3 class="anchored" data-anchor-id="extra">Extra</h3>
+<p>It is possible to tune multiple models at the same time, instead of tune each algorithm at a time. Check <a href="https://workflowsets.tidymodels.org/articles/tuning-and-comparing-models.html"><strong>Tuning and comparing models</strong> tutorial</a> from <code>tidymodels</code>.</p>
+</section></details>
 
 
 </section>
 </section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
