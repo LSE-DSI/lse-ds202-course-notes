@@ -951,12 +951,12 @@ SV type: C-svc  (classification)
  parameter : cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  2.48694694610441 
+ Hyperparameter : sigma =  1.48842993564551 
 
-Number of Support Vectors : 436 
+Number of Support Vectors : 429 
 
-Objective Function Value : -383.3295 
-Training error : 0.165421 
+Objective Function Value : -387.9616 
+Training error : 0.170093 
 Probability model included. </code></pre>
 </div>
 </div>
@@ -986,12 +986,12 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 6 × 7
   Purchase LoyalCH PriceDiff .pred_class .pred_CH .pred_MM is_correct
   &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt;    &lt;dbl&gt; &lt;lgl&gt;     
-1 CH         0.5        0.24 CH             0.872    0.128 TRUE      
-2 CH         0.6       -0.06 CH             0.765    0.235 TRUE      
-3 CH         0.68       0.4  CH             0.882    0.118 TRUE      
-4 MM         0.4        0    MM             0.160    0.840 TRUE      
-5 CH         0.957      0    CH             0.880    0.120 TRUE      
-6 CH         0.965      0.3  CH             0.874    0.126 TRUE      </code></pre>
+1 CH         0.5        0.24 CH             0.853    0.147 TRUE      
+2 CH         0.6       -0.06 CH             0.706    0.294 TRUE      
+3 CH         0.68       0.4  CH             0.876    0.124 TRUE      
+4 MM         0.4        0    MM             0.174    0.826 TRUE      
+5 CH         0.957      0    CH             0.874    0.126 TRUE      
+6 CH         0.965      0.3  CH             0.873    0.127 TRUE      </code></pre>
 </div>
 </div>
 <section id="measure-precision-1" class="level4">
@@ -1003,7 +1003,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric   .estimator .estimate
   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-1 precision binary         0.862</code></pre>
+1 precision binary         0.856</code></pre>
 </div>
 </div>
 </section>
@@ -1016,7 +1016,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 recall  binary         0.868</code></pre>
+1 recall  binary         0.867</code></pre>
 </div>
 </div>
 </section>
@@ -1029,7 +1029,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 f_meas  binary         0.865</code></pre>
+1 f_meas  binary         0.861</code></pre>
 </div>
 </div>
 </section>
@@ -1103,12 +1103,12 @@ SV type: eps-svr  (regression)
  parameter : epsilon = 0.1  cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.76336410352141 
+ Hyperparameter : sigma =  1.74597507001427 
 
-Number of Support Vectors : 1116 
+Number of Support Vectors : 1118 
 
-Objective Function Value : -761.2274 
-Training error : 0.927936 </code></pre>
+Objective Function Value : -761.4101 
+Training error : 0.928392 </code></pre>
 </div>
 </div>
 </section>
@@ -1124,11 +1124,11 @@ Training error : 0.927936 </code></pre>
 <pre><code># A tibble: 6 × 6
    Today Volume   Lag1   .pred .resid row_number
    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;int&gt;
-1  0.959   1.19  0.381 -0.0552  1.01           1
-2  1.03    1.30  0.959 -0.251   1.28           2
-3 -0.623   1.41  1.03  -0.260  -0.363          3
+1  0.959   1.19  0.381 -0.0545  1.01           1
+2  1.03    1.30  0.959 -0.246   1.28           2
+3 -0.623   1.41  1.03  -0.257  -0.366          3
 4  0.614   1.28 -0.623  0.261   0.353          4
-5  0.213   1.21  0.614 -0.152   0.365          5
+5  0.213   1.21  0.614 -0.150   0.363          5
 6  1.39    1.35  0.213 -0.150   1.54           6</code></pre>
 </div>
 </div>
@@ -1216,12 +1216,12 @@ RMSE = \frac{\sum_{i=1}^{n}{(y_i - \hat{y}_i)^2}}{n}
 <pre><code># A tibble: 6 × 3
   Volume  Lag1   .pred
    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1      0  -5   -0.0107
-2      0  -4.8 -0.0107
-3      0  -4.6 -0.0107
-4      0  -4.4 -0.0107
-5      0  -4.2 -0.0107
-6      0  -4   -0.0107</code></pre>
+1      0  -5   -0.0111
+2      0  -4.8 -0.0111
+3      0  -4.6 -0.0111
+4      0  -4.4 -0.0111
+5      0  -4.2 -0.0111
+6      0  -4   -0.0111</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="bulb">💡</span> Look at the entire dataset with <code>View(sim.data)</code></p>
