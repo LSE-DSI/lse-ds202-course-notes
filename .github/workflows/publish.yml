@@ -51,6 +51,10 @@ jobs:
         run: devtools::install_version("rpart", version = "4.1.16", repos = "http://cran.us.r-project.org");install.packages(c("rpart.plot"))
         shell: Rscript {0}
 
+      - name: Install Summative 01 solutions packages
+        run: install.packages(c("psych", "mosaic"))
+        shell: Rscript {0}
+
       - name: Install 
         run: install.packages("remotes"); remotes::install_github("grantmcdermott/parttree", force=TRUE)
         shell: Rscript {0}

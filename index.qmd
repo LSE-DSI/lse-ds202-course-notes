@@ -7,19 +7,13 @@ subtitle: "Data Science for Social Scientists"
 
 **Recently updated pages:**
 
-(22/12/2022)
+(23/11/2022)
+
+- [✔️ Summative Problem Set 01 | Solutions](/assessments/summative1_solutions.qmd)
+
+(22/11/2022)
 
 - [✨ Week 08 Bonus Lab Advanced (Optional)](/weeks/week08/lab_advanced.qmd)
-
-(21/11/2022)
-
-- [✅ Week 09 - Checklist](/weeks/week09/checklist.qmd)
-- [👨‍🏫 Week 09 - Lecture](/weeks/week09/lecture.qmd)
-- [✔️ Week 08 - Lab Solutions](/weeks/week08/lab_solutions.qmd)
-
-(18/11/2022)
-
-- [✍️ Summmative Problem Set (02) | W08-W10](/assessments/summative2.qmd)
 
 :::
 
