@@ -1,0 +1,347 @@
+---
+title: "Machine Learning Cheatsheet"
+subtitle: "DS202 Blog Post"
+date: 27 November 2022
+date-meta: 27 November 2022
+categories: [week09, tidymodels, cheatsheet]
+theme: lumen
+---
+
+"_How do I do `...` using tidyverse/tidymodels?_" Check this blog post for a compilation of tips and code snippets.
+
+
+We started this course using just base R but since ~ Week 05 we started relying a lot more on [tidyverse](https://www.tidyverse.org/learn/) and [tidymodels](https://www.tidymodels.org/learn/), as these tools proved to be more intuitive. Still, there might be a few gaps in your understanding. So, refer to this page whenever you need to learn or revisit how to train a model or run a resampling technique using these packages.
+
+This page will be updated continuously. Let me know if you would like me to add something here.
+
+## Setup
+
+What packages do you need?
+
+In most cases, all you need is:
+
+```r
+library(tidyverse)
+library(tidymodels) 
+```
+
+::: callout-important 
+
+Keep in mind that `tidymodels` is just a convenient wrapper for a multitude of other Machine Learning algorithms that exist in a myriad of other R packages. If the algorithm you want to use is not installed by default, you might get an error message saying that you need to `install.packages(...)` a package. 
+
+You can browse all supported algorithms [on this page](https://www.tidymodels.org/find/parsnip/).
+:::
+
+
+# Algorithms
+
+## Regression
+
+We use regression when we want to predict a **numeric variable** (for example: number of accidents, house price, etc.). If the target variable is not numeric you will get an error, or worse you might get counterintuitive results.
+
+::: {.panel-tabset}
+## Linear Regression
+
+- Main Function: [linear_reg()](https://parsnip.tidymodels.org/reference/linear_reg.html)
+
+**How to train:**
+
+```r
+model <-
+    linear_reg() %>%
+    set_mode("regression") %>%
+    fit(Today ~ ., data=ISLR2::Smarket %>% select(-Direction))
+```
+
+**Get a summary of the fitted model:**
+
+```r
+summary(model$fit)
+```
+
+<details><summary>**Make Predictions**</summary>
+
+<br/>
+
+You can use your `model` to predict the outcome of a given data set. We use the [augment()](https://parsnip.tidymodels.org/reference/augment.html) function for that:
+
+```r
+df_augmented <- augment(model, df)
+```
+
+Keep in mind that the dataframe MUST contain the same columns used to train the model. It is also common to "augment" the same data that was used for training the model. This is how we check if our model fits the data well.
+</details>
+
+<details><summary>**Try a different implementation**</summary>
+<br/>
+
+By default, `linear_reg()` runs the same `lm()` algorithm we learned about in [💻 Week 03 - Lab](/weeks/week03/lab.qmd) but if you want you can use an alternative implementation from another R package. For example, to use a [Bayesian implementation of linear regression](https://parsnip.tidymodels.org/reference/details_linear_reg_stan.html) (from `stan`), use:
+
+```r
+model <-
+    linear_reg() %>%
+    set_engine("stan") %>% 
+    set_mode("regression") %>%
+    fit(Today ~ ., data=ISLR2::Smarket %>% select(-Direction))
+```
+
+Read about the alternatives in the [linear_reg()](https://parsnip.tidymodels.org/reference/linear_reg.html) documentation.
+</details>
+
+
+<details><summary>**Diagnostic Plots**</summary>
+<br/>
+
+How well did the model fit the data?
+
+```r
+par(mfrow = c(2, 2))
+plot(model$fit)
+```
+
+</details>
+
+
+## Decision Tree
+
+- Main Function: [decision_tree()](https://parsnip.tidymodels.org/reference/decision_tree.html)
+- Required libraries: `rpart` and `rpart.plot`
+
+
+**How to train:**
+
+```r
+model <-
+    decision_tree() %>%
+    set_mode("regression") %>%
+    fit(Today ~ ., data=ISLR2::Smarket %>% select(-Direction))
+```
+
+**Get a summary of the fitted model:**
+
+```r
+summary(model$fit)
+```
+
+**Plot the model**
+
+```r
+library(rpart.plot)
+
+rpart.plot(model$fit, roundint=FALSE)
+```
+
+<details><summary>**Make Predictions**</summary>
+
+<br/>
+
+You can use your `model` to predict the outcome of a given data set. We use the [augment()](https://parsnip.tidymodels.org/reference/augment.html) function for that:
+
+```r
+df_augmented <- augment(model, df)
+```
+
+Keep in mind that the dataframe MUST contain the same columns used to train the model. It is also common to "augment" the same data that was used for training the model. This is how we check if our model fits the data well.
+</details>
+
+<details><summary>**Try a different implementation**</summary>
+<br/>
+
+By default, `decision_tree()` runs the algorithm contained in the `rpart` package. This is the same package we learned about in [💻 Week 07 - Lab](/weeks/week07/lab.qmd) but if you want you can use an alternative implementation from another R package. For example, to use a [C5.0](https://parsnip.tidymodels.org/reference/details_decision_tree_C5.0.html):
+
+```r
+model <-
+    linear_reg() %>%
+    set_engine("C5.0") %>% 
+    set_mode("regression") %>%
+    fit(Today ~ ., data=ISLR2::Smarket %>% select(-Direction))
+```
+
+Read about the alternatives in the [decision_tree()](https://parsnip.tidymodels.org/reference/decision_tree.html) documentation.
+</details>
+
+
+<details><summary>**Change parameters**</summary>
+<br/>
+
+There are three main parameters you can tweak when using the `rpart` engine:
+
+- `cost_complexity`
+- `tree_depth`
+- `min_n`
+
+`tidymodels` might use default values or attempt to guess the best values for the parameters. If you want to choose parameter values explicitly, pass those to the `decision_tree()` function. For example:
+
+```r
+model <-
+    decision_tree(tree_depth= integer(3)) %>%
+    set_mode("regression") %>%
+    fit(Today ~ ., data=ISLR2::Smarket %>% select(-Direction))
+```
+
+Note that the availability of parameters changes from engine to engine. The decision tree in the [C5.0 engine](https://parsnip.tidymodels.org/reference/details_decision_tree_C5.0.html#tuning-parameters), for example, has one tuning parameter, `min_n`. Always check the documentation! 
+
+</details>
+
+## Support Vector Machine
+
+- Supported kernels: 
+    - Radial Basis Function ([svm_rbf()](https://parsnip.tidymodels.org/reference/svm_rbf.html))
+    - Polynomial ([svm_poly()](https://parsnip.tidymodels.org/reference/svm_poly.html))
+    - Linear ([svm_linear()](https://parsnip.tidymodels.org/reference/svm_linear.html))
+- Don't know what kernels are? Check [🗓️ Week 05 - Part II](/weeks/week05/lecture.qmd)
+- Required libraries: `kernlab` and `LiblineaR` (for the linear kernel).
+
+**How to train:**
+
+```r
+model <-
+    svm_rbf() %>%
+    set_mode("regression") %>%
+    fit(Today ~ ., data=ISLR2::Smarket %>% select(-Direction))
+```
+
+**Get a summary of the fitted model:**
+
+```r
+model
+```
+
+<details><summary>**Make Predictions**</summary>
+
+<br/>
+
+You can use your `model` to predict the outcome of a given data set. We use the [augment()](https://parsnip.tidymodels.org/reference/augment.html) function for that:
+
+```r
+df_augmented <- augment(model, df)
+```
+
+Keep in mind that the dataframe MUST contain the same columns used to train the model. It is also common to "augment" the same data that was used for training the model. This is how we check if our model fits the data well.
+</details>
+
+<details><summary>**Plot the decision space**</summary>
+
+THIS ONLY WORKS WITH TWO PREDICTORS!
+
+**Step 1: Check the min and max values of the two SELECTED predictors**
+
+Replace `<predictor1>` and `<predictor2>` with the name of your selected predictors.
+
+```r
+data %>% 
+    select(c(<predictor1>, <predictor2>)) %>%
+    summary()
+```
+
+Identify the min and max values of each predictor.
+
+**Step 2: Create a simulated dataset**
+
+You will need to find a suitable `step_val1` and `step_val2`. Play with different values until you find you that you like.
+
+```r
+sim.data <- 
+  crossing(<predictor1>   = seq(min_val_predictor1, max_val_predictor1, step_val1),
+           <predictor2>   = seq(min_val_predictor2, max_val_predictor2, step_val2))
+```
+
+**Step 3: Run the fitted model on this simulated data**
+
+```r
+sim.data <- augment(model, sim.data)
+```
+
+**Step 4: Run the fitted model on the data used to train the model**
+
+```r
+plot_df <- augment(model, data) 
+```
+
+**Step 5: Build the plot**
+
+Remember to replace `<predictor1>` and `<predictor2>` with the name of your selected predictors.
+
+```r
+g <- (
+  plot_df %>%   
+    ggplot()
+  
+    ## Tile the background of the plot with SVM predictions
+    + geom_tile(data = sim.data, aes(x=<predictor1>, y=<predictor2>, fill = .pred), alpha = 0.45)
+  
+    ## Actual data
+    + geom_point(aes(x=<predictor1>, y=<predictor2>), size=2.5, stroke=0.95)
+  
+    ## Define X and Os
+    + scale_shape_manual(values = c(4, 1))
+    + scale_fill_viridis_c()
+    + scale_color_manual(values=c("black", "red"))
+    + scale_alpha_manual(values=c(0.1, 0.7))
+    
+    ## (OPTIONAL) Customizing the colours and theme of the plot
+    + theme_minimal()
+    + theme(panel.grid = element_blank(), 
+            legend.position = 'bottom', 
+            plot.title = element_text(hjust = 0.5))
+)
+
+g
+```
+
+</details>
+
+<details><summary>**Try a different kernel**</summary>
+<br/>
+
+Simply replace `svm_rbf()` with one the other kernels available in tidymodels (`svm_poly()` or `svm_linear()`).
+
+Note that the availability of parameters changes from kernel to kernel. Always check the documentation! 
+
+
+</details>
+
+
+<details><summary>**Change parameters**</summary>
+<br/>
+
+There are two main parameters you can tweak when using the `svm_rbf()` function:
+
+- `cost`
+- `rbf_sigma`
+
+`tidymodels` might use default values or attempt to guess the best values for the parameters. If you want to choose parameter values explicitly, pass those to the `svm_rbf()` function. For example:
+
+```r
+model <-
+    svm_rbf(cost= integer(1), rbf_sigma = 0.2) %>%
+    set_mode("regression") %>%
+    fit(Today ~ ., data=ISLR2::Smarket %>% select(-Direction))
+```
+
+Note that the availability of parameters changes from kernel to kernel. Always check the documentation! 
+
+</details>
+
+:::
+
+
+
+## Classification
+
+<mark class="todo"></mark>
+
+
+## Clustering
+
+<mark class="todo"></mark>
+
+## Dimensionality Reduction
+
+<mark class="todo"></mark>
+
+# Resampling
+
+How to do bootstraping, train vs test splits and k-fold Cross-Validation using `tidymodels`.
+
+<mark class="todo"></mark>
