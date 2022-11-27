@@ -2,6 +2,7 @@
   {
     "listing": "/blog/main.html",
     "items": [
+      "/blog/posts/models-cheatsheet.html",
       "/blog/posts/outliers.html",
       "/blog/posts/p-values.html",
       "/blog/posts/bayes-theorem.html",
