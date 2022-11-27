@@ -1,0 +1,363 @@
+---
+title: "💻 Week 10 - Lab Roadmap (90 min)"
+date: 28 November 2022
+date-meta: 28 November 2022
+from: markdown+emoji
+author: Dr. Jon Cardoso-Silva
+---
+
+This week, we will demonstrate how to pre-process a dataset before running any ML model. After preprocessing, we will use Principal Component Analysis (PCA) to explore similarities and dissimilarities in the data.
+
+:::{.callout-important}
+Download this page as an RMarkdown file from Moodle.
+:::
+
+
+# Setup
+
+## Packages you will need
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)   # to use things like the pipe (%>%)
+library(tidymodels)  # for model tuning, cross-validation etc.
+
+# Vanity packages:
+library(ggcorrplot)
+library(ggsci)       # we like pretty colours
+```
+
+# Step 1: The Data (10 min)
+
+In this lab we will use a subset of the [V-Dem v12 dataset](https://www.v-dem.net/data/the-v-dem-dataset/), the world's most comprehensive and detailed democracy ratings. There are 764 variables and indicators in this dataset; you can read about each one of the variables in the [V-Dem v12 Codebook](https://www.v-dem.net/documents/1/codebookv12.pdf). Here we chose just a few columns from the **Historical V-Dem > Elections** data collection (Chapter 4 of the Codebook).
+
+### Load the Data
+
+Let's load the data:
+
+```r
+df <- read_csv("VDEM_v12_subset.csv")
+```
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+df <- read_csv("../resources/VDEM_v12_subset.csv")
+```
+
+### How many rows and columns are there in the dataset?
+
+```{r}
+dim(df)
+```
+
+### What are the columns?
+
+```{r}
+colnames(df)
+```
+📚 **REFERENCE**: Here is a summary of the columns we selected:
+
+- `v2eltype_0`: Were there any **first round** legislative elections this `year` in this `country_name`?
+- `v2eltype_1`: Were there any **second round** legislative elections this `year` in this `country_name`?
+- `v2eltype_6`: Were there any **first round** presidential elections this `year` in this `country_name`? 
+- `v2eltype_7`: Were there any **second round** presidential elections this `year` in this `country_name`? 
+- `v2asuffrage`: What is the approximate percentage of enfranchised adults older than the minimal voting age?
+- `v2elage`: What is the minimum voting age?
+- `v2eltrnout`: What is the election turnout?
+- `v2elaccept_ord`: Do election losers accept results? From 0 (None) to 4 (All).
+- `v2elasmoff_ord`: Following this election, did winners assume office according to prescribed constitutional rules and norms? Range from 0 (No) to 2 (Yes)
+
+
+### Explore
+
+🎯 **ACTION POINT** Type `View(df)` **on the R console** and hit ENTER to visualise the data.
+
+_`View()` does not work when knitting the file. So, to avoid future problems, as a good practice, it is best to run the `View()` function from the Console and not the R Markdown._
+
+🗣️ **CLASSROOM DISCUSSIONS** Why are there so many NAs in this dataset? Share your observations of this dataset with the class teacher and your colleagues.
+
+# Step 2: Pre-process the data (50 min)
+
+Time to make things a bit more interesting!
+
+Say our goal is to compare countries based on the _frequency_ of national elections (legislative and presidential) as well as things like average minimum voting age or average turnout over a common time period. Also, say we are only interested in data from the year 1900 onwards.
+
+The data we have is not ready for this kind of analysis, so let's spend some time reshaping it. (In real-life data science, 80% of the time is spent doing this kind of data preprocessing!).
+
+## Step 2.1. Add a `period` column
+
+Let's aggregate data about the countries over a common 20-year time window period.
+
+We use the arithmetic operation of [integer division](https://stackoverflow.com/a/66113826/843365) to make this possible here.
+
+```{r}
+tmp_df <- 
+  df %>%
+  filter(year >= 1900, year < 2020) %>%
+  mutate(period=paste0("[", 20 * (year %/% 20),
+                       "-", 20 * (year %/% 20) + 19, "]"))
+
+# Selecting these columns just to make it easier to visualize
+tmp_df %>% 
+  select(country_name, year, period) %>%
+  head(n=40)
+```
+## Step 2.2. Count the number of elections per election type
+
+Run the code below and type `View(tmp_df)`: 
+
+```{r}
+tmp_df <-
+  # The same pre-processing as before
+  df %>%
+  filter(year >= 1900, year < 2020) %>%
+  mutate(period=paste0("[", 20 * (year %/% 20),
+                       "-", 20 * (year %/% 20) + 19, "]")) %>%
+  
+  # This bit is new 
+  group_by(period, country_name) %>%
+  summarize(across(c(v2eltype_0, v2eltype_1, v2eltype_6, v2eltype_7),
+                   ~ sum(., na.rm=TRUE),
+                   .names = "sum_{.col}"),
+            .groups="keep")
+```
+
+🤝 **WORKING TOGETHER:** Now, in groups or in pairs, can you explain why the dimensions our (new) temporary data frame `tmp_df` is different to the original data frame `df`? 
+
+```{r}
+dim(tmp_df)
+```
+🤝 **WORKING TOGETHER:** What do the columns of `tmp_df` represent?
+
+> your notes here
+
+
+## Step 2.3. Take the average of suffrage levels, voting age and turnout rate
+
+Each `period` can contain multiple elections so variables such as `v2asuffrage`, `v2elage` and `v2eltrnout` cannot be used as they are, we need to _aggregate_ them somehow.
+
+Let's use the same combo of summary+across as before and create columns to contain the _mean_ of these values:
+
+```{r}
+tmp_df <-
+  # The same pre-processing as before
+  df %>%
+  filter(year >= 1900, year < 2020) %>%
+  mutate(period=paste0("[", 20 * (year %/% 20),
+                       "-", 20 * (year %/% 20) + 19, "]")) %>%
+  
+  # It's a different summarise!
+  group_by(period, country_name) %>%
+  summarize(across(c(v2asuffrage, v2elage, v2eltrnout),
+                   ~ mean(., na.rm=T),
+                   .names = "mean_{.col}"),
+            .groups="keep")
+```
+
+🤝 **WORKING TOGETHER:** In groups or in pairs, take a look at the new `tmp_df`, pay close attention to the NAs in this data frame. Then, answer the following questions: 
+
+- How would you handle these NAs? Should we remove all rows that contain NA or should we replace the NAs by some value (a process called [data imputation](https://www.wikiwand.com/en/Imputation_(statistics)?
+
+> your notes here
+
+🗣️ **CLASSROOM DISCUSSIONS**: Share your thoughts!
+
+## Step 2.4. Winners and Losers
+
+In the original data, `v2elaccept_ord == 4` when the losers of all national elections in a particular year conceded defeat, and `v2elasmoff_ord == 2` when all winners assumed office according to the result of elections without any restrictions.
+
+Out of all elections that happens in a `period`, what percentage of winners fully assumed office and what percentage of losers fully conceded defeat?
+
+```{r}
+tmp_df <-
+  # The same pre-processing as before
+  df %>%
+  filter(year >= 1900, year < 2020) %>%
+  mutate(period=paste0("[", 20 * (year %/% 20),
+                       "-", 20 * (year %/% 20) + 19, "]")) %>%
+  group_by(period, country_name) %>%
+  
+  # This bit is new!
+  summarise(pctg_v2elaccept_full=sum(v2elaccept_ord == 4, na.rm=T)/sum(!is.na(v2elaccept_ord)),
+            pctg_v2elasmoff_full=sum(v2elasmoff_ord == 2, na.rm=T)/sum(!is.na(v2elasmoff_ord)),
+            .groups="keep") 
+```
+
+🎯 **ACTION POINT** Once again, type `View(tmp_df)` **on the R console** and hit ENTER to visualise the data.
+
+
+## Step 2.5 Putting it all together
+
+The code below combines what we have done in Steps 2.1-2.4 above. Run it and `View(df_preprocessed)` to see the output. We will use the `is_all_NAs` column to filter out the true NAs afterwards.
+
+```{r}
+df_preprocessed <-
+  df %>%
+  filter(year >= 1900, year < 2020) %>%
+  mutate(period=paste0("[", 20 * (year %/% 20),
+                       "-", 20 * (year %/% 20) + 19, "]")) %>%
+  
+  # It's a different summarise!
+  group_by(period, country_name) %>%
+  summarize(across(c(v2eltype_0, v2eltype_1, v2eltype_6, v2eltype_7),
+                   ~ sum(., na.rm=T),
+                   .names = "sum_{.col}"),
+            across(c(v2asuffrage, v2elage, v2eltrnout),
+                   ~ mean(., na.rm=T),
+                   .names = "mean_{.col}"),
+            pctg_v2elaccept_full=sum(v2elaccept_ord == 4, na.rm=T)/sum(!is.na(v2elaccept_ord)),
+            pctg_v2elasmoff_full=sum(v2elasmoff_ord == 2, na.rm=T)/sum(!is.na(v2elasmoff_ord)),
+            .groups="keep") %>% 
+    ungroup()
+```
+
+How many time periods are we talking about?
+
+```{r}
+df_preprocessed %>% distinct(period) %>% as.list()
+```
+
+```{r}
+dim(df_preprocessed)
+```
+
+## Step 2.6. Handling missing data
+
+Where are the NAs?
+
+```{r}
+df_preprocessed %>% summarise(across(everything(),~ sum(is.na(.)))) %>% t()
+```
+
+Here we choose the "lazy" path, let's just ignore the rows that contain any NA:
+
+```{r}
+df_preprocessed <- df_preprocessed %>% na.omit()
+```
+
+```{r}
+dim(df_preprocessed)
+```
+
+
+💡 You might disagree with this strategy of handling missing data, and that is great! If you have an alternative strategy in mind, do share it with us on Slack! I would be curious to hear about it.
+
+
+# Step 3. PCA (30 min)
+
+PCA is a **linear** technique that recombines data onto a new set of variables with useful properties. Most commonly, PCA is used to reduce the dimensionality of a dataset and to understand similarities in the data.
+
+
+## Step 3.1 Training PCA
+
+Here we take a pragmatic approach. Let's try to understand the technique by comparing our current dataset to the new data that will be produced by PCA.
+
+`df_preprocessed` has 11 columns, 9 are predictors whereas the other 2 columns are identifiers (`country_name` and `period`). Let's look at the correlation between the features:
+
+
+```{r}
+df_preprocessed %>% 
+  select(-country_name, -period) %>% 
+  na.omit() %>% 
+  cor() %>% 
+  ggcorrplot(outline.col = "white", lab=TRUE, 
+             type="lower", lab_size=2.2, tl.cex=10)
+```
+
+🏠 **TAKE-HOME ACTIVITY:** This week, instead of coding exercises, we suggest you practice some more `tidymodels`. We will point to a few suggested official tutorials. In this section, we need to use something called `recipes`; read the [Preprocess your data with recipes](https://www.tidymodels.org/start/recipes/) tutorial on tidymodel's website to learn more.
+
+Now, let's see how you could train PCA using the `tidymodels` package:
+
+```{r}
+pca_recipe <-
+  # First we specify a recipe of what data we are using
+  recipe(~ ., data = df_preprocessed) %>%
+  
+  # Columns period and country_name are not to be used as predictors.
+  # That is why we update their roles in the recipe
+  update_role(period, new_role = 'id') %>% 
+  update_role(country_name, new_role = 'id') %>% 
+  
+  # PCA requires that data have the same distribution
+  # This can be achieved by normalizing the data (mean=0 and std=1)
+  step_normalize(all_predictors()) %>% 
+  
+  # This is where we tell the recipe to run PCA and return 9 Principal Components
+  step_pca(all_predictors(), num_comp=9)
+
+# pca_recipe created a recipe, but it didn't run any of those steps.
+# To train the PCA, we have to prepare the recipe -- with prep()
+pca_prep <- prep(pca_recipe)
+```
+
+The object `pca_recipe` contains a recipe and we can choose to prepare a recipe (`prep()`) at any time.
+
+## Step 3.2 Look at the new data
+
+Now that we have prepared our recipe, let's `bake` it using our ingredients (the data):
+
+```{r}
+new_df <- bake(pca_prep, df_preprocessed)
+```
+
+🎯 **ACTION POINT** Once again, type `View(new_df)` **on the R console** and hit ENTER to visualise the new data frame.
+
+🗣️ **CLASSROOM DISCUSSIONS**: What do you think the columns in this data frame represent?
+
+### How are these variables distributed?
+
+```{r}
+plot_df <- pivot_longer(new_df, PC1:PC9)
+ggplot(plot_df, aes(x=value, fill=name)) + geom_histogram() + theme_bw() + facet_wrap(~ name)
+```
+### Correlation plot
+
+🗣️ **CLASSROOM DISCUSSIONS**: Observe the correlation plot below. Why do you think there is no correlation between any predictor?
+
+```{r}
+new_df %>% 
+  select(-country_name, -period) %>% 
+  cor() %>% 
+  ggcorrplot(outline.col = "white", lab=TRUE, 
+             type="lower", lab_size=2.2, tl.cex=10)
+```
+
+💡 _If you create a `ggpairs()` plot, you will see what zero correlation means. Each pairwise combination of features produces a scatter plot that look essentially like a random cloud of points._
+
+
+## Step 3.3. Looking closer...
+
+These properties of the new data set were produced by design!
+
+> **💡 PCA "rearranges" the original data matrix, producing a new data matrix where all features are intentionally completely uncorrelated to each other.**
+
+This is the key takeaway of PCA. If you remember only one thing about this technique, remember the sentence above!
+
+For example, this is how `PC1` is constructed from the other predictors:
+
+$$
+\begin{align}
+\text{PC1} = &+ 0.21799702 \times \text{sum_v2eltype_0}^* + 0.24465538 \times \text{sum_v2eltype_1}^* \\
+&+0.51687063 \times \text{sum_v2eltype_1}^* + 0.49560420  \times \text{sum_v2eltype_7}^* \\
+&+0.44277858 \times \text{mean_v2asuffrage}^* - 0.36757212 \times \text{mean_v2elage}^*\\
+&-0.11972783 \times \text{mean_v2eltrnout}^* + 0.07999905 \times \text{pctg_v2elaccept_full}^* \\
+&+0.16716920 \times \text{pctg_v2elasmoff_full}^*
+\end{align}
+$$
+where we marked predictors with an asterisk just to remind us that these are not the _raw_ data, but the _normalised_ values of those features.
+
+_The equation above looks familiar, right? Indeed, the way PCA calculates these weights (they are called loadings) bares some similarity to how a linear regression problem is solved._
+
+With the code below, we get to see how PCA calculated the other Principal Components. 
+
+```{r}
+pca_prep$steps[[2]]$res
+```
+
+What else is there? Let's look at the `summary()` of PCA:
+
+```{r}
+summary(pca_prep$steps[[2]]$res)
+```
+
+The table below indicates that if we chose to use only the first 5 Principal Components (PC1, PC2, PC3, PC4, PC5) instead of all of them and instead of the original dataframe, we would still have preserved 70% of the variance in this data.
+
+🏠 **TAKE-HOME ACTIVITY:** Check out [this tutorial on Dimensionality Reduction](https://www.tmwr.org/dimensionality.html)

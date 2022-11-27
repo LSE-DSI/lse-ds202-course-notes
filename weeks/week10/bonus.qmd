@@ -1,0 +1,97 @@
+---
+title: "✨ Intro to tidymodels recipes"
+author: "Jon Cardoso-Silva"
+date: 27 November 2022
+from: markdown+emoji
+---
+
+The following was didn't make it to this week's lab roadmap; we would easily run out of time. So, I suggest you include in your studies of the week!
+
+# Recipes!
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(tidymodels)
+```
+
+We could do PCA directly in base R using a function called `prcomp`, but since we have decided to use more `tidyverse` and related packages, we will teach you how to do PCA with `tidymodels`.
+
+## What are recipes?
+
+Among the packages included with `tidymodels`, there is one called `recipes`. This package lets us indicate which role that the columns of our data frame play in our supervised or unsupervised models. Not only that, it lets us reuse the same formula, say for cross-validation or any other use. Check out the [Introduction to recipes tutorial](https://recipes.tidymodels.org/articles/recipes.html) to learn more.
+
+Let's look at the supervised model case first (even though today is about an unsupervised technique).
+
+### A recipe for supervised models
+
+Remember the `Smarket` dataset from W08? There, we used `Volume` and `Lag1` to predict `Today` and we always represented this with an R Formula like:
+
+```r
+Today ~ Volume + Lag1
+```
+
+or, simply:
+
+```r
+Today ~ .
+```
+
+That is, the **target** variable comes first, then we have the `~` symbol to represent what we should regress it on. 
+
+To represent this same idea using `recipe`, we simply do this:
+
+```{r, message=FALSE}
+recipe_obj <- recipe(Today ~ .,
+                     data = ISLR2::Smarket %>% select(Today, Volume, Lag1))
+
+print(recipe_obj)
+```
+
+🎯 **ACTION POINT:** What are the variables listed under each role in the `recipe` object above?
+
+## Step Change roles
+
+You might also remember that the `Smarket` dataset had more than just the variables above:
+
+```{r}
+ISLR2::Smarket %>% colnames()
+```
+
+Note and remember that variables `Today` and `Direction` are redundant. They represent almost the same thing. If I were to use all variables to predict the variable `Today`, I would have to discard `Direction`.
+
+🎯 **ACTION POINT:**  How would you write a recipe to predict `Today` using all variables of the `SMarket`, except `Direction`?
+
+
+### Function `update_role()`
+
+From `recipe`'s documentation:
+
+> _**roles** define how variables will be used in the model. Examples are: predictor (independent variables), response, and case weight. This is meant to be open-ended and extensible._
+
+We can use `update_role()` to change the role of a column, and we can name this role whatever we want basically. See for example an alternative for the problem of redundant variables in `SMarket`:
+
+```{r}
+recipe(Today ~ .,data = ISLR2::Smarket) %>% update_role(Direction, new_role='redundant')
+```
+
+We marked `Direction` as `role="redudant"`, and since this is not a standard role ("predictor", "outcome", etc.), this variable will not be used in any algorithm.
+
+## Unsupervised case
+
+Let's go back to our dataset. We don't have a $\mathbf{Y}$ variable to predict, we care only about the features/predictors, $\mathbf{X}$. How would we represent a recipe for an **unsupervised model**? 
+
+It's simple. We simply leave everything before `~` empty in our [R formula](https://www.datacamp.com/tutorial/r-formula-tutorial) representation:
+
+```
+~ <var1> + <var2> + ...
+```
+
+In our dataset, called `class_support`:
+
+```{r}
+recipe(~ ., data = class_support)
+```
+
+Does the above make sense to you? Do you see why we don't have an `outcome` role?
+
+🎯 **ACTION POINT:**  Write a recipe for `class_group` and then change the role of `period_id` to `role="id"`:

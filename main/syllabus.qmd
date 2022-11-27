@@ -199,8 +199,8 @@ Click on each Week's link for more information (slides, lab instructions, recomm
                 <ul>
                     <li>Worth: 20% of final marks</li>
                     <li>Problem set about ML applications (text mining/social media)</li>
-                    <li>**Release date:** 30 November 2022</li>
-                    <li>**Deadline:** 13 December 2022 (Week 11+1)</li>
+                    <li>**Release date:** 2 December 2022</li>
+                    <li>**Deadline:** 15 December 2022 (Week 11+1)</li>
                 </ul>
             </td>
         </tr>
