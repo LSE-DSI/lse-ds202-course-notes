@@ -39,7 +39,7 @@ df <- read_csv("VDEM_v12_subset.csv")
 ```
 
 ```{r message=FALSE, warning=FALSE, echo=FALSE}
-df <- read_csv("../resources/VDEM_v12_subset.csv")
+df <- read_csv("../../resources/VDEM_v12_subset.csv")
 ```
 
 ### How many rows and columns are there in the dataset?
