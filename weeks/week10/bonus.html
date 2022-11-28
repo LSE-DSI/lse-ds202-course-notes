@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
-<meta name="dcterms.date" content="13 November 2022">
+<meta name="dcterms.date" content="2022-11-27">
 
-<title>LSE DS202 2022/23 - LSE DS202</title>
+<title>LSE DS202 2022/23 - ✨ Intro to tidymodels recipes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,49 +22,92 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../main/communication.html" rel="next">
-<link href="../index.html" rel="prev">
-<link href="..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../weeks/week10/lab.html" rel="prev">
+<link href="../..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -85,8 +128,9 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../css/custom_style.css">
+<link rel="stylesheet" href="../../css/custom_style.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -96,7 +140,7 @@ div.csl-indent {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">LSE DS202 2022/23</span>
     </a>
   </div>
@@ -113,7 +157,7 @@ div.csl-indent {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">LSE DS202</h1>
+      <h1 class="quarto-secondary-nav-title">✨ Intro to tidymodels recipes</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -128,32 +172,32 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">🏠 Home</a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">🏠 Home</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../main/syllabus.html" class="sidebar-item-text sidebar-link active">📓 Syllabus</a>
+  <a href="../../main/syllabus.html" class="sidebar-item-text sidebar-link">📓 Syllabus</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../main/communication.html" class="sidebar-item-text sidebar-link">📟 Communication</a>
+  <a href="../../main/communication.html" class="sidebar-item-text sidebar-link">📟 Communication</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../main/assessments.html" class="sidebar-item-text sidebar-link">✍️ Assessments</a>
+  <a href="../../main/assessments.html" class="sidebar-item-text sidebar-link">✍️ Assessments</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../main/courserep.html" class="sidebar-item-text sidebar-link">🗳️ Course Rep</a>
+  <a href="../../main/courserep.html" class="sidebar-item-text sidebar-link">🗳️ Course Rep</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../blog/main.html" class="sidebar-item-text sidebar-link">📚 Blog</a>
+  <a href="../../blog/main.html" class="sidebar-item-text sidebar-link">📚 Blog</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -166,7 +210,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week01.html" class="sidebar-item-text sidebar-link">Week 01</a>
+            <a href="../../weeks/week01.html" class="sidebar-item-text sidebar-link">Week 01</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -174,24 +218,24 @@ div.csl-indent {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week01/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  <a href="../../weeks/week01/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week01/prep.html" class="sidebar-item-text sidebar-link">📒 Prepare for next week’s lab</a>
+  <a href="../../weeks/week01/prep.html" class="sidebar-item-text sidebar-link">📒 Prepare for next week’s lab</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week01/appendix.html" class="sidebar-item-text sidebar-link">🔖 Appendix</a>
+  <a href="../../weeks/week01/appendix.html" class="sidebar-item-text sidebar-link">🔖 Appendix</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week02.html" class="sidebar-item-text sidebar-link">Week 02</a>
+            <a href="../../weeks/week02.html" class="sidebar-item-text sidebar-link">Week 02</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -199,29 +243,29 @@ div.csl-indent {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week02/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  <a href="../../weeks/week02/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week02/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../../weeks/week02/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week02/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../../weeks/week02/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week02/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  <a href="../../weeks/week02/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week03.html" class="sidebar-item-text sidebar-link">Week 03</a>
+            <a href="../../weeks/week03.html" class="sidebar-item-text sidebar-link">Week 03</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,29 +273,29 @@ div.csl-indent {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week03/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
+  <a href="../../weeks/week03/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture Slides</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week03/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../../weeks/week03/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week03/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../../weeks/week03/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week03/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  <a href="../../weeks/week03/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week04.html" class="sidebar-item-text sidebar-link">Week 04</a>
+            <a href="../../weeks/week04.html" class="sidebar-item-text sidebar-link">Week 04</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -259,29 +303,29 @@ div.csl-indent {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week04/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  <a href="../../weeks/week04/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week04/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../../weeks/week04/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week04/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../../weeks/week04/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week04/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  <a href="../../weeks/week04/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week05.html" class="sidebar-item-text sidebar-link">Week 05</a>
+            <a href="../../weeks/week05.html" class="sidebar-item-text sidebar-link">Week 05</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -289,29 +333,29 @@ div.csl-indent {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week05/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  <a href="../../weeks/week05/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week05/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../../weeks/week05/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week05/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../../weeks/week05/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week05/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  <a href="../../weeks/week05/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week06.html" class="sidebar-item-text sidebar-link">Week 06</a>
+            <a href="../../weeks/week06.html" class="sidebar-item-text sidebar-link">Week 06</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -319,19 +363,19 @@ div.csl-indent {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week06/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../../weeks/week06/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week06/drop_in_jon.html" class="sidebar-item-text sidebar-link">💻 Drop-in Session 01</a>
+  <a href="../../weeks/week06/drop_in_jon.html" class="sidebar-item-text sidebar-link">💻 Drop-in Session 01</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week07.html" class="sidebar-item-text sidebar-link">Week 07</a>
+            <a href="../../weeks/week07.html" class="sidebar-item-text sidebar-link">Week 07</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -339,29 +383,29 @@ div.csl-indent {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week07/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  <a href="../../weeks/week07/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week07/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../../weeks/week07/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week07/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../../weeks/week07/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week07/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
+  <a href="../../weeks/week07/lab_solutions.html" class="sidebar-item-text sidebar-link">✔️ Lab solutions</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week08.html" class="sidebar-item-text sidebar-link">Week 08</a>
+            <a href="../../weeks/week08.html" class="sidebar-item-text sidebar-link">Week 08</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -369,29 +413,29 @@ div.csl-indent {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week08/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  <a href="../../weeks/week08/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week08/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../../weeks/week08/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week08/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../../weeks/week08/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week08/lab_advanced.html" class="sidebar-item-text sidebar-link">✨ Bonus Lab (Optional)</a>
+  <a href="../../weeks/week08/lab_advanced.html" class="sidebar-item-text sidebar-link">✨ Bonus Lab (Optional)</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week09.html" class="sidebar-item-text sidebar-link">Week 09</a>
+            <a href="../../weeks/week09.html" class="sidebar-item-text sidebar-link">Week 09</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -399,47 +443,47 @@ div.csl-indent {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week09/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  <a href="../../weeks/week09/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week09/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../../weeks/week09/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week09/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../../weeks/week09/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week10.html" class="sidebar-item-text sidebar-link">Week 10</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false">
+            <a href="../../weeks/week10.html" class="sidebar-item-text sidebar-link">Week 10</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week10/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
+  <a href="../../weeks/week10/lecture.html" class="sidebar-item-text sidebar-link">👨‍🏫 Lecture</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week10/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
+  <a href="../../weeks/week10/checklist.html" class="sidebar-item-text sidebar-link">✅ Checklist</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week10/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
+  <a href="../../weeks/week10/lab.html" class="sidebar-item-text sidebar-link">💻 Lab roadmap</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week10/bonus.html" class="sidebar-item-text sidebar-link">✨ Bonus Lab (Optional)</a>
+  <a href="../../weeks/week10/bonus.html" class="sidebar-item-text sidebar-link active">✨ Bonus Lab (Optional)</a>
   </div>
 </li>
       </ul>
@@ -451,13 +495,24 @@ div.csl-indent {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
-<p><img src="../figures/logos/LSE Data Science Institute.png" class="img-fluid"></p>
+<p><img src="../../figures/logos/LSE Data Science Institute.png" class="img-fluid"></p>
 </div></div>
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#syllabus" id="toc-syllabus" class="nav-link active" data-scroll-target="#syllabus">📓 Syllabus</a></li>
+  <li><a href="#recipes" id="toc-recipes" class="nav-link active" data-scroll-target="#recipes">Recipes!</a>
+  <ul class="collapse">
+  <li><a href="#what-are-recipes" id="toc-what-are-recipes" class="nav-link" data-scroll-target="#what-are-recipes">What are recipes?</a>
+  <ul class="collapse">
+  <li><a href="#a-recipe-for-supervised-models" id="toc-a-recipe-for-supervised-models" class="nav-link" data-scroll-target="#a-recipe-for-supervised-models">A recipe for supervised models</a></li>
+  </ul></li>
+  <li><a href="#step-change-roles" id="toc-step-change-roles" class="nav-link" data-scroll-target="#step-change-roles">Step Change roles</a>
+  <ul class="collapse">
+  <li><a href="#function-update_role" id="toc-function-update_role" class="nav-link" data-scroll-target="#function-update_role">Function <code>update_role()</code></a></li>
+  </ul></li>
+  <li><a href="#unsupervised-case" id="toc-unsupervised-case" class="nav-link" data-scroll-target="#unsupervised-case">Unsupervised case</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -466,8 +521,8 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">LSE DS202</h1>
-<p class="subtitle lead">Data Science for Social Scientists</p>
+<h1 class="title d-none d-lg-block">✨ Intro to tidymodels recipes</h1>
+<p class="subtitle lead">DS202 - Data Science for Social Scientists</p>
 </div>
 
 
@@ -477,14 +532,14 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a> </p>
+             <p>Jon Cardoso-Silva </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">13 November 2022</p>
+      <p class="date">27 November 2022</p>
     </div>
   </div>
   
@@ -494,438 +549,93 @@ div.csl-indent {
 
 </header>
 
-<section id="syllabus" class="level1">
-<h1>📓 Syllabus</h1>
-<p>A list of what happens every week.</p>
-<p>Click on each Week’s link for more information (slides, lab instructions, recommended resources, etc.).</p>
+<p>The following was didn’t make it to this week’s lab roadmap; we would easily run out of time. So, I suggest you include in your studies of the week!</p>
+<section id="recipes" class="level1">
+<h1>Recipes!</h1>
+<div class="cell">
 
-<table class="syllabus table">
-<thead>
-</thead>
-<tbody><tr class="odd">
-<th colspan="4">
-Intro
-</th>
-</tr>
-<!-- WEEK 01 -->
-</tbody><tbody>
-<tr class="even">
-<td rowspan="2">
-</td>
-<td rowspan="2">
-🗓️ <a href="../weeks/week01.html">W01</a>
-</td>
-<td style="font-weight:bold;">
-Lecture
-</td>
-<td>
-Introduction, Context &amp; Key Concepts <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 2</a>)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Lab
-</td>
-<td>
-No class this week. <br><em>(Use this time to revisit basic R programming)</em>
-</td>
-</tr>
-</tbody>
-<tbody><tr class="odd">
-<th colspan="4">
-Supervised Learning
-</th>
-</tr>
-<!-- WEEK 02 -->
-</tbody><tbody>
-<tr class="even">
-<td rowspan="2">
-</td>
-<td rowspan="2">
-🗓️ <a href="../weeks/week02.html">W02</a>
-</td>
-<td style="font-weight:bold;">
-Lecture
-</td>
-<td>
-Simple and Multiple Linear Regression <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 3</a>)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Lab
-</td>
-<td>
-Revision of <code>R</code>: data structures, basic commands and some tidyverse
-</td>
-</tr>
-</tbody>
-<!-- WEEK 03 -->
-<tbody>
-<tr class="even">
-<td rowspan="3">
-</td>
-<td rowspan="3">
-🗓️ <a href="../weeks/week03.html">W03</a>
-</td>
-<td style="font-weight:bold;">
-Lecture
-</td>
-<td>
-Classifiers (Logistic Regression &amp; Naive Bayes) <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 4</a>)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Lab
-</td>
-<td>
-Linear Regression <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 3</a>)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Formative
-</td>
-<td>
-<ul>
-<li>
-Worth: knowledge!
-</li>
-<li>
-Problem set involving linear regression.
-</li>
-<li>
-<strong>Release date:</strong> 15 October 2022
-</li>
-(<a href="https://moodle.lse.ac.uk/mod/coursework/view.php?id=1127006">link to Moodle</a>)
-<li>
-<strong>Deadline:</strong> 25 October 2022 (Week 05)
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-<!-- WEEK 04 -->
-<tbody>
-<tr class="even">
-<td rowspan="2">
-</td>
-<td rowspan="2">
-🗓️ <a href="../weeks/week04.html">W04</a>
-</td>
-<td style="font-weight:bold;">
-Lecture
-</td>
-<td>
-Resampling methods <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 5</a>)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Lab
-</td>
-<td>
-Classification Methods <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 4</a>)</span>
-</td>
-</tr>
-</tbody>
-<!-- WEEK 05 -->
-<tbody>
-<tr class="even">
-<td rowspan="3">
-</td>
-<td rowspan="3">
-🗓️ <a href="../weeks/week05.html">W05</a>
-</td>
-<td style="font-weight:bold;">
-Lecture
-</td>
-<td>
-Non-linear algorithms (SVM &amp; tree-based models) <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chaps. 8–9</a>)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Lab
-</td>
-<td>
-Cross-Validation and the Bootstrap <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 5</a>)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Summative
-</td>
-<td>
-<ul>
-<li>
-Worth: 20% of final marks
-</li>
-<li>
-Problem set involving regression, classification and resampling
-</li>
-<li>
-<strong>Release date:</strong> 28 October 2022
-</li>
-<li>
-<strong>Deadline:</strong> 9 November 2022 (Week 07)
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-<tbody><tr class="odd">
-<th colspan="4">
-Unsupervised Learning
-</th>
-</tr>
-<!-- WEEK 07 -->
-</tbody><tbody>
-<tr class="even">
-<td rowspan="2">
-</td>
-<td rowspan="2">
-🗓️ <a href="../weeks/week07.html">W07</a>
-</td>
-<td style="font-weight:bold;">
-Lecture
-</td>
-<td>
-Unsupervised Learning: Clustering <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 12</a>)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Lab
-</td>
-<td>
-Tree-based models <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 8</a>)</span>
-</td>
-</tr>
-</tbody>
-<!-- WEEK 08 -->
-<tbody>
-<tr class="even">
-<td rowspan="3">
-</td>
-<td rowspan="3">
-🗓️ <a href="../weeks/week08.html">W08</a>
-</td>
-<td style="font-weight:bold;">
-Lecture
-</td>
-<td>
-Unsupervised Learning: Dimensionality Reduction <br> <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 12</a>)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Lab
-</td>
-<td>
-Support Vector Machine + <code>tidymodels</code> + recap of cross-validation <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chaps. 5, 9</a>)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Summative
-</td>
-<td>
-<ul>
-<li>
-Worth: 20% of final marks
-</li>
-<li>
-Problem set about unsupervised learning
-</li>
-<li>
-<strong>Release date:</strong> 18 November 2022
-</li>
-<li>
-<strong>Deadline:</strong> 29 November 2022 (Week 10)
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-<tbody><tr class="odd">
-<th colspan="4">
-Applications
-</th>
-</tr>
-<!-- WEEK 09 -->
-</tbody><tbody>
-<tr class="even">
-<td rowspan="3">
-</td>
-<td rowspan="3">
-🗓️ <a href="">W09</a>
-</td>
-<td style="font-weight:bold;">
-Lecture
-</td>
-<td>
-Applications: Text as Data &amp; Topic Modelling
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold">
-Guest:
-</td>
-<td>
-Prof.&nbsp;<a href="https://kenbenoit.net/">Ken Benoit</a>
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Lab
-</td>
-<td>
-Unsupervised Learning: Clustering <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 12</a>)</span>
-</td>
-</tr>
-</tbody>
-<!-- WEEK 10 -->
-<tbody>
-<tr class="even">
-<td rowspan="3">
-</td>
-<td rowspan="3">
-🗓️ <a href="">W10</a>
-</td>
-<td style="font-weight:bold;">
-Lecture
-</td>
-<td>
-Applications: Predictive Modelling on Tabular Data
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Lab
-</td>
-<td>
-Unsupervised Learning: Principal Component Analysis <span class="citation" data-cites="james_introduction_2021">(<a href="#ref-james_introduction_2021" role="doc-biblioref">James et al. 2021, chap. 12</a>)</span>
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Summative
-</td>
-<td>
-<ul>
-<li>
-Worth: 20% of final marks
-</li>
-<li>
-Problem set about ML applications (text mining/social media)
-</li>
-<li>
-<strong>Release date:</strong> 2 December 2022
-</li>
-<li>
-<strong>Deadline:</strong> 15 December 2022 (Week 11+1)
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-<!-- WEEK 11 -->
-<tbody>
-<tr class="even">
-<td rowspan="3">
-</td>
-<td rowspan="3">
-🗓️ <a href="">W11</a>
-</td>
-<td style="font-weight:bold;">
-Lecture
-</td>
-<td>
-Applications: Social Media Data
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold">
-Guest:
-</td>
-<td>
-<a href="https://www.linkedin.com/in/sara-luxmoore/">Sara Luxmoore</a>, MSc in Applied Social Data Science (LSE)
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-Lab
-</td>
-<td>
-We will explore unsupervised models using a couple of text datasets
-</td>
-</tr>
-</tbody>
-<tbody>
-<tr class="even">
-<td rowspan="2">
-</td>
-<td rowspan="2">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</td>
-<td style="font-weight:bold;">
-</td>
-<td>
-</td>
-</tr>
-<tr class="even">
-<td style="font-weight:bold;">
-…
-</td>
-<td>
-</td>
-</tr>
-</tbody>
-<tbody>
-<tr class="even">
-<td rowspan="2">
-</td>
-<td rowspan="2">
-🗓️ <a href="">Jan/23</a>
-</td>
-<td style="font-weight:bold;">
-Exam
-</td>
-<td>
-<ul>
-<li>
-Worth: 40% of final marks
-</li>
-<li>
-Problem set about supervised + unsupervised learning + applications
-</li>
-<li>
-3 hours + 1 hour for submission
-</li>
-<li>
-Online exam via Moodle
-</li>
-<li>
-<strong>Date:</strong> Sometime during the <a href="https://info.lse.ac.uk/current-students/services/assessment-and-results/exams/exam-timetable">Exam Period</a>. Exact timeslot has not yet been confirmed by LSE Exams team.
-</li>
-</ul>
-</td>
-</tr>
-</tbody><tbody>
+</div>
+<p>We could do PCA directly in base R using a function called <code>prcomp</code>, but since we have decided to use more <code>tidyverse</code> and related packages, we will teach you how to do PCA with <code>tidymodels</code>.</p>
+<section id="what-are-recipes" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-recipes">What are recipes?</h2>
+<p>Among the packages included with <code>tidymodels</code>, there is one called <code>recipes</code>. This package lets us indicate which role that the columns of our data frame play in our supervised or unsupervised models. Not only that, it lets us reuse the same formula, say for cross-validation or any other use. Check out the <a href="https://recipes.tidymodels.org/articles/recipes.html">Introduction to recipes tutorial</a> to learn more.</p>
+<p>Let’s look at the supervised model case first (even though today is about an unsupervised technique).</p>
+<section id="a-recipe-for-supervised-models" class="level3">
+<h3 class="anchored" data-anchor-id="a-recipe-for-supervised-models">A recipe for supervised models</h3>
+<p>Remember the <code>Smarket</code> dataset from W08? There, we used <code>Volume</code> and <code>Lag1</code> to predict <code>Today</code> and we always represented this with an R Formula like:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Today <span class="sc">~</span> Volume <span class="sc">+</span> Lag1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or, simply:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Today <span class="sc">~</span> .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That is, the <strong>target</strong> variable comes first, then we have the <code>~</code> symbol to represent what we should regress it on.</p>
+<p>To represent this same idea using <code>recipe</code>, we simply do this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>recipe_obj <span class="ot">&lt;-</span> <span class="fu">recipe</span>(Today <span class="sc">~</span> .,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> ISLR2<span class="sc">::</span>Smarket <span class="sc">%&gt;%</span> <span class="fu">select</span>(Today, Volume, Lag1))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(recipe_obj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Recipe
 
-</tbody></table>
+Inputs:
 
+      role #variables
+   outcome          1
+ predictor          2</code></pre>
+</div>
+</div>
+<p>🎯 <strong>ACTION POINT:</strong> What are the variables listed under each role in the <code>recipe</code> object above?</p>
+</section>
+</section>
+<section id="step-change-roles" class="level2">
+<h2 class="anchored" data-anchor-id="step-change-roles">Step Change roles</h2>
+<p>You might also remember that the <code>Smarket</code> dataset had more than just the variables above:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ISLR2<span class="sc">::</span>Smarket <span class="sc">%&gt;%</span> <span class="fu">colnames</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Year"      "Lag1"      "Lag2"      "Lag3"      "Lag4"      "Lag5"     
+[7] "Volume"    "Today"     "Direction"</code></pre>
+</div>
+</div>
+<p>Note and remember that variables <code>Today</code> and <code>Direction</code> are redundant. They represent almost the same thing. If I were to use all variables to predict the variable <code>Today</code>, I would have to discard <code>Direction</code>.</p>
+<p>🎯 <strong>ACTION POINT:</strong> How would you write a recipe to predict <code>Today</code> using all variables of the <code>SMarket</code>, except <code>Direction</code>?</p>
+<section id="function-update_role" class="level3">
+<h3 class="anchored" data-anchor-id="function-update_role">Function <code>update_role()</code></h3>
+<p>From <code>recipe</code>’s documentation:</p>
+<blockquote class="blockquote">
+<p><em><strong>roles</strong> define how variables will be used in the model. Examples are: predictor (independent variables), response, and case weight. This is meant to be open-ended and extensible.</em></p>
+</blockquote>
+<p>We can use <code>update_role()</code> to change the role of a column, and we can name this role whatever we want basically. See for example an alternative for the problem of redundant variables in <code>SMarket</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">recipe</span>(Today <span class="sc">~</span> .,<span class="at">data =</span> ISLR2<span class="sc">::</span>Smarket) <span class="sc">%&gt;%</span> <span class="fu">update_role</span>(Direction, <span class="at">new_role=</span><span class="st">'redundant'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Recipe
+
+Inputs:
+
+      role #variables
+   outcome          1
+ predictor          7
+ redundant          1</code></pre>
+</div>
+</div>
+<p>We marked <code>Direction</code> as <code>role="redudant"</code>, and since this is not a standard role (“predictor”, “outcome”, etc.), this variable will not be used in any algorithm.</p>
+</section>
+</section>
+<section id="unsupervised-case" class="level2">
+<h2 class="anchored" data-anchor-id="unsupervised-case">Unsupervised case</h2>
+<p>Let’s go back to our dataset. We don’t have a <span class="math inline">\(\mathbf{Y}\)</span> variable to predict, we care only about the features/predictors, <span class="math inline">\(\mathbf{X}\)</span>. How would we represent a recipe for an <strong>unsupervised model</strong>?</p>
+<p>It’s simple. We simply leave everything before <code>~</code> empty in our <a href="https://www.datacamp.com/tutorial/r-formula-tutorial">R formula</a> representation:</p>
+<pre><code>~ &lt;var1&gt; + &lt;var2&gt; + ...</code></pre>
+<p>In a dataset, called <code>df</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">recipe</span>(<span class="sc">~</span> ., <span class="at">data =</span> df_preprocessed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Does the above make sense to you? Do you see why we don’t have an <code>outcome</code> role?</p>
+<p>🎯 <strong>ACTION POINT:</strong> Write a recipe for <code>df_preprocessed</code> and then change the role of <code>period</code> and <code>country_name</code> to <code>role="id"</code>:</p>
 
 
 </section>
+</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-james_introduction_2021" class="csl-entry" role="doc-biblioentry">
-James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: With Applications in <span>R</span></em>. Second edition. Springer Texts in Statistics. New York NY: Springer. <a href="https://www.statlearning.com/">https://www.statlearning.com/</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1192,14 +902,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">🏠 Home</span>
+      <a href="../../weeks/week10/lab.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">💻 Lab roadmap</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../main/communication.html" class="pagination-link">
-        <span class="nav-page-text">📟 Communication</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
