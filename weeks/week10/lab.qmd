@@ -334,14 +334,9 @@ This is the key takeaway of PCA. If you remember only one thing about this techn
 For example, this is how `PC1` is constructed from the other predictors:
 
 $$
-\begin{align}
-\text{PC1} = &+ 0.21799702 \times \text{sum_v2eltype_0}^* + 0.24465538 \times \text{sum_v2eltype_1}^* \\
-&+0.51687063 \times \text{sum_v2eltype_1}^* + 0.49560420  \times \text{sum_v2eltype_7}^* \\
-&+0.44277858 \times \text{mean_v2asuffrage}^* - 0.36757212 \times \text{mean_v2elage}^*\\
-&-0.11972783 \times \text{mean_v2eltrnout}^* + 0.07999905 \times \text{pctg_v2elaccept_full}^* \\
-&+0.16716920 \times \text{pctg_v2elasmoff_full}^*
-\end{align}
+\text{PC1} = + 0.21799702 \times \text{sum_v2eltype_0}^* + 0.24465538 \times \text{sum_v2eltype_1}^* +0.51687063 \times \text{sum_v2eltype_1}^* + 0.49560420  \times \text{sum_v2eltype_7}^* +0.44277858 \times \text{mean_v2asuffrage}^* - 0.36757212 \times \text{mean_v2elage}^*-0.11972783 \times \text{mean_v2eltrnout}^* + 0.07999905 \times \text{pctg_v2elaccept_full}^* +0.16716920 \times \text{pctg_v2elasmoff_full}^*
 $$
+
 where we marked predictors with an asterisk just to remind us that these are not the _raw_ data, but the _normalised_ values of those features.
 
 _The equation above looks familiar, right? Indeed, the way PCA calculates these weights (they are called loadings) bares some similarity to how a linear regression problem is solved._

@@ -6,4 +6,107 @@ author: Dr. Jon Cardoso-Silva
 from: markdown+emoji
 ---
 
-<mark class="todo"></mark>
+
+**Comprehension Check**
+
+By the end of the week, you should be able to:
+
+- [ ] Reflect on how to pre-process data using `tidyverse` so as to create a dataset of frequency counts
+- [ ] Use tidyverse's `mutate`, `group_by` and `summarise` to aggregate data when needed (Useful Refs: [R for Data Science | 5 Data transformation](https://r4ds.had.co.nz/transform.html) & [R for Data Science | 12 Tidy Data](https://r4ds.had.co.nz/tidy-data.html#tidy-data))
+- [ ] Reflect on the impact of missing data on a dataset
+- [ ] Run PCA on a dataset
+- [ ] Explain the rationale behind PCA's new features (how are they correlated? how do you find out how the original features form them?)
+
+**Time Management Tips**
+
+Here is a suggestion of how to program your week in relation to this course:
+
+<details><summary>If your lab is on Monday
+</summary>
+
+## If your lab is on Monday:
+
+**On Monday**:
+
+- 📥 **Download**: Before or once you arrive at the classroom, download the [DS202_2022MT_w10_lab_rmark.Rmd](https://moodle.lse.ac.uk/mod/folder/view.php?id=1140701) file that contains the lab roadmap (under **🗓️ Week 10** section on Moodle). Or browse the webpage version [here](/weeks/week10/lab.html).
+
+- 💻 **Participate**: Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Work with others whenever possible and take notes of theoretical concepts or practical coding skill you might want to revisit later in the week.
+
+- 🤖 **Drop-in Session**: If you have any final questions about the Summative Problem Set 02, attend the Drop-in Session at CBG 2.05 on Monday 28 November, 2pm-4pm.
+
+**Tuesday to Thursday**
+
+- 📙 **Read**: Find some time to read [@james_introduction_2021, section 12.2] and reinforce your theoretical understanding of _Principal Component Analysis_; it is a very short section.
+
+- 🏠 **Practice the tutorials**: Dedicate some time to learn about `recipes` ([W10 bonus content](/weeks/week10/bonus.qmd)) and to practice the tutorials linked on W10 lab.
+    - Here is another content you might find useful: [ Dimensionality Reduction](https://www.tmwr.org/dimensionality.html) from the [Tidy Modelling with R](https://www.tmwr.org/) book.
+    - Practice `group_by` & `summarise`: [R for Data Science | 5 Data transformation](https://r4ds.had.co.nz/transform.html)
+    - Practice reshaping data when needed: [R for Data Science | 12 Tidy Data](https://r4ds.had.co.nz/tidy-data.html#tidy-data))
+
+- 📺 **Watch short videos**: During the week, I will release short videos further explaining Principal Component Analysis. Try to reserve some time to watch those.
+
+**Friday**
+
+- 🏫 **Attend the lecture**: This week, [Dr. Stuart Bramwell](https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell) will join us on the second half of the lecture to talk about his research.
+
+- ✍️ **Get ready for the Summative 03**: the final problem set, Summative Problem Set 03, will be released this Friday 2 December.
+
+    - The deadline is **Thursday, 15 December 2022, 11:59 PM** but better not to leave it to the last minute!
+
+    - How to practice: W09 & W10 labs + the tutorials linked in the 🏠 **Practice the tutorials** section.
+
+**Any time**
+
+- 📟 You know the drill. Share your questions on the `#week10` channel in our Slack group.
+
+- 👂Want to talk to someone else about this course? Try reaching out to your course representatives, `@Zhang Ruishan (Yoyo)` or `@Rachitha Raghuram`.
+
+</details>
+
+<details>
+
+<summary>If your lab is on Friday
+</summary>
+
+## If your lab is on Friday:
+
+**Monday**
+
+- 🤖 **Drop-in Session**: If you have any final questions about the Summative Problem Set 02, attend the Drop-in Session at CBG 2.05 on Monday 28 November, 2pm-4pm.
+
+
+**Monday - Thursday**:
+
+- 📙 **Read**: Find some time to read [@james_introduction_2021, section 12.2] and reinforce your theoretical understanding of _Principal Component Analysis_; it is a very short section.
+
+- 📺 **Watch short videos**: During the week, I will release short videos further explaining Principal Component Analysis. Try to reserve some time to watch those.
+
+
+**Friday**
+
+- 📥 **Download**: Before or once you arrive at the classroom, download the [DS202_2022MT_w10_lab_rmark.Rmd](https://moodle.lse.ac.uk/mod/folder/view.php?id=1140701) file that contains the lab roadmap (under **🗓️ Week 10** section on Moodle). Or browse the webpage version [here](/weeks/week10/lab.html).
+
+- 💻 **Participate**: Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Work with others whenever possible and take notes of theoretical concepts or practical coding skill you might want to revisit later in the week.
+
+- 🏫 **Attend the lecture**: This week, [Dr. Stuart Bramwell](https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell) will join us on the second half of the lecture to talk about his research.
+
+- ✍️ **Get ready for the Summative 03**: the final problem set, Summative Problem Set 03, will be released this Friday 2 December.
+
+    - The deadline is **Thursday, 15 December 2022, 11:59 PM** but better not to leave it to the last minute!
+
+    - How to practice: W09 & W10 labs + the tutorials linked in the 🏠 **Practice the tutorials** section.
+
+**Some time early next week**
+
+- 🏠 **Practice the tutorials**: Dedicate some time to learn about `recipes` ([W10 bonus content](/weeks/week10/bonus.qmd)) and to practice the tutorials linked on W10 lab.
+    - Here is another content you might find useful: [ Dimensionality Reduction](https://www.tmwr.org/dimensionality.html) from the [Tidy Modelling with R](https://www.tmwr.org/) book.
+    - Practice `group_by` & `summarise`: [R for Data Science | 5 Data transformation](https://r4ds.had.co.nz/transform.html)
+    - Practice reshaping data when needed: [R for Data Science | 12 Tidy Data](https://r4ds.had.co.nz/tidy-data.html#tidy-data))
+
+**Any time**
+
+- 📟 You know the drill. Share your questions on the `#week10` channel in our Slack group.
+
+- 👂Want to talk to someone else about this course? Try reaching out to your course representatives, `@Zhang Ruishan (Yoyo)` or `@Rachitha Raghuram`.
+
+</details>
