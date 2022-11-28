@@ -923,14 +923,9 @@ pctg_v2elasmoff_full  246</code></pre>
 <p>This is the key takeaway of PCA. If you remember only one thing about this technique, remember the sentence above!</p>
 <p>For example, this is how <code>PC1</code> is constructed from the other predictors:</p>
 <p><span class="math display">\[
-\begin{align}
-\text{PC1} = &amp;+ 0.21799702 \times \text{sum_v2eltype_0}^* + 0.24465538 \times \text{sum_v2eltype_1}^* \\
-&amp;+0.51687063 \times \text{sum_v2eltype_1}^* + 0.49560420  \times \text{sum_v2eltype_7}^* \\
-&amp;+0.44277858 \times \text{mean_v2asuffrage}^* - 0.36757212 \times \text{mean_v2elage}^*\\
-&amp;-0.11972783 \times \text{mean_v2eltrnout}^* + 0.07999905 \times \text{pctg_v2elaccept_full}^* \\
-&amp;+0.16716920 \times \text{pctg_v2elasmoff_full}^*
-\end{align}
-\]</span> where we marked predictors with an asterisk just to remind us that these are not the <em>raw</em> data, but the <em>normalised</em> values of those features.</p>
+\text{PC1} = + 0.21799702 \times \text{sum_v2eltype_0}^* + 0.24465538 \times \text{sum_v2eltype_1}^* +0.51687063 \times \text{sum_v2eltype_1}^* + 0.49560420  \times \text{sum_v2eltype_7}^* +0.44277858 \times \text{mean_v2asuffrage}^* - 0.36757212 \times \text{mean_v2elage}^*-0.11972783 \times \text{mean_v2eltrnout}^* + 0.07999905 \times \text{pctg_v2elaccept_full}^* +0.16716920 \times \text{pctg_v2elasmoff_full}^*
+\]</span></p>
+<p>where we marked predictors with an asterisk just to remind us that these are not the <em>raw</em> data, but the <em>normalised</em> values of those features.</p>
 <p><em>The equation above looks familiar, right? Indeed, the way PCA calculates these weights (they are called loadings) bares some similarity to how a linear regression problem is solved.</em></p>
 <p>With the code below, we get to see how PCA calculated the other Principal Components.</p>
 <div class="cell">
