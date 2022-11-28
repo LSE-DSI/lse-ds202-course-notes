@@ -86,12 +86,12 @@ It's simple. We simply leave everything before `~` empty in our [R formula](http
 ~ <var1> + <var2> + ...
 ```
 
-In our dataset, called `class_support`:
+In a dataset, called `df`:
 
-```{r}
-recipe(~ ., data = class_support)
+```r
+recipe(~ ., data = df_preprocessed)
 ```
 
 Does the above make sense to you? Do you see why we don't have an `outcome` role?
 
-🎯 **ACTION POINT:**  Write a recipe for `class_group` and then change the role of `period_id` to `role="id"`:
+🎯 **ACTION POINT:**  Write a recipe for `df_preprocessed` and then change the role of `period` and `country_name` to `role="id"`:
