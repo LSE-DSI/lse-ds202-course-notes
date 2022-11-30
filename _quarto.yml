@@ -58,7 +58,7 @@ website:
                text: 👨‍🏫 Lecture Slides
              - href: weeks/week01/prep.qmd
                text: 📒 Prepare for next week's lab
-             - href: weeks/week01/appendix.html
+             - href: weeks/week01/appendix.qmd
                text: 🔖 Appendix
          - href: weeks/week02.qmd
            text: Week 02
@@ -142,6 +142,8 @@ website:
                text: ✅ Checklist
              - href: weeks/week09/lab.qmd
                text: 💻 Lab roadmap
+             - href: weeks/week09/appendix.qmd
+               text: 🔖 Appendix
          - href: weeks/week10.qmd
            text: Week 10
            contents:

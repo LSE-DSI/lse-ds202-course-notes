@@ -1,0 +1,34 @@
+---
+title: "🔖 Week 09 - Appendix"
+author: Dr. Jon Cardoso-Silva
+---
+
+I found the following videos which contains precisely the type of visualisations I wanted to share with you. I hope it helps to complement your understanding of Principal Component Analysis.
+
+
+## Indicative _Watching_
+
+**The equations behind Principal Component Analysis**
+
+Key takeaway: PCA is a way to change the "coordinates" of the data.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fkf4IBRSeEc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**Simple ilustrations and an example using base R**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TJdH6rPA-TI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**🌟 A must-watch Julia Silge tidyverse+tidymodel tutorial using PCA**
+
+- Watch it also with the goal to reinforce the ideas behind data pre-processing 
+- If you like this, follow Julia Silge on social media. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OvgzIx5mDNM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**(Optional) PCA but also learn about a non-linear dimensionality reduction: UMAP**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_1msVvPE_KY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**(Optional) A bit unrelated but here is an intro to tidymodels by ... 🥁 ... Julia Silge!**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/015rGZe2Lkk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

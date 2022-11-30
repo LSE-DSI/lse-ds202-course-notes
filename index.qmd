@@ -7,13 +7,9 @@ subtitle: "Data Science for Social Scientists"
 
 **Recently updated pages:**
 
-(27/11/2022)
+(30/11/2022)
 
-- [Machine Learning Cheatsheet](/blog/posts/models-cheatsheet.html) (Work-In-Progress )
-
-(23/11/2022)
-
-- [✔️ Summative Problem Set 01 | Solutions](/assessments/summative1_solutions.qmd)
+- [🔖 Week 09 - Appendix with videos about PCA](/weeks/week09/appendix.qmd)
 
 
 :::
