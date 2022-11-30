@@ -2,302 +2,306 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/index.html</loc>
-    <lastmod>2022-11-28T10:36:25.675Z</lastmod>
+    <lastmod>2022-11-30T22:54:41.291Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/blog/main.html</loc>
-    <lastmod>2022-11-28T10:36:27.983Z</lastmod>
+    <lastmod>2022-11-30T22:54:43.607Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/blog/posts/bayes-theorem.html</loc>
-    <lastmod>2022-11-28T10:36:28.419Z</lastmod>
+    <lastmod>2022-11-30T22:54:44.051Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/blog/posts/models-cheatsheet.html</loc>
-    <lastmod>2022-11-28T10:36:29.215Z</lastmod>
+    <lastmod>2022-11-30T22:54:44.859Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/blog/posts/outliers.html</loc>
-    <lastmod>2022-11-28T10:36:33.139Z</lastmod>
+    <lastmod>2022-11-30T22:54:48.908Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/blog/posts/p-values.html</loc>
-    <lastmod>2022-11-28T10:36:33.615Z</lastmod>
+    <lastmod>2022-11-30T22:54:49.400Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/blog/posts/r-squared.html</loc>
-    <lastmod>2022-11-28T10:36:34.123Z</lastmod>
+    <lastmod>2022-11-30T22:54:49.928Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/main/assessments.html</loc>
-    <lastmod>2022-11-28T10:36:34.603Z</lastmod>
+    <lastmod>2022-11-30T22:54:50.444Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/main/communication.html</loc>
-    <lastmod>2022-11-28T10:36:35.051Z</lastmod>
+    <lastmod>2022-11-30T22:54:50.924Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/main/courserep.html</loc>
-    <lastmod>2022-11-28T10:36:35.539Z</lastmod>
+    <lastmod>2022-11-30T22:54:51.432Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/main/syllabus.html</loc>
-    <lastmod>2022-11-28T10:36:36.107Z</lastmod>
+    <lastmod>2022-11-30T22:54:52.016Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/assessments/formative1_solutions.html</loc>
-    <lastmod>2022-11-28T10:36:43.315Z</lastmod>
+    <lastmod>2022-11-30T22:54:59.764Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/assessments/summative1.html</loc>
-    <lastmod>2022-11-28T10:36:44.255Z</lastmod>
+    <lastmod>2022-11-30T22:55:00.776Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/assessments/summative1_solutions.html</loc>
-    <lastmod>2022-11-28T10:36:58.996Z</lastmod>
+    <lastmod>2022-11-30T22:55:16.488Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/assessments/summative2.html</loc>
-    <lastmod>2022-11-28T10:37:00.468Z</lastmod>
+    <lastmod>2022-11-30T22:55:18.016Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week01.html</loc>
-    <lastmod>2022-11-28T10:37:00.928Z</lastmod>
+    <lastmod>2022-11-30T22:55:18.488Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week02.html</loc>
-    <lastmod>2022-11-28T10:37:01.356Z</lastmod>
+    <lastmod>2022-11-30T22:55:18.960Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week03.html</loc>
-    <lastmod>2022-11-28T10:37:01.796Z</lastmod>
+    <lastmod>2022-11-30T22:55:19.448Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week04.html</loc>
-    <lastmod>2022-11-28T10:37:02.264Z</lastmod>
+    <lastmod>2022-11-30T22:55:19.908Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week05.html</loc>
-    <lastmod>2022-11-28T10:37:02.716Z</lastmod>
+    <lastmod>2022-11-30T22:55:20.372Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week06.html</loc>
-    <lastmod>2022-11-28T10:37:03.168Z</lastmod>
+    <lastmod>2022-11-30T22:55:20.864Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week07.html</loc>
-    <lastmod>2022-11-28T10:37:03.608Z</lastmod>
+    <lastmod>2022-11-30T22:55:21.324Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week08.html</loc>
-    <lastmod>2022-11-28T10:37:04.072Z</lastmod>
+    <lastmod>2022-11-30T22:55:21.780Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week09.html</loc>
-    <lastmod>2022-11-28T10:37:04.504Z</lastmod>
+    <lastmod>2022-11-30T22:55:22.280Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week10.html</loc>
-    <lastmod>2022-11-28T10:37:04.948Z</lastmod>
+    <lastmod>2022-11-30T22:55:22.768Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week01/appendix.html</loc>
-    <lastmod>2022-11-28T10:37:05.484Z</lastmod>
+    <lastmod>2022-11-30T22:55:23.328Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week01/lecture.html</loc>
-    <lastmod>2022-11-28T10:37:05.940Z</lastmod>
+    <lastmod>2022-11-30T22:55:23.796Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week01/prep.html</loc>
-    <lastmod>2022-11-28T10:37:06.404Z</lastmod>
+    <lastmod>2022-11-30T22:55:24.272Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week02/checklist.html</loc>
-    <lastmod>2022-11-28T10:37:06.852Z</lastmod>
+    <lastmod>2022-11-30T22:55:24.716Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week02/lab.html</loc>
-    <lastmod>2022-11-28T10:37:07.684Z</lastmod>
+    <lastmod>2022-11-30T22:55:25.596Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week02/lab_solutions.html</loc>
-    <lastmod>2022-11-28T10:37:08.312Z</lastmod>
+    <lastmod>2022-11-30T22:55:26.260Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week02/lecture.html</loc>
-    <lastmod>2022-11-28T10:37:08.800Z</lastmod>
+    <lastmod>2022-11-30T22:55:26.772Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week03/checklist.html</loc>
-    <lastmod>2022-11-28T10:37:09.252Z</lastmod>
+    <lastmod>2022-11-30T22:55:27.256Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week03/formative.html</loc>
-    <lastmod>2022-11-28T10:37:09.720Z</lastmod>
+    <lastmod>2022-11-30T22:55:27.752Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week03/formative_solutions.html</loc>
-    <lastmod>2022-11-28T10:37:10.384Z</lastmod>
+    <lastmod>2022-11-30T22:55:28.460Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week03/lab.html</loc>
-    <lastmod>2022-11-28T10:37:16.576Z</lastmod>
+    <lastmod>2022-11-30T22:55:35.100Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week03/lab_solutions.html</loc>
-    <lastmod>2022-11-28T10:37:17.236Z</lastmod>
+    <lastmod>2022-11-30T22:55:35.800Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week03/lecture.html</loc>
-    <lastmod>2022-11-28T10:37:17.696Z</lastmod>
+    <lastmod>2022-11-30T22:55:36.272Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week04/checklist.html</loc>
-    <lastmod>2022-11-28T10:37:18.204Z</lastmod>
+    <lastmod>2022-11-30T22:55:36.800Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week04/lab.html</loc>
-    <lastmod>2022-11-28T10:37:26.221Z</lastmod>
+    <lastmod>2022-11-30T22:55:45.624Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week04/lab_solutions.html</loc>
-    <lastmod>2022-11-28T10:37:26.897Z</lastmod>
+    <lastmod>2022-11-30T22:55:46.300Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week04/lecture.html</loc>
-    <lastmod>2022-11-28T10:37:27.825Z</lastmod>
+    <lastmod>2022-11-30T22:55:47.272Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week05/checklist.html</loc>
-    <lastmod>2022-11-28T10:37:28.329Z</lastmod>
+    <lastmod>2022-11-30T22:55:47.788Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week05/lab.html</loc>
-    <lastmod>2022-11-28T10:37:33.577Z</lastmod>
+    <lastmod>2022-11-30T22:55:53.589Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week05/lab_solutions.html</loc>
-    <lastmod>2022-11-28T10:37:34.245Z</lastmod>
+    <lastmod>2022-11-30T22:55:54.301Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week05/lecture.html</loc>
-    <lastmod>2022-11-28T10:37:34.705Z</lastmod>
+    <lastmod>2022-11-30T22:55:54.781Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week06/checklist.html</loc>
-    <lastmod>2022-11-28T10:37:35.181Z</lastmod>
+    <lastmod>2022-11-30T22:55:55.261Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week06/drop_in_jon.html</loc>
-    <lastmod>2022-11-28T10:37:41.529Z</lastmod>
+    <lastmod>2022-11-30T22:56:02.173Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week07/checklist.html</loc>
-    <lastmod>2022-11-28T10:37:41.933Z</lastmod>
+    <lastmod>2022-11-30T22:56:02.621Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week07/lab.html</loc>
-    <lastmod>2022-11-28T10:37:49.341Z</lastmod>
+    <lastmod>2022-11-30T22:56:10.533Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week07/lab_solutions.html</loc>
-    <lastmod>2022-11-28T10:37:53.225Z</lastmod>
+    <lastmod>2022-11-30T22:56:14.729Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week07/lecture.html</loc>
-    <lastmod>2022-11-28T10:37:53.709Z</lastmod>
+    <lastmod>2022-11-30T22:56:15.201Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week08/checklist.html</loc>
-    <lastmod>2022-11-28T10:37:54.201Z</lastmod>
+    <lastmod>2022-11-30T22:56:15.753Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week08/lab.html</loc>
-    <lastmod>2022-11-28T10:38:08.494Z</lastmod>
+    <lastmod>2022-11-30T22:56:31.237Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week08/lab_advanced.html</loc>
-    <lastmod>2022-11-28T10:38:09.398Z</lastmod>
+    <lastmod>2022-11-30T22:56:32.209Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week08/lab_solutions.html</loc>
-    <lastmod>2022-11-28T10:38:17.098Z</lastmod>
+    <lastmod>2022-11-30T22:56:40.629Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week08/lecture.html</loc>
-    <lastmod>2022-11-28T10:38:17.530Z</lastmod>
+    <lastmod>2022-11-30T22:56:41.121Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week09/appendix.html</loc>
+    <lastmod>2022-11-30T22:56:41.569Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week09/checklist.html</loc>
-    <lastmod>2022-11-28T10:38:18.038Z</lastmod>
+    <lastmod>2022-11-30T22:56:42.121Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week09/lab.html</loc>
-    <lastmod>2022-11-28T10:38:18.854Z</lastmod>
+    <lastmod>2022-11-30T22:56:42.965Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week09/lecture.html</loc>
-    <lastmod>2022-11-28T10:38:19.298Z</lastmod>
+    <lastmod>2022-11-30T22:56:43.437Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week10/bonus.html</loc>
-    <lastmod>2022-11-28T10:38:23.698Z</lastmod>
+    <lastmod>2022-11-30T22:56:48.213Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week10/checklist.html</loc>
-    <lastmod>2022-11-28T10:38:24.218Z</lastmod>
+    <lastmod>2022-11-30T22:56:48.777Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week10/lab.html</loc>
-    <lastmod>2022-11-28T10:38:31.631Z</lastmod>
+    <lastmod>2022-11-30T22:56:56.785Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/weeks/week10/lecture.html</loc>
-    <lastmod>2022-11-28T10:38:32.047Z</lastmod>
+    <lastmod>2022-11-30T22:56:57.225Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/slides/week01_slides_part1.html</loc>
-    <lastmod>2022-11-28T10:38:35.951Z</lastmod>
+    <lastmod>2022-11-30T22:57:01.298Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/slides/week01_slides_part2.html</loc>
-    <lastmod>2022-11-28T10:38:46.759Z</lastmod>
+    <lastmod>2022-11-30T22:57:13.622Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/slides/week02_slides_part1.html</loc>
-    <lastmod>2022-11-28T10:39:01.967Z</lastmod>
+    <lastmod>2022-11-30T22:57:29.522Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/slides/week02_slides_part2.html</loc>
-    <lastmod>2022-11-28T10:39:05.556Z</lastmod>
+    <lastmod>2022-11-30T22:57:33.646Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/slides/week03_slides_part1.html</loc>
-    <lastmod>2022-11-28T10:39:15.408Z</lastmod>
+    <lastmod>2022-11-30T22:57:44.326Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/slides/week03_slides_part2.html</loc>
-    <lastmod>2022-11-28T10:39:19.548Z</lastmod>
+    <lastmod>2022-11-30T22:57:48.738Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/slides/week05_slides_part1.html</loc>
-    <lastmod>2022-11-28T10:39:25.680Z</lastmod>
+    <lastmod>2022-11-30T22:57:55.306Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/slides/week05_slides_part2.html</loc>
-    <lastmod>2022-11-28T10:39:52.481Z</lastmod>
+    <lastmod>2022-11-30T22:58:23.355Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/slides/week07_slides_part1.html</loc>
-    <lastmod>2022-11-28T10:39:52.909Z</lastmod>
+    <lastmod>2022-11-30T22:58:23.803Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/slides/week07_slides_part2.html</loc>
-    <lastmod>2022-11-28T10:40:01.193Z</lastmod>
+    <lastmod>2022-11-30T22:58:32.655Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/LSE-DSI/lse-ds202-course-notes/slides/week08_slides_part1.html</loc>
-    <lastmod>2022-11-28T10:40:05.885Z</lastmod>
+    <lastmod>2022-11-30T22:58:37.835Z</lastmod>
   </url>
 </urlset>
