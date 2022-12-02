@@ -6,15 +6,13 @@ date-meta: 04 November 2022
 
 Welcome to Week 10 of DS202!
 
-This week, you will get a chance to explore Principal Component Analysis (PCA) in the labs and I will also share a few short videos to help reinforce your theoretical understanding about PCA. 
+This week, you will get a chance to explore Principal Component Analysis (PCA) in the labs and I will also share a few (not-so-short) videos to help reinforce your theoretical understanding about PCA. 
 
 In the lecture, we will continue to explore real-life applications of Machine Learning. In the first part of the lecture, I will show you a few examples of applications and in the second half, we will hear from [Dr. Stuart Bramwell](https://www.lse.ac.uk/Methodology/People/Academic-Staff/Stuart-Bramwell/Stuart-Bramwell) and his research.
 
 Join us on Friday, 2 December 2022 from 2 p.m. to 4 p.m. at **NAB.LG.08**.
 
 ## Links
-
-- ✍️ [Third Summative W10-W11+1](#) 🔜 worth 20%, release: 2 December* Deadline: 15 December 2022.
 
 - 💻 [This week's lab](/weeks/week10/lab.qmd)
 
@@ -25,6 +23,8 @@ Join us on Friday, 2 December 2022 from 2 p.m. to 4 p.m. at **NAB.LG.08**.
 - ✅ [Take a look at this week's checklist](/weeks/week10/checklist.qmd)
 
 - ✔️ [Last week's lab solutions](#) 🔜
+
+- ✍️ [Third Summative W10-W11+1](#) 🔜 worth 20%, release: 5 December* Deadline: 18 December 2022.
 
 
 
