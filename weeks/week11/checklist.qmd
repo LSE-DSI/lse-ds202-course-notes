@@ -1,0 +1,99 @@
+---
+title: "✅ Week 11 - Checklist"
+date: 5 December 2022
+date-meta: 5 December 2022
+author: Dr. Jon Cardoso-Silva
+from: markdown+emoji
+---
+
+It is our final week and it is our final checklist! 
+
+**Comprehension Check**
+
+By the end of the week, you should be able to:
+
+- [ ] Explain what a document-frequency-matrix (bag of words) is
+- [ ] Build a corpus of text
+- [ ] Tokenise and pre-process text data (remove words that are too frequent, punctuation, etc.)
+- [ ] Search a corpus of data for keywords
+- [ ] Filter text before/after a search for keyword
+- [ ] Use `quanteda` functions to pre-process text data
+- [ ] Run several dimensionality reductions techniques, including PCA and LSA on a dataset
+- [ ] Run topic modelling on a text corpus
+- [ ] Identify an "optimal" number of clusters on a dataset based on the output of `NbClust` R package.
+- [ ] Conduct an exploratory data analysis of text independently, using the techniques above and those we have been exploring since the start of this course. 
+- [ ] Search for alternative R packages online when you need to do something different (new clustering algorithms, for example) 
+
+**Time Management Tips**
+
+Here is a suggestion of how to program your week in relation to this course:
+
+<details><summary>If your lab is on Monday
+</summary>
+
+## If your lab is on Monday:
+
+**On Monday**:
+
+- 📥 **Download**: Before or once you arrive at the classroom, download the [DS202_2022MT_w11_lab_rmark.Rmd](https://moodle.lse.ac.uk/mod/folder/view.php?id=1140701) file that contains the lab roadmap (under **🗓️ Week 11** section on Moodle). Or browse the webpage version [here](/weeks/week11/lab.html).
+
+- 💻 **Participate**: Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Work with others whenever possible and take notes of theoretical concepts or practical coding skill you might want to revisit later in the week.
+
+    - Summative 03 is heavily based on W11 lab, so make the most of it!
+
+**Tuesday to Thursday**
+
+- ✍️ **Solve Summative 03**
+
+    - Try to solve it during the week, so that you have time to ask questions on Slack or to set up study groups.
+
+    - Because the Summative 03 is to be released only on **Monday, 5 December 2022** (during the day), the deadline will also be moved to **Sunday, 18 December 2022, 11:59 PM** 
+
+**Friday**
+
+- 🏫 **Attend the lecture**: It is our final lecture and we have two guests coming to talk about some applications of Data Science and Machine Learning techniques to Text data (Natural Language Processing to be more precise) and Social Media data. Visit [Week 11 page](/weeks/week11.qmd) to read the title of their talks.
+
+**Any time**
+
+- 📟 You know the drill. Share your questions on the `#week11` channel in our Slack group.
+
+- 👂Want to talk to someone else about this course? Try reaching out to your course representatives, `@Zhang Ruishan (Yoyo)` or `@Rachitha Raghuram`.
+
+</details>
+
+<details>
+
+<summary>If your lab is on Friday
+</summary>
+
+## If your lab is on Friday:
+
+**Monday - Thursday**:
+
+- If you feel comfortable, take a look at the  [Week 11 lab](/weeks/week11/lab.html) content and start solving Summative 03 (which will be released on this Monday, 5 December 2022 during the day). Otherwise, keep practising the pre-processing/tidyverse/tidymodels tutorials we shared on last week's checklist before your lab on Friday.
+
+**Friday**
+
+- 📥 **Download**: Before or once you arrive at the classroom, download the [DS202_2022MT_w11_lab_rmark.Rmd](https://moodle.lse.ac.uk/mod/folder/view.php?id=1140701) file that contains the lab roadmap (under **🗓️ Week 11** section on Moodle). Or browse the webpage version [here](/weeks/week11/lab.html).
+
+- 💻 **Participate**: Actively engage with the material in the lab. Ask your class teacher for help if anything is unclear. Work with others whenever possible and take notes of theoretical concepts or practical coding skill you might want to revisit later in the week.
+
+    - Summative 03 is heavily based on W11 lab, so make the most of it!
+
+- 🏫 **Attend the lecture**: It is our final lecture and we have two guests coming to talk about some applications of Data Science and Machine Learning techniques to Text data (Natural Language Processing to be more precise) and Social Media data. Visit [Week 11 page](/weeks/week11.qmd) to read the title of their talks.
+
+**Some time early next week**
+
+- ✍️ **Solve Summative 03**
+
+    - Try to solve it as soon as possible, so that you have time to ask questions on Slack or to set up study groups.
+
+    - Because the Summative 03 is to be released only on **Monday, 5 December 2022** (during the day), the deadline will also be moved to **Sunday, 18 December 2022, 11:59 PM** 
+
+**Any time**
+
+- 📟 You know the drill. Share your questions on the `#week11` channel in our Slack group.
+
+- 👂Want to talk to someone else about this course? Try reaching out to your course representatives, `@Zhang Ruishan (Yoyo)` or `@Rachitha Raghuram`.
+
+</details>

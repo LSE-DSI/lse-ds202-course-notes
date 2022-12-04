@@ -215,8 +215,9 @@ Click on each Week's link for more information (slides, lab instructions, recomm
             <td>Applications: Social Media Data</td>
         </tr>
         <tr class="even">
-            <td style="font-weight:bold">Guest:</td>
+            <td style="font-weight:bold">Guests:</td>
             <td>[Sara Luxmoore](https://www.linkedin.com/in/sara-luxmoore/), MSc in Applied Social Data Science (LSE)</td>
+            <td>[Anton Boychenko](https://www.linkedin.com/in/anton-boychenko-7679b51b6/), MSc in Applied Social Data Science (LSE)</td>
         </tr>
         <tr class="even">
             <td style="font-weight:bold;">Lab</td>
