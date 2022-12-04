@@ -27,7 +27,7 @@ install.packages("quanteda.textmodels")
 
 ## Packages you will need
 
-```{r, message=FALSE, warning=FALSE}
+```r
 library(countrycode) # it contains data that will be useful to our preprocessing
 
 library(tidyverse)   # to use things like the pipe (%>%)
@@ -63,14 +63,6 @@ What do you see? Which tabs and columns seem interesting?
 
 We can use the `read_excel` function from the tidyverse package `readxl` to read Excel spreadsheets:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-df_pac <- 
-  readxl::read_excel("../../resources/PAC_Apologies_Public-Version-2.xlsx",
-                     sheet=1, .name_repair="minimal") %>% 
-  dplyr::mutate(`Date of apology`=lubridate::as_date(`Date of apology`)) %>% 
-  dplyr::arrange(desc(`Date of apology`))
-```
-
 ```r
 df_pac <- 
   readxl::read_excel("PAC_Apologies_Public-Version-2.xlsx",
@@ -97,7 +89,7 @@ Later, as a 🏠 **TAKE-HOME ACTIVITY:**, try to understand every single step of
 
 *By the way, if you want to practice this kind of advanced pre-processing, you should consider taking our sister course, DS105!*
 
-```{r}
+```r
 # Preamble: function countrycode::countrycode() receives a country name and
 #           returns its abbreviated version. However, some countries' names in
 #           our data are not recognised by the function, so we need to treat these cases. 
@@ -156,7 +148,7 @@ df_pac <-
 
 Now look at that beautiful `Apology ID` column. Satisfying? Yes. Worth it? ...
 
-```{r}
+```r
 df_pac %>% select(`Apology ID`) %>% head(n=10)
 ```
 
@@ -166,7 +158,7 @@ df_pac %>% select(`Apology ID`) %>% head(n=10)
 
 The first step when performing quantitative text analysis is to create a `corpus`: 
 
-```{r}
+```r
 corp_pac <- quanteda::corpus(df_pac, text_field="Description according to database")
 quanteda::docnames(corp_pac) <- df_pac$`Apology ID`
 
@@ -175,12 +167,12 @@ corp_pac
 
 _Once you have constructed this corpus, use the summary() method to see a brief description of the corpus._
 
-```{r}
+```r
 df_corpus <- summary(corp_pac)
 
 head(df_corpus, n=5)
 ```
-```{r}
+```r
 g <- (
   ggplot(df_corpus, aes(x=Tokens))
   + geom_bar()
@@ -197,13 +189,13 @@ g
 
 In order to count word frequencies, we first need to split the text into words (or longer phrases) through a process known as _tokenization_:
 
-```{r}
+```r
 # This function extracts the tokens
 tokens_pac <- quanteda::tokens(corp_pac)
 tokens_pac
 ```
 
-```{r}
+```r
 tokens_pac[[1]] # to look at just the first one
 ```
 
@@ -211,13 +203,13 @@ tokens_pac[[1]] # to look at just the first one
 
 Now, let's **summarise** the tokens in our corpus. We use the document-frequency matrix to create, as the name implies, a matrix that contains the number of times a token appears in a document.
 
-```{r}
+```r
 dfm_pac <- quanteda::dfm(tokens_pac) 
 dfm_pac
 ```
 We can convert `dfm_pac` to a dataframe if we like:
 
-```{r}
+```r
 dfm_as_data_frame <- quanteda::convert(dfm_pac, to="data.frame")
 dim(dfm_as_data_frame)
 ```
@@ -231,12 +223,12 @@ dim(dfm_as_data_frame)
 
 What are the most frequent tokens?
 
-```{r}
+```r
 dfm_pac %>% quanteda::topfeatures()
 ```
 **It is fun to look at wordclouds:**
 
-```{r}
+```r
 quanteda.textplots::textplot_wordcloud(dfm_pac)
 ```
 
@@ -272,7 +264,7 @@ Let's try to make this data more interesting for further analysis. Here we will:
 
 The output of `kwic` can be converted to a dataframe. Let's look at that same sample again, only this time we increased the `window` of tokens that show up before and after the keyword:
 
-```{r}
+```r
 quanteda::kwic(tokens_pac %>% head(n=10), pattern="apolog*", window=40) %>% as.data.frame()
 ```
 
@@ -283,7 +275,7 @@ The info we care about the most is the column `post`.
 
 This is good but there is a downside to the keyword we used. Not all entries have the term `apolog*` in their description. We will have to use a more complex pattern:
 
-```{r}
+```r
 df_new <- 
   quanteda::kwic(tokens_pac,
                  pattern="apolog*|regre*|sorrow*|recogni*|around*|sorry*|remorse*|failur*",
@@ -299,13 +291,13 @@ We seemed to have lost some documents. The original document has 367 rows.
 
 Some rows are repeated because of multiple pattern matches in the same text:
 
-```{r}
+```r
 df_new %>% group_by(docname) %>% filter(n() > 1)
 ```
 Here is how we are going to deal with these duplicates: let's keep just the one with the longest `post` text. This is equivalent to selecting the one with earliest `from` value in the dataframe above.
 
 
-```{r}
+```r
 df_new <- df_new %>% arrange(from) %>% group_by(docname) %>% slice(1) 
 dim(df_new)
 ```
@@ -319,7 +311,7 @@ dim(df_new)
 
 A new corpus
 
-```{r}
+```r
 corp_pac <- quanteda::corpus(df_new, text_field="post", docid_field="docname")
 
 corp_pac
@@ -327,7 +319,7 @@ corp_pac
 
 ### Get rid of unnecessary tokens
 
-```{r}
+```r
 tokens_pac <- 
   # Get rid of punctuations
   quanteda::tokens(corp_pac, remove_punct = TRUE) %>% 
@@ -339,12 +331,12 @@ tokens_pac
 
 ### Document-Term Matrix
 
-```{r}
+```r
 dfm_pac <- quanteda::dfm(tokens_pac)
 quanteda.textplots::textplot_wordcloud(dfm_pac)
 ```
 
-```{r}
+```r
 df_word_frequency <- quanteda::convert(dfm_pac, to="data.frame")
 dim(df_word_frequency)
 ```
@@ -360,7 +352,7 @@ Instead of running k-means or any other clustering algorithm on the full dfm, le
 
 Can PCA be of any help for this dataset?
 
-```{r}
+```r
 library(tidymodels)
 
 # Code adapted from W10 lab
@@ -379,14 +371,14 @@ df_pca <- bake(pca_prep, df_word_frequency)
 
 ```
 
-```{r}
+```r
 summary(pca_prep$steps[[2]]$res)
 ```
 
 
 ### Visualise it
 
-```{r}
+```r
 library(plotly)
 
 plot_ly(data =  bind_cols(df_pca, df_new), 
@@ -404,7 +396,7 @@ plot_ly(data =  bind_cols(df_pca, df_new),
 
 Here is a more robust alternative to an elbow plot for deciding the number of clusters:
 
-```{r}
+```r
 library(NbClust)
 res.nbclust <- df_pca %>% select(PC1, PC2) %>%
     scale() %>%
@@ -417,13 +409,13 @@ The indices have voted! The majority believe k=3.
 
 ### Can K-means identify the 3 clusters?
 
-```{r}
+```r
 model <- kmeans(df_pca %>% select(PC1, PC2), centers=3)
 df_pca <- parsnip::augment(model, df_pca)
 ```
 
 
-```{r}
+```r
 library(plotly)
 
 plot_ly(data =  bind_cols(df_pca, df_new), 
@@ -439,7 +431,7 @@ Those clusters are very awkward...
 
 But at least it highlights two outliers:
 
-```{r}
+```r
 bind_cols(df_pca, df_new) %>% filter(.cluster != 2)
 ```
 
@@ -448,7 +440,7 @@ bind_cols(df_pca, df_new) %>% filter(.cluster != 2)
 Let's try an alternative dimensionality reduction technique called Latent Sentiment Analysis (LSA), and let's keep just 2 dimensions:
 
 
-```{r}
+```r
 df_lsa <- quanteda.textmodels::textmodel_lsa(dfm_pac, nd=2)$docs %>% as.data.frame()
 
 plot_ly(data =  bind_cols(df_lsa, df_new), 
@@ -463,7 +455,7 @@ This seems to make more sense, right?
 
 **How many clusters are there?**
 
-```{r}
+```r
 library(NbClust)
 res.nbclust <- df_lsa %>% select(V1, V2) %>%
     scale() %>%
@@ -474,13 +466,13 @@ res.nbclust <- df_lsa %>% select(V1, V2) %>%
 
 ### Can K-means identify the 3 clusters?
 
-```{r}
+```r
 model <- kmeans(df_lsa %>% select(V1, V2), centers=3)
 df_lsa <- parsnip::augment(model, df_lsa)
 ```
 
 
-```{r}
+```r
 library(plotly)
 
 plot_ly(data =  bind_cols(df_lsa, df_new), 
@@ -494,7 +486,7 @@ plot_ly(data =  bind_cols(df_lsa, df_new),
 
 Bad K-means! Let's try k=7, the second best voted number of clusters:
 
-```{r}
+```r
 model <- kmeans(df_lsa %>% select(V1, V2), centers=7)
 df_lsa <- parsnip::augment(model, df_lsa)
 
@@ -514,7 +506,7 @@ plot_ly(data =  bind_cols(df_lsa, df_new),
 
 We can use the concept of `keyness` to score words in relation to a target vs a reference group. Read more about keyness [here](https://tutorials.quanteda.io/statistical-analysis/keyness/).
 
-```{r}
+```r
 library(quanteda.textstats)
 library(quanteda.textplots)
 
@@ -524,13 +516,13 @@ textplot_keyness(tstat_key, labelsize=2)
 
 Plot a wordcloud with just the **target** group:
 
-```{r}
+```r
 quanteda.textplots::textplot_wordcloud(tstat_key, comparison=FALSE, min_count=1)
 ```
 
 Wordcloud to compare target vs reference:
 
-```{r}
+```r
 quanteda.textplots::textplot_wordcloud(tstat_key, comparison=TRUE, min_count=1)
 ```
 
@@ -539,7 +531,7 @@ quanteda.textplots::textplot_wordcloud(tstat_key, comparison=TRUE, min_count=1)
 
 ### Topic modeling instead of k-means
 
-```{r}
+```r
 library(topicmodels)
 tmod_lda <- topicmodels::LDA(dfm_pac, k = 7)
 
@@ -548,14 +540,14 @@ tmod_lda %>% topicmodels::terms(4)
 ```
 **Assign each row to a topic:**
 
-```{r}
+```r
 df_lsa["topic"] <- tmod_lda %>% topicmodels::topics() %>% as.factor()
 df_lsa %>% count(topic) %>% arrange(desc(n)) 
 ```
 
 Because topicmodeling runs directly on `dfm`, it does not recognise nor does it match PCA or LSA coordinates:
 
-```{r}
+```r
 plot_ly(data =  bind_cols(df_lsa, df_new), 
         x = ~V1, 
         y = ~V2, 
@@ -565,7 +557,7 @@ plot_ly(data =  bind_cols(df_lsa, df_new),
         text=~paste('Doc ID:', docname, '\nDescription:\n', post))
 ```
 
-```{r}
+```r
 tstat_key <- textstat_keyness(dfm_pac, target = df_lsa$topic == 3)
 textplot_keyness(tstat_key, labelsize=2)
 ```
