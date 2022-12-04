@@ -156,6 +156,13 @@ website:
                text: 💻 Lab roadmap
              - href: weeks/week10/bonus.qmd
                text: ✨ Bonus Lab (Optional)
+         - href: weeks/week11.qmd
+           text: Week 11
+           contents:
+             - href: weeks/week11/checklist.qmd
+               text: ✅ Checklist
+             - href: weeks/week11/lab.qmd
+               text: 💻 Lab roadmap
                  
   navbar:
     background: primary
