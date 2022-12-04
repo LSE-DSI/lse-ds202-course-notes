@@ -1,0 +1,572 @@
+---
+title: "💻 Week 11 - Lab Roadmap (90 min)"
+date: 5 December 2022
+date-meta: 5 December 2022
+output: html_document
+from: markdown+emoji
+author: Dr. Jon Cardoso-Silva
+---
+
+In our final lab, you will learn how to use [quanteda](https://quanteda.io/), an R package for quantitative text analysis. We will do a bit more of data pre-processing, and you will have the chance to apply dimensionality reduction (e.g. PCA) and clustering (e.g. k-means) techniques to text data.
+
+# Setup (10 min)
+
+## New packages you will need to install
+
+In the R Console -- never in the RMarkdown -- run the following commands:
+
+``` r
+install.packages("plotly")
+install.packages("NbClust")
+
+install.packages("countrycode")
+
+install.packages("quanteda")
+install.packages("quanteda.textplots")
+install.packages("quanteda.textmodels")
+```
+
+## Packages you will need
+
+```{r, message=FALSE, warning=FALSE}
+library(countrycode) # it contains data that will be useful to our preprocessing
+
+library(tidyverse)   # to use things like the pipe (%>%)
+library(tidymodels)  # for model tuning, cross-validation etc.
+
+library(plotly)      # for interactive charts
+
+library(Nbclust)     # to assess an "optimal" number of clusters
+
+library(quanteda)
+library(quanteda.textplots)
+library(quanteda.textmodels)
+
+# Vanity packages:
+library(ggsci)       # we like pretty colours
+```
+
+# Step 1: The Data (10 min)
+
+This dataset we are going to use today, **P**olitical **A**pologies across **C**ultures (**PAC**), was assembled by the [Political Apologies x Cultures project](https://twitter.com/PolApol_TiU). We downloaded it from their website, <https://www.politicalapologies.com/>.
+
+The data consists of an inventory of political apologies offered by states or state representatives to a collective for human rights violations that happened in the recent or distant past.
+
+## The raw data
+
+:dart: **ACTION POINT:** Before we even open it in R, take some time to look at the data in its raw format. Open the file `PAC_Apologies_Public-Version-2-modified.xlsx` using MS Office.
+
+What do you see? Which tabs and columns seem interesting?
+
+> your notes here
+
+## Create a `df_pac`
+
+We can use the `read_excel` function from the tidyverse package `readxl` to read Excel spreadsheets:
+
+```{r}
+df_pac <- 
+  readxl::read_excel("PAC_Apologies_Public-Version-2.xlsx",
+                     sheet=1, .name_repair="minimal") %>% 
+  dplyr::mutate(`Date of apology`=lubridate::as_date(`Date of apology`)) %>% 
+  dplyr::arrange(desc(`Date of apology`))
+```
+
+:bulb: *You might have noticed that I am using the explicit name of the functions (`dplyr::mutate` instead of `mutate`, etc.). In the Summative 02, many of you experienced problems running our code because you had other R packages with functions of the same name. So, to avoid any surprises, we will use the full name of functions in several places here. (It's also good as it helps to recognise where the functions come from).*
+
+## Create an `Apology ID` column
+
+It might be good to have a column with a very short identifier of the apology. We are looking for a short version to identify who apologies to who and when, something like:
+
+``` r
+1947-03-04 USA -> MEX
+```
+
+:thinking: How would you do that when we do not have abbreviated country names? And how would you treat the cases of missing values in the `Country (Receiver)` column?
+
+:warning: For now, just believe me: it is possible, the code below deals precisely with that. BUT it is a bit much to digest this early in a lab, so for now let's just run it and observe the output in the `Apology ID` column. 
+
+Later, as a 🏠 **TAKE-HOME ACTIVITY:**, try to understand every single step of the huge pipe below. Ask questions on Slack if you do not get any detail!
+
+*By the way, if you want to practice this kind of advanced pre-processing, you should consider taking our sister course, DS105!*
+
+```{r}
+# Preamble: function countrycode::countrycode() receives a country name and
+#           returns its abbreviated version. However, some countries' names in
+#           our data are not recognised by the function, so we need to treat these cases. 
+
+df_pac <- 
+  df_pac %>%
+  # Rename a few cases to match countrycode::countrycode() mapping
+  mutate(across(contains("Country "),
+                ~ dplyr::case_when(. == "GDR" ~ "German Democratic Republic",
+                                   . == "Antigua and Barbuda" ~ "Antigua & Barbuda",
+                                   . == "Phillipines" ~ "Philipines",
+                                   TRUE ~ .))) %>%
+  
+  # We don't need these columns
+  select(-contains("Database "),-contains("Source ")) %>% 
+  
+  # If the iso3c abbreviation standard does not work, use the p4c
+  # If nothing else works, keep 
+  mutate(across(contains("Country"),
+                ~ if_else(is.na(countrycode::countrycode(., 
+                                                         origin="country.name",
+                                                         destination="iso3c", 
+                                                         warn=FALSE)),
+                          if_else(is.na(countrycode::countrycode(., 
+                                                                 origin="country.name",
+                                                                 destination="p4c",
+                                                                 warn=FALSE)),
+                                  .,
+                                  countrycode::countrycode(., 
+                                                           origin="country.name",
+                                                           destination="p4c", 
+                                                           warn=FALSE)),
+                          countrycode::countrycode(., 
+                                                   origin="country.name", 
+                                                   destination="iso3c", 
+                                                   warn=FALSE)),
+                .names="{.col} (abbr.)")) %>% 
+  
+  # If the above did not encounter any valid abbreviation (it is na),
+  #    we can still extract the receiver of the apology from the `Parties involved` column
+  #    For this, I need to use function str_split but because this function is 
+  #    not vectorized, I had to get creative...
+  mutate(`Country (Receiver) (abbr.)`=coalesce(`Country (Receiver) (abbr.)`, 
+                                               sapply(`Parties involved`,
+                                                      function(x){
+                                                        stringr::str_split(x, " to ") %>%
+                                                          purrr::map(2) %>% 
+                                                          substr(1,13)} ))) %>% 
+  
+  # This is just to put these abbreviations together.
+  # If the data had already come clean, this would be the only step we would need!
+  mutate(`Apology ID` = paste(df_pac$`Date of apology`,
+                        `Country (sender) (abbr.)`, "->", `Country (Receiver) (abbr.)`, sep=" "))
+
+```
+
+Now look at that beautiful `Apology ID` column. Satisfying? Yes. Worth it? ...
+
+```{r}
+df_pac %>% select(`Apology ID`) %>% head(n=10)
+```
+
+# Step 2: Summarising text data (25 min)
+
+## Step 2.1: Of corpuses and tokens
+
+The first step when performing quantitative text analysis is to create a `corpus`: 
+
+```{r}
+corp_pac <- quanteda::corpus(df_pac, text_field="Description according to database")
+quanteda::docnames(corp_pac) <- df_pac$`Apology ID`
+
+corp_pac
+```
+
+_Once you have constructed this corpus, use the summary() method to see a brief description of the corpus._
+
+```{r}
+df_corpus <- summary(corp_pac)
+
+head(df_corpus, n=5)
+```
+```{r}
+g <- (
+  ggplot(df_corpus, aes(x=Tokens))
+  + geom_bar()
+  + theme_minimal()
+  
+  + labs(x="Number of Tokens",
+         y="Count",
+         title="How many tokens are there in the Description of Apology?")
+)
+
+g
+```
+### Tokens
+
+In order to count word frequencies, we first need to split the text into words (or longer phrases) through a process known as _tokenization_:
+
+```{r}
+# This function extracts the tokens
+tokens_pac <- quanteda::tokens(corp_pac)
+tokens_pac
+```
+
+```{r}
+tokens_pac[[1]] # to look at just the first one
+```
+
+## Step 2.2: Document-Frequency Matrix (`dfm`)
+
+Now, let's **summarise** the tokens in our corpus. We use the document-frequency matrix to create, as the name implies, a matrix that contains the number of times a token appears in a document.
+
+```{r}
+dfm_pac <- quanteda::dfm(tokens_pac) 
+dfm_pac
+```
+We can convert `dfm_pac` to a dataframe if we like:
+
+```{r}
+dfm_as_data_frame <- quanteda::convert(dfm_pac, to="data.frame")
+dim(dfm_as_data_frame)
+```
+
+🎯 **ACTION POINT** Look at the dataframe that represents the document-frequency matrix with either `View(dfm_as_data_frame)` or `head(dfm_as_data_frame)`
+
+🗣️ **CLASSROOM DISCUSSIONS**: What do you think all of these columns represent?
+
+
+### Top features
+
+What are the most frequent tokens?
+
+```{r}
+dfm_pac %>% quanteda::topfeatures()
+```
+**It is fun to look at wordclouds:**
+
+```{r}
+quanteda.textplots::textplot_wordcloud(dfm_pac)
+```
+
+🗣️ **CLASSROOM DISCUSSIONS**: Do you think these most frequent terms are useful in helping us understand the political apologies? Would you remove certain tokens?
+
+_Have you heard of the term 'stop words' before? Ask your class teacher about this! Quanteda has a built-in list of commonly used stop words, view it by running the function `quanteda::stopwords("en")`._
+
+
+## Step 2.3: Keywords In Context (`kwic`)
+
+Before we revisit our tokens, let's take a look at an interesting feature of `quanteda`. We can search for a pattern (a keyword) in our corpus and see the text that surrounds it using the `kwic` function.
+
+🎯 **ACTION POINT:** Use `kwic` to search for keywords associated with different forms of explicit description of apologies:
+
+```r
+quanteda::kwic(tokens_pac %>% head(n=10), pattern="apolog*")
+```
+
+🗣️ **CLASSROOM DISCUSSIONS**: What do you think the `*` in the `pattern="apolog*"` parameter does?
+
+The above is an example of a regular expression (**regex**), a language just for expressing patterns of strings. You can read more about regex in [Chapter 14 of R for Data Science book](https://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions)
+
+
+# Step 3: Pre-processing (30 min)
+
+Let's try to make this data more interesting for further analysis. Here we will:
+
+- use the power of `kwic` to try to extract just the **object of the apology**
+- build a new corpus out of this new subset of text data
+- remove unnecessary tokens (stop words + punctuation)
+
+## Step 3.1. Extract the object of the apology
+
+The output of `kwic` can be converted to a dataframe. Let's look at that same sample again, only this time we increased the `window` of tokens that show up before and after the keyword:
+
+```{r}
+quanteda::kwic(tokens_pac %>% head(n=10), pattern="apolog*", window=40) %>% as.data.frame()
+```
+
+The info we care about the most is the column `post`.
+
+
+### A different pattern
+
+This is good but there is a downside to the keyword we used. Not all entries have the term `apolog*` in their description. We will have to use a more complex pattern:
+
+```{r}
+df_new <- 
+  quanteda::kwic(tokens_pac,
+                 pattern="apolog*|regre*|sorrow*|recogni*|around*|sorry*|remorse*|failur*",
+                 window=40) %>%
+  as.data.frame()
+dim(df_new)
+``` 
+We seemed to have lost some documents. The original document has 367 rows.
+
+🎯 **ACTION POINT:** Take a look at `View(df_new)`
+
+### Handling duplicates
+
+Some rows are repeated because of multiple pattern matches in the same text:
+
+```{r}
+df_new %>% group_by(docname) %>% filter(n() > 1)
+```
+Here is how we are going to deal with these duplicates: let's keep just the one with the longest `post` text. This is equivalent to selecting the one with earliest `from` value in the dataframe above.
+
+
+```{r}
+df_new <- df_new %>% arrange(from) %>% group_by(docname) %>% slice(1) 
+dim(df_new)
+```
+
+**Note:** This is a choice, there is no absolute objective way to handle this case. Would you do anything differently? 
+
+🏠 **TAKE-HOME (OPTIONAL) ACTIVITY:**  We used to have 367 rows, now we have 327. How would you change the `pattern` so as to avoid excluding data from the original dataframe? (Note: I do not have a ready solution to this! Feel free to share yours.)
+
+
+## Step 3.2. Rebuild the corpus, tokens and dfm
+
+A new corpus
+
+```{r}
+corp_pac <- quanteda::corpus(df_new, text_field="post", docid_field="docname")
+
+corp_pac
+```
+
+### Get rid of unnecessary tokens
+
+```{r}
+tokens_pac <- 
+  # Get rid of punctuations
+  quanteda::tokens(corp_pac, remove_punct = TRUE) %>% 
+  
+  # Get rid of stopwords
+  quanteda::tokens_remove(pattern = quanteda::stopwords("en"))
+tokens_pac
+```
+
+### Document-Term Matrix
+
+```{r}
+dfm_pac <- quanteda::dfm(tokens_pac)
+quanteda.textplots::textplot_wordcloud(dfm_pac)
+```
+
+```{r}
+df_word_frequency <- quanteda::convert(dfm_pac, to="data.frame")
+dim(df_word_frequency)
+```
+
+
+🗣️ **CLASSROOM DISCUSSIONS**: What do you think of the wordcloud above, compared to the previous one? How would it be different if we had removed unnecessary tokens but kept the original longer description?
+
+# Step 4. Dimensionality Reduction + Clustering
+
+Instead of running k-means or any other clustering algorithm on the full dfm, let's reduce the number of features of our dataset. This would save storage and make the process run faster.
+
+## Step 4.1 PCA + k-means
+
+Can PCA be of any help for this dataset?
+
+```{r}
+library(tidymodels)
+
+# Code adapted from W10 lab
+
+pca_recipe <-
+  recipe(~ ., data = df_word_frequency) %>%
+  
+  update_role(doc_id, new_role="id") %>% 
+  step_normalize(all_predictors()) %>% 
+  step_pca(all_predictors())
+
+pca_prep <- prep(pca_recipe)
+
+# Add PC1 & PC2 to `df_lsa`
+df_pca <- bake(pca_prep, df_word_frequency)
+
+```
+
+```{r}
+summary(pca_prep$steps[[2]]$res)
+```
+
+
+### Visualise it
+
+```{r}
+library(plotly)
+
+plot_ly(data =  bind_cols(df_pca, df_new), 
+        x = ~PC1, 
+        y = ~PC2, 
+        type="scatter", 
+        mode="markers", 
+        text=~paste('Doc ID:', doc_id, '\nDescription:\n', post))
+```
+
+🗣️ **CLASSROOM DISCUSSIONS:** What would you say? How many clusters are in there?
+
+
+### A method to determine the number of clusters
+
+Here is a more robust alternative to an elbow plot for deciding the number of clusters:
+
+```{r}
+library(NbClust)
+res.nbclust <- df_pca %>% select(PC1, PC2) %>%
+    scale() %>%
+    NbClust(distance = "manhattan",
+            min.nc = 2, max.nc = 10, 
+            method = "complete", index ="all") 
+```
+
+The indices have voted! The majority believe k=3.
+
+### Can K-means identify the 3 clusters?
+
+```{r}
+model <- kmeans(df_lsa %>% select(PC1, PC2), centers=3)
+df_pca <- parsnip::augment(model, df_pca)
+```
+
+
+```{r}
+library(plotly)
+
+plot_ly(data =  bind_cols(df_pca, df_new), 
+        x = ~PC1, 
+        y = ~PC2, 
+        color = ~.cluster,
+        type="scatter", 
+        mode="markers", 
+        text=~paste('Doc ID:', doc_id, '\nDescription:\n', post))
+```
+
+Those clusters are very awkward... 
+
+But at least it highlights two outliers:
+
+```{r}
+bind_cols(df_pca, df_new) %>% filter(.cluster != 2)
+```
+
+## Step 4.2. Latent Sentiment Analysis + k-means
+
+Let's try an alternative dimensionality reduction technique called Latent Sentiment Analysis (LSA), and let's keep just 2 dimensions:
+
+
+```{r}
+df_lsa <- quanteda.textmodels::textmodel_lsa(dfm_pac, nd=2)$docs %>% as.data.frame()
+
+plot_ly(data =  bind_cols(df_lsa, df_new), 
+        x = ~V1, 
+        y = ~V2, 
+        type="scatter", 
+        mode="markers", 
+        text=~paste('Doc ID:', docname, '\nDescription:\n', post))
+```
+
+This seems to make more sense, right?
+
+**How many clusters are there?**
+
+```{r}
+library(NbClust)
+res.nbclust <- df_lsa %>% select(V1, V2) %>%
+    scale() %>%
+    NbClust(distance = "manhattan",
+            min.nc = 2, max.nc = 10, 
+            method = "complete", index ="all") 
+```
+
+### Can K-means identify the 3 clusters?
+
+```{r}
+model <- kmeans(df_lsa %>% select(V1, V2), centers=3)
+df_lsa <- parsnip::augment(model, df_lsa)
+```
+
+
+```{r}
+library(plotly)
+
+plot_ly(data =  bind_cols(df_lsa, df_new), 
+        x = ~V1, 
+        y = ~V2, 
+        color = ~.cluster,
+        type="scatter", 
+        mode="markers", 
+        text=~paste('Doc ID:', docname, '\nDescription:\n', post))
+```
+
+Bad K-means! Let's try k=7, the second best voted number of clusters:
+
+```{r}
+model <- kmeans(df_lsa %>% select(V1, V2), centers=7)
+df_lsa <- parsnip::augment(model, df_lsa)
+
+
+plot_ly(data =  bind_cols(df_lsa, df_new), 
+        x = ~V1, 
+        y = ~V2, 
+        color = ~.cluster,
+        type="scatter", 
+        mode="markers", 
+        text=~paste('Doc ID:', docname, '\nDescription:\n', post))
+```
+
+## Step 4.3 Describe the clusters
+
+### Which words best describe the clusters?
+
+We can use the concept of `keyness` to score words in relation to a target vs a reference group. Read more about keyness [here](https://tutorials.quanteda.io/statistical-analysis/keyness/).
+
+```{r}
+library(quanteda.textstats)
+library(quanteda.textplots)
+
+tstat_key <- textstat_keyness(dfm_pac, target = df_lsa$.cluster == 4)
+textplot_keyness(tstat_key, labelsize=2)
+```
+
+Plot a wordcloud with just the **target** group:
+
+```{r}
+quanteda.textplots::textplot_wordcloud(tstat_key, comparison=FALSE, min_count=1)
+```
+
+Wordcloud to compare target vs reference:
+
+```{r}
+quanteda.textplots::textplot_wordcloud(tstat_key, comparison=TRUE, min_count=1)
+```
+
+
+## Step 4.4. Alternative strategies
+
+### Topic modeling instead of k-means
+
+```{r}
+library(topicmodels)
+tmod_lda <- topicmodels::LDA(dfm_pac, k = 7)
+
+## What is in each topic?
+tmod_lda %>% topicmodels::terms(4)
+```
+**Assign each row to a topic:**
+
+```{r}
+df_lsa["topic"] <- tmod_lda %>% topicmodels::topics() %>% as.factor()
+df_lsa %>% count(topic) %>% arrange(desc(n)) 
+```
+
+Because topicmodeling runs directly on `dfm`, it does not recognise nor does it match PCA or LSA coordinates:
+
+```{r}
+plot_ly(data =  bind_cols(df_lsa, df_new), 
+        x = ~V1, 
+        y = ~V2, 
+        color = ~topic,
+        type="scatter", 
+        mode="markers", 
+        text=~paste('Doc ID:', docname, '\nDescription:\n', post))
+```
+
+```{r}
+tstat_key <- textstat_keyness(dfm_pac, target = df_lsa$topic == 3)
+textplot_keyness(tstat_key, labelsize=2)
+```
+
+**Think about it:**
+
+- We have experimented with a lot of different things. Which topic/clustering/spatial representation makes more sense to you?
+
+- Why not try exploring the data with different clustering algorithms? Take a look at [this link](https://www.datanovia.com/en/blog/types-of-clustering-methods-overview-and-quick-start-r-code/) for code samples of **hierarchical clustering** and [this one](https://www.datanovia.com/en/lessons/dbscan-density-based-clustering-essentials/) for **DBSCAN**.
+
+- You can also try finding alternative R packages that implements other clustering algorithms shown in [Python's sklearn package](https://scikit-learn.org/stable/modules/clustering.html).
