@@ -986,12 +986,12 @@ SV type: C-svc  (classification)
  parameter : cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.50967561553215 
+ Hyperparameter : sigma =  1.2576233849561 
 
-Number of Support Vectors : 428 
+Number of Support Vectors : 426 
 
-Objective Function Value : -387.8104 
-Training error : 0.169159 
+Objective Function Value : -389.8294 
+Training error : 0.171028 
 Probability model included. </code></pre>
 </div>
 </div>
@@ -1021,12 +1021,12 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 6 × 7
   Purchase LoyalCH PriceDiff .pred_class .pred_CH .pred_MM is_correct
   &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt;    &lt;dbl&gt; &lt;lgl&gt;     
-1 CH         0.5        0.24 CH             0.849    0.151 TRUE      
-2 CH         0.6       -0.06 CH             0.703    0.297 TRUE      
-3 CH         0.68       0.4  CH             0.872    0.128 TRUE      
-4 MM         0.4        0    MM             0.175    0.825 TRUE      
-5 CH         0.957      0    CH             0.870    0.130 TRUE      
-6 CH         0.965      0.3  CH             0.869    0.131 TRUE      </code></pre>
+1 CH         0.5        0.24 CH             0.845    0.155 TRUE      
+2 CH         0.6       -0.06 CH             0.692    0.308 TRUE      
+3 CH         0.68       0.4  CH             0.871    0.129 TRUE      
+4 MM         0.4        0    MM             0.169    0.831 TRUE      
+5 CH         0.957      0    CH             0.869    0.131 TRUE      
+6 CH         0.965      0.3  CH             0.873    0.127 TRUE      </code></pre>
 </div>
 </div>
 <section id="measure-precision-1" class="level4">
@@ -1038,7 +1038,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric   .estimator .estimate
   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-1 precision binary         0.858</code></pre>
+1 precision binary         0.855</code></pre>
 </div>
 </div>
 </section>
@@ -1064,7 +1064,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 f_meas  binary         0.862</code></pre>
+1 f_meas  binary         0.861</code></pre>
 </div>
 </div>
 </section>
@@ -1138,12 +1138,12 @@ SV type: eps-svr  (regression)
  parameter : epsilon = 0.1  cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.61003136190124 
+ Hyperparameter : sigma =  1.43419060161966 
 
-Number of Support Vectors : 1120 
+Number of Support Vectors : 1123 
 
-Objective Function Value : -762.8475 
-Training error : 0.931986 </code></pre>
+Objective Function Value : -764.7431 
+Training error : 0.937458 </code></pre>
 </div>
 </div>
 </section>
@@ -1159,12 +1159,12 @@ Training error : 0.931986 </code></pre>
 <pre><code># A tibble: 6 × 6
    Today Volume   Lag1   .pred .resid row_number
    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;int&gt;
-1  0.959   1.19  0.381 -0.0470  1.01           1
-2  1.03    1.30  0.959 -0.239   1.27           2
-3 -0.623   1.41  1.03  -0.251  -0.372          3
-4  0.614   1.28 -0.623  0.238   0.376          4
-5  0.213   1.21  0.614 -0.146   0.359          5
-6  1.39    1.35  0.213 -0.155   1.55           6</code></pre>
+1  0.959   1.19  0.381 -0.0396  0.999          1
+2  1.03    1.30  0.959 -0.219   1.25           2
+3 -0.623   1.41  1.03  -0.225  -0.398          3
+4  0.614   1.28 -0.623  0.227   0.387          4
+5  0.213   1.21  0.614 -0.143   0.356          5
+6  1.39    1.35  0.213 -0.167   1.56           6</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="dart">🎯</span> <strong>ACTION POINT</strong>: What do the different columns mean?</p>
@@ -1198,7 +1198,7 @@ MAE = \frac{\sum_{i=1}^{n}{|y_i - \hat{y}_i|}}{n}
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 mae     standard       0.791</code></pre>
+1 mae     standard       0.794</code></pre>
 </div>
 </div>
 </section>
@@ -1251,12 +1251,12 @@ RMSE = \frac{\sum_{i=1}^{n}{(y_i - \hat{y}_i)^2}}{n}
 <pre><code># A tibble: 6 × 3
   Volume  Lag1   .pred
    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1      0  -5   -0.0134
-2      0  -4.8 -0.0134
-3      0  -4.6 -0.0134
-4      0  -4.4 -0.0134
-5      0  -4.2 -0.0134
-6      0  -4   -0.0134</code></pre>
+1      0  -5   -0.0176
+2      0  -4.8 -0.0176
+3      0  -4.6 -0.0176
+4      0  -4.4 -0.0176
+5      0  -4.2 -0.0176
+6      0  -4   -0.0176</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="bulb">💡</span> Look at the entire dataset with <code>View(sim.data)</code></p>
