@@ -986,12 +986,12 @@ SV type: C-svc  (classification)
  parameter : cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.4387038351601 
+ Hyperparameter : sigma =  1.50967561553215 
 
-Number of Support Vectors : 429 
+Number of Support Vectors : 428 
 
-Objective Function Value : -388.3292 
-Training error : 0.170093 
+Objective Function Value : -387.8104 
+Training error : 0.169159 
 Probability model included. </code></pre>
 </div>
 </div>
@@ -1021,12 +1021,12 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 6 × 7
   Purchase LoyalCH PriceDiff .pred_class .pred_CH .pred_MM is_correct
   &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt;    &lt;dbl&gt; &lt;lgl&gt;     
-1 CH         0.5        0.24 CH             0.851    0.149 TRUE      
-2 CH         0.6       -0.06 CH             0.702    0.298 TRUE      
-3 CH         0.68       0.4  CH             0.875    0.125 TRUE      
+1 CH         0.5        0.24 CH             0.849    0.151 TRUE      
+2 CH         0.6       -0.06 CH             0.703    0.297 TRUE      
+3 CH         0.68       0.4  CH             0.872    0.128 TRUE      
 4 MM         0.4        0    MM             0.175    0.825 TRUE      
-5 CH         0.957      0    CH             0.872    0.128 TRUE      
-6 CH         0.965      0.3  CH             0.872    0.128 TRUE      </code></pre>
+5 CH         0.957      0    CH             0.870    0.130 TRUE      
+6 CH         0.965      0.3  CH             0.869    0.131 TRUE      </code></pre>
 </div>
 </div>
 <section id="measure-precision-1" class="level4">
@@ -1038,7 +1038,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric   .estimator .estimate
   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-1 precision binary         0.856</code></pre>
+1 precision binary         0.858</code></pre>
 </div>
 </div>
 </section>
@@ -1064,7 +1064,7 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 f_meas  binary         0.861</code></pre>
+1 f_meas  binary         0.862</code></pre>
 </div>
 </div>
 </section>
@@ -1138,12 +1138,12 @@ SV type: eps-svr  (regression)
  parameter : epsilon = 0.1  cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.60849805521645 
+ Hyperparameter : sigma =  1.61003136190124 
 
-Number of Support Vectors : 1119 
+Number of Support Vectors : 1120 
 
-Objective Function Value : -762.8639 
-Training error : 0.932016 </code></pre>
+Objective Function Value : -762.8475 
+Training error : 0.931986 </code></pre>
 </div>
 </div>
 </section>
@@ -1159,8 +1159,8 @@ Training error : 0.932016 </code></pre>
 <pre><code># A tibble: 6 × 6
    Today Volume   Lag1   .pred .resid row_number
    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;int&gt;
-1  0.959   1.19  0.381 -0.0471  1.01           1
-2  1.03    1.30  0.959 -0.240   1.27           2
+1  0.959   1.19  0.381 -0.0470  1.01           1
+2  1.03    1.30  0.959 -0.239   1.27           2
 3 -0.623   1.41  1.03  -0.251  -0.372          3
 4  0.614   1.28 -0.623  0.238   0.376          4
 5  0.213   1.21  0.614 -0.146   0.359          5
@@ -1198,7 +1198,7 @@ MAE = \frac{\sum_{i=1}^{n}{|y_i - \hat{y}_i|}}{n}
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 mae     standard       0.792</code></pre>
+1 mae     standard       0.791</code></pre>
 </div>
 </div>
 </section>
