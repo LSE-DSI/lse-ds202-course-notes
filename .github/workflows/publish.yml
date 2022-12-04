@@ -61,6 +61,10 @@ jobs:
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Install W11-related packages
+        run: install.packages(c("plotly", "NbClust", "countrycode", "quanteda", "quanteda.textplots", "quanteda.textmodels"))
+        shell: Rscript {0}
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
