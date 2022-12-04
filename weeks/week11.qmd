@@ -1,0 +1,24 @@
+---
+title: "🗓️ Week 11 - Applications: Social Media Data"
+date: 5 December 2022
+date-meta: 5 December 2022
+---
+
+Welcome to Week 11 of DS202! It is the final week of this course. 
+
+In the labs, you will learn how to perform Quantitative Text Analysis (text mining) using R. Summative 03 is heavily based on this lab. 
+
+In the lecture at the end of the week, we will receive two guests who will talk about applications of Data Science and Machine Learning to text and social media data: 
+
+- _"What do emojis in Twitter bios reveal about people's political inclinations? 🤓"_ [Sara Luxmoore](https://www.linkedin.com/in/sara-luxmoore/), MSc in Applied Social Data Science (LSE)
+- _"Is rap still tough? Masculinity dynamics in American rap"_ by [Anton Boychenko](https://www.linkedin.com/in/anton-boychenko-7679b51b6/), MSc in Applied Social Data Science (LSE)
+
+(Slides will be available before the lecture)
+
+Join on Friday, 9 December 2022 from 2 p.m. to 4 p.m. at NAB.LG.08.
+
+## Links
+
+- ✅ [Take a look at this week's checklist](/weeks/week11/checklist.qmd)
+
+- 💻 [This week's lab](/weeks/week11/lab.qmd)

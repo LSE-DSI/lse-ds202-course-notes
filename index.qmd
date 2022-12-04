@@ -7,10 +7,10 @@ subtitle: "Data Science for Social Scientists"
 
 **Recently updated pages:**
 
-(30/11/2022)
+(04/12/2022)
 
-- [🔖 Week 09 - Appendix with videos about PCA](/weeks/week09/appendix.qmd)
-
+- [🗓️ Week 11](/weeks/week11.qmd)
+- [✅ Week 11 - Checklist](/weeks/week11/checklist.qmd)
 
 :::
 
