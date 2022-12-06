@@ -15,6 +15,9 @@ Click on the assignments below to go to the Moodle page and submit your response
     - You can find model solutions [here](/assessments/summative1_solutions.qmd) 
 - **✍️ Summative Problem Set (02) | W08-W10**: [Moodle link](https://moodle.lse.ac.uk/mod/assign/view.php?id=1139459&forceview=1) & associated [webpage](/assessments/summative2.qmd).
     - Use Slack to report any bugs or to ask for clarification.
+- **✍️ Summative Problem Set (03) | W11-W11+1**: [Moodle link](https://moodle.lse.ac.uk/mod/assign/view.php?id=1143624) & associated [webpage](/assessments/summative3.qmd).
+    - Use Slack to report any bugs or to ask for clarification.
+
 
 # List of assessments
 

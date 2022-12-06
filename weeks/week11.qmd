@@ -22,3 +22,5 @@ Join on Friday, 9 December 2022 from 2 p.m. to 4 p.m. at NAB.LG.08.
 - ✅ [Take a look at this week's checklist](/weeks/week11/checklist.qmd)
 
 - 💻 [This week's lab](/weeks/week11/lab.qmd)
+
+- ✍️ [Third Summative W10-W11+1](/assessments/summative3.qmd) worth 20%, release: 5 December Deadline: 18 December 2022.
