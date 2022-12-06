@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Jon Cardoso-Silva">
-<meta name="dcterms.date" content="27 October 2022">
+<meta name="dcterms.date" content="2022-12-05">
 
-<title>LSE DS202 2022/23 - ✍️ Assessments</title>
+<title>LSE DS202 2022/23 - Summative Problem Set 03 | W11-W11+1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,8 +32,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../main/courserep.html" rel="next">
-<link href="../main/communication.html" rel="prev">
 <link href="..//figures/logos/LSE Data Science Institute.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -94,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">✍️ Assessments</h1>
+      <h1 class="quarto-secondary-nav-title">Summative Problem Set 03 | W11-W11+1</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -124,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../main/assessments.html" class="sidebar-item-text sidebar-link active">✍️ Assessments</a>
+  <a href="../main/assessments.html" class="sidebar-item-text sidebar-link">✍️ Assessments</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -463,11 +461,23 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#submissions" id="toc-submissions" class="nav-link active" data-scroll-target="#submissions">Submissions</a></li>
-  <li><a href="#list-of-assessments" id="toc-list-of-assessments" class="nav-link" data-scroll-target="#list-of-assessments">List of assessments</a>
+  <li><a href="#exam-style-questions" id="toc-exam-style-questions" class="nav-link active" data-scroll-target="#exam-style-questions">🎯 Exam-style questions</a>
   <ul class="collapse">
-  <li><a href="#problem-sets-60" id="toc-problem-sets-60" class="nav-link" data-scroll-target="#problem-sets-60">📝 Problem Sets (60%)</a></li>
-  <li><a href="#exam-40" id="toc-exam-40" class="nav-link" data-scroll-target="#exam-40">✍️ Exam (40%)</a></li>
+  <li><a href="#q1.-linear-regression-5-points" id="toc-q1.-linear-regression-5-points" class="nav-link" data-scroll-target="#q1.-linear-regression-5-points">Q1. Linear Regression (5 points)</a></li>
+  <li><a href="#q2.-confusion-matrices-10-points" id="toc-q2.-confusion-matrices-10-points" class="nav-link" data-scroll-target="#q2.-confusion-matrices-10-points">Q2. Confusion Matrices (10 points)</a></li>
+  <li><a href="#q3.-decision-trees-15-points" id="toc-q3.-decision-trees-15-points" class="nav-link" data-scroll-target="#q3.-decision-trees-15-points">Q3. Decision Trees (15 points)</a></li>
+  </ul></li>
+  <li><a href="#setup-to-coding-questions" id="toc-setup-to-coding-questions" class="nav-link" data-scroll-target="#setup-to-coding-questions">⚙️ Setup to coding questions</a>
+  <ul class="collapse">
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The data</a></li>
+  <li><a href="#your-choice" id="toc-your-choice" class="nav-link" data-scroll-target="#your-choice">Your choice</a></li>
+  </ul></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">🎯 Questions</a>
+  <ul class="collapse">
+  <li><a href="#q4.-pre-processing-10-points" id="toc-q4.-pre-processing-10-points" class="nav-link" data-scroll-target="#q4.-pre-processing-10-points">Q4. Pre-processing (10 points)</a></li>
+  <li><a href="#q5.-topic-modelling-30-points" id="toc-q5.-topic-modelling-30-points" class="nav-link" data-scroll-target="#q5.-topic-modelling-30-points">Q5. Topic Modelling (30 points)</a></li>
+  <li><a href="#q6.-plots-of-topics-15-points" id="toc-q6.-plots-of-topics-15-points" class="nav-link" data-scroll-target="#q6.-plots-of-topics-15-points">Q6. Plots of topics (15 points)</a></li>
+  <li><a href="#q7.-2d-visualisation-of-the-dataset-15-points" id="toc-q7.-2d-visualisation-of-the-dataset-15-points" class="nav-link" data-scroll-target="#q7.-2d-visualisation-of-the-dataset-15-points">Q7. 2D visualisation of the dataset (15 points)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -477,8 +487,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">✍️ Assessments</h1>
-<p class="subtitle lead">Data for Data Science</p>
+<h1 class="title d-none d-lg-block">Summative Problem Set 03 | W11-W11+1</h1>
+<p class="subtitle lead">DS202 - Data Science for Social Scientists</p>
 </div>
 
 
@@ -488,14 +498,14 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Dr.&nbsp;<a href="https://www.lse.ac.uk/DSI/People/Jonathan-Cardoso-Silva">Jon Cardoso-Silva</a> </p>
+             <p>Dr.&nbsp;Jon Cardoso-Silva </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">27 October 2022</p>
+      <p class="date">05 December 2022</p>
     </div>
   </div>
   
@@ -505,48 +515,204 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="submissions" class="level1">
-<h1>Submissions</h1>
-<p>Click on the assignments below to go to the Moodle page and submit your responses:</p>
+<p>Welcome to the third Summative Problem Set of DS202 (2022/23)! Download this file as an RMarkdown from Moodle.</p>
+<p><strong>Things to know before you start:</strong></p>
+<ol type="1">
+<li><strong>Deadline</strong>: you have until <strong>18 December 2022, 23:59 UK time</strong> to complete your solutions and submit via the DS202 Moodle (under <strong>✍️ Assessment</strong> section).</li>
+<li>You will be granted a maximum of 100 points for the whole assignment. You will see how much each task is right next to the tasks’ names.</li>
+<li>This assessment is worth <strong>20%</strong> of your final grade.</li>
+<li>Read the instructions carefully and make sure you follow them.</li>
+</ol>
+<section id="exam-style-questions" class="level1">
+<h1>🎯 Exam-style questions</h1>
 <ul>
-<li><strong>✍️ Formative Problem Set (01) | W03-W05</strong>: <a href="https://moodle.lse.ac.uk/mod/coursework/view.php?id=1127006">Moodle link</a> &amp; associated <a href="https://raw.githubusercontent.com/LSE-DSI/lse-ds202-course-notes/main/RMarkdown/DS202 2022 MT - Formative Assignment W03-W04.Rmd" download="DS202 2022 MT - Formative Assignment W03-W04.Rmd" target="_blank">RMarkdown file</a>.
+<li>The first three questions do not require writing any R code.</li>
+<li>These questions are worth 30 points and are also a taster of the style of the non-code questions you can expect from the January exam.</li>
+</ul>
+<section id="q1.-linear-regression-5-points" class="level2">
+<h2 class="anchored" data-anchor-id="q1.-linear-regression-5-points">Q1. Linear Regression (5 points)</h2>
+<p>What metric does Ordinary Least Square (OLS) optimise? And how does OLS estimate regression coefficients?</p>
+<blockquote class="blockquote">
+<p>your response here</p>
+<p>split it into multiple lines if needed</p>
+</blockquote>
+<details>
+<summary>
+<strong>✒️️ Marking Rubric: how you will be assessed</strong>
+</summary>
 <ul>
-<li>You can find model solutions <a href="../assessments/formative1_solutions.html">here</a></li>
-</ul></li>
-<li><strong>✍️ Summative Problem Set (01) | W05-W07</strong>: <a href="https://moodle.lse.ac.uk/mod/coursework/view.php?id=1131232&amp;forceview=1">Moodle link</a> &amp; associated <a href="../assessments/summative1.html">webpage</a>.
+<li><p>What a great answer! (5/5): Not only is the explanation correct, it is also very clear and concise (not vague, imprecise or unnecessarily verbose)</p></li>
+<li><p>Correct (4/5): The answer was correct</p></li>
+<li><p>Partially Correct (~3): Answer was not entirely correct or was confusing to read</p></li>
+<li><p>Incorrect (0/5): Response was incorrect or missing</p></li>
+</ul>
+</details>
+</section>
+<section id="q2.-confusion-matrices-10-points" class="level2">
+<h2 class="anchored" data-anchor-id="q2.-confusion-matrices-10-points">Q2. Confusion Matrices (10 points)</h2>
+<p>The two figures below shows the goodness-of-fit of two separate classifiers trained to predict the brand of Orange Juice sales per brand (ISLR2::OJ). Considering we do not have a preference for a particular brand, we want both to be identified correctly, which Classifier performed best?</p>
+<p><strong>Classifier 1</strong> <img src="../figures/week11/figure1.png" class="img-fluid"></p>
+<p><strong>Classifier 2</strong> <img src="../figures/week11/figure2.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>your response here</p>
+<p>split it into multiple lines if needed</p>
+</blockquote>
+<details>
+<summary>
+<strong>✒️️ Marking Rubric: how you will be assessed</strong>
+</summary>
 <ul>
-<li>You can find model solutions <a href="../assessments/summative1_solutions.html">here</a></li>
-</ul></li>
-<li><strong>✍️ Summative Problem Set (02) | W08-W10</strong>: <a href="https://moodle.lse.ac.uk/mod/assign/view.php?id=1139459&amp;forceview=1">Moodle link</a> &amp; associated <a href="../assessments/summative2.html">webpage</a>.
+<li><p>What a great answer! (10/10): Not only is the explanation correct, it is also very clear and concise (not vague, imprecise or unnecessarily verbose)</p></li>
+<li><p>Correct (~7/10): The answer was correct</p></li>
+<li><p>Partially Correct (~5/10): Answer was OK but it was a bit confusing to read</p></li>
+<li><p>Partially Correct (~3/10): Answer was not entirely correct or was confusing to read</p></li>
+<li><p>Incorrect (0/10): Response was incorrect or missing</p></li>
+</ul>
+</details>
+</section>
+<section id="q3.-decision-trees-15-points" class="level2">
+<h2 class="anchored" data-anchor-id="q3.-decision-trees-15-points">Q3. Decision Trees (15 points)</h2>
+<p>For this question, we used the <code>quanteda.textmodels::data_corpus_moviereviews</code> corpus. This dataset consists of 2000 movie reviews and we have a target variable, called <code>sentiment</code>. The dataset is quite balanced, we have 1000 <code>sentiment="yes"</code> (indicating a positive sentiment towards the movie), the other 1000, <code>sentiment="no"</code>, indicating a negative review.</p>
+<p>We trained two separate decision trees, one with <code>tree_depth=1</code> and another with <code>tree_depth=4</code>, on this dataset. As you probably know, the figures below depicts the fitted trees, and it contains useful information about how well the models fit the training data. Here is what we want from you: based on the information contained in these figures, calculate the F1-score of each model for the target variable <code>sentiment="yes"</code>, explain how you calculated the scores and indicate which of the two models performed better.</p>
+<p><strong>Decision Tree Model 1</strong> <img src="../figures/week11/dt_figure1.png" class="img-fluid"></p>
+<p><strong>Decision Tree Model 2</strong> <img src="../figures/week11/dt_figure2.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>your response here</p>
+<p>split it into multiple lines if needed</p>
+</blockquote>
+<details>
+<summary>
+<strong>✒️️ Marking Rubric: how you will be assessed</strong>
+</summary>
 <ul>
-<li>Use Slack to report any bugs or to ask for clarification.</li>
-</ul></li>
-<li><strong>✍️ Summative Problem Set (03) | W11-W11+1</strong>: <a href="https://moodle.lse.ac.uk/mod/assign/view.php?id=1143624">Moodle link</a> &amp; associated <a href="../assessments/summative3.html">webpage</a>.
+<li><p>What a great answer! (15/15): Not only your answer was correct, it was very clear and engaging! You correctly explained how you calculated the F1-score and it was clear if and how one model was better than the other.</p></li>
+<li><p>Correct (12/15) You correctly explained how you calculated the F1-score and it was clear if and how one model was better than the other.</p></li>
+<li><p>Partially Correct (~8/15): You reached the correct F1 scores but your solution was a bit vague or imprecise.</p></li>
+<li><p>Partially Correct (~5/15): Even though you reached the correct F1 scores, you did not explain how you calculated the scores satisfactorily.</p></li>
+<li><p>Incorrect (0): Response was incorrect or missing</p></li>
+</ul>
+</details>
+</section>
+</section>
+<section id="setup-to-coding-questions" class="level1">
+<h1>⚙️ Setup to coding questions</h1>
+<p>Your goal will be to conduct quantitative text analysis using unsupervised learning techniques on a selected dataset.</p>
+<p><strong>This time, you will be responsible for organising your own code!</strong> You will see all the instructions below together with detailed marking criteria, but you will be responsible for adding the chunks of code and chunks of text related to your submission <strong>at the bottom of this document</strong>.</p>
+<section id="the-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-data">The data</h2>
+<p>We will be using a dataset called <code>zeroshot/twitter-financial-news-topic</code>, a dataset of finance-related tweets. The dataset holds around 17k documents annotated with 20 labels that were <a href="https://neuralmagic.com/blog/classifying-finance-tweets-in-real-time-with-sparse-transformers/">determined manually by the authors</a> of the dataset.</p>
+</section>
+<section id="your-choice" class="level2">
+<h2 class="anchored" data-anchor-id="your-choice">Your choice</h2>
+<p>Although this is not “big data”, some text mining algorithms might use quite a lot of RAM storage or can take quite some time to run. Thinking of that, we will you give you a choice of how big of a sample you want to work on for this problem set.</p>
+<p>You can choose either:</p>
+<p>Option 1) use the full dataset as is (<code>df</code>) or,</p>
+<p>Option 2) select a subset of the data considering the following limitations:</p>
 <ul>
-<li>Use Slack to report any bugs or to ask for clarification.</li>
-</ul></li>
+<li>Select a few <code>manually_annotated_label</code> categories and keep only tweets in your selected categories.</li>
+<li>Your filtered dataset must have at least 4000 tweets.</li>
 </ul>
 </section>
-<section id="list-of-assessments" class="level1">
-<h1>List of assessments</h1>
-<p>This course is assessed by a mix of problem sets and final exam. You can find the details below:</p>
-<section id="problem-sets-60" class="level2">
-<h2 class="anchored" data-anchor-id="problem-sets-60">📝 Problem Sets (60%)</h2>
-<ul>
-<li>Summative problem sets released on <strong>Weeks 5, 8 &amp; 11</strong>.</li>
-<li>These will have a similar style to the formative problem sets, a mix of <code>R</code> tasks and your written interpretation of the analyses.</li>
-<li>Typically, you will have 4-6 days to submit your solutions.</li>
-<li>Each of the three summative problem sets is worth 20% of the final mark, and will be graded on a 100 point scale.</li>
-</ul>
 </section>
-<section id="exam-40" class="level2">
-<h2 class="anchored" data-anchor-id="exam-40">✍️ Exam (40%)</h2>
-<ul>
-<li>An open-book online exam.</li>
-<li>3 hours for working on the exam + 1 hour for submission.</li>
-<li>Exam questions will be comparable in style to the problem sets, but will require less writing of R code.</li>
-<li>The exam questions will be released on Moodle sometime in the <a href="https://info.lse.ac.uk/current-students/services/assessment-and-results/exams/exam-timetable">Exam Period</a>. Our exact timeslot has not yet been confirmed by LSE Exams team.</li>
+<section id="questions" class="level1">
+<h1>🎯 Questions</h1>
+<p>Now here comes the actual coding questions. Read the instructions below (Q4-Q7) and then add your chunks of code/text at the bottom of this document.</p>
+<p><em>(Note: Do not worry, this style of question will not feature in the final exam, as you will not have much time to write code.)</em></p>
+<section id="q4.-pre-processing-10-points" class="level2">
+<h2 class="anchored" data-anchor-id="q4.-pre-processing-10-points">Q4. Pre-processing (10 points)</h2>
+<p><em>💭 It is often said that 80% of the effort and time put into a data science project is on cleaning and pre-processing data. Because this is a practical hands-on Machine Learning course, we cannot ignore that!</em></p>
+<p>Write code that meets the requirements below:</p>
+<ul class="task-list">
+<li><input type="checkbox" disabled="">Import all libraries at the top of submission</li>
+<li><input type="checkbox" disabled="">Read the dataset</li>
+<li><input type="checkbox" disabled="">Filter the <code>manually_annotated_label</code> categories (if Option 2)</li>
+<li><input type="checkbox" disabled="">Build a corpus of text</li>
+<li><input type="checkbox" disabled="">Pre-process the tokens: remove stop words, remove punctuations, remove numbers. If you judge it necessary, remove more tokens.</li>
+<li><input type="checkbox" disabled="">Build a document-frequency matrix.</li>
 </ul>
+<p>Tip: check the documentation of quanteda’s <code>?tokens</code>.</p>
+<p>Pro-Tip: Take a look at <code>?dfm_trim</code> to reduce the dimensionality of the document frequency matrix (it can <em>potentially</em> improve the clarity of analysis).</p>
+<details>
+<summary>
+<strong>✒️️ Marking Rubric: how you will be assessed</strong>
+</summary>
+<ul>
+<li><p>Fantastic (10/10): Not only the solution ticks all the boxes, the code is well organised, there are no weird prints of warnings or unnecessary messages when importing libraries, and the candidate went an extra mile to check whether any extra filter should be applied when pre-processing the tokens.</p></li>
+<li><p>Correct (~7/10): Ticks all the boxes.</p></li>
+<li><p>Partial (~4/10): Solution was only partially correct, you forgot to consider a few requirements.</p></li>
+<li><p>Incorrect (0/10): The code does not work as required.</p></li>
+</ul>
+</details>
+</section>
+<section id="q5.-topic-modelling-30-points" class="level2">
+<h2 class="anchored" data-anchor-id="q5.-topic-modelling-30-points">Q5. Topic Modelling (30 points)</h2>
+<p><em>💭 I wonder if topics identified by topic modelling match the labels identified manually by the author of the dataset.</em></p>
+<p>Write code that does the following:</p>
+<ul class="task-list">
+<li><input type="checkbox" disabled="">Run topic modelling with k topics, where k should match the same number of <code>manually_annotated_label</code> categories in your dataset. In other words, if you are using the full dataset (Option 1), k=20.</li>
+<li><input type="checkbox" disabled="">Explain what each of the topics you found represent</li>
+<li><input type="checkbox" disabled="">Give a meaningful name to each one of the topics you found</li>
+<li><input type="checkbox" disabled="">Explain to what extent the topics you found match the labels that came with the original dataset (use tables, plots, etc.)</li>
+</ul>
+<details>
+<summary>
+<strong>✒️️ Marking Rubric: how you will be assessed</strong>
+</summary>
+<ul>
+<li><p>Fantastic (30/30): We can see that you went an extra mile to format your submission. This is a complex task, involving many steps but you made it look easy, clear and impressive. It should be published somewhere! Not only the solution ticks all the boxes, the code is well organised, the markdown is well formatted and the explanations are good yet concise.</p></li>
+<li><p>Correct (~23/30): Solution ticks all the boxes.</p></li>
+<li><p>Correct (~20/30): Solution was technically correctly but you could have put more care into communicating your results and explanations.</p></li>
+<li><p>Partial (~15/30): Either the solution was partially correct or your code and explanations were a bit difficult to read (vague, overly verbose, complex, etc.)</p></li>
+<li><p>Partial (~10/30): Either the solution was partially correct or your code and explanations were very difficult to read (vague, overly verbose, complex, etc.)</p></li>
+<li><p>Incorrect (0/10): The code does not work as required.</p></li>
+</ul>
+</details>
+</section>
+<section id="q6.-plots-of-topics-15-points" class="level2">
+<h2 class="anchored" data-anchor-id="q6.-plots-of-topics-15-points">Q6. Plots of topics (15 points)</h2>
+<p>Write code that does the following:</p>
+<ul class="task-list">
+<li><input type="checkbox" disabled="">Select one topic to highlight</li>
+<li><input type="checkbox" disabled="">Create a word cloud highlighting the top words from the selected topic against the rest</li>
+<li><input type="checkbox" disabled="">Create a plot of keyness for the selected topic against the rest</li>
+</ul>
+<p>Tip: Check <code>?quanteda.textplots::textstat_keyness</code> and <code>?quanteda.textplots::textplot_keyness</code></p>
+<details>
+<summary>
+<strong>✒️️ Marking Rubric: how you will be assessed</strong>
+</summary>
+<ul>
+<li><p>Fantastic (15/15): Not only the solution ticks all the boxes, the code is well organised, and your plots and explanations told us an interesting story about the topic you selected.</p></li>
+<li><p>Correct (~10/15): Ticks all the boxes.</p></li>
+<li><p>Partial (~7/15): Either the solution was partially correct or your code and explanations were a bit difficult to read (vague, overly verbose, complex, etc.)</p></li>
+<li><p>Partial (~3/15): Either the solution was partially correct or your code and explanations were very difficult to read (vague, overly verbose, complex, etc.)</p></li>
+<li><p>Incorrect (0/15): The code does not work as required.</p></li>
+</ul>
+</details>
+</section>
+<section id="q7.-2d-visualisation-of-the-dataset-15-points" class="level2">
+<h2 class="anchored" data-anchor-id="q7.-2d-visualisation-of-the-dataset-15-points">Q7. 2D visualisation of the dataset (15 points)</h2>
+<ul class="task-list">
+<li><input type="checkbox" disabled="">Produce a 2D scatter plot of the dataset (however you want)</li>
+<li><input type="checkbox" disabled="">Colour the dots according to the topics you found in Q5</li>
+<li><input type="checkbox" disabled="">Explain if/how this visualisation improved your understanding of the data.</li>
+</ul>
+<details>
+<summary>
+<strong>✒️️ Marking Rubric: how you will be assessed</strong>
+</summary>
+<ul>
+<li><p>Impressive! (15/15): It is not easy to create such an interesting 2D representation of text data but somehow you made it. It looks like a piece of art.</p></li>
+<li><p>Correct (~10/15): Ticks all the boxes.</p></li>
+<li><p>Partial (~7/15): Either the solution was partially correct or your code and explanations were a bit difficult to read (vague, overly verbose, complex, etc.)</p></li>
+<li><p>Partial (~3/15): Either the solution was partially correct or your code and explanations were very difficult to read (vague, overly verbose, complex, etc.)</p></li>
+<li><p>Incorrect (0/15): The code does not work as required.</p></li>
+</ul>
+</details>
+<hr>
+<p>Your submission starts here. Add everything after this point.</p>
+<p>Organise your code as you find fit, aim for clarity in communication.</p>
+<hr>
 
 
 </section>
@@ -817,18 +983,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../main/communication.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">📟 Communication</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../main/courserep.html" class="pagination-link">
-        <span class="nav-page-text">🗳️ Course Rep</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
