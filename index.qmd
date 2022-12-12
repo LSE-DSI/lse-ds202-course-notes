@@ -7,15 +7,9 @@ subtitle: "Data Science for Social Scientists"
 
 **Recently updated pages:**
 
-(05/12/2022)
+(12/12/2022)
 
-- [✍️ Summative Problem Set (03) | W11-W11+1](/assessments/summative3.qmd)
-
-(04/12/2022)
-
-- [🗓️ Week 11](/weeks/week11.qmd)
-- [✅ Week 11 - Checklist](/weeks/week11/checklist.qmd)
-
+If you are having problems installing the `topicmodels` package while solving the [✍️ Summative Problem Set (03) | W11-W11+1](/assessments/summative3.qmd), we will accept the use of clustering methods instead (k-means, for example). 
 :::
 
 

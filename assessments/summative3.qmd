@@ -229,6 +229,10 @@ Write code that does the following:
 -   [ ] Explain to what extent the topics you found match the labels
     that came with the original dataset (use tables, plots, etc.)
 
+::: {.callout-important}
+If you are having problems installing the `topicmodels` package, we will accept the use of clustering methods instead (k-means, for example). 
+:::
+
 <details><summary>**✒️️ Marking Rubric: how you will be assessed**</summary>
 
 -   Fantastic (30/30): We can see that you went an extra mile to format
