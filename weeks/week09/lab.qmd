@@ -401,7 +401,9 @@ cross_tabulation %>% knitr::kable()
 
 > From the above, we see that the clusters identified by k-means are not very similar to the `species` of penguins. The first cluster is mostly Adelie penguins, but it also contains Chinstrap penguins while the second cluster is a mix of all species. The third cluster is the different case, as it contains only Gentoo penguins, but it does not contain ALL Gentoo penguins.
 
-**Additional (More Advanced)**
+The clusters are still not very similar to the `species` of penguins. This shows that clustering is not a great tool for distinguishing between the `species` of penguins.
+
+<!-- **Additional (More Advanced)**
 
 How could we include the categorical/ordinal variables `island` and `sex` in the clustering analysis? We would first need to convert them into dummy variables. The code below (taken from [this Stackoverflow thread](https://stackoverflow.com/questions/69225660/creating-dummy-variables-in-tidyverse-syntax)) helps us do that.
 
@@ -435,7 +437,7 @@ cross_tabulation <-
 cross_tabulation %>% knitr::kable()
 ```
 
-Nothing has really changed... The clusters are still not very similar to the `species` of penguins. This shows that clustering is not a great tool for distinguishing between the `species` of penguins.
+Nothing has really changed... -->
 
 ## Q2: Elbow plot
 
