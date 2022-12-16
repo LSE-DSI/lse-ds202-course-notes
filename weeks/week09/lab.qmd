@@ -403,42 +403,6 @@ cross_tabulation %>% knitr::kable()
 
 The clusters are still not very similar to the `species` of penguins. This shows that clustering is not a great tool for distinguishing between the `species` of penguins.
 
-<!-- **Additional (More Advanced)**
-
-How could we include the categorical/ordinal variables `island` and `sex` in the clustering analysis? We would first need to convert them into dummy variables. The code below (taken from [this Stackoverflow thread](https://stackoverflow.com/questions/69225660/creating-dummy-variables-in-tidyverse-syntax)) helps us do that.
-
-Take a look at the `new_df` object to see how the dummy variables are represented in the new data frame.
-
-```{r}
-new_df <-
-  df_filtered %>%
-  pivot_longer(cols = c(island, sex),
-               names_to = "dummy_names",
-               values_to = "dummy_levels") %>%
-  mutate(dummy_value = 1) %>%
-  pivot_wider(names_from = c(dummy_names, dummy_levels),
-             values_from = dummy_value,
-             values_fill = 0)
-```
-
-K-means is not truly great for binary variables, but we can still try it out. Let's run k-means on the new data frame with $k=3$ and see how the clusters compare to the `species` of penguins.
-
-```{r}
-k <- 3
-set.seed(10)
-
-model <- kmeans(new_df, centers = k)
-cross_tabulation <-
-  augment(model, new_df) %>%
-  bind_rows(df_filtered %>% select(species)) %>%
-  select(species, .cluster) %>%
-  table()
-
-cross_tabulation %>% knitr::kable()
-```
-
-Nothing has really changed... -->
-
 ## Q2: Elbow plot
 
 Run k-means on the same data, but this time vary k from $\{1, 2, \ldots, 19, 20\}$ and generate an elbow plot. According to the plot, what is a "good" number of clusters?
