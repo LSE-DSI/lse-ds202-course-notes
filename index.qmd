@@ -7,9 +7,10 @@ subtitle: "Data Science for Social Scientists"
 
 **Recently updated pages:**
 
-(12/12/2022)
+(09/01/2023)
 
-If you are having problems installing the `topicmodels` package while solving the [✍️ Summative Problem Set (03) | W11-W11+1](/assessments/summative3.qmd), we will accept the use of clustering methods instead (k-means, for example). 
+- [Tips for the exam](/assessments/exam.qmd)
+
 :::
 
 

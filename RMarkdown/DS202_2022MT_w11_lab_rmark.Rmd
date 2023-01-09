@@ -36,7 +36,7 @@ library(tidymodels)  # for model tuning, cross-validation etc.
 
 library(plotly)      # for interactive charts
 
-library(Nbclust)     # to assess an "optimal" number of clusters
+library(NbClust)     # to assess an "optimal" number of clusters
 
 library(quanteda)
 library(quanteda.textplots)
@@ -84,9 +84,9 @@ It might be good to have a column with a very short identifier of the apology. W
 
 :thinking: How would you do that when we do not have abbreviated country names? And how would you treat the cases of missing values in the `Country (Receiver)` column?
 
-:warning: For now, just believe me: it is possible, the code below deals precisely with that. BUT it is a bit much to digest this early in a lab, so for now let's just run it and observe the output in the `Apology ID` column. 
+:warning: For now, just believe me: it is possible, the code below deals precisely with that. BUT it is a bit much to digest this early in a lab, so for now let's just run it and observe the output in the `Apology ID` column.
 
-Later, as a 🏠 **TAKE-HOME ACTIVITY:**, try to understand every single step of the huge pipe below. Ask questions on Slack if you do not get any detail!
+Later, as a :house: **TAKE-HOME ACTIVITY:**, try to understand every single step of the huge pipe below. Ask questions on Slack if you do not get any detail!
 
 *By the way, if you want to practice this kind of advanced pre-processing, you should consider taking our sister course, DS105!*
 
@@ -157,7 +157,7 @@ df_pac %>% select(`Apology ID`) %>% head(n=10)
 
 ## Step 2.1: Of corpuses and tokens
 
-The first step when performing quantitative text analysis is to create a `corpus`: 
+The first step when performing quantitative text analysis is to create a `corpus`:
 
 ```{r}
 corp_pac <- quanteda::corpus(df_pac, text_field="Description according to database")
@@ -166,13 +166,14 @@ quanteda::docnames(corp_pac) <- df_pac$`Apology ID`
 corp_pac
 ```
 
-_Once you have constructed this corpus, use the summary() method to see a brief description of the corpus._
+*Once you have constructed this corpus, use the summary() method to see a brief description of the corpus.*
 
 ```{r}
 df_corpus <- summary(corp_pac)
 
 head(df_corpus, n=5)
 ```
+
 ```{r}
 g <- (
   ggplot(df_corpus, aes(x=Tokens))
@@ -186,9 +187,10 @@ g <- (
 
 g
 ```
+
 ### Tokens
 
-In order to count word frequencies, we first need to split the text into words (or longer phrases) through a process known as _tokenization_:
+In order to count word frequencies, we first need to split the text into words (or longer phrases) through a process known as *tokenization*:
 
 ```{r}
 # This function extracts the tokens
@@ -208,6 +210,7 @@ Now, let's **summarise** the tokens in our corpus. We use the document-frequency
 dfm_pac <- quanteda::dfm(tokens_pac) 
 dfm_pac
 ```
+
 We can convert `dfm_pac` to a dataframe if we like:
 
 ```{r}
@@ -215,10 +218,9 @@ dfm_as_data_frame <- quanteda::convert(dfm_pac, to="data.frame")
 dim(dfm_as_data_frame)
 ```
 
-🎯 **ACTION POINT** Look at the dataframe that represents the document-frequency matrix with either `View(dfm_as_data_frame)` or `head(dfm_as_data_frame)`
+:dart: **ACTION POINT** Look at the dataframe that represents the document-frequency matrix with either `View(dfm_as_data_frame)` or `head(dfm_as_data_frame)`
 
-🗣️ **CLASSROOM DISCUSSIONS**: What do you think all of these columns represent?
-
+:speaking_head: **CLASSROOM DISCUSSIONS**: What do you think all of these columns represent?
 
 ### Top features
 
@@ -227,39 +229,38 @@ What are the most frequent tokens?
 ```{r}
 dfm_pac %>% quanteda::topfeatures()
 ```
+
 **It is fun to look at wordclouds:**
 
 ```{r}
 quanteda.textplots::textplot_wordcloud(dfm_pac)
 ```
 
-🗣️ **CLASSROOM DISCUSSIONS**: Do you think these most frequent terms are useful in helping us understand the political apologies? Would you remove certain tokens?
+:speaking_head: **CLASSROOM DISCUSSIONS**: Do you think these most frequent terms are useful in helping us understand the political apologies? Would you remove certain tokens?
 
-_Have you heard of the term 'stop words' before? Ask your class teacher about this! Quanteda has a built-in list of commonly used stop words, view it by running the function `quanteda::stopwords("en")`._
-
+*Have you heard of the term 'stop words' before? Ask your class teacher about this! Quanteda has a built-in list of commonly used stop words, view it by running the function `quanteda::stopwords("en")`.*
 
 ## Step 2.3: Keywords In Context (`kwic`)
 
 Before we revisit our tokens, let's take a look at an interesting feature of `quanteda`. We can search for a pattern (a keyword) in our corpus and see the text that surrounds it using the `kwic` function.
 
-🎯 **ACTION POINT:** Use `kwic` to search for keywords associated with different forms of explicit description of apologies:
+:dart: **ACTION POINT:** Use `kwic` to search for keywords associated with different forms of explicit description of apologies:
 
-```r
+``` r
 quanteda::kwic(tokens_pac %>% head(n=10), pattern="apolog*")
 ```
 
-🗣️ **CLASSROOM DISCUSSIONS**: What do you think the `*` in the `pattern="apolog*"` parameter does?
+:speaking_head: **CLASSROOM DISCUSSIONS**: What do you think the `*` in the `pattern="apolog*"` parameter does?
 
 The above is an example of a regular expression (**regex**), a language just for expressing patterns of strings. You can read more about regex in [Chapter 14 of R for Data Science book](https://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions)
-
 
 # Step 3: Pre-processing (30 min)
 
 Let's try to make this data more interesting for further analysis. Here we will:
 
-- use the power of `kwic` to try to extract just the **object of the apology**
-- build a new corpus out of this new subset of text data
-- remove unnecessary tokens (stop words + punctuation)
+-   use the power of `kwic` to try to extract just the **object of the apology**
+-   build a new corpus out of this new subset of text data
+-   remove unnecessary tokens (stop words + punctuation)
 
 ## Step 3.1. Extract the object of the apology
 
@@ -270,7 +271,6 @@ quanteda::kwic(tokens_pac %>% head(n=10), pattern="apolog*", window=40) %>% as.d
 ```
 
 The info we care about the most is the column `post`.
-
 
 ### A different pattern
 
@@ -283,10 +283,11 @@ df_new <-
                  window=40) %>%
   as.data.frame()
 dim(df_new)
-``` 
+```
+
 We seemed to have lost some documents. The original document has 367 rows.
 
-🎯 **ACTION POINT:** Take a look at `View(df_new)`
+:dart: **ACTION POINT:** Take a look at `View(df_new)`
 
 ### Handling duplicates
 
@@ -295,18 +296,17 @@ Some rows are repeated because of multiple pattern matches in the same text:
 ```{r}
 df_new %>% group_by(docname) %>% filter(n() > 1)
 ```
-Here is how we are going to deal with these duplicates: let's keep just the one with the longest `post` text. This is equivalent to selecting the one with earliest `from` value in the dataframe above.
 
+Here is how we are going to deal with these duplicates: let's keep just the one with the longest `post` text. This is equivalent to selecting the one with earliest `from` value in the dataframe above.
 
 ```{r}
 df_new <- df_new %>% arrange(from) %>% group_by(docname) %>% slice(1) 
 dim(df_new)
 ```
 
-**Note:** This is a choice, there is no absolute objective way to handle this case. Would you do anything differently? 
+**Note:** This is a choice, there is no absolute objective way to handle this case. Would you do anything differently?
 
-🏠 **TAKE-HOME (OPTIONAL) ACTIVITY:**  We used to have 367 rows, now we have 327. How would you change the `pattern` so as to avoid excluding data from the original dataframe? (Note: I do not have a ready solution to this! Feel free to share yours.)
-
+:house: **TAKE-HOME (OPTIONAL) ACTIVITY:** We used to have 367 rows, now we have 327. How would you change the `pattern` so as to avoid excluding data from the original dataframe? (Note: I do not have a ready solution to this! Feel free to share yours.)
 
 ## Step 3.2. Rebuild the corpus, tokens and dfm
 
@@ -342,8 +342,7 @@ df_word_frequency <- quanteda::convert(dfm_pac, to="data.frame")
 dim(df_word_frequency)
 ```
 
-
-🗣️ **CLASSROOM DISCUSSIONS**: What do you think of the wordcloud above, compared to the previous one? How would it be different if we had removed unnecessary tokens but kept the original longer description?
+:speaking_head: **CLASSROOM DISCUSSIONS**: What do you think of the wordcloud above, compared to the previous one? How would it be different if we had removed unnecessary tokens but kept the original longer description?
 
 # Step 4. Dimensionality Reduction + Clustering
 
@@ -376,7 +375,6 @@ df_pca <- bake(pca_prep, df_word_frequency)
 summary(pca_prep$steps[[2]]$res)
 ```
 
-
 ### Visualise it
 
 ```{r}
@@ -390,8 +388,7 @@ plot_ly(data =  bind_cols(df_pca, df_new),
         text=~paste('Doc ID:', doc_id, '\nDescription:\n', post))
 ```
 
-🗣️ **CLASSROOM DISCUSSIONS:** What would you say? How many clusters are in there?
-
+:speaking_head: **CLASSROOM DISCUSSIONS:** What would you say? How many clusters are in there?
 
 ### A method to determine the number of clusters
 
@@ -411,10 +408,9 @@ The indices have voted! The majority believe k=3.
 ### Can K-means identify the 3 clusters?
 
 ```{r}
-model <- kmeans(df_lsa %>% select(PC1, PC2), centers=3)
+model <- kmeans(df_pca %>% select(PC1, PC2), centers=3)
 df_pca <- parsnip::augment(model, df_pca)
 ```
-
 
 ```{r}
 library(plotly)
@@ -428,7 +424,16 @@ plot_ly(data =  bind_cols(df_pca, df_new),
         text=~paste('Doc ID:', doc_id, '\nDescription:\n', post))
 ```
 
-Those clusters are very awkward... 
+Those clusters are very awkward...
+
+```{r}
+df %>% 
+  mutate(new_timezone=if_else(X5 == 1, 
+                              as.POSIXct(X10, origin=, timezone=""), 
+                              if_else(X5 == 2, 
+                                      as.POSIXct(X10, origin=, tz=""),
+                                      as.POSIXct(X10, origin=, tz="" ))   ))
+```
 
 But at least it highlights two outliers:
 
@@ -439,7 +444,6 @@ bind_cols(df_pca, df_new) %>% filter(.cluster != 2)
 ## Step 4.2. Latent Sentiment Analysis + k-means
 
 Let's try an alternative dimensionality reduction technique called Latent Sentiment Analysis (LSA), and let's keep just 2 dimensions:
-
 
 ```{r}
 df_lsa <- quanteda.textmodels::textmodel_lsa(dfm_pac, nd=2)$docs %>% as.data.frame()
@@ -471,7 +475,6 @@ res.nbclust <- df_lsa %>% select(V1, V2) %>%
 model <- kmeans(df_lsa %>% select(V1, V2), centers=3)
 df_lsa <- parsnip::augment(model, df_lsa)
 ```
-
 
 ```{r}
 library(plotly)
@@ -511,7 +514,7 @@ We can use the concept of `keyness` to score words in relation to a target vs a 
 library(quanteda.textstats)
 library(quanteda.textplots)
 
-tstat_key <- textstat_keyness(dfm_pac, target = df_lsa$.cluster == 4)
+tstat_key <- textstat_keyness(dfm_pac, target = df$.cluster == 4)
 textplot_keyness(tstat_key, labelsize=2)
 ```
 
@@ -527,7 +530,6 @@ Wordcloud to compare target vs reference:
 quanteda.textplots::textplot_wordcloud(tstat_key, comparison=TRUE, min_count=1)
 ```
 
-
 ## Step 4.4. Alternative strategies
 
 ### Topic modeling instead of k-means
@@ -539,6 +541,7 @@ tmod_lda <- topicmodels::LDA(dfm_pac, k = 7)
 ## What is in each topic?
 tmod_lda %>% topicmodels::terms(4)
 ```
+
 **Assign each row to a topic:**
 
 ```{r}
@@ -565,8 +568,8 @@ textplot_keyness(tstat_key, labelsize=2)
 
 **Think about it:**
 
-- We have experimented with a lot of different things. Which topic/clustering/spatial representation makes more sense to you?
+-   We have experimented with a lot of different things. Which topic/clustering/spatial representation makes more sense to you?
 
-- Why not try exploring the data with different clustering algorithms? Take a look at [this link](https://www.datanovia.com/en/blog/types-of-clustering-methods-overview-and-quick-start-r-code/) for code samples of **hierarchical clustering** and [this one](https://www.datanovia.com/en/lessons/dbscan-density-based-clustering-essentials/) for **DBSCAN**.
+-   Why not try exploring the data with different clustering algorithms? Take a look at [this link](https://www.datanovia.com/en/blog/types-of-clustering-methods-overview-and-quick-start-r-code/) for code samples of **hierarchical clustering** and [this one](https://www.datanovia.com/en/lessons/dbscan-density-based-clustering-essentials/) for **DBSCAN**.
 
-- You can also try finding alternative R packages that implements other clustering algorithms shown in [Python's sklearn package](https://scikit-learn.org/stable/modules/clustering.html).
+-   You can also try finding alternative R packages that implements other clustering algorithms shown in [Python's sklearn package](https://scikit-learn.org/stable/modules/clustering.html).

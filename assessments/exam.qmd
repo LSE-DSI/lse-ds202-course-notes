@@ -1,0 +1,82 @@
+---
+title: "January Exam"
+author: "Dr. Jon Cardoso-Silva"
+date: "09 January 2023"
+output: html_document
+---
+
+<details> <summary>💡 Click here for tips about the upcoming exam</summary>
+
+(Replicated from a [communication sent via Moodle](https://moodle.lse.ac.uk/mod/hsuforum/discuss.php?d=27682) on 3 January 2023)
+
+Hi everyone,
+
+Happy new year 🎊 I hope you are having a great start to the year! 
+
+While our taught content has ended, you still have a final step to take before you can conclude this course: the exam. 
+
+**Key points about the exam**
+
+- The exam will take place 13 January 2023 from 10 am UK time. You are advised to complete your work by 1 pm UK time, you will have until 2pm UK time to submit your solutions. 
+- If you would like to request additional time due to learning adjustments you have in place, please send a request to [dsi.ug@lse.ac.uk](mailto:DSI.ug@lse.ac.uk) before the day of the exam. 
+- The exam will be about everything we discussed during the lectures and labs, but the focus of the assessment is slightly different than those of the Summative assignments you have done. 
+- The exam will contain case studies of 1-2 datasets.
+- You might be asked to assess if a specific algorithm or validation procedure would be appropriate in a particular scenario and to justify your reasoning (similar to Q1-Q3 in Summative 03).
+- You might be asked how you would improve a particular application of an algorithm or what you would do differently (in the same vein as Q1-Q3 in Summative 03)
+- You might also be asked to reflect more broadly on the implications of making decisions/taking actions based on algorithms/exploratory analysis output. This more nuanced activity requires some deep thinking and previous familiarity with the tools (here, you can refer to the discussions you had with our guest speakers during W09-W11).
+
+
+**How should I prepare for the exam?**
+
+My main recommendation is the following:
+
+1. Pick two sources of data to explore more comprehensively. One more tabular (say, the London cycling dataset) and another with more unstructured data — data that does not come in a friendly spreadsheet-like format, such as text or social media data. 
+
+2. Then, reflect on how one could apply data science tools to these datasets to understand more about the world or to make action plans. One way to facilitate this is to think, "what could I, or a policymaker, do — in the real world — if I had an automated algorithm running on this dataset?" or perhaps "could a bad actor use data science/ML tools to automatically exploit people's privacy (religious, political or financial associations, etc.) using this kind of data?".
+
+    - To give one example, consider the London cycling dataset: could this data set provide any clue about the meteorological/traffic conditions that should be of more significant concern to emergency dispatch services?
+
+3. Pick the techniques you feel are more relevant to your analysis and try to apply them.
+
+4. Then, share your thoughts. Discussing in public channels, in pairs or in groups will help you identify your blind spots and the concepts from this course that you need to prioritise in your revision. 
+You can find data everywhere on the web, but apart from the ones mentioned in the labs and W09-W11 lectures, you can also look at Kaggle or Google Dataset Search. I also quite like this [Data is Plural](https://docs.google.com/spreadsheets/d/1wZhPLMCHKJvwOkP4juclhjFgqIY8fQFMemwKL2c64vk/edit#gid=0) spreadsheet. If you would rather focus on solidifying the use of the techniques, I have written about a more procedural approach to studying for the exam [here](https://lse-dsi-ds202.slack.com/archives/C040ZFPKCHL/p1671188351009839?thread_ts=1671186684.444759&cid=C040ZFPKCHL) (links to Slack).
+
+**(Optional Reading) Machine Learning in the Social Sciences**
+
+
+We spent several months exploring different tools (R/tidyverse), ML paradigms (supervised/unsupervised learning) and ML algorithms (e.g. linear regression, decision trees, SVMs and topic models). Still, along the way, I hope we helped you reflect on the possibilities and relevance of these techniques to your academic studies and career. 
+
+Those who have studied statistics at the university level might have wondered why we glossed over the complexities of statistical significance and hypothesis testing or the lack of any "social theory" behind the several examples we used. This is partly because we wanted to help you familiarise yourself with the different ML methods and empower you with the tools to run your analysis on datasets you might come across in the future after you complete this course (and your degree). But it is also a reflection of a more profound epistemic clash between the social science and machine learning communities. This is something I mentioned in Week 01 of DS202; whereas social sciences have traditionally focused on explaining phenomena, machine learning tries to predict them, but it is not always easy to see the difference. To help you reflect on that, I have curated a list of scholarly articles below.
+
+**💡Tip: the following scholarly articles provide reflections on this epistemic clash and should be accessible to you now that you are familiar with ML algorithms.**
+
+- Jake M. Hofman, Amit Sharma, and Duncan J. Watts, '**Prediction and Explanation in Social Systems**', Science 355, no. 6324 (3 February 2017): 486–88, doi:[10.1126/science.aal3856](http://dx.doi.org/10.1126/science.aal3856). 
+
+- Jessica Hullman et al., '**The Worst of Both Worlds: A Comparative Analysis of Errors in Learning from Data in Psychology and Machine Learning**', in Proceedings of the 2022 AAAI/ACM Conference on AI, Ethics, and Society, AIES '22 (New York, NY, USA: Association for Computing Machinery, 2022), 335–48, doi:[10.1145/3514094.3534196](http://dx.doi.org/10.1145/3514094.3534196).
+
+- Jake M. Hofman et al., '**Integrating Explanation and Prediction in Computational Social Science**', Nature 595, no. 7866 (8 July 2021): 181–88, doi:[10.1038/s41586-021-03659-0](http://dx.doi.org/10.1038/s41586-021-03659-0).
+
+- Mark D. Verhagen, '**A Pragmatist's Guide to Using Prediction in the Social Sciences**', Socius: Sociological Research for a Dynamic World 8 (2022): 237802312210817, doi:[10.1177/23780231221081702](http://dx.doi.org/10.1177/23780231221081702).
+
+If you do read those articles, I suggest you read them in the order presented above. Feel free to share your thoughts and observations about the readings on the #general channel on Slack.
+
+**Other announcements/reminders**
+
+- We have returned from the break today. We are almost finished first-marking your Summative 02, but your submissions will still need to go through double-marking and moderation. I will update you on the progress of this by early next week.
+- Only once we have completed marking Summative 02 will we start marking Summative 03. So, that will still take a few more weeks.
+- We will have a couple of drop-in sessions at the start of next week. Check the <code>#general</code> channel on Slack. Bring questions! 
+
+Best,
+Jon
+
+</details>
+
+
+**Exam instructions**
+
+- Check Moodle on the day of the exam, Friday 13 January 2023 at 10 am. You will find the exam instructions and the link to submit your solutions.
+- You will be asked to write your solutions using R Markdown. You will find the template on Moodle.
+- You will not need to submit your R Markdown file, but you will need to submit the HTML file.
+- You will be able to submit your solutions until 1 pm unless you have been granted extra time due to learning adjustments.
+    - If you need extra time, please submit a request **before** the day of the exam to Nathaniel ([DSI.ug@lse.ac.uk](mailto:DSI.ug@lse.ac.uk))
+- **⚠️ We advise you to finish the exam by noon and leave the extra hour just for knitting the file and submitting it via Moodle.** Late submissions will be penalised.
