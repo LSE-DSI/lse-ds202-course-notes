@@ -1,0 +1,160 @@
+---
+title: "✔️ Summative Problem Set 02 | Solutions"
+author: "Dr. Jon Cardoso-Silva"
+from: markdown+emoji
+output: html_document
+---
+
+Here you will find model solutions to the [second Summative Problem Set](/assessments/summative2.qmd) of DS202 (2022/23).
+
+> 🥇 It is not uncommon that we are more pleased with solutions provided by the students than the template ones we created. The solutions on this page were compiled from students' submissions and shared here with their permission.
+
+```{r, eval=TRUE, echo=FALSE}
+predictor1      <- "number_of_vehicles" 
+predictor2      <- "CriScore"
+predictor3      <- "road_surface_conditions"
+target_variable <- "accident_severity"
+formula_str     <-  "accident_severity ~ number_of_vehicles + CriScore + road_surface_conditions"
+
+task_type       <- "Regression"
+metric          <- "Mean Absolute Error (MAE)"
+cp              <- 0.00058
+
+set.seed(1)
+```
+
+<details><summary>Import packages</summary>
+
+```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(tidymodels)
+
+library(GGally)
+library(ggsci)
+library(cvms)
+library(rpart)
+library(rpart.plot)
+library(kernlab)
+
+# If you decide to use other packages, add them here
+library(ggcorrplot)
+library(ISLR2)
+library(rsample)
+library(broom)
+library(e1071)
+```
+
+</details>
+
+```{r, eval=TRUE, echo=FALSE}
+metric_fn <- 
+  if(str_to_lower(str_trim(metric)) == "adjusted r-squared (r2)"){
+    rsq
+  }else if(str_to_lower(str_trim(metric)) == "mean absolute error (mae)"){
+    mae
+  }else if(str_to_lower(str_trim(metric)) == "f1-score"){
+    f_meas
+  }else if(str_to_lower(str_trim(metric)) == "recall"){
+    recall 
+  }else{
+    stop(paste0("Invalid `metric`: ","\"",metric, "\".\n", 
+                "Go back to the 🆔 Identification section and input the correct value."))
+  }
+```
+
+```{r, eval=TRUE, echo=FALSE}
+df <- read_csv("../resources/london_cycling_accident_dataset.csv", show_col_types = FALSE)
+df$is_grave_accident <- factor(df$is_grave_accident, levels=c("No", "Yes"))
+
+df_filtered <- df %>% select(all_of(c(target_variable, predictor1, predictor2, predictor3)))
+```
+
+# ⚙️ Setup
+
+Let us take a quick look at the format of the `df_filtered` data frame that one would see after setting up the variables above:
+
+```{r}
+knitr::kable(df_filtered %>% head(6))
+```
+
+This student cared to filter the data frame to keep only rows with valid values for the predictors based on the information provided in the data dictionary. This is a good practice, and we will do the same in the following:
+
+```{r}
+# Function `all_of` just simply converts your custom variables, which are strings, into tidyverse column names
+df_filtered <- df %>% select(all_of(c(target_variable, predictor1, predictor2, predictor3)))
+
+df_filtered <- df_filtered %>% filter(between(road_surface_conditions,1,7))
+df_filtered <- df_filtered %>% filter(number_of_vehicles >= 0)
+df_filtered <- df_filtered %>% filter(between(accident_severity,1,3))
+df_filtered <- df_filtered %>% filter(CriScore >= 0)
+
+knitr::kable(df_filtered %>% head(6))
+```
+
+# 🎯 Questions
+
+## Q1.
+
+```{r eval=TRUE, echo=FALSE}
+g <- if(str_to_lower(task_type) == "regression"){
+  ggpairs(df_filtered, progress=FALSE)
+}else if(str_to_lower(task_type) == "classification"){
+  (ggpairs(df_filtered, aes(colour=is_grave_accident), progress=FALSE)
+   + scale_colour_startrek()
+   + scale_fill_startrek())
+}else{
+  stop(paste0("Invalid `task_type`: ","\"",task_type, "\".\n", 
+              "Go back to the 🆔 Identification section and input the correct value."))
+}
+
+g <- (
+  g 
+  + theme_bw()
+)
+g
+```
+
+**Additional info we liked:** On top of analysing the plots we provided, some students produced custom-made ones to investigate the correlations more closely. Usually, additional plots are unnecessary, but these helped them articulate their points better and were great additions to their responses. Mixed with model solutions, I include a few (adapted) examples of the plots that students produced.
+
+**Plot 1**
+
+> The first plot in this image should be a density plot of accident severity. However, there is likely a bug in the library affecting the y-axis. The scale only goes up to 6, and a density plot should have an area under the curve that adds up to 1.
+
+> Here is a histogram instead:
+
+```{r}
+plot_df <- df_filtered %>% group_by(accident_severity) %>% tally()
+
+ggplot(plot_df, aes(x= accident_severity, y=n)) + 
+  geom_col(width = 1, color="darkblue", fill="lightblue") + 
+  geom_text(aes(label =n), vjust=-0.35) +
+  labs(title = "Histogram of the target variable", 
+       x = "Accident severity", y = "Count") +
+  theme_bw()
+```
+
+> I created a histogram of accident severity to check the results of the first plot. Most of the data has an accident severity of 1; followed by a significantly lower amount of data with `accident_severity` of 2; and finally, a small amount of `accident_severity` 3. This aligns with the density plot in the image, so the plot is relatively accurate, but the histogram helps to understand the data with a bit more clarity. For example, in the first plot, we see no bump for accident_severity = 3, indicating that no accidents had a severity of 3. But the histogram shows that, in fact, some accidents did have a severity of 3, though these were very underrepresented in the data.
+
+
+For the rest of your response, you would comment on the top row's remaining three box panels. This was straightforward, and pretty much everyone answered that correctly. All you had to do was state which variables the correlation text referred to and whether the correlation was positive or negative.
+
+One extra additional plot I have seen and I liked was of a correlation matrix with just the selected variables:
+
+```{r}
+corr <- cor(df_filtered)
+ggcorrplot(corr, lab=TRUE, digits=2, lab_size=3) +
+  labs(title = "Correlation matrix of selected variables", 
+       x = "Predictors", y = "Predictors") 
+```
+
+This helps us see that the variables were very much useless on their own. All correlations are close to zero, indicating that we will not likely get a very good model with just these three variables. 
+
+_Although this is frustrating, it is an excellent example of what you would encounter in a real-life setting. Also, this shouldn't bar you from completing the rest of the problem set. Here, we were testing whether you understood what you were doing and when approaching bad models, you could identify and point out the problem._ 
+
+🤔 **Question:** If we had not restricted you to the variables above, would you be able to get a better model? Why or why not?
+
+## Q2.
+
+👷 **Work in progress** 👷
+
+I didn't have much time left today (9 Jan 2023), so I will come back to putting more solutions here tomorrow.

@@ -9,6 +9,8 @@ subtitle: "Data Science for Social Scientists"
 
 (09/01/2023)
 
+
+- [Model Solutions | Summative 02](/assessments/summative2_solutions.qmd)
 - [Tips for the exam](/assessments/exam.qmd)
 
 :::
