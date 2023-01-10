@@ -65,8 +65,9 @@ metric_fn <-
 ```{r, eval=TRUE, echo=FALSE}
 df <- read_csv("../resources/london_cycling_accident_dataset.csv", show_col_types = FALSE)
 df$is_grave_accident <- factor(df$is_grave_accident, levels=c("No", "Yes"))
-
-df_filtered <- df %>% select(all_of(c(target_variable, predictor1, predictor2, predictor3)))
+df_filtered <- 
+  df %>% 
+  select(all_of(c(target_variable, predictor1, predictor2, predictor3)))
 ```
 
 # ⚙️ Setup
@@ -80,20 +81,21 @@ knitr::kable(df_filtered %>% head(6))
 This student cared to filter the data frame to keep only rows with valid values for the predictors based on the information provided in the data dictionary. This is a good practice, and we will do the same in the following:
 
 ```{r}
-# Function `all_of` just simply converts your custom variables, which are strings, into tidyverse column names
-df_filtered <- df %>% select(all_of(c(target_variable, predictor1, predictor2, predictor3)))
-
-df_filtered <- df_filtered %>% filter(between(road_surface_conditions,1,7))
-df_filtered <- df_filtered %>% filter(number_of_vehicles >= 0)
-df_filtered <- df_filtered %>% filter(between(accident_severity,1,3))
-df_filtered <- df_filtered %>% filter(CriScore >= 0)
+# Function `all_of` just simply converts your custom variables, 
+#   which are strings, into tidyverse column names
+df_filtered <- 
+  df_filtered %>% 
+  filter(between(road_surface_conditions,1,7)) %>% 
+  filter(number_of_vehicles >= 0) %>% 
+  filter(between(accident_severity,1,3)) %>% 
+  filter(CriScore >= 0)
 
 knitr::kable(df_filtered %>% head(6))
 ```
 
 # 🎯 Questions
 
-## Q1.
+## Q1. Understanding the Data (10 points)
 
 ```{r eval=TRUE, echo=FALSE}
 g <- if(str_to_lower(task_type) == "regression"){
@@ -136,9 +138,9 @@ ggplot(plot_df, aes(x= accident_severity, y=n)) +
 > I created a histogram of accident severity to check the results of the first plot. Most of the data has an accident severity of 1; followed by a significantly lower amount of data with `accident_severity` of 2; and finally, a small amount of `accident_severity` 3. This aligns with the density plot in the image, so the plot is relatively accurate, but the histogram helps to understand the data with a bit more clarity. For example, in the first plot, we see no bump for accident_severity = 3, indicating that no accidents had a severity of 3. But the histogram shows that, in fact, some accidents did have a severity of 3, though these were very underrepresented in the data.
 
 
-For the rest of your response, you would comment on the top row's remaining three box panels. This was straightforward, and pretty much everyone answered that correctly. All you had to do was state which variables the correlation text referred to and whether the correlation was positive or negative.
+For the rest of your response, you would comment on the top row's remaining three box panels. All you had to do was state which variables the correlation text referred to and whether the correlation was positive or negative. This was straightforward, and pretty much everyone answered that correctly.
 
-One extra additional plot I have seen and I liked was of a correlation matrix with just the selected variables:
+One extra additional plot I have seen and liked was of a correlation matrix with just the selected variables:
 
 ```{r}
 corr <- cor(df_filtered)
@@ -149,12 +151,263 @@ ggcorrplot(corr, lab=TRUE, digits=2, lab_size=3) +
 
 This helps us see that the variables were very much useless on their own. All correlations are close to zero, indicating that we will not likely get a very good model with just these three variables. 
 
-_Although this is frustrating, it is an excellent example of what you would encounter in a real-life setting. Also, this shouldn't bar you from completing the rest of the problem set. Here, we were testing whether you understood what you were doing and when approaching bad models, you could identify and point out the problem._ 
+::: {.callout-note collapse="true"}
+## 📝 Note
+
+_Although this might be a little frustrating, it is an excellent example of what you would encounter in a real-life setting. You will not always get beautiful correlations in real data. Also, this shouldn't stop you from completing the rest of the problem set. This assignment tests your judgment of models (good or bad) and whether you can identify and point out the problem._ 
 
 🤔 **Question:** If we had not restricted you to the variables above, would you be able to get a better model? Why or why not?
 
-## Q2.
+:::
+
+## Q2. Time for Decision Tree (20 points)
+
+
+::: {.panel-tabset}
+
+## Regression case
+
+```{r, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, dpi=200}
+dt_model <- 
+  decision_tree(cost_complexity =cp) %>% 
+  set_mode(str_to_lower(task_type)) %>% 
+  fit(as.formula(formula_str), data=df_filtered)
+
+# Set the number of digits to 4 to see the average without too much rounding
+rpart.plot(dt_model$fit, digits=4)
+```
+
+> I chose to describe the outer-left part of the decision tree. The tree starts with the root node containing $100\%$ of the data, with an average prediction of an accident severity of $1.176$, so slight ($1$) to severe ($2$), strongly leaning towards "slight." 
+>
+> Then, the tree branches into two decision nodes depending on whether the `number_of_vehicles` involved in the incident was equal to or bigger than $1.5$ (_in effect, this measures whether two or more vehicles were involved_). 
+>
+> In $\approx 91\%$ of these cases, this was true, leading us to our next decision node of focus: a decision node containing $\approx 91\%$ of the overall data with a prediction of accident severity around $1.166$. 
+> This decision node further splits according to the `number_of_vehicles_` in the incident. The test is whether `number_of_vehicles` is smaller than $2.5$, in effect splitting the decision tree into cases where two vehicles were involved (left) versus those involving three or more (right). 
+>
+> Once again, going with **"yes"**, we arrive at another decision node, containing $89\%$ of the data, but still predicting a similar accident severity as the previous decision node and the root node, of $\approx 1.2$. Here, the split is according to the `road_surface_conditions` and whether they were bigger than or equal to $1.5$. Looking back at the data dictionary,  we see that the severity of negative ('bad') road conditions increases with the number associated with this variable:
+>
+> - `road_surface_conditions=1`: corresponds to **"dry"**
+> - `road_surface_conditions=2`: corresponds to **"wet or damp"** and,
+> - `road_surface_conditions=3`: corresponds to **"snow"** . 
+>
+> Therefore, a score of 1.5 or bigger indicates road conditions that are not dry. 
+>
+> Going with **"yes"** once again, we have reached our decision tree's terminal, or leaf, node. Here, $\approx 16\%$ of the data is left, with an accident severity score this time deviating slightly from the ones we had before, predicting `accident_severity= 1.14`. 
+>
+> It is interesting that the accident severity score slightly decreases, even though the road surface conditions worsen (with scores equal to or above $1.5$). However, seeing that, for instance, $72\%$ of accidents did happen with road conditions similar to "dry," it might just mean that the vast majority of accidents and beyond happened there, meaning that the likelihood of a distribution of high and low accident severity all accumulates under these conditions, bringing the average up due to a large amount of data.
+
+**Going one step further: decision trees are also good for exploratory analysis**
+
+If you look closer at the tree, you will see that:
+
+- $\approx 88.51\%$ of the accidents involve exactly two vehicles ($16.33\% + 72.18\%$)
+- $\approx 2.47\%$ of the accidents involve more than two vehicles ($2.03\% + 0.28\% + 0.16\%$), and those have a higher mean `accident_severity` than the cases with exactly two vehicles (note the mean regression values in the leaf nodes).
+- The remaining $9.02\%$ of the accidents involve only one vehicle; although rarer, they have higher mean `accident_severity` than the left-most branches of the tree. 
+
+## Classification case
+
+Using the same predictors and `cp` value but just changing the target variable to `is_grave_accident`, and making it a classification task, we would get the tree below:
+
+```{r, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, dpi=200}
+df_filtered2 <- 
+  df %>% 
+  select(all_of(c("is_grave_accident", predictor1, predictor2, predictor3))) %>% 
+  filter(between(road_surface_conditions,1,7)) %>% 
+  filter(number_of_vehicles >= 0) %>% 
+  filter(CriScore >= 0)
+
+dt_model2 <- 
+  decision_tree(cost_complexity =cp) %>% 
+  set_mode("classification") %>% 
+  fit(as.formula("is_grave_accident ~ ."), data=df_filtered2)
+
+# Set the number of digits to 4 to see the average without too much rounding
+rpart.plot(dt_model2$fit, digits=4)
+```
+
+The description of the tree should be fairly similar to the regression case, so I will not replicate it here.
+
+
+:::
+
+💡: _All of the text formatting above (**bold**, _italic_, `code`, $100\% \text{ of equations}$), was done using [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)._
+
+
+## Q3. Predictions on the same data (5 points)
+
+```{r}
+df_filtered_augmented <- augment(dt_model, df_filtered)
+knitr::kable(df_filtered_augmented %>% head(10))
+```
+
+> The new data frame `df_filtered_augmented` has the same number of rows (i.e., observations) as the previous data frame `df_filtered`, but it has two additional columns. As can be seen by the output of the `dim` function: `df_filtered` has four columns while `df_filtered_augmented` has a size of six.
+>
+> The new columns are called `.pred` and `.resid` and respectively represent the predictions made by the decision tree model regarding the outcome variable accident severity and the residuals of these predictions. For every row, thus every observation in the data set, the decision tree predicts the value of accident severity (shown in the column `.pred`), given the tree-based model with three predictors. It also indicates a residual for that prediction (i.e., the difference between the actual value of accident severity observed in the original data set and the predicted value).
+>
+> The formula for the residual can be seen below:
+>
+> $$Residual=AccidentSeverity−Prediction$$
+>
+> Therefore, the smaller the residual (i.e., the closest to zero), the closer the prediction made is to the actual value of accident severity. Thus residuals are also used as a measure for the goodness of fit of a model to the data.
+
+## Q4. Goodness-of-fit: Metric (5 points)
+
+This one is pretty easy; you just need to fill in with `accident_severity` (if regression) or `is_grave_accident` (if classification) and `.pred`:
+
+```{r}
+df_filtered_augmented %>% metric_fn(accident_severity, .pred)
+```
+
+## Q5. Tweak the decision tree (10 points)
+
+Regardless of whether your task was regression or classification, you likely saw a decision tree that looks like the following:
+
+```{r, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, dpi=200}
+new_cp <- cp/1000000
+
+dt_model2 <- 
+  decision_tree(cost_complexity =new_cp) %>% 
+  set_mode(str_to_lower(task_type)) %>% 
+  fit(as.formula(formula_str), data=df_filtered)
+
+rpart.plot(dt_model2$fit)
+```
+
+An example of response is the following:
+
+> The `cp`-value, or complexity parameter, is the minimum improvement the model needs to gain from each extra node and can therefore be taken as a cut-off value deciding whether extra nodes will be allowed and produced. 
+> 
+> By making the value a million times smaller, the improvement to the model needed to justify extra nodes is much, much smaller than before, resulting in a far larger and more complex decision tree. 
+>
+> This decision tree shows clear signs of overfitting. It is extremely complex and detailed, but to an extent where the explanatory power is overshadowed by the complexity and unnecessarily huge size of the decision tree. This tree might be ideal when testing the model on the training data, as its explanatory power is super high and detailed, with the incredibly large number of decision nodes and leaves it contains. However, when testing any test data, this decision tree as a model might be far too detailed that it likely won't apply to much other data apart from the training set.
+>
+> **_However, to conclude that it is indeed overfitting, we would need to split the data into training and test set, or via cross-validation, and compare both models in their abilities to fit the training vs. predict the test data._**
+
+(💡 Many of you overlooked that although the new tree is likely overfitting, we still need to test it on a test set to be sure.)
+
+## Q6. Support Vector Machines (20 points)
+
+You were first asked to run the code below:
+
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
+svm_model <- 
+  svm_rbf() %>% 
+  set_mode(str_to_lower(task_type)) %>% 
+  fit(as.formula(formula_str), data=df_filtered)
+
+df_filtered_augmented2 <- augment(svm_model, df_filtered)
+df_filtered_augmented2 %>% metric_fn(accident_severity, .pred)
+```
+
+To which you could have responded something like:
+
+> The Mean Absolute Error (MAE) represents the mean of the absolute error rates.  This SVM model generated an MAE score of $0.200$, which means that the average error rate of the predictions made by the model was $0.2$. The other model, the Decision Tree model, computed a score of $\operatorname{MAE} = 0.286$ (as seen in Question 4), slightly worse. 
+> 
+> Furthermore, one can compare the two metrics by looking at the residual distribution plots, which also show that the spread of residuals seems bigger in the Decision Tree model compared to the SVM one, where the outputs seem more condensed:
+> 
+
+::: panel-tabset
+
+## Decision Tree residuals
+
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
+#| code-fold: true
+
+plot_df1 <- 
+  augment(dt_model, df_filtered) %>% 
+  mutate(row_number=row_number()) 
+
+g1 <- (
+  ggplot(plot_df1, aes(x=row_number, y=.resid))
+  + geom_point(alpha=0.6)
+  
+  + theme_bw()
+  + geom_hline(yintercept = c(-2.5,2.5), color="pink", linetype="dashed")
+  + labs(title="Residual Distribution Plot of the SVM Model")
+)
+
+g1
+```
+
+## SVM residuals
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
+#| code-fold: true
+
+plot_df1 <- 
+  augment(svm_model, df_filtered) %>% 
+  mutate(row_number=row_number()) 
+
+g1 <- (
+  ggplot(plot_df1, aes(x=row_number, y=.resid))
+  + geom_point(alpha=0.6)
+  
+  + theme_bw()
+  + geom_hline(yintercept = c(-2.5,2.5), color="pink", linetype="dashed")
+  + labs(title="Residual Distribution Plot of the SVM Model")
+)
+
+g1
+```
+
+:::
+
+
+> These visual observations are in line with the numerical MAE outputs, as well. Consequently, one can say that the Mean Absolute Error Score generated by the SVM model was smaller than the one generated by the Decision tree model, specifically by $0.086$ units. As a result, purely in terms of this metric, one can say that the SVM model fits the data better, given the generated Mean Absolute Error score is smaller than the one produced by the Decision Tree Model. Obviously, several other metrics could (_and normally should_) be considered; however, when just looking at the MAE score, the SVM can be viewed as a better fit.
+> 
+> To explain the MAE I used the following websites as sources: 
+> 1. (2011). [Mean Absolute Error](https://doi.org/10.1007/978-0-387-30164-8_525). In: Sammut, C., Webb, G.I. (eds) Encyclopedia of Machine Learning. Springer, Boston, MA.
+> 2. Statistics How To - (Absolute Error & Mean Absolute Error (MAE))[https://www.statisticshowto.com/absolute-error/] 
+> 3. EUMETrain - [Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE)](
+https://resources.eumetrain.org/data/4/451/english/msg/ver_cont_var/uos3/uos3_ko1.htm)
+
+
+## Q7. Tweaking the SVM (15 points)
+
+You were asked to train an alternative SVM (any other kernel than the default one) and compare the results with the default one using your designated metric.
+
+Here follows a model solution:
+
+```{r, eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
+alternative_svm_model <- 
+  svm_rbf() %>% 
+  set_mode(str_to_lower(task_type)) %>% 
+  fit(as.formula(formula_str), data=df_filtered, kernel='sigmoid')
+
+df_filtered_augmented3 <- augment(alternative_svm_model, df_filtered)
+```
+
+> I decided to tweak my alternative SVM model by changing the kernel to 'sigmoid' in opposition to the regular radial setting used in this assignment's original SVM model. To compare the model fit of the `alternative_svm_model` to the `svm_model` let us take a look at the metrics outputted by the model:
+
+::: panel-tabset
+
+## Original SVM
+
+```{r, eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
+svm_model
+```
+
+## Alternative SVM
+
+```{r, eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
+alternative_svm_model
+```
+
+:::
+
+
+> First, the alternative model has a few more support vectors when compared to the original model. Furthermore, both models achieve almost the same training error of $\approx 1.12$. 
+>
+> However, now to answer the question and compare the metric, namely the Mean Absolute Errors (MAE): the `alernative_svm_model`'s MAE score is $0.2004705$, compared to the `svm_model`'s MAE score of $0.2004687$. Here, one can say that the `svm_model` has a _slightly_ lower MAE score, namely by a difference of $0.0000018$. (_We can't even see that from R's standard output below_)
+
+```{r}
+df_filtered_augmented3 %>% metric_fn(accident_severity, .pred)
+```
+
+> The difference is barely observable, as one can attest additionally from the residual distribution plots. Nevertheless, the `svm_model`'s MAE score is still lower than the `alernative_svm_model`, indicating a lower distribution of faulty predictions. As a result, one can conclude that the SVM model, with the radial kernel, is a better fit to the data than the alternative SVM model, with the sigmoid kernel. **However, while acknowledging that objectively, the SVM model is a better fit according to the MAE metric, one needs to remember that the difference between the two model's MAEs was negligible**.
+
+
+## Q8.
 
 👷 **Work in progress** 👷
 
-I didn't have much time left today (9 Jan 2023), so I will come back to putting more solutions here tomorrow.
+Come back later for a model response
