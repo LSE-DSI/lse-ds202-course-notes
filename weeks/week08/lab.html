@@ -1006,11 +1006,11 @@ SV type: C-svc  (classification)
  parameter : cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.58686926220368 
+ Hyperparameter : sigma =  1.3475927760346 
 
-Number of Support Vectors : 426 
+Number of Support Vectors : 428 
 
-Objective Function Value : -387.282 
+Objective Function Value : -389.0561 
 Training error : 0.170093 
 Probability model included. </code></pre>
 </div>
@@ -1041,12 +1041,12 @@ Probability model included. </code></pre>
 <pre><code># A tibble: 6 × 7
   Purchase LoyalCH PriceDiff .pred_class .pred_CH .pred_MM is_correct
   &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt;    &lt;dbl&gt; &lt;lgl&gt;     
-1 CH         0.5        0.24 CH             0.856    0.144 TRUE      
-2 CH         0.6       -0.06 CH             0.714    0.286 TRUE      
-3 CH         0.68       0.4  CH             0.874    0.126 TRUE      
-4 MM         0.4        0    MM             0.172    0.828 TRUE      
-5 CH         0.957      0    CH             0.876    0.124 TRUE      
-6 CH         0.965      0.3  CH             0.873    0.127 TRUE      </code></pre>
+1 CH         0.5        0.24 CH             0.849    0.151 TRUE      
+2 CH         0.6       -0.06 CH             0.700    0.300 TRUE      
+3 CH         0.68       0.4  CH             0.875    0.125 TRUE      
+4 MM         0.4        0    MM             0.174    0.826 TRUE      
+5 CH         0.957      0    CH             0.874    0.126 TRUE      
+6 CH         0.965      0.3  CH             0.875    0.125 TRUE      </code></pre>
 </div>
 </div>
 <section id="measure-precision-1" class="level4">
@@ -1158,12 +1158,12 @@ SV type: eps-svr  (regression)
  parameter : epsilon = 0.1  cost C = 1 
 
 Gaussian Radial Basis kernel function. 
- Hyperparameter : sigma =  1.40340046714395 
+ Hyperparameter : sigma =  1.66304386394382 
 
-Number of Support Vectors : 1125 
+Number of Support Vectors : 1121 
 
-Objective Function Value : -765.0842 
-Training error : 0.938598 </code></pre>
+Objective Function Value : -762.2873 
+Training error : 0.930705 </code></pre>
 </div>
 </div>
 </section>
@@ -1179,12 +1179,12 @@ Training error : 0.938598 </code></pre>
 <pre><code># A tibble: 6 × 6
    Today Volume   Lag1   .pred .resid row_number
    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;int&gt;
-1  0.959   1.19  0.381 -0.0369  0.996          1
-2  1.03    1.30  0.959 -0.220   1.25           2
-3 -0.623   1.41  1.03  -0.220  -0.403          3
-4  0.614   1.28 -0.623  0.227   0.387          4
-5  0.213   1.21  0.614 -0.143   0.356          5
-6  1.39    1.35  0.213 -0.169   1.56           6</code></pre>
+1  0.959   1.19  0.381 -0.0494  1.01           1
+2  1.03    1.30  0.959 -0.238   1.27           2
+3 -0.623   1.41  1.03  -0.243  -0.380          3
+4  0.614   1.28 -0.623  0.255   0.359          4
+5  0.213   1.21  0.614 -0.147   0.360          5
+6  1.39    1.35  0.213 -0.154   1.55           6</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="dart">🎯</span> <strong>ACTION POINT</strong>: What do the different columns mean?</p>
@@ -1218,7 +1218,7 @@ MAE = \frac{\sum_{i=1}^{n}{|y_i - \hat{y}_i|}}{n}
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 mae     standard       0.794</code></pre>
+1 mae     standard       0.791</code></pre>
 </div>
 </div>
 </section>
@@ -1271,12 +1271,12 @@ RMSE = \frac{\sum_{i=1}^{n}{(y_i - \hat{y}_i)^2}}{n}
 <pre><code># A tibble: 6 × 3
   Volume  Lag1   .pred
    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1      0  -5   -0.0188
-2      0  -4.8 -0.0188
-3      0  -4.6 -0.0188
-4      0  -4.4 -0.0188
-5      0  -4.2 -0.0188
-6      0  -4   -0.0188</code></pre>
+1      0  -5   -0.0121
+2      0  -4.8 -0.0121
+3      0  -4.6 -0.0121
+4      0  -4.4 -0.0121
+5      0  -4.2 -0.0121
+6      0  -4   -0.0121</code></pre>
 </div>
 </div>
 <p><span class="emoji" data-emoji="bulb">💡</span> Look at the entire dataset with <code>View(sim.data)</code></p>
